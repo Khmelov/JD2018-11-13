@@ -1,8 +1,6 @@
-package by.it._tasks_.vchernetski.jd01_02;
+package by.it.vchernetski.jd01_02;
 
 import java.util.Scanner;
-
-import static java.lang.Math.*;
 
 public class TaskB {
     private static void step1()

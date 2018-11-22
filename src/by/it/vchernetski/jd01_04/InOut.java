@@ -1,14 +1,14 @@
-package by.it._tasks_.vchernetski.jd01_03;
+package by.it.vchernetski.jd01_04;
 
 public class InOut {
 
-    static double[ ] getArray(String line){
+    public static double[ ] getArray(String line){
         String[] strMas=line.trim().split(" ");
         double [] res=new double [strMas.length];
         for (int i = 0; i < res.length; i++) res[i] = Double.parseDouble(strMas[i]);
         return res;
     }
-    static void printArray(double[ ] arr){
+     public static void printArray(double[ ] arr){
         for (double v : arr) {
             System.out.print(v+" ");
         }

@@ -1,7 +1,4 @@
-package by.it._tasks_.vchernetski.jd01_01;
-
-import by.it.vchernetski.jd01_01.Args;
-import by.it.vchernetski.jd01_01.Hello;
+package by.it.vchernetski.jd01_01;
 
 public class Main {
 

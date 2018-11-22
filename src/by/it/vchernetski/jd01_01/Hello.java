@@ -1,4 +1,4 @@
-package by.it._tasks_.vchernetski.jd01_01;
+package by.it.vchernetski.jd01_01;
 
 public class Hello
 {

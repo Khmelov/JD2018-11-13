@@ -1,4 +1,4 @@
-package by.it._tasks_.vchernetski.jd01_02;
+package by.it.vchernetski.jd01_02;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package by.it._tasks_.vchernetski.jd01_03;
+package by.it.vchernetski.jd01_03;
 
 public class Helper {
     /**

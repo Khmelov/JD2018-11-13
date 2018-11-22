@@ -1,10 +1,6 @@
-package by.it._tasks_.vchernetski.jd01_03;
+package by.it.vchernetski.jd01_03;
 
-import by.it.vchernetski.jd01_03.Helper;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 public class Runner {
     public static void main(String[] args) throws IOException {
