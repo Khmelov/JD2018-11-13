@@ -27,9 +27,9 @@ public class TaskA {
 
         double x3 = 12.1;
         double a3_delta = 3.75;
-        for (double a3=-5; a3 <= 12; a3 = a3 + a3_delta) {
+        for (double a3=-5; a3 <= 12; a3 += a3_delta) {
             double f = exp(a3 * x3) - 3.45 * a3;
-            System.out.printf("При а= " + a3 + "f=" + f);
+            System.out.printf( "%7s%5.2f%3s%g\n" ,"При а= ", a3, " f=", f);
         }
     }
 }
