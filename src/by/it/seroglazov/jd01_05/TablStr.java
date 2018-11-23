@@ -1,6 +1,7 @@
 package by.it.seroglazov.jd01_05;
 
 public class TablStr {
+
     private static char[] getSimpleCharLine(int len) {
         char sl = '\u2550'; // Simple line ═
         char[] line = new char[len];

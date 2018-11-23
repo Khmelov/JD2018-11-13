@@ -7,7 +7,7 @@ import static java.lang.Math.*;
 
 public class TaskC {
     public static void main(String[] args) {
-        //task6();
+        task6();
         task7();
     }
 
@@ -55,45 +55,59 @@ public class TaskC {
         int[] arrC = new int[arrA.length];
         int j = 0;
         for (int i = 0; i < arrA.length; i++) {
-            if (arrA[i] > 0.1 * i) {
+            if (arrA[i] * 0.1 > i) {
                 arrC[j++] = arrA[i];
             }
         }
         int[] arrB = Arrays.copyOf(arrC, j);
         Arrays.sort(arrB);
-        printA(arrA, 'A');
+        printFramedArray(arrA, 'A', 5, 12, true);
+        printFramedArray(arrB, 'B', 2, 12, false);
     }
 
-
-    private static void printA(int[] a, char ch) {
+    /**
+     * Print an array in special symblos frame
+     *
+     * @param a actual array
+     * @param ch Header symbol for this array
+     * @param columnsAmount how  much columns
+     * @param blockLength nternal space length of every cell in symbols. 12 is recomended
+     * @param horiz if true - indexes will be grow from left to right; if false - from up to down
+     */
+    private static void printFramedArray(int[] a, char ch, int columnsAmount, int blockLength, boolean horiz) {
         char vl = '\u2551'; // Vertical line ║
-        int blockAmount = 5;
-        int blockLength = 12;
-        String ul = TablStr.getUpLine(blockAmount, blockLength); // Up line
-        String cl = TablStr.getCenterLine(blockAmount, blockLength); // Center line
-        String dl = TablStr.getDownLine(blockAmount, blockLength); // Down line
+        String ul = TablStr.getUpLine(columnsAmount, blockLength); // Up line
+        String cl = TablStr.getCenterLine(columnsAmount, blockLength); // Center line
+        String dl = TablStr.getDownLine(columnsAmount, blockLength); // Down line
         String blank = TablStr.getBlankLine(blockLength);
-
-        System.out.print("Array A\n");
+        System.out.print("Array ");
+        System.out.println(ch);
         System.out.print(ul);
-
-
-        int rowAmount = a.length / blockAmount + 1; // int
+        int rowAmount = a.length / columnsAmount + 1; // int
         int counter = 0;
+        int index;
         for (int row = 0; row < rowAmount; row++) {
-            for (int i = 0; i < blockAmount; i++) {
+            for (int i = 0; i < columnsAmount; i++) {
                 System.out.print(vl);
-                if (counter < a.length)
-                    System.out.printf(" %c[%2d]=% -4d ", ch, counter, a[counter++]);
-                else
-                    System.out.printf(blank);
+                if (horiz) {
+                    if (counter < a.length)
+                        System.out.printf(" %c[%2d]=% -4d ", ch, counter, a[counter++]);
+                    else
+                        System.out.print(blank);
+                } else {
+                    index = i * rowAmount + row;
+                    if (index < a.length)
+                        System.out.printf(" %c[%2d]=% -4d ", ch, index, a[index]);
+                    else
+                        System.out.print(blank);
+                }
             }
             System.out.println(vl);
             if (row != rowAmount - 1) System.out.print(cl);
         }
         System.out.print(dl);
-
     }
+
 }
 
 
