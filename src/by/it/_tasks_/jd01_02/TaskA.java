@@ -1,7 +1,7 @@
 package by.it._tasks_.jd01_02;
 
 import java.util.Scanner;
-//
+
 public class TaskA {
     public static void main(String[] args) {
         System.out.println("Введите данные в масив согластно ТЗ" + "\n10 целых чисел через пробел");
