@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_03;
+package by.it._task_.jd01_03;
 
 public class InOut {
     static double[] getArray(String line){

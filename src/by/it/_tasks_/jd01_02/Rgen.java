@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_02;
+package by.it._task_.jd01_02;
 import java.lang.Math;
 
 public class Rgen {
