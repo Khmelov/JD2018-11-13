@@ -13,7 +13,7 @@ public class TaskB {
         }
     }
 
-    private  static void step2() {
+    public   static void step2() {
         for (double x = -6; x <= 2; x += 0.5) {
             double b = 0;
             if (x / 2 <= -2 || x / 2 > 0.2) {
