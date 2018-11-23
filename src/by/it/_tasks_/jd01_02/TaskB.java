@@ -1,7 +1,7 @@
 package by.it._tasks_.jd01_02;
 
 import java.util.Scanner;
-//
+
 public class TaskB {
     public static void main(String[] args){
         step1();

@@ -3,7 +3,7 @@ package by.it._tasks_.jd01_02;
 
 import java.util.Random;
 import java.util.Scanner;
-//
+
 public class TaskC {
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
