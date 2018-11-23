@@ -6,62 +6,64 @@ import static java.lang.Math.pow;
 
 class TaskC {
     public static void main(String[] args) {
-        task1();
+        task1(); //Вызываем метод Task1
     }
 
-    static void task1() {
-        int minArrayLength = 20;
+    /* C1. Сформировать массив[] и вывести 20-40 элементов с аргументов в заданном интервале.
+    Вывести с именем индексами, а вывести элементы>3.5, вывести среднее геометрическое.*/
+
+    private static void task1() {
+        int minArrayLength = 20;                                                // Нижняя граница массива 20-40
         int maxArrayLength = 40;
-        double minArrayElement = 5.33;
-        double maxArrayElement = 9.0;
+        double xMin = 5.33;                                                     // Нижний предел x
+        double xMax = 9;
+        double x;
         double sum = 0;
-        int counter = 0;
-        int counter2 = 0;
-        final int columns = 5;
-        double avg;
+        final int columns = 5;                                                  // Желаемое количество столблцов
+        double avg;                                                             // Средняя геометрическая
 
+                                                                                //Генерируем n от 20 до 40 элементов
         Random rnd1 = new Random();
-//        int n = minArrayLength + rnd1.nextInt(maxArrayLength + 1 - minArrayLength);
-//        //System.out.println("Длина массива: " + n);
-        int n = 28;
-        //Создаем массив
-        double[] arrayA = new double[n];
-        for (int i = 0; i < n; i++) {
-            double x = minArrayElement + Math.random() * (maxArrayElement + 1 - minArrayElement);
-            double z = pow(x * x + 4.5, 1.0 / 3);
-            arrayA[i] = z;
-        }
-        //Выводим массив в 5 колонок.
+        int n = minArrayLength + rnd1.nextInt(maxArrayLength + 1 - minArrayLength);
+        System.out.println("Сгенерированный размер массива: " + n);
 
-        //int counter = 0;
+        // Создаем массив [n]
+        double[] arrayA = new double[n];
+        double delta = (xMax - xMin) / (n - 1);                                 // Задаем шаг функции
+        int c = 0;                                                              // Создаем счетчик
+        for (x = xMin; x <= xMax; x += delta) {
+            double z = pow((x * x + 4.5), 1.0 / 3);                            // Считаем функцию по delta
+            if (c < n) {                                                    // Записываем значения функции в массив
+                arrayA[c] = z;
+                c++;
+            }
+        }
+                                                                             // Блок вывода массива A[])
+        c = 0;                                                                // Обнуляем счетчик
         System.out.println("Массив A[]");
-        for (int i = 0; i < arrayA.length; i++) {
-            System.out.printf("%2s[% -3d]=%-10g", "A", i, arrayA[i]);
-            counter++;
-            if ((counter % columns == 0) || (arrayA.length - 1 == i)) {
+        for (int i = 0; i < n; i++) {
+            System.out.printf("%2s[% -3d]=%-10g", "A", i, arrayA[i]);         // Выводим название(A), индекс [ i ], значение arrayA i]
+            c++;
+            if ((c % columns == 0) || (arrayA.length - 1 == i)) {
                 System.out.println();
             }
-
         }
-
+                                                                        // Блок вывода массива с эелементами >3.5 (B[])
+        c = 0;                                                          // Обнуляем счетчик
         System.out.println("Массив B[] из элементов массива A > 3.5");
         for (int i = 0; i < arrayA.length; i++) {
             if (arrayA[i] > 3.5) {
-
                 System.out.printf("%2s[% -3d]=%-10g", "B", i, arrayA[i]);
-                counter2++;
-                if ((counter2 % columns == 0) || (arrayA.length - 1 == i)) {
+                c++;
+
+                if ((c % columns == 0) || (arrayA.length - 1 == i)) {    // Модуль построения колонок
                     System.out.println();
                 }
-                sum += arrayA[i];
+                sum += arrayA[i];                                        // Ввычисляем сумму элементов массива со сзначениями >3.5
             }
-
         }
-        avg = pow(sum, 1.0 / counter2);
+        avg = pow(sum, 1.0 / c);                                          // Ввычисляем среднее геометрическое
         System.out.println();
-        System.out.println("Среднее геометрическое массив B[]: " + avg);
-
+        System.out.println("Среднее геометрическое массив B[]: " + avg);  // Выводим среднее геометрическое
     }
-
 }
-
