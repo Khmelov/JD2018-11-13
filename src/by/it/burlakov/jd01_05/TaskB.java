@@ -18,7 +18,7 @@ public class TaskB {
     }
     private static void step2(){
 
-        for (double x = -5.5; x < 2 ; x = x + 0.5) {
+        for (double x = -6; x < 2 ; x = x + 0.5) {
             double beta;
             if(x / 2 > -2 && x / 2 <= -1 ){
                 beta = sin(x * x);
