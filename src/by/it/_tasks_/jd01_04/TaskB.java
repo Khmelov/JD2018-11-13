@@ -1,7 +1,7 @@
 package by.it._tasks_.jd01_04;
 
 import java.util.Scanner;
-//
+
 public class TaskB {
     public static void main(String[] arg) {
         Scanner scanner = new Scanner(System.in);

@@ -1,6 +1,6 @@
 package by.it._tasks_.jd01_03;
 import java.util.Arrays;
-//
+
 public class Helper {
     public static double findMin(double[ ]arr){
         if(0==arr.length){

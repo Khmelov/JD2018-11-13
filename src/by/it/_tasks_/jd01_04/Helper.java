@@ -15,7 +15,7 @@ public class Helper {
 
         }
     }
-//
+
     public static double findMax(double[ ]arr){
         if(0==arr.length){
             return Double.MAX_VALUE;
