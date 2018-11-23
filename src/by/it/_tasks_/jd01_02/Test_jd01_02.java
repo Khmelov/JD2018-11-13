@@ -1,5 +1,5 @@
 package by.it._tasks_.jd01_02;
-//проверка
+
 import org.junit.Test;
 
 import java.io.*;
