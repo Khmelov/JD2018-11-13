@@ -4,11 +4,11 @@ import static java.lang.Math.*;
 
 public class TaskB {
     public static void main(String[] args) {
-        Task4();
-        Task5();
+        task4();
+        task5();
     }
 
-    private static void Task4() {
+    private static void task4() {
         double a = 0;
         double da = 0.2;
         double y;
@@ -39,7 +39,7 @@ public class TaskB {
         } else return Double.NaN;
     }
 
-    private static void Task5() {
+    private static void task5() {
         double x = -5.5;
         double dx = 0.5;
         double a;

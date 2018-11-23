@@ -4,13 +4,13 @@ import static java.lang.Math.*;
 
 public class TaskA {
     public static void main(String[] args) {
-        Task1();
-        Task2();
-        Task3();
+        task1();
+        task2();
+        task3();
 
     }
 
-    private static void Task1() {
+    private static void task1() {
         double a = 756.13;
         double x = 0.3;
         double part1 = cos(pow(x * x + PI / 6, 5));
@@ -20,14 +20,14 @@ public class TaskA {
         System.out.println(z);
     }
 
-    private static void Task2() {
+    private static void task2() {
         double a = 1.21;
         double b = 0.371;
         double y = tan(pow(a + b, 2)) - pow(a + 1.5, 1.0 / 3) + a * pow(b, 5) - b / log(a * a);
         System.out.println(y);
     }
 
-    private static void Task3() {
+    private static void task3() {
         double a = -5;
         double x = 12.1;
         double da = 3.75;
