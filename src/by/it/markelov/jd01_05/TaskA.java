@@ -4,9 +4,9 @@ import static java.lang.Math.*;
 
 public class TaskA {
     public static void main(String[] args) {
-//        step1();
-//        step2();
-          step3();
+        step1();
+        step2();
+        step3();
     }
 
 
