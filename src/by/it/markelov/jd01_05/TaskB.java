@@ -5,7 +5,31 @@ import static java.lang.Math.*;
 public class TaskB {
     public static void main(String[] args) {
         task4();
+        System.out.println("\n");
+        task5();
 
+    }
+
+    private static void task5() {
+        double a, b;
+        for (double x = -5.5; x < 2; x+=0.5) {
+            if (-2<(x/2)&&(x/2)<=-1) {
+                b=sin(x*x);
+                a=log10(abs(b+2.74));
+                System.out.printf("При x=%.2f и b=%f значение a=%g\n", x, b, a);
+            }
+            else if (-1<(x/2)&&(x/2)<0.2) {
+                b=cos(x*x);
+                a=log10(abs(b+2.74));
+                System.out.printf("При x=%.2f и b=%f значение a=%g\n", x, b, a);
+            }
+            else if ((x/2)==0.2) {
+                b= 1.0/tan(x*x);
+                a=log10(abs(b+2.74));
+                System.out.printf("При x=%.2f и b=%f значение a=%g\n", x, b, a);
+            }
+
+        }
     }
 
     private static void task4() {
