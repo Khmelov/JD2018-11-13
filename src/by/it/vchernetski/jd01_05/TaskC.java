@@ -43,38 +43,62 @@ public class TaskC {
     }
 
     private static void printtable (long [] A, int c, String name){ //печатате массив в таблице
-        int coll = 2 + 11 * c;
+        int coll = 10 * c + 1;
         double l = (double) A.length/c;
-        int lines = ((int) ceil(((double)A.length/c))) * 2 + 3;
+        int lines = ((int) ceil(((double)A.length/c))) * 2+1;
         char[][] matrix = new char[lines][coll];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j <matrix[i].length ; j++) {
-                if (i == 0 && j == 0 || i == 0 && j == matrix[i].length-1 || j == 0 && i == matrix.length - 1 || j == matrix[i].length - 1 && i == matrix.length - 1){
-                    matrix[i][j] = '+';
+                if (i == 0 && j == 0){
+                    matrix[i][j] = 0x2554;
+                    continue;
+                }
+                if( i == 0 && j == matrix[i].length-1 ){
+                    matrix[i][j] = 0x2557;
+                    continue;
+                }
+                if ( j == 0 && i == matrix.length - 1 ){
+                    matrix[i][j] = 0x255a;
+                    continue;
+                }
+                if (j == matrix[i].length - 1 && i == matrix.length - 1){
+                    matrix[i][j] = 0x255d;
+                    continue;
+                }
+                if (i == 0 && j % 10 == 0 && j != 0 && j != matrix[i].length){
+                    matrix[i][j] = 0x2566;
+                    continue;
+                }
+                if (i  == matrix.length - 1 && j % 10 == 0 && j != 0 && j != matrix[i].length){
+                    matrix[i][j] = 0x2569;
+                    continue;
+                }
+                if (i % 2 == 0 && j % 10 == 0 && j != 0 && j != matrix[i].length - 1){
+                    matrix[i][j] = 0x256c;
                     continue;
                 }
                 if (i == 0 && j != 0 && j != matrix[i].length -1 || i == matrix.length -1 && j != 0 && j != matrix[i].length - 1){
-                    matrix[i][j] = '-';
+                    matrix[i][j] = 0x2550;
+                    continue;
+                }
+                if (j == matrix[i].length-1 && i != 0 && i != matrix.length && i % 2 ==0){
+                    matrix[i][j] = 0x2563;
+                    continue;
+                }
+                if (i !=matrix.length - 1 && i != 0 && i % 2 == 0 && j == 0){
+                    matrix[i][j] = 0x2560;
                     continue;
                 }
                 if (j == 0 && i != 0 && j != matrix.length -1 || j == matrix[i].length -1 && i != 0 && j != matrix.length -1){
-                    matrix[i][j] = '|';
+                    matrix[i][j] = 0x2551;
                     continue;
                 }
-                if ((i - 1) % 2 == 0 && (j - 1) % 11 == 0){
-                    matrix[i][j] = '+';
+                if (i % 2 == 0 && j % 10 != 0 && j != 0 && j != matrix[i].length){
+                    matrix[i][j] = 0x2550;
                     continue;
                 }
-                if ((i - 1) % 2 == 0 && j % 11 == 0){
-                    matrix[i][j] = '+';
-                    continue;
-                }
-                if (i % 2 == 0 && (j - 1) % 11 == 0 || i % 2 == 0 && j % 11 == 0){
-                    matrix[i][j] = '|';
-                    continue;
-                }
-                if ((i - 1) % 2 ==0 && (j - 1) % 11 !=0 && j % 11 != 0){
-                    matrix[i][j] = '-';
+                if (i % 2 != 0 && j % 10 == 0 && j != 0 && j != matrix[i].length){
+                    matrix[i][j] = 0x2551;
                     continue;
                 }
             }
@@ -82,7 +106,7 @@ public class TaskC {
         int ac = 0;
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {
-                if (i % 2 == 0 && (j - 2) % 11 == 0 && i !=0 && i != matrix.length -1){
+                if (i % 2 != 0 && (j - 1) % 10 == 0){
                     if(ac<A.length){
                         System.out.printf("%s(%2d)=%3d",name, ac, A[ac]);
                         ac++;
@@ -91,7 +115,7 @@ public class TaskC {
                         System.out.print("         ");
                     }
                 }
-                else {
+                if (j % 10 == 0 && i % 2 != 0 || i % 2 == 0) {
                     System.out.print(matrix[i][j]);
                 }
 
@@ -141,7 +165,7 @@ public class TaskC {
         }
         sort(B);
         System.out.println("Massiv A");
-        printtable(A, 5, "A");
+        printtable(A, 8, "A");
         System.out.println("Massiv B");
         printtable(B, 3, "B");
     }
