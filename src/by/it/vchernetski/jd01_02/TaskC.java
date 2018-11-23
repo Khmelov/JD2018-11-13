@@ -55,100 +55,10 @@ public class TaskC {
        System.out.println(sum);
        return sum;
    }
- //  private static int[][] foo(int[][]mas,int max){
-//       int[][] masred = new int[mas.length-1][mas.length-1];
-//       int a=0;
-//       int b=0;
-//       boolean m =false, n =false;
-//       for (int i = 0; i <mas.length ; i++) {
-//           for (int j = 0; j <mas[i].length ; j++) {
-//               if(mas[i][j]==max) {
-//                   a=i;
-//                   b=j;
-//                   m=true;
-//                   n= true;
-//                   break;
-//               }
-//           }
-//           if(n){break;}
-//       }
-//
-//       System.out.println("индексы" +a + " " +b);
-//       if(m){
-//       int q=0;
-//       for (int i = 0; i <mas.length ; i++) {
-//           if(i==a) {
-//               continue;}
-//           for (int j = 0; j <mas[i].length ; j++) {
-//               if(j<b) {
-//                   masred[q][j]=mas[i][j];
-//               } else if(j>b) masred[q][j-1]=mas[i][j];
-//               else continue;
-//           }
-//           q++;
-//       }
-//       for (int i = 0; i <masred.length ; i++) {
-//           for (int j = 0; j <masred[i].length ; j++) {
-//               System.out.print(masred[i][j]+" ");
-//           }
-//           System.out.println();
-//       }
-//       return masred;}
-//       else {return mas;}
-//       for (int i = 0; i <mas.length; i++) {
-//           for (int j = 0; j <mas.length ; j++) {
-//               if(mas[i][j]==max){
-//                   for (int k = 0; k <mas[i].length ; k++) {
-//                       if(mas[i][k]!=max) mas[i][k]=0;
-//                   }
-//               }
-//           }
-//       }
-//       System.out.println("new");
-//       for (int i = 0; i <mas.length; i++) {
-//           for (int j = 0; j <mas[i].length ; j++) {
-//               System.out.println(mas[i][j]+" ");
-//           }
-//       }
-//       return mas;
-//   }
    private static int[][] step3(int [][] mas)
    {
        int max=0;
-//       int c=0;
-//       for (int i = 0; i <mas.length ; i++) {
-//           for (int j = 0; j <mas[i].length ; j++) {
-//               if(max<mas[i][j]) max = mas[i][j];
-//           }
-//       }
-//       System.out.println("max"+max);
-//       for (int i = 0; i <mas.length ; i++) {
-//           for (int j = 0; j <mas[i].length ; j++) {
-//               if(max==mas[i][j]) c++;
-//           }
-//       }
-//       System.out.println("количество"+c+"\n");
-//       int[][] mas = {{1, -2, -2, 6}, {-1, 2, -2, 2}, {-2, -2, -6, -2}, {1, 2, -2, 6}};
-//       for (int i = 0; i <m4.length ; i++) {
-//           for (int j = 0; j <m4.length ; j++) {
-//               if(max==mas[i][j]) c++;
-//           }
-//       }
-//       System.out.println("количество"+c+"\n");
-//       int[][] masfin;
-//       int[][] masred=m4;
-//       int l=2;
-//       while (l<=c){
-//           masred=foo(masred,max,c);
-//           l++;
-//       }
-//       masfin=masred;
-//       for (int i = 0; i <mas.length-c ; i++) {
-//           for (int j = 0; j <mas.length-c ; j++) {
-//               System.out.print(masfin[i][j]+" ");
-//           }
-//           System.out.println();
-//       }
+
        for (int i = 0; i <mas.length ; i++) {
            for (int j = 0; j <mas[i].length ; j++) {
                if(max<mas[i][j]) max = mas[i][j];
@@ -177,17 +87,11 @@ public class TaskC {
                    for (int k = 0; k <ch.length ; k++) {
                        ch[k][a]='d';
                    }
-//                   for (int k = 0; k <mas[i].length ; k++) {
-//                       if(mas[i][k]!=max){ch[i][k]='d';}
-//                   }
-//                   for (int k = 0; k <mas.length ; k++) {
-//                       if(mas[k][a]!=max){ch[k][a]='d';}
-//                   }
+
                }
            }
            if(b) c++;
        }
-//
        a=0;
        b=false;
        for (int i = 0; i <mas.length ; i++) {
@@ -199,13 +103,6 @@ public class TaskC {
            }
            if(b) a++;
        }
-      // System.out.println("c   "+c+"     a    "+a);
-//       for (int i = 0; i <ch.length ; i++) {
-//           for (int j = 0; j <ch.length ; j++) {
-//               System.out.print(ch[i][j]+" ");
-//           }
-//           System.out.println();
-//       }
        int [][] masfin=new int[mas.length-c][mas.length-a];
        int q=0;
        int w,z;
