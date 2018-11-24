@@ -79,8 +79,8 @@ public class TaskA {
 //вычисляем новые (после сортировки) индексы первого и последнего элемента
 //исходного массива и выводим их на консоль
         for (int i = 0; i < masDouble.length; i++) {
-            if (masDouble[i] == firstElemeht) System.out.println("Index of first element= " + i);
-            if (masDouble[i] == lastElemeht) System.out.println("Index of last element= " + i);
+            if (masDouble[i] == firstElemeht) System.out.println("Index of first element=" + i);
+            if (masDouble[i] == lastElemeht) System.out.println("Index of last element=" + i);
         }
     }
 }
