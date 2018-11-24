@@ -39,7 +39,7 @@ public class TaskA {
     }
      private static  void mathC(){
          double x = 12.1;
-         double y = 0;
+         double y ;
          for (double a = -5; a <= 12 ; a += 3.75) {
              y = Math.exp(a * x) - 3.45 * a;
              System.out.printf("При а = %1.2f%1.6e", a, y);
