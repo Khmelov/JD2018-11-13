@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_04;
+package by.it.evenchik.jd01_04;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_04;
+package by.it.evenchik.jd01_03;
 import java.util.Arrays;
 
 public class Helper {

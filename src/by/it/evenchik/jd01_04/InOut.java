@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_04;
+package by.it.evenchik.jd01_04;
 
 public class InOut {
     static int[] getArrayInt(String line){

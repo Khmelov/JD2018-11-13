@@ -1,5 +1,4 @@
-package by.it._tasks_.jd01_02;
-import java.lang.Math;
+package by.it.evenchik.jd01_02;
 
 public class Rgen {
 
