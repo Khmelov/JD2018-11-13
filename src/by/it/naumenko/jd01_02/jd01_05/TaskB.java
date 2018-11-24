@@ -4,15 +4,30 @@ import static java.lang.StrictMath.*;
 
 
 public class TaskB {
+//    static void unit1(int x) {
+//        double rezult = 0.0;
+//        for (int i = 1; i <= x; i++) {
+//            double a = 0.0;
+//            while (a <= 2) {
+//                rezult += (pow(7, a) - cos(i));
+//                print(a, rezult);
+//                a += 0.2;
+//            }
+//        }
+//    }
+
     static void unit1(int x) {
         double rezult = 0.0;
-        for (int i = 1; i <= x; i++) {
-            double a = 0.0;
-            while (a <= 2) {
-                rezult += (pow(7, a) - cos(i));
-                print(a, rezult);
-                a += 0.2;
+        double a = 0.0;
+        while (a <= 2) {
+            double sum = 0.0;
+            for(int i=1;i<=x;i++) {
+                sum = (pow(7, a) - cos(i));
+                rezult+=sum;
             }
+
+            print(a, rezult);
+            a += 0.2;
         }
     }
 
