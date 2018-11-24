@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_05;
+package by.it.kruglenja.jd01_05;
 
 
 import org.junit.Test;
@@ -7,8 +7,7 @@ import java.io.*;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 @SuppressWarnings("all")
 
