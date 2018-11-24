@@ -31,7 +31,23 @@ public class TaskB {
         }
     }
 
-    static void step3(double a, double b, double c){
+    static void step3(double a, double b, double c) {
+        double discriminant = b * b - 4 * a * c;
+        double x1, x2;
 
+        if (discriminant > 0) {
+            x1 = -(b - Math.sqrt(discriminant)) / 2;
+            x2 = -(b + Math.sqrt(discriminant)) / 2;
+            System.out.println(x1 + " " + x2);
+        }
+
+        if (discriminant == 0) {
+            x1 = -b / (2 * a);
+            System.out.println(x1);
+        }
+
+        if (discriminant< 0) {
+            System.out.println("корней нет");
+        }
     }
 }
