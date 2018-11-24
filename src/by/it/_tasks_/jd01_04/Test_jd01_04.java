@@ -1,12 +1,11 @@
 package by.it._tasks_.jd01_04;
 
 
-import org.junit.Test;
-
 import java.io.*;
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
+import java.lang.reflect.*;
 import java.util.Arrays;
+
+import org.junit.Test;
 
 import static org.junit.Assert.*;
 
