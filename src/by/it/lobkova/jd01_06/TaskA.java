@@ -10,7 +10,7 @@ public class TaskA {
         Pattern p = Pattern.compile("[а-яА-яёЁ]{4,}");
         Matcher m = p.matcher(Poem.text);
         while (m.find()){
-            sb.setCharAt(m.start(), '#');
+            sb.setCharAt(m.start(), '#'); //hhh
           //  if (m.group().length()>= 7) sb.setCharAt((pos + 6), '#');
         }
         System.out.println(sb.toString());
