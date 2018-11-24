@@ -1,6 +1,5 @@
 package by.it.mnovikov.jd01_06;
 
-
 class Poem {
     static final String text =
             "У лукоморья дуб зелёный,\n" +
@@ -36,10 +35,4 @@ class Poem {
                     "У моря видел дуб зелёный,\n" +
                     "Под ним сидел, и кот учёный\n" +
                     "Свои мне сказки говорил.";
-
-    public static void main(String[] args) {
-
-    }
-
-
 }
