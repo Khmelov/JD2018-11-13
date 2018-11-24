@@ -33,8 +33,13 @@ public class TaskC {
             mergeSort(left);
             mergeSort(right);
 
-            merge(left, right);
+            double[] mas=merge(left, right);
+            for (int i = 0; i < array.length; i++) {
+                array[i]=mas[i];
+            }
+
         }
+
 
     }
 
@@ -107,16 +112,16 @@ public class TaskC {
     static void buildOneDimArray(String line) {
 
         double[] array = InOut.getArray(line);
-//        InOut.printArray(array, "V", 5);
-//        System.out.println("____________________________________________________________________");
+        InOut.printArray(array, "V", 5);
+        System.out.println("____________________________________________________________________");
 //        Helper.sort(array);
 //        InOut.printArray(array, "V", 5);
 //        System.out.println("____________________________________________________________________");
 //        array = InOut.getArray(line);
         double first = array[0];
         double last = array[array.length - 1];
-        mergeSort(array, 0, array.length - 1);
-        //mergeSort(array);
+        //mergeSort(array, 0, array.length - 1);
+        mergeSort(array);
         InOut.printArray(array, "V", 5);
         System.out.println("first element=" + binarySearch(array, first));
         System.out.println("last element=" + binarySearch(array, last));
