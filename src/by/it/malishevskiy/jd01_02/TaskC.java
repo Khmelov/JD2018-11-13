@@ -16,8 +16,8 @@ public class TaskC {
 
     static int[][] step1(int n) {
             int[][] mas = new int[n][n];
-            int a = 0;
-            int b = 0;
+            int max = 0;
+            int min = 0;
             for (int i = 0; i < mas.length; i++) {
                 for (int j = 0; j < mas[i].length; j++) {
                     mas[i][j] = ((int) (Math.random() * (n * 2 + 1))) - n;
@@ -27,14 +27,14 @@ public class TaskC {
         for (int[] mas1 : mas) {
             for (int k = 0; k < mas.length; k++) {
                 if (mas1[k] == n) {
-                    a = mas1[k];
+                    max = mas1[k];
                 }
                 if (mas1[k] == -n) {
-                    b = mas1[k];
+                    min = mas1[k];
                 }
             }
         }
-        while ((a != n && b != -n) || (a == n && b != -n) || (a != n && b == -n)) {
+        while ((max != n && min != -n) || (max == n && min != -n) || (max != n && min == -n)) {
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     mas[i][j] = (int) (Math.random() * (2 * n + 1)) - n;
@@ -43,10 +43,10 @@ public class TaskC {
             for (int q = 0; q < mas.length; q++) {
                 for (int k = 0; k < mas.length; k++) {
                     if (mas[q][k] == n) {
-                        a = mas[q][k];
+                        max = mas[q][k];
                     }
                     if (mas[q][k] == -n) {
-                        b = mas[q][k];
+                        min = mas[q][k];
                     }
                 }
             }
