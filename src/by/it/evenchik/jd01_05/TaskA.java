@@ -6,7 +6,7 @@ public class TaskA {
     public static void main (String[] Args){
         step1();
         step2();
-        step30();
+        step3();
     }
 //
     private static void step1() {
@@ -24,7 +24,7 @@ public class TaskA {
         double y = tan(pow(a+b,2))-cbrt(a+1.5)+a*pow(b,5)-b/log(a*a);
         System.out.println("y="+y);
     }
-    private static void step30() {
+    private static void step3() {
         Double x =12.1;
         for (double a =-5; a<=12; a=a+3.75) {
             double f = exp(a*x)-3.45*a;
