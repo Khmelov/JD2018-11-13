@@ -1,6 +1,7 @@
 package by.it.evenchik.jd01_05;
 import static java.lang.Math.*;
 
+
 public class TaskA {
     public static void main (String[] Args){
         step1();
