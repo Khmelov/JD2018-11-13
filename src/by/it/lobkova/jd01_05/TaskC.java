@@ -15,6 +15,7 @@ public class TaskC {
             printArray(mas, "A");
             printArray(getResultArray(mas), "B");
         }
+        
     }
 
     static double[] getArray(int length) {
