@@ -1,16 +1,24 @@
 package by.it.lobkova.jd01_05;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class TaskC {
     static final double MIN_X_VALUE = 5.33;
     static final double MAX_X_VALUE = 9;
+    static final int MIN_LENGTH_ARRAY = 20;
+    static final int MAX_LENGTH_ARRAY = 40;
 
     public static void main(String[] args) {
-        printArray(getArray(34), "A");
-        printArray(getResultArray(getArray(34)), "B");
+        double[] mas = getArray(34);
+        if (mas != null) {
+            printArray(mas, "A");
+            printArray(getResultArray(mas), "B");
+        }
     }
 
     static double[] getArray(int length) {
-        if (length < 20 || length > 40) {
+        if (length < MIN_LENGTH_ARRAY || length > MAX_LENGTH_ARRAY) {
             System.out.println("Неверная размерность массива (20-40)");
             return null;
         }
@@ -26,7 +34,6 @@ public class TaskC {
             count++;
         }
 
-
         return arr;
     }
 
@@ -34,7 +41,7 @@ public class TaskC {
         int col = 0;
         System.out.println("Массив " + name +"[]");
         for (int i = 0; i < arr.length; i++) {
-            System.out.printf("%-4s[ %-2d ] = %-10f", name, i, arr[i]);
+            System.out.printf("[ %-2d ] = %-10f", i, arr[i]);
             col++;
             if(col % 5 == 0 || col == arr.length){
                 System.out.println();
@@ -46,16 +53,24 @@ public class TaskC {
         return Math.round(x * 1000.0 ) / 1000.0;
     }
 
-    static double[] getResultArray(double[] arr){
-        int count = 0;
-        double[] resultArr = new double[arr.length];
+    static double[] getResultArray(double[] arr) {
+        List<Double> arrayList = new ArrayList<Double>();
         for (int i = 0; i < arr.length; i++) {
-            if (arr[i]>= 3.5){
-                resultArr[count] = arr[i];
-                count++;
+            if (arr[i] >= 3.5) {
+                arrayList.add(arr[i]);
             }
         }
-        return resultArr;
+        return listToArray(arrayList);
     }
 
+    static double[] listToArray(List<Double> list) {
+        int count = 0;
+        double[] resultArray = new double[list.size()];
+        for (double d : list) {
+            resultArray[count] = d;
+            count++;
+        }
+
+        return resultArray;
+    }
 }
