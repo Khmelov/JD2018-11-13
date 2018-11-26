@@ -1,42 +1,49 @@
 package by.it.malishevskiy.jd01_06;
 
-import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskA2 {
-    private static String[] w = {};
-    private static int[] count = {};
 
-    public static int pos(String word) {
-        for (int i = 0; i < w.length; i++)
-            if (w[i].equals(word)){
-                return i;
-            }
-            return -1;
-        }
-
+    private static String[] w = new String[0];
+    private static int[] counts = new int[0];
 
     public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder(Poem.text);
-        Pattern pattern = Pattern.compile("[а-яА-ЯёЁ]+");
-        Matcher matcher = pattern.matcher(Poem.text);
-        while (matcher.find()){
-            String word = matcher.group();
-            int p = pos(word);
-            if (p>=0){
-                count[p]++;
-            }
-            else {
-                int last = w.length;
-                w = Arrays.copyOf(w, last + 1);
-                w[last] = word;
-                count = Arrays.copyOf(count, last + 1);
-                count [last] = 1;
-            }
-        }
+        parseToWords(Poem.text);
         for (int i = 0; i < w.length; i++) {
-            System.out.println(w[i] + "=" + count[i]);
+            System.out.println(w[i] + '=' + counts[i]);
         }
+    }
+
+    static void parseToWords(String str){
+        StringBuilder stringBuilder = new StringBuilder(str);
+        Pattern p = Pattern.compile("[а-яА-ЯёЁ]+");
+        Matcher m = p.matcher(str);
+        while (m.find()) {
+            processingWord(m.group());
+        }
+    }
+
+    private static void processingWord(String word) {
+        for (int i = 0; i < w.length; i++) {
+            if (word.equals(w[i])){
+                counts[i]++;
+                return;
+            }
+        }
+        String[] newWords = new String[w.length + 1];
+        System.arraycopy(w, 0, newWords, 0, w.length);
+        newWords[newWords.length - 1] = word;
+        w = newWords;
+        int[] newCounts = new int[counts.length + 1];
+        System.arraycopy(counts, 0, newCounts, 0, counts.length);
+        newCounts[newCounts.length - 1] = 1;
+        counts = newCounts;
+    }
+
+    static String[] getStrings(){
+        String[] newW = new String[w.length];
+        System.arraycopy(w, 0, newW, 0, w.length);
+        return newW;
     }
 }
