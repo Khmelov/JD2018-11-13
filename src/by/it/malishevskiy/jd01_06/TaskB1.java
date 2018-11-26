@@ -16,6 +16,6 @@ public class TaskB1 {
     }
 
     private static boolean isVowel(char ch) {
-        return "аоиеёэыуюяАОИЕЁЭЫУЮЯ".indexOf(ch) != -1;
+        return "аеёиоуыэюяАЕЁИОУЫЭЮЯ".indexOf(ch) != -1;
     }
 }
