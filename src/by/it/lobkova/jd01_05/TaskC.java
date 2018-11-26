@@ -10,12 +10,17 @@ public class TaskC {
     static final int MAX_LENGTH_ARRAY = 40;
 
     public static void main(String[] args) {
+        // Task C1
         double[] mas = getArray(34);
         if (mas != null) {
             printArray(mas, "A");
             printArray(getResultArray(mas), "B");
+            geometricMean(getResultArray(mas));
         }
-        
+
+        // Task C2
+
+
     }
 
     static double[] getArray(int length) {
@@ -73,5 +78,15 @@ public class TaskC {
         }
 
         return resultArray;
+    }
+
+    static void geometricMean(double[] resultArray){
+        double geometricMean = 1;
+        for (int i = 0; i < resultArray.length; i++) {
+            geometricMean *= resultArray[i];
+        }
+        geometricMean /= resultArray.length;
+
+        System.out.println("Среднее геометрическое = " + geometricMean);
     }
 }
