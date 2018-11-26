@@ -16,7 +16,7 @@ public class TaskC1 {
             int numAdd = maxLength - str.length(); // Number of spaces we need to add to the string
             int numToAddInAllPlaces = numAdd / numSpace; // That amount of spaces we need to add to every place between words
             int numExtraSpaces = numAdd % numSpace; // That extra amount of spaces we need to add in first, second ... places (by 1)
-            char[] ch = new char[numToAddInAllPlaces + 1];
+            char[] ch = new char[numToAddInAllPlaces + 1]; // One native space and numToAddInAllPlaces added
             Arrays.fill(ch, ' ');
             String spaces = new String(ch); // String like "    ".
             StringBuilder sb = new StringBuilder(maxLength);
@@ -33,8 +33,6 @@ public class TaskC1 {
             }
             strings[i] = sb.toString();
         }
-        for (String string : strings) {
-            System.out.println(string);
-        }
+        for (String string : strings) System.out.println(string);
     }
 }
