@@ -5,7 +5,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskB2 {
-    static String[] sens;
+    static String[] changes;
 
     public static void main(String[] args) {
         String text = Poem.text.replaceAll("\n+", " ");
@@ -13,12 +13,12 @@ public class TaskB2 {
         Matcher matcher = pattern.matcher(text);
         int count = 0;
         while (matcher.find()) count++;
-        sens = new String[count];
+        changes = new String[count];
         matcher.reset();
         int i = 0;
-        while (matcher.find()) sens[i++] = matcher.group().replaceAll("[^а-яА-ЯёЁ]+", " ").trim();
-        sortStringArray(sens);
-        for (String sen : sens) {
+        while (matcher.find()) changes[i++] = matcher.group().replaceAll("[^а-яА-ЯёЁ]+", " ").trim();
+        sortStringArray(changes);
+        for (String sen : changes) {
             System.out.println(sen);
         }
     }
