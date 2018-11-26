@@ -9,7 +9,7 @@ public class TaskB2 {
     static String[] sens;
 
     public static void main(String[] args) {
-        String text = Poem.text.replaceAll("\n", " ");
+        String text = Poem.text.replaceAll("\n+", " ");
         Pattern p = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");
         Matcher m = p.matcher(text);
         int count = 0; // Number of sentences
@@ -17,7 +17,7 @@ public class TaskB2 {
         sens = new String[count];
         m.reset();
         int i = 0;
-        while (m.find()) sens[i++] = m.group();
+        while (m.find()) sens[i++] = m.group().replaceAll("[^а-яА-ЯёЁ]+", " ").trim();
         // Now we have an array 'sens' that contains all sentences of the text
         sortStringArray(sens);
         for (String sen : sens) {
@@ -25,22 +25,22 @@ public class TaskB2 {
         }
     }
 
-    private static void sortStringArray(String[] sents) {
-        int[] lens = new int[sents.length]; // How many letters in sentences
-        for (int i = 0; i < sents.length; i++) {
-            lens[i] = sents[i].length();
+    private static void sortStringArray(String[] sens) {
+        int[] lens = new int[sens.length]; // How many letters in sentences
+        for (int i = 0; i < sens.length; i++) {
+            lens[i] = sens[i].length();
         }
-        String[] out = new String[sents.length];
+        String[] out = new String[sens.length];
         Arrays.sort(lens);
-        for (String sen : sents) {
+        for (String sen : sens) {
             for (int i = 0; i < lens.length; i++) {
                 if (sen.length() == lens[i] && out[i] == null){
                     out[i] = sen;
+                    break;
                 }
             }
         }
-        sents = out;
-        sents[0] = "TEST";
+        System.arraycopy(out, 0, sens, 0, out.length);
     }
 
 }
