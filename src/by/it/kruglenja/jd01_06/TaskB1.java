@@ -1,7 +1,5 @@
 package by.it.kruglenja.jd01_06;
 
-import com.sun.deploy.jardiff.Patcher;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,3 +32,4 @@ public class TaskB1 {
         }
     }
 }
+
