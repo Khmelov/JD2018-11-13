@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 public class TaskB2 {
     public static void main(String[] args) {
         String[] mas = getStrmas(Poem.text);
-        sortbylength(mas);
+        sortbylen(mas);
         for (int i = 0; i < mas.length; i++) {
             System.out.println(mas[i]);
         }
@@ -14,7 +14,7 @@ public class TaskB2 {
 
     private static String[] getStrmas(String text) {
         StringBuilder sd= new StringBuilder(text);
-        Matcher m = Pattern.compile("[:А-яё\\s,!-]+([\\.]{3})?").matcher(sd);
+        Matcher m = Pattern.compile("([А-яё\\s]*[,:-]?([.]{3})?)*[\\.!?]").matcher(sd);
         String[] sentences=new String[0];
         while(m.find()){
             String[] temp = new String[sentences.length+1];
@@ -27,7 +27,7 @@ public class TaskB2 {
         }
         return sentences;
     }
-    private static void sortbylength(String[] mas){
+    private static void sortbylen(String[] mas){
         for (int i = 0; i < mas.length; i++) {
             for (int j = 1; j < mas.length; j++) {
                 if(mas[j].length()<mas[j-1].length()){
