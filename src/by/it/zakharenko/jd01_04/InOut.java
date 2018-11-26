@@ -1,7 +1,5 @@
 package by.it.zakharenko.jd01_04;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 public class InOut {
 
     public static double[ ] getArray(String line) {
