@@ -2,8 +2,9 @@ package by.it.vchernetski.jd01_07;
 
 public class Runner {
     public static void main(String[] args) {
-        Vector v = new Vector(new double[]{1,2,3});
-        Vector v1 = new Vector(v);
-        String str = v.toString();
+        Vector v =new Vector("{1,2,4}");
+        System.out.println(v.toString());
+        Matrix m = new Matrix("{{1,2},{3,4}}");
+        System.out.println(m.toString());
     }
 }
