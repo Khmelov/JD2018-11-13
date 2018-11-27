@@ -27,10 +27,6 @@ public class Vector extends Var {
         for (int i = 0; i < stringValue.length; i++) {
             this.value[i] = Double.parseDouble(stringValue[i].trim());
         }
-        System.out.println(Double.parseDouble("    23.4324    "));
-
-
-
     }
 
     @Override
