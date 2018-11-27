@@ -8,13 +8,13 @@ public class TaskB2 {
     static String[] changes;
 
     public static void main(String[] args) {
-        String text = Poem.text.replaceAll("\n+", " ");
-        Pattern pattern = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");
-        Matcher matcher = pattern.matcher(text);
+        String text = Poem.text.replaceAll("\n+", " ");//Заменяет каждую строчку в заданом тексте.
+        Pattern pattern = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");//Создание объекта класса Pattern.
+        Matcher matcher = pattern.matcher(text);//Проверка на наличие текста
         int count = 0;
-        while (matcher.find()) count++;
+        while (matcher.find()) count++;//Условие: пока находим слова - делаем что-то.
         changes = new String[count];
-        matcher.reset();
+        matcher.reset();//Сбросить состояние экземпляра, чтобы не было нагромождений.
         int i = 0;
         while (matcher.find()) changes[i++] = matcher.group().replaceAll("[^а-яА-ЯёЁ]+", " ").trim();
         sortStringArray(changes);
@@ -40,6 +40,4 @@ public class TaskB2 {
         }
         System.arraycopy(out, 0, sens, 0, out.length);
     }
-
 }
-
