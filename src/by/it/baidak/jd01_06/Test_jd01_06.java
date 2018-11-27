@@ -1,7 +1,6 @@
 package by.it.baidak.jd01_06;
 
 
-import by.it.baidak.jd01_06.Poem;
 import org.junit.Test;
 
 import java.io.*;
