@@ -7,15 +7,41 @@ import java.util.Arrays;
  */
 public class Vector extends Var {
 
-    private double[] valueVector;
+    private double[] value;
 
     Vector(double[] valueVector){
-        this.valueVector = new double[valueVector.length];
-       System.arraycopy(valueVector, 0, this.valueVector, 0, this.valueVector.length);
+        this.value = new double[valueVector.length];
+       System.arraycopy(valueVector, 0, this.value, 0, this.value.length);
+    }
+
+    Vector(Vector otherVector){
+        this.value = new double[otherVector.value.length];
+
+        System.arraycopy(otherVector.value, 0, this.value, 0, this.value.length);
+    }
+
+    Vector(String value){
+        value = value.replaceAll("[{|}]", "");
+        String[] stringValue = value.split(",");
+        this.value = new double[stringValue.length];
+        for (int i = 0; i < stringValue.length; i++) {
+            this.value[i] = Double.parseDouble(stringValue[i].trim());
+        }
+        System.out.println(Double.parseDouble("    23.4324    "));
+
+
+
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(valueVector);
+            StringBuilder sb = new StringBuilder("{");
+            String separ = "";
+        for (double val : value) {
+            sb.append(separ).append(val);
+            separ = ", ";
+        }
+        sb.append("}");
+        return sb.toString();
     }
 }
