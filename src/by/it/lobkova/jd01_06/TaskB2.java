@@ -15,7 +15,6 @@ public class TaskB2 {
                     text[i + 1] = buff;
                     flag = true;
                 }
-
             }
             last--;
         }
