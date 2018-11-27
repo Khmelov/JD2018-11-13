@@ -5,4 +5,7 @@ package by.it.kruglenja.jd01_07;
  */
 abstract class Var {
 
+private double[] value;
+
+
 }
