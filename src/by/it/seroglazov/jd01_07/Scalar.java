@@ -10,7 +10,6 @@ public class Scalar extends Var {
     Scalar(String strValue){
         value = Double.parseDouble(strValue);
     }
-
     Scalar(Scalar otherScalar){
         this.value = otherScalar.value;
     }
