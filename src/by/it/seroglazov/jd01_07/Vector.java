@@ -7,17 +7,17 @@ public class Vector extends Var {
 
     private double[] value;
 
-    public Vector(double[] value) {
+    Vector(double[] value) {
         this.value = new double[value.length];
         System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
-    public Vector(Vector v){
+    Vector(Vector v){
         value = new double[v.value.length];
         System.arraycopy(v.value, 0, value, 0, v.value.length);
     }
 
-    public Vector(String str) {
+    Vector(String str) {
         Matcher mch = Pattern.compile("\\{(.*)\\}").matcher(str);
         if (mch.find()){
             String[] sArr = mch.group(1).replace(" ", "").split(",");
@@ -25,9 +25,8 @@ public class Vector extends Var {
             for (int i = 0; i < sArr.length; i++) {
                 value[i] = Double.parseDouble(sArr[i]);
             }
-
         } else {
-            // Action if don't wrong string
+            // Action if wrong string
         }
     }
 
@@ -36,7 +35,7 @@ public class Vector extends Var {
         if (value.length == 0) return "";
         StringBuilder sb = new StringBuilder("{");
         sb.append(value[0]);
-        for (int i = 0; i < value.length; i++) {
+        for (int i = 1; i < value.length; i++) {
             sb.append(", ");
             sb.append(String.valueOf(value[i]));
         }
