@@ -130,14 +130,25 @@ public class TaskC {
                 if (mas[i][j] == max) {
                     delCol[j] = true;
                     delRow[i] = true;
-                    col--;
                 }
             }
         }
+        int colRow=delRow.length;
+        int colColumn=delCol.length;
+        for (int i = 0; i < delCol.length; i++) {
+            if (delCol[i]==true)
+                colColumn--;
+        }
+
+        for (int i = 0; i < delRow.length; i++) {
+            if (delRow[i]==true)
+                colRow--;
+        }
 
         int k = 0;
-        int[][] matrix = new int[col][col];
-        System.out.println(col);
+        System.out.printf("%d  %d", colRow,colColumn);
+        int[][] matrix = new int[colRow][colColumn];
+        //System.out.println(col);
         for (int i = 0; i < mas.length; i++) {
             int t=0;
             boolean zap=false;
@@ -170,8 +181,7 @@ public class TaskC {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-//        int[][]mas = new int[n][n];
-//        mas=step1(n);
+        int[][]mas = step1(n);
         //System.out.println(step1(n));
 
 //        int[][] massiv={
@@ -181,10 +191,11 @@ public class TaskC {
 //                {-8,-7,-4,-3,-2},
 //        };
 
-        //int [][] massiv2=step1(n);
+
+
         step1(n);
         step2(step1(n));
-        step3(step1(n));
+        step3(mas);
 
 
     }
