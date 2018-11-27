@@ -1,11 +1,14 @@
 package by.it.nickgrudnitsky.jd01_06;
 
-/*import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;*/
 
 public class TaskC1 {
     public static void main(String[] args) {
+
+        String[] strings = Poem.text.split("\n");
+        textFormst(strings);
+
+
+
         /*StringBuilder sentenses = new StringBuilder(Poem.text);
         String[] strings = getStrings(sentenses);
         int max = 0;
@@ -29,7 +32,7 @@ public class TaskC1 {
                 Pattern pattern = Pattern.compile(" ");
                 Matcher matcher = pattern.matcher(strings[i]);
                 while (matcher.find()){
-
+                    matcher.group().replaceAll(" ", "[ ]{1+spases}");
                 }
 
             }
@@ -53,5 +56,44 @@ public class TaskC1 {
             i++;
         }
         return string;*/
+    }
+
+    private static void textFormst(String[] strings) {
+        int length = getLength(strings);
+        for (String string1 : strings) {
+            String[] string = string1.split(" ");
+            int senteseLength = 0;
+            int numOfSpases = string.length - 1;
+            for (String s : string) {
+                senteseLength += s.length();
+            }
+            int amountOfSpases = length - senteseLength;
+            int spases = amountOfSpases / numOfSpases;
+            int extraSpase = amountOfSpases % numOfSpases;
+            StringBuilder sb = new StringBuilder();
+            for (int i1 = 0; i1 < string.length; i1++) {
+                sb.append(string[i1]);
+                if (i1 != string.length - 1) {
+                    for (int i2 = 0; i2 < spases; i2++) {
+                        sb.append(" ");
+                    }
+                    if (extraSpase > 0) {
+                        sb.append(" ");
+                        extraSpase--;
+                    }
+                }
+            }
+            System.out.println(sb);
+        }
+    }
+
+    private static int getLength(String[] strings) {
+        int maxLength = 0;
+        for (String string : strings) {
+            if (string.length() > maxLength) {
+                maxLength = string.length();
+            }
+        }
+        return maxLength;
     }
 }
