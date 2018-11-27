@@ -20,13 +20,10 @@ public class TaskB2 {
             separatedLines[count] = matcher.group();
             count++;
         }
-        matcher.reset();
         for (int i = 0; i < separatedLines.length; i++) {
             separatedLines[i] = separatedLines[i].replaceAll("[^А-Яа-яёЁ[^А-Яа-яЁё]]{1,}", " ").trim();
         }
-        matcher.reset();
         boolean flag = false;
-
         while (!flag) {
             flag = true;
             for (int i = 0; i < separatedLines.length - 1; i++) {
