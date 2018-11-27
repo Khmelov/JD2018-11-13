@@ -7,37 +7,41 @@ public class TaskB2 {
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder(Poem.text);
 
-        Pattern symbolRemove = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");
-        Matcher matcher = symbolRemove.matcher(sb);
+        Pattern lineDivider = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");
+        Matcher matcher = lineDivider.matcher(sb);
         int len = 0;
         while (matcher.find()) {
             len++;
         }
         matcher.reset();
-        String[] lines = new String[len];
+        String[] separatedLines = new String[len];
         int count = 0;
         while (matcher.find()) {
-            lines[count] = matcher.group();
+            separatedLines[count] = matcher.group();
             count++;
+        }
+        matcher.reset();
+        for (int i = 0; i < separatedLines.length; i++) {
+            separatedLines[i] = separatedLines[i].replaceAll("[^А-Яа-яёЁ[^А-Яа-яЁё]]{1,}", " ").trim();
         }
         matcher.reset();
         boolean flag = false;
 
         while (!flag) {
             flag = true;
-            for (int i = 0; i < lines.length - 1; i++) {
+            for (int i = 0; i < separatedLines.length - 1; i++) {
                 String temp = " ";
-                if (lines[i].length() > lines[i + 1].length()) {
-                    temp = lines[i];
-                    lines[i] = lines[i + 1];
-                    lines[i + 1] = temp;
+                if (separatedLines[i].length() > separatedLines[i + 1].length()) {
+                    temp = separatedLines[i];
+                    separatedLines[i] = separatedLines[i + 1];
+                    separatedLines[i + 1] = temp;
                     flag = false;
                 }
             }
         }
-        StringBuilder sortedLines = new StringBuilder();
+        StringBuilder sortedseparatedLines = new StringBuilder();
         for (int i = 0; i < len; i++) {
-            System.out.print(lines[i]);
+            System.out.print(separatedLines[i] + '\n');
         }
     }
 }
