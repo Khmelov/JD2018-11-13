@@ -10,7 +10,16 @@ public class Runner {
         System.out.println(v2);
         System.out.println(v3);
 
-       // double v []={1,2,3};
-        v1=new Vector(new double[]{1,2,3});
+        v1=new Vector(new double[]{1.0,2.0,4.0});
+        v2=new Vector((Vector) v1);
+        v3=new Vector("{1.0, 2.0, 4.0}");
+
+        System.out.println(v1);
+        System.out.println(v2);
+        System.out.println(v3);
+
+
+
+
     }
 }

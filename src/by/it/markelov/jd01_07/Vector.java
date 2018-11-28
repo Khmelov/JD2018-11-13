@@ -1,28 +1,27 @@
 package by.it.markelov.jd01_07;
 
-import java.util.Arrays;
-
 class Vector extends Var {
     double value[];
 
     public Vector(double[] value) {
         this.value = value;
+        //this.value=new double[value.length];
         //System.arraycopy(this.value,0,value,0,value.length);
     }
 
     public Vector(Vector vector) {
-        value = vector.value;
-        //System.arraycopy(this.value,0,vector.value,0,value.length);
+        this.value = vector.value;
+        //this.value=new double[vector.value.length];
+        //System.arraycopy(this.value,0,vector.value,0,vector.value.length);
     }
 
     public Vector(String strVector) {
-        String withoutPunct = strVector.replace("[,{}]", "");
+        String withoutPunct = strVector.replaceAll("[,{}]", "");
         String[] s = withoutPunct.split(" ");
-        double temp[] = new double[s.length];
+        value = new double[s.length];
         for (int i = 0; i < s.length; i++) {
-            temp[i] = Double.parseDouble(s[i]);
+            value[i] = Double.parseDouble(s[i]);
         }
-        value = temp;
     }
 
     @Override
