@@ -36,7 +36,7 @@ public class Vector extends Var {
         stringBuilder.append("{");
         for (int i = 0; i < value.length; i++) {
             stringBuilder.append(value[i]);
-            if (i != value.length-1){
+            if (i != value.length - 1) {
                 stringBuilder.append(", ");
             } else {
                 break;
