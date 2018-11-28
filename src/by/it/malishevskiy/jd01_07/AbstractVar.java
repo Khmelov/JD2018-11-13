@@ -1,4 +1,6 @@
 package by.it.malishevskiy.jd01_07;
 
-public class AbstractVar {
-}
+abstract class AbstractVar{
+    public abstract String toString();
+    }
+
