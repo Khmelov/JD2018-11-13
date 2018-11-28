@@ -9,7 +9,7 @@ class Matrix extends Var {
     private double[][] value;
 
     Matrix(double[][] value) {
-        this.value = new double[2][2];
+        this.value = new double[value.length][value.length];
         for (int i = 0; i < 2; i++) {
             for (int j = 0; j < 2; j++) {
                 this.value = value;
@@ -19,27 +19,16 @@ class Matrix extends Var {
     }
 
 
-
-
-//
-////        for (int i = 0; i < value.length; i++) {
-////            for (int j = 0; j < value.length; j++) {
-////                this.value[i][j] = value[i][j];
-//            }
-//
-//        }
-//    }
-//
-//    Matrix(Matrix matrix) {
-//        this.value = Arrays.value;
-//    }
+    Matrix(Matrix matrix) {
+        this.value = matrix.value;
+    }
 
 
     Matrix(String strMatrix) {
 
         Matcher matcher = Pattern.compile("\\{(.*)\\}").matcher(strMatrix);
         while (matcher.find()) {
-            String[] strMatrixArray = matcher.group(1).replace(" ", "").split(",");
+            String[] strMatrixArray = matcher.group(2).replace(" ", "").split(",");
             value = new double[strMatrixArray.length][strMatrixArray.length];
             for (int i = 0; i < strMatrixArray.length; i++) {
                 for (int j = 0; j < strMatrixArray.length; j++) {
@@ -54,20 +43,25 @@ class Matrix extends Var {
     public String toString() {
         StringBuilder sb = new StringBuilder("{");
         String delimiter = "";
-        for (int i = 0; i <2 ; i++) {
-            for (int j = 0; j < 2; j++) {
-
-                sb.append(delimiter).append(value[i][j]);
-                delimiter = ", ";
-
-
+        int row = 0;
+        int i = 0;
+        int j = 0;
+        for (i = 0; i < 2; i++) {
+            sb.append("{");
+            for (j = 0; j < 2; j++) {
+                sb.append(value[i][j]);
+                if (j < value.length - 1) {
+                    sb.append(",");
+                }
             }
-
+            sb.append("}");
+            row++;
+            if (row - value.length != 0) {
+                sb.append(", ");
+            }
         }
         sb.append("}");
         return sb.toString();
-
-
 
 
 //        String v3=Arrays.deepToString(value);
