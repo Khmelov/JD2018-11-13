@@ -1,6 +1,6 @@
 package by.it.malishevskiy.jd01_07;
 
-     class Scalar extends AbstractVar {
+     class Scalar extends Var {
 
          private double value;
 

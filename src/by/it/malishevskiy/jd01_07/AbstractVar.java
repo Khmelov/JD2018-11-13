@@ -1,6 +1,6 @@
 package by.it.malishevskiy.jd01_07;
 
-abstract class AbstractVar{
+abstract class Var{
     public abstract String toString();
     }
 

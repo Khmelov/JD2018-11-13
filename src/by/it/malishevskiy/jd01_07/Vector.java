@@ -3,7 +3,7 @@ package by.it.malishevskiy.jd01_07;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-    class Vector extends AbstractVar {
+    class Vector extends Var {
         private double[] value;
         Vector(double[] value){
             this.value = new double[value.length];
