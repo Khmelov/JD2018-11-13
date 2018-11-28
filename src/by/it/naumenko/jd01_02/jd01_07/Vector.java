@@ -28,18 +28,7 @@ class Vector extends Var {
         value = mas1;
     }
 
-        /*
-        String str = "{1.0,2.0,3,4.0}";
-        String[] mas = str.split("[{},]");
-        double[] mas1 = new double[mas.length-1];
-        int k=0;
-        for (int i = 0; i < mas.length; i++) {
-            if (i!=0) {
-                mas1[k] = Double.parseDouble(mas[i]);
-                k++;
-            }
-        }
-         */
+
 
 
 

@@ -33,4 +33,9 @@ public class Matrix extends Var {
     Matrix(Matrix matrix){
         value=matrix.value;
     }
+
+    Matrix(String stMatrix){
+
+
+    }
 }
