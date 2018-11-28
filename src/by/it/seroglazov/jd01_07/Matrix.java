@@ -6,8 +6,8 @@ import java.util.regex.Pattern;
 
 public class Matrix extends Var {
     private double[][] value;
-    private static String ErrMessPatternNotFound = "Exception: Ошибка ввода матрицы. Не найден шаблон: { элементы матрицы }.";
-    private static String ErrMessSecondPatternNotFound = "Exception: Ошибка ввода матрицы. Не найден шаблон: {{строка1}, {строка2}, ...}.";
+    private static String ErrMessPatternNotFound = "Exception: Ошибка ввода матрицы. Не найден шаблон: {{1,2,...},{3,4,...},...}";
+    //private static String ErrMessSecondPatternNotFound = "Exception: Ошибка ввода матрицы. Не найден шаблон: {{строка1}, {строка2}, ...}.";
     private static String ErrMessDifferentColsCount = "Exception: Количество столбцов в каждой строке матрицы должно быть задано одинаковым.";
 
     Matrix(double[][] value) {
@@ -39,56 +39,47 @@ public class Matrix extends Var {
     }
 
     Matrix(String str) {
-        Matcher m1 = Pattern.compile("\\{(.*)\\}").matcher(str); // Find global { }
+
+        String strWithoutWhiteSpaces = str.replaceAll("\\s", "");
+        if (!strWithoutWhiteSpaces.matches("\\{(\\{[^\\{\\}]+\\},)*\\{[^\\{\\}]+\\}\\}")) { // Pattern to string like {{2.0,3,9},{4.75,6,0},{1e2,0xA,010}}
+            System.out.println(ErrMessPatternNotFound);
+            //TODO Raise exception instead of println
+        }
+        Pattern extCurlyBrackets = Pattern.compile("\\{(.*)\\}"); // Find all inside external curly brackets
+        Matcher m1 = extCurlyBrackets.matcher(strWithoutWhiteSpaces);
         if (m1.find()) {
-            String[] strRows =  m1.group(1).replaceAll(" ", "").split(",");
-            for (int i = 0; i < strRows.length; i++) {
-                Pattern p = Pattern.compile("\\{([^\\}]*)\\}");
-                Matcher m2 = p.matcher(strRows[i]);
-            }
-
-            // NOT FINISHED, DON'T TRY TO UNDERSTAND, I AM REBUILDING ALL THIS METHOD
-
-
-
-            Pattern p = Pattern.compile("\\{([^\\}]*)\\}");
-            Matcher m2 = p.matcher(m1.group(1)); // Find internal {}, {}, {}
-            // Check if m2 contains any symbols outside the {},
-            String testSym = m1.group(1);
-            testSym = testSym.replaceAll(p.toString(), "");
-            System.out.println(testSym);
-
+            Pattern intCurlyBrackets = Pattern.compile("\\{([^\\}]*)\\}"); // Find all internal curly brackets
+            Matcher m2 = intCurlyBrackets.matcher(m1.group(1));
             int counter = 0;
             while (m2.find()) counter++; // First step - simple counting internal {}
             if (counter == 0) {
-                System.out.println(ErrMessSecondPatternNotFound);
-                // Raise exception
+                System.out.println(ErrMessPatternNotFound);
+                //TODO Raise exception instead of println
             }
-                value = new double[counter][];
+            value = new double[counter][];
             m2.reset();
             int i = 0;
-            while (m2.find()) { // For each {1, 2, 3, ...} we split it into the value[i][...]
-                String[] sArr = m2.group(1).replace(" ", "").split(",");
-                value[i] = new double[sArr.length];
-                for (int j = 0; j < sArr.length; j++) {
-                    value[i][j] = Double.parseDouble(sArr[j]);
+            while (m2.find()) {
+                String[] strRows = m2.group(1).split(",");
+                value[i] = new double[strRows.length];
+                for (int j = 0; j < strRows.length; j++) {
+                    value[i][j] = Double.parseDouble(strRows[j]);
+                    //TODO exception check if not double
                 }
                 i++;
             }
-            // Now check is our matrix rectangle?
-            if (value.length > 0) {
-                int len = value[0].length;
-                for (double[] v : value) {
-                    if (v.length != len) {
-                        System.out.println(ErrMessDifferentColsCount);
-                        // Raise exception
-                    }
+            // Now check is our matrix a rectangle?
+            int len = value[0].length; // At this point value has at least one element
+            for (double[] v : value) {
+                if (v.length != len) {
+                    System.out.println(ErrMessDifferentColsCount);
+                    //TODO Raise exception instead of println
+                    break;
                 }
             }
-
         } else {
             System.out.println(ErrMessPatternNotFound);
-            // Raise exception
+            //TODO Raise exception instead of println
         }
     }
 
