@@ -1,6 +1,6 @@
 package by.it.markelov.jd01_07;
 
-public class Scalar extends Var {
+class Scalar extends Var {
     private double value;
 
     public Scalar(double value) {
@@ -19,7 +19,7 @@ public class Scalar extends Var {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append(value);
-        String s = sb.toString();
-        return s;
+        return sb.toString();
+
     }
 }
