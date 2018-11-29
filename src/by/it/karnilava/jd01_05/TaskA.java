@@ -6,16 +6,16 @@ public class TaskA {
 
     public static void main(String[] args) {
 
-        Subtask1();
+        subtask1();
 
-        Subtask2();
+        subtask2();
 
-        Subtask3();
+        subtask3();
 
 
     }
 
-    private static void Subtask3() {
+    private static void subtask3() {
         for (double a = -5; a <= 12; a = a + 3.75) {
             double x = 12.1;
             double fpart1 = pow(E, a * x);
@@ -25,7 +25,7 @@ public class TaskA {
         }
     }
 
-    private static void Subtask2() {
+    private static void subtask2() {
         double a = 1.21;
         double b = 0.371;
         double part1 = tan(pow(a + b, 2));
@@ -36,7 +36,7 @@ public class TaskA {
         System.out.println(y);
     }
 
-    private static void Subtask1() {
+    private static void subtask1() {
         double x = 0.3;
         double a = 756.13;
         double m = cos(pow((pow(x, 2) + (PI / 6)), 5));
