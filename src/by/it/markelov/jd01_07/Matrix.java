@@ -1,22 +1,27 @@
 package by.it.markelov.jd01_07;
 
+import java.util.Arrays;
+
 class Matrix extends Var {
     double[][] value;
-//конструктор 1
+
+    //конструктор 1
     public Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
             System.arraycopy(value[i], 0, this.value[i], 0, 0);
         }
     }
-//конструктор 2
+
+    //конструктор 2
     public Matrix(Matrix matrix) {
         this.value = new double[matrix.value.length][matrix.value[0].length];
         for (int i = 0; i < matrix.value.length; i++) {
             System.arraycopy(matrix.value[i], 0, this.value[i], 0, 0);
         }
     }
-//конструктор 3
+
+    //конструктор 3
     public Matrix(String strMatrix) {
         String[] strings = strMatrix.split("},");//сплитуем строку в массив
         for (int i = 0; i < strings.length; i++) {
@@ -47,7 +52,26 @@ class Matrix extends Var {
             value[i][j] = masdouble2[j];
         }
     }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("{{");
+        int i = 0;
+        String delimetr = ",";
+        for (int j = 0; j < value.length; j++) {
+            sb.append(value[i][j]).append(delimetr);
+            delimetr = "},{";
+        }
+        i = 1;
+        delimetr = ",";
+        for (int j = 0; j < value.length; j++) {
+            sb.append(value[i][j]).append(delimetr);
+            delimetr = "}}";
+        }
+        return sb.toString();
+    }
 }
+
 
 
 
