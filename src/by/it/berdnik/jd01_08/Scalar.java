@@ -12,49 +12,57 @@ class Scalar extends Var {
         this.value = value;
     }
 
+    Scalar(String strVal) {
+        this.value = Double.parseDouble(strVal);
+    }
+
+    Scalar(Scalar otherScalar) {
+        this.value = otherScalar.value;
+    }
+
     @Override
     public Var add(Var other) {
         if (other instanceof Scalar) {
-            double add = this.value + ((Scalar) other).value;
-            return new Scalar(add);
-        } else return other.add(this);
+            Scalar operand2 = (Scalar) other;
+            double res = this.value + operand2.value;
+            return new Scalar(res);
+        } else
+            return other.add(this);
     }
 
     @Override
     public Var sub(Var other) {
         if (other instanceof Scalar) {
-            double sub = this.value - ((Scalar) other).value;
-            return new Scalar(sub);
-        } else return new Scalar(-1).mul(other).sub(this);
+            Scalar operand2 = (Scalar) other;
+            double res = this.value - operand2.value;
+            return new Scalar(res);
+        } else
+            return other.sub(this).mul(new Scalar(-1.0));
     }
 
     @Override
     public Var mul(Var other) {
         if (other instanceof Scalar) {
-            double mul = this.value * ((Scalar) other).value;
-            return new Scalar(mul);
-        } else return other.mul(this);
+            Scalar operand2 = (Scalar) other;
+            double res = this.value * operand2.value;
+            return new Scalar(res);
+        } else
+            return other.mul(this);
     }
 
     @Override
     public Var div(Var other) {
         if (other instanceof Scalar) {
-            double div = this.value / ((Scalar) other).value;
-            return new Scalar(div);
-        } else return super.div(other);
-    }
-
-    Scalar(String str) {
-        this.value = Double.parseDouble(str);
-    }
-
-    Scalar(Scalar scalar) {
-        this.value = scalar.value;
+            Scalar operand2 = (Scalar) other;
+            double res = this.value / operand2.value;
+            return new Scalar(res);
+        } else
+            return super.div(other);
     }
 
 
     @Override
     public String toString() {
-        return Double.toString(value);
+        return String.valueOf(value);
     }
 }

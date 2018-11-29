@@ -24,4 +24,10 @@ abstract class Var implements Operation {
         System.out.println("Операция деления " + this + "+" + other + " невозможна");
         return null;
     }
+
+    @Override
+    public String toString() {
+        return "this Var";
+    }
+
 }

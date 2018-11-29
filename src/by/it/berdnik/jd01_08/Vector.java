@@ -9,7 +9,8 @@ class Vector extends Var {
     private double[] value;
 
     Vector(double[] value) {
-        this.value = Arrays.copyOf(value, value.length);
+        this.value=new double[value.length];
+        System.arraycopy(value, 0, this.value, 0, this.value.length);
     }
 
     Vector(String strVector) {
@@ -66,6 +67,15 @@ class Vector extends Var {
         } else return super.sub(other);
     }
 
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
+    }
 
     @Override
     public String toString() {
