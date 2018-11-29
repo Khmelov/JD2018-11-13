@@ -12,6 +12,9 @@ public class Runner {
         Var v = new Vector(new double[]{1,2,3,4});
         System.out.println(v);
 
+        Var d = new Vector("{1,2,3,4}");
+        System.out.println(d);
+
 
     }
 }
