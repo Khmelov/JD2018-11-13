@@ -9,8 +9,7 @@ public class Runner {
         System.out.println(v1);
         System.out.println(v2);
         System.out.println(v3);
+            }
+        }
 
-       // double v []={1,2,3};
-        v1=new Vector(new double[]{1,2,3});
-    }
-}
+
