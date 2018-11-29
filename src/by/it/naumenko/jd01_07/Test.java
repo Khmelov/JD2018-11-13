@@ -4,8 +4,9 @@ public class Test {
 
     public static void main(String[] args) {
         String str = "{1.0,2.0,3.0,4.0}";
-        String[] mas = str.split("[{},]");
-        double[] mas1 = new double[mas.length-1];
+        str=str.replaceAll("[{}]","");
+        String[] mas = str.split(",\\s*");
+        double[] mas1 = new double[mas.length];
         int k=0;
         for (int i = 0; i < mas.length; i++) {
             if (i!=0) {
