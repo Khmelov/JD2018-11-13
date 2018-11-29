@@ -12,7 +12,7 @@ public class Runner {
         System.out.println(s1);
         System.out.println(s2);
         System.out.println(s3);
-<<<<<<< b36ad934598f84161d78637e307b7a61dbcf9efd
+
         ////////////////////////////////////////////////////
 
         double[] vectorArr1 = {1, 2, 3, 6};
@@ -43,11 +43,5 @@ public class Runner {
         System.out.println(m2);
         System.out.println(m3);
 
-=======
-
-        double[] vectorArr = {1, 2, 3, 6};
-        Vector v1 = new Vector(vectorArr);
-        v1.toString();
->>>>>>> TaskA
     }
 }
