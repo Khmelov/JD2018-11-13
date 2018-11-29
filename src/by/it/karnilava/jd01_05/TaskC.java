@@ -10,7 +10,7 @@ public class TaskC {
 
 //        Scanner scanner = new Scanner(System.in);
 //        int length = scanner.nextInt();
-        int length = 28;
+        int length = 30;
 
         double[] array = new double[length];
         double x = 5.33;
