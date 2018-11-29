@@ -4,6 +4,8 @@ package by.it.kruglenja.jd01_08;
  * Created by user on 27.11.2018.
  */
 public class Runner {
+    private static void print(Var var) {System.out.println(var);}
+
     public static void main(String[] args) {
         Var s = new Scalar(3.0);
         Var v = new Vector(new double[]{1,2,3}); // закомментируйте вектор и/или

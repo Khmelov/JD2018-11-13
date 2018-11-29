@@ -12,7 +12,7 @@ abstract class Var implements Operation{
     }
 
     @Override
-    public Var sum(Var other) {
+    public Var sub(Var other) {
         System.out.println("Операция вычитания " + this + " - " + other + "невозможна");
         return null;
     }
