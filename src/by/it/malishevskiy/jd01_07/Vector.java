@@ -3,11 +3,11 @@ package by.it.malishevskiy.jd01_07;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-    class Vector extends Var {
-        private double[] value;
+    class Vector extends Var {//Наследуем класс Vector от Var
+        private double[] value;//Создаем дабловый массив value
         Vector(double[] value){
-            this.value = new double[value.length];
-            System.arraycopy(value,0,this.value,0,value.length);
+            this.value = new double[value.length];//Говорим, что value равен вектору value
+            System.arraycopy(value,0,this.value,0,value.length);//Копируем массив
         }
         Vector(Vector newVector){
             this.value = new double[newVector.value.length];
