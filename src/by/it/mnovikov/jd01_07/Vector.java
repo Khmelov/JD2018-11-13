@@ -26,10 +26,10 @@ class Vector extends Var {
     }
 
     Vector(String strVector) {
-        Pattern p1 = Pattern.compile("\\{(.*)\\}");
+        Pattern p1 = Pattern.compile("[0-9.,]*");
         Matcher m1 = p1.matcher(strVector);
         if (m1.find()) {
-            String[] str = m1.group(1).split(",");
+            String[] str = m1.group().split(",");
             value = new double[str.length];
             for (int i = 0; i < value.length; i++) {
                 value[i] = Double.parseDouble(str[i]);
