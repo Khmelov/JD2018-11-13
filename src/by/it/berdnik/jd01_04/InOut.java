@@ -20,7 +20,7 @@ public class InOut {
         System.out.println();
     }
 
-    static void printArray(double[ ] arr, String name, int columnCount) {
+    public static void printArray(double[] arr, String name, int columnCount) {
         int col = 0;
         for (int i = 0; i < arr.length; i++) {
             // V[1]=12.123

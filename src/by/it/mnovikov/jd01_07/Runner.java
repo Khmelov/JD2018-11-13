@@ -9,5 +9,9 @@ public class Runner {
         Var s = new Scalar(1.234);
         System.out.println(s);
 
+        Var v = new Vector(new double[]{1,2,3,4});
+        System.out.println(v);
+
+
     }
 }
