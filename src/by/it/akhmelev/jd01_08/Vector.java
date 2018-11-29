@@ -1,6 +1,4 @@
-package by.it.akhmelev.jd01_07;
-
-import java.util.Arrays;
+package by.it.akhmelev.jd01_08;
 
 class Vector extends Var{
 
@@ -11,8 +9,6 @@ class Vector extends Var{
         this.value=new double[value.length];
         System.arraycopy(value, 0, this.value, 0, this.value.length);
     }
-
-
 
     @Override
     public String toString() {
@@ -25,5 +21,25 @@ class Vector extends Var{
         }
         sb.append('}');
         return sb.toString();
+    }
+
+    @Override
+    public Var add(Var other) {
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
     }
 }
