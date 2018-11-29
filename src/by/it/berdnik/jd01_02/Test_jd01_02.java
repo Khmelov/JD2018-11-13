@@ -17,16 +17,16 @@ public class Test_jd01_02 {
     @Test(timeout = 5000)
     public void testTaskA() throws Exception {
         System.out.println("\n\nПроверка на минимум и максимум");
-        checkMethod("TaskA", "static step1", int[].class);
+        checkMethod("TaskA1", "static step1", int[].class);
         run("-1 2 3 4 567 567 4 3 2 -1 4 4").include("-1 567");
 
         System.out.println("\n\nПроверка на вывод значений меньше среднего");
-        checkMethod("TaskA", "static step2", int[].class);
+        checkMethod("TaskA1", "static step2", int[].class);
         run("-1 22 33 44 567 567 44 33 22 -1 4 4")
                 .include("-1").include("22").include("33").include("44");
 
         System.out.println("\n\nПроверка на индексы минимума");
-        checkMethod("TaskA", "static step3", int[].class);
+        checkMethod("TaskA1", "static step3", int[].class);
         run("-1 22 33 44 567 567 44 33 22 -1 4 4").include("9 0");
     }
 
