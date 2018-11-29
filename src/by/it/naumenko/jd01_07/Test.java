@@ -13,6 +13,11 @@ public class Test {
                 k++;
             }
 
+//            if (mas[i].equals("")) {
+//                mas1[k] = Double.parseDouble(mas[i]);
+//                k++;
+//            }
+
         }
 
         //double[] masiv = new double[mas.length];
