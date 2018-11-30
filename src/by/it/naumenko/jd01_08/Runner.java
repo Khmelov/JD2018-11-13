@@ -9,6 +9,7 @@ public class Runner {
     public static void main(String[] args) {
         Var s = new Scalar(3.0);
         Var v = new Vector(new double[]{1,2,3});
+        Var m = new Matrix("{{1,2,3},{4,5,6},{7,8,9}}");
         print(s.add(s));
         print(s.sub(s));
         print(s.mul(s));
@@ -18,5 +19,10 @@ public class Runner {
         print(v.sub(v));
         print(v.mul(v));
         print(v.div(v));
+
+        print(m.add(m));
+        print(m.sub(m));
+        print(m.mul(m));
+        print(m.mul(v));
     }
 }

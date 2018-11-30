@@ -2,7 +2,7 @@ package by.it.naumenko.jd01_08;
 
 class Vector extends Var {
 
-    private double[] value;
+    double[] value;
 
     public Vector(double[] value) {
         //this.value = value;
@@ -40,7 +40,15 @@ class Vector extends Var {
             }
             return new Scalar(rezultat);
         }
-        return other.add(this);
+        if (other instanceof Scalar) {
+            Scalar operand2 = (Scalar) other;
+            double mas[] = new double[this.value.length];
+            for (int i = 0; i < this.value.length; i++) {
+                mas[i] += this.value[i] * operand2.value;
+            }
+            return new Vector(mas);
+        }
+        return other.mul(this);
     }
 
     public Var sub(Var other) {
@@ -52,7 +60,15 @@ class Vector extends Var {
             }
             return new Vector(mas);
         }
-        return other.add(this);
+        if (other instanceof Scalar) {
+            Scalar operand2 = (Scalar) other;
+            double mas[] = new double[this.value.length];
+            for (int i = 0; i < this.value.length; i++) {
+                mas[i] = this.value[i] - operand2.value;
+            }
+            return new Vector(mas);
+        }
+        return other.sub(this).mul(new Scalar(-1));
     }
 
     @Override
@@ -65,12 +81,30 @@ class Vector extends Var {
             }
             return new Vector(mas);
         }
+        if(other instanceof Scalar){
+            Scalar operand2  = (Scalar)other;
+            double mas[] = new double[this.value.length];
+            for (int i = 0; i < this.value.length; i++) {
+                mas[i] = this.value[i] + operand2.value;
+            }
+            return new Vector(mas);
+        }
         return other.add(this);
     }
 
     @Override
     public Var div(Var other) {
-        return super.div(other);
+        if(other instanceof Vector)
+            return super.div(other);
+        if (other instanceof Scalar){
+            Scalar operand2 = (Scalar)other;
+            double[] mas = new double[this.value.length];
+            for (int i = 0; i < this.value.length; i++) {
+                mas[i]=this.value[i]/operand2.value;
+            }
+            return new Vector(mas);
+        }
+        return other.div(this);
     }
 
     @Override
