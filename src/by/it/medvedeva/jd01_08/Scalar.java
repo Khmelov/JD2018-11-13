@@ -1,7 +1,7 @@
 package by.it.medvedeva.jd01_08;
 
 class Scalar extends Var {
-    private double value;
+    public double value;
 
 
     Scalar(double value) {
