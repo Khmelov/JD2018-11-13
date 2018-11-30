@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_08;
+package by.it.denisova.jd01_08;
 
 
 import org.junit.Test;

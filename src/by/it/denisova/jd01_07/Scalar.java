@@ -12,8 +12,32 @@ public class Scalar extends Var {
         value = Double.parseDouble(strValue);
     }
 
-    Scalar(Scalar otherScalar){
+    Scalar (Scalar otherScalar){
         this.value = otherScalar.value;
+    }
+
+    public Var add(Var other){
+        if (other instanceof Scalar){
+
+            Scalar scalar1 = (Scalar) other;
+            double result = this.value + scalar1.value;
+            return new Scalar(result);
+        }
+        else{
+            return other;
+        }
+
+    }
+
+    Var sub(Var other){
+        if (other instanceof Scalar){
+            Scalar scalar1 = (Scalar) other;
+            double resilt = this.value - scalar1.value;
+            return  new Scalar(resilt);
+        }
+        else {
+            return other;
+        }
     }
 
     @Override

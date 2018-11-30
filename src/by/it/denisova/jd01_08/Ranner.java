@@ -1,4 +1,4 @@
-package by.it.denisova.jd01_07;
+package by.it.denisova.jd01_08;
 
 public class Ranner {
     public static void main(String[] args) {
@@ -7,28 +7,14 @@ public class Ranner {
         Var s2 = new Scalar("22.234");
         System.out.println(s2);
         //double [] array = {1.0, 2.0, 4.0};
-
-////
-
-
-       Var s = new Scalar(3.0);
-        System.out.println(((Scalar) s).add(s));
-//
         Var vec1 = new Vector(new double[]{1.0, 2.0, 4.0});
         System.out.println(vec1);
-
-
-
-     /* double [] mas = {1.0, 2.0, 4.0};
-      Var vec1 = new Vector(mas);
-       */
-
-
-
 
         String stringValue = "{1.0, 2.0, 4.0}";
         Var str1 = new Vector(stringValue);
         System.out.println(str1);
+        ////////// B
+
 
 
 
