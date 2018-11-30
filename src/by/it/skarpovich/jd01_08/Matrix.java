@@ -1,60 +1,85 @@
 package by.it.skarpovich.jd01_08;
-
+import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Matrix extends Var {
+public class Matrix extends Var {
     private double[][] value;
-
-    Matrix(double[][] value) {
-        this.value = new double[value.length][value.length];
-        for (int i = 0; i < 2; i++) {
-            for (int j = 0; j < 2; j++) {
-                this.value = value;
-            }
+    Matrix(double[][] value){
+        this.value = new double[value.length][value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            System.arraycopy(value[i],0,this.value[i], 0,value.length);
         }
     }
 
-    Matrix(Matrix matrix) {
-        this.value = matrix.value;
-    }
-
-    Matrix(String strMatrix) {
-
-        Matcher matcher = Pattern.compile("\\{(.*)\\}").matcher(strMatrix);
-        while (matcher.find()) {
-            String[] strMatrixArray = matcher.group().replace(" ", "").split(",");
-            value = new double[strMatrixArray.length][strMatrixArray.length];
-            for (int i = 0; i < strMatrixArray.length; i++) {
-                for (int j = 0; j <strMatrixArray.length; j++) {
-                    value[i][j] = Double.parseDouble(strMatrixArray[i]);
-                }
-            }
+    Matrix(Matrix matrix){
+        this.value = new double[matrix.value.length][matrix.value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            System.arraycopy(matrix.value[i],0,this.value[i], 0,value.length);
         }
     }
 
     @Override
-    public String toString() {
-        StringBuilder sb = new StringBuilder("{");
-        int row = 0;
-        int i, j;
-        for (i = 0; i < 2; i++) {
-            sb.append("{");
-            for (j = 0; j < 2; j++) {
-                sb.append(value[i][j]);
-                if (j < value.length - 1) {
-                    sb.append(",");
+    public Var add (Var other) {
+
+        if (other instanceof Scalar) {
+            System.out.println("Сложение(матрицы и скаляра):");
+            double[][] res = Arrays.copyOf(value, value.length);
+            for (int i = 0; i < res.length; i++) {
+
+                for (int j = 0; j < value[i].length; j++) {
+                    res[i][j] = value[i][j] + ((Scalar) other).getValue();
                 }
             }
-            sb.append("}");
-            row++;
-            if (row - value.length != 0) {
-                sb.append(", ");
+            return new Matrix(res);
+
+        } else if (other instanceof Matrix) {
+            System.out.println("Сложение(матрицы и матрицы):");
+            double[][] res=new double[value.length][value.length];
+            for (int i = 0; i <this.value.length ; i++) {
+                for (int j = 0; j < value[i].length; j++) {
+                    res[i][j] = value[i][j] + ((Matrix) other).value[i][j];
+
+                }
             }
+            return new Matrix(res);
+        } else
+            return other.add(this);
+    }
+
+
+
+
+
+
+    Matrix(String value){
+        value = value.replaceAll("[{|}]{2,}", "");
+        String[] stringValue = value.split("[}][\\s]?,[\\s]?[{]");
+
+        this.value = new double[stringValue.length][];
+        for (int i = 0; i < stringValue.length; i++) {
+
+            String[] valueStringNumber = stringValue[i].trim().split(",");
+            double[] tempArr = new double[valueStringNumber.length];
+
+            for (int j = 0; j < valueStringNumber.length; j++) {
+                tempArr[j] = Double.parseDouble(valueStringNumber[j]);
+                this.value[i] = tempArr;
+            }
+        }
+    }
+    public String toString(){
+        StringBuilder sb = new StringBuilder("{");
+        for (int i = 0; i < value.length; i++) {
+            sb.append("{");
+            for (int j = 0; j < value[i].length; j++) {
+                sb.append(value[i][j]);
+                if (j != value[i].length - 1) sb.append(", ");
+            }
+            if(i<value.length-1) sb.append("}, ");
+            if(i == value.length-1) sb.append("}");
         }
         sb.append("}");
         return sb.toString();
     }
 }
-
-

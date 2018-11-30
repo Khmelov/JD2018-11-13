@@ -35,7 +35,7 @@ class Vector extends Var {
             }
             return new Vector(res);
         } else
-            return other.add(this);
+            return super.div(other);
     }
 
     @Override

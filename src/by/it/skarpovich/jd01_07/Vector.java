@@ -13,8 +13,6 @@ class Vector extends Var {
     }
 
 
-
-
     Vector(Vector vector){
         value = new double[vector.value.length];
         System.arraycopy(vector.value, 0, value, 0, vector.value.length);
