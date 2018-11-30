@@ -4,12 +4,12 @@ import com.sun.org.apache.xerces.internal.impl.xs.identity.Selector;
 
 public class Runner {
     public static void main(String[] args) {
-        double[][] matrixB = {
-                {-9,1,0},
-                {4,1,1},
-                {-2,2,-1}
-        };
+        String matrixB =
+                "{{ 1.0, 2.0 },{ 3.0, 4.0 }}"
+        ;
+Var mat = new Matrix(matrixB);
+        System.out.println(mat);
 
-        System.out.println(new Matrix(new Matrix(matrixB)));
+        Var scalar = new Scalar(3.14);
     }
 }

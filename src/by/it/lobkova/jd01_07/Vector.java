@@ -4,11 +4,40 @@ import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class Vector extends Var {
-    public static void main(String[] args) {
 
+    private double[] value;
+
+    Vector(double[] value) {
+        this.value = value;
     }
 
-    public Vector(double[] value) {
+    Vector(Vector vector){
+        this.value = vector.value;
+    }
+
+    Vector(String str){
+        String[] string = str.replaceAll("[{}]", "").split("[,]");
+        double[] vector = new double[string.length];
+        for (int i = 0; i < vector.length; i++) {
+            vector[i] = Double.parseDouble(string[i]);
+        }
+        this.value = vector;
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("{");
+        String dilimiter = "";
+        for (double element : value){
+            sb.append(dilimiter).append(element);
+            dilimiter = ", ";
+        }
+        sb.append("}");
+
+        return sb.toString();
+    }
+
+    /*  public Vector(double[] value) {
         super(value);
     }
 
@@ -23,5 +52,5 @@ public class Vector extends Var {
     @Override
     public String toString() {
         return Arrays.toString((double[]) getValue());
-    }
+    }*/
 }
