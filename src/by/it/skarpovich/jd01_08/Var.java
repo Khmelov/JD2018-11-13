@@ -25,8 +25,8 @@ abstract class Var implements Operation {
         return null;
     }
 
-    @Override
-    public String toString() {
-        return "ЭтоAbstractVar{}";
-    }
+//    @Override
+//    public String toString() {
+//        return "ЭтоAbstractVar{}";
+//    }
 }
