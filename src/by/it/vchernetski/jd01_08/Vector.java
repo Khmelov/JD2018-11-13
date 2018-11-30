@@ -90,7 +90,7 @@ class Vector extends Var {
             }
             return  res;
         }
-        return super.mul(other);
+        return other.mul(this);
     }
     @Override
     public Var div (Var other){
