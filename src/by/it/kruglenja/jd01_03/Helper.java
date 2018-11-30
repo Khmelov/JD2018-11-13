@@ -59,7 +59,7 @@ public class Helper {
         for (int i = 0; i < matrixLeft.length; i++) {
             for (int j = 0; j < matrixRight[0].length; j++) {
                 for (int k = 0; k < matrixRight.length; k++) {
-                    mul[i][j] = mul[i][j] + matrixLeft[i][k] * matrixRight[k][j];
+                    mul[i][j] += matrixLeft[i][k] * matrixRight[k][j];
                 }
             }
         }

@@ -21,7 +21,7 @@ public class TaskB2 {
             count++;
         }
         for (int i = 0; i < separatedLines.length; i++) {
-            separatedLines[i] = separatedLines[i].replaceAll("[^А-Яа-яёЁ[^А-Яа-яЁё]]{1,}", " ").trim();
+            separatedLines[i]= separatedLines[i].replaceAll("[ \\n.!:,-]{1,}", " ").trim();
         }
         boolean flag = false;
         while (!flag) {

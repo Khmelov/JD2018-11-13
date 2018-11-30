@@ -20,9 +20,8 @@ public class Vector extends Var {
     }
 
     Vector(String strVector) {
-        StringBuilder strVec = new StringBuilder(strVector);
         Pattern extractor = Pattern.compile("[0-9.]+");
-        Matcher extrMatcher = extractor.matcher(strVec);
+        Matcher extrMatcher = extractor.matcher(strVector);
         int len = 0;
         while (extrMatcher.find()) {
             len++;
@@ -40,7 +39,7 @@ public class Vector extends Var {
         StringBuilder res = new StringBuilder("{");
         for (int i = 0; i < value.length; i++) {
             res.append(value[i]);
-            if (i == 0 || i != value.length - 1) {
+            if (i != value.length - 1) {
                 res.append(", ");
             }
             if (i == value.length - 1) {
