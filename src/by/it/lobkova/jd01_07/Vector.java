@@ -37,20 +37,4 @@ public class Vector extends Var {
         return sb.toString();
     }
 
-    /*  public Vector(double[] value) {
-        super(value);
-    }
-
-    public Vector(Vector vector) {
-        super(vector.getValue());
-    }
-
-//    public Vector(String strVector) {
-//        super(strVector);
-//    }
-
-    @Override
-    public String toString() {
-        return Arrays.toString((double[]) getValue());
-    }*/
 }
