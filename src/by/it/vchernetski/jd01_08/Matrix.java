@@ -44,6 +44,19 @@ public class Matrix extends Var {
             }
         }
     }
+    @Override
+    public Var add (Var other){
+        if(other instanceof Matrix && ((Matrix) other).value.length == this.value.length && ((Matrix)other).value[0].length == this.value[0].length){
+            double[][] res = new double[this.value.length][this.value[0].length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    res[i][j] = ((Matrix) other).value[i][j]+this.value[i][j];
+                }
+            }
+            return new Matrix(res);
+        }
+        return other.add(this);
+    }
     public String toString(){
         StringBuilder sb = new StringBuilder("{");
         for (int i = 0; i < value.length; i++) {

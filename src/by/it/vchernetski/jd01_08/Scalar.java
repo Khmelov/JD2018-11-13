@@ -14,6 +14,11 @@ class Scalar extends Var {
     public String toString() {
         return String.valueOf(value);
     }
+
+    public double getValue() {
+        return value;
+    }
+
     @Override
     public Var add(Var other){
         if (other instanceof Scalar){
