@@ -52,7 +52,8 @@ public class Matrix extends Var {
 
         if (other instanceof Scalar) {
             System.out.println("Вычитание(матрицы и скаляра):");
-            double[][] res = Arrays.copyOf(value, value.length);
+            double[][] res = new double[value.length][value.length];
+            //double[][] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
                 for (int j = 0; j < value[i].length; j++) {
                     res[i][j] = value[i][j] - ((Scalar) other).getValue();
@@ -91,10 +92,9 @@ public class Matrix extends Var {
             double[] res=new double[value.length];
             for (int i = 0; i <value.length ; i++) {
                 for (int j = 0; j < value[i].length; j++) {
-                        res[i] = res[i]+value[i][j]*((Vector) other).value[j];
+                        res[i] = res[i]+value[i][j]*((Vector) other).getValue()[j];
                     }
                 }
-
             return new Vector(res);
 
         } else if (other instanceof Matrix) {
