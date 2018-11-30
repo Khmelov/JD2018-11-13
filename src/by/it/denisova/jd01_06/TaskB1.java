@@ -4,11 +4,13 @@ public class TaskB1 {
     public static void main(String[] args) {
         String[] words = Poem.text.split("([\\s,.?!:]|-)+");
         for (int i = 0; i <words.length ; i++) {
-            check(words[i]);
+            if (check(words[i])){
+                System.out.println(words[i]);
+            }
         }
     }
     private static boolean check(String word){
-      char[] gl = {'а', 'е'};
+      char[] gl = {'а', 'о', 'и', 'е', 'ё', 'э', 'ы', 'у', 'ю', 'я'};
         word = word.toLowerCase();
         return !contains(gl, word.charAt(0)) && contains(gl, word.charAt(word.length() - 1));
     }
