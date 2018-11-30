@@ -14,7 +14,9 @@ public class Runner {
 
         Var m3 = new Matrix(new double[][]{{1.0,2.0},{3.0,4.0}});
         Matrix m31 = new Matrix(new double[][]{{2.0,22.0},{33.0,44.0}});
-        Var m33 = new Matrix(m31);
+        Var m32 = new Matrix(m31);
+        Var m33 = new Matrix("{{1.0,2.0,3.0},{4.0,5.0,6.0},{7.0,8.0,9.0},{12,25,40}}");
+
 
         System.out.println(s1);
         System.out.println(s11);
@@ -28,6 +30,7 @@ public class Runner {
 
         System.out.println(m3);
         System.out.println(m31);
+        System.out.println(m32);
         System.out.println(m33);
     }
 }
