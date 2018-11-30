@@ -29,6 +29,9 @@ class Vector extends Var {
             }
         }
     }
+    public double[] getValue() {
+        return value;
+    }
     @Override
     public Var add(Var other) {
         if (other instanceof Vector && this.value.length == ((Vector) other).value.length) {
@@ -49,6 +52,7 @@ class Vector extends Var {
         }
         return super.add(other);
     }
+
     @Override
     public Var sub(Var other) {
         if (other instanceof Vector && this.value.length == ((Vector) other).value.length) {
