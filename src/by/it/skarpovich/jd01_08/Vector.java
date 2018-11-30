@@ -70,14 +70,12 @@ class Vector extends Var {
             return new Vector(res);
 
         } else if (other instanceof Vector) {
-            double[] res = Arrays.copyOf(value, value.length);
             double sum=0;
-//            C
+            double[] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
-                    res[i]=res[i] * ((Vector) other).value[i];
-
+                    sum=sum+res[i] * ((Vector) other).value[i];
             }
-            return new Vector(res);
+            return new Scalar(sum);
         } else
             return other.add(this);
     }
@@ -94,12 +92,6 @@ class Vector extends Var {
         } else
             return super.div(other);
     }
-
-//    int res5 = 0;
-//        for (int n : arr51)
-//            for (int m: arr52){
-//        res5 += n*m;
-//    }
 
 
 
