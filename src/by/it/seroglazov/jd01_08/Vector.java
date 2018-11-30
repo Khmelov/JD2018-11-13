@@ -7,6 +7,10 @@ public class Vector extends Var {
 
     private double[] value;
 
+    public double[] getValue() {
+        return value;
+    }
+
     Vector(double[] value) {
         this.value = new double[value.length];
         System.arraycopy(value, 0, this.value, 0, value.length);
@@ -74,7 +78,9 @@ public class Vector extends Var {
                 nv[i] = value[i] + op * v.value[i];
             }
             return new Vector(nv);
-        } else return super.add(other); // Impossible if dif length
+        } else { // Impossible if different length
+            return operation ? super.add(other) : super.sub(other);
+        }
     }
 
     // Vector + Vector = Vector or null
@@ -85,6 +91,16 @@ public class Vector extends Var {
     // Vector - Vector = Vector or null
     private Var subVec(Var other) {
         return addOrSubVec(other, false);
+    }
+
+    // Vector + Matrix = null
+    private Var addMatr(Var other) {
+        return super.add(other);
+    }
+
+    // Vector - Matrix = null
+    private Var subMatr(Var other) {
+        return super.sub(other);
     }
 
     // Vector (* or /) Scalar = Vector (true - multiply; false - division)
@@ -124,9 +140,9 @@ public class Vector extends Var {
         return super.div(other);
     }
 
-    // Vector * Matrix = invoke Matrix * Vector
+    // Vector * Matrix = null
     private Var mulMatr(Var other) {
-        return other.mul(this);
+        return super.mul(this);
     }
 
     // Vector / Matrix = null
@@ -138,7 +154,7 @@ public class Vector extends Var {
     public Var add(Var other) {
         if (other instanceof Scalar) return addScal(other);
         else if (other instanceof Vector) return addVec(other);
-        else if (other instanceof Matrix) return super.add(other); // Vector + Matrix - Impossible
+        else if (other instanceof Matrix) return addMatr(other);
         else return other.add(this); // For the future possible extend
     }
 
@@ -146,7 +162,7 @@ public class Vector extends Var {
     public Var sub(Var other) {
         if (other instanceof Scalar) return subScal(other);
         else if (other instanceof Vector) return subVec(other);
-        else if (other instanceof Matrix) return super.sub(other); // Vector - Matrix - Impossible
+        else if (other instanceof Matrix) return subMatr(other);
         else return other.sub(this).mul(new Scalar(-1)); // For the future possible extend
     }
 
