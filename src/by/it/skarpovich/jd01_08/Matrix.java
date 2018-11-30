@@ -86,6 +86,7 @@ public class Matrix extends Var {
                     res[i][j] = value[i][j] * ((Scalar) other).getValue();
                 }
             }
+
             return new Matrix(res);
         } else if (other instanceof Vector) {
             System.out.println("Произведение(матрицы и вектора):");
