@@ -13,7 +13,9 @@ public class Ranner {
         String stringValue = "{1.0, 2.0, 4.0}";
         Var str1 = new Vector(stringValue);
         System.out.println(str1);
-        ////////// B
+        ////////// c
+
+
 
 
 

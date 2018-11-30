@@ -31,6 +31,16 @@ public class Ranner {
         System.out.println(str1);
 
 
+        ////c
+        double[][] matrix1 = { { 1.0, 2.0 }, { 3.0, 4.0 } };
+
+
+        String matrixString = " {{2.4, 43, 23},{6.4, 43, 223, -43}}";
+        Matrix m1 = new Matrix(matrix1);
+        System.out.println(m1);
+        String string1 = "{{ 1.0, 2.0 }, { 3.0, 4.0 }}";
+        Var m2 =  new Matrix(string1);
+        System.out.println(m2);
 
 
     }
