@@ -5,6 +5,12 @@ import java.util.regex.Pattern;
 
 public class Matrix extends Var {
     private double[][] value;
+
+    @Override
+    String getType() {
+        return "Matrix";
+    }
+
     private static String ErrMessPatternNotFound = "Exception: Ошибка ввода матрицы. Не найден шаблон: {{1,2,...},{3,4,...},...}";
     private static String ErrMessDifferentColsCount = "Exception: Количество столбцов в каждой строке матрицы должно быть задано одинаковым.";
 
@@ -235,6 +241,38 @@ public class Matrix extends Var {
 
     @Override
     public Var add(Var other) {
+        if (other.getType() == "Scalar") return addScal(other);
+        else if (other.getType() == "Vector") return addVec(other);
+        else if (other.getType() == "Matrix") return addMatr(other);
+        else return other.add(this); // For the future possible extend
+    }
+
+    @Override
+    public Var sub(Var other) {
+        if (other.getType() == "Scalar") return subScal(other);
+        else if (other.getType() == "Vector") return subVec(other);
+        else if (other.getType() == "Matrix") return subMatr(other);
+        else return other.sub(this).mul(new Scalar(-1)); // For the future possible extend
+    }
+
+    @Override
+    public Var mul(Var other) {
+        if (other.getType() == "Scalar") return mulScal(other);
+        else if (other.getType() == "Vector") return mulVec(other);
+        else if (other.getType() == "Matrix") return mulMatr(other);
+        else return other.mul(this); // For the future possible extend
+    }
+
+    @Override
+    public Var div(Var other) {
+        if (other.getType() == "Scalar") return divScal(other);
+        else if (other.getType() == "Vector") return divVec(other);
+        else if (other.getType() == "Matrix") return divMatr(other);
+        else return super.div(other); // For the future possible extend
+    }
+
+    /*@Override
+    public Var add(Var other) {
         if (other instanceof Scalar) return addScal(other);
         else if (other instanceof Vector) return addVec(other);
         else if (other instanceof Matrix) return addMatr(other);
@@ -263,7 +301,7 @@ public class Matrix extends Var {
         else if (other instanceof Vector) return divVec(other);
         else if (other instanceof Matrix) return divMatr(other);
         else return super.div(other); // For the future possible extend
-    }
+    }*/
 }
 
 

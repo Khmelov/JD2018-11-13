@@ -1,6 +1,9 @@
 package by.it.seroglazov.jd01_08;
 
 public abstract class Var implements Operation{
+
+    abstract String getType();
+
     @Override
     public String toString() {
         return "this abstract class";
