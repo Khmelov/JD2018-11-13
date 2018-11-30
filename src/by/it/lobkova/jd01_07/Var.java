@@ -2,12 +2,17 @@ package by.it.lobkova.jd01_07;
 
 public class Var {
 
-    private double value;
+    private Object value;
 
-    public Var(double value) {
+    public Var(Object value) {
         this.value = value;
     }
 
+    public Object getValue() {
+        return value;
+    }
 
-
+    public void setValue(Object value) {
+        this.value = value;
+    }
 }

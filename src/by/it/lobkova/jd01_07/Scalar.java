@@ -2,10 +2,20 @@ package by.it.lobkova.jd01_07;
 
 public class Scalar extends Var {
 
-private double value;
-
-    public Scalar(double value, double value1) {
+    public Scalar(double value) {
         super(value);
-        this.value = value1;
+    }
+
+    public Scalar(Scalar scalar) {
+        super(scalar.getValue());
+    }
+
+    public Scalar(String strScalar) {
+        super(Double.valueOf(strScalar));
+    }
+
+    @Override
+    public String toString() {
+        return super.getValue() + "";
     }
 }
