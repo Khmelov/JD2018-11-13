@@ -88,23 +88,23 @@ public class Matrix extends Var {
         return other.mul(this);
     }
 
-//    @Override
-//    public Var div(Var other) {
-//        if (other instanceof Scalar) {
-//            double[][] div = new double[this.value.length][this.value[0].length];
-//            for (int i = 0; i < this.value.length; i++) {
-//                for (int j = 0; j < this.value[i].length; j++) {
-//                    for (int k = 0; k < this.value.length; k++) {
-//                        div[i][j] += this.value[i][k] / ((Matrix) other).value[k][j];
-//                    }
-//                }
-//            }
-//            return new Matrix(div);
-//        }
-//        return other.div(this);
-//    }
+    @Override
+    public Var div(Var other) {
+        if (other instanceof Scalar) {
+            double[][] div = new double[this.value.length][this.value[0].length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    for (int k = 0; k < this.value.length; k++) {
+                        div[i][j] += this.value[i][k] / ((Scalar) other).getValue();
+                    }
+                }
+            }
+            return new Matrix(div);
+        }
+        return other.div(this);
+    }
 
-    Matrix(double[][] value) {
+     Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
             System.arraycopy(value[i], 0, this.value[i], 0, value[i].length);
