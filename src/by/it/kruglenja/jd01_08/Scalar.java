@@ -4,7 +4,9 @@ package by.it.kruglenja.jd01_08;
  * Created by user on 27.11.2018.
  */
  class Scalar extends Var {
-    public double value;
+    private double value;
+
+    public double getValue() { return value; }
 
     Scalar(double value){
         this.value = value;
