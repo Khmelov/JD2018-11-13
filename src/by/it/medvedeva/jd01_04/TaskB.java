@@ -14,11 +14,11 @@ public class TaskB {
         for (int i = 0; i < peopleQuant; i++) {
             lastname[i] = scanner.nextLine();
         }
-        int quarter = 4;
-        int[][] salary = new int[peopleQuant][quarter];
+
+        int[][] salary = new int[peopleQuant][4];
         for (int i = 0; i < peopleQuant; i++) {
             System.out.println("Введите зарплату " + lastname[i]);
-            for (int j = 0; j < quarter; j++) {
+            for (int j = 0; j < 4; j++) {
                 salary[i][j] = scanner.nextInt();
             }
         }
@@ -26,7 +26,7 @@ public class TaskB {
         System.out.printf("%-10s%-10s%-10s%-10s%-10s%-10s\n", "Surname", "Quart1", "Quart2", "Quart3", "Quart4", "Total");
         for (int i = 0; i < peopleQuant; i++) {
             System.out.printf("%s:  ", lastname[i]);
-            for (int j = 0; j < quarter; j++) {
+            for (int j = 0; j < 4; j++) {
                 System.out.printf("%-11d", salary[i][j]);
                 sum [i] +=salary[i][j];
 
@@ -41,7 +41,7 @@ public class TaskB {
             }
 
         System.out.printf("%-8s %-10d\n", "All: ", allPeopleSal);
-        System.out.printf("%-8s %-9.5f\n", "Average:", (double) allPeopleSal/(peopleQuant*quarter));
+        System.out.printf("%-8s %-9.5f\n", "Average:", (double) allPeopleSal/(peopleQuant*4));
 
 
     }
