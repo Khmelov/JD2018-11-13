@@ -1,6 +1,5 @@
 package by.it.nickgrudnitsky.jd01_01;
 
-import com.sun.org.apache.xpath.internal.Arg;
 
 public class Main {
 
