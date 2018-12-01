@@ -9,7 +9,7 @@ class Vector extends Var {
     private double[] value;
 
     Vector(double[] value) {
-        this.value=new double[value.length];
+        this.value = new double[value.length];
         System.arraycopy(value, 0, this.value, 0, this.value.length);
     }
 
@@ -74,6 +74,14 @@ class Vector extends Var {
 
     @Override
     public Var div(Var other) {
+        if (other instanceof Vector) {
+        } else if (other instanceof Scalar) {
+            double[] div = Arrays.copyOf(value, value.length);
+            for (int i = 0; i < div.length; i++) {
+                div[i] = div[i] / ((Scalar) other).getValue();
+            }
+            return new Vector(div);
+        }
         return super.div(other);
     }
 
