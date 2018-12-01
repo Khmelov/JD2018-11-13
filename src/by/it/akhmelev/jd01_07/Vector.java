@@ -12,6 +12,8 @@ class Vector extends Var{
         System.arraycopy(value, 0, this.value, 0, this.value.length);
     }
 
+
+
     @Override
     public String toString() {
         StringBuilder sb=new StringBuilder("{");
