@@ -1,4 +1,4 @@
-package by.it.baidak.jd01_08;
+package by.it.baidak.jd01_09;
 
 /**
  * Created by user on 27.11.2018.
@@ -22,10 +22,6 @@ public class Var implements Operation {
 
     @Override
     public Var div(Var v) {
-        return null;
-    }
-
-    public Var createVar(String exp){
         return null;
     }
 }
