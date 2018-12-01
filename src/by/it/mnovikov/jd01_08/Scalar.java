@@ -6,6 +6,10 @@ package by.it.mnovikov.jd01_08;
 class Scalar extends Var {
     private double value;
 
+    public double getValue() {
+        return value;
+    }
+
     Scalar(double value) {
         this.value = value;
     }
@@ -47,7 +51,7 @@ class Scalar extends Var {
         if (other instanceof Scalar) {
             double div = this.value / ((Scalar) other).value;
             return new Scalar(div);
-        } else return other.div(this);
+        } else return super.div(this);
     }
     @Override
     public String toString() {
