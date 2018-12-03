@@ -1,4 +1,4 @@
-package by.it.baidak.jd01_08;
+package by.it.baidak.jd01_09;
 
 public class Vector extends Var {
 
