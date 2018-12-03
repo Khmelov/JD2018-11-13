@@ -1,6 +1,6 @@
 package by.it.denisova.jd01_09;
 
-interface Patterns {
+final class  Patterns {
 
 
     static final String OPERATION ="[-+*/]";

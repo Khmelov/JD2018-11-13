@@ -15,6 +15,12 @@ class Parcer {
         Matcher m = p.matcher(expression);
         if (m.find()){
             String operation = m.group();
+            switch (operation){
+                case("+"): one.add(two);
+                case("-"): one.sub(two);
+                case("/"): one.div(two);
+                case("*"): one.mul(two);
+            }
         }
         return null;
     }
