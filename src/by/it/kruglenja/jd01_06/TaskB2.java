@@ -7,49 +7,38 @@ public class TaskB2 {
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder(Poem.text);
 
-        Pattern symbolRemove = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");
-        Matcher matcher = symbolRemove.matcher(sb);
+        Pattern lineDivider = Pattern.compile("[А-ЯЁ](\\.\\.\\.|[^.!?])*[.!?]");
+        Matcher matcher = lineDivider.matcher(sb);
         int len = 0;
         while (matcher.find()) {
             len++;
         }
-        int[] counter = new int[len];
         matcher.reset();
-        int c = 0;
+        String[] separatedLines = new String[len];
+        int count = 0;
         while (matcher.find()) {
-            counter[c] = matcher.end() - 1 - matcher.start();
-            System.out.println(counter[c]);
-            c++;
+            separatedLines[count] = matcher.group();
+            count++;
         }
-        int[] printOrder = new int[len];
-        System.arraycopy(counter, 0, printOrder, 0, printOrder.length);
+        for (int i = 0; i < separatedLines.length; i++) {
+            separatedLines[i]= separatedLines[i].replaceAll("[ \\n.!:,-]{1,}", " ").trim();
+        }
         boolean flag = false;
         while (!flag) {
             flag = true;
-            for (int i = 0; i < printOrder.length - 1; i++) {
-                int temp = 0;
-                if (printOrder[i] > printOrder[i + 1]) {
-                    temp = printOrder[i];
-                    printOrder[i] = printOrder[i + 1];
-                    printOrder[i + 1] = temp;
+            for (int i = 0; i < separatedLines.length - 1; i++) {
+                String temp = " ";
+                if (separatedLines[i].length() > separatedLines[i + 1].length()) {
+                    temp = separatedLines[i];
+                    separatedLines[i] = separatedLines[i + 1];
+                    separatedLines[i + 1] = temp;
                     flag = false;
                 }
             }
-
-            }System.out.println("_________________________________________");
-        for (int aPrintOrder : printOrder) {
-            System.out.println(aPrintOrder);
         }
-//        Pattern pattern = Pattern.compile("[^а-яА-ЯёЁ]*");
-//        Matcher matcher = pattern.matcher(sb);
-//        while (matcher.find()){
-//            System.out.println(matcher.group());
-//
-//            int x = matcher.start();
-//            System.out.println(sb.charAt(x));
-//            sb.deleteCharAt(x);
-//
-//        }
-//        System.out.println(sb.toString());
+        StringBuilder sortedseparatedLines = new StringBuilder();
+        for (int i = 0; i < len; i++) {
+            System.out.print(separatedLines[i] + '\n');
+        }
     }
 }
