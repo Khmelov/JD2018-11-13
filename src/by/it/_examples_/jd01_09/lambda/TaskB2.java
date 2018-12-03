@@ -9,7 +9,7 @@ class TaskB2 {
         String[] sentences = Poem.text.split("[.!?]\n");
         for (int i = 0; i < sentences.length; i++)
             sentences[i]=sentences[i].replaceAll("[^А-Яа-яёЁ]+", " ");
-
+/*
         Comparator<String> comparator1=new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -28,5 +28,5 @@ class TaskB2 {
         for (String sentence : sentences) {
             System.out.println(sentence);
         }
-    }
-}
+    }*/
+}}

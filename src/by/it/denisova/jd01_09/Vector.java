@@ -1,4 +1,4 @@
-package by.it.denisova.jd01_08;
+package by.it.denisova.jd01_09;
 
 import java.util.Arrays;
 
@@ -93,7 +93,7 @@ public class Vector extends Var {
             if (res.length == value.length) {
                 for (int i = 0; i < res.length; i++) {
                     res[i] = res[i] * ((Vector) other).value[i];
-                    res1+= res[i];
+                    res1+=res[i];
                 }
                 return new Scalar(res1);
             }
