@@ -12,8 +12,10 @@ class Vector extends Var {
         System.arraycopy(value, 0, this.value, 0, this.value.length);
     }
 
-    Vector(Vector vector) {
-        this.value = vector.value;
+
+    Vector(Vector vector){
+        value = new double[vector.value.length];
+        System.arraycopy(vector.value, 0, value, 0, vector.value.length);
     }
 
     Vector(String strVector) {
