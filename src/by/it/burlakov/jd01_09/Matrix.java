@@ -1,4 +1,4 @@
-package by.it.burlakov.jd01_08;
+package by.it.burlakov.jd01_09;
 
 public class Matrix extends Var {
 
