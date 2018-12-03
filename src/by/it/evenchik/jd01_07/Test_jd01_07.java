@@ -98,7 +98,7 @@ public class Test_jd01_07 {
 
         Constructor c=ok.aClass.getDeclaredConstructor(String.class);
         System.out.println("Создание переменной типа Vector на основе строки {1,2,4}");
-        Object vector=c.newInstance("{1.0,2.0,4.0}");
+        Object vector=c.newInstance("{1,2,4}");
         System.out.println("было выполнено успешно. \nТестирование вывода значения {1,2,4} через метод toString()");
         System.out.flush();
         assertEquals("Не было получено ожидаемое значение {1.0, 2.0, 4.0}", vector.toString(), "{1.0, 2.0, 4.0}");
