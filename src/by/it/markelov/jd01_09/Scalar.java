@@ -1,4 +1,4 @@
-package by.it.markelov.jd01_08;
+package by.it.markelov.jd01_09;
 
 class Scalar extends Var {
     private double value;
