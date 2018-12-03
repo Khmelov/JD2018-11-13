@@ -6,44 +6,39 @@ import java.util.regex.Pattern;
 
 public class Test2 {
     public static void main(String[] args) {
-//        String strMatrix = "{{1.0,2.0},{3,4.0}}";
-//        Pattern pattern1 = Pattern.compile("[0-9]+,[0-9]+");
-//        Matcher matcher1 = pattern1.matcher(strMatrix);
+        String strMatrix = "{{1.0,2.0,3.0},{4.0,5.0,6.0},{7.0,8.0,9.0},{12,25,40}}";
+        strMatrix=strMatrix.replaceAll("[},{]"," ");
+        strMatrix=strMatrix.trim();
+        String[] mas = strMatrix.split("\\s{3,}");
+        String [] masCol=mas[0].split("\\s+");//узнать количество столбцов
+        for (int i = 0; i < mas.length; i++) {
+            System.out.print(mas[i]+"      ");
+        }
+        int rowCount = mas.length;
+        int colCount = masCol.length;
+        System.out.println("\n"+mas.length);
+        System.out.println(masCol.length);
+        double massiv[][]=new double[rowCount][colCount];
+        for (int i = 0; i < mas.length; i++) {
+            String massivel[]=mas[i].split("\\s+");
+            for (int j = 0; j <massivel.length ; j++) {
+                massiv[i][j]=Double.parseDouble(massivel[j]);
+            }
+        }
+
+        for (int i = 0; i < massiv.length; i++) {
+            for (int j = 0; j < massiv[i].length; j++) {
+                System.out.print(massiv[i][j]+" ");
+            }
+            System.out.println();
+        }
 //
-//        int i1 = 0;
-//        int rowsCount = 0;
-//        int columnsCount = 0;
-//        while (matcher1.find()) {
-//            rowsCount++;
-//            Pattern pattern = Pattern.compile("[0-9]+");
-//            Matcher matcher = pattern.matcher(matcher1.group());
-//            while (matcher.find()){
-//                columnsCount++;
-//            }
-//        }
-//        matcher1.reset();
-//        double[][] value = new double[rowsCount][columnsCount];
+
 //
-//        while (matcher1.find()) {
-//            Pattern pattern = Pattern.compile("[0-9]+");
-//            Matcher matcher = pattern.matcher(matcher1.group());
-//            double[] array = new double[0];
-//            int i = 0;
-//            while (matcher.find()) {
-//                int last = array.length;
-//                array = Arrays.copyOf(array, last + 1);
-//                array[i] = Double.parseDouble(matcher.group());
-//                i++;
-//            }
-//            value[i1] = Arrays.copyOf(array, array.length);
-//            i1++;
+//        for (int i = 0; i < mas.length; i++) {
+//            System.out.printf("mas[%d]=%s   ",i,mas[i]);
 //        }
-//
-//        for (int i = 0; i < value.length; i++) {
-//            for (int j = 0; j < value[i].length; j++) {
-//                System.out.print(value[i][j]+"  ");
-//            }
-//            System.out.println();
-//        }
+//        System.out.println("\n"+mas.length);
+
     }
 }
