@@ -7,12 +7,13 @@ public class Test {
         str=str.replaceAll("[{}]","");
         String[] mas = str.split(",\\s*");
         double[] mas1 = new double[mas.length];
-        int k=0;
+        //int k=0;
         for (int i = 0; i < mas.length; i++) {
-            if (i!=0) {
-                mas1[k] = Double.parseDouble(mas[i]);
-                k++;
-            }
+            mas1[i] = Double.parseDouble(mas[i]);
+            //if (i!=0) {
+
+              //  k++;
+            //}
 
 //            if (mas[i].equals("")) {
 //                mas1[k] = Double.parseDouble(mas[i]);
