@@ -1,6 +1,6 @@
 package by.it.kovalyova.jd01_07;
 
-abstract class Var {
+public abstract class Var {
 
     @Override
     public String toString() {
