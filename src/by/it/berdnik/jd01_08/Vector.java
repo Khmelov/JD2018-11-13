@@ -76,7 +76,6 @@ class Vector extends Var {
             }
             return new Vector(mul);
         } else if (other instanceof Vector) {
- //           double[] mul = Arrays.copyOf(value, value.length);
             double mul = 0;
             for (int i = 0; i < value.length; i++) {
                 mul += value[i] * ((Vector) other).value[i];

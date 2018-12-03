@@ -19,22 +19,6 @@ class Matrix extends Var {
         this.value = matrix.value;
     }
 
-//    @Override
-//    public String toString() {
-//        StringBuilder str = new StringBuilder("{");
-//        for (int i = 0; i < value.length; i++) {
-//            str.append("{");
-//            str.append(value[i][0]);
-//            for (int j = 1; j < value[0].length; j++) {
-//                str.append(", ");
-//                str.append(String.valueOf(value[i][j]));
-//            }
-//            if (i == value.length - 1) str.append("}");
-//            else str.append("}, ");
-//        }
-//        str.append("}");
-//        return str.toString();
-//    }
 
     @Override
     public String toString() {
