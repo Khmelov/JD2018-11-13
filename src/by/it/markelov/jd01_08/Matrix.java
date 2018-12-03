@@ -23,51 +23,40 @@ class Matrix extends Var {
 
     //конструктор 3
     public Matrix(String strMatrix) {
-        String[] strings = strMatrix.split("},");//сплитуем строку в массив
+        String[] strings = strMatrix.split("},\\{");//сплитуем строку в массив
+
         for (int i = 0; i < strings.length; i++) {
-            strings[i] = strings[i].replaceAll("[}{]", "");//убираем фиг. скобки в элементах массива
-        }
-        String splitstrings1[] = new String[2];//создаем допмассив 1
-        splitstrings1 = strings[0].split(",");//сплитуем туда строку 1 из массива выше
-
-        String splitstrings2[] = new String[2];//создаем допмассив 2
-        splitstrings2 = strings[1].split(",");//сплитуем туда строку 2 из массива выше
-
-        double masdouble1[] = new double[2];//создаем два дабловых массива
-        double masdouble2[] = new double[2];
-
-        for (int i = 0; i < 2; i++) {//переносим, с преобразованием, в дабловые массивы элементы доп. строковых массивов
-            masdouble1[i] = Double.parseDouble(splitstrings1[i]);
-            masdouble2[i] = Double.parseDouble(splitstrings2[i]);
+            strings[i] = strings[i].replaceAll("[}{]", "").trim();//убираем фиг. скобки и пробелы в элементах массива
         }
 
-        value = new double[2][2];//создаем матрицу
-        int i = 0;
-        for (int j = 0; j < value.length; j++) {//инициализируем первую строку матрицы
-            value[i][j] = masdouble1[j];
+        String splitstrings[][] = new String[strings.length][strings.length];//создаем двумерный массив и заполняем его
+
+        for (int i = 0; i < strings.length; i++) {
+            String[] split = strings[i].split(",");
+            System.arraycopy(split, 0, splitstrings[i], 0, split.length);
         }
 
-        i = 1;
-        for (int j = 0; j < value.length; j++) {//инициализируем вторую строку матрицы
-            value[i][j] = masdouble2[j];
+        value = new double[splitstrings.length][splitstrings[0].length];//преобразуем строки в double и заполняем массив
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[0].length; j++) {
+                value[i][j] = Double.parseDouble(splitstrings[i][j]);
+            }
         }
     }
 
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("{{");
-        int i = 0;
-        String delimetr = ",";
-        for (int j = 0; j < value.length; j++) {
-            sb.append(value[i][j]).append(delimetr);
-            delimetr = "},{";
+        for (int i = 0; i < value.length; i++) {
+            String delimeter = "";
+            for (int j = 0; j < value[0].length; j++) {
+                sb.append(delimeter).append(value[i][j]);
+                delimeter = ", ";
+            }
+            if(i==value.length-1) break;
+            sb.append("}, {");
         }
-        i = 1;
-        delimetr = ",";
-        for (int j = 0; j < value.length; j++) {
-            sb.append(value[i][j]).append(delimetr);
-            delimetr = "}}";
-        }
+        sb.append("}}");
         return sb.toString();
     }
 
