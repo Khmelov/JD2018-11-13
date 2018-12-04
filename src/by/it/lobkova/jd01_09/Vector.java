@@ -75,19 +75,31 @@ public class Vector extends Var {
         } else if (other instanceof Vector) {
             double[] res = Arrays.copyOf(value, value.length);
             if (res.length == value.length) {
+                double mul = 0;
                 for (int i = 0; i < res.length; i++) {
                     res[i] = res[i] * ((Vector) other).value[i];
+                    mul += res[i];
                 }
-                return new Vector(res);
+                return new Scalar(mul);
             }
         } else {
             return super.mul(other);
         }
-        return super.mul(other);
+        return other.mul(this);
     }
 
     @Override
     public Var div(Var other) {
+        if (other instanceof Scalar) {
+            double[] res = Arrays.copyOf(value, value.length);
+            for (int i = 0; i < res.length; i++) {
+                res[i] = res[i] / ((Scalar) other).getValue();
+            }
+            return new Vector(res);
+        } else if (other instanceof Vector) {
+            System.out.println("Деление вектора на вектор невозможно");
+            }
+
         return super.div(other);
     }
 

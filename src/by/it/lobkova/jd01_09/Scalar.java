@@ -32,7 +32,7 @@ public class Scalar extends Var {
             double result = this.value + sc.value;
             return new Scalar(result);
         }
-        return super.add(other);
+        else return other.add(this);
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Scalar extends Var {
             return new Scalar(result);
         }
 
-        return super.sub(other);
+        return other.sub(this);
     }
 
     @Override
@@ -53,7 +53,7 @@ public class Scalar extends Var {
             double result = this.value * sc.value;
             return new Scalar(result);
         }
-        return super.mul(other);
+        return other.mul(this);
     }
 
     @Override
@@ -63,6 +63,6 @@ public class Scalar extends Var {
             double result = this.value / sc.value;
             return new Scalar(result);
         }
-        return super.div(other);
+        return other.div(this);
     }
 }

@@ -6,6 +6,7 @@ public class Matrix extends Var {
 
     private double[][] value;
 
+
     public Matrix(double[][] value) {
         this.value = value;
     }
@@ -26,6 +27,45 @@ public class Matrix extends Var {
                 this.value[i] = resultArr;
             }
         }
+    }
+
+    @Override
+    public Var add(Var other) {
+        if (other instanceof Scalar) {
+            double[][] res = Arrays.copyOf(value, value.length);
+            for (int i = 0; i < res.length; i++) {
+                for (int j = 0; j < res.length; j++) {
+                    res[i][j] = res[i][j] + ((Scalar) other).getValue();
+                }
+            }
+            return new Matrix(res);
+        }
+        else if (other instanceof Matrix) {
+            double[][] mas1 = Arrays.copyOf(value, value.length);
+            double[][] mas2 = Arrays.copyOf(((Matrix) other).value, ((Matrix) other).value.length);
+            for (int i = 0; i < value.length; i++) {
+                for (int j = 0; j < value.length; j++) {
+                    mas1[i][j] += mas2[i][j];
+                }
+            }
+            return new Matrix(mas1);
+        }
+        return super.add(other);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        return super.sub(other);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+        return super.div(other);
     }
 
     @Override
