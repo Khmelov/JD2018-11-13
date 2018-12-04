@@ -14,14 +14,11 @@ class Vector extends Var {
 
 
     Vector(String strVector) {
-        String[] mas = strVector.split("[{},]");
-        double[] mas1 = new double[mas.length - 1];
-        int k = 0;
+        strVector=strVector.replaceAll("[{}]","");
+        String[] mas = strVector.split(",\\s*");
+        double[] mas1 = new double[mas.length];
         for (int i = 0; i < mas.length; i++) {
-            if (i!=0) {
-                mas1[k] = Double.parseDouble(mas[i]);
-                k++;
-            }
+            mas1[i] = Double.parseDouble(mas[i]);
         }
         value = mas1;
     }
