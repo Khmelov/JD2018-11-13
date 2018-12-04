@@ -10,5 +10,6 @@ public class ConsoleRunner {
             Var res = Parcer.calc(in);
             Printer.print(res);
         }
+
     }
 }
