@@ -5,7 +5,7 @@ package by.it.baidak.jd01_08;
  */
 class Scalar extends Var {
 
-    private double value;
+    double value;
 
     Scalar(double value) {
         this.value = value;
@@ -20,13 +20,43 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var v) {
-        if(v instanceof Scalar) {
-            Scalar operand2 = (Scalar) v;
+    public Var add(Var other) {
+        if (other instanceof Scalar) {
+            Scalar operand2 = (Scalar) other;
             double res = this.value + operand2.value;
             return new Scalar(res);
-        }
-        return v.add(this);
+        } else
+            return other.add(this);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        if (other instanceof Scalar) {
+            Scalar operand2 = (Scalar) other;
+            double res = this.value - operand2.value;
+            return new Scalar(res);
+        } else
+            return other.sub(this).mul(new Scalar(-1.0));
+    }
+
+    @Override
+    public Var mul(Var other) {
+        if (other instanceof Scalar) {
+            Scalar operand2 = (Scalar) other;
+            double res = this.value * operand2.value;
+            return new Scalar(res);
+        } else
+            return other.mul(this);
+    }
+
+    @Override
+    public Var div(Var other) {
+        if (other instanceof Scalar) {
+            Scalar operand2 = (Scalar) other;
+            double res = this.value / operand2.value;
+            return new Scalar(res);
+        } else
+            return super.div(other);
     }
 
     @Override
