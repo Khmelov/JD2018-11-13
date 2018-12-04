@@ -19,20 +19,23 @@ class Matrix extends Var {
         this.value = matrix.value;
     }
 
-    Matrix(String strMatrix) {
 
-        Matcher matcher = Pattern.compile("\\{(.*)\\}").matcher(strMatrix);
-        while (matcher.find()) {
-            String[] strMatrixArray = matcher.group().replace(" ", "").split(",");
-            value = new double[strMatrixArray.length][strMatrixArray.length];
-            for (int i = 0; i < strMatrixArray.length; i++) {
-                for (int j = 0; j <strMatrixArray.length; j++) {
-                    value[i][j] = Double.parseDouble(strMatrixArray[i]);
-                }
+    Matrix(String value){
+        value = value.replaceAll("[{|}]{2,}", "");
+        String[] stringValue = value.split("[}][\\s]?,[\\s]?[{]");
+
+        this.value = new double[stringValue.length][];
+        for (int i = 0; i < stringValue.length; i++) {
+
+            String[] valueStringNumber = stringValue[i].trim().split(",");
+            double[] tempArr = new double[valueStringNumber.length];
+
+            for (int j = 0; j < valueStringNumber.length; j++) {
+                tempArr[j] = Double.parseDouble(valueStringNumber[j]);
+                this.value[i] = tempArr;
             }
         }
     }
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("{");
