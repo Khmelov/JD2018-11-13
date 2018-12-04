@@ -4,12 +4,15 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parser {
-    public static Var calc(String expression) {
+    public Var calc(String expression) {
         String[] operands = expression.split(Patterns.OPERATIONS);
         Var one=Var.createVar(operands[0]);
         Var two=Var.createVar(operands[1]);
-        Pattern op=Pattern.compile(Patterns.OPERATIONS);
-        Matcher matcher = op.matcher(expression);
+        if (one == null || two == null){
+            return null; //TODO create error
+        }
+        Pattern p = Pattern.compile(Patterns.OPERATIONS);
+        Matcher matcher = p.matcher(expression);
         if (matcher.find()){
             String operation = matcher.group();
             switch (operation){
