@@ -63,6 +63,16 @@ public class Vector extends Var {
         return new Vector(nv);
     }
 
+    // Vector (* or /) Scalar = Vector (true - multiply; false - division)
+    private Var mulOrDiv(Scalar other, boolean operation) {
+        double sc = other.getValue();
+        double[] nv = new double[value.length];
+        for (int i = 0; i < nv.length; i++) {
+            nv[i] = operation ? value[i] * sc : value[i] / sc;
+        }
+        return new Vector(nv);
+    }
+
     // Vector + Scalar = Vector
     @Override
     public Var add(Scalar other) {
@@ -73,6 +83,18 @@ public class Vector extends Var {
     @Override
     public Var sub(Scalar other) {
         return addOrSub(other, false);
+    }
+
+    // Vector * Scalar = Vector
+    @Override
+    public Var mul(Scalar other) {
+        return mulOrDiv(other, true);
+    }
+
+    // Vector / Scalar = Vector
+    @Override
+    public Var div(Scalar other) {
+        return mulOrDiv(other, false);
     }
 
     // Vector (+-) Vector = Vector or null (true - add; false - subtract)
@@ -101,40 +123,6 @@ public class Vector extends Var {
         return addOrSub(other, false);
     }
 
-    // Vector + Matrix = null
-    @Override
-    public Var add(Matrix other) {
-        return super.add((Var)other);
-    }
-
-    // Vector - Matrix = null
-    @Override
-    public Var sub(Matrix other) {
-        return super.sub((Var)other);
-    }
-
-    // Vector (* or /) Scalar = Vector (true - multiply; false - division)
-    private Var mulOrDiv(Scalar other, boolean operation) {
-        double sc = other.getValue();
-        double[] nv = new double[value.length];
-        for (int i = 0; i < nv.length; i++) {
-            nv[i] = operation ? value[i] * sc : value[i] / sc;
-        }
-        return new Vector(nv);
-    }
-
-    // Vector * Scalar = Vector
-    @Override
-    public Var mul(Scalar other) {
-        return mulOrDiv(other, true);
-    }
-
-    // Vector / Scalar = Vector
-    @Override
-    public Var div(Scalar other) {
-        return mulOrDiv(other, false);
-    }
-
     // Vector * Vector = Scalar or null
     @Override
     public Var mul(Vector other) {
@@ -153,6 +141,18 @@ public class Vector extends Var {
         return super.div((Var)other);
     }
 
+    // Vector + Matrix = null
+    @Override
+    public Var add(Matrix other) {
+        return super.add((Var)other);
+    }
+
+    // Vector - Matrix = null
+    @Override
+    public Var sub(Matrix other) {
+        return super.sub((Var)other);
+    }
+
     // Vector * Matrix = null
     @Override
     public Var mul(Matrix other) {
@@ -167,36 +167,43 @@ public class Vector extends Var {
 
     @Override
     public Var add(Var other) {
-        if (other.getType() == "Scalar") return addScal(other);
-        else if (other.getType() == "Vector") return addVec(other);
-        else if (other.getType() == "Matrix") return addMatr(other);
-        else return other.add(this); // For the future possible extend
+        return other.addDispatch(this);
     }
 
     @Override
     public Var sub(Var other) {
-        if (other.getType() == "Scalar") return subScal(other);
-        else if (other.getType() == "Vector") return subVec(other);
-        else if (other.getType() == "Matrix") return subMatr(other);
-        else return other.sub(this).mul(new Scalar(-1)); // For the future possible extend
+        return other.subDispatch(this);
     }
 
     @Override
     public Var mul(Var other) {
-        if (other.getType() == "Scalar") return mulScal(other);
-        else if (other.getType() == "Vector") return mulVec(other);
-        else if (other.getType() == "Matrix") return mulMatr(other);
-        else return other.mul(this); // For the future possible extend
+        return other.mulDispatch(this);
     }
 
     @Override
     public Var div(Var other) {
-        if (other.getType() == "Scalar") return divScal(other);
-        else if (other.getType() == "Vector") return divVec(other);
-        else if (other.getType() == "Matrix") return divMatr(other);
-        else return super.div(other); // For the future possible extend
+        return other.divDispatch(this);
     }
 
+    @Override
+    public Var addDispatch(Var other) {
+        return other.add(this);
+    }
+
+    @Override
+    public Var subDispatch(Var other) {
+        return other.sub(this);
+    }
+
+    @Override
+    public Var mulDispatch(Var other) {
+        return other.mul(this);
+    }
+
+    @Override
+    public Var divDispatch(Var other) {
+        return other.div(this);
+    }
 }
 
 
