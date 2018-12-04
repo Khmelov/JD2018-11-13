@@ -13,6 +13,8 @@ abstract class Var implements Operation {
         if (operand.matches(Patterns.MATRIX)) {
             return new Scalar(operand);
         }
+        return null;
+    }
 
         @Override
         public Var add (Var other){
@@ -38,5 +40,5 @@ abstract class Var implements Operation {
             return null;
         }//Создание абстрактного класса. Нужен для предоставления базового функционала для наследников
         public abstract String toString ();
-    }
+
 }
