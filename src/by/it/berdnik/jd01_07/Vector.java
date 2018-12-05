@@ -1,5 +1,8 @@
 package by.it.berdnik.jd01_07;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 class Vector extends Var {
 
     private double[] value;
@@ -8,9 +11,20 @@ class Vector extends Var {
         this.value = value;
     }
 
-//    Vector(String strVector) {
-//
-//    }
+    Vector(String strVector) {
+        Matcher matcher = Pattern.compile("[\\w]").matcher(strVector);
+        int str = 0;
+        while (matcher.find()) {
+            str++;
+        }
+        value = new double[str];
+        str = 0;
+        matcher.reset();
+        while (matcher.find()) {
+            value[str++] = Double.parseDouble(matcher.group());
+        }
+    }
+
 
     Vector(Vector vector) {
         this.value = vector.value;

@@ -2,7 +2,7 @@ package by.it.akhmelev.jd01_09;
 
 import java.util.Scanner;
 
-public class Runner {
+public class ConsoleRunner {
     public static void main(String[] args) {
         Parcer parcer=new Parcer();
         Printer printer=new Printer();
