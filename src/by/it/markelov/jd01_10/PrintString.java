@@ -13,7 +13,5 @@ public class PrintString {
                 System.out.println(declaredMethod.getName());
             }
         }
-
-
     }
 }
