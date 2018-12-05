@@ -11,9 +11,6 @@ public class Matrix extends Var {
         return "Matrix";
     }
 
-    private static String ErrMessPatternNotFound = "Exception: Ошибка ввода матрицы. Не найден шаблон: {{1,2,...},{3,4,...},...}";
-    private static String ErrMessDifferentColsCount = "Exception: Количество столбцов в каждой строке матрицы должно быть задано одинаковым.";
-
     Matrix(double[][] value) {
         if (value.length == 0) {
             this.value = new double[0][];
@@ -46,7 +43,7 @@ public class Matrix extends Var {
 
         String strWithoutWhiteSpaces = str.replaceAll("\\s", "");
         if (!strWithoutWhiteSpaces.matches("[{]([{][^{}]+[}],)*[{][^{}]+[}][}]")) { // Pattern to string like {{2.0,3,9},{4.75,6,0},{1e2,0xA,010}}
-            System.out.println(ErrMessPatternNotFound);
+            System.out.println("Матрица не по шаблону");
             //TODO Raise exception instead of println
         }
         Pattern extCurlyBrackets = Pattern.compile("[{](.*)[}]"); // Find all inside external curly brackets
@@ -57,7 +54,7 @@ public class Matrix extends Var {
             int counter = 0;
             while (m2.find()) counter++; // First step - simple counting internal {}
             if (counter == 0) {
-                System.out.println(ErrMessPatternNotFound);
+                System.out.println("Пустая матрица");
                 //TODO Raise exception instead of println
             }
             value = new double[counter][];
@@ -76,13 +73,13 @@ public class Matrix extends Var {
             int len = value[0].length; // At this point value has at least one element
             for (double[] v : value) {
                 if (v.length != len) {
-                    System.out.println(ErrMessDifferentColsCount);
+                    System.out.println("Матрица не прямоугольная");
                     //TODO Raise exception instead of println
                     break;
                 }
             }
         } else {
-            System.out.println(ErrMessPatternNotFound);
+            System.out.println("Матрица не по шаблону");
             //TODO Raise exception instead of println
         }
     }
@@ -105,9 +102,9 @@ public class Matrix extends Var {
     }
 
     // Matrix +- Scalar = Matrix (true - add; false - subtract)
-    private Var addOrSubScal(Var other, boolean operation) {
+    private Var addOrSub(Scalar other, boolean operation) {
         int op = operation ? 1 : -1;
-        double s = ((Scalar) other).getValue();
+        double s = other.getValue();
         double[][] nm = new double[value.length][];
         for (int i = 0; i < nm.length; i++) {
             nm[i] = new double[value[i].length];
@@ -119,58 +116,63 @@ public class Matrix extends Var {
     }
 
     // Matrix + Scalar = Matrix
-    private Var addScal(Var other) {
-        return addOrSubScal(other, true);
+    @Override
+    public Var add(Scalar other) {
+        return addOrSub(other, true);
     }
 
     // Matrix - Scalar = Matrix
-    private Var subScal(Var other) {
-        return addOrSubScal(other, false);
+    @Override
+    public Var sub(Scalar other) {
+        return addOrSub(other, false);
     }
 
     // Matrix + Vector = null
-    private Var addVec(Var other) {
-        return super.add(other);
+    @Override
+    public Var add(Vector other) {
+        return super.add((Var)other);
     }
 
     // Matrix - Vector = null
-    private Var subVec(Var other) {
-        return super.sub(other);
+    @Override
+    public Var sub(Vector other) {
+        return super.sub((Var)other);
     }
 
     // Matrix +- Matrix = Matrix or null (true - add; false - subtract)
-    private Var addOrSubMatr(Var other, boolean operation) {
+    private Var addOrSub(Matrix other, boolean operation) {
         int op = operation ? 1 : -1;
-        Matrix m = (Matrix) other;
         double[][] nm = new double[value.length][];
-        if (m.value.length != value.length) {
-            return operation ? super.add(other) : super.sub(other);
+        if (other.value.length != value.length) {
+            return operation ? super.add((Var)other) : super.sub((Var)other);
         }
         for (int i = 0; i < value.length; i++) {
-            if (m.value[i].length != value[i].length) {
-                return operation ? super.add(other) : super.sub(other);
+            if (other.value[i].length != value[i].length) {
+                return operation ? super.add((Var)other) : super.sub((Var)other);
             }
             nm[i] = new double[value[i].length];
             for (int j = 0; j < value[i].length; j++) {
-                nm[i][j] = value[i][j] + op * m.value[i][j];
+                nm[i][j] = value[i][j] + op * other.value[i][j];
             }
         }
         return new Matrix(nm);
     }
 
     // Matrix + Matrix = Matrix or null
-    private Var addMatr(Var other) {
-        return addOrSubMatr(other, true);
+    @Override
+    public Var add(Matrix other) {
+        return addOrSub(other, true);
     }
 
     // Matrix - Matrix = Matrix or null
-    private Var subMatr(Var other) {
-        return addOrSubMatr(other, false);
+    @Override
+    public Var sub(Matrix other) {
+        return addOrSub(other, false);
     }
 
     // Matrix (*/) Scalar = Matrix (true - multiply; false - division)
-    private Var mulOrDivScal(Var other, boolean operation) {
-        double s = ((Scalar) other).getValue();
+    private Var mulOrDiv(Scalar other, boolean operation) {
+        double s = other.getValue();
         double[][] a = new double[value.length][];
         for (int i = 0; i < a.length; i++) {
             a[i] = new double[value[i].length];
@@ -182,24 +184,26 @@ public class Matrix extends Var {
     }
 
     // Matrix * Scalar = Matrix
-    private Var mulScal(Var other) {
-        return mulOrDivScal(other, true);
+    @Override
+    public Var mul(Scalar other) {
+        return mulOrDiv(other, true);
     }
 
     // Matrix / Scalar = Matrix
-    private Var divScal(Var other) {
-        return mulOrDivScal(other, false);
+    @Override
+    public Var div(Scalar other) {
+        return mulOrDiv(other, false);
     }
 
     // Matrix * Vector = Vector or null
-    private Var mulVec(Var other) {
-        Vector v = (Vector) other;
-        int vLen = v.getValue().length; // "other" length
+    @Override
+    public Var mul(Vector other) {
+        int vLen = other.getValue().length; // "other" length
         int nvLen = value.length; // new vector length
-        double[] otherVec = v.getValue();
+        double[] otherVec = other.getValue();
         double[] nv = new double[nvLen];
         for (int i = 0; i < nvLen; i++) {
-            if (value[i].length != vLen) return super.mul(other);
+            if (value[i].length != vLen) return super.mul((Var)other);
             nv[i] = 0; // Not necessary, but just in case
             for (int j = 0; j < vLen; j++) {
                 nv[i] += value[i][j] * otherVec[j];
@@ -209,25 +213,26 @@ public class Matrix extends Var {
     }
 
     // Matrix / Vector = null
-    private Var divVec(Var other) {
-        return super.div(other);
+    @Override
+    public Var div(Vector other) {
+        return super.div((Var)other);
     }
 
     // Matrix * Matrix = Matrix or null
-    private Var mulMatr(Var other) {
-        Matrix m = (Matrix) other;
+    @Override
+    public Var mul(Matrix other) {
         int rows1 = value.length;
-        if (rows1 == 0) return super.mul(other);
+        if (rows1 == 0) return super.mul((Var)other);
         int cols1 = value[0].length;
-        int rows2 = m.value.length;
-        if (rows2 == 0) return super.mul(other);
-        int cols2 = m.value[0].length;
-        if (cols1 != rows2) return super.mul(other);
+        int rows2 = other.value.length;
+        if (rows2 == 0) return super.mul((Var)other);
+        int cols2 = other.value[0].length;
+        if (cols1 != rows2) return super.mul((Var)other);
         double[][] nm = new double[rows1][cols2];
         for (int i = 0; i < rows1; i++) {
             for (int j = 0; j < cols2; j++) {
                 for (int k = 0; k < cols1; k++) {
-                    nm[i][j] += value[i][k] * m.value[k][j];
+                    nm[i][j] += value[i][k] * other.value[k][j];
                 }
             }
         }
@@ -235,73 +240,50 @@ public class Matrix extends Var {
     }
 
     // Matrix / Matrix = null
-    private Var divMatr(Var other) {
-        return super.div(other);
+    @Override
+    public Var div(Matrix other) {
+        return super.div((Var)other);
     }
 
     @Override
     public Var add(Var other) {
-        if (other.getType() == "Scalar") return addScal(other);
-        else if (other.getType() == "Vector") return addVec(other);
-        else if (other.getType() == "Matrix") return addMatr(other);
-        else return other.add(this); // For the future possible extend
+        return other.addDispatch(this);
     }
 
     @Override
     public Var sub(Var other) {
-        if (other.getType() == "Scalar") return subScal(other);
-        else if (other.getType() == "Vector") return subVec(other);
-        else if (other.getType() == "Matrix") return subMatr(other);
-        else return other.sub(this).mul(new Scalar(-1)); // For the future possible extend
+        return other.subDispatch(this);
     }
 
     @Override
     public Var mul(Var other) {
-        if (other.getType() == "Scalar") return mulScal(other);
-        else if (other.getType() == "Vector") return mulVec(other);
-        else if (other.getType() == "Matrix") return mulMatr(other);
-        else return other.mul(this); // For the future possible extend
+        return other.mulDispatch(this);
     }
 
     @Override
     public Var div(Var other) {
-        if (other.getType() == "Scalar") return divScal(other);
-        else if (other.getType() == "Vector") return divVec(other);
-        else if (other.getType() == "Matrix") return divMatr(other);
-        else return super.div(other); // For the future possible extend
-    }
-
-    /*@Override
-    public Var add(Var other) {
-        if (other instanceof Scalar) return addScal(other);
-        else if (other instanceof Vector) return addVec(other);
-        else if (other instanceof Matrix) return addMatr(other);
-        else return other.add(this); // For the future possible extend
+        return other.divDispatch(this);
     }
 
     @Override
-    public Var sub(Var other) {
-        if (other instanceof Scalar) return subScal(other);
-        else if (other instanceof Vector) return subVec(other);
-        else if (other instanceof Matrix) return subMatr(other);
-        else return other.sub(this).mul(new Scalar(-1)); // For the future possible extend
+    public Var addDispatch(Var other) {
+        return other.add(this);
     }
 
     @Override
-    public Var mul(Var other) {
-        if (other instanceof Scalar) return mulScal(other);
-        else if (other instanceof Vector) return mulVec(other);
-        else if (other instanceof Matrix) return mulMatr(other);
-        else return other.mul(this); // For the future possible extend
+    public Var subDispatch(Var other) {
+        return other.sub(this);
     }
 
     @Override
-    public Var div(Var other) {
-        if (other instanceof Scalar) return divScal(other);
-        else if (other instanceof Vector) return divVec(other);
-        else if (other instanceof Matrix) return divMatr(other);
-        else return super.div(other); // For the future possible extend
-    }*/
+    public Var mulDispatch(Var other) {
+        return other.mul(this);
+    }
+
+    @Override
+    public Var divDispatch(Var other) {
+        return other.div(this);
+    }
 }
 
 
