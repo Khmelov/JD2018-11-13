@@ -1,6 +1,6 @@
-package by.it.seroglazov.jd01_09;
+package by.it.seroglazov.jd01_10;
 
-public abstract class Var implements Operations {
+public abstract class Var implements Operations, ScalarOperations, VectorOperations, MatrixOperations, OperationsDispatch {
 
     abstract String getType();
 
@@ -42,4 +42,5 @@ public abstract class Var implements Operations {
             return new Matrix(operand);
         return null;
     }
+
 }
