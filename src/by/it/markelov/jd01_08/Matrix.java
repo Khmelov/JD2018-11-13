@@ -23,7 +23,10 @@ class Matrix extends Var {
 
     //конструктор 3
     public Matrix(String strMatrix) {
-        String[] strings = strMatrix.split("},\\{");//сплитуем строку в массив
+        String s = strMatrix.replaceAll(" ", "");
+        String[] strings = s.split("},");
+
+       // String[] strings = strMatrix.split("},\\{");//сплитуем строку в массив
 
         for (int i = 0; i < strings.length; i++) {
             strings[i] = strings[i].replaceAll("[}{]", "").trim();//убираем фиг. скобки и пробелы в элементах массива
