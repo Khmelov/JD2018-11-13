@@ -1,6 +1,5 @@
 package by.it.denisova.jd01_06;
 
-import javafx.beans.binding.StringBinding;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
