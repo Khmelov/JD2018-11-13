@@ -6,6 +6,10 @@ import java.util.Arrays;
 
 public class Vector extends Var {
 
+    public double[] getValue() {
+        return value;
+    }
+
     private double[] value;
 
     public Vector(double[] value) {

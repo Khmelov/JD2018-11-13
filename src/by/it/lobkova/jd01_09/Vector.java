@@ -14,6 +14,10 @@ public class Vector extends Var {
         this.value = vector.value;
     }
 
+    public double[] getValue() {
+        return value;
+    }
+
     Vector(String str) {
         String[] string = str.replaceAll("[{}]", "").split("[,]");
         double[] vector = new double[string.length];
@@ -115,5 +119,7 @@ public class Vector extends Var {
 
         return sb.toString();
     }
+
+
 }
 

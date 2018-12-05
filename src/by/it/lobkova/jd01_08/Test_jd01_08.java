@@ -286,11 +286,14 @@ public class Test_jd01_08 {
         Object v2 = c.newInstance("{{4, 5}, {7, 8}}");
         Class<?> var = v2.getClass().getSuperclass();
         String op = "add";
+        System.out.println("======"+v1);
         Method m = findMethod(ok.aClass, op, var);
+        System.out.println("======"+v1);
         Object v3 = invoke(m, v1, v2);
+        System.out.println("======"+v1);
         if (v3 == null) fail(op + " вернул null");
         assertEquals("Операция {{1, 2}, {3, 4}} + {{4, 5}, {7, 8}} работает некорректно", "{{5.0, 7.0}, {10.0, 12.0}}", v3.toString());
-
+        System.out.println("======"+v1);
         ///проверка операции со скаляром
         c = findClass("Scalar").getDeclaredConstructor(double.class);
         v2 = c.newInstance(1.0);
