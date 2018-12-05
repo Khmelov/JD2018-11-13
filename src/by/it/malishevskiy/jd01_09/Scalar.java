@@ -1,4 +1,4 @@
-package by.it.malishevskiy.jd01_08;
+package by.it.malishevskiy.jd01_09;
 
 class Scalar extends Var {//Создание класса, наследуемого от абстрактного Var
 
