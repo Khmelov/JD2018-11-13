@@ -6,8 +6,6 @@ public class Matrix extends Var {
     @Override
     public String toString() {
         StringBuilder stringBuilder = new StringBuilder("{{");
-        //String scobkaBegin="{";
-
         for (int i = 0; i < value.length; i++) {
             String del = "";
             for (int j = 0; j < value[i].length; j++) {
@@ -32,8 +30,21 @@ public class Matrix extends Var {
         value=matrix.value;
     }
 
-    Matrix(String stMatrix){
+    Matrix(String strMatrix){
+        strMatrix=strMatrix.replaceAll("[},{]"," ");
+        strMatrix=strMatrix.trim();
+        String[] mas = strMatrix.split("\\s{2,}");
+        String [] masCol=mas[0].split("\\s");//узнать количество столбцов
+        int rowCount = mas.length;//количество строк
+        int colCount = masCol.length;//количество столбцов
 
-
+        double massiv[][]=new double[rowCount][colCount];
+        for (int i = 0; i < mas.length; i++) {
+            String massivel[]=mas[i].split("\\s+");
+            for (int j = 0; j <massivel.length ; j++) {
+                massiv[i][j]=Double.parseDouble(massivel[j]);
+            }
+        }
+        this.value=massiv;
     }
 }
