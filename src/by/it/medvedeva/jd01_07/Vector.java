@@ -28,12 +28,12 @@ class Vector extends Var {
     }
     @Override
     public String toString() {
-        String res = "{";
+        StringBuilder res = new StringBuilder("{");
         for (int i=0; i<this.value.length-1;i++){
-            res = res + Double.toString(value[i]) + ", ";
+            res.append(Double.toString(value[i])).append(", ");
         }
-        res = res + Double.toString(this.value[this.value.length-1])+"}";
-        return res;
+        res.append(Double.toString(this.value[this.value.length - 1])).append("}");
+        return res.toString();
     }
 
 
