@@ -1,6 +1,6 @@
 package by.it.seroglazov.jd01_09;
 
-public abstract class Var implements Operation {
+public abstract class Var implements Operations {
 
     abstract String getType();
 
