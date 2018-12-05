@@ -15,7 +15,6 @@ public class PrintMath {
                 s=s.replaceAll("java.lang.Math.", "");
                 System.out.println(s);
             }
-
         }
         Field[] declaredFields = mathClass.getDeclaredFields();
         for (Field field : declaredFields) {
@@ -26,8 +25,6 @@ public class PrintMath {
                 s=s.replaceAll("java.lang.Math.", "");
                 System.out.println(s);
             }
-
-
         }
     }
 }
