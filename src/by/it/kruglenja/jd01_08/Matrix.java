@@ -7,6 +7,50 @@ public class Matrix extends Var{
 
     private double value[][];
 
+    @Override
+    public Var add(Var other) {
+        if (other instanceof Matrix){
+            double[][] sum = new double[this.value.length][this.value[0].length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    sum[i][j] = this.value[i][j] + ((Matrix) other).value[i][j];
+                }
+            }
+            return new Matrix(sum);
+        }
+        return other.add(this);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        if (other instanceof Matrix){
+            double[][] sub = new double[this.value.length][this.value[0].length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    sub[i][j] = this.value[i][j] - ((Matrix) other).value[i][j];
+                }
+            }
+            return new Matrix(sub);
+        }
+        return other.sub(this);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        if (other instanceof Matrix){
+            double[][] mul = new double[this.value.length][this.value[0].length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    for (int k = 0; k < this.value.length; k++) {
+                        mul[i][j] += this.value[i][k] * ((Matrix) other).value[k][j];
+                    }
+                }
+            }
+            return new Matrix(mul);
+        }
+        return other.mul(this);
+    }
+
     Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {

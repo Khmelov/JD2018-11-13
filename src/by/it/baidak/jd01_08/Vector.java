@@ -27,6 +27,75 @@ public class Vector extends Var {
     }
 
     @Override
+    public Var add(Var other) {
+        if (other instanceof Vector) {
+            double[] res = new double[this.value.length];
+            for (int i = 0; i < res.length; i++) {
+                res[i] = this.value[i] + ((Vector) other).value[i];
+            }
+            return new Vector(res);
+        } else if(other instanceof Scalar){
+            double[] res = new double[this.value.length];
+            for (int i = 0; i < res.length; i++) {
+                res[i] += this.value[i] + ((Scalar) other).value;
+            }
+            return new Vector(res);
+        } else
+            return other.add(this);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        if (other instanceof Vector) {
+            double[] res = new double[this.value.length];
+            for (int i = 0; i < res.length; i++) {
+                res[i] = this.value[i] - ((Vector) other).value[i];
+            }
+            return new Vector(res);
+        } else if(other instanceof Scalar){
+            double[] res = new double[this.value.length];
+            for (int i = 0; i < res.length; i++) {
+                res[i] += this.value[i] - ((Scalar) other).value;
+            }
+            return new Vector(res);
+        } else
+            return other.sub(this);
+    }
+
+    @Override
+    public Var mul(Var other) {
+        if (other instanceof Vector) {
+            double res = 0;
+            for (int i = 0; i < this.value.length; i++) {
+                res += this.value[i] * ((Vector) other).value[i];
+            }
+            return new Scalar(res);
+        } else if(other instanceof Scalar){
+            double[] res = new double[this.value.length];
+            for (int i = 0; i < res.length; i++) {
+                res[i] = this.value[i] * ((Scalar) other).value;
+            }
+            return new Vector(res);
+        } else
+            return other.mul(this);
+    }
+
+    @Override
+    public Var div(Var other) {
+        if (other instanceof Vector) {
+            System.out.println("Деление "+this+"/"+other+" невозможно!");
+            return null;
+        } else if(other instanceof Scalar){
+            double[] res = new double[this.value.length];
+            for (int i = 0; i < res.length; i++) {
+                res[i] += this.value[i] / ((Scalar) other).value;
+            }
+            return new Vector(res);
+        } else
+            return other.div(this);
+    }
+
+    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");

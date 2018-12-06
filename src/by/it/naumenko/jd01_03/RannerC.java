@@ -26,7 +26,7 @@ public class RannerC {
             System.out.println();
         }
 
-        System.out.println("Исходная вектор:");
+        System.out.println("Исходный вектор:");
         for (double element:vector) {
             System.out.printf("%-5.1f",element);
         }
