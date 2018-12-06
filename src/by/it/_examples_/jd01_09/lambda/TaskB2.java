@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Comparator;
 
 class TaskB2 {
-
+/*
     public static void main(String[] args) {
         String[] sentences = Poem.text.split("[.!?]\n");
         for (int i = 0; i < sentences.length; i++)
@@ -28,5 +28,5 @@ class TaskB2 {
         for (String sentence : sentences) {
             System.out.println(sentence);
         }
-    }
+    } */
 }

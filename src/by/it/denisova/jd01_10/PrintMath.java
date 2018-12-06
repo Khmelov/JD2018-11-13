@@ -24,10 +24,8 @@ public class PrintMath {
                 if(Modifier.isStatic(modifiers)){
                     methName.append(field.getType()+" ");
                    methName.append(field.getName()+"}") ;
-
                 }
             }
-
         }
 
 
