@@ -1,6 +1,6 @@
 package by.it.vchernetski.jd01_09;
 
-abstract  class Var implements Operation{
+abstract  class Var implements Operation, OpDispatch, OpObjects {
     public  String toString(){
         return "this Var";
     }
