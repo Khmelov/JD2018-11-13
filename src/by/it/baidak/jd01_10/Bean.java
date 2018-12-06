@@ -11,7 +11,7 @@ public class Bean {
     }
 
     @Param(a = 2, b = 10)
-    double max(int a, int b){
+    static double max(int a, int b){
         return  a>b ? a : b;
     }
 
@@ -20,7 +20,7 @@ public class Bean {
     }
 
     @Param(a = 2, b = 10)
-    static double avg(int a, int b){
+    double avg(int a, int b){
         return (a + b)/2.0;
     }
 }
