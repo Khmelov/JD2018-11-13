@@ -28,4 +28,7 @@ abstract class Var implements Operation {
     public String toString() {
         return "Это класс Var";
     }
+
+
+
 }

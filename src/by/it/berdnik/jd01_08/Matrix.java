@@ -6,10 +6,6 @@ class Matrix extends Var {
 
     private double[][] value;
 
-    public Matrix(String strMatrix) {
-        super();
-    }
-
     Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
@@ -17,40 +13,85 @@ class Matrix extends Var {
         }
     }
 
-    public Var add(Var other) {
-        if (other instanceof Scalar) {
-            double[][] add = new double[this.value[0].length][this.value.length];
-            double[][] add1 = this.value;
-            for (int i = 0; i < add1.length; i++) {
-                for (int j = 0; j < value[0].length; j++) {
-                    add[i][j] = add1[i][j] + ((Scalar) other).getValue();
-                }
-            }
-            return new Matrix(add);
-        }
-        if (other instanceof Matrix) {
-            double[][] add = new double[this.value[0].length][this.value.length];
-            double[][] add2 = this.value;
-            double[][] mat = ((Matrix) other).value;
-            if (add2.length == mat.length && add2[0].length == mat[0].length) {
-                for (int i = 0; i < add2[0].length; i++) {
-                    for (int j = 0; j < add2.length; j++) {
-                        add[i][j] = add2[i][j] + mat[i][j];
-                    }
-                }
-                return new Matrix(add);
-            }
-        }
-        return super.add(other);
-    }
 
     Matrix(Matrix matrix) {
-        this.value = matrix.value;
+        this.value = new double[matrix.value.length][matrix.value[0].length];
+        for (int i = 0; i < value.length; i++) {
+            System.arraycopy(matrix.value[i], 0, this.value[i], 0, value.length);
+        }
+    }
+
+    @Override
+    public Var add(Var other) {
+        if (other instanceof Scalar) {
+            double[][] addSc = Arrays.copyOf(value, value.length);
+            for (int i = 0; i < addSc.length; i++) {
+                for (int j = 0; j < value[i].length; j++) {
+                    addSc[i][j] = value[i][j] + ((Scalar) other).getValue();
+                }
+            }
+            return new Matrix(addSc);
+        } else if (other instanceof Matrix) {
+            double[][] addMat = new double[value.length][value.length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < value[i].length; j++) {
+                    addMat[i][j] = value[i][j] + ((Matrix) other).value[i][j];
+                }
+            }
+            return new Matrix(addMat);
+        } else
+            return other.add(this);
+    }
+
+    @Override
+    public Var sub(Var other) {
+        if (other instanceof Scalar) {
+            double[][] subSc = new double[value.length][value.length];
+            for (int i = 0; i < subSc.length; i++) {
+                for (int j = 0; j < value[i].length; j++) {
+                    subSc[i][j] = value[i][j] - ((Scalar) other).getValue();
+                }
+            }
+            return new Matrix(subSc);
+        } else if (other instanceof Matrix) {
+            double[][] subMat = new double[value.length][value.length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < value[i].length; j++) {
+                    subMat[i][j] = value[i][j] - ((Matrix) other).value[i][j];
+                }
+            }
+            return new Matrix(subMat);
+        } else
+            return other.add(this);
+    }
+
+
+    Matrix(String value) {
+        value = value.replaceAll("[{|}]{2,}", "");
+        String[] stringValue = value.split("[}][\\s]?,[\\s]?[{]");
+        this.value = new double[stringValue.length][];
+        for (int i = 0; i < stringValue.length; i++) {
+            String[] valueStringNumber = stringValue[i].trim().split(",");
+            double[] tempArr = new double[valueStringNumber.length];
+            for (int j = 0; j < valueStringNumber.length; j++) {
+                tempArr[j] = Double.parseDouble(valueStringNumber[j]);
+                this.value[i] = tempArr;
+            }
+        }
     }
 
     public String toString() {
-        String s = Arrays.deepToString(value).replace("[", "{").replace("]", "}");
-        return s.toString();
+        StringBuilder sb = new StringBuilder("{");
+        for (int i = 0; i < value.length; i++) {
+            sb.append("{");
+            for (int j = 0; j < value[i].length; j++) {
+                sb.append(value[i][j]);
+                if (j != value[i].length - 1) sb.append(", ");
+            }
+            if (i < value.length - 1) sb.append("}, ");
+            if (i == value.length - 1) sb.append("}");
+        }
+        sb.append("}");
+        return sb.toString();
     }
-
 }
