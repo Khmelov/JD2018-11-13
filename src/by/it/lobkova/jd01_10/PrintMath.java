@@ -7,15 +7,22 @@ public class PrintMath {
 
     public static void main(String[] args) {
         Class<Math> mathClass = Math.class;
-
         Method[] methods = mathClass.getDeclaredMethods();
         for (Method method : methods) {
-            StringBuilder methName = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             int modifiers = method.getModifiers();
-            if ((Modifier.PUBLIC & modifiers) == Modifier.PUBLIC) methName.append("public ");
-            methName.append(method.getName());
+            if (Modifier.isPublic(modifiers)) {
+                sb.append("public ");
+                if (Modifier.isStatic(modifiers)) {
+                    sb.append("static ");
+                }
+            }
+
+            sb.append(method.getName());
+            System.out.println(sb.toString());
 
         }
+
 
     }
 }
