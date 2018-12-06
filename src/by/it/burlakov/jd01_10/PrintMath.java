@@ -11,8 +11,8 @@ public class PrintMath {
     public static void main(String[] args) {
         Class<Math> math = Math.class;
         Method[] methArr = math.getDeclaredMethods();
-        Field[] fieldArr = math.getFields();
-        StringBuilder sb = new StringBuilder(0);
+        Field[] fieldArr = math.getDeclaredFields();
+        StringBuilder sb = new StringBuilder();
 
         for (Method m : methArr) {
             if (Modifier.isPublic(m.getModifiers())) {
