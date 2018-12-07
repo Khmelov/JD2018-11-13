@@ -89,17 +89,36 @@ public class Vector extends Var {
             return new Vector(res);
         } else if (other instanceof Vector) {
             double[] res = Arrays.copyOf(value, value.length);
+            double res1 = 0;
             if (res.length == value.length) {
                 for (int i = 0; i < res.length; i++) {
                     res[i] = res[i] * ((Vector) other).value[i];
+                    res1+= res[i];
                 }
-                return new Vector(res);
+                return new Scalar(res1);
             }
 
         } else {
             return super.mul(other);
         }
         return super.mul(other);
+    }
+
+    @Override
+    public Var div(Var other) {
+
+        if (other instanceof Scalar) {
+            double[] res = Arrays.copyOf(value, value.length);
+            for (int i = 0; i < res.length; i++) {
+                res[i] = res[i] / ((Scalar) other).getValue();
+            }
+            return new Vector(res);
+        } else if (other instanceof Vector) {
+
+            return super.div(other);
+        } else {
+            return super.div(other);
+        }
     }
 
     @Override
