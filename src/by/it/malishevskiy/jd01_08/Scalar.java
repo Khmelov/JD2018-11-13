@@ -48,8 +48,7 @@ class Scalar extends Var {//Создание класса, наследуемо�
         else
             return super.div(other);
     }
-
-    Scalar(String strvalue){
+     Scalar(String strvalue){
         this.value = Double.parseDouble(strvalue);//Говорим, что эта переменная равна стринговой strvalue
     }
 
