@@ -1,8 +1,6 @@
 package by.it.mnovikov.jd01_10;
 
-/**
- * Created by user on 06.12.2018.
- */
+
 public class Bean {
 
     @Param(a = 3, b = 5)
