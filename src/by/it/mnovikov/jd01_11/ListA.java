@@ -70,10 +70,10 @@ class ListA<T> implements List<T> {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        String delimitier = "";
+        String delim = "";
         for (int i = 0; i < size; i++) {
-            sb.append(delimitier).append(elements[i]);
-            delimitier = ", ";
+            sb.append(delim).append(elements[i]);
+            delim = ", ";
         }
         sb.append("]");
         return sb.toString();
