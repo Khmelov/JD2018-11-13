@@ -10,7 +10,7 @@ public class ConsoleRunner {
         Printer printer=new Printer();
         Scanner scanner=new Scanner(System.in);
         String input;
-        while (!(input=scanner.next()).equals("END")){
+        while (!(input=scanner.next()).equals("end")){
             by.it.berdnik.jd01_09.Var res = parcer.calc(input);
             printer.print(res);
         }
