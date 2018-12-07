@@ -3,24 +3,31 @@ package by.it.mnovikov.jd01_11;
 import java.util.*;
 import java.util.function.UnaryOperator;
 
-/**
- * Created by user on 06.12.2018.
- */
 class ListA<T> implements List<T> {
 
 
     private T[] elements = (T[]) new Object[]{};
-
+    private int size = 0;
 
 
     @Override
     public boolean add(T t) {
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
+        }
+        elements[size] = t;
+        size++;
         return false;
     }
 
     @Override
-    public String toString() {
-        return super.toString();
+    public void add(int index, T element) {
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
+        }
+        System.arraycopy(elements, index, elements, index + 1, size - index);
+        elements[index] = element;
+        size++;
     }
 
     @Override
@@ -30,15 +37,46 @@ class ListA<T> implements List<T> {
 
     @Override
     public int indexOf(Object o) {
-        for (int i = 0; i < elements.length; i++) {
-
+        if (o == null) {
+            for (int i = 0; i < size; i++) {
+                if (elements[i] == null)
+                    return i;
+            }
+        } else {
+            for (int i = 0; i < size; i++) {
+                if (o.equals(elements[i]))
+                    return i;
+            }
         }
-        return 0;
+        return -1;
     }
 
     @Override
     public T remove(int index) {
-        return null;
+        T del = elements[index];
+        System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
+        size--;
+        return del;
+    }
+
+    @Override
+    public boolean remove(Object o) {
+        int index = indexOf(o);
+        if (index>-1) remove(index);
+        return (index>-1);
+    }
+
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder("[");
+        String delimitier = "";
+        for (int i = 0; i < size; i++) {
+            sb.append(delimitier).append(elements[i]);
+            delimitier = ", ";
+        }
+        sb.append("]");
+        return sb.toString();
     }
 
 
@@ -74,11 +112,6 @@ class ListA<T> implements List<T> {
         return null;
     }
 
-
-    @Override
-    public boolean remove(Object o) {
-        return false;
-    }
 
     @Override
     public boolean containsAll(Collection<?> c) {
@@ -124,11 +157,6 @@ class ListA<T> implements List<T> {
     @Override
     public T set(int index, T element) {
         return null;
-    }
-
-    @Override
-    public void add(int index, T element) {
-
     }
 
 
