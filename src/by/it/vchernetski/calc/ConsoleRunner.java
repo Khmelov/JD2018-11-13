@@ -8,6 +8,7 @@ public class ConsoleRunner {
         String in;
         while (!(in = sc.next()).equals("end")){
             Var res = Parcer.calc(in);
+            if(res == null) continue;
             Printer.print(res);
         }
 

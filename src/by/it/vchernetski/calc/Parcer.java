@@ -5,6 +5,14 @@ import java.util.regex.Pattern;
 
 public class Parcer {
     public static Var calc(String expression){
+        if(expression.contains("sortvar")){
+            Var.sortvar();
+            return null;
+        }
+        if(expression.contains("printvar")){
+            Var.printvar();
+            return null;
+        }
         String[] operands = expression.split(Patterns.OPERATION);
         Var op2 = Var.createVar(operands[1]);
         if(expression.contains("=")){

@@ -2,6 +2,7 @@ package by.it.vchernetski.calc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 abstract  class Var implements Operation, OpDispatch, OpObjects {
     private static Map<String, Var> vars = new HashMap<>();
@@ -9,6 +10,20 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
         vars.put(name, var);
         return var;
     }
+
+    public static void printvar() {
+        for(Map.Entry<String, Var> var: vars.entrySet()){
+            System.out.println(var.getKey()+"="+var.getValue());
+        }
+    }
+
+    public static void sortvar() {
+        Map<String, Var> tvar = new TreeMap<>(vars);
+        for(Map.Entry<String, Var> var: vars.entrySet()){
+            System.out.println(var.getKey()+"="+var.getValue());
+        }
+    }
+
     public  String toString(){
         return "this Var";
     }
