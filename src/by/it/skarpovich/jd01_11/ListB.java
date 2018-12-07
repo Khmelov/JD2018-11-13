@@ -25,32 +25,24 @@ public class ListB<T> implements List<T> {
         size++;
     }
 
-
-
-
+    //!NHNP
     @Override
     public boolean addAll(Collection<? extends T> c) {
-
-            Object[] a = c.toArray();
-            int numNew = a.length;
-
-        if (size == elements.length)
-            elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
-        elements[size++] = a.length;
-
-            ensureCapacityInternal(size + numNew);  // Increments modCount
-            System.arraycopy(a, 0, elements, size, numNew);
-            size += numNew;
-            return numNew != 0;
+        T[] mas = (T[]) c.toArray();
+        elements = Arrays.copyOf(elements, size + mas.length);
+        for (int i = 0; i < mas.length; i++) {
+            elements[i + size] = mas[i];
         }
-
+        size = size + mas.length;
+        return (size + mas.length) > 0;
+    }
 
 
     @Override
     public boolean remove(Object o) {
-        int index=indexOf(o);
-        if (index>-1) remove(index);
-        return (index>-1);
+        int index = indexOf(o);
+        if (index > -1) remove(index);
+        return (index > -1);
     }
 
     @Override
@@ -84,8 +76,8 @@ public class ListB<T> implements List<T> {
     @Override
     public T set(int index, T element) {
 
-        T oldValue=elements[index];
-        elements[index]=element;
+        T oldValue = elements[index];
+        elements[index] = element;
 
         return oldValue;
     }
@@ -145,7 +137,6 @@ public class ListB<T> implements List<T> {
     }
 
 
-
     @Override
     public boolean removeAll(Collection<?> c) {
         return false;
@@ -160,10 +151,6 @@ public class ListB<T> implements List<T> {
     public void clear() {
 
     }
-
-
-
-
 
 
     @Override
