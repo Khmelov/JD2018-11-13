@@ -19,11 +19,12 @@ public class TaskA2 {
     }
 
     public static void main(String[] args) {
-        Integer[] dataA = {1, 2, 3, 5, 6, 7, 7, 8, 7, 7, 9, 6, 3, 4};
-        Integer[] dataB = {4, 5, 6, 3, 2, 7, 7, 7, 7, 7, 9, 5, 3, 6};
+        Integer[] dataA = {1, 3, 5, 6, 7};
+        Integer[] dataB = {1, 2, 5, 6, 7, 9, 8};
         Set<Integer> a = new HashSet<>(Arrays.asList(dataA));
         Set<Integer> b = new HashSet<>(Arrays.asList(dataB));
         System.out.println(a + " " + b);
-
+        System.out.println(getCross(a, b));
+        System.out.println(getUnion(a, b));
     }
 }
