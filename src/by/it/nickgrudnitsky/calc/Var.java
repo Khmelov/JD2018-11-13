@@ -1,14 +1,29 @@
 package by.it.nickgrudnitsky.calc;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 abstract class Var implements Operation {
 
     private static Map<String, Var> vars = new HashMap<>();
 
-    static void saveVar(String name, Var var) {
+    static void printVar() {
+        for (Map.Entry<String, Var> entry : vars.entrySet()) {
+            System.out.println(entry.getKey() + "=" + entry.getValue());
+        }
+    }
+
+    static void sortVar() {
+        SortedSet<String> sortedVars = new TreeSet<>();
+        sortedVars.addAll(vars.keySet());
+        for (String key :sortedVars) {
+            System.out.println(key + "=" + vars.get(key));
+        }
+
+    }
+
+    static Var saveVar(String name, Var var) {
         vars.put(name, var);
+        return var;
     }
 
     static Var createVar(String operand) {
