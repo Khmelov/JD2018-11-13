@@ -69,8 +69,8 @@ public class Runner {
         myListB2.add("семь");
         System.out.println(myListB2);
 
-//        myListB.addAll(myListB2);
-//        System.out.println(myListB);
+        myListB.addAll(myListB2);
+        System.out.println(myListB);
 
 
 

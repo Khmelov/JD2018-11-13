@@ -61,7 +61,14 @@ public class ListB<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> collection) {
+
+   /*     Object[] objects = collection.toArray();
+        T[] colObj= (T[]) objects;
+        elements=Arrays.copyOf(elements, elements.length+colObj.length);
+        System.arraycopy(colObj, 0, elements, elements.length-colObj.length, colObj.length);
+   */
         return true;
+
     }
 
 
