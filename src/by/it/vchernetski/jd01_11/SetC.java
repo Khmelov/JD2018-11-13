@@ -2,25 +2,27 @@ package by.it.vchernetski.jd01_11;
 
 import java.util.*;
 
-public class SetC<T> implements Set<T> {
+public class SetC<E> implements Set<E> {
+    private HashMap<E, Object> mymap = new HashMap<E, Object>();
+    private static Object mine = new Object();
 
     @Override
     public int size() {
-        return 0;
+        return mymap.size();
     }
 
     @Override
     public boolean isEmpty() {
-        return false;
+        return mymap.isEmpty();
     }
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        return mymap.containsKey(o);
     }
 
     @Override
-    public Iterator<T> iterator() {
+    public Iterator<E> iterator() {
         return null;
     }
 
@@ -30,28 +32,36 @@ public class SetC<T> implements Set<T> {
     }
 
     @Override
-    public <T1> T1[] toArray(T1[] a) {
+    public <T> T[] toArray(T[] a) {
         return null;
     }
 
     @Override
-    public boolean add(T t) {
-        return false;
+    public boolean add(E e) {
+        return mymap.put(e, mine)==mine;
     }
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        return mymap.remove(o)==mine;
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        Iterator<?> i = c.iterator();
+        while (i.hasNext()) {
+            if (!contains(i.next())) return false;
+        }
+        return true;
     }
 
     @Override
-    public boolean addAll(Collection<? extends T> c) {
-        return false;
+    public boolean addAll(Collection<? extends E> c) {
+        boolean ret = false;
+        for(E e: c){
+            ret = add(e);
+        }
+        return ret;
     }
 
     @Override
@@ -61,19 +71,27 @@ public class SetC<T> implements Set<T> {
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        boolean ret = false;
+        Iterator<?> i = c.iterator();
+        while (i.hasNext()){
+            ret = remove(i.next());
+        }
+        return ret;
     }
 
     @Override
     public void clear() {
-
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return null;
+        mymap.clear();
     }
     public String toString(){
-        return null;
+        Iterator<E> i = mymap.keySet().iterator();
+        StringBuilder sb = new StringBuilder();
+        if(!i.hasNext()) return sb.append("[]").toString();
+        sb.append("[");
+        while(i.hasNext()){
+            sb.append(i.next());
+            if(i.hasNext()) sb.append(", ");
+        }
+        return sb.append("]").toString();
     }
 }
