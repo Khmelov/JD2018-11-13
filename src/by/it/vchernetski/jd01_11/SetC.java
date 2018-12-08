@@ -38,7 +38,7 @@ public class SetC<E> implements Set<E> {
 
     @Override
     public boolean add(E e) {
-        return mymap.put(e, mine)==mine;
+        return !(mymap.put(e, mine)==mine);
     }
 
     @Override
