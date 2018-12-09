@@ -17,6 +17,7 @@ class Scalar extends Var {
     }
 
 
+
     @Override
     public Var add(Var other) {
         if (other instanceof Scalar) {
