@@ -46,6 +46,16 @@ public class ListB<T> implements List<T> {
         elements[index] = t;
     }
 
+    @Override
+    public boolean addAll(Collection<? extends T> collection) {
+        T[] mas = (T[]) collection.toArray();
+        elements = Arrays.copyOf(elements, size + mas.length);
+        for (int i = 0; i < mas.length; i++) {
+            elements[i + size] = mas[i];
+        }
+        size = size + mas.length;
+        return (size + mas.length) > 0;
+    }
 
     @Override
     public String toString() {
@@ -59,21 +69,7 @@ public class ListB<T> implements List<T> {
         return sb.toString();
     }
 
-    @Override
-    public boolean addAll(Collection<? extends T> collection) {
-
-   /*     Object[] objects = collection.toArray();
-        T[] colObj= (T[]) objects;
-        elements=Arrays.copyOf(elements, elements.length+colObj.length);
-        System.arraycopy(colObj, 0, elements, elements.length-colObj.length, colObj.length);
-   */
-        return true;
-
-    }
-
-
     ///////////////////////////////STUBS////////////////////////////////////////////////////////////////////////////////////
-
 
     @Override
     public int size() {
