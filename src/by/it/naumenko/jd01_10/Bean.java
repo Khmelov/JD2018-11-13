@@ -1,5 +1,6 @@
 package by.it.naumenko.jd01_10;
 
+@Param1(a=2,b=4)
 public class Bean {
 
     @Param(a = 2, b = 3)
