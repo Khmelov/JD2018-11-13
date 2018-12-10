@@ -72,7 +72,13 @@ class ListB<T> implements List<T> {
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        T[] mas = (T[]) c.toArray();
+        elements = Arrays.copyOf(elements, size + mas.length);
+        for (int i = 0; i < mas.length; i++) {
+            elements[i + size] = mas[i];
+        }
+        size = size + mas.length;
+        return (size + mas.length) > 0;
     }
 
     @Override
@@ -122,7 +128,7 @@ class ListB<T> implements List<T> {
         if (size == elements.length) {
             elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
         }
-        System.arraycopy(elements, index+1, elements, index, size+1-index);
+        System.arraycopy(elements, index, elements, index + 1, size - index);
         elements[index] = element;
         size++;
     }
@@ -130,7 +136,7 @@ class ListB<T> implements List<T> {
     @Override
     public T remove(int index) {
         T del = elements[index];
-        System.arraycopy(elements, index, elements, index+1, size - 1 - index);
+        System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
         size--;
         return del;
     }
