@@ -11,7 +11,9 @@ public class TaskC1 {
         while (true) {
             String str = scanner.next();
             if (str.equals("end")) break;
-            id = UUID.randomUUID();
+            do {
+                id = UUID.randomUUID();
+            } while (map.containsKey(id));
             map.put(id, str);
         }
         // Выод на консоль
