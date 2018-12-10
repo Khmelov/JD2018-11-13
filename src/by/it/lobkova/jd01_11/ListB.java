@@ -5,7 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.*;
 import java.util.function.UnaryOperator;
 
-class ListA<T> implements List<T> {
+public class ListB<T> implements List<T> {
 
     private T[] elements = (T[]) new Object[]{};
     private int size = 0;
@@ -30,6 +30,30 @@ class ListA<T> implements List<T> {
     }
 
     @Override
+    public T get(int index) {
+        return elements[index];
+    }
+
+    @Override
+    public T set(int index, T element) {
+        if (index < elements.length) {
+            T returnElement = elements[index];
+            elements[index] = element;
+            return returnElement;
+        } else {
+            System.out.println("Выход за границы массива");
+            return null;
+        }
+    }
+
+    @Override
+    public boolean addAll(@NotNull Collection<? extends T> c) {
+        boolean modified = false;
+        for (T e : c) if (add(e)) modified = true;
+        return modified;
+    }
+
+    @Override
     public T remove(int index) {
         T del = elements[index];
         System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
@@ -38,17 +62,12 @@ class ListA<T> implements List<T> {
     }
 
     @Override
-    public T get(int index) {
-        return elements[index];
-    }
-
-    @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
         String dilimiter = "";
         for (int i = 0; i < size; i++) {
-                sb.append(dilimiter).append(elements[i]);
-                dilimiter = ", ";
+            sb.append(dilimiter).append(elements[i]);
+            dilimiter = ", ";
         }
         sb.append("]");
         return sb.toString();
@@ -113,11 +132,6 @@ class ListA<T> implements List<T> {
     }
 
     @Override
-    public boolean addAll(@NotNull Collection<? extends T> c) {
-        return false;
-    }
-
-    @Override
     public boolean addAll(int index, @NotNull Collection<? extends T> c) {
         return false;
     }
@@ -135,11 +149,6 @@ class ListA<T> implements List<T> {
     @Override
     public void clear() {
 
-    }
-
-    @Override
-    public T set(int index, T element) {
-        return null;
     }
 
     @Override
