@@ -1,4 +1,4 @@
-package by.it.evenchik.jd01_08;
+package by.it.evenchik.jd01_09;
 
 public interface Operation {
     Var add(Var other);

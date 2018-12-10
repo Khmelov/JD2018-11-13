@@ -1,6 +1,6 @@
-package by.it.evenchik.jd01_08;
+package by.it.evenchik.jd01_09;
 
-class Scalar extends by.it.evenchik.jd01_08.Var {
+class Scalar extends Var {
 
     private double value;
 
@@ -8,9 +8,12 @@ class Scalar extends by.it.evenchik.jd01_08.Var {
         return value;
     }
 
+
+
     Scalar(double value) {
         this.value = value;
     }
+
 
     Scalar(String strVal) {
         this.value = Double.parseDouble(strVal);
@@ -21,7 +24,7 @@ class Scalar extends by.it.evenchik.jd01_08.Var {
     }
 
     @Override
-    public by.it.evenchik.jd01_08.Var add(by.it.evenchik.jd01_08.Var other) {
+    public Var add(Var other) {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double res = this.value + operand2.value;
@@ -30,8 +33,9 @@ class Scalar extends by.it.evenchik.jd01_08.Var {
             return other.add(this);
     }
 
+
     @Override
-    public by.it.evenchik.jd01_08.Var sub(by.it.evenchik.jd01_08.Var other) {
+    public Var sub(Var other) {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double res = this.value - operand2.value;
@@ -40,8 +44,10 @@ class Scalar extends by.it.evenchik.jd01_08.Var {
             return other.sub(this).mul(new Scalar(-1.0));
     }
 
+
+
     @Override
-    public by.it.evenchik.jd01_08.Var mul(by.it.evenchik.jd01_08.Var other) {
+    public Var mul(Var other) {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double res = this.value * operand2.value;
@@ -51,7 +57,7 @@ class Scalar extends by.it.evenchik.jd01_08.Var {
     }
 
     @Override
-    public by.it.evenchik.jd01_08.Var div(by.it.evenchik.jd01_08.Var other) {
+    public Var div(Var other) {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double res = this.value / operand2.value;
@@ -59,6 +65,7 @@ class Scalar extends by.it.evenchik.jd01_08.Var {
         } else
             return super.div(other);
     }
+
 
 
     @Override
