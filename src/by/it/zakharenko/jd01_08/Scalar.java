@@ -1,4 +1,4 @@
-package by.it.akhmelev.jd01_08;
+package by.it.zakharenko.jd01_08;
 
 class Scalar extends Var {
 
@@ -15,7 +15,6 @@ class Scalar extends Var {
     Scalar(Scalar otherScalar) {
         this.value = otherScalar.value;
     }
-
 
 
     @Override

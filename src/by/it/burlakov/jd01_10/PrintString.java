@@ -15,12 +15,10 @@ public class PrintString {
             if (!Modifier.isStatic(m.getModifiers())) {
 
                 sb.append(m.getName()).append("\n");
-            } else {
-                continue;
             }
-            System.out.println(sb);
-        }
 
+        }
+        System.out.println(sb);
     }
 }
 

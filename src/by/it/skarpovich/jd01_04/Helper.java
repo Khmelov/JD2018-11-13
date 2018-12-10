@@ -46,7 +46,7 @@ public class Helper {
 
     }
 
-    //Задание C1. Выполнить произведение матрицы matrix на вектор vector (заданы в Runner), вернуть значение.
+    //Задание C1. Выполнить произведение матрицы matrix на вектор vector (заданы в ConsoleRunner), вернуть значение.
     static double[] mul(double[][] matrix, double[] vector) {
         double[] matrixtoVector = new double[matrix.length];
         for (int i = 0; i < matrix.length; i++) {
@@ -62,7 +62,7 @@ public class Helper {
         return matrixtoVector;
     }
 
-    //Задание C2. Выполнить произведение матрицы matrixLeft на матрицу matrixRight (заданы в Runner), вернуть значение.
+    //Задание C2. Выполнить произведение матрицы matrixLeft на матрицу matrixRight (заданы в ConsoleRunner), вернуть значение.
     static double[][] mul(double[][] matrixLeft, double[][] matrixRight) {
         double[][] matrixToMatrix = new double[matrixLeft.length][matrixRight[0].length];
         for (int i = 0; i < matrixLeft.length; i++) {
