@@ -28,6 +28,4 @@ public class TaskA2 {
         System.out.println(getCross(a, b));
         System.out.println(getUnion(a, b));
     }
-
-
 }
