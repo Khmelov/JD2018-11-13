@@ -1,14 +1,8 @@
 package by.it.kruglenja.jd01_12;
 
-import by.it.burlakov.jd01_09.Patterns;
-import by.it.kruglenja.jd01_02.TaskA;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.Match;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * Created by user on 08.12.2018.
