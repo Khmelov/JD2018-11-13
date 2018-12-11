@@ -1,4 +1,4 @@
-package by.it.medvedeva.calc;
+package by.it.medvedeva.calc_v1;
 
 
 abstract class Var implements Operation {
