@@ -6,22 +6,16 @@ public class Vector extends Var {
 
     private double[] value;
 
+    public double[] getValue() {
+        return value;
+    }
+
     public Vector(double[] value) {
         this.value = new double[value.length];
         // this.value = value;
         System.arraycopy(value, 0, this.value, 0, this.value.length);
     }
 
-   /* public Var add( Var other){
-        if( other instanceof Vector){
-            Vector vector1 = (Vector) other;
-            if (this.value.length == vector1.value.length){
-                for (int i = 0; i <this.value.length ; i++) {
-
-                }
-            }
-        }
-    } */
 
 
     public Vector(Vector otherValue) {
