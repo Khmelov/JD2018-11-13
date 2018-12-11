@@ -8,7 +8,7 @@ public class TaskA1 {
     public static void main(String[] args) {
         StringBuilder sb = new StringBuilder(Poem.text);
         Pattern pt = Pattern.compile("[а-яА-ЯёЁ]{4,}");
-        Matcher matcher = pt.matcher(Poem.text);
+        Matcher matcher = pt.matcher(sb);
         while (matcher.find()){
             int start = matcher.start();
 
