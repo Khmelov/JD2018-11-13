@@ -1,29 +1,27 @@
 package by.it.malishevskiy.jd01_12;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class TaskA3 {
     public static void main(String[] args) {
-        ArrayList<Integer> values = new ArrayList<>();
-        Scanner scanner = new Scanner(System.in);
-        int indexZero = 0;
-        for () {
-            String word = scanner.next();
-            if (word.equals("end")) {
-                break;
+        List<Integer> arr=new ArrayList<>();
+        Scanner scan = new Scanner(System.in);
+        String str;
+        int pos=0;
+        while (!(str = scan.next()).equals("end")) {
+            Integer value = Integer.valueOf(str);
+            if (value>0) {
+                arr.add(pos++, value);
             }
-            Integer value = Integer.valueOf(word);
-            if(value == 0) {
-                values.add(indexZero, value);
+            else if (value==0) {
+                arr.add(pos, 0);
             }
-            if(value > 0){
-                values.add(indexZero);
-            }
-            if(value < 0){
-                values.add(indexZero)
+            else {
+                arr.add(value);
             }
         }
+        System.out.println(arr);
     }
 }
