@@ -4,8 +4,8 @@ class Vector extends Var {
 
     private double[] value;
 
-    Vector(String vector){
-        //
+    Vector(String vector) throws CalcException {
+        throw new CalcException("не асилил "+vector);
     }
 
     Vector(double[] value) {
@@ -27,22 +27,22 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other)  throws CalcException {
         return super.add(other);
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException  {
         return super.sub(other);
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException  {
         return super.mul(other);
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException{
         return super.div(other);
     }
 }
