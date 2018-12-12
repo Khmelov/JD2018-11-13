@@ -1,12 +1,18 @@
-package by.it._tasks_.jd01_13;
+package by.it.akhmelev.jd01_13;
 
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 @SuppressWarnings("all")
 
@@ -23,13 +29,12 @@ public class Test_jd01_13 {
                             .include("Exception")
                             .include("line:")
                             .include(".TaskA")
-                            .strOut.toString());
+                            .stringWriter.toString());
         }
         assertTrue("В выводе нет NumberFormatException", sb.toString().contains("NumberFormatException"));
         assertTrue("В выводе нет NullPointerException", sb.toString().contains("NullPointerException"));
         System.out.println(sb);
     }
-
 
     @Test(timeout = 1500)
     public void testTaskB() throws Exception {
@@ -77,19 +82,19 @@ public class Test_jd01_13 {
     Но изучить как он работает - можно, это всегда будет полезно.
     ===========================================================================================================
      */
-    //-------------------------------  методы ----------------------------------------------------------
+
     private Class findClass(String SimpleName) {
         String full = this.getClass().getName();
         String dogPath = full.replace(this.getClass().getSimpleName(), SimpleName);
         try {
             return Class.forName(dogPath);
         } catch (ClassNotFoundException e) {
-            fail("\nERROR:Тест не пройден. Класс " + SimpleName + " не найден.");
+            fail("\nТест не пройден. Класс " + SimpleName + " не найден.");
         }
         return null;
     }
 
-    private Method checkMethod(String className, String methodName, Class<?>... parameters) throws Exception {
+    public Method checkMethod(String className, String methodName, Class<?>... parameters) throws Exception {
         Class aClass = this.findClass(className);
         try {
             methodName = methodName.trim();
@@ -98,7 +103,7 @@ public class Test_jd01_13 {
                 methodName = methodName.replace("static", "").trim();
                 m = aClass.getDeclaredMethod(methodName, parameters);
                 if ((m.getModifiers() & Modifier.STATIC) != Modifier.STATIC) {
-                    fail("\nERROR:Метод " + m.getName() + " должен быть статическим");
+                    fail("\nМетод " + m.getName() + " должен быть статическим");
                 }
             } else
                 m = aClass.getDeclaredMethod(methodName, parameters);
@@ -106,9 +111,9 @@ public class Test_jd01_13 {
             return m;
 
         } catch (NoSuchMethodException e) {
-            System.err.println("\nERROR:Не найден метод " + methodName + " либо у него неверная сигнатура");
-            System.err.println("ERROR:Ожидаемый класс: " + className);
-            System.err.println("ERROR:Ожидаемый метод: " + methodName);
+            System.err.print("\nНе найден метод " + methodName + " либо у него неверная сигнатура");
+            System.err.print("\nОжидаемый класс: " + className);
+            System.err.print("\nОжидаемый метод: " + methodName);
             return null;
         }
     }
@@ -117,18 +122,17 @@ public class Test_jd01_13 {
         try {
             return cl.getDeclaredMethod(name, param);
         } catch (NoSuchMethodException e) {
-            fail("\nERROR:Тест не пройден. Метод " + cl.getName() + "." + name + " не найден\n");
+            fail("\nТест не пройден. Метод " + cl.getName() + "." + name + " не найден");
         }
         return null;
     }
 
     private Object invoke(Method method, Object o, Object... value) {
         try {
-            method.setAccessible(true);
             return method.invoke(o, value);
         } catch (Exception e) {
             System.out.println(e.toString());
-            fail("\nERROR:Не удалось вызвать метод " + method.getName() + "\n");
+            fail("\nНе удалось вызвать метод " + method.getName());
         }
         return null;
     }
@@ -156,23 +160,21 @@ public class Test_jd01_13 {
         clName = clName.replaceFirst(".+__", "");
         clName = element.getClassName().replace(path[path.length - 1], clName);
         System.out.println("\n---------------------------------------------");
-        System.out.println("Старт теста для " + clName);
-        if (!in.isEmpty()) System.out.println("input:" + in);
+        System.out.println("Старт теста для " + clName + "\ninput:" + in);
         System.out.println("---------------------------------------------");
         return new Test_jd01_13(clName, in, runMain);
     }
 
-    //-------------------------------  тест ----------------------------------------------------------
     public Test_jd01_13() {
         //Конструктор тестов
     }
 
-    //переменные теста
+    //Конструктор тестов
+    //    private Testing(String className) {
+    //        this(className, "");
+    //    }
     private String className;
-    private Class<?> aClass;
-    private PrintStream oldOut = System.out; //исходный поток вывода
-    private PrintStream newOut; //поле для перехвата потока вывода
-    private StringWriter strOut = new StringWriter(); //накопитель строки вывода
+    Class<?> aClass;
 
     //Основной конструктор тестов
     private Test_jd01_13(String className, String in, boolean runMain) {
@@ -183,11 +185,18 @@ public class Test_jd01_13 {
             this.className = className;
 
         } catch (ClassNotFoundException e) {
-            fail("ERROR:Не найден класс " + className + "\n");
+            fail("Не найден класс " + className);
         }
-        InputStream reader = new ByteArrayInputStream(in.getBytes());
-        System.setIn(reader);   //перехват стандартного ввода
-        System.setOut(newOut);  //перехват стандартного вывода
+        reader = new StringReader(in); //заполнение ввода
+        InputStream inputStream = new InputStream() {
+            @Override
+            public int read() throws IOException {
+                return reader.read();
+            }
+        };
+        System.setIn(inputStream);   //перехват ввода
+
+        System.setOut(newOut); //перехват стандартного вывода
 
         if (runMain) //если нужно запускать, то запустим, иначе оставим только вывод
             try {
@@ -200,48 +209,56 @@ public class Test_jd01_13 {
             }
     }
 
-
     //проверка вывода
     private Test_jd01_13 is(String str) {
-        assertTrue("ERROR:Ожидается такой вывод:\n<---начало---->\n" + str + "<---конец--->",
-                strOut.toString().equals(str));
+        assertTrue("Ожидается такой вывод:\n<---начало---->\n" + str + "<---конец--->",
+                stringWriter.toString().equals(str));
         return this;
     }
 
     private Test_jd01_13 include(String str) {
-        assertTrue("ERROR:Строка не найдена: " + str + "\n", strOut.toString().contains(str));
+        assertTrue("Строка не найдена: " + str + "\n", stringWriter.toString().contains(str));
         return this;
     }
 
     private Test_jd01_13 exclude(String str) {
-        assertTrue("ERROR:Лишние данные в выводе: " + str + "\n", !strOut.toString().contains(str));
+        assertTrue("Лишние данные в выводе: " + str + "\n", !stringWriter.toString().contains(str));
         return this;
     }
 
 
-    //логический блок перехвата вывода
+    //переменные теста
+    private StringWriter stringWriter = new StringWriter();
+    private PrintStream oldOut = System.out;
+    private StringReader reader;
+
+
+    //поле для перехвата потока вывода
+    private PrintStream newOut;
+
     {
         newOut = new PrintStream(new OutputStream() {
-            private byte bytes[] = new byte[1];
-            private int pos = 0;
+            private byte bytes[] = new byte[2];
 
             @Override
             public void write(int b) throws IOException {
-                if (pos == 0 && b == '\r') //пропуск \r (чтобы win mac и linux одинаково работали
-                    return;
-                //ок. теперь можно делать разбор
-                if (pos == 0) { //определим кодировку https://ru.wikipedia.org/wiki/UTF-8
-                    if ((b & 0b11110000) == 0b11110000) bytes = new byte[4];
-                    else if ((b & 0b11100000) == 0b11100000) bytes = new byte[3];
-                    else if ((b & 0b11000000) == 0b11000000) bytes = new byte[2];
-                    else bytes = new byte[1];
-                }
-                bytes[pos++] = (byte) b;
-                if (pos == bytes.length) { //символ готов
-                    String s = new String(bytes); //соберем весь символ
-                    strOut.append(s); //запомним вывод для теста
-                    oldOut.append(s); //копию в обычный вывод
-                    pos = 0; //готовим новый символ
+                if (b < 0) { //ловим и собираем двухбайтовый UTF (первый код > 127, или в байте <0)
+                    if (bytes[0] == 0) { //если это первый байт
+                        bytes[0] = (byte) b; //то запомним его
+                    } else {
+                        bytes[1] = (byte) b; //иначе это второй байт
+                        String s = new String(bytes); //соберем весь символ
+                        stringWriter.append(s); //запомним вывод для теста
+                        oldOut.append(s); //копию в обычный вывод
+                        bytes[0] = 0; //забудем все.
+                    }
+                } else {
+                    char c = (char) b; //ловим и собираем однобайтовый UTF
+                    bytes[0] = 0;
+                    if (c != '\r') {
+                        stringWriter.write(c); //запомним вывод для теста
+                    }
+                    oldOut.write(c); //копию в обычный вывод
                 }
             }
         });

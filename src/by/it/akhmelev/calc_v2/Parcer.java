@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Parcer {
-    public Var calc(String expression) {
+    public Var calc(String expression) throws CalcException{
         //   1.2+7.8
         String[] operands = expression.split(Patterns.OPERATION);
         Pattern op=Pattern.compile(Patterns.OPERATION);
