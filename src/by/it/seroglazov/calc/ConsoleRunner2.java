@@ -14,8 +14,13 @@ public class ConsoleRunner2 {
             } else if (input.equalsIgnoreCase("sortvar")) {
                 System.out.println(Var.getVars());
             } else {
-                Var res = parcer.calc(input);
-                printer.print(res);
+                try {
+                    Var res = parcer.calc(input);
+                    printer.print(res);
+                } catch (CalcExeption e){
+                    System.out.println(e.getMessage());
+                }
+
             }
         }
 
