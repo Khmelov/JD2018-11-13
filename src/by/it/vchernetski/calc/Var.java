@@ -27,34 +27,30 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
     public  String toString(){
         return "this Var";
     }
-    public static Var createVar(String op){
+    public static Var createVar(String op) throws CalcException{
         if (op.matches(Patterns.SCALAR)) return new Scalar(op);
         if (op.matches(Patterns.VECTOR)) return new Vector(op);
         if (op.matches(Patterns.MATRIX)) return new Matrix(op);
         else if (vars.containsKey((op))) return vars.get(op);
-        return null;
+        throw  new CalcException("невозможно создать "+op);
     }
     @Override
-    public Var add(Var other) {
-        System.out.println("Сложение "+this+"+"+other+" невозможно");
-        return null;
-    }
-
-    @Override
-    public Var sub(Var other) {
-        System.out.println("Вычитание "+this+"-"+other+" невозможно");
-        return null;
+    public Var add(Var other) throws CalcException{
+        throw  new CalcException("Сложение "+this+"+"+other+" невозможно");
     }
 
     @Override
-    public Var mul(Var other) {
-        System.out.println("Умножение "+this+"*"+other+" невозможно");
-        return null;
+    public Var sub(Var other) throws CalcException{
+        throw  new CalcException("Вычитание "+this+"-"+other+" невозможно");
     }
 
     @Override
-    public Var div(Var other) {
-        System.out.println("Деление "+this+"/"+other+" невозможно");
-        return null;
+    public Var mul(Var other) throws CalcException{
+        throw  new CalcException("Умножение "+this+"*"+other+" невозможно");
+    }
+
+    @Override
+    public Var div(Var other) throws CalcException{
+        throw  new CalcException("Деление "+this+"/"+other+" невозможно");
     }
 }
