@@ -8,11 +8,11 @@ import java.util.regex.Pattern;
 
 public class TaskB1 {
     private static void print (HashMap<String, Integer> map){
-        StringBuilder output = new StringBuilder();
+        StringBuilder worsd = new StringBuilder();
         for(Map.Entry<String, Integer> m: map.entrySet()){
-            output.append(m.getKey()+"="+m.getValue().toString()+"\n");
+            worsd.append(m.getKey()+"="+m.getValue().toString()+"\n");
         }
-        System.out.println(output);
+        System.out.println(worsd);
     }
     public static void main(String[] args) {
         HashMap<String, Integer> mymap = new HashMap<>();
