@@ -7,9 +7,14 @@ public class ConsoleRunner {
         Scanner sc = new Scanner(System.in);
         String in;
         while (!(in = sc.next()).equals("end")){
-            Var res = Parcer.calc(in);
-            if(res == null) continue;
-            Printer.print(res);
+            try {
+                Var res = Parcer.calc(in);
+//                if (res == null) continue;
+                Printer.print(res);
+            }
+            catch (CalcException e){
+                System.out.println(e.getMessage());
+            }
         }
 
     }
