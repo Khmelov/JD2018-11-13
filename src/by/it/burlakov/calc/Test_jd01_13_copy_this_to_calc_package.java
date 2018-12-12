@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_13;
+package by.it.burlakov.calc;
 
 
 import org.junit.Test;

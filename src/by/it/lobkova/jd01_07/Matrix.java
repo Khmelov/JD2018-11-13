@@ -6,6 +6,7 @@ public class Matrix extends Var {
 
     private double[][] value;
 
+
     public Matrix(double[][] value) {
         this.value = value;
     }
