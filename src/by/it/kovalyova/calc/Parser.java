@@ -20,25 +20,25 @@ public class Parser {
         expression=expression.trim().replaceAll("\\s+","");
         String[] operands = expression.split(Patterns.OPERATION);
         if (expression.contains("=")){
-            Var two = Var.createVar(operands[1]);
-            return this.saveVar(operands[0],two);
+     //       Var two = Var.createVar(operands[1]);
+    //       return this.saveVar(operands[0],two);
         }
 
-        Var one = Var.createVar(operands[0]);
-        Var two = Var.createVar(operands[1]);
-        if (one == null || two == null)
+  //      Var one = Var.createVar(operands[0]);
+   //     Var two = Var.createVar(operands[1]);
+  //      if (one == null || two == null)
             return ""; //TODO create error
-        Pattern p=Pattern.compile(Patterns.OPERATION);
-        m=p.matcher(expression);
-        if (m.find()){
-            String operation=m.group();
-            switch (operation){
-                case "+": return one.add(two).toString();
-                case "-": return one.sub(two).toString();
-                case "*": return one.mul(two).toString();
-                case "/": return one.div(two).toString();
+   //     Pattern p=Pattern.compile(Patterns.OPERATION);
+   //     m=p.matcher(expression);
+  //      if (m.find()){
+   //         String operation=m.group();
+   //         switch (operation){
+   //             case "+": return one.add(two).toString();
+   //             case "-": return one.sub(two).toString();
+    //            case "*": return one.mul(two).toString();
+  //              case "/": return one.div(two).toString();
             }
         }
-        return null;
-    }
-}
+//        return null;
+ //   }
+//}
