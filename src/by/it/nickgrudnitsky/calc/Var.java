@@ -15,7 +15,7 @@ abstract class Var implements Operation {
     static void sortVar() {
         SortedSet<String> sortedVars = new TreeSet<>();
         sortedVars.addAll(vars.keySet());
-        for (String key :sortedVars) {
+        for (String key : sortedVars) {
             System.out.println(key + "=" + vars.get(key));
         }
 
@@ -26,7 +26,7 @@ abstract class Var implements Operation {
         return var;
     }
 
-    static Var createVar(String operand) {
+    static Var createVar(String operand) throws CalcException {
         operand = operand.trim().replace("\\s+", "");
         if (operand.matches(Patterns.SCALAR)) {
             return new Scalar(operand);
@@ -37,31 +37,27 @@ abstract class Var implements Operation {
         } else if (vars.containsKey(operand)) {
             return vars.get(operand);
         }
-        return null; //todo Generate some Error
+        throw new CalcException("Невозможно создать " + operand);
     }
 
     @Override
-    public Var add(Var other) {
-        System.out.println("Операция сложения " + this + " + " + other + "невозможна.");
-        return null;
+    public Var add(Var other) throws CalcException {
+        throw new CalcException("Операция сложения " + this + " + " + other + " невозможна.");
     }
 
     @Override
-    public Var sub(Var other) {
-        System.out.println("Операция вычитания " + this + " - " + other + "невозможна.");
-        return null;
+    public Var sub(Var other) throws CalcException {
+        throw new CalcException("Операция вычитания " + this + " - " + other + " невозможна.");
     }
 
     @Override
-    public Var mul(Var other) {
-        System.out.println("Операция умножения " + this + " * " + other + "невозможна.");
-        return null;
+    public Var mul(Var other) throws CalcException {
+        throw new CalcException("Операция умножения " + this + " * " + other + " невозможна.");
     }
 
     @Override
-    public Var div(Var other) {
-        System.out.println("Операция деления " + this + " / " + other + "невозможна.");
-        return null;
+    public Var div(Var other) throws CalcException {
+        throw new CalcException("Операция деления " + this + " / " + other + " невозможна.");
     }
 
     @Override
