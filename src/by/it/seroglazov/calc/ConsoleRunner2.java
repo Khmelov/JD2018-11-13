@@ -2,7 +2,7 @@ package by.it.seroglazov.calc;
 
 import java.util.Scanner;
 
-public class ConsoleRunner {
+public class ConsoleRunner2 {
     public static void main(String[] args) {
         Parcer parcer = new Parcer();
         Printer printer = new Printer();
