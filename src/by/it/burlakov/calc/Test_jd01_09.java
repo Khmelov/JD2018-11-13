@@ -1,4 +1,4 @@
-package by.it.kovalyova.jd01_09;
+package by.it.burlakov.calc;
 
 
 import org.junit.Test;
@@ -13,13 +13,68 @@ import static org.junit.Assert.*;
 @SuppressWarnings("all")
 
 //поставьте курсор на следующую строку и нажмите Ctrl+Shift+F10
-public class Test_jd01_08 {
+public class Test_jd01_09 {
 
     @Test(timeout = 5000)
-    public void testTaskA0_constructors__Scalar() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
+    public void testTaskA1__ConsoleRunner() throws Exception {
+        run("3.8+26.2\n" +
+                "87.4-23.1\n" +
+                "1.04*5.9\n" +
+                "12.7*5\n" +
+                "6+12\n" +
+                "7*3.1\n" +
+                "4/8\n" +
+                "9-0.9\n" +
+                "end\n")
+                .include("30.0")    //3.8+26.2=30.0
+                .include("64.3")    //87.4-23.1=64.3 
+                .include("6.136")   //1.04*5.9=6.136 
+                .include("63.5")    //12.7*5=63.5 
+                .include("18.0")    //6+12=18.0
+                .include("21.7")    //7*3.1=21.7 
+                .include("0.5")     //4/8=0.5 
+                .include("8.1")     //9-0.9=8.1 
+        ;
 
+    }
+
+    @Test(timeout = 5000)
+    public void testTaskB1__ConsoleRunner() throws Exception {
+        run("{2,3,4}*2\n" +
+                "{3,6,9}/3\n" +
+                "{2,3,4}-5\n" +
+                "4+{2,3,4}\n" +
+                "{2,3,4}+{5,6,7}\n" +
+                "{5,6,7}-{2,3,4}\n" +
+                "end\n")
+                .include("{4.0, 6.0, 8.0}")    //{2,3,4}*2
+                .include("{1.0, 2.0, 3.0}")    //{3,6,9}/3
+                .include("{-3.0, -2.0, -1.0}") //{2,3,4}-5
+                .include("{6.0, 7.0, 8.0}")    //4+{2,3,4}
+                .include("{7.0, 9.0, 11.0}")   //{2,3,4}+{5,6,7}
+                .include("{3.0, 3.0, 3.0}")    //{5,6,7}-{2,3,4}
+        ;
+    }
+
+    @Test(timeout = 5000)
+    public void testTaskC1__ConsoleRunner() throws Exception {
+        run("{{1,2},{8,3}}-2\n" +
+                "{{1,2},{8,3}}*{1,2}\n" +
+                "{{1,2},{8,3}}*{{1,2},{8,3}}\n" +
+                "{{1,2},{8,3}}+{{1,2},{8,3}}\n" +
+                "end\n")
+                .include("{{-1.0, 0.0}, {6.0, 1.0}}")   //{{1,2},{8,3}}-2
+                .include("{5.0, 14.0}")                   //{{1,2},{8,3}}*{1,2}
+                .include("{{17.0, 8.0}, {32.0, 25.0}}") //{{1,2},{8,3}} * {{1,2},{8,3}}
+                .include("{{2.0, 4.0}, {16.0, 6.0}}")    //{{1,2},{8,3}}+{{1,2},{8,3}}
+        ;
+
+    }
+
+
+    @Test(timeout = 5000)
+    public void testTaskA0_previos_tasks__Scalar() throws Exception {
+        Test_jd01_09 ok = run("", false);
         Constructor c = ok.aClass.getDeclaredConstructor(double.class);
         System.out.println("Создание переменной типа Scalar на основе числа 0.12345");
         Object scalar = c.newInstance(0.12345);
@@ -28,9 +83,6 @@ public class Test_jd01_08 {
         assertEquals("Не было получено ожидаемое значение 0.12345", scalar.toString(), "0.12345");
         System.out.println("выполнено успешно. Scalar=" + scalar);
         ///-----------------------------------------------------------------------------------------------
-        ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
-
         c = ok.aClass.getDeclaredConstructor(double.class);
         scalar = c.newInstance(0.12345);
         c = ok.aClass.getDeclaredConstructor(ok.aClass);
@@ -41,9 +93,6 @@ public class Test_jd01_08 {
         assertEquals("Не было получено ожидаемое значение 0.12345", scalar.toString(), "0.12345");
         System.out.println("выполнено успешно. Scalar=" + scalar);
         ///-----------------------------------------------------------------------------------------------
-        ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
-
         c = ok.aClass.getDeclaredConstructor(String.class);
         System.out.println("Создание переменной типа Scalar на основе строки 0.12345");
         scalar = c.newInstance("0.12345");
@@ -51,13 +100,8 @@ public class Test_jd01_08 {
         System.out.flush();
         assertEquals("Не было получено ожидаемое значение 0.12345", scalar.toString(), "0.12345");
         System.out.println("выполнено успешно. Scalar=" + scalar);
-    }
 
-
-    @Test(timeout = 5000)
-    public void testTaskA1_add__Scalar() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double.class);
+        c = ok.aClass.getDeclaredConstructor(double.class);
         Object v1 = c.newInstance(1.23);
         Object v2 = c.newInstance(4.56);
         Class<?> var = v2.getClass().getSuperclass();
@@ -67,59 +111,45 @@ public class Test_jd01_08 {
         if (v3 == null) fail(op + " вернул null");
         double res = Double.parseDouble(v3.toString());
         assertEquals("Операция 1.23 + 4.56 работает некорректно", 5.79, res, 1e-10);
-    }
 
-
-    @Test(timeout = 5000)
-    public void testTaskA2_sub__Scalar() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double.class);
-        Object v1 = c.newInstance(1.23);
-        Object v2 = c.newInstance(4.56);
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "sub";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+        c = ok.aClass.getDeclaredConstructor(double.class);
+        v1 = c.newInstance(1.23);
+        v2 = c.newInstance(4.56);
+        var = v2.getClass().getSuperclass();
+        op = "sub";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
-        double res = Double.parseDouble(v3.toString());
+        res = Double.parseDouble(v3.toString());
         assertEquals("Операция 1.23 - 4.56 работает некорректно", -3.33, res, 1e-10);
-    }
 
-    @Test(timeout = 5000)
-    public void testTaskA3_mul__Scalar() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double.class);
-        Object v1 = c.newInstance(1.23);
-        Object v2 = c.newInstance(4.56);
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "mul";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+        c = ok.aClass.getDeclaredConstructor(double.class);
+        v1 = c.newInstance(1.23);
+        v2 = c.newInstance(4.56);
+        var = v2.getClass().getSuperclass();
+        op = "mul";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
-        double res = Double.parseDouble(v3.toString());
+        res = Double.parseDouble(v3.toString());
         assertEquals("Операция 1.23 * 4.56 работает некорректно", 5.6088, res, 1e-10);
-    }
 
-    @Test(timeout = 5000)
-    public void testTaskA4_div__Scalar() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double.class);
-        Object v1 = c.newInstance(1.23);
-        Object v2 = c.newInstance(4.56);
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "div";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+        c = ok.aClass.getDeclaredConstructor(double.class);
+        v1 = c.newInstance(1.23);
+        v2 = c.newInstance(4.56);
+        var = v2.getClass().getSuperclass();
+        op = "div";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
-        double res = Double.parseDouble(v3.toString());
+        res = Double.parseDouble(v3.toString());
         assertEquals("Операция 1.23 / 4.56 работает некорректно", 0.269736842105263, res, 1e-10);
     }
 
 
     @Test(timeout = 5000)
-    public void testTaskB0_constructors__Vector() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
+    public void testTaskB0_previos_tasks__Vector() throws Exception {
+        Test_jd01_09 ok = run("", false);
         Constructor c = ok.aClass.getDeclaredConstructor(double[].class);
         System.out.println("Создание переменной типа Vector на основе массива {1,2,4}");
         Object vector = c.newInstance(new double[]{1, 2, 4});
@@ -128,8 +158,6 @@ public class Test_jd01_08 {
         assertEquals("Не было получено ожидаемое значение {1.0, 2.0, 4.0}", vector.toString(), "{1.0, 2.0, 4.0}");
         System.out.println("выполнено успешно. Vector=" + vector);
         ///-----------------------------------------------------------------------------------------------
-        ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
         c = ok.aClass.getDeclaredConstructor(double[].class);
         vector = c.newInstance(new double[]{1, 2, 4});
         c = ok.aClass.getDeclaredConstructor(ok.aClass);
@@ -140,8 +168,6 @@ public class Test_jd01_08 {
         assertEquals("Не было получено ожидаемое значение {1.0, 2.0, 4.0}", vector.toString(), "{1.0, 2.0, 4.0}");
         System.out.println("выполнено успешно. Vector=" + vector);
         ///-----------------------------------------------------------------------------------------------
-        ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
         c = ok.aClass.getDeclaredConstructor(String.class);
         System.out.println("Создание переменной типа Vector на основе строки {1,2,4}");
         vector = c.newInstance("{1,2,4}");
@@ -149,13 +175,8 @@ public class Test_jd01_08 {
         System.out.flush();
         assertEquals("Не было получено ожидаемое значение {1.0, 2.0, 4.0}", vector.toString(), "{1.0, 2.0, 4.0}");
         System.out.println("выполнено успешно. Vector=" + vector);
-    }
 
-
-    @Test(timeout = 5000)
-    public void testTaskB1_add__Vector() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double[].class);
+        c = ok.aClass.getDeclaredConstructor(double[].class);
         Object v1 = c.newInstance(new double[]{1, 2, 3});
         Object v2 = c.newInstance(new double[]{4, 5, 6});
         Class<?> var = v2.getClass().getSuperclass();
@@ -171,18 +192,14 @@ public class Test_jd01_08 {
         v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + "со скаляром вернул null");
         assertEquals("Операция со скаляром {1,2,3} + 1.0 работает некорректно", "{2.0, 3.0, 4.0}", v3.toString());
-    }
 
-    @Test(timeout = 5000)
-    public void testTaskB2_sub__Vector() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double[].class);
-        Object v1 = c.newInstance(new double[]{1, 2, 3});
-        Object v2 = c.newInstance(new double[]{4, 5, 6});
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "sub";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+        c = ok.aClass.getDeclaredConstructor(double[].class);
+        v1 = c.newInstance(new double[]{1, 2, 3});
+        v2 = c.newInstance(new double[]{4, 5, 6});
+        var = v2.getClass().getSuperclass();
+        op = "sub";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
         assertEquals("Операция {1,2,3} - {4,5,6} работает некорректно", "{-3.0, -3.0, -3.0}", v3.toString());
 
@@ -192,18 +209,14 @@ public class Test_jd01_08 {
         v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + "со скаляром вернул null");
         assertEquals("Операция со скаляром {1,2,3} - 1.0 работает некорректно", "{0.0, 1.0, 2.0}", v3.toString());
-    }
-
-    @Test(timeout = 5000)
-    public void testTaskB3_mul__Vector() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double[].class);
-        Object v1 = c.newInstance(new double[]{1, 2, 3});
-        Object v2 = c.newInstance(new double[]{4, 5, 6});
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "mul";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+///
+        c = ok.aClass.getDeclaredConstructor(double[].class);
+        v1 = c.newInstance(new double[]{1, 2, 3});
+        v2 = c.newInstance(new double[]{4, 5, 6});
+        var = v2.getClass().getSuperclass();
+        op = "mul";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
         assertEquals("Скалярное произведение векторов {1,2,3} * {4,5,6} работает некорректно", "32.0", v3.toString());
 
@@ -214,38 +227,25 @@ public class Test_jd01_08 {
         if (v3 == null) fail(op + "со скаляром вернул null");
         assertEquals("Операция со скаляром {1,2,3} * 2.0 работает некорректно", "{2.0, 4.0, 6.0}", v3.toString());
 
-    }
-
-    @Test(timeout = 5000, expected = Exception.class)
-    public void testTaskB4_div__Vector() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(double[].class);
-        Object v1 = c.newInstance(new double[]{1, 2, 3});
-        Object v2 = c.newInstance(new double[]{4, 5, 6});
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "div";
-        Method m = findMethod(ok.aClass, op, var);
+        c = ok.aClass.getDeclaredConstructor(double[].class);
+        v1 = c.newInstance(new double[]{1, 2, 3});
+        v2 = c.newInstance(new double[]{4, 5, 6});
+        var = v2.getClass().getSuperclass();
+        op = "div";
+        m = findMethod(ok.aClass, op, var);
 
         ///проверка операции со скаляром
         c = findClass("Scalar").getDeclaredConstructor(double.class);
         Object v4 = c.newInstance(2.0);
-        Object v3 = invoke(m, v1, v4);
+        v3 = invoke(m, v1, v4);
         if (v3 == null) fail(op + "со скаляром вернул null");
         assertEquals("Операция со скаляром {1,2,3} / 2.0 работает некорректно", "{0.5, 1.0, 1.5}", v3.toString());
-
-
-        v3 = invoke(m, v1, v2);
-        if (v3 != null)
-            fail("Деление векторов должно возвращать null или генерировать какую-то ошибку");
-        else
-            throw new NullPointerException("Ок. Получен null при делении векторов");
     }
 
 
     @Test(timeout = 5000)
-    public void testTaskC0_constructors__Matrix() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
+    public void testTaskC0_previos_tasks__Matrix() throws Exception {
+        Test_jd01_09 ok = run("", false);
         Constructor c = ok.aClass.getDeclaredConstructor(double[][].class);
         System.out.println("Создание переменной типа Matrix на основе массива {{1,2},{3,4}}");
         Object matrix = c.newInstance(new Object[]{new double[][]{{1, 2}, {3, 4}}});
@@ -254,9 +254,6 @@ public class Test_jd01_08 {
         assertEquals("Не было получено ожидаемое значение {{1.0, 2.0}, {3.0, 4.0}}", matrix.toString().replaceAll(" ", ""), "{{1.0,2.0},{3.0,4.0}}");
         System.out.println("выполнено успешно. Matrix=" + matrix);
         ///-----------------------------------------------------------------------------------------------
-        ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
-
         c = ok.aClass.getDeclaredConstructor(double[][].class);
         matrix = c.newInstance(new Object[]{new double[][]{{1, 2}, {3, 4}}});
         c = ok.aClass.getDeclaredConstructor(ok.aClass);
@@ -267,8 +264,6 @@ public class Test_jd01_08 {
         assertEquals("Не было получено ожидаемое значение {{1.0, 2.0}, {3.0, 4.0}}", matrix.toString().replaceAll(" ", ""), "{{1.0,2.0},{3.0,4.0}}");
         System.out.println("выполнено успешно. Matrix=" + matrix);
         ///-----------------------------------------------------------------------------------------------
-        ok = run("", false);
-        assertEquals("У вас неверное наследование", "Var", ok.aClass.getSuperclass().getSimpleName());
         c = ok.aClass.getDeclaredConstructor(String.class);
         System.out.println("Создание переменной типа Matrix на основе строки {{1,2},{3,4}}");
         matrix = c.newInstance("{{1,2},{3,4}}");
@@ -276,12 +271,8 @@ public class Test_jd01_08 {
         System.out.flush();
         assertEquals("Не было получено ожидаемое значение {{1.0, 2.0}, {3.0, 4.0}}", matrix.toString().replaceAll(" ", ""), "{{1.0,2.0},{3.0,4.0}}");
         System.out.println("выполнено успешно. Matrix=" + matrix);
-    }
 
-    @Test(timeout = 5000)
-    public void testTaskС1_add__Matrix() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(String.class);
+        c = ok.aClass.getDeclaredConstructor(String.class);
         Object v1 = c.newInstance("{{1, 2}, {3, 4}}");
         Object v2 = c.newInstance("{{4, 5}, {7, 8}}");
         Class<?> var = v2.getClass().getSuperclass();
@@ -297,18 +288,14 @@ public class Test_jd01_08 {
         v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + "со скаляром вернул null");
         assertEquals("Операция со скаляром {{1, 2}, {3, 4}} + 1.0 работает некорректно", "{{2.0, 3.0}, {4.0, 5.0}}", v3.toString());
-    }
 
-    @Test(timeout = 5000)
-    public void testTaskС2_sub__Matrix() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(String.class);
-        Object v1 = c.newInstance("{{1, 2}, {3, 4}}");
-        Object v2 = c.newInstance("{{4, 5}, {7, 8}}");
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "sub";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+        c = ok.aClass.getDeclaredConstructor(String.class);
+        v1 = c.newInstance("{{1, 2}, {3, 4}}");
+        v2 = c.newInstance("{{4, 5}, {7, 8}}");
+        var = v2.getClass().getSuperclass();
+        op = "sub";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
         assertEquals("Операция {{1, 2}, {3, 4}} - {{4, 5}, {7, 8}} работает некорректно",
                 "{{-3.0, -3.0}, {-4.0, -4.0}}", v3.toString());
@@ -320,18 +307,14 @@ public class Test_jd01_08 {
         if (v3 == null) fail(op + "со скаляром вернул null");
         assertEquals("Операция со скаляром {{1, 2}, {3, 4}} - 1.0 работает некорректно",
                 "{{0.0, 1.0}, {2.0, 3.0}}", v3.toString());
-    }
 
-    @Test(timeout = 5000)
-    public void testTaskС3_mul__Matrix() throws Exception {
-        Test_jd01_08 ok = run("", false);
-        Constructor c = ok.aClass.getDeclaredConstructor(String.class);
-        Object v1 = c.newInstance("{{1, 2}, {3, 4}}");
-        Object v2 = c.newInstance("{{4, 5}, {7, 8}}");
-        Class<?> var = v2.getClass().getSuperclass();
-        String op = "mul";
-        Method m = findMethod(ok.aClass, op, var);
-        Object v3 = invoke(m, v1, v2);
+        c = ok.aClass.getDeclaredConstructor(String.class);
+        v1 = c.newInstance("{{1, 2}, {3, 4}}");
+        v2 = c.newInstance("{{4, 5}, {7, 8}}");
+        var = v2.getClass().getSuperclass();
+        op = "mul";
+        m = findMethod(ok.aClass, op, var);
+        v3 = invoke(m, v1, v2);
         if (v3 == null) fail(op + " вернул null");
         assertEquals("Операция {{1, 2}, {3, 4}} * {{4, 5}, {7, 8}} работает некорректно",
                 "{{18.0, 21.0}, {40.0, 47.0}}", v3.toString());
@@ -352,6 +335,7 @@ public class Test_jd01_08 {
         assertEquals("Операция со скаляром {{1, 2}, {3, 4}} * 2.0 работает некорректно",
                 "{{2.0, 4.0}, {6.0, 8.0}}", v3.toString());
     }
+
     /*
 ===========================================================================================================
 НИЖЕ ВСПОМОГАТЕЛЬНЫЙ КОД ТЕСТОВ. НЕ МЕНЯЙТЕ В ЭТОМ ФАЙЛЕ НИЧЕГО.
@@ -417,11 +401,11 @@ public class Test_jd01_08 {
 
     //метод находит и создает класс для тестирования
     //по имени вызывающего его метода, testTaskA1 будет работать с TaskA1
-    private static Test_jd01_08 run(String in) {
+    private static Test_jd01_09 run(String in) {
         return run(in, true);
     }
 
-    private static Test_jd01_08 run(String in, boolean runMain) {
+    private static Test_jd01_09 run(String in, boolean runMain) {
         Throwable t = new Throwable();
         StackTraceElement trace[] = t.getStackTrace();
         StackTraceElement element;
@@ -440,11 +424,11 @@ public class Test_jd01_08 {
         System.out.println("Старт теста для " + clName);
         if (!in.isEmpty()) System.out.println("input:" + in);
         System.out.println("---------------------------------------------");
-        return new Test_jd01_08(clName, in, runMain);
+        return new Test_jd01_09(clName, in, runMain);
     }
 
     //-------------------------------  тест ----------------------------------------------------------
-    public Test_jd01_08() {
+    public Test_jd01_09() {
         //Конструктор тестов
     }
 
@@ -456,7 +440,7 @@ public class Test_jd01_08 {
     private StringWriter strOut = new StringWriter(); //накопитель строки вывода
 
     //Основной конструктор тестов
-    private Test_jd01_08(String className, String in, boolean runMain) {
+    private Test_jd01_09(String className, String in, boolean runMain) {
         //this.className = className;
         aClass = null;
         try {
@@ -483,18 +467,18 @@ public class Test_jd01_08 {
 
 
     //проверка вывода
-    private Test_jd01_08 is(String str) {
+    private Test_jd01_09 is(String str) {
         assertTrue("ERROR:Ожидается такой вывод:\n<---начало---->\n" + str + "<---конец--->",
                 strOut.toString().equals(str));
         return this;
     }
 
-    private Test_jd01_08 include(String str) {
+    private Test_jd01_09 include(String str) {
         assertTrue("ERROR:Строка не найдена: " + str + "\n", strOut.toString().contains(str));
         return this;
     }
 
-    private Test_jd01_08 exclude(String str) {
+    private Test_jd01_09 exclude(String str) {
         assertTrue("ERROR:Лишние данные в выводе: " + str + "\n", !strOut.toString().contains(str));
         return this;
     }
