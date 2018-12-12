@@ -1,5 +1,7 @@
 package by.it.kruglenja.jd01_13;
 
+import javafx.concurrent.Task;
+
 import java.text.ParseException;
 import java.util.HashMap;
 
@@ -8,20 +10,27 @@ import java.util.HashMap;
  */
 public class TaskA {
     public static void main(String[] args) {
-        if (Math.random() > 0.5) {
-            try {
+        try {
+            if (Math.random() > 0.5) {
                 new HashMap<String, String>(null);
-            } catch (NullPointerException e) {
-                e.printStackTrace();
+            } else {
+                Integer.parseInt("привет");
             }
-//            } else {
-//                try {
-//                    Integer.parseInt("привет");
-//                } catch (ParseException e) {
-//                    e.printStackTrace();
-//                }
-//
+        }catch (NullPointerException | NumberFormatException e){
+            StackTraceElement[] stckTrElem = e.getStackTrace();
+            for (StackTraceElement element : stckTrElem) {
+                if (TaskA.class.getName().equals(element.getClassName())){
+                    System.out.println(element);
+                    String name = e.getClass().getName();
+                    String clname = element.getClassName();
+                    int num = element.getLineNumber();
+                    System.out.printf(
+                            " name: %s \n" +
+                            "class: %s \n" +
+                            " line: %d ", name, clname, num);
+                    break;
+                }
+            }
         }
-
     }
 }
