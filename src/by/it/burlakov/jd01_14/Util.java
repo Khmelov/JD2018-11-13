@@ -6,23 +6,29 @@ import java.io.File;
  * Created by user on 13.12.2018.
  */
 public class Util {
-    static String getPath(Class<?> cl){
+        private Util() {
+    }
+    static String getPath(Class<?> cl, boolean isShort){
+        String result = "";
         String simName = cl.getSimpleName();
         String path =  cl.getName().replace(simName,"");
         path = path.replace(".", File.separator);
         String root = System.getProperty("user.dir");
-        String result = root + File.separator + "scr" + File.separator + path;
+        if(isShort){
+            result = root + File.separator + "src";
+        } else {
+            result = root + File.separator + "src" + File.separator + path;
+        }
+
         return result;
     }
 
-    static String getPath(){
-        return getPath(Util.class);
-    }
-    static String getPath(String string){
-        return getPath(Util.class) + string;
+    static String getPath(boolean isShort){
+        return getPath(Util.class, isShort);
     }
 
-    public static void main(String[] args) {
-        System.out.println(getPath("sfsdf"));
+    static String getPath(String string, boolean isShort){
+        return getPath(isShort) + string;
     }
+
 }
