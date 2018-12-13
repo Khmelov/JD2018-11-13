@@ -60,7 +60,7 @@ public class TaskC {
     }
 
     static double[] getResultArray(double[] arr) {
-        List<Double> arrayList = new ArrayList<Double>();
+        List<Double> arrayList = new ArrayList<>();
         for (int i = 0; i < arr.length; i++) {
             if (arr[i] >= 3.5) {
                 arrayList.add(arr[i]);
