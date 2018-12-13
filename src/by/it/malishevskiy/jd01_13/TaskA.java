@@ -1,5 +1,7 @@
 package by.it.malishevskiy.jd01_13;
 
+import java.util.HashMap;
+
 public class TaskA {
         public static void main(String[] args) {
             try {
