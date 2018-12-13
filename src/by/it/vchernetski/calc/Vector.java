@@ -12,7 +12,6 @@ class Vector extends Var {
     }
     Vector(Vector otherVector){
         this.value = new double[otherVector.value.length];
-
         System.arraycopy(otherVector.value,0,this.value,0,otherVector.value.length);
     }
 
@@ -33,7 +32,7 @@ class Vector extends Var {
         return value;
     }
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
 //        if (other instanceof Vector && this.value.length == ((Vector) other).value.length) {
 //            Vector res = new Vector(Arrays.copyOf(this.value, this.value.length));
 //            Vector operand = (Vector) other;
@@ -55,7 +54,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException{
 //        if (other instanceof Vector && this.value.length == ((Vector) other).value.length) {
 //            Vector res = new Vector(Arrays.copyOf(this.value, this.value.length));
 //            Vector operand = (Vector) other;
@@ -76,7 +75,7 @@ class Vector extends Var {
         return other.subDisp(this);
     }
     @Override
-    public Var mul(Var other){
+    public Var mul(Var other)throws CalcException{
 //        if(other instanceof Vector && this.value.length == ((Vector) other).value.length){
 //            Vector v = new Vector(Arrays.copyOf(this.value,this.value.length));
 //            double result = 0;
@@ -96,7 +95,7 @@ class Vector extends Var {
         return other.mulDisp(this);
     }
     @Override
-    public Var div (Var other){
+    public Var div (Var other)throws CalcException{
 //        if (other instanceof Scalar){
 //            Vector res = new Vector(Arrays.copyOf(this.value,this.value.length));
 //            for (int i = 0; i < res.value.length; i++) {
@@ -118,27 +117,27 @@ class Vector extends Var {
     }
 
     @Override
-    public Var addDisp(Var other) {
+    public Var addDisp(Var other)throws CalcException {
         return other.add(this);
     }
 
     @Override
-    public Var subDisp(Var other) {
+    public Var subDisp(Var other)throws CalcException {
         return other.sub(this);
     }
 
     @Override
-    public Var divDisp(Var other) {
+    public Var divDisp(Var other)throws CalcException {
         return other.div(this);
     }
 
     @Override
-    public Var mulDisp(Var other) {
+    public Var mulDisp(Var other)throws CalcException {
         return other.mul(this);
     }
 
     @Override
-    public Var add(Scalar other) {
+    public Var add(Scalar other) throws CalcException{
         Vector res = new Vector(Arrays.copyOf(this.value,this.value.length));
         for (int i = 0; i < res.value.length; i++) {
             res.value[i] = res.value[i] + other.getValue();
@@ -147,7 +146,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var sub(Scalar other) {
+    public Var sub(Scalar other) throws CalcException{
         Vector res = new Vector(Arrays.copyOf(this.value,this.value.length));
         for (int i = 0; i < res.value.length; i++) {
             res.value[i] = res.value[i] - other.getValue();
@@ -156,7 +155,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var mul(Scalar other) {
+    public Var mul(Scalar other) throws CalcException{
             Vector res = new Vector(Arrays.copyOf(this.value,this.value.length));
             for (int i = 0; i < res.value.length; i++) {
                 res.value[i] = res.value[i]*other.getValue();
@@ -165,7 +164,8 @@ class Vector extends Var {
     }
 
     @Override
-    public Var div(Scalar other) {
+    public Var div(Scalar other) throws CalcException{
+        if(other.getValue()==0) throw new CalcException("Деление на ноль");
             Vector res = new Vector(Arrays.copyOf(this.value,this.value.length));
             for (int i = 0; i < res.value.length; i++) {
                 res.value[i] = res.value[i]/other.getValue();
@@ -174,27 +174,28 @@ class Vector extends Var {
     }
 
     @Override
-    public Var add(Matrix other) {
+    public Var add(Matrix other)throws CalcException {
         return super.add((Var) other);
     }
 
     @Override
-    public Var sub(Matrix other) {
+    public Var sub(Matrix other)throws CalcException {
         return super.sub((Var) other);
     }
 
     @Override
-    public Var mul(Matrix other) {
+    public Var mul(Matrix other)throws CalcException {
         return super.mul((Var) other);
     }
 
     @Override
-    public Var div(Matrix other) {
+    public Var div(Matrix other)throws CalcException {
         return super.div((Var) other);
     }
 
     @Override
-    public Var add(Vector other) {
+    public Var add(Vector other) throws CalcException{
+        if(this.value.length!=other.value.length) throw new CalcException("Векторы не совпадают по длине");
         Vector res = new Vector(Arrays.copyOf(this.value, this.value.length));
         for (int i = 0; i < res.value.length; i++) {
             res.value[i] = res.value[i] + other.value[i];
@@ -203,7 +204,8 @@ class Vector extends Var {
     }
 
     @Override
-    public Var sub(Vector other) {
+    public Var sub(Vector other) throws CalcException{
+        if(this.value.length!=other.value.length) throw new CalcException("Векторы не совпадают по длине");
         Vector res = new Vector(Arrays.copyOf(this.value, this.value.length));
         for (int i = 0; i < res.value.length; i++) {
             res.value[i] = res.value[i] - other.value[i];
@@ -212,7 +214,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var mul(Vector other) {
+    public Var mul(Vector other)throws CalcException {
         Vector v = new Vector(Arrays.copyOf(this.value,this.value.length));
         double result = 0;
         for (int i = 0; i < this.value.length; i++) {
@@ -222,7 +224,7 @@ class Vector extends Var {
     }
 
     @Override
-    public Var div(Vector other) {
+    public Var div(Vector other)throws CalcException {
         return super.div((Var)this);
     }
 }

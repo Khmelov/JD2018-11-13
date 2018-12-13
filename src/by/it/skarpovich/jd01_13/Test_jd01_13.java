@@ -1,5 +1,4 @@
-package by.it._tasks_.jd01_13;
-
+package by.it.skarpovich.jd01_13;
 
 import org.junit.Test;
 
@@ -13,52 +12,63 @@ import static org.junit.Assert.fail;
 @SuppressWarnings("all")
 
 //поставьте курсор на следующую строку и нажмите Ctrl+Shift+F10
-public class Test_jd01_13_copy_this_to_calc_package {
+public class Test_jd01_13 {
 
     @Test(timeout = 1500)
-    public void testTaskA__ConsoleRunner() throws Exception {
-        run(            "3.8+26.2\n" +
-                "end\n")
-                .include("30.0")    //3.8+26.2=30.0
-                .exclude("ERROR:")     //9-0.9=8.1 
-        ;
-        run("3.8/0\n" +
-                "end\n")
-                .include("ERROR:");
-        run("5*incorrect_string\n" +
-                "end\n")
-                .include("ERROR:");
-
+    public void testTaskA() throws Exception {
+        StringBuilder sb = new StringBuilder("\n--- all starts ---\n");
+        for (int i = 0; i < 15; i++) {
+            sb.append("run ").append(i).append(": ")
+                    .append(run("")
+                            .include("java.lang.")
+                            .include("Exception")
+                            .include("line:")
+                            .include(".TaskA")
+                            .stringWriter.toString());
+        }
+        assertTrue("В выводе нет NumberFormatException", sb.toString().contains("NumberFormatException"));
+        assertTrue("В выводе нет NullPointerException", sb.toString().contains("NullPointerException"));
+        System.out.println(sb);
     }
 
     @Test(timeout = 1500)
-    public void testTaskB__ConsoleRunner() throws Exception {
-        run("{2,3,4}*2\n" +
-                "end\n")
-                .include("{4.0, 6.0, 8.0}")    //{2,3,4}*2
-                .exclude("ERROR:")
+    public void testTaskB() throws Exception {
+        run("2\n3\n4\n55\nEND\n")
+                .include("1.41")
+                .include("2.23")
+                .include("8.0")
+                .exclude("Exception")
         ;
-        run("{2,3}+{1,2,3}\n" +
-                "end\n")
-                .include("ERROR:");
-        run("{2,3}-{1,2,3}\n" +
-                "end\n")
-                .include("ERROR:");
-        run("2/{1,2,3}\n" +
-                "end\n")
-                .include("ERROR:");
-    }
-
-    @Test(timeout = 1500)
-    public void testTaskC__ConsoleRunner() throws Exception {
-        run("{{1,2},{8,3}}-{{2,3,3},{2,3,3}}\n" +
-                "{{1,2},{8,3}}*{{1,2},{8,3}}\n" +
-                "end\n")
-                .include("ERROR:")
-                .include("{{17.0, 8.0}, {32.0, 25.0}}") //{{1,2},{8,3}} * {{1,2},{8,3}}
+        run("foo\nEND\n")
+                .include("NumberFormatException")
+                .exclude("ArithmeticException")
+                .include("line:")
+                .include(".jd01_13.TaskB")
+        ;
+        run("-2.0\n6.0\nEND\n")
+                .include("ArithmeticException")
+                .include("line:")
+                .include(".jd01_13.TaskB")
+                .exclude("NumberFormatException")
         ;
     }
 
+
+    @Test(timeout = 6000, expected = Exception.class)
+    public void testTaskC() throws Exception {
+
+        long t = System.currentTimeMillis();
+        Test_jd01_13 instance = run("1\n2\nerr1\n3\n4\nerr2\nerr3\nerr4\nerr5\n5.0\nerr6");
+        instance.include("4.0 3.0 2.0 1.0").exclude("5.0");
+        t = System.currentTimeMillis()-t;
+        System.out.println(t);
+        assertTrue("Таймаут работает неверно. Ошибка диапазона (400 ms <= your t:"+t+" <= 2000 ms)", (t > 400 && t < 2000));
+        Method method=instance.findMethod(instance.aClass,"readData");
+        method.setAccessible(true);
+        method.invoke(null); //читаем 5.0 - ок
+        method.invoke(null); //читаем err6 - тут ждем любую ошибку
+        fail("метод readData не генерирует никаких исключений после 5 ошибок");
+    }
 
 
     /*
@@ -125,11 +135,11 @@ public class Test_jd01_13_copy_this_to_calc_package {
 
     //метод находит и создает класс для тестирования
     //по имени вызывающего его метода, testTaskA1 будет работать с TaskA1
-    private static Test_jd01_13_copy_this_to_calc_package run(String in) {
+    private static Test_jd01_13 run(String in) {
         return run(in, true);
     }
 
-    private static Test_jd01_13_copy_this_to_calc_package run(String in, boolean runMain) {
+    private static Test_jd01_13 run(String in, boolean runMain) {
         Throwable t = new Throwable();
         StackTraceElement trace[] = t.getStackTrace();
         StackTraceElement element;
@@ -147,10 +157,10 @@ public class Test_jd01_13_copy_this_to_calc_package {
         System.out.println("\n---------------------------------------------");
         System.out.println("Старт теста для " + clName + "\ninput:" + in);
         System.out.println("---------------------------------------------");
-        return new Test_jd01_13_copy_this_to_calc_package(clName, in, runMain);
+        return new Test_jd01_13(clName, in, runMain);
     }
 
-    public Test_jd01_13_copy_this_to_calc_package() {
+    public Test_jd01_13() {
         //Конструктор тестов
     }
 
@@ -162,7 +172,7 @@ public class Test_jd01_13_copy_this_to_calc_package {
     Class<?> aClass;
 
     //Основной конструктор тестов
-    private Test_jd01_13_copy_this_to_calc_package(String className, String in, boolean runMain) {
+    private Test_jd01_13(String className, String in, boolean runMain) {
         //this.className = className;
         aClass = null;
         try {
@@ -195,18 +205,18 @@ public class Test_jd01_13_copy_this_to_calc_package {
     }
 
     //проверка вывода
-    private Test_jd01_13_copy_this_to_calc_package is(String str) {
+    private Test_jd01_13 is(String str) {
         assertTrue("Ожидается такой вывод:\n<---начало---->\n" + str + "<---конец--->",
                 stringWriter.toString().equals(str));
         return this;
     }
 
-    private Test_jd01_13_copy_this_to_calc_package include(String str) {
+    private Test_jd01_13 include(String str) {
         assertTrue("Строка не найдена: " + str + "\n", stringWriter.toString().contains(str));
         return this;
     }
 
-    private Test_jd01_13_copy_this_to_calc_package exclude(String str) {
+    private Test_jd01_13 exclude(String str) {
         assertTrue("Лишние данные в выводе: " + str + "\n", !stringWriter.toString().contains(str));
         return this;
     }

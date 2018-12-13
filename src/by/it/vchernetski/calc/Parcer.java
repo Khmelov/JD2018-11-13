@@ -4,7 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parcer {
-    public static Var calc(String expression){
+    public static Var calc(String expression) throws CalcException{
         if(expression.contains("sortvar")){
             Var.sortvar();
             return null;
@@ -14,6 +14,7 @@ public class Parcer {
             return null;
         }
         String[] operands = expression.split(Patterns.OPERATION);
+        if(operands.length<2) throw new CalcException("invalid Data");
         Var op2 = Var.createVar(operands[1]);
         if(expression.contains("=")){
             return Var.saveVar(operands[0],op2);
