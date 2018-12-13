@@ -16,7 +16,7 @@ public class TaskA {
                 String className = element.getClassName();
                 if (className.equals(myClass)) {
                     int lineNumber = element.getLineNumber();
-                    System.out.printf(" name: %s\nclass: %s\n line: %d\n",nameException,className,lineNumber);
+                    System.out.printf(" name: %s\nclass: %s\nline: %d\n",nameException,className,lineNumber);
                     break;
                 }
             }
