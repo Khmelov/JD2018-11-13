@@ -12,7 +12,7 @@ public class TaskC {
     private static ArrayList<String> dir = new ArrayList<>();
     private static ArrayList<String> files = new ArrayList<>();
     private static String finalpath;
-    private static void getfullpath(String path){
+    private static void getfullpath(String path){ //поиск папки
         File file = new File(path);
         File[] files = file.listFiles();
         for (File f : files) {
