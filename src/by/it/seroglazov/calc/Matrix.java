@@ -129,18 +129,18 @@ public class Matrix extends Var {
 
     // Matrix + Vector = null
     @Override
-    public Var add(Vector other) {
+    public Var add(Vector other) throws CalcExeption {
         return super.add((Var)other);
     }
 
     // Matrix - Vector = null
     @Override
-    public Var sub(Vector other) {
+    public Var sub(Vector other) throws CalcExeption {
         return super.sub((Var)other);
     }
 
     // Matrix +- Matrix = Matrix or null (true - add; false - subtract)
-    private Var addOrSub(Matrix other, boolean operation) {
+    private Var addOrSub(Matrix other, boolean operation) throws CalcExeption {
         int op = operation ? 1 : -1;
         double[][] nm = new double[value.length][];
         if (other.value.length != value.length) {
@@ -160,13 +160,13 @@ public class Matrix extends Var {
 
     // Matrix + Matrix = Matrix or null
     @Override
-    public Var add(Matrix other) {
+    public Var add(Matrix other) throws CalcExeption {
         return addOrSub(other, true);
     }
 
     // Matrix - Matrix = Matrix or null
     @Override
-    public Var sub(Matrix other) {
+    public Var sub(Matrix other) throws CalcExeption {
         return addOrSub(other, false);
     }
 
@@ -197,7 +197,7 @@ public class Matrix extends Var {
 
     // Matrix * Vector = Vector or null
     @Override
-    public Var mul(Vector other) {
+    public Var mul(Vector other) throws CalcExeption {
         int vLen = other.getValue().length; // "other" length
         int nvLen = value.length; // new vector length
         double[] otherVec = other.getValue();
@@ -214,13 +214,13 @@ public class Matrix extends Var {
 
     // Matrix / Vector = null
     @Override
-    public Var div(Vector other) {
+    public Var div(Vector other) throws CalcExeption {
         return super.div((Var)other);
     }
 
     // Matrix * Matrix = Matrix or null
     @Override
-    public Var mul(Matrix other) {
+    public Var mul(Matrix other) throws CalcExeption {
         int rows1 = value.length;
         if (rows1 == 0) return super.mul((Var)other);
         int cols1 = value[0].length;
@@ -241,47 +241,47 @@ public class Matrix extends Var {
 
     // Matrix / Matrix = null
     @Override
-    public Var div(Matrix other) {
+    public Var div(Matrix other) throws CalcExeption {
         return super.div((Var)other);
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcExeption {
         return other.addDispatch(this);
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcExeption {
         return other.subDispatch(this);
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcExeption {
         return other.mulDispatch(this);
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcExeption {
         return other.divDispatch(this);
     }
 
     @Override
-    public Var addDispatch(Var other) {
+    public Var addDispatch(Var other) throws CalcExeption {
         return other.add(this);
     }
 
     @Override
-    public Var subDispatch(Var other) {
+    public Var subDispatch(Var other) throws CalcExeption {
         return other.sub(this);
     }
 
     @Override
-    public Var mulDispatch(Var other) {
+    public Var mulDispatch(Var other) throws CalcExeption {
         return other.mul(this);
     }
 
     @Override
-    public Var divDispatch(Var other) {
+    public Var divDispatch(Var other) throws CalcExeption {
         return other.div(this);
     }
 }
