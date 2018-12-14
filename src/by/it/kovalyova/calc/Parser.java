@@ -10,7 +10,7 @@ public class Parser {
         vars.put(name, var);
         return var.toString();
     }
-    String calc(String expression) {
+    String calc(String expression) throws NullPointerException {
         Pattern pprint = Pattern.compile("printvar (.*)$");
         Matcher m = pprint.matcher(expression);
         if (m.matches()){
@@ -19,26 +19,37 @@ public class Parser {
         }
         expression=expression.trim().replaceAll("\\s+","");
         String[] operands = expression.split(Patterns.OPERATION);
-        if (expression.contains("=")){
-     //       Var two = Var.createVar(operands[1]);
-    //       return this.saveVar(operands[0],two);
-        }
-
-  //      Var one = Var.createVar(operands[0]);
-   //     Var two = Var.createVar(operands[1]);
-  //      if (one == null || two == null)
-            return ""; //TODO create error
-   //     Pattern p=Pattern.compile(Patterns.OPERATION);
-   //     m=p.matcher(expression);
-  //      if (m.find()){
-   //         String operation=m.group();
-   //         switch (operation){
-   //             case "+": return one.add(two).toString();
-   //             case "-": return one.sub(two).toString();
-    //            case "*": return one.mul(two).toString();
-  //              case "/": return one.div(two).toString();
+        try {
+            if (expression.contains("=")) {
+                Var two = Var.createVar(operands[1]);
+                return this.saveVar(operands[0], two);
             }
+
+            Var one = Var.createVar(operands[0]);
+            Var two = Var.createVar(operands[1]);
+            if (one == null || two == null) {
+                throw new NullPointerException();
+                //return ""; //TODO create error
+            }
+            Pattern p = Pattern.compile(Patterns.OPERATION);
+            m = p.matcher(expression);
+            if (m.find()) {
+                String operation = m.group();
+                switch (operation) {
+                    case "+":
+                        return one.add(two).toString();
+                    case "-":
+                        return one.sub(two).toString();
+                    case "*":
+                        return one.mul(two).toString();
+                    case "/":
+                        return one.div(two).toString();
+                }
+            }
+        } catch (CalcException e) {
+            System.out.println(e.getMessage());
         }
-//        return null;
- //   }
-//}
+        return null;
+
+    }
+}
