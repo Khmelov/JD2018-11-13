@@ -1,7 +1,6 @@
 package by.it.seroglazov.jd01_14;
 
 import java.io.*;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class TaskA {
@@ -68,7 +67,7 @@ public class TaskA {
         }
     }
 
-    private static File getTargetFile(String name) {
+    static File getTargetFile(String name) {
         File projDir = new File("");
         String path = projDir.getAbsolutePath();
         String pack = TaskA.class.getName();
