@@ -8,8 +8,12 @@ public class TaskB {
     private static StringBuilder sb = new StringBuilder(1000);
     public static void main(String[] args) throws IOException {
         calc();
+        write();
+    }
+
+    private static void write() throws IOException {
         try (FileWriter wrtr = new FileWriter(Util.getPath("resultTaskB.txt"));
-        BufferedWriter bwrtr = new BufferedWriter(wrtr)){
+             BufferedWriter bwrtr = new BufferedWriter(wrtr)){
             Pattern pattern = Pattern.compile("[А-Яа-яёЁ]+");
             Matcher matcher = pattern.matcher(sb);
             int words = 0;
