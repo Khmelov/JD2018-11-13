@@ -19,11 +19,11 @@ public class TaskA {
     public static void main(String[] args) throws IOException {
         String filename = Util.getPath("dataTaskA.bin");
         List<Integer> list = new ArrayList<>();
-        //write integers
+        // write integers
         writeIntegers(filename);
-        //read integers
+        // read integers
         readIntegers(filename, list);
-        //calc
+        // calc
         calcIntegers(list);
     }
 
