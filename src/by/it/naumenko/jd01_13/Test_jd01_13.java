@@ -36,8 +36,8 @@ public class Test_jd01_13 {
     public void testTaskB() throws Exception {
         run("2\n3\n4\n55\nEND\n")
                 .include("1.41")
-                .include("1.73")
-                .include("7.41")
+                .include("2.23")
+                .include("8.0")
                 .exclude("Exception")
         ;
         run("foo\nEND\n")
