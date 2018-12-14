@@ -264,7 +264,7 @@ public class Test_jd01_14 {
                     String s = new String(bytes); //соберем весь символ
                     strOut.append(s); //запомним вывод для теста
                     oldOut.append(s); //копию в обычный вывод
-                    pos = 0; //готовим новый символ
+                     pos = 0; //готовим новый символ
                 }
             }
         });
