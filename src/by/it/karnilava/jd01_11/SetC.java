@@ -39,22 +39,40 @@ public class SetC<T> implements Set<T> {
 
     @Override
     public boolean add(T t) {
-        if (size == elements.length) {
-            elements = Arrays.copyOf(elements, (size * 3 / 2 + 1));
+        if (elements.length > 0) {
+            if (size == elements.length)
+                elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
 
-            for (int i = 0; i <size; i++) {
-                if (elements[i].equals(t))
+            for (int i = 0; i < size; i++) {
+                if (elements[i].equals(t)) {
                     return false;
-                else elements[size++] = t;
-
+                } else elements[size++] = t;
             }
+
+
+        } else {
+            elements = Arrays.copyOf(elements, (size * 3 / 2 + 1));
+            elements[size++] = t;
         }
+
 
         return false;
     }
 
     @Override
     public boolean remove(Object o) {
+      if (size>0) {
+          int index;
+          for (int i = 0; i < size; i++) {
+              if (elements[i].equals(o)) {
+                  index = i;
+                  System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
+                  size--;
+              }
+
+          }
+      }
+
         return false;
     }
 
