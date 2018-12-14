@@ -20,7 +20,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other){
+    public Var add(Var other) throws CalcException {
 //        if (other instanceof Scalar){
 //            Scalar operand2 = (Scalar) other;
 //            double result = this.value + operand2.value;
@@ -30,7 +30,7 @@ class Scalar extends Var {
         return other.addDisp(this);
     }
     @Override
-    public Var mul(Var other){
+    public Var mul(Var other) throws CalcException {
 //        if (other instanceof Scalar){
 //            Scalar operand2 = (Scalar) other;
 //            double result = this.value * operand2.value;
@@ -40,7 +40,7 @@ class Scalar extends Var {
         return other.mulDisp(this);
     }
     @Override
-    public Var sub(Var other){
+    public Var sub(Var other) throws CalcException {
 //        if (other instanceof Scalar){
 //            Scalar operand2 = (Scalar) other;
 //            double result = this.value - operand2.value;
@@ -50,7 +50,7 @@ class Scalar extends Var {
         return other.subDisp(this);
     }
     @Override
-    public Var div(Var other){
+    public Var div(Var other) throws CalcException {
 //        if (other instanceof Scalar){
 //            Scalar operand2 = (Scalar) other;
 //            double result = this.value / operand2.value;
@@ -60,78 +60,79 @@ class Scalar extends Var {
         return other.divDisp(this);
     }
     @Override
-    public Var addDisp (Var other){
+    public Var addDisp (Var other) throws CalcException {
         return other.add(this);
     }
 
     @Override
-    public Var subDisp(Var other) {
+    public Var subDisp(Var other) throws CalcException {
         return other.sub(this);
     }
 
     @Override
-    public Var divDisp(Var other) {
+    public Var divDisp(Var other) throws CalcException {
         return other.div(this);
     }
 
     @Override
-    public Var mulDisp(Var other) {
+    public Var mulDisp(Var other) throws CalcException {
         return other.mul(this);
     }
     @Override
-    public Var add (Scalar other){
+    public Var add (Scalar other)throws CalcException{
         return new Scalar(this.value+other.value);
     }
     @Override
-    public Var sub (Scalar other){
+    public Var sub (Scalar other)throws CalcException{
         return new Scalar(this.value-other.value);
     }
     @Override
-    public Var mul (Scalar other){
+    public Var mul (Scalar other)throws CalcException{
         return new Scalar(this.value*other.value);
     }
     @Override
-    public Var div (Scalar other){
+    public Var div (Scalar other)throws CalcException{
+        if (other.value==0) throw new CalcException("Деление на ноль");
         return new Scalar(this.value/other.value);
     }
 
     @Override
-    public Var add(Matrix other) {
+    public Var add(Matrix other)throws CalcException {
        return other.add((Var) this);
     }
 
     @Override
-    public Var sub(Matrix other) {
+    public Var sub(Matrix other) throws CalcException{
         return other.sub((Var) this);
     }
 
     @Override
-    public Var mul(Matrix other) {
+    public Var mul(Matrix other) throws CalcException{
         return other.mul((Var) this);
     }
 
     @Override
-    public Var div(Matrix other) {
+    public Var div(Matrix other) throws CalcException{
         return super.div((Var) this);
     }
 
     @Override
-    public Var add(Vector other) {
+    public Var add(Vector other) throws CalcException{
         return other.add((Var) this);
     }
 
     @Override
-    public Var sub(Vector other) {
+    public Var sub(Vector other) throws CalcException{
         return other.sub((Var) this);
     }
 
     @Override
-    public Var mul(Vector other) {
+    public Var mul(Vector other) throws CalcException{
         return other.mul((Var) this);
     }
 
     @Override
-    public Var div(Vector other) {
+    public Var div(Vector other) throws CalcException{
         return super.div((Var) other);
     }
 }
