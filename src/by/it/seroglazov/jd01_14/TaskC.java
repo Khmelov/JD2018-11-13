@@ -10,7 +10,7 @@ public class TaskC {
     public static void main(String[] args) {
         File projDir = new File("");
         String path = projDir.getAbsolutePath();
-        String pack = TaskA.class.getName();
+        String pack = TaskC.class.getName();
         pack = pack.replaceAll("\\.", "/");
         String classPath = path + "/src/" + pack;
         File mydir = new File(classPath).getParentFile().getParentFile();
