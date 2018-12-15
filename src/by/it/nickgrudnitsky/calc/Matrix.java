@@ -11,7 +11,7 @@ public class Matrix extends Var {
     Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
-            this.value[i] = Arrays.copyOf(value[i], value.length);
+            this.value[i] = Arrays.copyOf(value[i], value[0].length);
         }
     }
 
@@ -34,6 +34,7 @@ public class Matrix extends Var {
             }
         }
         matcher1.reset();
+        columnsCount = columnsCount/rowsCount;
         this.value = new double[rowsCount][columnsCount];
 
         while (matcher1.find()) {
@@ -57,7 +58,7 @@ public class Matrix extends Var {
         if (other instanceof Scalar) {
             double[][] rezult = new double[value.length][value[0].length];
             for (int i = 0; i < value.length; i++) {
-                rezult[i] = Arrays.copyOf(value[i], value.length);
+                rezult[i] = Arrays.copyOf(value[i], value[0].length);
             }
             for (int i = 0; i < value.length; i++) {
                 for (int i1 = 0; i1 < value[0].length; i1++) {

@@ -45,7 +45,7 @@ public class Vector extends Var {
         } else {
             if (other instanceof Vector) {
                 if (((Vector) other).value.length != this.value.length) {
-                    throw new CalcException("Сложение невозможно");
+                    return super.add(other);
                 }
                 double[] rezult = Arrays.copyOf(value, value.length);
                 for (int i = 0; i < this.value.length; i++) {
@@ -104,6 +104,9 @@ public class Vector extends Var {
     @Override
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
+            if (((Scalar) other).getValue() == 0) {
+                throw new CalcException("Деление на 0 невозможно");
+            }
             double[] rezult = Arrays.copyOf(value, value.length);
             for (int i = 0; i < rezult.length; i++) {
                 rezult[i] = rezult[i] / ((Scalar) other).getValue();

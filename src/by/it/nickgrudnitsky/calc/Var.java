@@ -1,5 +1,6 @@
 package by.it.nickgrudnitsky.calc;
 
+import java.io.*;
 import java.util.*;
 
 abstract class Var implements Operation {
@@ -38,6 +39,32 @@ abstract class Var implements Operation {
             return vars.get(operand);
         }
         throw new CalcException("Невозможно создать " + operand);
+    }
+
+    static void saveTo() throws IOException {
+        String fileName = Util.getPath("vars.txt");
+        try (PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(fileName)))) {
+            for (Map.Entry<String, Var> pair : vars.entrySet()) {
+                out.printf("%s=%s\n", pair.getKey(), pair.getValue());
+            }
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
+    }
+
+    static void read() {
+        File file = new File(Util.getPath("vars.txt"));
+        if (file.exists()) {
+            try (BufferedReader in = new BufferedReader(
+                    new FileReader(Util.getPath("vars.txt")))) {
+                Parser parser = new Parser();
+                while (in.ready()) {
+                    parser.calc(in.readLine());
+                }
+            } catch (IOException | CalcException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
