@@ -1,4 +1,4 @@
-package by.it.mnovikov;
+package by.it.mnovikov.jd01_15;
 
 import java.io.FileWriter;
 import java.io.PrintWriter;
