@@ -10,8 +10,8 @@ public class Util {
 
     }
     static String getPath(Class<?> clazz) {
-        String simpliName  = clazz.getSimpleName();
-        String path = clazz.getPackage().toString();
+        String simpleName  = clazz.getSimpleName();
+        String path = clazz.getName().replace(simpleName, "");
         path = path.replace(".", File.separator);
         String root = System.getProperty("user.dir");
         String res = root + File.separator + "src" + File.separator + path;
@@ -24,8 +24,4 @@ public class Util {
     static String getPath(String filename) {
         return getPath() + filename;
     }
-
-//    public static void main(String[] args) {
-//        System.out.println(getPath(Util.class));
-//    }
 }
