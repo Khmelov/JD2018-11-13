@@ -2,15 +2,22 @@ package by.it.karnilava.calc;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 abstract class Var implements Operation {
     static Map<String, Var> vars = new HashMap<>();
+    static SortedMap<String, Var> sortedVars = new TreeMap<>();
+
 
 
     static Var saveVar(String name, Var var) {
         vars.put(name, var);
+        sortedVars.put(name,var);
         return var;
     }
+
+
 
     @Override
     public Var add(Var other) throws CalcException {

@@ -34,7 +34,8 @@ public class Runner {
         System.out.println(hashSet);
         System.out.println();
         System.out.println( hashSet.toString());
-        System.out.println(mySet.remove("Set2"));
+        mySet.remove("Set2");
+        System.out.println(mySet);
 
     }
 
