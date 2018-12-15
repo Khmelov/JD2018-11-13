@@ -6,45 +6,24 @@ import java.util.List;
 
 public class TaskC {
     static String dir(Class<?> cl) {
-        String mypath = System.getProperty("user.dir") + File.separator + "src" + File.separator+"by" + File.separator + "it" + File.separator+"skarpovich"+File.separator;
+        String mypath = System.getProperty("user.dir") + File.separator + "src" + File.separator + "by" + File.separator + "it" + File.separator + "skarpovich" + File.separator;
 
-        //String clDir = cl.getName().replace(cl.getSimpleName(), "").replace(".", File.separator);
-        //System.out.println(cl.getName().replace(cl.getSimpleName(), "").replace(".", File.separator));
-       // System.out.println(cl.getTypeName());
-        //System.out.println(System.getProperty("user.dir"));
+
         return mypath;
     }
 
     public static void main(String[] args) {
+        File folder = new File(dir(TaskC.class));
+        File[] listOfFiles = folder.listFiles();
 
-                File f = null;
-                File[] paths;
+        for (int i = 0; i < listOfFiles.length; i++) {
 
-                try {
+            if (listOfFiles[i].isDirectory()) {
+            System.out.println("dir:" + listOfFiles[i].getName());
+        } else if (listOfFiles[i].isFile()) {
+                System.out.println("file:"+ listOfFiles[i].getName());
 
-                    // create new file
-                    f = new File(dir(TaskC.class));
-
-                 // returns pathnames for files and directory
-                    paths = f.listFiles();
-
-                    // for each pathname in pathname array
-                    for(File path:paths) {
-                        if (f.isFile()){
-                            System.out.println(f.getName());
-                        }
-                        if (f.isDirectory()){
-                            System.out.println(f.getName());
-                        }
-                        // prints file and directory paths
-                        System.out.println(path);
-                        System.out.println(f.getPath());
-                    }
-
-                } catch(Exception e) {
-                    // if any error occurs
-                    e.printStackTrace();
-                }
             }
         }
-
+    }
+}
