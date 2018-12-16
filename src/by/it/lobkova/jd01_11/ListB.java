@@ -1,7 +1,5 @@
 package by.it.lobkova.jd01_11;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.util.*;
 import java.util.function.UnaryOperator;
 
@@ -47,7 +45,7 @@ public class ListB<T> implements List<T> {
     }
 
     @Override
-    public boolean addAll(@NotNull Collection<? extends T> c) {
+    public boolean addAll( Collection<? extends T> c) {
         boolean modified = false;
         for (T e : c) if (add(e)) modified = true;
         return modified;
@@ -103,21 +101,21 @@ public class ListB<T> implements List<T> {
         return false;
     }
 
-    @NotNull
+    
     @Override
     public Iterator<T> iterator() {
         return null;
     }
 
-    @NotNull
+    
     @Override
     public Object[] toArray() {
         return new Object[0];
     }
 
-    @NotNull
+    
     @Override
-    public <T1> T1[] toArray(@NotNull T1[] a) {
+    public <T1> T1[] toArray( T1[] a) {
         return null;
     }
 
@@ -127,22 +125,22 @@ public class ListB<T> implements List<T> {
     }
 
     @Override
-    public boolean containsAll(@NotNull Collection<?> c) {
+    public boolean containsAll( Collection<?> c) {
         return false;
     }
 
     @Override
-    public boolean addAll(int index, @NotNull Collection<? extends T> c) {
+    public boolean addAll(int index,  Collection<? extends T> c) {
         return false;
     }
 
     @Override
-    public boolean removeAll(@NotNull Collection<?> c) {
+    public boolean removeAll( Collection<?> c) {
         return false;
     }
 
     @Override
-    public boolean retainAll(@NotNull Collection<?> c) {
+    public boolean retainAll( Collection<?> c) {
         return false;
     }
 
@@ -161,19 +159,19 @@ public class ListB<T> implements List<T> {
         return 0;
     }
 
-    @NotNull
+    
     @Override
     public ListIterator<T> listIterator() {
         return null;
     }
 
-    @NotNull
+    
     @Override
     public ListIterator<T> listIterator(int index) {
         return null;
     }
 
-    @NotNull
+    
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
         return null;
