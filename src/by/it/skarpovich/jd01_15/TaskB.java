@@ -21,6 +21,9 @@ public class TaskB {
         String result=null;
         /*Читаем файл используя классы FileReader и BufferedReader, создаем StringBuilder и записываем
          * в него содержимое файла построчно*/
+        /*Читаем файл используя классы FileReader и BufferedReader, создаем StringBuilder и записываем
+         * в него содержимое файла построчно*/
+
         try (BufferedReader bfr = new BufferedReader(new FileReader(path + "TaskB.java"))) {
             StringBuilder sbuilder = new StringBuilder();
             while (bfr.ready()) {
