@@ -13,8 +13,10 @@ public class TaskB {
     public static void main(String[] args) throws Exception {
         String text = Util.getPath("text.txt");
         String filename = Util.getPath("resultTaskB.txt");
+
         ArrayList<String> words = new ArrayList<>();
         ArrayList<String> symbol = new ArrayList<>();
+
         String contents = readUsingScanner(text);
 
         textToArray(contents, words, symbol);
@@ -37,7 +39,7 @@ public class TaskB {
         {
             writer.write(string);
         }
-        catch(IOException ex){
+        catch(IOException ex) {
             System.out.println(ex.getMessage());
         }
     }
@@ -47,6 +49,7 @@ public class TaskB {
         int count = 0;
         int count2 = 0;
 
+        //String[] kk = jj.toString().split("\\W+");
         String[] split = str.split(" ?(?<!\\G)((?<=[^\\p{Punct}])(?=\\p{Punct})|\\b) ?");
 
         for (int i = 0; i < split.length; i++) {
@@ -57,8 +60,7 @@ public class TaskB {
                 count++;
             }
         }
-        //System.out.println("words=" + count);
-
+        System.out.println("words=" + count);
         for (int i = 0; i < split.length; i++) {
             Matcher m = Pattern.compile("\\p{Punct}").matcher(split[i]);
             m.reset();
@@ -67,7 +69,7 @@ public class TaskB {
                 count2++;
             }
         }
-        //System.out.println("marks=" + count2);
+        System.out.println("marks=" + count2);
         String result = "words=" + count + ", " + "punctuation marks=" + count2;
 
         return result;
