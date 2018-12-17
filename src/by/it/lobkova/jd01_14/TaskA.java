@@ -34,9 +34,9 @@ public class TaskA {
     }
 
     private static void calcIntegers(ArrayList<Integer> list) throws IOException {
-        try (PrintWriter out=new PrintWriter(
+        try (PrintWriter out = new PrintWriter(
                 new FileWriter(Util.getPath("resultTaskA.txt"))
-        )){
+        )) {
             double sum = 0;
             for (Integer element : list) {
                 System.out.print(element + " ");
