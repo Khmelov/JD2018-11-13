@@ -5,10 +5,8 @@ import java.util.Scanner;
 public class TaskC {
 
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
-        int n = sc.nextInt();
+        int n = new Scanner(System.in).nextInt();
         step1(n);
-
     }
 
     private static int[][] step1(int n) {
@@ -35,26 +33,31 @@ public class TaskC {
     private static int step2(int[][] mas) {
         int sum = 0;
 
-        for (int i = 0; i < mas.length; i++) {
+        for (int[] ma : mas) {
             int elem1 = 0;
             int elem2 = 0;
-            for (int j = 0; j < mas[i].length; j++) {
-                if (mas[i][j] >= 0) {
+            for (int j = 0; j < ma.length; j++) {
+                if (ma[j] >= 0) {
                     elem1 = j;
                     break;
                 }
             }
-            for (int j = elem1 + 1; j < mas[i].length; j++) {
-                if (mas[i][j] >= 0) {
+            for (int j = elem1 + 1; j < ma.length; j++) {
+                if (ma[j] >= 0) {
                     elem2 = j;
                     break;
                 }
             }
             if (elem2 - elem1 <= 1) break;
             else for (int j = elem1 + 1; j < elem2; j++) {
-                sum += mas[i][j];
+                sum += ma[j];
             }
         }
+        System.out.println(sum);
         return sum;
+    }
+
+    private static int[ ][ ] step3(int[ ][ ] mas){
+        return mas;
     }
 }
