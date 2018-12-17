@@ -16,13 +16,26 @@ public class ConsoleRunner {
             if (line.equals("printvar")) {
 
                 for (Map.Entry<String, Var> entry : Var.vars.entrySet()) {
-                    System.out.println(entry.getKey()+"="+entry.getValue());
+                    System.out.println(entry.getKey() + "=" + entry.getValue());
+                }
+
+            } else if (line.equals("sortvar")) {
+
+                for (Map.Entry<String, Var> entry : Var.sortedVars.entrySet()) {
+                    System.out.println(entry.getKey() + "=" + entry.getValue());
+                }
+
+            } else {
+                try {
+                    Var result = parser.calc(line);
+                    printer.print(result);
+                } catch (CalcException e) {
+                    System.out.println(e.getMessage());
                 }
             }
-           else{ Var result = parser.calc(line);
-            printer.print(result);}
         }
-
-
     }
+
+
 }
+
