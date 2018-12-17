@@ -10,11 +10,7 @@ import java.util.Scanner;
 //simple comment
 //else
 
-/*
-multi
-line
-comment
-*/
+
 public class TaskB {
 
     public static void main(String[] args) {
@@ -51,7 +47,3 @@ public class TaskB {
         }
     }
 }
-/*
-com
-ment
- */
