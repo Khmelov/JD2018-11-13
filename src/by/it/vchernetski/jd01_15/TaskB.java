@@ -7,7 +7,6 @@ import java.io.*;
 public class TaskB {
     public static void main(String[] args) {
         StringBuilder finsb = new StringBuilder();
-        int enter = 0;
         try (BufferedReader rd = new BufferedReader(new FileReader(Util.getPath("TaskB.java")))){
             while (rd.ready()){//0 comment
                 //1 comment
@@ -27,7 +26,6 @@ public class TaskB {
                         case '*':
                             //2comment
                             while(rd.ready()){
-//                                char b = (char)rd.read();
                                 if(((char)rd.read())=='*'&&((char)rd.read())=='/'){
                                     break;
                                 }
