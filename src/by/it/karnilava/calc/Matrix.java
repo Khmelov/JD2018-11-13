@@ -31,7 +31,7 @@ public class Matrix extends Var {
 
     }
 
-    public Var add(Var other) {
+    public Var add(Var other)  throws CalcException {
 
         if (other instanceof Scalar) {
             // double[][] res = new double[this.value[0].length][this.value.length];
@@ -63,7 +63,7 @@ public class Matrix extends Var {
         return super.add(other);
     }
 
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
 
         if (other instanceof Scalar) {
             // double[][] res = new double[this.value[0].length][this.value.length];
@@ -92,10 +92,10 @@ public class Matrix extends Var {
 
         }
 
-        return super.sub(other);
+        return super.sub(other) ;
     }
 
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
 
         if (other instanceof Scalar) {
             // double[][] res = new double[this.value[0].length][this.value.length];
