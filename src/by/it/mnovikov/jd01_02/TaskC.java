@@ -13,6 +13,7 @@ public class TaskC {
         int[][] mas = new int[n][n];
         boolean check = true;
         while (check) {
+            boolean mark1 = false, mark2 = false;
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
                     mas[i][j] = -n + (int) (Math.random() * (2 * n + 1));
@@ -20,12 +21,17 @@ public class TaskC {
             }
             for (int i = 0; i < n; i++) {
                 for (int j = 0; j < n; j++) {
-                    if (mas[i][j] == n) check = false;
-                    if (mas[i][j] == -n) check = false;
-                    System.out.print(mas[i][j] + " ");
+                    if (mas[i][j] == n) mark1 = true;
+                    if (mas[i][j] == -n) mark2 = true;
                 }
-                System.out.println();
             }
+            check=!(mark1 && mark2);
+        }
+        for (int[] str : mas) {
+            for (int elem : str) {
+                System.out.print(elem + " ");
+            }
+            System.out.println();
         }
         return mas;
     }

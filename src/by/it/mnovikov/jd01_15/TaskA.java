@@ -1,6 +1,7 @@
 package by.it.mnovikov.jd01_15;
 
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
@@ -15,6 +16,10 @@ public class TaskA {
             }
         }
 
-//        PrintWriter out = new PrintWriter(new FileWriter(matrix.txt))
+        try (PrintWriter out = new PrintWriter(new FileWriter("matrix.txt"))){
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
