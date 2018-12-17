@@ -1,4 +1,4 @@
-package by.it._tasks_.jd01_15;
+package by.it.kruglenja.jd01_15;
 
 
 import org.junit.Test;
