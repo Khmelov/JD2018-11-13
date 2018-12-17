@@ -1,4 +1,4 @@
-package by.it.medvedeva.calc;
+package by.it.medvedeva.calc_v1;
 
 
 import java.util.regex.Matcher;
