@@ -3,42 +3,38 @@ package by.it.denisova.jd01_12;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskB1 {
 
     public static void main(String[] args) {
-        Map<String,Integer> map = new HashMap<>();
-        Scanner scanner = new Scanner(System.in);
-        String word = scanner.next();
-        while (scanner.hasNext()) {
-            if (word.equalsIgnoreCase("end")) {
-                break;
+        HashMap<String, Integer> mymap = new HashMap<>();
+        Scanner sc = new Scanner(System.in);
+        String input;
+        while(!((input=sc.next()).equalsIgnoreCase("end"))) {
+            Matcher m = Pattern.compile("[A-z]+[']?[a-z]+").matcher(input);
+            m.reset();
+            if(m.find())
+                input = m.group();
+            if(input.equalsIgnoreCase("isn't")) input = "don't";
+            if(mymap.containsKey(input)) {
+                Integer x =mymap.get(input);
+                mymap.remove(input,x);
+                mymap.put(input,++x);
+                continue;
             }
-            else {
-                word = word.replace("[-.,?:;]","");
-
-            }
-            if (map.containsKey(word)) {
-                map.put(word,map.get(word)+1);
-            }
-            else {
-                map.put(word,1);
-            }
-            word = scanner.next();
+            mymap.put(input,1);
         }
-     /*
-        while (!word.equalsIgnoreCase("end")){
+        print(mymap);
+    }
 
-            if (map.containsKey(word)) {
-                map.put(word, map.get(word) + 1);
-            }
-            else {
-                map.put(word, 1);
-            }
-            word = scanner.next();
+
+    private static void print (HashMap<String, Integer> map) {
+        StringBuilder worsd = new StringBuilder();
+        for(Map.Entry<String, Integer> m: map.entrySet()) {
+            worsd.append(m.getKey()+"="+m.getValue().toString()+"\n");
         }
-        */
-        System.out.println(map);
-
+        System.out.println(worsd);
     }
 }
