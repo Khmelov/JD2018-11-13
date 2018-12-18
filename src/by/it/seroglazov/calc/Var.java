@@ -45,30 +45,26 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
     }
 
     @Override
-    public Var add(Var other) {
-        System.out.println("Сложение " + this + " + " + other + " невозможно.");
-        return null;
+    public Var add(Var other) throws CalcExeption {
+        throw new CalcExeption("Сложение " + this + " + " + other + " невозможно.");
     }
 
     @Override
-    public Var sub(Var other) {
-        System.out.println("Вычитание " + this + " - " + other + " невозможно.");
-        return null;
+    public Var sub(Var other) throws CalcExeption {
+        throw new CalcExeption("Вычитание " + this + " - " + other + " невозможно.");
     }
 
     @Override
-    public Var mul(Var other) {
-        System.out.println("Умножение " + this + " * " + other + " невозможно.");
-        return null;
+    public Var mul(Var other) throws CalcExeption {
+        throw new CalcExeption("Умножение " + this + " * " + other + " невозможно.");
     }
 
     @Override
-    public Var div(Var other) {
-        System.out.println("Деление " + this + " / " + other + " невозможно.");
-        return null;
+    public Var div(Var other) throws CalcExeption {
+        throw new CalcExeption("Деление " + this + " / " + other + " невозможно.");
     }
 
-    static Var createVar(String strVar) {
+    static Var createVar(String strVar) throws CalcExeption {
         if (strVar.matches(Patterns.SCALAR))
             return new Scalar(strVar);
         if (strVar.matches(Patterns.VECTOR))
@@ -77,7 +73,7 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
             return new Matrix(strVar);
         if (vars.containsKey(strVar))
             return vars.get(strVar);
-        return null;
+        throw new CalcExeption("Невозможно создать " + strVar);
     }
 
 }

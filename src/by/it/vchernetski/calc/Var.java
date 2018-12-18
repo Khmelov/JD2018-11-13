@@ -1,5 +1,6 @@
 package by.it.vchernetski.calc;
 
+import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -21,6 +22,33 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
         Map<String, Var> tvar = new TreeMap<>(vars);
         for(Map.Entry<String, Var> var: vars.entrySet()){
             System.out.println(var.getKey()+"="+var.getValue());
+        }
+    }
+
+    public static void save(){
+        String filename = Util.getPath("vars.txt");
+        try(PrintWriter out = new PrintWriter(new FileWriter(filename))) {
+            for (Map.Entry<String, Var> pair : vars.entrySet()) {
+                out.printf("%s=%s\n",pair.getKey(),pair.getValue().toString());
+            }
+        }
+        catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
+    public static void read() {
+        File file = new File(Util.getPath("vars.txt"));
+        if (file.exists()) {
+            try (BufferedReader br = new BufferedReader(new FileReader(Util.getPath("matrix.txt")))) {
+                while (br.ready()) {
+                    Parcer.calc(br.readLine());
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (CalcException e) {
+                e.printStackTrace();
+            }
         }
     }
 
