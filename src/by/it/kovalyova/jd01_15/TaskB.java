@@ -1,41 +1,61 @@
 package by.it.kovalyova.jd01_15;
 
+/**
+ * javadoc comment
+ */
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Scanner;
+import java.io.*;
 
 //simple comment
 //else
 
 
 public class TaskB {
-
+/*
+multi
+line
+comment
+ */
     public static void main(String[] args) {
-        try {
-            String filename = System.getProperty("user.dir") + "\\src\\" + TaskB.class.getName().replace(".", File.separator);
-            String fname_in = filename + ".java";
-            String fname_out = filename + ".txt";
-            StringBuilder src = new StringBuilder();
-            Scanner sc = new Scanner(new File(fname_in));
+        String filename = System.getProperty("user.dir") + "\\src\\" + TaskB.class.getName().replace(".", File.separator);
+        String fname_in = filename + ".java";
+        String fname_out = filename + ".txt";
+        StringBuilder src = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(
+                new FileReader(fname_in))) {
             Boolean incomment = false;
-            while (sc.hasNextLine()) {
-                String line = sc.nextLine();
-                if (line.trim().startsWith("/"+"/")) {
-                    src.append(System.getProperty("line.separator"));
-                    continue;
+            Boolean mcomment = false;
+            String twochars = "";
+            while (reader.ready()) {
+                if (reader.ready()) {
+                    char currchar = (char) reader.read();
+                    twochars = twochars+currchar;
+                    if (twochars.equals("/"+"*")) {
+                        incomment = true;
+                        mcomment = true;
+                        src.deleteCharAt(src.length()-1);
+                    }
+                    if (twochars.equals("/"+"/")) {
+                        incomment = true;
+                        mcomment = false;
+                        src.deleteCharAt(src.length()-1);
+                    }
+
+                    if (!incomment) {
+                        src.append(twochars.substring(twochars.length()-1));
+                    }
+                    if (twochars.equals("\r\n") && incomment && !mcomment) {
+                        incomment = false;
+                        mcomment = false;
+                        src.append(twochars);
+                    }
+                    if (twochars.equals("*"+"/") && incomment && mcomment) {
+                        incomment = false;
+                        mcomment = false;
+                    }
+                    twochars = Character.toString(currchar);
                 }
-                if (line.trim().startsWith("/"+"*")) incomment = true;
-                if (!incomment) {
-                    src.append(line+System.getProperty("line.separator"));
-                } else {
-                    src.append(System.getProperty("line.separator"));
-                }
-                if (line.trim().startsWith("*"+"/")) {
-                    incomment = false;
-                }
+
             }
 
             PrintWriter out = new PrintWriter(new FileWriter(fname_out));
@@ -47,3 +67,6 @@ public class TaskB {
         }
     }
 }
+/*
+over
+ */
