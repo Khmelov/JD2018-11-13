@@ -12,10 +12,18 @@ public class Rnd {
         return min + (int) (Math.random() * (max - min + 1));
     }
 
-
-    static void sleep (int millis){
+    static void sleep(int millis) {
         try {
-            Thread.sleep(millis/Dispatcher.K_SPEED);
+            Thread.sleep(millis / Dispatcher.K_SPEED);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static void sleepTime(int from, int to) {
+        try {
+            int pause = Rnd.random(from, to);
+            Thread.sleep(pause);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

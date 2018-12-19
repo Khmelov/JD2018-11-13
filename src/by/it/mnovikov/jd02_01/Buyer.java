@@ -26,35 +26,20 @@ public class Buyer extends Thread implements IBuyer, IUseBacket{
 
     @Override
     public void takeBacket() {
-        try {
-            int pause = Rnd.random(100, 200);
-            Thread.sleep(pause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Rnd.sleepTime(100, 200);
         System.out.println(this + " взял корзинку");
     }
 
     @Override
     public void chooseGoods() {
         System.out.println(this + " начал выбор товара");
-        try {
-            int pause = Rnd.random(500, 2000);
-            Thread.sleep(pause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Rnd.sleepTime(500, 2000);
         System.out.println(this + " выбрал товар");
     }
 
     @Override
     public void putGoodsToBacket() {
-        try {
-            int pause = Rnd.random(100, 200);
-            Thread.sleep(pause);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        Rnd.sleepTime(100, 200);
         System.out.println(this + " положил товары в корзинку");
     }
 
