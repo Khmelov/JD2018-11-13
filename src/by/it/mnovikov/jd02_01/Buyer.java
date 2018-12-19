@@ -2,18 +2,15 @@ package by.it.mnovikov.jd02_01;
 
 public class Buyer extends Thread implements IBuyer, IUseBacket{
 
-    int buyerNum;
-
-    public Buyer (int buyerNum){
-        this.buyerNum = buyerNum;
-        this.setName("Покупатель № " + buyerNum + " ");
-        start();
+    Buyer (int buyerNum){ super("Покупатель № " + buyerNum + " ");
     }
 
     @Override
     public void run() {
         enterToMarket();
+        takeBacket();
         chooseGoods();
+        putGoodsToBacket();
         goOut();
     }
 
