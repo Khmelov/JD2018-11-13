@@ -15,13 +15,16 @@ public class Runner {
         Set<String> standartHashSet = new HashSet<>();
         Set<String> mySet = new SetC<>();
 
-        //taskA(myList, arrList);
-        //taskB(myList1, myList2, arrList, arrList2);
+        taskA(myList, arrList);
+        taskB(myList1, myList2, arrList, arrList2);
+        taskC(standartHashSet, mySet);
+    }
 
+    private static void taskC(Set<String> standartHashSet, Set<String> mySet) {
         standartHashSet.add("One");
         standartHashSet.add("Two");
         standartHashSet.add("Three");
-        standartHashSet.add("One");
+        standartHashSet.add("Four");
         System.out.println(standartHashSet);
         List<String> added = new ArrayList<>();
         added.add(null);
@@ -37,7 +40,7 @@ public class Runner {
         mySet.add("One");
         mySet.add("Two");
         mySet.add("Three");
-        mySet.add("One");
+        mySet.add("Four");
         System.out.println(mySet);
         mySet.addAll(added);
         System.out.println(mySet);
