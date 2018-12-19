@@ -14,23 +14,24 @@ public class TaskB1 {
         }
         System.out.println(worsd);
     }
+
     public static void main(String[] args) {
         HashMap<String, Integer> mymap = new HashMap<>();
         Scanner sc = new Scanner(System.in);
         String input;
-        while(!((input=sc.next()).equalsIgnoreCase("end"))){
+        while (!((input = sc.next()).equalsIgnoreCase("end"))) {
             Matcher m = Pattern.compile("[A-z]+[']?[a-z]+").matcher(input);
             m.reset();
-            if(m.find())
+            if (m.find())
                 input = m.group();
-            if(input.equalsIgnoreCase("isn't")) input = "don't";
-            if(mymap.containsKey(input)) {
-                Integer x =mymap.get(input);
-                mymap.remove(input,x);
-                mymap.put(input,++x);
+            if (input.equalsIgnoreCase("isn't")) input = "don't";
+            if (mymap.containsKey(input)) {
+                Integer x = mymap.get(input);
+                mymap.remove(input, x);
+                mymap.put(input, ++x);
                 continue;
             }
-            mymap.put(input,1);
+            mymap.put(input, 1);
         }
         print(mymap);
     }
