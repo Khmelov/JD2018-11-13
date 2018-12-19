@@ -1,15 +1,15 @@
 package by.it.seroglazov.jd02_01;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class Shop {
 
     private HashMap<String, Double> goods;
+    private HashSet<Buyer> buyers;
 
     public Shop() {
         goods = new HashMap<>();
+        buyers = new HashSet<Buyer>();
         goods.put("Мясо", 10.0);
         goods.put("Сало", 6.5);
         goods.put("Колбаса", 7.6);
@@ -32,5 +32,19 @@ public class Shop {
             it.next();
         }
         return it.next();
+    }
+
+    public synchronized int enter(Buyer buyer){
+        buyers.add(buyer);
+        return buyers.size();
+    }
+
+    public synchronized int leave(Buyer buyer){
+        buyers.remove(buyer);
+        return buyers.size();
+    }
+
+    public synchronized int buyersCount(){
+        return buyers.size();
     }
 }

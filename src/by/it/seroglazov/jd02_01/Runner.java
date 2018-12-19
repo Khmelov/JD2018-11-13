@@ -5,18 +5,30 @@ import java.util.LinkedList;
 public class Runner {
 
     private static int countBuyers = 0;
-    private static final int K_SPEED = 100;
+    private static final int K_SPEED = 50;
 
     public static void main(String[] args) {
         LinkedList<Buyer> buyers = new LinkedList<>();
         Shop shop = new Shop();
-        for (int second = 0; second < 2 * 60; second++) {
-            int c = MyRandom.getRandom(0, 2);
-            for (int i = 0; i < c; i++) {
+
+        // Сразу 10 запускаем
+        System.out.println("Магазин открылся");
+        for (int i = 0; i < 10; i++) {
+            buyers.add(new Buyer(countBuyers++, shop, K_SPEED));
+        }
+        sleepFor(1000);
+
+        for (int second = 1; second < 2 * 60; second++) {
+            System.out.println("********* СЕКУНДА " + String.valueOf(second) + " *********");
+            int c = getMaxBuyersCount(second);
+            while (shop.buyersCount() < c) {
                 buyers.add(new Buyer(countBuyers++, shop, K_SPEED));
+                sleepFor(1);
             }
             sleepFor(1000);
         }
+
+        // Ждем пока все выйдут
         buyers.forEach(x-> {
             try {
                 x.join();
@@ -25,6 +37,7 @@ public class Runner {
             }
         });
         System.out.println("Магазин завершил работу.");
+
     }
 
     private static void sleepFor(int millis){
@@ -34,4 +47,12 @@ public class Runner {
             System.err.println("InterruptedException " + e.getMessage());
         }
     }
+
+    private static int getMaxBuyersCount(int second){
+        int h = second / 60;
+        int s = second - h*60;
+        if (s <= 30) return 10 + s;
+        else return 40 - (s - 30);
+    }
+
 }

@@ -4,11 +4,11 @@ import java.util.Map;
 
 public class Buyer extends Thread implements IBuyer, IUseBasket {
 
-    // Номер покупателя
-    private int num;
-    private Shop shop;
+    private int num; // Номер покупателя
     private int kspeed;
+    private boolean pensioneer;
 
+    private Shop shop;
     Basket basket;
 
     public Buyer(int num, Shop shop, int kspeed) {
@@ -16,12 +16,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         this.num = num;
         this.shop = shop;
         this.kspeed = kspeed;
+        pensioneer = Math.random() < 0.25;
         start();
     }
 
     @Override
     public void enterToMarket() {
-        System.out.println(this + " зашёл в магазин.");
+        int c = shop.enter(this);
+        System.out.println(this + " зашёл в магазин (стало " + c + ")");
         yield();
     }
 
@@ -29,11 +31,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void chooseGoods() {
         sleepRandom(500, 2000);
         System.out.println(this + " выбрал товар.");
+        yield();
+
     }
 
     @Override
     public void goToOut() {
-        System.out.println(this + " вышел из магазина.");
+        int c = shop.leave(this);
+        System.out.println(this + " вышел из магазина (осталось " + c + ")");
     }
 
     @Override
@@ -47,11 +52,12 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public String toString() {
-        return this.getName();
+        return (pensioneer ? "(П) " : "    ") + this.getName();
     }
 
     private void sleepRandom(int minMillis, int maxMillis) {
         int millis = MyRandom.getRandom(minMillis, maxMillis);
+        if (pensioneer) millis = (int) (millis * 1.5);
         try {
             Thread.sleep(millis / kspeed);
         } catch (InterruptedException e) {
@@ -70,10 +76,10 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void putGoodsToBasket() {
         int n = MyRandom.getRandom(1, 4);
         for (int i = 0; i < n; i++) {
-            sleepRandom(100, 200);
             String good = shop.takeSomeGood();
             basket.putGoodToBasket(good);
             System.out.println(this + " положил в корзину " + good + '.');
+            sleepRandom(100, 200);
         }
     }
 }
