@@ -1,7 +1,5 @@
 package by.it.lobkova.jd01_12;
 
-import by.it.nickgrudnitsky.jd01_04.TaskA;
-
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
