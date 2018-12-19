@@ -8,10 +8,10 @@ public class Matrix extends Var {
 
     private double[][] value;
 
-     Matrix(double[][] value) {
+    Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
-            this.value[i] = Arrays.copyOf(value[i], value.length);
+            this.value[i] = Arrays.copyOf(value[i], value[0].length);
         }
     }
 
@@ -34,6 +34,7 @@ public class Matrix extends Var {
             }
         }
         matcher1.reset();
+        columnsCount = columnsCount/rowsCount;
         this.value = new double[rowsCount][columnsCount];
 
         while (matcher1.find()) {
@@ -53,11 +54,11 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] rezult = new double[value.length][value[0].length];
             for (int i = 0; i < value.length; i++) {
-                rezult[i] = Arrays.copyOf(value[i], value.length);
+                rezult[i] = Arrays.copyOf(value[i], value[0].length);
             }
             for (int i = 0; i < value.length; i++) {
                 for (int i1 = 0; i1 < value[0].length; i1++) {
@@ -84,7 +85,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] rezult = new double[value.length][value[0].length];
             for (int i = 0; i < value.length; i++) {
@@ -115,7 +116,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] rezult = new double[value.length][value[0].length];
             for (int i = 0; i < value.length; i++) {
@@ -162,7 +163,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] rezult = new double[value.length][value[0].length];
             for (int i = 0; i < value.length; i++) {
