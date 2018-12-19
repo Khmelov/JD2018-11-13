@@ -14,7 +14,7 @@ public class Buyer implements IBuyer, Runnable {
 
     @Override
     public void enterToMarket() {
-
+        System.out.println(this + " зашёл в магазин");
     }
 
     @Override
@@ -25,12 +25,11 @@ public class Buyer implements IBuyer, Runnable {
             System.err.println("InterruptedException " + e.getMessage());
         }
         System.out.println(this + " выбрал товар.");
-
     }
 
     @Override
     public void goToOut() {
-
+        System.out.println(this + " вышел из магазина");
     }
 
     @Override
