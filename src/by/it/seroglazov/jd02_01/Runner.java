@@ -15,6 +15,7 @@ public class Runner {
         System.out.println("Магазин открылся");
         for (int i = 0; i < 10; i++) {
             buyers.add(new Buyer(countBuyers++, shop, K_SPEED));
+            sleepFor(1);
         }
         sleepFor(1000);
 
