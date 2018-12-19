@@ -1,4 +1,4 @@
-package by.it.skarpovich.j02_01;
+package by.it.skarpovich.jd02_01;
 /**
 Вариант B. Доработайте программу так, чтобы:
          Каждый покупатель реализовал интерфейс IUseBacket
