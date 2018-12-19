@@ -21,7 +21,6 @@ class Parcer {
             }
         }
 
-        //TODO Generate error
         return null;
     }
 }
