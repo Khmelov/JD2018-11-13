@@ -1,11 +1,11 @@
 package by.it.seroglazov.calc;
 
 public interface OperationsDispatch {
-    Var addDispatch(Var other);
+    Var addDispatch(Var other) throws CalcExeption;
 
-    Var subDispatch(Var other);
+    Var subDispatch(Var other) throws CalcExeption;
 
-    Var mulDispatch(Var other);
+    Var mulDispatch(Var other) throws CalcExeption;
 
-    Var divDispatch(Var other);
+    Var divDispatch(Var other) throws CalcExeption;
 }

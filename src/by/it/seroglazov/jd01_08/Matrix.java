@@ -47,7 +47,6 @@ public class Matrix extends Var {
         String strWithoutWhiteSpaces = str.replaceAll("\\s", "");
         if (!strWithoutWhiteSpaces.matches("[{]([{][^{}]+[}],)*[{][^{}]+[}][}]")) { // Pattern to string like {{2.0,3,9},{4.75,6,0},{1e2,0xA,010}}
             System.out.println(ErrMessPatternNotFound);
-            //TODO Raise exception instead of println
         }
         Pattern extCurlyBrackets = Pattern.compile("[{](.*)[}]"); // Find all inside external curly brackets
         Matcher m1 = extCurlyBrackets.matcher(strWithoutWhiteSpaces);
@@ -58,7 +57,6 @@ public class Matrix extends Var {
             while (m2.find()) counter++; // First step - simple counting internal {}
             if (counter == 0) {
                 System.out.println(ErrMessPatternNotFound);
-                //TODO Raise exception instead of println
             }
             value = new double[counter][];
             m2.reset();
@@ -68,7 +66,6 @@ public class Matrix extends Var {
                 value[i] = new double[strRows.length];
                 for (int j = 0; j < strRows.length; j++) {
                     value[i][j] = Double.parseDouble(strRows[j]);
-                    //TODO exception check if not double
                 }
                 i++;
             }
@@ -77,13 +74,11 @@ public class Matrix extends Var {
             for (double[] v : value) {
                 if (v.length != len) {
                     System.out.println(ErrMessDifferentColsCount);
-                    //TODO Raise exception instead of println
                     break;
                 }
             }
         } else {
             System.out.println(ErrMessPatternNotFound);
-            //TODO Raise exception instead of println
         }
     }
 

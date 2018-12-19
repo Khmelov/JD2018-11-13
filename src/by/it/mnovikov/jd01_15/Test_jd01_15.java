@@ -1,3 +1,4 @@
+package by.it.mnovikov.jd01_15;
 
 
 import org.junit.Test;
