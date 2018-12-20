@@ -1,8 +1,11 @@
 package by.it.mnovikov.jd02_01;
 
-public class Buyer extends Thread implements IBuyer, IUseBacket{
+import java.util.HashMap;
 
-    Buyer (int buyerNum){ super("Покупатель № " + buyerNum + " ");
+public class Buyer extends Thread implements IBuyer, IUseBacket {
+
+    Buyer(int buyerNum) {
+        super("Покупатель № " + buyerNum + " ");
     }
 
     @Override
@@ -39,7 +42,12 @@ public class Buyer extends Thread implements IBuyer, IUseBacket{
 
     @Override
     public void putGoodsToBacket() {
-        Rnd.sleepTime(100, 200);
+        int countGoods = Rnd.random(1, 4);
+        for (int i = 0; i < countGoods; i++) {
+            int position = Rnd.random(0, Goods.goods.size() - 1);
+            Goods.getPosition(Goods.goods, position);
+            Rnd.sleepTime(100, 200);
+        }
         System.out.println(this + " положил товары в корзинку");
     }
 

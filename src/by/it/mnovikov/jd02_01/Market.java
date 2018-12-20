@@ -7,10 +7,12 @@ public class Market {
 
     public static void main(String[] args) {
         List<Buyer> buyerList = new ArrayList<>();
+        Goods.setGoods();
+        System.out.println(Goods.goods.entrySet());
         System.out.println("Магазин открылся");
 
         for (int time = 0; time < 120; time++) {
-            int buyerCount = Rnd.random(2);
+            int buyerCount = Rnd.random(0, 2);
             for (int i = 0; i < buyerCount; i++) {
                 Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                 buyerList.add(buyer);

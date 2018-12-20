@@ -2,11 +2,7 @@ package by.it.mnovikov.jd02_01;
 
 import javax.xml.ws.Dispatch;
 
-public class Rnd {
-
-    static int random(int max) {
-        return random(0, max);
-    }
+class Rnd {
 
     static int random(int min, int max) {
         return min + (int) (Math.random() * (max - min + 1));
@@ -22,8 +18,7 @@ public class Rnd {
 
     static void sleepTime(int from, int to) {
         try {
-            int pause = Rnd.random(from, to);
-            Thread.sleep(pause);
+            Thread.sleep(Rnd.random(from, to));
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
