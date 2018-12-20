@@ -1,17 +1,24 @@
 package by.it.seroglazov.jd02_02;
 
+import com.sun.xml.internal.bind.v2.TODO;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 
+// Класс Shop - в нашем проекте будет один экземпляр этого класса. Создаётся в Runner.
 public class Shop {
+    // Список товаров
+    private final HashMap<String, Double> goods;
+    // Покупатели, которые находятся в магазине
+    private final HashSet<Buyer> buyers;
+    // Очередь
+    private final WaitingLine line;
 
-    private HashMap<String, Double> goods;
-    private HashSet<Buyer> buyers;
-
-    public Shop() {
+    Shop() {
         goods = new HashMap<>();
         buyers = new HashSet<Buyer>();
+        line = new WaitingLine();
         goods.put("Мясо", 10.0);
         goods.put("Сало", 6.5);
         goods.put("Колбаса", 7.6);
@@ -27,26 +34,50 @@ public class Shop {
     }
 
     // Return random good from goods
-    public String takeSomeGood(){
-        int num = MyRandom.getRandom(0, goods.size() - 1);
-        Iterator<String> it = goods.keySet().iterator();
-        for (int i = 0; i < num; i++) {
-            it.next();
+    String takeSomeGood() {
+        synchronized (goods) {
+            int num = MyRandom.getRandom(0, goods.size() - 1);
+            Iterator<String> it = goods.keySet().iterator();
+            for (int i = 0; i < num; i++) {
+                it.next();
+            }
+            return it.next();
         }
-        return it.next();
     }
 
-    public synchronized int enter(Buyer buyer){
-        buyers.add(buyer);
-        return buyers.size();
+    // Войти в магазин
+    int enter(Buyer buyer) {
+        synchronized (buyers) {
+            buyers.add(buyer);
+            return buyers.size();
+        }
     }
 
-    public synchronized int leave(Buyer buyer){
-        buyers.remove(buyer);
-        return buyers.size();
+    // Выйти из магазина
+    int leave(Buyer buyer) {
+        synchronized (buyers) {
+            buyers.remove(buyer);
+            return buyers.size();
+        }
     }
 
-    public synchronized int buyersCount(){
-        return buyers.size();
+    int buyersCount() {
+        synchronized (buyers) {
+            return buyers.size();
+        }
+    }
+
+    // Встать в очередь
+    public void getInLine(Buyer buyer) {
+        synchronized (line) {
+            line.add(buyer);
+        }
+    }
+
+    // Возвращает первого в очереди покупателя или null, если очередь пуста
+    public Buyer getFromLine() {
+        synchronized (line) {
+            return line.next();
+        }
     }
 }
