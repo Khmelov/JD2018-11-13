@@ -1,11 +1,15 @@
-package by.it.malishevskiy.jd01_14;
+package by.it.naumenko.jd01_15;
 
 import java.io.File;
 
 public class Util {
+    private Util() { }
 
-    private Util() {
-    }
+//    static String dir(Class<?> clazz) {
+//        String path = System.getProperty("user.dir") + File.separator + "src" + File.separator;
+//        String classDir = clazz.getName().replace(clazz.getSimpleName(), "").replace(".", File.separator);
+//        return path + classDir;
+//    }
 
     static String getPath(Class<?> clazz) {
         String simpleName = clazz.getSimpleName();
@@ -20,7 +24,7 @@ public class Util {
         return getPath(Util.class);
     }
 
-    public static String getPath(String filename) {
-        return getPath() + filename;
+    static String getPath(String fileName) {
+        return getPath() + fileName;
     }
 }
