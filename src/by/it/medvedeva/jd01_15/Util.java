@@ -1,13 +1,10 @@
-package by.it.malishevskiy.jd01_14;
+package by.it.medvedeva.jd01_15;
 
 import java.io.File;
 
 public class Util {
+    public static String getPath(Class<?> clazz) {
 
-    private Util() {
-    }
-
-    static String getPath(Class<?> clazz) {
         String simpleName = clazz.getSimpleName();
         String path = clazz.getName().replace(simpleName, "");
         path = path.replace(".", File.separator);
@@ -16,11 +13,15 @@ public class Util {
         return result;
     }
 
-    static String getPath() {
+    public  static String getPath() {
         return getPath(Util.class);
     }
 
     public static String getPath(String filename) {
         return getPath() + filename;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(getPath("data.bin"));
     }
 }
