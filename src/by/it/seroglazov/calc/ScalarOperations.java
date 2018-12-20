@@ -7,5 +7,5 @@ public interface ScalarOperations {
 
     Var mul(Scalar s);
 
-    Var div(Scalar s);
+    Var div(Scalar s) throws CalcExeption;
 }
