@@ -1,0 +1,17 @@
+package by.it.kovalyova.jd02_02;
+
+import java.util.Deque;
+import java.util.LinkedList;
+
+class QueueBuyer {
+
+    private static Deque<Buyer> deque=new LinkedList<>();
+
+    static synchronized void add(Buyer buyer){
+        deque.addLast(buyer);
+
+    }
+    static synchronized Buyer extract(){
+        return deque.pollFirst();
+    }
+}
