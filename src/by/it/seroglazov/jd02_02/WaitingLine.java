@@ -10,12 +10,18 @@ class WaitingLine {
     WaitingLine(){
         line = new LinkedList<>();
     }
-    void add(Buyer buyer){
+
+    int add(Buyer buyer){
         line.addLast(buyer);
+        return line.size();
     }
 
     Buyer next(){
         return line.pollFirst();
+    }
+
+    int length(){
+        return line.size();
     }
 
 }

@@ -7,6 +7,8 @@ import java.util.HashSet;
 import java.util.Iterator;
 
 // Класс Shop - в нашем проекте будет один экземпляр этого класса. Создаётся в Runner.
+// За всю синхронизацию отвечает именно магазин
+
 public class Shop {
     // Список товаров
     private final HashMap<String, Double> goods;
@@ -68,16 +70,23 @@ public class Shop {
     }
 
     // Встать в очередь
-    public void getInLine(Buyer buyer) {
+    int putBuyerInLine(Buyer buyer) {
         synchronized (line) {
-            line.add(buyer);
+            return line.add(buyer);
         }
     }
 
     // Возвращает первого в очереди покупателя или null, если очередь пуста
-    public Buyer getFromLine() {
+    Buyer getBuyerFromLine() {
         synchronized (line) {
             return line.next();
+        }
+    }
+
+    // Сколько людей в очереди
+    int lineLength(){
+        synchronized (line) {
+            return line.length();
         }
     }
 }

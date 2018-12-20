@@ -6,10 +6,10 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     private int kspeed;
     private boolean pensioneer;
 
-    private Shop shop;
-    Basket basket;
+    private final Shop shop;
+    private Basket basket;
 
-    public Buyer(int num, Shop shop, int kspeed) {
+    Buyer(int num, Shop shop, int kspeed) {
         super("Покупатель № " + num);
         this.num = num;
         this.shop = shop;
@@ -45,6 +45,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         takeBasket();
         chooseGoods();
         putGoodsToBasket();
+        getInLine();
         goToOut();
     }
 
@@ -79,5 +80,11 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
             System.out.println(this + " положил в корзину " + good + '.');
             sleepRandom(100, 200);
         }
+    }
+
+    // Встать в очередь
+    private void getInLine(){
+        int c = shop.putBuyerInLine(this);
+        System.out.println(this + " встал в очередь (длинна стала " + c + ")");
     }
 }

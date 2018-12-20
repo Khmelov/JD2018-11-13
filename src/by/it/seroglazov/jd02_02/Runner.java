@@ -5,11 +5,15 @@ import java.util.LinkedList;
 public class Runner {
 
     private static int countBuyers = 0;
-    private static final int K_SPEED = 50;
+    private static final int K_SPEED = 100;
 
     public static void main(String[] args) {
         LinkedList<Buyer> buyers = new LinkedList<>();
         Shop shop = new Shop();
+
+        //Запускаем двух кассиров
+        Cashier cashier1 = new Cashier(1, shop, K_SPEED);
+        Cashier cashier2 = new Cashier(2, shop, K_SPEED);
 
         // Сразу 10 запускаем
         System.out.println("Магазин открылся");
@@ -37,6 +41,11 @@ public class Runner {
                 System.err.println("InterruptedException " + e.getMessage());
             }
         });
+
+        // Отпускаем кассиров
+        cashier1.endOfWorkDay();
+        cashier2.endOfWorkDay();
+
         System.out.println("Магазин завершил работу.");
 
     }
