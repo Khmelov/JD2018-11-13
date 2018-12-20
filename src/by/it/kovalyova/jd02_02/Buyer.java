@@ -1,15 +1,17 @@
 package by.it.kovalyova.jd02_02;
 
 class Buyer extends Thread implements IBuyer, IUseBasket {
-    Buyer(int number){
+    Buyer(int number) {
         super("Customer №" + number);
-    }
+        Dispatcher.addBuyer();
+}
 
     @Override
     public void run() {
         enterToMarket();
         takeBasket();
         chooseGoods();
+        goToQueue();
         putGoodsToBasket();
         goOut();
     }
@@ -32,6 +34,19 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
         int timeout = Util.random(500,2000);
         Util.sleep(timeout);
         System.out.println(this + "made a choice");
+    }
+
+
+    @Override
+    public void goToQueue() {
+        QueueBuyer.add(this);
+        synchronized (this){
+            try {
+                this.wait();
+            } catch (InterruptedException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
