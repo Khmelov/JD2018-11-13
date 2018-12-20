@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.jd02_01;
+package by.it.nickgrudnitsky.jd02_02;
 
 import java.util.*;
 import java.util.concurrent.CopyOnWriteArraySet;
@@ -32,6 +32,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         super("Buyer #" + number + " ");
         int random = Util.random(1, 4);
         pensioneer = random == 4;
+        buyers.add(this);
     }
 
     @Override
@@ -44,9 +45,10 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         goOut();
     }
 
+
+
     @Override
     synchronized public void enterToMarket() {
-        buyers.add(this);
         System.out.println(this + "enter to market.");
     }
 
@@ -54,7 +56,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     public void chooseGoods() {
         /*System.out.println(this + "choosing goods.");*/
         if (pensioneer) {
-            Util.sleep((int) (Util.random(500, 2000) * 1.5));
+            Util.sleep((int) (Util.random(5000, 20000) * 1.5));
         } else {
             Util.sleep(Util.random(500, 2000));
         }

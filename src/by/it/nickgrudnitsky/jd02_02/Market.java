@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.jd02_01;
+package by.it.nickgrudnitsky.jd02_02;
 
 public class Market {
     public static void main(String[] args) {
@@ -8,14 +8,14 @@ public class Market {
             if (second > 59) time = second - 60;
             if (second == 0) {
                 for (int j = 0; j < 10; j++) {
-                    Buyer buyer = new Buyer(Dispatcher.buyerCount++);
+                    Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                     buyer.start();
                 }
                 Util.sleep(1000);
             }
             int buyerCount = Util.random(2);
             for (int j = 0; j < buyerCount; j++) {
-                Buyer buyer = new Buyer(Dispatcher.buyerCount++);
+                Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                 buyer.start();
             }
             Util.sleep(1000);
@@ -23,7 +23,7 @@ public class Market {
                 while (Buyer.buyers.size() < time + 10) {
                     buyerCount = Util.random(2);
                     for (int j = 0; j < buyerCount; j++) {
-                        Buyer buyer = new Buyer(Dispatcher.buyerCount++);
+                        Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                         buyer.start();
                     }
                 }
@@ -32,12 +32,12 @@ public class Market {
                 while (Buyer.buyers.size() < 40 + 30 - time) {
                     buyerCount = Util.random(2);
                     for (int j = 0; j < buyerCount; j++) {
-                        Buyer buyer = new Buyer(Dispatcher.buyerCount++);
+                        Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                         buyer.start();
                     }
                 }
             }
-            if (second % 15 == 0) System.out.println("---------------------Секунда " + second + " " + Buyer.buyers.size());
+            if (second % 10 == 0) System.out.println("---------------------Секунда " + second + " " + Buyer.buyers.size());
         }
         for (Buyer buyer : Buyer.buyers) {
             try {
