@@ -14,7 +14,6 @@ public class Market {
         for (int time = 0; time < 120; time++) {
             int sec = time%60;
             int buyerCount;
-            if (time > 59) sec = time - 60;
             if (time == 0) {
                 for (int i = 0; i < 10; i++) {
                     Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
@@ -29,7 +28,6 @@ public class Market {
                 Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                 buyer.start();
             }
-            if (time % 30 == 0) print(time);
             Util.sleep(1000);
             if (sec < 31) {
                 if (Buyer.buyers.size() < sec + 10) {
@@ -54,7 +52,7 @@ public class Market {
                 }
             }
             Util.sleep(1000);
-            if(time==15|time==45|time==75|time==105) print(time);
+            if(time%15==0) print(time);
         }
         for (Buyer buyer : Buyer.buyers) {
             try {
