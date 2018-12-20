@@ -12,6 +12,7 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
         super("Buyer №" + number);
         backet = new Backet();
         pensioneer = Math.random()<0.25;
+        buyers.add(this);
     }
     @Override
     public void run() {
@@ -27,7 +28,6 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
     @Override
     public void enterToMarket() {
         System.out.println(this + "enter to market.");
-        buyers.add(this);
     }
 
     @Override

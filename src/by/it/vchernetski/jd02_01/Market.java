@@ -12,8 +12,8 @@ public class Market {
         Good.fillMapGoods();
         System.out.println("Market opened");
         for (int time = 0; time < 120; time++) {
-            int sec = time;
-            int buyerCount = 0;
+            int sec = time%60;
+            int buyerCount;
             if (time > 59) sec = time - 60;
             if (time == 0) {
                 for (int i = 0; i < 10; i++) {
@@ -26,7 +26,7 @@ public class Market {
             }
             buyerCount = Util.random(2);
             for (int i = 1; i < buyerCount; i++) {
-                Buyer buyer = new Buyer((Dispatcher.buyerCounter++) + 9);
+                Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                 buyer.start();
             }
             if (time % 30 == 0) print(time);
@@ -36,7 +36,7 @@ public class Market {
                     while (Buyer.buyers.size() < sec + 10) {
                         buyerCount = Util.random(2);
                         for (int i = 1; i < buyerCount; i++) {
-                            Buyer buyer = new Buyer((Dispatcher.buyerCounter++) + 9);
+                            Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                             buyer.start();
                         }
                     }
