@@ -1,8 +1,10 @@
 package by.it.kovalyova.jd02_02;
 
 class Buyer extends Thread implements IBuyer, IUseBasket {
-    Buyer(int number) {
+    QueueBuyer mainqueue;
+    Buyer(int number, QueueBuyer queue) {
         super("Customer №" + number);
+        mainqueue = queue;
         Dispatcher.addBuyer();
 }
 
@@ -39,7 +41,8 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public void goToQueue() {
-        QueueBuyer.add(this);
+        mainqueue.add(this);
+        System.out.println(this+"waits as "+Integer.toString(mainqueue.getSize()));
         synchronized (this){
             try {
                 this.wait();

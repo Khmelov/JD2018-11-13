@@ -5,13 +5,32 @@ import java.util.LinkedList;
 
 class QueueBuyer {
 
-    private static Deque<Buyer> deque=new LinkedList<>();
+    private Deque<Buyer> deque=new LinkedList<>();
+    int size = 0;
+    boolean lock = false;
 
-    static synchronized void add(Buyer buyer){
+    synchronized void add(Buyer buyer){
+
+        size++;
         deque.addLast(buyer);
 
     }
-    static synchronized Buyer extract(){
+    synchronized Buyer extract(){
+        if (size>0) size--;
         return deque.pollFirst();
+    }
+    synchronized int getSize() {
+        return size;
+    }
+    synchronized boolean getLock() {
+        if (!lock) {
+            lock = true;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    synchronized void releaseLock() {
+        lock = false;
     }
 }
