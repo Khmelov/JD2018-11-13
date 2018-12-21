@@ -1,14 +1,19 @@
 package by.it.vchernetski.jd02_01;
+
+import java.util.ArrayList;
+import java.util.List;
+
 /*
 количество покупателей находящихся в магазине выводится каждые 15 секунд
  */
 public class Market {
     private static void print(int time) {
         System.out.println("======================================\n" + time + " sec" + "\t"
-                + Buyer.buyers.size() + " buyers" + "\n======================================\n");
+                + Buyer.getNumOfBuyers() + " buyers" + "\n======================================\n");
     }
 
     public static void main(String[] args) {
+        List<Buyer> buyerList = new ArrayList<>();
         Good.fillMapGoods();
         System.out.println("Market opened");
         for (int time = 0; time < 120; time++) {
@@ -30,8 +35,8 @@ public class Market {
             }
             Util.sleep(1000);
             if (sec < 31) {
-                if (Buyer.buyers.size() < sec + 10) {
-                    while (Buyer.buyers.size() < sec + 10) {
+                if (Buyer.getNumOfBuyers() < sec + 10) {
+                    while (Buyer.getNumOfBuyers() < sec + 10) {
                         buyerCount = Util.random(2);
                         for (int i = 1; i < buyerCount; i++) {
                             Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
@@ -41,8 +46,8 @@ public class Market {
                 }
             }
             if (sec > 30) {
-                if (Buyer.buyers.size() <= 70 - sec) {
-                    while (Buyer.buyers.size() < 70-sec) {
+                if (Buyer.getNumOfBuyers() <= 70 - sec) {
+                    while (Buyer.getNumOfBuyers() < 70-sec) {
                         buyerCount = Util.random(2);
                         for (int i = 1; i < buyerCount; i++) {
                             Buyer buyer = new Buyer((Dispatcher.buyerCounter++) + 9);
@@ -54,7 +59,7 @@ public class Market {
             Util.sleep(1000);
             if(time%15==0) print(time);
         }
-        for (Buyer buyer : Buyer.buyers) {
+        for (Buyer buyer : buyerList) {
             try {
                 buyer.join();
             } catch (InterruptedException e) {
