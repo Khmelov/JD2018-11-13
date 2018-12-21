@@ -25,11 +25,12 @@ class Shop {
     // Это маркер отсутсвие корзины у покупателя. Чтобы не null писать в HashMap<Buyer, Basket>
     private final Basket absentBasket = new Basket();
     // Количество кассиров
-    private final int CASHIERS_COUNT = 5;
+    private static final int CASHIERS_COUNT = 5;
     // Кассиры
     private ArrayList<Cashier> cashiers;
     // Менеджер. Управляет кассирами.
     private Manager manager;
+    private double totalCash = 0;
 
     Shop() {
         goods = new HashMap<>();
@@ -47,7 +48,7 @@ class Shop {
         goods.put("Куртка", 48.2);
         goods.put("Карандаш", 0.3);
         goods.put("Гвозди", 5.5);
-        //cashiers = new Cashier[CASHIERS_COUNT];
+        if (Runner.TABLE_MODE) printTitleLine();
         cashiers = new ArrayList<>();
         for (int i = 0; i < CASHIERS_COUNT; i++) {
             cashiers.add(new Cashier(i + 1, this));
@@ -127,7 +128,7 @@ class Shop {
             for (Cashier cashier : cashiers) {
                 cashier.endOfWorkDay();
             }
-            cashiers.forEach(x-> {
+            cashiers.forEach(x -> {
                 try {
                     x.getThread().join();
                 } catch (InterruptedException e) {
@@ -164,7 +165,7 @@ class Shop {
     }
 
     // Сколько людей в очереди
-    private int lineLength() {
+    int lineLength() {
         synchronized (line) {
             return line.length();
         }
@@ -191,11 +192,13 @@ class Shop {
         }
     }
 
-    private int getNeededCashiersCount(int count) {
-        if (count == 0) return 0;
-        int a = count / 5 + 1;
-        if (a > CASHIERS_COUNT) a = CASHIERS_COUNT;
-        return a;
+    private int getNeededCashiersCount(int c) {
+        if (c > 20) return 5;
+        if (c > 15) return 4;
+        if (c > 10) return 3;
+        if (c > 5) return 2;
+        if (c > 0) return 1;
+        return 0;
     }
 
     // Эта проверка запускается менеджером
@@ -239,7 +242,6 @@ class Shop {
                     if (v >= length) v = 0;
                 }
             }
-
         }
         int[] r = new int[length];
         for (int i = 0; i < length; i++) {
@@ -249,18 +251,53 @@ class Shop {
     }
 
     // Рассчитать покупателя
-    void check(Buyer b, Cashier c) {
+    void check(Buyer b, Cashier c, int lineLength) {
         synchronized (buyers) {
             Basket bas = buyers.get(b);
             String good = bas.takeGoodFromBasket();
             double fullSum = 0;
             while (good != null) {
                 double money = goods.get(good);
-                System.out.println(c + " взял с " + b.getShortName() + " " + money + " рублей за " + good);
+                if (Runner.FULL_LOG)
+                    System.out.println(c + " взял с " + b.getShortName() + " " + money + " рублей за " + good);
+                if (Runner.TABLE_MODE) printTableLine(c, good, money, lineLength);
                 fullSum += money;
                 good = bas.takeGoodFromBasket();
             }
-            System.out.println("Итого " + b.getShortName() +" оставил в магазине " + fullSum + " рублей.");
+
+            if (Runner.FULL_LOG)
+                System.out.println("Итого " + b.getShortName() + " оставил в магазине " + fullSum + " рублей.");
+
         }
+    }
+
+    private void printTableLine(Cashier c, String good, Double money, int lineLength) {
+        int n = c.getNomer() - 1;
+        int w = Runner.CHARR_IN_COLUMN;
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < CASHIERS_COUNT; i++) {
+            if (i == n) {
+                sb.append(String.format(" %" + (w - 8) + "s %5.2f ", good, money)).append('|');
+            } else {
+                sb.append(Runner.EMPTY_COL).append('|');
+            }
+        }
+        sb.append(String.format(" Очередь: %" + (w - 10) + "d", lineLength)).append('|');
+        sb.append(String.format(" Всего: %" + (w - 9) + ".2f ", addCash(money)));
+        System.out.println(sb);
+    }
+
+    private static void printTitleLine() {
+        int w = Runner.CHARR_IN_COLUMN;
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < CASHIERS_COUNT; i++) {
+            sb.append(String.format("%" + (w - 3) + "s%d  ", "касса N", i + 1)).append('|');
+        }
+        System.out.println(sb);
+    }
+
+    synchronized double addCash(double d) {
+        return totalCash += d;
     }
 }

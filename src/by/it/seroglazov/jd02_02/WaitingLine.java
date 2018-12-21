@@ -5,23 +5,33 @@ import java.util.LinkedList;
 // Класс очередь
 class WaitingLine {
 
-    private LinkedList<Buyer> line;
+    private LinkedList<Buyer> normLine; // Обычные
+    private LinkedList<Buyer> pensLine; // Пенсионеры
 
     WaitingLine(){
-        line = new LinkedList<>();
+        normLine = new LinkedList<>();
+        pensLine = new LinkedList<>();
     }
 
-    int add(Buyer buyer){
-        line.addLast(buyer);
-        return line.size();
+    synchronized int add(Buyer buyer){
+        if (buyer.isPensioneer()) {
+            pensLine.addLast(buyer);
+        } else {
+            normLine.addLast(buyer);
+        }
+        return normLine.size() + pensLine.size();
     }
 
-    Buyer next(){
-        return line.pollFirst();
+    synchronized Buyer next(){
+        if (!pensLine.isEmpty()){
+            return pensLine.pollFirst();
+        } else {
+            return normLine.pollFirst();
+        }
     }
 
-    int length(){
-        return line.size();
+    synchronized int length(){
+        return normLine.size() + pensLine.size();
     }
 
 }

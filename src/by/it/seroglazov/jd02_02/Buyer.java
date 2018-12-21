@@ -3,6 +3,11 @@ package by.it.seroglazov.jd02_02;
 public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     private int num; // Номер покупателя
+
+    public boolean isPensioneer() {
+        return pensioneer;
+    }
+
     private boolean pensioneer;
 
     private final Shop shop;
@@ -21,11 +26,11 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public boolean enterToMarket() {
         int c = shop.enter(this);
         if (c >= 0) {
-            System.out.println(this + " зашёл в магазин (стало магазине: " + c + ")");
+            if (Runner.FULL_LOG) System.out.println(this + " зашёл в магазин (стало магазине: " + c + ")");
             yield();
             return true;
         } else {
-            if (c == -1) System.err.println(this + " не пустили в магазин.");
+            if (c == -1) if (Runner.FULL_LOG) System.err.println(this + " не пустили в магазин.");
             return false;
         }
     }
@@ -33,7 +38,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public void chooseGoods() {
         SleepCases.sleepRandom(500, 2000);
-        System.out.println(this + " выбрал товар.");
+        if (Runner.FULL_LOG) System.out.println(this + " выбрал товар.");
         yield();
 
     }
@@ -42,7 +47,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public boolean goToOut() {
         int c = shop.leave(this);
         if (c >= 0) {
-            System.out.println(this + " вышел из магазина (осталось в магазине " + c + ")");
+            if (Runner.FULL_LOG) System.out.println(this + " вышел из магазина (осталось в магазине " + c + ")");
             return true;
         } else {
             return false;
@@ -73,10 +78,10 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public void takeBasket() {
         if (shop.takeBasket(this)) {
-            System.out.println(this + " взял корзину.");
+            if (Runner.FULL_LOG) System.out.println(this + " взял корзину.");
             SleepCases.sleepRandom(100, 200);
         } else {
-            System.err.println(this + " не могу взять корзину!");
+            if (Runner.FULL_LOG) System.err.println(this + " не могу взять корзину!");
         }
     }
 
@@ -84,7 +89,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void putGoodsToBasket() {
         String[] goods = shop.putRandomGoodsToBasket(this, MyRandom.getRandom(1, 4));
         for (int i = 0; i < goods.length; i++) {
-            System.out.println(this + " положил в корзину " + goods[i] + '.');
+            if (Runner.FULL_LOG) System.out.println(this + " положил в корзину " + goods[i] + '.');
             SleepCases.sleepRandom(100, 200);
         }
     }
@@ -92,7 +97,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     // Встать в очередь
     private void getInLine() {
         int c = shop.getInLine(this);
-        System.out.println(this + " встал в очередь (очередь: " + c + ")");
+        if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
         synchronized (this) {
             try {
                 wait();
