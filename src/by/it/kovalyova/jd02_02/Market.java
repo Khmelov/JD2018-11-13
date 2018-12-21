@@ -3,10 +3,13 @@ package by.it.kovalyova.jd02_02;
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class Market {
 
     public static void main(String[] args) {
         List<Buyer> buyerList = new ArrayList<>();
+        List<Thread> threads = new ArrayList<>();
+
         System.out.println("Market opened. Welcome!");
 
         for (int num = 1; num <=2 ; num++) {
@@ -17,7 +20,7 @@ public class Market {
         }
 
         for (int time = 0; Dispatcher.marketOpened() ; time++) {
-            int buyerCount =Util.random(2);
+            int buyerCount = Util.random(2);
             for (int i = 0; i < buyerCount; i++) {
                 if (Dispatcher.marketOpened()){
                     Buyer buyer=new Buyer(Dispatcher.getBuyerCounter());
@@ -25,6 +28,7 @@ public class Market {
                     buyer.start();
                 }
         }
+
             Util.sleep(1000);
         }
         for (Thread thread : threads) {

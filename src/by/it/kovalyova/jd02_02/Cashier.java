@@ -2,6 +2,7 @@ package by.it.kovalyova.jd02_02;
 
 public class Cashier implements Runnable {
     private String name;
+
     public Cashier(int number){
         name = "--- Cashier №" + number + ": ";
     }
@@ -12,7 +13,9 @@ public class Cashier implements Runnable {
         while (!Dispatcher.marketClosed()){
             Buyer buyer = QueueBuyer.extract();
             if (buyer==null){
-                Util.sleep(1);
+                System.out.println(this +"finished service by no buyers");
+                return;
+                //Util.sleep(1);
             }
             else {
                 System.out.println(this+"started service "+buyer);
