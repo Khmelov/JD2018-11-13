@@ -46,12 +46,12 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void putGoodsToBacket() {
+        int timeout = Util.random(100, 200);
+        Util.sleep(timeout);
         int x = Util.random(1, 4);
         for (int i = 0; i < x; i++) {
             String product = goodShop.takeProduct();
             backet.putGoodsToBacket(product);
-            int timeout = Util.random(100, 200);
-            Util.sleep(timeout);
             System.out.println(this + "put down in backet" + product);
         }
     }
