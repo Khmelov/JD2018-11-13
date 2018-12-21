@@ -1,21 +1,22 @@
 package by.it.kruglenja.jd02_02;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+public class Buyer extends Thread implements IBuyer {
 
-public class Buyer extends Thread implements IBuyer, IUseBacket {
+    private Backet backet = new Backet();
+    private int customerNumber;
 
-
-    public Buyer(int num) {
-        super("Покупатель №" + num);
+    Buyer(int number) {
+        super("Покупатель №" + number);
+        customerNumber = number;
+        Dispathcer.addBayer();
     }
 
     @Override
     public void run() {
         enterToMarket();
-        takeBacket();
+        backet.takeBacket(customerNumber);
         chooseGoods();
+        goToQueue();
         goOut();
     }
 
@@ -31,40 +32,29 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void chooseGoods() {
+
         System.out.println(this + "выбирает товар");
-        putGoodsToBacket();
+        backet.putGoodsToBacket(customerNumber);
         int timeout = Util.random(500, 2000);
         Util.sleep(timeout);
         System.out.println(this + "выбрал товар");
     }
 
     @Override
-    public void goOut() {
-        System.out.println(this + "отправился на выход");
-    }
-
-    @Override
-    public void takeBacket() {
-        System.out.println(this + "взял корзину");
-    }
-
-    @Override
-    public void putGoodsToBacket() {
-        HashMap<String, Integer> goodsList = new HashMap(){{
-            put("Колбасу", 228);
-            put("Картоху", 322);
-            put("Сало", 2077);
-            put("Огурец", 155);
-            put("Туфли", 300);
-        }};
-        List<String> keys = new ArrayList<>(goodsList.keySet());
-        int goodsQuan = (int) Util.random(1, 4);
-        for (int i = 0; i < goodsQuan; i++) {
-            String prod = keys.get(Util.random(4));
-            int price = goodsList.get(prod);
-            System.out.println(this + "купил " + prod + " за " + price);
-            Util.sleep(Util.random(100, 200));
+    public void goToQueue() {
+        QueueBuyer.addBuyer(this);
+        synchronized (this) {
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
     }
 
+    @Override
+    public void goOut() {
+        System.out.println(this + "отправился на выход");
+        Dispathcer.removeBuyer();
+    }
 }

@@ -20,6 +20,7 @@ public class Market {
             Util.sleep(1000);
         }
 
+
         for (Buyer buyer : buyers) {
             try {
                 buyer.join();

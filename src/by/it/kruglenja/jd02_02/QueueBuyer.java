@@ -10,12 +10,14 @@ public class QueueBuyer {
 
     private static Deque<Buyer> bList = new LinkedList<>();
 
-    static void addBuyer(Buyer buyer){
-        bList.add(buyer);
+    static synchronized void addBuyer(Buyer buyer){
+        bList.addLast(buyer);
     }
 
     static Buyer buyerExtract(){
        return bList.pollFirst();
+
     }
+
 }
 
