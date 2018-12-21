@@ -1,4 +1,4 @@
-package by.it.seroglazov.jd01_15;
+package by.it.malishevskiy.jd01_15;
 
 import java.io.FileWriter;
 import java.io.IOException;
@@ -19,7 +19,7 @@ public class TaskA {
 
         // Write file
         String part1 = System.getProperty("user.dir");
-        String part2 = "/src/by/it/seroglazov/jd01_15/matrix.txt";
+        String part2 = "/src/by/it/malishevskiy/jd01_15/matrix.txt";
         Path path = Paths.get(part1, part2);
         try (PrintWriter pw = new PrintWriter(new FileWriter(path.toString()))) {
             for (int i = 0; i < matrix.length; i++) {
@@ -31,8 +31,6 @@ public class TaskA {
         } catch (IOException e) {
             System.err.format("Ошибка записи файла %s%n", path);
         }
-
-        // Read file and write
         try {
             List<String> lines = Files.readAllLines(path);
             lines.forEach(System.out::println);

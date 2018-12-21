@@ -62,7 +62,7 @@ public class TaskB2 {
 //        for (StringBuilder v : sbArray) {
 //            Matcher matcher = pattern2.matcher(v);
 //            while (matcher.find()){
-//                int position=matcher.start();
+//                int position=matcher.path();
 //                //v.setCharAt(position,'@');
 //                v.deleteCharAt(position);
 //            }
@@ -72,7 +72,7 @@ public class TaskB2 {
 //        for (StringBuilder v : sbArray) {
 //            Matcher matcher = pattern3.matcher(v);
 //            while (matcher.find()){
-//                int position=matcher.start();
+//                int position=matcher.path();
 //                v.delete(position,position+1);
 //
 //            }
@@ -87,7 +87,7 @@ public class TaskB2 {
 //        for (StringBuilder v : sbArray) {
 //            Matcher matcher = pattern3.matcher(v);
 //            while (matcher.find()){
-//                int position=matcher.start();
+//                int position=matcher.path();
 //                v.setCharAt(position,'@');
 //                //v.delete(position,position);
 //                //v.deleteCharAt(position);
