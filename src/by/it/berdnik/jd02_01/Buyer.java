@@ -1,12 +1,13 @@
 package by.it.berdnik.jd02_01;
 
+import java.util.HashMap;
+
 class Buyer extends Thread implements IBuyer, IUseBacket {
 
     Buyer(int number) {
-
-        super("Buyer №" + number);
-
+        super("Buyer №" + number + " ");
     }
+
 
     @Override
     public void run() {
@@ -25,34 +26,29 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void takeBacket() {
-        backet = new Backet();
         System.out.println(this + "take a backet.");
         int timeout = Util.random(100, 200);
         Util.sleep(timeout);
         System.out.println(this + "go shoping with backet");
     }
 
-
     @Override
     public void chooseGoods() {
         System.out.println(this + "started to choose goods");
         int timeout = Util.random(500, 2000);
         Util.sleep(timeout);
-        System.out.println(this + "choosed goods.");
+        System.out.println(this + "choosed goods");
     }
-
-    GoodShop goodShop;
-    Backet backet;
 
     @Override
     public void putGoodsToBacket() {
-        int timeout = Util.random(100, 200);
-        Util.sleep(timeout);
         int x = Util.random(1, 4);
         for (int i = 0; i < x; i++) {
-            String product = goodShop.takeProduct();
-            backet.putGoodsToBacket(product);
-            System.out.println(this + "put down in backet" + product);
+            int prod = Util.random(GoodShop.product.size() - 1);
+            GoodShop.getPosition((HashMap) GoodShop.product, prod);
+            System.out.println(this + "put down in backet");
+            int timeout = Util.random(100, 200);
+            Util.sleep(timeout);
         }
     }
 

@@ -8,6 +8,8 @@ public class Market {
     public static void main(String[] args) {
 
         List<Buyer> buyerList = new ArrayList<>();
+        GoodShop.products();
+        System.out.println(GoodShop.product.entrySet());
         System.out.println("Market opened");
 
         for (int time = 0; time < 120; time++) {

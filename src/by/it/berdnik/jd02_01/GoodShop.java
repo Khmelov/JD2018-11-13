@@ -1,13 +1,13 @@
 package by.it.berdnik.jd02_01;
 
 import java.util.HashMap;
-import java.util.Iterator;
+import java.util.Map;
 
 public class GoodShop {
 
-    private static HashMap<String, Double> product = new HashMap<>();
+    static Map<String, Double> product = new HashMap<>();
 
-    public GoodShop() {
+    public static void products() {
         product.put("Product 1", 1.1);
         product.put("Product 2", 2.2);
         product.put("Product 3", 3.13);
@@ -31,13 +31,9 @@ public class GoodShop {
         product.put("Product 21", 21.1);
     }
 
-    public String takeProduct() {
-        int number = Util.random(0, GoodShop.product.size() - 1);
-        Iterator<String> iter = product.keySet().iterator();
-        for (int i = 0; i < number; i++) {
-            iter.next();
-        }
-        return iter.next();
+    static void getPosition(HashMap map, int position) {
+        Object[] key = map.keySet().toArray();
+        System.out.println(key[position] + "=" + map.get(key[position]));
     }
 
 }
