@@ -3,7 +3,9 @@ package by.it.berdnik.jd02_01;
 class Buyer extends Thread implements IBuyer, IUseBacket {
 
     Buyer(int number) {
+
         super("Buyer №" + number);
+
     }
 
     @Override
@@ -23,6 +25,7 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void takeBacket() {
+        backet = new Backet();
         System.out.println(this + "take a backet.");
         int timeout = Util.random(100, 200);
         Util.sleep(timeout);
@@ -38,8 +41,19 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
         System.out.println(this + "choosed goods.");
     }
 
+    GoodShop goodShop;
+    Backet backet;
+
     @Override
     public void putGoodsToBacket() {
+        int x = Util.random(1, 4);
+        for (int i = 0; i < x; i++) {
+            String product = goodShop.takeProduct();
+            backet.putGoodsToBacket(product);
+            int timeout = Util.random(100, 200);
+            Util.sleep(timeout);
+            System.out.println(this + "put down in backet" + product);
+        }
     }
 
     @Override
