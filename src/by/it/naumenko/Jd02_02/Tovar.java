@@ -24,6 +24,16 @@ public class Tovar {
         System.out.println(key[position]+"="+map.get(key[position]));
     }
 
+    static double getValueMap(HashMap map, int position){
+        Object[] key = map.keySet().toArray();
+        return (double) map.get(key[position]);
+    }
+
+    static String getKeyMap(HashMap map, int position){
+        Object[] key = map.keySet().toArray();
+        return key[position].toString();
+    }
+
     static double summaChek(HashMap<String,Double> map){
         double summa=0;
         for (double value : map.values()) {

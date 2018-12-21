@@ -1,10 +1,13 @@
 package by.it.naumenko.Jd02_02;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Buyer extends Thread implements IBuyer, IUseBacked {
 
-   public static boolean pensioneer;
+    //public  Map<String,Double>[] check = new HashMap<String,Double>[];
+    //HashMap<String, String>[] responseArray = (Map<String, String>[]) new HashMap<?,?>[games.size()];
+    public static boolean pensioneer;
     @Override
     public void enterToMArket() {
         if(!pensioneer)
@@ -87,10 +90,12 @@ public class Buyer extends Thread implements IBuyer, IUseBacked {
     public void putGoodsToBacket() {
         if (!pensioneer) {
             int colTovar = Util.random(1, 4);
+            //check[Dispecher.buyerCounter]=new HashMap<>();
             for (int i = 0; i < colTovar; i++) {
                 int pos = Util.random(Tovar.tovar.size() - 1);
                 System.out.print(this + "Положил в корзину товар ");
                 Tovar.getPosition((HashMap) Tovar.tovar, pos);
+                //check[2].put(Tovar.getKeyMap((HashMap) Tovar.tovar,pos),Tovar.getValueMap((HashMap) Tovar.tovar,pos));
                 Util.sleep(Util.random(100, 200));
             }
             System.out.println(this + "Положил в корзину все товары");
