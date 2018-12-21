@@ -3,17 +3,15 @@ package by.it.seroglazov.jd02_02;
 public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     private int num; // Номер покупателя
-    private int kspeed;
     private boolean pensioneer;
 
     private final Shop shop;
-    private Basket basket;
+    //private Basket basket;
 
-    Buyer(int num, Shop shop, int kspeed) {
-        super("Покупатель № " + num);
+    Buyer(int num, Shop shop) {
+        super("BuyerN" + num);
         this.num = num;
         this.shop = shop;
-        this.kspeed = kspeed;
         pensioneer = Math.random() < 0.25;
         start();
     }
@@ -27,13 +25,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
             yield();
             return true;
         } else {
-            if (c == -1) System.out.println(this + " не пустили в магазин.");
+            if (c == -1) System.err.println(this + " не пустили в магазин.");
+            return false;
         }
     }
 
     @Override
     public void chooseGoods() {
-        sleepRandom(500, 2000);
+        SleepCases.sleepRandom(500, 2000);
         System.out.println(this + " выбрал товар.");
         yield();
 
@@ -42,8 +41,12 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public boolean goToOut() {
         int c = shop.leave(this);
-
-        System.out.println(this + " вышел из магазина (осталось в магазине " + c + ")");
+        if (c >= 0) {
+            System.out.println(this + " вышел из магазина (осталось в магазине " + c + ")");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
@@ -53,59 +56,49 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
             chooseGoods();
             putGoodsToBasket();
             getInLine();
-            while (!goToOut()) sleepFor(100); // Если магазин не выпускает то здесь застрянет покупатель (значит ошибка в логике)
+            while (!goToOut())
+                SleepCases.sleepFor(100); // Если магазин не выпускает то здесь застрянет покупатель (значит ошибка в логике)
         }
     }
 
     @Override
     public String toString() {
-        return (pensioneer ? "(П) " : "    ") + this.getName();
+        return (pensioneer ? "(П)" : "   ") + this.getName();
     }
 
-    private void sleepRandom(int minMillis, int maxMillis) {
-        int millis = MyRandom.getRandom(minMillis, maxMillis);
-        if (pensioneer) millis = (int) (millis * 1.5);
-        try {
-            Thread.sleep(millis / kspeed);
-        } catch (InterruptedException e) {
-            System.err.println("InterruptedException " + e.getMessage());
-        }
-    }
-
-    private void sleepFor(int millis){
-        try {
-            Thread.sleep(millis / kspeed);
-        } catch (InterruptedException e) {
-            System.err.println("InterruptedException " + e.getMessage());
-        }
+    String getShortName() {
+        return this.getName();
     }
 
     @Override
     public void takeBasket() {
-        basket = new Basket();
-        System.out.println(this + " взял корзину.");
-        sleepRandom(100, 200);
+        if (shop.takeBasket(this)) {
+            System.out.println(this + " взял корзину.");
+            SleepCases.sleepRandom(100, 200);
+        } else {
+            System.err.println(this + " не могу взять корзину!");
+        }
     }
 
     @Override
     public void putGoodsToBasket() {
-        int n = MyRandom.getRandom(1, 4);
-        for (int i = 0; i < n; i++) {
-            String good = shop.takeRandomGood();
-            basket.putGoodToBasket(good);
-            System.out.println(this + " положил в корзину " + good + '.');
-            sleepRandom(100, 200);
+        String[] goods = shop.putRandomGoodsToBasket(this, MyRandom.getRandom(1, 4));
+        for (int i = 0; i < goods.length; i++) {
+            System.out.println(this + " положил в корзину " + goods[i] + '.');
+            SleepCases.sleepRandom(100, 200);
         }
     }
 
     // Встать в очередь
-    private void getInLine(){
+    private void getInLine() {
         int c = shop.getInLine(this);
-        System.out.println(this + " встал в очередь (длинна стала " + c + ")");
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            System.err.println("InterruptedException " + e.getMessage());
+        System.out.println(this + " встал в очередь (очередь: " + c + ")");
+        synchronized (this) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.err.println("InterruptedException " + e.getMessage());
+            }
         }
     }
 
