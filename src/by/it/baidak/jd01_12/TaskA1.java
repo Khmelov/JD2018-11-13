@@ -2,6 +2,7 @@ package by.it.baidak.jd01_12;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 
 /**
  * Created by user on 08.12.2018.
@@ -22,7 +23,7 @@ public class TaskA1 {
         System.out.println(currentClass.grades);
     }
 
-    public void clearBad(ArrayList<Integer> grades) {
+    private void clearBad(List<Integer> grades) {
         Iterator<Integer> iterator = grades.iterator();
         while (iterator.hasNext()) {
             Integer next = iterator.next();

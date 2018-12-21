@@ -43,7 +43,9 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Scalar s) {
+    public Var div(Scalar s) throws CalcExeption {
+        if (s.value == 0)
+            throw new CalcExeption("деление на ноль.");
         return new Scalar(value / s.value);
     }
 
@@ -63,7 +65,7 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Vector v) {
+    public Var div(Vector v) throws CalcExeption {
         return super.div((Var)v);
     }
 
@@ -83,27 +85,27 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Matrix m) {
+    public Var div(Matrix m) throws CalcExeption {
         return super.div((Var)m);
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws CalcExeption {
         return other.addDispatch(this);
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcExeption {
         return other.subDispatch(this);
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcExeption {
         return other.mulDispatch(this);
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws CalcExeption {
         return other.divDispatch(this);
     }
 
@@ -123,7 +125,7 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var divDispatch(Var other) {
+    public Var divDispatch(Var other) throws CalcExeption {
         return other.div(this);
     }
 }

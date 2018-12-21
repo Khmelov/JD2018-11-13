@@ -8,7 +8,9 @@ import java.util.*;
  */
 public class TaskB1 {
     public static void main(String[] args) {
-        Map<String, Integer> map = new HashMap<>();     // Создаем хэш-мэп
+        Map<String, Integer> map = new HashMap<>();
+
+        // Создаем хэш-мэп
         Scanner sc = new Scanner(System.in);
         String str;
         while (!(str = sc.next()).equals("end")) {
