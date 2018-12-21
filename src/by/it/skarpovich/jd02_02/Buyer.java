@@ -42,7 +42,8 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
         Util.sleep(timeout);
         int goodsCount=Util.random(1, 4);  // Получаем случайное количество товаров от 1 до 4-х.
         // Выводим количество товаров и результат(список случайных покупок с ценами) из метода goods
-        System.out.println(this+"put " + goodsCount+ " good(s) in the basket: " +Basket.goods(goodsCount));
+        System.out.println(this+"put " + goodsCount+ " good(s) to the basket: "+ Basket.goods(goodsCount));
+        System.out.println("Сумма к оплате:"+ Basket.BasketSum());
     }
 
     @Override
