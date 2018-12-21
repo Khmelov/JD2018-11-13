@@ -14,6 +14,7 @@ public class Cashier implements Runnable {
         while (!Dispatcher.marketClosed()){
             Buyer buyer = QueueBuyer.extract();
             if (buyer==null) {
+                //System.out.println(this+" closed"); //added for B
                 Util.sleep(1);
             }
             else {
@@ -25,7 +26,6 @@ public class Cashier implements Runnable {
                     buyer.notify();
                 }
             }
-
         }
         System.out.println(this+" closed");
     }

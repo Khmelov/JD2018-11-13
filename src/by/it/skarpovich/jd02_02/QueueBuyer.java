@@ -19,4 +19,6 @@ class QueueBuyer {
         return deque.pollFirst();
     }
 
+    static int getSize(){return deque.size();
+    }
 }
