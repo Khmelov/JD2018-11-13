@@ -18,11 +18,17 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         start();
     }
 
+    // Если пустили в магазин, возвращает true, иначе false
     @Override
-    public void enterToMarket() {
+    public boolean enterToMarket() {
         int c = shop.enter(this);
-        System.out.println(this + " зашёл в магазин (стало " + c + ")");
-        yield();
+        if (c >= 0) {
+            System.out.println(this + " зашёл в магазин (стало магазине: " + c + ")");
+            yield();
+            return true;
+        } else {
+            if (c == -1) System.out.println(this + " не пустили в магазин.");
+        }
     }
 
     @Override
@@ -34,19 +40,21 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     }
 
     @Override
-    public void goToOut() {
+    public boolean goToOut() {
         int c = shop.leave(this);
-        System.out.println(this + " вышел из магазина (осталось " + c + ")");
+
+        System.out.println(this + " вышел из магазина (осталось в магазине " + c + ")");
     }
 
     @Override
     public void run() {
-        enterToMarket();
-        takeBasket();
-        chooseGoods();
-        putGoodsToBasket();
-        getInLine();
-        goToOut();
+        if (enterToMarket()) {
+            takeBasket();
+            chooseGoods();
+            putGoodsToBasket();
+            getInLine();
+            while (!goToOut()) sleepFor(100); // Если магазин не выпускает то здесь застрянет покупатель (значит ошибка в логике)
+        }
     }
 
     @Override
@@ -57,6 +65,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     private void sleepRandom(int minMillis, int maxMillis) {
         int millis = MyRandom.getRandom(minMillis, maxMillis);
         if (pensioneer) millis = (int) (millis * 1.5);
+        try {
+            Thread.sleep(millis / kspeed);
+        } catch (InterruptedException e) {
+            System.err.println("InterruptedException " + e.getMessage());
+        }
+    }
+
+    private void sleepFor(int millis){
         try {
             Thread.sleep(millis / kspeed);
         } catch (InterruptedException e) {
@@ -75,7 +91,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void putGoodsToBasket() {
         int n = MyRandom.getRandom(1, 4);
         for (int i = 0; i < n; i++) {
-            String good = shop.takeSomeGood();
+            String good = shop.takeRandomGood();
             basket.putGoodToBasket(good);
             System.out.println(this + " положил в корзину " + good + '.');
             sleepRandom(100, 200);
@@ -84,7 +100,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     // Встать в очередь
     private void getInLine(){
-        int c = shop.putBuyerInLine(this);
+        int c = shop.getInLine(this);
         System.out.println(this + " встал в очередь (длинна стала " + c + ")");
+        try {
+            wait();
+        } catch (InterruptedException e) {
+            System.err.println("InterruptedException " + e.getMessage());
+        }
     }
+
+
 }

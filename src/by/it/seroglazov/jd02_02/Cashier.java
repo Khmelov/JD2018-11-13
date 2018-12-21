@@ -17,7 +17,7 @@ public class Cashier implements Runnable {
     @Override
     public void run() {
         while (true) {
-            Buyer buyer = shop.getBuyerFromLine();
+            Buyer buyer = shop.takeFromLine();
             if (buyer != null) service(buyer);
             else {
 
@@ -27,7 +27,7 @@ public class Cashier implements Runnable {
 
     // Обслуживание покупателя
     private void service(Buyer b) {
-        System.out.println(this + " обслуживает " + b);
+        System.out.println(b + " подошел к " + this);
         sleepRandom(2000, 5000);
     }
 
