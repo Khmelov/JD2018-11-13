@@ -1,4 +1,4 @@
-package by.it.mnovikov.jd02_01;
+package by.it.mnovikov.jd02_02;
 
 public class Buyer extends Thread implements IBuyer, IUseBacket {
 
