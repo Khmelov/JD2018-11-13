@@ -6,23 +6,32 @@ import java.util.List;
 public class Market {
 
     public static void main(String[] args) {
-        List<Buyer> buyerList = new ArrayList<>();
+        List<Thread> threads = new ArrayList<>();
         Goods.setGoods();
         System.out.println(Goods.goods.entrySet());
         System.out.println("Магазин открылся");
 
-        for (int time = 0; time < 120; time++) {
+        for (int num = 1; num <= 2; num++) {
+            Cashier cashier = new Cashier(num);
+            Thread thread = new Thread(cashier);
+            thread.start();
+            threads.add(thread);
+        }
+
+        for (int time = 0; Dispatcher.marketOpened(); time++) {
             int buyerCount = Util.random(0, 2);
             for (int i = 0; i < buyerCount; i++) {
-                Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
-                buyerList.add(buyer);
-                buyer.start();
+                if (Dispatcher.marketOpened()) {
+                    Buyer buyer = new Buyer(Dispatcher.getBuyerCounter());
+                    threads.add(buyer);
+                    buyer.start();
+                }
             }
             Util.sleep(1000);
         }
-        for (Buyer buyer : buyerList) {
+        for (Thread thread : threads) {
             try {
-                buyer.join();
+                thread.join();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }

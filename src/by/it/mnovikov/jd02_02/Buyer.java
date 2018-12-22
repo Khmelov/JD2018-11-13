@@ -4,6 +4,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     Buyer(int buyerNum) {
         super("Покупатель № " + buyerNum + " ");
+        Dispatcher.addBuyer();
     }
 
     @Override
@@ -12,12 +13,8 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         takeBacket();
         chooseGoods();
         putGoodsToBacket();
+        goToQueue();
         goOut();
-    }
-
-    @Override
-    public String toString() {
-        return this.getName();
     }
 
     @Override
@@ -33,9 +30,9 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void chooseGoods() {
-        System.out.println(this + " начал выбор товара");
+        System.out.print(this + " начал выбор товара");
         Util.sleepTime(500, 2000);
-        System.out.println(this + " выбрал товар");
+        System.out.print(this + " выбрал товар: ");
     }
 
     @Override
@@ -50,7 +47,26 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     }
 
     @Override
+    public void goToQueue() {
+        QueueBuyer.add(this);
+        synchronized (this){
+            try {
+                this.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    @Override
     public void goOut() {
         System.out.println(this + " вышел из магазина");
     }
+
+    @Override
+    public String toString() {
+        return this.getName();
+    }
+
 }
+

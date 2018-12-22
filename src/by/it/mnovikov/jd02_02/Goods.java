@@ -3,6 +3,8 @@ package by.it.mnovikov.jd02_02;
 import java.util.HashMap;
 
 class Goods {
+
+
     static HashMap<String, Double> goods = new HashMap<>();
 
     static void setGoods() {
@@ -14,6 +16,7 @@ class Goods {
 
     static void getPosition(HashMap goods, int position) {
         Object[] key = goods.keySet().toArray();
-        System.out.println(key[position] + " = " + goods.get(key[position]));
+        System.out.print(key[position] + " = " + goods.get(key[position]));
+        System.out.print(" ");
     }
 }
