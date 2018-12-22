@@ -1,4 +1,4 @@
-package by.it.kovalyova.jd02_01;
+package by.it.kovalyova.jd02_02;
 
 import java.util.*;
 
@@ -33,7 +33,7 @@ public class Util {
 
     static  void sleep(int millis){
         try {
-            Thread.sleep(millis/Dispatcher.K_SPEED);
+            Thread.sleep(millis/ Dispatcher.K_SPEED);
         } catch (InterruptedException e){
             e.printStackTrace();
         }

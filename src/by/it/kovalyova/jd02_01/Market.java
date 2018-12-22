@@ -7,9 +7,9 @@ public class Market {
 
     public static void main(String[] args) {
         List<Buyer> buyerList = new ArrayList<>();
-        System.out.println("Market opened");
+        System.out.println("Market opened. Welcome!");
 
-        for (int time = 0; time < 120; time++) {
+        for (int time = 0; time < 100; time++) {
             int buyerCount = Util.random(2);
             for (int i = 0; i < buyerCount; i++) {
                 Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
@@ -25,7 +25,7 @@ public class Market {
                 e.printStackTrace();
             }
         }
-        System.out.println("Market closed");
+        System.out.println("Market already closed. Time to sleep!");
     }
     }
 
