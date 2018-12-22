@@ -1,7 +1,10 @@
-package by.it.skarpovich.j02_01;
+package by.it.skarpovich.jd02_02;
 
 public interface IBuyer {
+
     void enterToMarket();
     void chooseGoods();
+    void goToQueue();
     void goOut();
+
 }
