@@ -1,8 +1,6 @@
 package by.it.karnilava.jd01_14;
 
 import java.io.*;
-import java.util.Iterator;
-import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
