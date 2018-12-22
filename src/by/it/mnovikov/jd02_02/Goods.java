@@ -5,7 +5,7 @@ import java.util.HashMap;
 class Goods {
 
 
-    static HashMap<String, Double> goods = new HashMap<>();
+    private static HashMap<String, Double> goods = new HashMap<>();
 
     static void setGoods() {
         goods.put("Кефир", 2.5);
@@ -16,7 +16,6 @@ class Goods {
 
     static void getPosition(HashMap goods, int position) {
         Object[] key = goods.keySet().toArray();
-        System.out.print(key[position] + " = " + goods.get(key[position]));
-        System.out.print(" ");
+        System.out.print(key[position] + " = " + goods.get(key[position]) + " ");
     }
 }

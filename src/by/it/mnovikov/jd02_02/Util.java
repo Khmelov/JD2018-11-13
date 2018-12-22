@@ -13,12 +13,4 @@ class Util {
             e.printStackTrace();
         }
     }
-
-    static void sleepTime(int from, int to) {
-        try {
-            Thread.sleep(Util.random(from, to));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
 }
