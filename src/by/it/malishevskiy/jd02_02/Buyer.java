@@ -54,7 +54,7 @@ public class Buyer extends Thread implements IBuyer {
 
     @Override
     public void goOut() {
-        System.out.println(this + "отправился на выход");
+        System.out.println(this + "вышел из магазина");
         Dispatcher.removeBuyer();
     }
 }
