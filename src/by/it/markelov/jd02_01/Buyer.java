@@ -12,6 +12,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         this.start();
     }
 
+    private boolean pensioneer = false;
+
+    boolean isPensioneer() {
+        int random = Util.random(1, 4);
+        if (random == 1) {
+            return pensioneer = true;
+        } else return pensioneer;
+    }
 
     @Override
     public void enterToMarket() {
@@ -20,46 +28,71 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public void takeBasket() {
-        try {
-            Thread.sleep(random(200, 100));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        if (!pensioneer) {
+            try {
+                Thread.sleep(random(100, 200));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else
+            try {
+                Thread.sleep(random(150, 300));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+
         System.out.println(this + " взял корзину");
     }
 
+
     @Override
     public void chooseGoods() {
-        int random = random(0, 2000);
-        try {
-            Thread.sleep(random);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        if (!pensioneer) {
+            int random = random(500, 2000);
+            try {
+                Thread.sleep(random);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else {
+            int random = random(750, 3000);
+            try {
+                Thread.sleep(random);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
+
         System.out.println(this + " выбрал товар");
     }
 
     @Override
     public void putGoodsToBasket() {
-        try {
-            Thread.sleep(random(200, 100));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        if (!pensioneer) {
+            try {
+                Thread.sleep(random(100, 200));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        } else
+            try {
+                Thread.sleep(random(150, 300));
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         Set<String> keys = pricelist.keySet();//сет наименований продуктов
-        String[] keysString = keys.toArray(new String[keys.size()]);//преобразуем в массив
-        List<String> list = Arrays.asList(keysString);//преобразуем в лист
+        List<String> list = new ArrayList<>(keys);//преобразуем в лист
         Collections.shuffle(list);//перетасовываем в произвольном порядке
 
-        Basket basket = new Basket();//создаем корзину покупателя
-        int random = Util.random(1,4);
+        Basket basketOfBuyer = new Basket();//создаем корзину покупателя
+        int random = Util.random(1, 4);
         for (int i = 0; i < random; i++) {
             String nameOfProduct = list.get(i);//вынимаем имя продукта из перетасованного листа
             Integer priceOfProduct = pricelist.get(nameOfProduct);//получаем цену продукта из прайслиста
-            basket.basket.put(nameOfProduct, priceOfProduct);//заполняем корзину покупателя
+            basketOfBuyer.basket.put(nameOfProduct, priceOfProduct);//заполняем корзину покупателя
         }
         System.out.println(this + " положил товар в корзину: ");
-        System.out.println(basket.basket);
+        System.out.println(basketOfBuyer.basket);
     }
 
     @Override
@@ -76,6 +109,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public void run() {
         enterToMarket();
+        isPensioneer();
         takeBasket();
         chooseGoods();
         putGoodsToBasket();

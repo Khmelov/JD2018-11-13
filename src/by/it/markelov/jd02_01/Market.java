@@ -31,12 +31,12 @@ public class Market {
             }
         }
         try {
-            Thread.sleep(3000);
+            Thread.sleep(4000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
         if (buyersOut >= buyersIn)
-            System.out.println("Магазин закрылся");
+            System.out.println("Магазин закрылся-----------------------------------------------------");
     }
 
 }
