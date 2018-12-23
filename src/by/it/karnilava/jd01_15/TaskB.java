@@ -2,9 +2,14 @@ package by.it.karnilava.jd01_15;
 
 import java.io.*;
 
+/**
+ * @author Natallia Karnilava
+ * @version 1.0
+ */
+
 public class TaskB {
 
-    static DataOutputStream dos1 = null;
+    private static DataOutputStream dos1 = null;
 
     public static void main(String[] args) throws IOException {
 
@@ -24,7 +29,7 @@ public class TaskB {
 
 
         int b;
-        FileReader is = null;
+        FileReader is;
 
 
         try {
@@ -85,10 +90,7 @@ public class TaskB {
        OOOOOO многострочный.OOO комментарий
                OOOOOOO номер два
                */
-        /**
-         * @author Natallia Karnilava
-         * @version 1.0
-         */
+
     }
 }
 
