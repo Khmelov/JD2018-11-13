@@ -35,8 +35,8 @@ public class Market {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        if (buyersOut >= buyersIn)
-            System.out.println("Магазин закрылся-----------------------------------------------------");
+
+        System.out.println("Магазин закрылся-----------------------------------------------------");
     }
 
 }
