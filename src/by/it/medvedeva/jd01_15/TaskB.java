@@ -33,7 +33,7 @@ public class TaskB {
                 } else {
                     src.append(System.getProperty("line.separator"));
                 }
-                if (line.trim().startsWith("*"+"/")) 
+                if (line.trim().startsWith("*"+"/"))
                     incomment = false;
 
             }
