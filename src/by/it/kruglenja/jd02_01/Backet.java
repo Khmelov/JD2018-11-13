@@ -12,7 +12,7 @@ public class Backet implements IUseBacket{
 
     @Override
     public void putGoodsToBacket(int customerNumber) {
-        HashMap<String, Integer> goodsList = new HashMap<>() {{
+        HashMap<String, Integer> goodsList = new HashMap<String, Integer>() {{
             put("колбасу", 228);
             put("картоху", 322);
             put("сало", 2077);
