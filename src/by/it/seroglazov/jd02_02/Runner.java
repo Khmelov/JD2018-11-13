@@ -12,7 +12,7 @@ public class Runner {
     // Выводить таблицу
     static final boolean TABLE_MODE = true;
     // При выводе в колонку сколько символов ширина колонки
-    static final int CHARR_IN_COLUMN = 16;
+    static final int CHARR_IN_COLUMN = 17;
     static final String EMPTY_COL = "                                           ".substring(0, CHARR_IN_COLUMN);
 
     public static void main(String[] args) {
