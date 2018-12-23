@@ -8,56 +8,75 @@ public class TaskB {
 
     public static void main(String[] args) throws IOException {
 
-        //Это одинострочный комментарий номер два
+        //Указываем путь к классу с кодом
         String src = System.getProperty("user.dir") + "/src/by/it/karnilava/";
         String filename = src + "jd01_15/TaskB.java";
-        //Это одинострочный комментарий номер два
+        File f = new File(filename);
 
-        /*Это.
-        многострочный.комментарийномер один*/
+
+        /*Создаем стрингбилдер для записи в файл текста кода;
+         Создаем новый новый текстовый файл*/
         StringBuilder sb = new StringBuilder();
         String filenameofNewFile = src + "jd01_15/TaskB.txt";
         File f1 = new File(filenameofNewFile);
         f1.getParentFile().mkdirs();
         f1.createNewFile();
 
+
+        int b;
+        FileReader is = null;
+
+
         try {
+
             dos1 = new DataOutputStream(new FileOutputStream(f1));
-            BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
-            String res = bufferedReader.readLine();
+            is = new FileReader(f);
 
-            while (res != null) {
+            while ((b = is.read()) != -1) { //пока не закончится программа надо делать:
 
-                if (res.contains("/" + "**") && !res.contains("contains")) {
-                    while (!res.contains("*" + "/")) {
-                        res = bufferedReader.readLine();
+                if ((char) b == '/') {
+                    int q = is.read();
+                    //Условия для однострочного комментария
+                    if ((char) q == '/') {
+                        while ((char) b != '\n') {
+                            b = is.read();
+                        }
+                        sb.append("\n");
+                        continue;
                     }
-                    res = bufferedReader.readLine();
-                    continue;
-                }
-
-                if (res.contains("/" + "*") && !res.contains("contains")) {
-                    while (!res.contains("*" + "/")) {
-                        res = bufferedReader.readLine();
+                    if ((char) q != '*') {
+                        sb.append((char) b);
+                        sb.append((char) q);
+                        continue;
                     }
-                    res = bufferedReader.readLine();
-                    continue;
+                    if ((char) q == '*') { /*условия начала
+                    игнорирования комментария или джавадока*/
+
+                        while ((char) b != '*') {
+                            b = is.read();
+                        }
+
+                        while ((char) q != '/') {
+                            q = is.read();
+                        }
+                        b = is.read();
+
+
+                    }
+
+
                 }
 
-                if (res.contains("/" + "/") && !res.contains("contains")) {
-                    res = bufferedReader.readLine();
-                    continue;
-                }
-                sb.append(res).append("\n");
-                res = bufferedReader.readLine();
+
+                sb.append((char) b);
+
+
             }
             System.out.println(sb);
             dos1.writeBytes(sb.toString());
-        }
-        catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("File not found: " + filename);
-        }
-        finally {
+        } finally {
             if (dos1 != null) {
                 dos1.close();
             }
@@ -72,3 +91,4 @@ public class TaskB {
          */
     }
 }
+
