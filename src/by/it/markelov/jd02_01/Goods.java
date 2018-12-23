@@ -3,5 +3,6 @@ package by.it.markelov.jd02_01;
 import java.util.HashMap;
 
 public class Goods {
-    public static HashMap<String, Integer> pricecurrant=new HashMap<>();
+    public static HashMap<String, Integer> pricelist=new HashMap<>();
+
 }
