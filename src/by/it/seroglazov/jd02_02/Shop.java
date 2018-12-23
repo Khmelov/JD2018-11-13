@@ -125,7 +125,7 @@ class Shop {
 
     // Отпустить персонал
     void freePersonal(Manager m) {
-        if (m == manager) {
+        if (m == manager) { // Только наш менеджер может отпустить персонал
             for (Cashier cashier : cashiers) {
                 cashier.endOfWorkDay();
             }

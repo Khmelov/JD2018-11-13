@@ -32,7 +32,6 @@ public class Cashier implements Runnable {
             else {
                 if (Runner.FULL_LOG) System.out.println(this + " касса закрылась");
                 pause();
-                //SleepCases.sleepFor(1);
             }
         }
     }
