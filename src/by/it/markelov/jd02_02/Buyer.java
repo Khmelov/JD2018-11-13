@@ -100,14 +100,6 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     }
 
     @Override
-    public void goOut() {
-        synchronized (buyersOut) {
-            buyersOut++;
-        }
-        System.out.println(this + " вышел из магазина");
-    }
-
-    @Override
     public void goToQueue() {
         synchronized (quequeBuyers) {
             quequeBuyers.addLast(this);
@@ -118,6 +110,14 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public void goOut() {
+        synchronized (buyersOut) {
+            buyersOut++;
+        }
+        System.out.println(this + " вышел из магазина");
     }
 
 
