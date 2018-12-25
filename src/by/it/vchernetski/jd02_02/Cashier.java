@@ -1,10 +1,10 @@
 package by.it.vchernetski.jd02_02;
 
-import java.util.HashMap;
 import java.util.Map;
 
-public class Cashier implements Runnable {
+public class Cashier extends Thread {
     private String name;
+    public boolean stop = true;
     private static final Object monitor = new Object();
     protected static int totalsum=0;
     public Cashier(int number) {
@@ -13,11 +13,19 @@ public class Cashier implements Runnable {
 
     @Override
     public void run() {
-        System.out.println(this + " ready and wait");
+        System.out.println(this + " create");
         while (!Dispatcher.marketClosed()) {
             Buyer buyer;
-            StringBuilder nl = new StringBuilder();
-            StringBuilder goods= new StringBuilder();
+            if(stop){
+                System.out.println("касса отдыхает");
+                synchronized (this){
+                    try {
+                        this.wait();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
             if(QueueBuyer.sizePensioneer()>0){
                 buyer = QueueBuyer.extractPensioner();
             }
@@ -44,9 +52,27 @@ public class Cashier implements Runnable {
 
             }
         }
+        System.out.println(this+"closed");
     }
     @Override
     public String toString() {
         return name;
+    }
+    public boolean getStatus(){
+        return  stop;
+    }
+    public void goToWork(){
+        System.out.println(this+"start working");
+        this.stop=false;
+        synchronized (this){
+            notify();
+        }
+    }
+    public void close(){
+        System.out.println(this + "closed");
+        this.stop=false;
+        synchronized (this){
+            notify();
+        }
     }
 }

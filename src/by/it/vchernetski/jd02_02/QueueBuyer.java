@@ -14,5 +14,5 @@ public class QueueBuyer {
     static synchronized int sizeNotPensioneer(){return deque.size();}
     static synchronized Buyer extractPensioner(){return pensioneer.pollFirst();}
     static synchronized Buyer extractNotPensioner(){return deque.pollFirst();}
-    public static int getDuqueSize(){return deque.size();}
+    public static int getDequeSize(){return deque.size()+pensioneer.size();}
 }
