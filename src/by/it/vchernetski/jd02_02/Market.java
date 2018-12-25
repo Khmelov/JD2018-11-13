@@ -13,7 +13,7 @@ public class Market {
 
     public static void main(String[] args) {
         System.out.println("Market opend");
-//        System.out.printf("%20s  %20s  %20s  %20s  %20s  \t\t\t\t\t \t\t\t\t\t\n","Касса №1","Касса №2","Касса №3","Касса №4","Касса №5");
+        System.out.printf("%15s  %18s  %18s  %18s  %18s  %11s %11s\n","Касса №1","Касса №2","Касса №3","Касса №4","Касса №5","очередь","выручка");
         Good.fillGoods();
         manager = new Manager();
         threads.add(manager);
@@ -26,7 +26,7 @@ public class Market {
                     threads.add(buyer);
                     buyer.start();
                 }
-                print(time);
+//                print(time);
                 continue;
             }
             if (sec < 31 && Dispatcher.getBuyerInShop() < 10 + sec) {
@@ -49,7 +49,7 @@ public class Market {
                     }
                 }
             }
-            print(time);
+//            print(time);
             Util.sleep(1000);
         }
         for (Thread thread : threads) {
