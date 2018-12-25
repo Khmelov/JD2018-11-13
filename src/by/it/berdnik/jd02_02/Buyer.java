@@ -1,5 +1,7 @@
 package by.it.berdnik.jd02_02;
 
+import java.util.HashMap;
+
 class Buyer extends Thread implements IBuyer {
 
     Buyer(int number) {
@@ -11,7 +13,9 @@ class Buyer extends Thread implements IBuyer {
     @Override
     public void run() {
         enterToMarket();
+        takeBacket();
         chooseGoods();
+        putGoodsToBacket();
         goToQueue();
         goOut();
     }
@@ -23,6 +27,14 @@ class Buyer extends Thread implements IBuyer {
     }
 
     @Override
+    public void takeBacket() {
+        System.out.println(this + "take a backet.");
+        int timeout = Util.random(100, 200);
+        Util.sleep(timeout);
+        System.out.println(this + "go shoping with backet");
+    }
+
+    @Override
     public void chooseGoods() {
         System.out.println(this + "started to choose goods");
         int timeout = Util.random(500, 2000);
@@ -31,9 +43,21 @@ class Buyer extends Thread implements IBuyer {
     }
 
     @Override
+    public void putGoodsToBacket() {
+        int x = Util.random(1, 4);
+        for (int i = 0; i < x; i++) {
+            int prod = Util.random(GoodShop.product.size() - 1);
+            GoodShop.getPosition((HashMap) GoodShop.product, prod);
+            System.out.println(this + "put down in backet");
+            int timeout = Util.random(100, 200);
+            Util.sleep(timeout);
+        }
+    }
+
+    @Override
     public void goToQueue() {
         QueueBuyer.add(this);
-        synchronized (this){
+        synchronized (this) {
             try {
                 this.wait();
             } catch (InterruptedException e) {
