@@ -11,18 +11,20 @@ public class Cashier extends Thread {
     Buyer buyer;
 
     public void serve() {
-        try {
-            Thread.sleep(Util.random(2000, 5000));
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        synchronized (quequeBuyers) {
+        synchronized (Buyer.monitor) {
             while (!quequeBuyers.isEmpty()) {
+
+                try {
+                    Thread.sleep(Util.random(2000, 5000));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
                 buyer = quequeBuyers.pollFirst();
                 if (buyer != null) {
                     System.out.println("                                          Обслужил покупателя " + buyer);
                 } else System.out.println("                                                      Очередь пуста");
-                quequeBuyers.notify();
+                Buyer.monitor.notify();
 
             }
         }

@@ -25,6 +25,8 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         } else return pensioneer;
     }
 
+    public static final Integer monitor=0;
+
     @Override
     public void enterToMarket() {
         System.out.println(this + " вошел в магазин");
@@ -101,11 +103,11 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public void goToQueue() {
-        synchronized (quequeBuyers) {
+        synchronized (monitor) {
             quequeBuyers.addLast(this);
             System.out.println(this+" встал в очередь и ожидает");
             try {
-                quequeBuyers.wait();
+                monitor.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
