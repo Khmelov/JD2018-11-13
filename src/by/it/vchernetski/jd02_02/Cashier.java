@@ -43,7 +43,7 @@ public class Cashier extends Thread {
                     sb.append(entry.getKey() + " price:" + entry.getValue() + "\n");
                     sum += entry.getValue();
                     synchronized (monitor) {
-                        totalsum += sum;
+                        totalsum += entry.getValue();
                     }
                     synchronized (monitorForPrint){
                         printresult(entry);
