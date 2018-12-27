@@ -58,6 +58,7 @@ class Shop {
     }
 
     // Ложит Count случайных товаров в карзину покупателя
+    // Возвращает списко этих товаров
     String[] putRandomGoodsToBasket(Buyer buyer, int count) {
         String[] g = new String[count];
         synchronized (goods) {
@@ -130,8 +131,12 @@ class Shop {
                 cashier.endOfWorkDay();
             }
             cashiers.forEach(x -> {
+                Thread th = x.getThread();
                 try {
-                    x.getThread().join();
+                    while (th.isAlive()) {
+                        th.join(10);
+                        x.endOfWorkDay();
+                    }
                 } catch (InterruptedException e) {
                     System.err.println("InterruptedException " + e.getMessage());
                 }
@@ -173,6 +178,7 @@ class Shop {
     }
 
     // Взять корзину. Только если buyer находится в магазине и у него нет корзины
+    // Возвр true если покупателю дали корзину, иначе false
     boolean takeBasket(Buyer buyer) {
         synchronized (buyers) {
             Basket b = buyers.get(buyer);
@@ -218,7 +224,7 @@ class Shop {
                 int[] ran = getRandomNomers(cashiers.size()); // Здесь храним случайный порядок кассиров
                 for (int i = 0; i < cashiers.size(); i++) {
                     if (cashiers.get(ran[i]).wakeUp()) {
-                        //System.out.println("Менеджер открыл " + cashiers.get(ran[i]));
+                        if (Runner.FULL_LOG) System.out.println("Менеджер открыл " + cashiers.get(ran[i]));
                         if (++working == need) break;
                     }
                 }
