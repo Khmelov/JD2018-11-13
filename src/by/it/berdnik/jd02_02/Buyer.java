@@ -1,7 +1,5 @@
 package by.it.berdnik.jd02_02;
 
-import java.util.HashMap;
-
 class Buyer extends Thread implements IBuyer {
 
     Buyer(int number) {
@@ -46,9 +44,8 @@ class Buyer extends Thread implements IBuyer {
     public void putGoodsToBacket() {
         int x = Util.random(1, 4);
         for (int i = 0; i < x; i++) {
-            int prod = Util.random(GoodShop.product.size() - 1);
-            GoodShop.getPosition((HashMap) GoodShop.product, prod);
-            System.out.println(this + "put down in backet");
+            System.out.println(this + "put " + x + " down in backet" + GoodShop.products(x));
+            System.out.println("Final price:" + GoodShop.FinPrice());
             int timeout = Util.random(100, 200);
             Util.sleep(timeout);
         }
