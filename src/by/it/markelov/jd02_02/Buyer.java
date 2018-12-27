@@ -5,14 +5,10 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import static by.it.markelov.jd02_01.Dispatcher.buyersOut;
-import static by.it.markelov.jd02_01.Goods.pricelist;
-import static by.it.markelov.jd02_01.Util.random;
-import static by.it.markelov.jd02_02.Queque.*;
-
 public class Buyer extends Thread implements IBuyer, IUseBasket {
     public Buyer(String s) {
         super(s);
+        Dispatcher.addBuyer();
         this.start();
     }
 
@@ -25,8 +21,6 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         } else return pensioneer;
     }
 
-    public static final Integer monitor=0;
-
     @Override
     public void enterToMarket() {
         System.out.println(this + " вошел в магазин");
@@ -36,13 +30,13 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void takeBasket() {
         if (!pensioneer) {
             try {
-                Thread.sleep(random(100, 200));
+                Thread.sleep(Util.random(100, 200)/Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else
             try {
-                Thread.sleep(random(150, 300));
+                Thread.sleep(Util.random(150, 300)/Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -54,16 +48,16 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public void chooseGoods() {
         if (!pensioneer) {
-            int random = random(500, 2000);
+            int random = Util.random(500, 2000);
             try {
-                Thread.sleep(random);
+                Thread.sleep(random/Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else {
-            int random = random(750, 3000);
+            int random = Util.random(750, 3000);
             try {
-                Thread.sleep(random);
+                Thread.sleep(random/Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -76,17 +70,17 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void putGoodsToBasket() {
         if (!pensioneer) {
             try {
-                Thread.sleep(random(100, 200));
+                Thread.sleep(Util.random(100, 200)/Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else
             try {
-                Thread.sleep(random(150, 300));
+                Thread.sleep(Util.random(150, 300)/Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        Set<String> keys = pricelist.keySet();//сет наименований продуктов
+        Set<String> keys = Goods.pricelist.keySet();//сет наименований продуктов
         List<String> list = new ArrayList<>(keys);//преобразуем в лист
         Collections.shuffle(list);//перетасовываем в произвольном порядке
 
@@ -94,7 +88,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         int random = Util.random(1, 4);
         for (int i = 0; i < random; i++) {
             String nameOfProduct = list.get(i);//вынимаем имя продукта из перетасованного листа
-            Integer priceOfProduct = pricelist.get(nameOfProduct);//получаем цену продукта из прайслиста
+            Integer priceOfProduct = Goods.pricelist.get(nameOfProduct);//получаем цену продукта из прайслиста
             basketOfBuyer.basket.put(nameOfProduct, priceOfProduct);//заполняем корзину покупателя
         }
         System.out.println(this + " положил товар в корзину: ");
@@ -103,11 +97,11 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public void goToQueue() {
-        synchronized (monitor) {
-            quequeBuyers.addLast(this);
-            System.out.println(this+" встал в очередь и ожидает");
+        Queue.queueBuyers.addLast(this);
+        System.out.println(this + " встал в очередь и ожидает");
+        synchronized (this) {
             try {
-                monitor.wait();
+                this.wait();
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -115,10 +109,8 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     }
 
     @Override
-    public void goOut() {
-        synchronized (buyersOut) {
-            buyersOut++;
-        }
+    public synchronized void goOut() {
+        Dispatcher.removeBuyer();
         System.out.println(this + " вышел из магазина");
     }
 
