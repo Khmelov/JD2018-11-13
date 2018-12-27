@@ -49,6 +49,7 @@ public class Cashier extends Thread {
                         printresult(entry);
                     }
                 }
+                printSumAndQueue(sum);
 //                System.out.println(this + " started service " + buyer +" Good(s): \n" + sb + "sum price: " + sum);
 
                 synchronized (buyer) {
@@ -88,19 +89,36 @@ public class Cashier extends Thread {
     public void printresult(Map.Entry<String,Integer> entry){
 
         if(this.toString().contains("1")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d\n",entry.getKey()+": "+entry.getValue()," "," "," "," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n",entry.getKey()+": "+entry.getValue()," "," "," "," "," "," ");
         }
         if(this.toString().contains("2")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d\n"," ",entry.getKey()+": "+entry.getValue()," "," "," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," ",entry.getKey()+": "+entry.getValue()," "," "," "," "," ");
         }
         if(this.toString().contains("3")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d\n"," "," ",entry.getKey()+": "+entry.getValue()," "," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," "," ",entry.getKey()+": "+entry.getValue()," "," "," "," ");
         }
         if(this.toString().contains("4")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d\n"," "," "," ",entry.getKey()+": "+entry.getValue()," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," "," "," ",entry.getKey()+": "+entry.getValue()," "," "," ");
         }
         if(this.toString().contains("5")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d\n"," "," "," "," ",entry.getKey()+": "+entry.getValue(),QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," "," "," "," ",entry.getKey()+": "+entry.getValue()," "," ");
+        }
+    }
+    public void printSumAndQueue(int sum){
+        if(this.toString().contains("1")){
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n","Сумма: "+sum," "," "," "," ",QueueBuyer.getDequeSize(),getsum());
+        }
+        if(this.toString().contains("2")){
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," ","Сумма: "+sum," "," "," ",QueueBuyer.getDequeSize(),getsum());
+        }
+        if(this.toString().contains("3")){
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," "," ","Сумма: "+sum," "," ",QueueBuyer.getDequeSize(),getsum());
+        }
+        if(this.toString().contains("4")){
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," "," "," ","Сумма: "+sum," ",QueueBuyer.getDequeSize(),getsum());
+        }
+        if(this.toString().contains("5")){
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," "," "," "," ","Сумма: "+sum,QueueBuyer.getDequeSize(),getsum());
         }
     }
 }
