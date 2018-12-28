@@ -1,10 +1,12 @@
 package by.it.seroglazov.jd02_03;
 
+import java.util.concurrent.atomic.AtomicBoolean;
+
 public class Cashier implements Runnable {
 
     private final Shop shop;
     //private Thread thread;
-    private boolean endWork = false;
+    private AtomicBoolean endWork = new AtomicBoolean(false);
     private boolean isWaiting = false;
 
     public String getName() {
@@ -13,16 +15,16 @@ public class Cashier implements Runnable {
 
     private final String name;
 
-    public int getNomer() {
-        return nomer;
+    int getNumber() {
+        return number;
     }
 
-    private int nomer;
+    private final int number;
     //private final Object monitor = new Object();
 
     Cashier(int num, Shop shop) {
         this.shop = shop;
-        nomer = num;
+        number = num;
         name = "CashierN" + num;
         //thread = new Thread(this, "CashierN" + num);
         //thread.start();
@@ -30,7 +32,7 @@ public class Cashier implements Runnable {
 
     @Override
     public void run() {
-        while (!endWork) {
+        while (!endWork.get()) {
             Buyer buyer = shop.takeFromLine();
             if (buyer != null) {
                 int len = shop.lineLength();
@@ -49,7 +51,7 @@ public class Cashier implements Runnable {
             if (Runner.FULL_LOG) System.out.println(this + " обслуживает " + b);
             shop.check(b, this, lineLength);
             SleepCases.sleepRandom(2000, 5000);
-            b.setStayingInLine(false);
+            b.setFalseStayingInLine();
             b.servedByCashier.signal();
         } finally {
             b.lock.unlock();
@@ -63,7 +65,7 @@ public class Cashier implements Runnable {
     }
 
     synchronized void endOfWorkDay() {
-        endWork = true;
+        endWork.set(true);
         isWaiting = false;
         notify();
     }

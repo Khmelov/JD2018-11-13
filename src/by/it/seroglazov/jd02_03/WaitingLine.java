@@ -8,8 +8,8 @@ class WaitingLine {
     private LinkedBlockingDeque<Buyer> allLine;
     private LinkedBlockingDeque<Buyer> pensLine;
 
-    // Пустой покупатель заглушка - означает, что на этом месте стоит пенсионер и надо брать из очереди где пенсионеры первого
-    // Это нужно чтобы фиксированный размер очереди сохранялся
+    // Пустой покупатель заглушка - означает, что на этом месте стоит пенсионер и надо брать из очереди где
+    // пенсионеры первого. Это нужно чтобы фиксированный размер очереди сохранялся
     private static final Buyer bPens = new Buyer();
 
     WaitingLine(int size) {

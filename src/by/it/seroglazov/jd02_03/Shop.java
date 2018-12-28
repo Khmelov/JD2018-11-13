@@ -1,10 +1,10 @@
 package by.it.seroglazov.jd02_03;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicInteger;
 
 // Класс Shop - в нашем проекте будет один экземпляр этого класса. Создаётся в Runner.
@@ -20,13 +20,14 @@ class Shop {
     // Очередь
     private final WaitingLine waitingLine;
     // Сколько людей вошло в магазин за время его работы
-    private int bCounter = 0;
+    private AtomicInteger bCounter = new AtomicInteger(0);
     // Магазин работает пока не впустит запланированное количество посетителей
+    @SuppressWarnings("FieldCanBeLocal")
     private final int buyersCountPlan = 100;
     // Если true - магазин больше не пускает посетителей и закроется как только последний выйдет.
-    private boolean closing = false;
+    private AtomicBoolean closing = new AtomicBoolean(false);
     // Последний покупатель вышел - магазин закрыт
-    private boolean closedShop = false;
+    private AtomicBoolean closedShop = new AtomicBoolean(false);
     // Это маркер отсутсвие корзины у покупателя. Чтобы не null писать в HashMap<Buyer, Basket>
     private final Basket absentBasket = new Basket();
     // Количество кассиров
@@ -36,11 +37,12 @@ class Shop {
     private final ExecutorService cashExecService;
     // Менеджер. Управляет кассирами.
     private Manager manager;
-    // Общая выручка
+    // Общая выручка.
+    // Храним в виде totalCash = (double сумма)*100 - так как не более 2 знаков после запятой может быть.
     private AtomicInteger totalCash = new AtomicInteger(0);
     private static final Object outputMonitor = new Object();
 
-    BlockingQueue<Basket> baskets;
+    private BlockingQueue<Basket> baskets;
 
     Shop() {
         goods = new ConcurrentHashMap<>();
@@ -68,7 +70,7 @@ class Shop {
         }
         cashExecService.shutdown();
         manager = new Manager(this);
-        baskets = new ArrayBlockingQueue<Basket>(50);
+        baskets = new ArrayBlockingQueue<>(50);
         // Ложим 50 корзин в магазин
         for (int i = 0; i < 50; i++) {
             baskets.add(new Basket());
@@ -98,15 +100,18 @@ class Shop {
     // Войти в магазин. Если пустили в магазин, то возвращается количество людей в магазине ( с учетом нового buyer)
     // Если не пустили, то вернет -1
     int enter(Buyer buyer) {
-        if (!closing) {
+        if (!closing.get()) {
             buyers.put(buyer, absentBasket); // Пока без корзины, поэтому absentBasket
-            if (++bCounter >= buyersCountPlan) closing = true;
+            if (bCounter.incrementAndGet() >= buyersCountPlan) {
+                closing.set(true);
+                if (Runner.FULL_LOG) System.out.println("МАКСИМУМ ПОКУПАТЕЛЕЙ ДОСТИГНУТ.");
+            }
             return buyers.size();
         } else return -1;
     }
 
     boolean isClosedShop() {
-        return closedShop;
+        return closedShop.get();
     }
 
     // Выйти из магазина. Если выпустили из магазина, то возвращается количество людей оставшихся в магазине
@@ -117,22 +122,21 @@ class Shop {
             if (b == absentBasket) {   // Если он без корзины - выпускаем из магазина
                 buyers.remove(buyer);
                 int s = buyers.size();
-                if (closing && s == 0)
-                    closedShop = true;  // Магазин закрывался и последний покупать вышел
+                if (closing.get() && s == 0)
+                    closedShop.set(true);  // Магазин закрывался и последний покупать вышел
                 return s;
             } else {
                 if (b.goodsCount() == 0) { // Если корзина есть, но в ней нет товара, то выпускаем
                     buyers.remove(buyer);
                     int s = buyers.size();
-                    if (closing && s == 0)
-                        closedShop = true; // Магазин закрывался и последний покупать вышел
+                    if (closing.get() && s == 0)
+                        closedShop.set(true);  // Магазин закрывался и последний покупать вышел
                     return s;
                 } else {
                     return -2; // Если есть товары в корзине, то не выпускаем - должен становится в очередь
                 }
             }
         } else return -1;
-
     }
 
     // Отпустить персонал
@@ -154,11 +158,6 @@ class Shop {
             // Отпускаем себя самого
             manager.endOfWorkDay();
         }
-    }
-
-    // Сколько людей сейчас находится в магазине
-    int buyersCount() {
-        return buyers.size();
     }
 
     // Встать в очередь. Только если buyer находится в магазине
@@ -183,7 +182,8 @@ class Shop {
     // Взять корзину. Только если buyer находится в магазине и у него нет корзины
     // Возвр true если покупателю дали корзину, иначе false
     boolean takeBasket(Buyer buyer) {
-        Basket b = buyers.get(buyer); // Смотри есть ли у него корзина (если нет, то у него absentBasket корзина-заглушка)
+        // Смотрит есть ли у него корзина (если нет, то у него absentBasket корзина-заглушка)
+        Basket b = buyers.get(buyer);
         if (b == null) { // Если нет такого покупателя в магазине
             return false;
         } else if (b == absentBasket) {  // Если у покупателя нет корзинки
@@ -201,8 +201,7 @@ class Shop {
             return false;
     }
 
-    // Вернуть корзинку
-    // Если успешно вернулась - вернёт true
+    // Вернуть корзинку. Если успешно вернулась - вернёт true
     boolean putBasketBack(Buyer buyer) {
         Basket b = buyers.get(buyer); // Смотри есть ли у него корзина (если нет, то у него absentBasket корзина-заглушка)
         if (b == null) { // Если нет такого покупателя в магазине
@@ -243,7 +242,7 @@ class Shop {
                 if (!cashier.isWaiting()) working++;
             }
             if (need > working) {
-                int[] ran = getRandomNomers(cashiers.size()); // Здесь храним случайный порядок кассиров
+                int[] ran = getRandomNumbers(cashiers.size()); // Здесь храним случайный порядок кассиров
                 for (int i = 0; i < cashiers.size(); i++) {
                     if (cashiers.get(ran[i]).wakeUp()) {
                         if (Runner.FULL_LOG) System.out.println("Менеджер открыл " + cashiers.get(ran[i]));
@@ -256,7 +255,7 @@ class Shop {
 
     // Возвращает массив размера length заполненный случайными числами от 0 до length-1
     // причем ни одно число не повторяется
-    private int[] getRandomNomers(int length) {
+    private int[] getRandomNumbers(int length) {
         List<Integer> list = new ArrayList<>(length);
         boolean add;
         while (list.size() < length) {
@@ -304,8 +303,8 @@ class Shop {
     }
 
     private String getTableLine(Cashier c, String good, Double money, int lineLength, boolean flag) {
-        int n = c.getNomer() - 1;
-        int w = Runner.CHARR_IN_COLUMN;
+        int n = c.getNumber() - 1;
+        int w = Runner.CHAR_IN_COLUMN;
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < CASHIERS_COUNT; i++) {
@@ -327,7 +326,7 @@ class Shop {
     }
 
     private static void printTitleLine() {
-        int w = Runner.CHARR_IN_COLUMN;
+        int w = Runner.CHAR_IN_COLUMN;
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < CASHIERS_COUNT; i++) {
             sb.append(String.format("%" + (w - 3) + "s%d  ", "касса N", i + 1)).append('|');
