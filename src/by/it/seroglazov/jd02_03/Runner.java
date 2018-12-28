@@ -17,8 +17,6 @@ public class Runner {
     private static LinkedList<Buyer> buyers = new LinkedList<>();
 
     public static void main(String[] args) {
-        //System.out.println("Магазин открылся");
-
         // КАССИРЫ создаются в конструкторе класса Shop
         Shop shop = new Shop();
         int countBuyers = 0;

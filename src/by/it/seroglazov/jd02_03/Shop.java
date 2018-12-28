@@ -1,6 +1,7 @@
 package by.it.seroglazov.jd02_03;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.*;
@@ -43,6 +44,8 @@ class Shop {
     private static final Object outputMonitor = new Object();
 
     private BlockingQueue<Basket> baskets;
+
+    private final Semaphore tradeHall = new Semaphore(20, true);
 
     Shop() {
         goods = new ConcurrentHashMap<>();
@@ -337,5 +340,19 @@ class Shop {
     private double addCash(double d) {
         // Храним в виде integer = сумма*100 - так как не более 2 знаков после запятой может быть
         return (double) totalCash.addAndGet((int) (d * 100)) / 100;
+    }
+
+    void enterToTradeHall(Buyer buyer) {
+        try {
+            tradeHall.acquire();
+        } catch (InterruptedException e) {
+            System.err.println("InterruptedException " + e.getMessage());
+        }
+        if (Runner.FULL_LOG) System.out.println(buyer + " вошёл в торговый зал.");
+    }
+
+    void leaveTradeHall(Buyer buyer){
+        tradeHall.release();
+        if (Runner.FULL_LOG) System.out.println(buyer + " вышел из торгового зала.");
     }
 }

@@ -67,13 +67,23 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void run() {
         if (enterToMarket()) {
             takeBasket();
+            enterTradeHall();
             chooseGoods();
             putGoodsToBasket();
+            leaveTradeHall();
             getInLine();
             putBasketBack();
             while (!goToOut())
                 SleepCases.sleepFor(100); // Если магазин не выпускает то здесь застрянет покупатель (значит ошибка в логике)
         }
+    }
+
+    private void enterTradeHall() {
+        shop.enterToTradeHall(this);
+    }
+
+    private void leaveTradeHall() {
+        shop.leaveTradeHall(this);
     }
 
     private void putBasketBack() {
