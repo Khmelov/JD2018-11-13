@@ -1,13 +1,14 @@
 package by.it.markelov.jd02_03;
 
 import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Dispatcher {
     public static final int K_ACCELERATION=1000;
 
-    public static int buyersCreated =0;
+    public static AtomicInteger buyersCreated =new AtomicInteger(0);
 
-    public static int buyersInMarketNow =0;
+    public static AtomicInteger buyersInMarketNow =new AtomicInteger(0);
 
     private static final int buyerPlan = 100;
 
@@ -21,28 +22,17 @@ public class Dispatcher {
 
 
     static void addBuyer() {
-        synchronized (monitor) {
-            int i=buyersCreated++;
-            int j=buyersInMarketNow++;
-            try {
-                Thread.sleep(10);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            buyersCreated=++i;
-            buyersInMarketNow=++j;
-
-        }
+        buyersCreated.incrementAndGet();
+        buyersInMarketNow.incrementAndGet();
     }
     static void removeBuyer() {
-        synchronized (monitor) {
-            buyersInMarketNow--;
+        buyersInMarketNow.decrementAndGet();
         }
-    }
+
 
     static boolean marketClosed() {
         synchronized (monitor) {
-            return buyersCreated >= buyerPlan && buyersInMarketNow == 0;
+            return buyersCreated.get() >= buyerPlan && buyersInMarketNow.get() == 0;
         }
     }
 }

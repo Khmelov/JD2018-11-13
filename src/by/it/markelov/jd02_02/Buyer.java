@@ -21,6 +21,8 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         } else return pensioneer;
     }
 
+    Basket basketOfBuyer;
+
     @Override
     public void enterToMarket() {
         System.out.println(this + " вошел в магазин");
