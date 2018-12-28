@@ -1,12 +1,10 @@
 package by.it.karnilava.jd01_15;
 
 import java.io.*;
-import java.math.*;
 import java.util.Random;
 
 public class TaskA {
-    private static int[][] mas;
-    static DataOutputStream dos1 = null;
+   private static DataOutputStream dos1 = null;
 
     public static void main(String[] args) throws IOException {
 
@@ -20,7 +18,7 @@ public class TaskA {
 
         try {
             dos1 = new DataOutputStream(new FileOutputStream(f1));
-            mas = new int[6][4];
+            int[][] mas = new int[6][4];
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 4; j++) {
                     mas[i][j] = new Random().nextInt(31) - 15;
@@ -40,9 +38,6 @@ public class TaskA {
             if (dos1 != null) {
                 dos1.close();
             }
-
-
-//
         }
 
         BufferedReader bufferedReader = new BufferedReader(new FileReader(filename));
