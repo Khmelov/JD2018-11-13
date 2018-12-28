@@ -1,6 +1,15 @@
-package by.it.berdnik.jd02_02;
+package by.it.berdnik.jd02_03;
 
 class Buyer extends Thread implements IBuyer {
+
+    private boolean waiting = false;
+
+    void stopWait(){
+        synchronized (this) {
+            waiting=false;
+            this.notify();
+        }
+    }
 
     Buyer(int number) {
         super("Buyer №" + number);
@@ -54,12 +63,14 @@ class Buyer extends Thread implements IBuyer {
     @Override
     public void goToQueue() {
         QueueBuyer.add(this);
+        waiting = true;
         synchronized (this) {
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            while (waiting)
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
         }
     }
 
