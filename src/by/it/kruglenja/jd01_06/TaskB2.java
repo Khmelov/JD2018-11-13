@@ -36,7 +36,7 @@ public class TaskB2 {
                 }
             }
         }
-        StringBuilder sortedseparatedLines = new StringBuilder();
+        StringBuilder sortedSeparatedLines = new StringBuilder();
         for (int i = 0; i < len; i++) {
             System.out.print(separatedLines[i] + '\n');
         }

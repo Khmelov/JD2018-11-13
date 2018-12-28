@@ -19,27 +19,26 @@ class Logic {
                 win = true;
                 if (temp.equalsIgnoreCase("O")) {
                     winner = 0;
+                    break;
                 } else {
-                    winner = 1;
+                    break;
                 }
             }
         }
 
         //Цикл проверки по внутренним пересечениям поля
-        String temp = tempGameField[8];
-        if (!win) {  //!(8 == Integer.parseInt(temp)) &&
-            int rotateX = 4;
-            for (int i = 0; i < 4; i++) {
-                if (temp.equals(tempGameField[i]) && temp.equals(tempGameField[rotateX])) {
-                    win = true;
-                    if (temp.equalsIgnoreCase("O")) {
-                        winner = 0;
-                    } else {
-                        winner = 1;
-                    }
+        String temp = tempGameField[8];//Берем центр игрового поля
+        int rotateX = 4;//Правая вращалка
+        for (int i = 0; i < 4; i++) {// i - Левая вращалка, вращаем вращалки вокруг центра [8]
+            if (temp.equals(tempGameField[i]) && temp.equals(tempGameField[rotateX])) {
+                win = true;
+                if (temp.equalsIgnoreCase("O")) {
+                    winner = 0;
+                } else {
+                    winner = 1;
                 }
-                rotateX++;
             }
+            rotateX++;
         }
         return winner;
     }
