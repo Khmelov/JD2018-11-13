@@ -1,21 +1,30 @@
-package by.it.seroglazov.jd02_02;
+package by.it.seroglazov.jd02_03;
+
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 public class Buyer extends Thread implements IBuyer, IUseBasket {
 
-    private int num; // Номер покупателя
-
-    public boolean isPensioneer() {
+    boolean isPensioneer() {
         return pensioneer;
     }
+    private final boolean pensioneer;
 
-    private boolean pensioneer;
-
+    // У покупателя есть ссылка на магазин, где он находится
     private final Shop shop;
-    //private Basket basket;
+
+    Lock lock = new ReentrantLock();
+    Condition servedByCashier = lock.newCondition();
+
+    Buyer() {
+        shop = null;
+        pensioneer = false;
+    }
 
     Buyer(int num, Shop shop) {
         super("BuyerN" + num);
-        this.num = num;
         this.shop = shop;
         pensioneer = Math.random() < 0.25;
         start();
@@ -26,7 +35,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public boolean enterToMarket() {
         int c = shop.enter(this);
         if (c >= 0) {
-            if (Runner.FULL_LOG) System.out.println(this + " зашёл в магазин (стало магазине: " + c + ")");
+            if (Runner.FULL_LOG) System.out.println(this + " зашёл в магазин (стало в магазине: " + c + ")");
             yield();
             return true;
         } else {
@@ -58,11 +67,30 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public void run() {
         if (enterToMarket()) {
             takeBasket();
+            enterTradeHall();
             chooseGoods();
             putGoodsToBasket();
+            leaveTradeHall();
             getInLine();
+            putBasketBack();
             while (!goToOut())
                 SleepCases.sleepFor(100); // Если магазин не выпускает то здесь застрянет покупатель (значит ошибка в логике)
+        }
+    }
+
+    private void enterTradeHall() {
+        shop.enterToTradeHall(this);
+    }
+
+    private void leaveTradeHall() {
+        shop.leaveTradeHall(this);
+    }
+
+    private void putBasketBack() {
+        if (shop.putBasketBack(this)) {
+            if (Runner.FULL_LOG) System.out.println(this + " положил корзину на место.");
+        } else {
+            if (Runner.FULL_LOG) System.out.println(this + " НЕ СМОГ положить корзину на место.");
         }
     }
 
@@ -88,33 +116,33 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public void putGoodsToBasket() {
         String[] goods = shop.putRandomGoodsToBasket(this, MyRandom.getRandom(1, 4));
-        for (int i = 0; i < goods.length; i++) {
-            if (Runner.FULL_LOG) System.out.println(this + " положил в корзину " + goods[i] + '.');
+        for (String good : goods) {
+            if (Runner.FULL_LOG) System.out.println(this + " положил в корзину " + good + '.');
             SleepCases.sleepRandom(100, 200);
         }
     }
 
-    public void setStayingInLine(boolean stayingInLine) {
-        this.stayingInLine = stayingInLine;
+    void setFalseStayingInLine() {
+        stayingInLine.set(false);
     }
 
-    private boolean stayingInLine = false;
+    private AtomicBoolean stayingInLine = new AtomicBoolean(false);
 
     // Встать в очередь
     private void getInLine() {
-        stayingInLine = true;
-        int c = shop.getInLine(this);
-        if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
-        synchronized (this) {
-            while (stayingInLine) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    System.err.println("InterruptedException " + e.getMessage());
-                }
+        lock.lock();
+        try {
+            @SuppressWarnings("UnusedAssignment")
+            int c = shop.getInLine(this);
+            if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
+            stayingInLine.set(true);
+            while (stayingInLine.get()) {
+                servedByCashier.await(); // Ожидаем когда нас обслужит кассир
             }
+        } catch (InterruptedException e) {
+            System.err.println("InterruptedException " + e.getMessage());
+        } finally {
+            lock.unlock();
         }
     }
-
-
 }
