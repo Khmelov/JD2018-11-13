@@ -42,6 +42,9 @@ package by.it.kruglenja.jd01_09;
     @Override
     public Var div(Var other) {
         if (other instanceof Scalar){
+//            if(other == 0){
+//
+//            }
             double div = this.value / ((Scalar)other).value;
             return new Scalar(div);
         }
