@@ -24,12 +24,10 @@ public class Market {
             int random = Util.random(0, 2);
             for (int j = 1; j <= random; j++) {
                 Buyer buyer = new Buyer("Покупатель № " + Dispatcher.buyersCreated);
-                if (Dispatcher.buyersCreated.get()>100) break;
+                if (Dispatcher.buyersCreated.get() > 100) break;
                 listOfTreads.add(buyer);
             }
-            if (Dispatcher.buyersCreated.get()>100) break;
-
-
+            if (Dispatcher.buyersCreated.get() > 100) break;
             try {
                 Thread.sleep(1000 / Dispatcher.K_ACCELERATION);
             } catch (InterruptedException e) {

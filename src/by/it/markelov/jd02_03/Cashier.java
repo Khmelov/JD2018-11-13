@@ -28,12 +28,13 @@ public class Cashier extends Thread {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                continue;
             } else {
                 System.out.println(this.getName() + " обслужил " + buyer.getName());
                 Basket basketOfBuyer = buyer.basketOfBuyer;
                 basketOfBuyer.basketContent();
 
-              Dispatcher.semaphoreBuyer.release();
+                Dispatcher.semaphoreBuyer.release();
             }
         }
     }

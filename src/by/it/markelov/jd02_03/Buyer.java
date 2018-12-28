@@ -46,7 +46,6 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         System.out.println(this + " взял корзину");
     }
 
-
     @Override
     public void chooseGoods() {
         try {
@@ -122,7 +121,6 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         Dispatcher.removeBuyer();
         System.out.println(this + " вышел из магазина");
     }
-
 
     @Override
     public String toString() {

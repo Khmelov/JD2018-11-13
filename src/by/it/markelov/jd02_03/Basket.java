@@ -5,9 +5,9 @@ import java.util.Map;
 import java.util.Set;
 
 public class Basket {
-    HashMap<String, Integer> basket=new HashMap<>();
+    HashMap<String, Integer> basket = new HashMap<>();
 
-    int total=0;
+    int total = 0;
 
     public void basketContent() {
         Set<Map.Entry<String, Integer>> entries = basket.entrySet();
@@ -15,11 +15,9 @@ public class Basket {
         for (Map.Entry<String, Integer> entry : entries) {
             String product = entry.getKey();
             Integer price = entry.getValue();
-            total+=price;
-            System.out.println("    "+product+" "+price);
-
-
+            total += price;
+            System.out.println("    " + product + " " + price);
         }
-        System.out.println("Итого: "+total);
+        System.out.println("Итого: " + total);
     }
 }

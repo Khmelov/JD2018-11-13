@@ -17,14 +17,17 @@ public class Cashier extends Thread {
             }
             buyer = Queue.queueBuyers.pollFirst();
             if (buyer == null) {
-                System.out.println("Очередь пуста");
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                continue;
+
             } else {
                 System.out.println(this.getName() + " обслужил " + buyer.getName());
+                Basket basketOfBuyer = buyer.basketOfBuyer;
+                basketOfBuyer.basketContent();
                 synchronized (buyer) {
                     buyer.notify();
                 }

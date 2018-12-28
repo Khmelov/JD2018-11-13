@@ -1,7 +1,5 @@
 package by.it.markelov.jd02_01;
 
-import java.util.HashMap;
-
 import static by.it.markelov.jd02_01.Dispatcher.*;
 import static by.it.markelov.jd02_01.Goods.pricelist;
 
@@ -16,7 +14,6 @@ public class Market {
         pricelist.put("Батон", 1);
         pricelist.put("Вода", 2);
         pricelist.put("Сметана", 3);
-
 
         for (int i = 0; i < 120; i++) {
             int random = Util.random(0, 2);
@@ -35,8 +32,6 @@ public class Market {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
         System.out.println("Магазин закрылся-----------------------------------------------------");
     }
-
 }

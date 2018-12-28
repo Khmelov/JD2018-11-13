@@ -17,10 +17,9 @@ public class Market {
         for (int i = 0; i < 120; i++) {
             int random = Util.random(0, 2);
             for (int j = 1; j <= random; j++) {
-                Buyer buyer = new Buyer("Покупатель № " + Dispatcher.buyersCreated);
+                Buyer buyer = new Buyer("Покупатель № " + Dispatcher.getBuyerCreated());
                 listOfTreads.add(buyer);
                 if (Dispatcher.buyersCreated>100) break;
-
             }
             if (Dispatcher.buyersCreated>100) break;
             try {
@@ -37,7 +36,6 @@ public class Market {
                 e.printStackTrace();
             }
         }
-
         System.out.println("Магазин закрылся-----------------------------------------------------");
     }
 }

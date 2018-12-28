@@ -44,7 +44,6 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         System.out.println(this + " взял корзину");
     }
 
-
     @Override
     public void chooseGoods() {
         if (!pensioneer) {

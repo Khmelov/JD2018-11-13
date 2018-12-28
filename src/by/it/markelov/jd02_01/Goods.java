@@ -4,5 +4,4 @@ import java.util.HashMap;
 
 public class Goods {
     public static HashMap<String, Integer> pricelist=new HashMap<>();
-
 }
