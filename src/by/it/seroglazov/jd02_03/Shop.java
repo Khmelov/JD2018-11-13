@@ -4,6 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 // Класс Shop - в нашем проекте будет один экземпляр этого класса. Создаётся в Runner.
 // За всю синхронизацию отвечает именно магазин
@@ -14,7 +18,7 @@ class Shop {
     // Список товаров
     private final HashMap<String, Double> goods;
     // Покупатели, которые находятся в магазине
-    private final HashMap<Buyer, Basket> buyers; // Надо брать монитор при обращении
+    private final ConcurrentHashMap<Buyer, Basket> buyers; // Надо брать монитор при обращении
     // Очередь
     private final WaitingLine waitingLine;
     // Сколько людей вошло в магазин за время его работы
@@ -30,7 +34,8 @@ class Shop {
     // Количество кассиров
     private static final int CASHIERS_COUNT = 5;
     // Кассиры
-    private ArrayList<Cashier> cashiers;
+    private final ArrayList<Cashier> cashiers = new ArrayList<>();
+    private final ExecutorService cashExecService;
     // Менеджер. Управляет кассирами.
     private Manager manager;
     private double totalCash = 0;
@@ -38,7 +43,7 @@ class Shop {
 
     Shop() {
         goods = new HashMap<>();
-        buyers = new HashMap<>();
+        buyers = new ConcurrentHashMap<>();
         waitingLine = new WaitingLine(30);
         goods.put("Мясо", 10.0);
         goods.put("Сало", 6.5);
@@ -53,10 +58,17 @@ class Shop {
         goods.put("Карандаш", 0.3);
         goods.put("Гвозди", 5.5);
         if (Runner.TABLE_MODE) printTitleLine();
-        cashiers = new ArrayList<>();
+        /*
         for (int i = 0; i < CASHIERS_COUNT; i++) {
             cashiers.add(new Cashier(i + 1, this));
+        }*/
+        cashExecService = Executors.newFixedThreadPool(CASHIERS_COUNT);
+        for (int i = 0; i < CASHIERS_COUNT; i++) {
+            Cashier c = new Cashier(i + 1, this);
+            cashiers.add(c);
+            cashExecService.execute(c);
         }
+        cashExecService.shutdown();
         manager = new Manager(this);
     }
 
@@ -72,27 +84,23 @@ class Shop {
                 g[i] = it.next(); // Берем num элемент
             }
         }
-        synchronized (buyers) {
-            // Если buyer в магазине, ложим в его корзину товары
-            Basket basket = buyers.get(buyer);
-            if (basket != null) {
-                for (int i = 0; i < count; i++) {
-                    basket.putGoodToBasket(g[i]);
-                }
-                return g;
-            } else return null;
-        }
+        // Если buyer в магазине, ложим в его корзину товары
+        Basket basket = buyers.get(buyer);
+        if (basket != null) {
+            for (int i = 0; i < count; i++) {
+                basket.putGoodToBasket(g[i]);
+            }
+            return g;
+        } else return null;
     }
 
     // Войти в магазин. Если пустили в магазин, то возвращается количество людей в магазине ( с учетом нового buyer)
     // Если не пустили, то вернет -1
     int enter(Buyer buyer) {
         if (!closing) {
-            synchronized (buyers) {
-                buyers.put(buyer, absentBasket); // Пока без корзины, поэтому absentBasket
-                if (++bCounter >= buyersCountPlan) closing = true;
-                return buyers.size();
-            }
+            buyers.put(buyer, absentBasket); // Пока без корзины, поэтому absentBasket
+            if (++bCounter >= buyersCountPlan) closing = true;
+            return buyers.size();
         } else return -1;
     }
 
@@ -103,37 +111,46 @@ class Shop {
     // Выйти из магазина. Если выпустили из магазина, то возвращается количество людей оставшихся в магазине
     // Если нет такого покупателя в магазине вернёт -1; Если не выпустили вернет -2,
     int leave(Buyer buyer) {
-        synchronized (buyers) {
-            Basket b = buyers.get(buyer);
-            if (b != null) {    // Если покупатель в магазине
-                if (b == absentBasket) {   // Если он без корзины - выпускаем из магазина
+        Basket b = buyers.get(buyer);
+        if (b != null) {    // Если покупатель в магазине
+            if (b == absentBasket) {   // Если он без корзины - выпускаем из магазина
+                buyers.remove(buyer);
+                int s = buyers.size();
+                if (closing && s == 0)
+                    closedShop = true;  // Магазин закрывался и последний покупать вышел
+                return s;
+            } else {
+                if (b.goodsCount() == 0) { // Если корзина есть, но в ней нет товара, то выпускаем
                     buyers.remove(buyer);
                     int s = buyers.size();
                     if (closing && s == 0)
-                        closedShop = true;  // Магазин закрывался и последний покупать вышел
+                        closedShop = true; // Магазин закрывался и последний покупать вышел
                     return s;
                 } else {
-                    if (b.goodsCount() == 0) { // Если корзина есть, но в ней нет товара, то выпускаем
-                        buyers.remove(buyer);
-                        int s = buyers.size();
-                        if (closing && s == 0)
-                            closedShop = true; // Магазин закрывался и последний покупать вышел
-                        return s;
-                    } else {
-                        return -2; // Если есть товары в корзине, то не выпускаем - должен становится в очередь
-                    }
+                    return -2; // Если есть товары в корзине, то не выпускаем - должен становится в очередь
                 }
-            } else return -1;
-        }
+            }
+        } else return -1;
+
     }
 
     // Отпустить персонал
     void freePersonal(Manager m) {
-        if (m == manager) { // Только наш менеджер может отпустить персонал
+        if (m == manager) { // Только наш менеджер может отпустить персонал*for (Cashier cashier : cashiers) {
+            // Отпускаем кассиров
             for (Cashier cashier : cashiers) {
                 cashier.endOfWorkDay();
             }
-            cashiers.forEach(x -> {
+            // Даем им 1 секунду, чтоб добровольно свалить
+            try {
+                cashExecService.awaitTermination(1000, TimeUnit.MILLISECONDS);
+            } catch (InterruptedException e) {
+                System.err.println("InterruptedException " + e.getMessage());
+            }
+            // Если кто-то не свалил, всех закрываем силой
+            if (!cashExecService.isTerminated())
+                cashExecService.shutdownNow();
+            /*cashiers.forEach(x -> {
                 Thread th = x.getThread();
                 try {
                     while (th.isAlive()) {
@@ -143,16 +160,15 @@ class Shop {
                 } catch (InterruptedException e) {
                     System.err.println("InterruptedException " + e.getMessage());
                 }
-            });
+            });*/
+            // Отпускаем себя самого
             manager.endOfWorkDay();
         }
     }
 
     // Сколько людей сейчас находится в магазине
     int buyersCount() {
-        synchronized (buyers) {
-            return buyers.size();
-        }
+        return buyers.size();
     }
 
     // Встать в очередь. Только если buyer находится в магазине
@@ -177,23 +193,19 @@ class Shop {
     // Взять корзину. Только если buyer находится в магазине и у него нет корзины
     // Возвр true если покупателю дали корзину, иначе false
     boolean takeBasket(Buyer buyer) {
-        synchronized (buyers) {
-            Basket b = buyers.get(buyer);
-            if (b == null) { // Если нет такого покупателя в магазине
-                return false;
-            } else if (b == absentBasket) {  // Если у покупателя нет корзинки
-                buyers.put(buyer, new Basket()); // Создать корзину и связать её с покупателем
-                return true;
-            } else
-                return false;
-        }
+        Basket b = buyers.get(buyer);
+        if (b == null) { // Если нет такого покупателя в магазине
+            return false;
+        } else if (b == absentBasket) {  // Если у покупателя нет корзинки
+            buyers.put(buyer, new Basket()); // Создать корзину и связать её с покупателем
+            return true;
+        } else
+            return false;
     }
 
     // Находится ли сейчас в магазине данный покупатель
     private boolean buyerInside(Buyer buyer) {
-        synchronized (buyers) {
-            return buyers.containsKey(buyer);
-        }
+        return buyers.containsKey(buyer);
     }
 
     private int getNeededCashiersCount(int c) {
@@ -257,9 +269,7 @@ class Shop {
     // Рассчитать покупателя
     void check(Buyer b, Cashier c, int lineLength) {
         Basket bas;
-        synchronized (buyers) {
-            bas = buyers.get(b);
-        }
+        bas = buyers.get(b);
         String good = bas.takeGoodFromBasket();
         List<String> output = new ArrayList<>();
         double fullSum = 0;

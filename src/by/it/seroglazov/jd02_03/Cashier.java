@@ -3,9 +3,15 @@ package by.it.seroglazov.jd02_03;
 public class Cashier implements Runnable {
 
     private final Shop shop;
-    private Thread thread;
+    //private Thread thread;
     private boolean endWork = false;
     private boolean isWaiting = false;
+
+    public String getName() {
+        return name;
+    }
+
+    private final String name;
 
     public int getNomer() {
         return nomer;
@@ -17,8 +23,9 @@ public class Cashier implements Runnable {
     Cashier(int num, Shop shop) {
         this.shop = shop;
         nomer = num;
-        thread = new Thread(this, "CashierN" + num);
-        thread.start();
+        name = "CashierN" + num;
+        //thread = new Thread(this, "CashierN" + num);
+        //thread.start();
     }
 
     @Override
@@ -28,8 +35,7 @@ public class Cashier implements Runnable {
             if (buyer != null) {
                 int len = shop.lineLength();
                 service(buyer, len);
-            }
-            else {
+            } else {
                 if (Runner.FULL_LOG) System.out.println(this + " касса закрылась");
                 pause();
             }
@@ -38,25 +44,28 @@ public class Cashier implements Runnable {
 
     // Обслуживание покупателя
     private void service(Buyer b, int lineLength) {
-        if (Runner.FULL_LOG) System.out.println(this + " обслуживает " + b);
-        shop.check(b, this, lineLength);
-        SleepCases.sleepRandom(2000, 5000);
-        synchronized (b) {
+        b.lock.lock();
+        try {
+            if (Runner.FULL_LOG) System.out.println(this + " обслуживает " + b);
+            shop.check(b, this, lineLength);
+            SleepCases.sleepRandom(2000, 5000);
             b.setStayingInLine(false);
-            b.notify();
+            b.servedByCashier.signal();
+        } finally {
+            b.lock.unlock();
         }
+
     }
 
     @Override
     public String toString() {
-        return "   " + thread.getName();
+        return "   " + getName();
     }
 
     synchronized void endOfWorkDay() {
         endWork = true;
         wakeAndClose();
     }
-
 
     private synchronized void pause() {
         isWaiting = true;
@@ -68,7 +77,6 @@ public class Cashier implements Runnable {
             }
         }
     }
-
 
     // Разбуть кассира если он отдыхает и заставить работать
     // Возвращает true если кассир отдыхал
@@ -86,11 +94,11 @@ public class Cashier implements Runnable {
         notify();
     }
 
-    synchronized boolean isWaiting(){
+    synchronized boolean isWaiting() {
         return isWaiting;
     }
 
-    Thread getThread(){
+    /*Thread getThread(){
         return thread;
-    }
+    }*/
 }

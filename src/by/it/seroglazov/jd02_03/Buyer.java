@@ -1,5 +1,11 @@
 package by.it.seroglazov.jd02_03;
 
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
 public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     private int num; // Номер покупателя
@@ -12,6 +18,9 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     private final Shop shop;
     //private Basket basket;
+
+    Lock lock = new ReentrantLock();
+    Condition servedByCashier = lock.newCondition();
 
     Buyer() {
         shop = null;
@@ -30,7 +39,7 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
     public boolean enterToMarket() {
         int c = shop.enter(this);
         if (c >= 0) {
-            if (Runner.FULL_LOG) System.out.println(this + " зашёл в магазин (стало магазине: " + c + ")");
+            if (Runner.FULL_LOG) System.out.println(this + " зашёл в магазин (стало в магазине: " + c + ")");
             yield();
             return true;
         } else {
@@ -98,26 +107,39 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         }
     }
 
-    public void setStayingInLine(boolean stayingInLine) {
-        this.stayingInLine = stayingInLine;
+    /*public boolean isLeaveTheLine() {
+        return leaveTheLine.get();
+    }*/
+
+    // Это для того, чтобы кассир убедился, что чертов покупатель проснулся и ушел из магазина
+    // после обслуживания(обслуживают их во сне как бы)
+    //private AtomicBoolean leaveTheLine = new AtomicBoolean(false);
+
+    void setStayingInLine(boolean state) {
+        stayingInLine.set(state);
     }
 
-    private boolean stayingInLine = false;
+    private AtomicBoolean stayingInLine = new AtomicBoolean(false);
+
 
     // Встать в очередь
     private void getInLine() {
-        int c = shop.getInLine(this);
-        if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
-        stayingInLine = true;
-        synchronized (this) {
-            while (stayingInLine) {
-                try {
-                    wait();
-                } catch (InterruptedException e) {
-                    System.err.println("InterruptedException " + e.getMessage());
-                }
+        lock.lock();
+        try {
+            int c = shop.getInLine(this);
+            if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
+            stayingInLine.set(true);
+            while (stayingInLine.get()) {
+                //System.out.println(this + " все ещё стоит в очереди!");
+                //servedByCashier.await(1000, TimeUnit.MILLISECONDS); // Ожидаем когда нас обслужить кассир
+                servedByCashier.await(); // Ожидаем когда нас обслужить кассир
             }
+        } catch (InterruptedException e) {
+            System.err.println("InterruptedException " + e.getMessage());
+        } finally {
+            lock.unlock();
         }
+        //leaveTheLine.set(true);
     }
 
 
