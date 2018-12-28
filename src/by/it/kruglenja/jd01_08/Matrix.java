@@ -3,13 +3,16 @@ package by.it.kruglenja.jd01_08;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class Matrix extends Var{
+public class Matrix extends Var {
 
     private double value[][];
 
+    public double[][] getValue() {
+        return value; }
+
     @Override
     public Var add(Var other) {
-        if (other instanceof Matrix){
+        if (other instanceof Matrix) {
             double[][] sum = new double[this.value.length][this.value[0].length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -23,7 +26,7 @@ public class Matrix extends Var{
 
     @Override
     public Var sub(Var other) {
-        if (other instanceof Matrix){
+        if (other instanceof Matrix) {
             double[][] sub = new double[this.value.length][this.value[0].length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -37,7 +40,7 @@ public class Matrix extends Var{
 
     @Override
     public Var mul(Var other) {
-        if (other instanceof Matrix){
+        if (other instanceof Matrix) {
             double[][] mul = new double[this.value.length][this.value[0].length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -47,6 +50,16 @@ public class Matrix extends Var{
                 }
             }
             return new Matrix(mul);
+        } else if (other instanceof Vector) {
+            Vector vector = (Vector) other;
+            double[] vec = vector.getValue();
+            double[] mul = new double[vec.length];
+            for (int i = 0; i < this.value.length; i++) {
+                for (int j = 0; j < this.value[i].length; j++) {
+                    mul[i] += this.value[i][j] * vec[j];
+                }
+            }
+            return new Vector(mul);
         }
         return other.mul(this);
     }
@@ -74,7 +87,7 @@ public class Matrix extends Var{
         int rowCount = 0;
         int colCount = 0;
         while (extrMatch.find()) {
-            if ((", ".equals(extrMatch.group())) || (",".equals(extrMatch.group()))){
+            if ((", ".equals(extrMatch.group())) || (",".equals(extrMatch.group()))) {
                 continue;
             }
             temCount = extrMatch.group();
@@ -88,13 +101,13 @@ public class Matrix extends Var{
         String[] arrLines = new String[rowCount];
         int countLines = 0;
         while (extrMatch.find()) {
-            if ((", ".equals(extrMatch.group())) || (",".equals(extrMatch.group()))){
+            if ((", ".equals(extrMatch.group())) || (",".equals(extrMatch.group()))) {
                 continue;
             }
             arrLines[countLines] = extrMatch.group();
             countLines++;
         }
-        this.value  = new double[rowCount][colCount];
+        this.value = new double[rowCount][colCount];
         for (int i = 0; i < arrLines.length; i++) {
             int countColumns = 0;
             Matcher cleaner2 = clean.matcher(arrLines[i]);
@@ -104,6 +117,7 @@ public class Matrix extends Var{
             }
         }
     }
+
     @Override
     public String toString() {
         StringBuilder res = new StringBuilder("{");
