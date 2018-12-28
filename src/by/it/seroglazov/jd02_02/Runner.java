@@ -39,6 +39,14 @@ public class Runner {
             if (countBuyers > MAX_COUNT) break;
             SleepCases.sleepFor(1000);
         }
+
+        buyers.forEach(x-> {
+            try {
+                x.join();
+            } catch (InterruptedException e) {
+                System.err.println("InterruptedException " + e.getMessage());
+            }
+        });
         // Магазин закрывает менеджер
     }
 

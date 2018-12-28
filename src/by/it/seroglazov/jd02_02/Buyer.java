@@ -102,9 +102,9 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
 
     // Встать в очередь
     private void getInLine() {
+        stayingInLine = true;
         int c = shop.getInLine(this);
         if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
-        stayingInLine = true;
         synchronized (this) {
             while (stayingInLine) {
                 try {

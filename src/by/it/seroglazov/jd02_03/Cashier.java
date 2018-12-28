@@ -64,7 +64,8 @@ public class Cashier implements Runnable {
 
     synchronized void endOfWorkDay() {
         endWork = true;
-        wakeAndClose();
+        isWaiting = false;
+        notify();
     }
 
     private synchronized void pause() {
@@ -89,10 +90,6 @@ public class Cashier implements Runnable {
         } else return false;
     }
 
-    private synchronized void wakeAndClose() {
-        isWaiting = false;
-        notify();
-    }
 
     synchronized boolean isWaiting() {
         return isWaiting;

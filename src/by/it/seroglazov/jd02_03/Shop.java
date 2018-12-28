@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
 
 // Класс Shop - в нашем проекте будет один экземпляр этого класса. Создаётся в Runner.
 // За всю синхронизацию отвечает именно магазин
@@ -16,9 +14,9 @@ import java.util.concurrent.TimeUnit;
 // только через постановку в очередь в кассу и расчет.
 class Shop {
     // Список товаров
-    private final HashMap<String, Double> goods;
+    private final ConcurrentHashMap<String, Double> goods;
     // Покупатели, которые находятся в магазине
-    private final ConcurrentHashMap<Buyer, Basket> buyers; // Надо брать монитор при обращении
+    private final ConcurrentHashMap<Buyer, Basket> buyers;
     // Очередь
     private final WaitingLine waitingLine;
     // Сколько людей вошло в магазин за время его работы
@@ -38,11 +36,14 @@ class Shop {
     private final ExecutorService cashExecService;
     // Менеджер. Управляет кассирами.
     private Manager manager;
-    private double totalCash = 0;
+    // Общая выручка
+    private AtomicInteger totalCash = new AtomicInteger(0);
     private static final Object outputMonitor = new Object();
 
+    BlockingQueue<Basket> baskets;
+
     Shop() {
-        goods = new HashMap<>();
+        goods = new ConcurrentHashMap<>();
         buyers = new ConcurrentHashMap<>();
         waitingLine = new WaitingLine(30);
         goods.put("Мясо", 10.0);
@@ -58,10 +59,7 @@ class Shop {
         goods.put("Карандаш", 0.3);
         goods.put("Гвозди", 5.5);
         if (Runner.TABLE_MODE) printTitleLine();
-        /*
-        for (int i = 0; i < CASHIERS_COUNT; i++) {
-            cashiers.add(new Cashier(i + 1, this));
-        }*/
+        // Создаем пул кассиров
         cashExecService = Executors.newFixedThreadPool(CASHIERS_COUNT);
         for (int i = 0; i < CASHIERS_COUNT; i++) {
             Cashier c = new Cashier(i + 1, this);
@@ -70,19 +68,22 @@ class Shop {
         }
         cashExecService.shutdown();
         manager = new Manager(this);
+        baskets = new ArrayBlockingQueue<Basket>(50);
+        // Ложим 50 корзин в магазин
+        for (int i = 0; i < 50; i++) {
+            baskets.add(new Basket());
+        }
     }
 
     // Ложит Count случайных товаров в карзину покупателя
     // Возвращает списко этих товаров
     String[] putRandomGoodsToBasket(Buyer buyer, int count) {
         String[] g = new String[count];
-        synchronized (goods) {
-            for (int i = 0; i < count; i++) {
-                int num = MyRandom.getRandom(0, goods.size() - 1);
-                Iterator<String> it = goods.keySet().iterator();
-                for (int j = 0; j < num; j++) it.next(); // Пропускаем num-1 элементов
-                g[i] = it.next(); // Берем num элемент
-            }
+        for (int i = 0; i < count; i++) {
+            int num = MyRandom.getRandom(0, goods.size() - 1);
+            Iterator<String> it = goods.keySet().iterator();
+            for (int j = 0; j < num; j++) it.next(); // Пропускаем num-1 элементов
+            g[i] = it.next(); // Берем num элемент
         }
         // Если buyer в магазине, ложим в его корзину товары
         Basket basket = buyers.get(buyer);
@@ -150,17 +151,6 @@ class Shop {
             // Если кто-то не свалил, всех закрываем силой
             if (!cashExecService.isTerminated())
                 cashExecService.shutdownNow();
-            /*cashiers.forEach(x -> {
-                Thread th = x.getThread();
-                try {
-                    while (th.isAlive()) {
-                        th.join(10);
-                        x.endOfWorkDay();
-                    }
-                } catch (InterruptedException e) {
-                    System.err.println("InterruptedException " + e.getMessage());
-                }
-            });*/
             // Отпускаем себя самого
             manager.endOfWorkDay();
         }
@@ -193,14 +183,37 @@ class Shop {
     // Взять корзину. Только если buyer находится в магазине и у него нет корзины
     // Возвр true если покупателю дали корзину, иначе false
     boolean takeBasket(Buyer buyer) {
-        Basket b = buyers.get(buyer);
+        Basket b = buyers.get(buyer); // Смотри есть ли у него корзина (если нет, то у него absentBasket корзина-заглушка)
         if (b == null) { // Если нет такого покупателя в магазине
             return false;
         } else if (b == absentBasket) {  // Если у покупателя нет корзинки
-            buyers.put(buyer, new Basket()); // Создать корзину и связать её с покупателем
-            return true;
+            try {
+                if (Runner.FULL_LOG && baskets.peek() == null)
+                    System.out.println(buyer + " пытается взять корзину, а их нет, ждемсс...");
+                Basket tb = baskets.take(); // Пытаемся взять, если там нет, то подвиснем пока не появится
+                buyers.put(buyer, tb); // Даем корзину покупателю
+                return true;
+            } catch (InterruptedException e) {
+                System.err.format("InterruptedException пока %s барл корзину: %s", buyer, e.getMessage());
+            }
+            return false;
         } else
             return false;
+    }
+
+    // Вернуть корзинку
+    // Если успешно вернулась - вернёт true
+    boolean putBasketBack(Buyer buyer) {
+        Basket b = buyers.get(buyer); // Смотри есть ли у него корзина (если нет, то у него absentBasket корзина-заглушка)
+        if (b == null) { // Если нет такого покупателя в магазине
+            return false;
+        } else if (b == absentBasket) {  // Если у покупателя нет корзинки
+            return false;
+        } else {
+            buyers.put(buyer, absentBasket); // Ставим метку, что у покупателя нет корзины
+            baskets.add(b); // Ложим корзину назад в "стопку" корзин
+            return true;
+        }
     }
 
     // Находится ли сейчас в магазине данный покупатель
@@ -322,7 +335,8 @@ class Shop {
         System.out.println(sb);
     }
 
-    private synchronized double addCash(double d) {
-        return totalCash += d;
+    private double addCash(double d) {
+        // Храним в виде integer = сумма*100 - так как не более 2 знаков после запятой может быть
+        return (double) totalCash.addAndGet((int) (d * 100)) / 100;
     }
 }

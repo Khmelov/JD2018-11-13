@@ -74,8 +74,17 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
             chooseGoods();
             putGoodsToBasket();
             getInLine();
+            putBasketBack();
             while (!goToOut())
                 SleepCases.sleepFor(100); // Если магазин не выпускает то здесь застрянет покупатель (значит ошибка в логике)
+        }
+    }
+
+    private void putBasketBack() {
+        if (shop.putBasketBack(this)){
+            if (Runner.FULL_LOG) System.out.println(this + " положил корзину на место.");
+        } else {
+            if (Runner.FULL_LOG) System.out.println(this + " НЕ СМОГ положить корзину на место.");
         }
     }
 
