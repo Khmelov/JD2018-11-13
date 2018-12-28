@@ -1,22 +1,23 @@
-package by.it.seroglazov.jd02_02;
+package by.it.seroglazov.jd02_03;
+
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Manager implements Runnable {
 
-    private Thread thread;
     private Shop shop;
-    private boolean endWork = false;
+    private AtomicBoolean endWork = new AtomicBoolean(false);
 
     Manager(Shop shop) {
         this.shop = shop;
-        thread = new Thread(this, "Manager");
-        thread.start();
+        new Thread(this, "Manager").start();
     }
 
     @Override
     public void run() {
-        while (!endWork) {
+        while (!endWork.get()) {
             SleepCases.sleepFor(1);
             shop.checkForCashiers(this);
+            //shop.checkIfNeedCloseTheShop();
             if (shop.isClosedShop()) {
                 shop.freePersonal(this);
                 break;
@@ -26,7 +27,7 @@ public class Manager implements Runnable {
     }
 
     void endOfWorkDay() {
-        endWork = true;
+        endWork.set(true);
     }
 
 
