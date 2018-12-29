@@ -1,7 +1,5 @@
 package by.it.mnovikov.jd02_01;
 
-import java.util.HashMap;
-
 public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     Buyer(int buyerNum) {
@@ -29,24 +27,24 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void takeBacket() {
-        Rnd.sleepTime(100, 200);
+        Util.sleepTime(100, 200);
         System.out.println(this + " взял корзинку");
     }
 
     @Override
     public void chooseGoods() {
         System.out.println(this + " начал выбор товара");
-        Rnd.sleepTime(500, 2000);
+        Util.sleepTime(500, 2000);
         System.out.println(this + " выбрал товар");
     }
 
     @Override
     public void putGoodsToBacket() {
-        int countGoods = Rnd.random(1, 4);
+        int countGoods = Util.random(1, 4);
         for (int i = 0; i < countGoods; i++) {
-            int position = Rnd.random(0, Goods.goods.size() - 1);
+            int position = Util.random(0, Goods.goods.size() - 1);
             Goods.getPosition(Goods.goods, position);
-            Rnd.sleepTime(100, 200);
+            Util.sleepTime(100, 200);
         }
         System.out.println(this + " положил товары в корзинку");
     }

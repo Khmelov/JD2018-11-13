@@ -1,17 +1,18 @@
 package by.it.vchernetski.jd02_01;
 
-
-import java.util.concurrent.CopyOnWriteArraySet;
-
 class Buyer extends Thread implements IBuyer, IUseBacket {
     private Backet backet;
     private boolean pensioneer;
-    static CopyOnWriteArraySet<Buyer> buyers=new CopyOnWriteArraySet<>();
+    private static int numOfBuyers=0;
+    private static Object monitor = new Object();
 
     Buyer(int number) {
         super("Buyer №" + number);
         backet = new Backet();
         pensioneer = Math.random()<0.25;
+        synchronized (monitor){
+            numOfBuyers++;
+        }
     }
     @Override
     public void run() {
@@ -27,7 +28,6 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
     @Override
     public void enterToMarket() {
         System.out.println(this + "enter to market.");
-        buyers.add(this);
     }
 
     @Override
@@ -60,7 +60,9 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void goOut() {
-        buyers.remove(this);
+        synchronized (monitor){
+            numOfBuyers--;
+        }
         System.out.println(this + "go out from market.");
     }
 
@@ -68,5 +70,10 @@ class Buyer extends Thread implements IBuyer, IUseBacket {
     public String toString() {
         if(pensioneer) return getName() + " pensioneer: ";
         else return getName() + ": ";
+    }
+    public static int getNumOfBuyers(){
+        synchronized (monitor){
+        return numOfBuyers;
+        }
     }
 }

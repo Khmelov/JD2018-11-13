@@ -12,13 +12,13 @@ public class Market {
         System.out.println("Магазин открылся");
 
         for (int time = 0; time < 120; time++) {
-            int buyerCount = Rnd.random(0, 2);
+            int buyerCount = Util.random(0, 2);
             for (int i = 0; i < buyerCount; i++) {
                 Buyer buyer = new Buyer(Dispatcher.buyerCounter++);
                 buyerList.add(buyer);
                 buyer.start();
             }
-            Rnd.sleep(1000);
+            Util.sleep(1000);
         }
         for (Buyer buyer : buyerList) {
             try {
