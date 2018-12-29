@@ -31,10 +31,11 @@ class Shop {
     // Менеджер. Управляет кассирами.
     private Manager manager;
     private double totalCash = 0;
+    private static final Object outputMonitor = new Object();
 
     Shop() {
         goods = new HashMap<>();
-        buyers = new HashMap<Buyer, Basket>();
+        buyers = new HashMap<>();
         line = new WaitingLine();
         goods.put("Мясо", 10.0);
         goods.put("Сало", 6.5);
@@ -57,6 +58,7 @@ class Shop {
     }
 
     // Ложит Count случайных товаров в карзину покупателя
+    // Возвращает списко этих товаров
     String[] putRandomGoodsToBasket(Buyer buyer, int count) {
         String[] g = new String[count];
         synchronized (goods) {
@@ -91,7 +93,7 @@ class Shop {
         } else return -1;
     }
 
-    public boolean isClosedShop() {
+    boolean isClosedShop() {
         return closedShop;
     }
 
@@ -124,13 +126,17 @@ class Shop {
 
     // Отпустить персонал
     void freePersonal(Manager m) {
-        if (m == manager) {
+        if (m == manager) { // Только наш менеджер может отпустить персонал
             for (Cashier cashier : cashiers) {
                 cashier.endOfWorkDay();
             }
             cashiers.forEach(x -> {
+                Thread th = x.getThread();
                 try {
-                    x.getThread().join();
+                    while (th.isAlive()) {
+                        th.join(10);
+                        x.endOfWorkDay();
+                    }
                 } catch (InterruptedException e) {
                     System.err.println("InterruptedException " + e.getMessage());
                 }
@@ -172,6 +178,7 @@ class Shop {
     }
 
     // Взять корзину. Только если buyer находится в магазине и у него нет корзины
+    // Возвр true если покупателю дали корзину, иначе false
     boolean takeBasket(Buyer buyer) {
         synchronized (buyers) {
             Basket b = buyers.get(buyer);
@@ -217,7 +224,7 @@ class Shop {
                 int[] ran = getRandomNomers(cashiers.size()); // Здесь храним случайный порядок кассиров
                 for (int i = 0; i < cashiers.size(); i++) {
                     if (cashiers.get(ran[i]).wakeUp()) {
-                        //System.out.println("Менеджер открыл " + cashiers.get(ran[i]));
+                        if (Runner.FULL_LOG) System.out.println("Менеджер открыл " + cashiers.get(ran[i]));
                         if (++working == need) break;
                     }
                 }
@@ -252,40 +259,53 @@ class Shop {
 
     // Рассчитать покупателя
     void check(Buyer b, Cashier c, int lineLength) {
+        Basket bas;
         synchronized (buyers) {
-            Basket bas = buyers.get(b);
-            String good = bas.takeGoodFromBasket();
-            double fullSum = 0;
-            while (good != null) {
-                double money = goods.get(good);
-                if (Runner.FULL_LOG)
-                    System.out.println(c + " взял с " + b.getShortName() + " " + money + " рублей за " + good);
-                if (Runner.TABLE_MODE) printTableLine(c, good, money, lineLength);
-                fullSum += money;
-                good = bas.takeGoodFromBasket();
-            }
-
+            bas = buyers.get(b);
+        }
+        String good = bas.takeGoodFromBasket();
+        List<String> output = new ArrayList<>();
+        double fullSum = 0;
+        while (good != null) {
+            double money = goods.get(good);
             if (Runner.FULL_LOG)
-                System.out.println("Итого " + b.getShortName() + " оставил в магазине " + fullSum + " рублей.");
+                System.out.println(c + " взял с " + b.getShortName() + " " + money + " рублей за " + good);
+            if (Runner.TABLE_MODE) output.add(getTableLine(c, good, money, lineLength, false));
+            fullSum += money;
+            good = bas.takeGoodFromBasket();
+        }
 
+        if (Runner.FULL_LOG)
+            System.out.println("Итого " + b.getShortName() + " оставил в магазине " + fullSum + " рублей.");
+        if (Runner.TABLE_MODE) output.add(getTableLine(c, "Итого:", fullSum, lineLength, true));
+        synchronized (outputMonitor){
+            output.forEach(System.out::println);
         }
     }
 
-    private void printTableLine(Cashier c, String good, Double money, int lineLength) {
+    private String getTableLine(Cashier c, String good, Double money, int lineLength, boolean flag) {
         int n = c.getNomer() - 1;
         int w = Runner.CHARR_IN_COLUMN;
         StringBuilder sb = new StringBuilder();
 
         for (int i = 0; i < CASHIERS_COUNT; i++) {
             if (i == n) {
-                sb.append(String.format(" %" + (w - 8) + "s %5.2f ", good, money)).append('|');
+                sb.append(String.format(" %" + (w - 9) + "s %6.2f ", good, money)).append('|');
             } else {
                 sb.append(Runner.EMPTY_COL).append('|');
             }
         }
-        sb.append(String.format(" Очередь: %" + (w - 10) + "d", lineLength)).append('|');
-        sb.append(String.format(" Всего: %" + (w - 9) + ".2f ", addCash(money)));
-        System.out.println(sb);
+
+        if (flag)
+        {
+            sb.append(String.format(" Очередь: %" + (w - 10) + "d", lineLength)).append('|');
+            sb.append(String.format(" Итого: %" + (w - 9) + ".2f ", addCash(money))).append('|');
+        }
+        else {
+            sb.append(Runner.EMPTY_COL).append('|');
+            sb.append(Runner.EMPTY_COL).append('|');
+        }
+        return sb.toString();
     }
 
     private static void printTitleLine() {
@@ -297,7 +317,7 @@ class Shop {
         System.out.println(sb);
     }
 
-    synchronized double addCash(double d) {
+    private synchronized double addCash(double d) {
         return totalCash += d;
     }
 }
