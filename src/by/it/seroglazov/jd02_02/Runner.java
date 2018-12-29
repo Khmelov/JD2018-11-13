@@ -10,9 +10,9 @@ public class Runner {
     // Писать полный лог
     static final boolean FULL_LOG = false;
     // Выводить таблицу
-    static final boolean TABLE_MODE = true;
+    static final boolean TABLE_MODE = !FULL_LOG;
     // При выводе в колонку сколько символов ширина колонки
-    static final int CHARR_IN_COLUMN = 16;
+    static final int CHARR_IN_COLUMN = 17;
     static final String EMPTY_COL = "                                           ".substring(0, CHARR_IN_COLUMN);
 
     public static void main(String[] args) {
@@ -21,12 +21,12 @@ public class Runner {
         LinkedList<Buyer> buyers = new LinkedList<>();
         Shop shop = new Shop();
 
-        /*// Сразу 10 запускаем
+        // Сразу 10 запускаем
         for (int i = 0; i < 10; i++) {
             buyers.add(new Buyer(countBuyers++, shop));
             SleepCases.sleepFor(1);
         }
-        SleepCases.sleepFor(1000);*/
+        SleepCases.sleepFor(1000);
 
         for (int second = 1; countBuyers < MAX_COUNT; second++) {
             if (FULL_LOG) System.out.println("********* СЕКУНДА " + String.valueOf(second) + " *********");
@@ -40,7 +40,6 @@ public class Runner {
             SleepCases.sleepFor(1000);
         }
 
-        // Ждем пока все выйдут
         buyers.forEach(x-> {
             try {
                 x.join();
@@ -48,13 +47,8 @@ public class Runner {
                 System.err.println("InterruptedException " + e.getMessage());
             }
         });
-
-        System.out.println("THE END.");
-
+        // Магазин закрывает менеджер
     }
-
-
-
 
     private static int getMaxBuyersCount(int second){
         int h = second / 60;
