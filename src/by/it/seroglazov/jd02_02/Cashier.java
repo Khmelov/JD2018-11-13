@@ -32,7 +32,6 @@ public class Cashier implements Runnable {
             else {
                 if (Runner.FULL_LOG) System.out.println(this + " касса закрылась");
                 pause();
-                //SleepCases.sleepFor(1);
             }
         }
     }
@@ -43,6 +42,7 @@ public class Cashier implements Runnable {
         shop.check(b, this, lineLength);
         SleepCases.sleepRandom(2000, 5000);
         synchronized (b) {
+            b.setStayingInLine(false);
             b.notify();
         }
     }
@@ -57,12 +57,15 @@ public class Cashier implements Runnable {
         wakeAndClose();
     }
 
+
     private synchronized void pause() {
         isWaiting = true;
-        try {
-            wait();
-        } catch (InterruptedException e) {
-            System.err.println("InterruptedException " + e.getMessage());
+        while (isWaiting) {
+            try {
+                wait();
+            } catch (InterruptedException e) {
+                System.err.println("InterruptedException " + e.getMessage());
+            }
         }
     }
 
@@ -79,6 +82,7 @@ public class Cashier implements Runnable {
     }
 
     private synchronized void wakeAndClose() {
+        isWaiting = false;
         notify();
     }
 
