@@ -18,6 +18,13 @@ public class Cashier implements Runnable {
                 Util.sleep(time);
                 System.out.println(this + "finished service " + buyer);
                 synchronized (buyer) {
+                    double sum = 0;
+                    String goods = "";
+                    for (String name: buyer.goods.keySet()) {
+                        sum += buyer.goods.get(name);
+                        goods += " "+name;
+                    }
+                    System.out.println("Sum "+Double.toString(sum)+" for "+buyer);
                     buyer.notify();
                 }
             }

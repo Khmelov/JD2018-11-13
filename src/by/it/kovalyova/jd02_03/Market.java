@@ -14,6 +14,7 @@ public class Market {
         List<Buyer> buyerList = new ArrayList<>();
         List<Thread> threads = new ArrayList<>();
         QueueBuyer buyers = new QueueBuyer();
+        Util.initassort();
 
         System.out.println("Market opened. Welcome!");
 
@@ -43,7 +44,10 @@ public class Market {
                         threads.add(buyer);
                         buyer.start();
                     } else {
-                        System.out.println("Market is full");
+                        System.out.println("Customer "+
+                                Integer.toString(Dispatcher.getBuyerCounter())+
+                                " not enter because market is full");
+                        Util.sleep(50);
                     }
                 }
             }
@@ -60,6 +64,7 @@ public class Market {
         }
         executor.shutdown();
         System.out.println("Market already closed. Time to sleep!");
+        System.exit(0);
     }
 }
 

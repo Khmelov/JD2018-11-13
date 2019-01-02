@@ -1,8 +1,10 @@
 package by.it.kovalyova.jd02_03;
 
+import java.util.*;
 import java.util.concurrent.Semaphore;
 
 class Buyer extends Thread implements IBuyer, IUseBasket {
+    public HashMap<String, Double> goods = new HashMap<>(4);
     Semaphore s;
     Buyer(int number, Semaphore ss) {
         super("Customer №" + number);
@@ -15,8 +17,8 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
         enterToMarket();
         takeBasket();
         chooseGoods();
-        goToQueue();
         putGoodsToBasket();
+        goToQueue();
         goOut();
     }
 
@@ -35,6 +37,7 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
     @Override
     public void chooseGoods() {
         System.out.println(this + "started choosing goods");
+
         int timeout = Util.random(500,2000);
         Util.sleep(timeout);
         System.out.println(this + "made a choice");
@@ -43,7 +46,7 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
 
     @Override
     public void goToQueue() {
-        while(QueueBuyer.getSize()>=49) {
+        while(QueueBuyer.getSize()>=30) {
             Util.sleep(50);
         }
         QueueBuyer.add(this);
@@ -63,8 +66,12 @@ class Buyer extends Thread implements IBuyer, IUseBasket {
         int timeout = Util.random(100,200);
         Util.sleep(timeout);
         int goodsCount = Util.random(1,4);
+        List<String> keys = Util.goods(goodsCount);
+        for ( String key: keys) {
+            goods.put(key,Util.assortiment.get(key));
+        }
         System.out.println(this + "put " + goodsCount+
-                " goods in the basket: " + Util.goods(goodsCount));
+                " goods in the basket: ");
     }
 
 
