@@ -19,7 +19,8 @@ import java.util.HashMap;
                         String clname = element.getClassName();
                         int lineNumber = element.getLineNumber();
                         int number=element.getLineNumber();
-                        System.out.printf(" name: %s\n" +
+                        System.out.printf(
+                                "name: %s\n" +
                                 "class: %s\n" +
                                 "line: %d\n",
                                 name, clname, lineNumber);
@@ -27,7 +28,6 @@ import java.util.HashMap;
                     }
                 }
             }
-
         }
     }
 
