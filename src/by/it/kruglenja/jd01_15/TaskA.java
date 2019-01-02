@@ -39,7 +39,7 @@ public class TaskA {
         }
     }
     public static void main(String[] args) {
-        String fileName = Util.getPath("TaskB.txt");
+        String fileName = Util.getPath("matrix.txt");
         int[][] matrix = new int[6][4];
         for (int i = 0; i < matrix.length; i++) {
             for (int j = 0; j < matrix[i].length; j++) {

@@ -32,35 +32,6 @@ public class Runner {
 //
 //        System.out.println("myList(0): " + myList.get(0) + "\n arList(0): " + arList.get(0));
 
-        SetC<Integer> s = new SetC<>();
-        s.add(1);
-        s.add(2);
-        s.add(3);
-        s.add(4);
-        s.add(1);
-        s.add(5);
-        s.add(6);
-        s.add(7);
-        s.add(8);
-        System.out.println(s);
-        s.remove(5);
-        s.remove(9);
-        System.out.println(s);
 
-        ArrayList<Integer> lb = new ArrayList<>();
-        lb.add(1);
-        lb.add(2);
-        lb.add(7);
-        lb.add(22);
-        System.out.println(lb);
-        System.out.println(s.containsAll(lb));
-        System.out.println(s.removeAll(lb));
-        System.out.println(s);
-        s.add(0);
-        s.add(2);
-        s.add(7);
-        s.add(16);
-        System.out.println(s);
-        System.out.println(s.containsAll(lb));
     }
 }
