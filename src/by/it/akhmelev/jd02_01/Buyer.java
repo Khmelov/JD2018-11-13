@@ -37,4 +37,5 @@ class Buyer extends Thread implements IBuyer {
     public String toString() {
         return getName() + ": ";
     }
+
 }
