@@ -4,9 +4,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Market {
+    static List<Basket> basketList = new ArrayList<>();
+    static List<Good> goodList = new ArrayList<>();
 
     public static void main(String[] args) {
         List<Buyer> buyerList = new ArrayList<>();
+
+
+        for (int i = 0; i < 100; i++) {
+            goodList.add(new Good());
+        }
+
+        for (int i = 0; i < 3; i++) {
+            basketList.add(new Basket());
+        }
+
         System.out.println("Market is open");
 
         for (int millis = 0; millis < 120; millis++) {
@@ -27,5 +39,11 @@ public class Market {
             }
         }
         System.out.println("Market is closed");
+    }
+
+    public static void giveSomeBaskets() {
+        for (int counter = 0; counter < 2; counter++) {
+            basketList.add(new Basket());
+        }
     }
 }
