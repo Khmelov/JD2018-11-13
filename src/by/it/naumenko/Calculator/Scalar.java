@@ -8,11 +8,11 @@ class Scalar extends Var {
     }
 
     Scalar(String str){
-        value = Double.parseDouble(str);
+        this.value = Double.parseDouble(str);
     }
 
     Scalar(Scalar scalar){
-        value = scalar.value;
+        this.value = scalar.value;
     }
 
     @Override
@@ -51,7 +51,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other)  throws CalcExeption{
+    public Var div(Var other)  throws CalcExeption {
         if (other instanceof Scalar){
             Scalar operand2=(Scalar)other;
             if (operand2.value==0)
