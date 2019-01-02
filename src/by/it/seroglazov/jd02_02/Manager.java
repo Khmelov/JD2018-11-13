@@ -22,6 +22,7 @@ public class Manager implements Runnable {
                 break;
             }
         }
+        System.out.println("Магазин закрылся.");
     }
 
     void endOfWorkDay() {
