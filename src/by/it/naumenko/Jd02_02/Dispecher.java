@@ -3,7 +3,7 @@ package by.it.naumenko.Jd02_02;
 public class Dispecher {
 
     private static final Object localMOnitor = new Object();
-    static final int buyerPlan = 100;
+    static final int buyerPlan = 3;
     static int buyerInShop = 0;
     static int buyerCounter = 0;
 

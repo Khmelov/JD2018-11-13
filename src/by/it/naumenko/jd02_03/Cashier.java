@@ -1,4 +1,4 @@
-package by.it.naumenko.Jd02_02;
+package by.it.naumenko.jd02_03;
 
 import java.util.Date;
 
@@ -6,6 +6,8 @@ public class Cashier implements Runnable {
 
     String name;
     static Date date = new Date();
+
+
 
     @Override
     public void run() {
@@ -20,11 +22,8 @@ public class Cashier implements Runnable {
                 System.out.println("---"+this+"Начал обслуживать "+ buyerExtract);
                 Util.sleep(Util.random(2000,5000));
                 System.out.println("---"+this+"Закончил обслуживать "+buyerExtract);
-//                System.out.println("Общая сумма чека "+this+Buyer.chekKassa());
-
-                synchronized (buyerExtract) {
-                    buyerExtract.notify();
-                }
+                System.out.println("Общая сумма чека "+this+ Buyer.chekKassa());
+                buyerExtract.stopWait();
             }
         }
         System.out.println(this+"Закрыл кассу");

@@ -1,4 +1,4 @@
-package by.it.naumenko.Jd02_02;
+package by.it.naumenko.jd02_03;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -8,9 +8,16 @@ import java.util.Map;
 public class Buyer extends Thread implements IBuyer, IUseBacked {
 
     //public  Map<String,Double>[] check = new HashMap<String,Double>[];
-    //public static Map<String,Double> becked = new HashMap<>()
-    public static List<Map<String,Double>> chek = new ArrayList<>();
+   public List<Map<String,Double>> chek = new ArrayList<>();
     public static boolean pensioneer;
+    private boolean wating = false;
+
+    void stopWait(){
+        synchronized (this) {
+            wating=false;
+            this.notify();
+        }
+    }
     @Override
     public void enterToMArket() {
         if(!pensioneer)
@@ -45,12 +52,15 @@ public class Buyer extends Thread implements IBuyer, IUseBacked {
     @Override
     public void goToQuee() {
         QueeBuyer.addBuyerQuee(this);
+        wating = true;
         System.out.println(this+"стал в очередь");
         synchronized (this){
-            try {
-                this.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            while (wating){
+                try {
+                    this.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
@@ -69,11 +79,9 @@ public class Buyer extends Thread implements IBuyer, IUseBacked {
         return super.getName();
     }
 
-
     Buyer(int number) {
 
         super("Покупатель № " + number + " ");
-        chek.add(new HashMap<>());
         pensioneer=Math.random()<0.25;
         Dispecher.addBuyer();
     }
@@ -96,12 +104,12 @@ public class Buyer extends Thread implements IBuyer, IUseBacked {
         if (!pensioneer) {
             int colTovar = Util.random(1, 4);
 
-
+//            check[Dispecher.buyerCounter]=new HashMap<>();
             for (int i = 0; i < colTovar; i++) {
                 int pos = Util.random(Tovar.tovar.size() - 1);
                 System.out.print(this + "Положил в корзину товар ");
                 Tovar.getPosition((HashMap) Tovar.tovar, pos);
-                this.chek.get(Dispecher.buyerCounter-1).put(Tovar.getKeyMap((HashMap) Tovar.tovar,pos),Tovar.getValueMap((HashMap) Tovar.tovar,pos));
+                //check[2].put(Tovar.getKeyMap((HashMap) Tovar.tovar,pos),Tovar.getValueMap((HashMap) Tovar.tovar,pos));
                 Util.sleep(Util.random(100, 200));
             }
             System.out.println(this + "Положил в корзину все товары");
@@ -118,12 +126,9 @@ public class Buyer extends Thread implements IBuyer, IUseBacked {
         }
     }
 
-    public double chekKassa(){
-
-        return Tovar.summaChek((HashMap<String, Double>) this.chek);
+    public static double chekKassa(){
+        return Tovar.summaChek((HashMap<String, Double>) Tovar.tovar);
     }
-
-
 }
 
 
