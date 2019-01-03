@@ -16,6 +16,7 @@ public class Parcer {
         }
     };
     public String calc(String expression) throws CalcException {
+        expression = expression.replace(" ","");
         if (expression.contains("sortvar")) {
             Var.sortvar();
             return null;

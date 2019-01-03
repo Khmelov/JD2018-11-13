@@ -43,7 +43,7 @@ public class ConsoleRunner {
         Var.read();
         String in;
         Parcer parcer = new Parcer();
-        while (!(in = sc.next()).equals("end")){
+        while (!(in = sc.nextLine()).equals("end")){
             boolean b = (in.contains("+") || in.contains("-") || in.contains("*") || in.contains("/"))&&!in.contains("{");
             try {
                 String res = parcer.calc(in);
