@@ -23,7 +23,7 @@ public class Matrix extends Var {
         strvalue=strvalue.replaceAll("\\s","");
         Matcher m = Pattern.compile("\\{(.*)}").matcher(strvalue);
         if(m.find()) strvalue = m.group(1);
-        m = Pattern.compile("[\\d ,.]{2,}").matcher(strvalue);
+        m = Pattern.compile("[-?\\d\\.\\d? ,]{2,}").matcher(strvalue);
         int size=0;
         while (m.find()){
             size++;}

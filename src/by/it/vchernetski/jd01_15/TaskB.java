@@ -1,4 +1,4 @@
-package by.it.vchernetski.jd01_15;//asd
+package by.it.vchernetski.jd01_15;//NewAge
 /*
 asdas
  */
