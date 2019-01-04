@@ -8,7 +8,7 @@ public class Matrix extends Var {
     Matrix(double[][] value){
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
-            System.arraycopy(value[i],0,this.value[i], 0,value.length);
+            System.arraycopy(value[i],0,this.value[i], 0,value[0].length);
         }
     }
 
@@ -216,7 +216,7 @@ public class Matrix extends Var {
         double[][] res = new double[this.value.length][this.value[0].length];
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < this.value[i].length; j++) {
-                    res[i][j] = other.value[i][j]+this.value[i][j];
+                res[i][j] = other.value[i][j]+this.value[i][j];
             }
         }
         return new Matrix(res);

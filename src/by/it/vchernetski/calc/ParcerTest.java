@@ -1,5 +1,6 @@
 package by.it.vchernetski.calc;
 
+import by.it._examples_.jd01_11.Generics.Demo;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -141,32 +142,72 @@ public class ParcerTest {
 
     @Test
     public void matrixCreate() throws Exception {
-        actual = parcer.calc("M={{2,3},{4,2}}");
+        actual = parcer.calc("M={{2,3},{4,2}}").intern();
         expected = "{{2.0, 3.0}, {4.0, 2.0}}";
         assertEquals("Incorrect creat M",expected,actual);
     }
     @Test
     public void matrixSumScalar() throws Exception {
-        actual = parcer.calc("M={{2,3},{4,2}}+2");
+        actual = parcer.calc("M={{2,3},{4,2}}+2").intern();
         expected = "{{4.0, 5.0}, {6.0, 4.0}}";
         assertEquals("Incorrect sum M",expected,actual);
     }
     @Test
     public void matrixSubScalar() throws Exception {
-        actual = parcer.calc("M={{2,3},{4,2}}-2");
+        actual = parcer.calc("M={{2,3},{4,2}}-2").intern();
         expected = "{{0.0, 1.0}, {2.0, 0.0}}";
         assertEquals("Incorrect sub M",expected,actual);
     }
     @Test
     public void matrixMulScalar() throws Exception {
-        actual = parcer.calc("M={{2,3},{4,2}}*2");
+        actual = parcer.calc("M={{2,3},{4,2}}*2").intern();
         expected = "{{4.0, 6.0}, {8.0, 4.0}}";
         assertEquals("Incorrect mul M",expected,actual);
     }
     @Test
     public void matrixDivScalar() throws Exception {
-        actual = parcer.calc("M={{2,3},{4,2}}/2");
+        actual = parcer.calc("M={{2,3},{4,2}}/2").intern();
         expected = "{{1.0, 1.5}, {2.0, 1.0}}";
         assertEquals("Incorrect div M",expected,actual);
+    }
+    @Test(expected = CalcException.class)
+    public void matrixSumVector() throws CalcException{
+        parcer.calc("{{1,2},{1,2}}+{1,2}");
+    }
+    @Test(expected = CalcException.class)
+    public void matrixSubVector() throws CalcException{
+        parcer.calc("{{1,2},{1,2}}-{1,2}");
+    }
+    @Test
+    public void matrixMulVector() throws CalcException{
+        actual = parcer.calc("{{1,2},{1,2}}*{1,2}").intern();
+        expected = "{5.0, 5.0}";
+        assertEquals("Inccorect mul M",expected,actual);
+    }
+    @Test(expected = CalcException.class)
+    public void matrixDivVector() throws CalcException{
+        parcer.calc("{{1,2},{1,2}}/{1,2}");
+    }
+    @Test
+    public void matrixSumMatrix() throws Exception{
+        actual = parcer.calc("{{2,3,4},{2,7,1}}+{{2,7,3},{2,4,7}}").intern();
+        expected = "{{4.0, 10.0, 7.0}, {4.0, 11.0, 8.0}}";
+        assertEquals("Incorrect sum M",expected,actual);
+    }
+    @Test
+    public void matrixSubMatrix() throws Exception{
+        actual = parcer.calc("{{2,3,4},{2,7,1}}-{{2,7,3},{2,4,7}}").intern();
+        expected = "{{0.0, -4.0, 1.0}, {0.0, 3.0, -6.0}}";
+        assertEquals("Incorrect Sub M",expected,actual);
+    }
+    @Test
+    public void matrixMulMatrix() throws Exception{
+        actual = parcer.calc("{{2,3},{2,7}}*{{2,7},{2,4}}").intern();
+        expected = "{{10.0, 26.0}, {18.0, 42.0}}";
+        assertEquals("Incorrect mul M",expected,actual);
+    }
+    @Test(expected = CalcException.class)
+    public void matrixDivMatrix() throws Exception{
+        parcer.calc("{{2,3},{2,7}}/{{2,7},{2,4}}").intern();
     }
 }
