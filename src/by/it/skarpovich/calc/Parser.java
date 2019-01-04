@@ -4,8 +4,7 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-class Parcer {
-
+class Parser {
     private final Map<String,Integer> priority=new HashMap<String, Integer>(){
         {
             this.put("=",0);
@@ -25,9 +24,11 @@ class Parcer {
     }
 
     public String calc(String expression) throws CalcException {
-        //   1.2+7.8
+
         List<String> asList = Arrays.asList(expression.split(Patterns.OPERATION));
+        System.out.println("aslist: "+ asList);
         List<String> operands = new ArrayList<>(asList);
+        System.out.println("operands: "+ operands);
         List<String> operations = new ArrayList<>();
 
         Pattern op = Pattern.compile(Patterns.OPERATION);
@@ -36,7 +37,7 @@ class Parcer {
         if (operations.size() == 0) return Var.createVar(expression).toString();
         while (operations.size()>0){
             int number=getPriority(operations);
-            //debug(operands,operations);
+            debug(operands,operations);
             String operation=operations.remove(number);
             String one=operands.remove(number);
             String two=operands.get(number);
@@ -49,13 +50,13 @@ class Parcer {
     private int getPriority(List<String> operation) {
         //= + * / *
         int index=-1;
-        int currentPriopity=-1;
+        int currentPriority=-1;
         for (int i = 0; i < operation.size(); i++) {
             String o = operation.get(i);
             Integer p = priority.get(o);
-            if (p>currentPriopity) {
+            if (p>currentPriority) {
                 index=i;
-                currentPriopity=p;
+                currentPriority=p;
             }
         }
         return index;

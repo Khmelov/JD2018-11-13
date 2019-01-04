@@ -70,7 +70,7 @@ abstract class Var implements Operation {
                     BufferedReader in = new BufferedReader(
                             new FileReader(file))
             ) {
-                Parcer local = new Parcer();
+                Parser local = new Parser();
                 while (in.ready()) {
                     local.calc(in.readLine());
                 }

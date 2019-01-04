@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ConsoleRunner {
     public static void main(String[] args) {
-        Parcer parcer=new Parcer();
+        Parser parcer=new Parser();
         Printer printer=new Printer();
         Var.read();
 
