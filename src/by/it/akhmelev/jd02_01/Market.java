@@ -1,7 +1,9 @@
 package by.it.akhmelev.jd02_01;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Market {
 
