@@ -1,4 +1,4 @@
-package by.it.markelov.calc;
+package by.it.markelov.jd02_04;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
