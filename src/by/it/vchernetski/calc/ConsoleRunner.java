@@ -55,9 +55,9 @@ public class ConsoleRunner {
                     }
                     else {
                         if (in.contains("=")) {
-                            logFile.add(in + "\n");
+                            logFile.add(in);
                         } else {
-                            logFile.add(in + "=" + res + "\n");
+                            logFile.add(in + "=" + res);
                         }
                     }
                 }

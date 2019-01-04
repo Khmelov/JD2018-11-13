@@ -142,6 +142,10 @@ public class Matrix extends Var {
         return sb.toString();
     }
     @Override
+    public Var div(Var other) throws CalcException{
+        return other.divDisp(this);
+    }
+    @Override
     public Var addDisp(Var other)throws CalcException {
         return other.add(this);
     }
@@ -197,7 +201,13 @@ public class Matrix extends Var {
     @Override
     public Var div(Scalar other)throws CalcException {
         if(other.getValue() == 0) throw new CalcException("Деление на ноль");
-        return super.div((Var)other);
+        double[][] res = new double[this.value.length][this.value[0].length];
+        for (int i = 0; i < res.length; i++) {
+            for (int j = 0; j < res[i].length; j++) {
+                res[i][j] = this.value[i][j]/((Scalar) other).getValue();
+            }
+        }
+        return new Matrix(res);
     }
 
     @Override
