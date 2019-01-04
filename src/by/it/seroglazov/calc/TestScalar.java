@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class ScalarTest {
+public class TestScalar {
 
     @Test
     public void Constructor() {

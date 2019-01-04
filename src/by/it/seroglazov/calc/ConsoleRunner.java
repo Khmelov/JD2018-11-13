@@ -16,7 +16,7 @@ public class ConsoleRunner {
                 System.out.println(Var.getVars());
             } else {
                 try {
-                    Var res = parcer.calc(input);
+                    String res = parcer.calc(input);
                     printer.print(res);
                 } catch (CalcException e){
                     System.out.println(e.getMessage());
