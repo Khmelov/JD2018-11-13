@@ -7,60 +7,55 @@ import static org.junit.Assert.*;
 public class TestScalar {
 
     @Test
-    public void Constructor() {
-        Scalar s1 = new Scalar(-23.16);
-        Scalar s2 = new Scalar("-7.8534");
-        Scalar other = new Scalar(123456);
-        Scalar s3 = new Scalar(other);
-        assertEquals("-23.16", s1.toString());
-        assertEquals("-7.8534", s2.toString());
-        assertEquals("123456.0", s3.toString());
+    public void testScalarMultiAdd() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=10.5+-4+1");
+        assertEquals("7.5", res);
+        res = parcer.calc("A=-3+0+6");
+        assertEquals("3.0", res);
+        res = parcer.calc("A=22.22+11.11+-1");
+        assertEquals("32.33", res);
     }
 
     @Test
-    public void add() throws CalcException {
-        Scalar s1 = new Scalar(3.2);
-        Scalar s2 = new Scalar(16.8);
-        Scalar s3 = new Scalar(-20.8);
-        Scalar resA = (Scalar) s1.add(s2);
-        Scalar resB = (Scalar) s2.add(s3);
-        assertEquals("20.0", resA.toString());
-        assertEquals("-4.0", resB.toString());
+    public void testScalarMultiSub() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=10.5-2.5-1");
+        assertEquals("7.0", res);
     }
 
     @Test
-    public void sub() throws CalcException {
-        Var s1 = new Scalar(10.22);
-        Var s2 = new Scalar(12.4);
-        Var s3 = new Scalar(-13.2);
-        Var resA = s1.sub(s2);
-        Var resB = s1.sub(s3);
-        assertEquals("-2.1799999999999997", resA.toString());
-        assertEquals("23.42", resB.toString());
-
+    public void testScalarMultiMul() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=20.45*3.4");
+        assertEquals("69.53", res);
     }
 
     @Test
-    public void mul() throws CalcException {
-        Var s1 = new Scalar(2.2);
-        Var s2 = new Scalar(-15);
-        Var res = s1.mul(s2);
-        assertEquals("-33.0", res.toString());
+    public void testScalarMultiDiv() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=38.25/15.3/2");
+        assertEquals("1.25", res);
     }
 
     @Test(expected = CalcException.class)
-    public void divByZero() throws CalcException {
-        Var s1 = new Scalar(156);
-        Var zero = new Scalar(0);
-        Var res = s1.div(zero);
+    public void testScalarDivisionByZero() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=16.1/0");
         fail();
     }
 
     @Test
-    public void div() throws CalcException {
-        Var s1 = new Scalar(156);
-        Var s2 = new Scalar(12);
-        Var res = s1.div(s2);
-        assertEquals("13.0", res.toString());
+    public void testMultiScalarArgument() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=2+5.3-1");
+        assertEquals("6.3", res);
+    }
+
+    @Test
+    public void testParentheses() throws CalcException {
+        Parcer parcer = new Parcer();
+        String res = parcer.calc("A=3*(1+2*(8-4))");
+        assertEquals("27.0", res);
     }
 }
