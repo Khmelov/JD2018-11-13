@@ -2,6 +2,11 @@ package by.it.naumenko.Calculator;
 
 class Scalar extends Var {
     double value;
+    int iValue;
+
+    public Scalar(int iValue) {
+        this.iValue = iValue;
+    }
 
     Scalar(double value) {
         this.value = value;
@@ -17,7 +22,10 @@ class Scalar extends Var {
 
     @Override
     public String toString() {
+        if (value%1==0)
+            return Integer.toString((int) value);
         return Double.toString(value);
+
     }
 
     @Override
