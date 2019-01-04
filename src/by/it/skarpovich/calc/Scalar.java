@@ -38,10 +38,14 @@ class Scalar extends Var {
             return other.mul(this);
     }
 
+    @Override
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
-            double div = this.value/((Scalar) other).value;
-            return new Scalar(div);
+            Scalar operand2 = (Scalar) other;
+            if (operand2.value==0)
+                throw new CalcException(" деление на ноль");
+            double res = this.value / operand2.value;
+            return new Scalar(res);
         } else
             return super.div(other);
     }

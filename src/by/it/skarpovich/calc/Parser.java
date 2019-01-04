@@ -26,9 +26,9 @@ class Parser {
     public String calc(String expression) throws CalcException {
 
         List<String> asList = Arrays.asList(expression.split(Patterns.OPERATION));
-        System.out.println("aslist: "+ asList);
+        //System.out.println("aslist: "+ asList);
         List<String> operands = new ArrayList<>(asList);
-        System.out.println("operands: "+ operands);
+       // System.out.println("operands: "+ operands);
         List<String> operations = new ArrayList<>();
 
         Pattern op = Pattern.compile(Patterns.OPERATION);
@@ -37,7 +37,7 @@ class Parser {
         if (operations.size() == 0) return Var.createVar(expression).toString();
         while (operations.size()>0){
             int number=getPriority(operations);
-            debug(operands,operations);
+           // debug(operands,operations);
             String operation=operations.remove(number);
             String one=operands.remove(number);
             String two=operands.get(number);
