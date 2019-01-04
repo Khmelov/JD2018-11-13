@@ -4,19 +4,19 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class ConsoleRunner {
-    public static void main(String[] args) throws IOException, CalcExeption {
-        Parcer parcer = new Parcer();
+    public static void main(String[] args) throws IOException, CalcException {
+        Parser parser = new Parser();
         Printer printer = new Printer();
         Var.readVarFile();
         Scanner scanner = new Scanner(System.in);
         String input;
         while (!(input = scanner.next()).equals("end")) {
-            Var result = null;
+            String result = null;
             try {
-                result = parcer.calc(input);
+                result = parser.calc(input);
                 printer.print(result);
-            } catch (CalcExeption calcExeption) {
-                System.out.println(calcExeption.getMessage());
+            } catch (CalcException calcException) {
+                System.out.println(calcException.getMessage());
             }
             Var.save();
         }

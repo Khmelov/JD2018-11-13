@@ -47,7 +47,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
+    public Var add(Var other) throws CalcException {
 
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
@@ -61,12 +61,12 @@ public class Matrix extends Var {
         }
 
         if (other instanceof Vector)
-            throw new CalcExeption("Сложение матрицы и вектора невозможно");
+            throw new CalcException("Сложение матрицы и вектора невозможно");
 
         if (other instanceof Matrix) {
             Matrix operand2 = (Matrix) other;
             if ((this.value.length != operand2.value.length) || (this.value[0].length != operand2.value[0].length))
-                throw new CalcExeption("Размеры матриц несовместимы");
+                throw new CalcException("Размеры матриц несовместимы");
             double[][] masResult = new double[this.value.length][this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -79,7 +79,7 @@ public class Matrix extends Var {
         return other.add(this);
     }
 
-    public Var sub(Var other) throws CalcExeption {
+    public Var sub(Var other) throws CalcException {
 
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
@@ -93,12 +93,12 @@ public class Matrix extends Var {
         }
 
         if (other instanceof Vector)
-            throw new CalcExeption("Вычитание вектора из матрицы невозможно");
+            throw new CalcException("Вычитание вектора из матрицы невозможно");
 
         if (other instanceof Matrix) {
             Matrix operand2 = (Matrix) other;
             if ((this.value.length != operand2.value.length) || (this.value[0].length != operand2.value[0].length))
-                throw new CalcExeption("Размеры матриц несовместимы");
+                throw new CalcException("Размеры матриц несовместимы");
             double[][] masResult = new double[this.value.length][this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -112,7 +112,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
+    public Var mul(Var other) throws CalcException {
 
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
@@ -128,7 +128,7 @@ public class Matrix extends Var {
         if (other instanceof Vector) {
             Vector operand2 = (Vector) other;
             if (this.value[0].length != operand2.value.length)
-                throw new CalcExeption("Матрица и вектор не совместимы");
+                throw new CalcException("Матрица и вектор не совместимы");
             double[] vector = new double[this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < operand2.value.length; j++) {
@@ -141,7 +141,7 @@ public class Matrix extends Var {
         if (other instanceof Matrix) {
             Matrix operand2 = (Matrix) other;
             if (this.value[0].length != operand2.value.length)
-                throw new CalcExeption("Размеры матриц несовместимы");
+                throw new CalcException("Размеры матриц несовместимы");
             double[][] matrixResult = new double[this.value.length][operand2.value[0].length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < operand2.value[0].length; j++) {
@@ -152,10 +152,10 @@ public class Matrix extends Var {
             }
             return new Matrix(matrixResult);
         }
-       throw new CalcExeption("Умножение вектора на матрицу невозможно");
+       throw new CalcException("Умножение вектора на матрицу невозможно");
     }
 
-    public Var div(Var other) throws CalcExeption {
+    public Var div(Var other) throws CalcException {
 
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
@@ -169,13 +169,13 @@ public class Matrix extends Var {
         }
 
         if (other instanceof Vector) {
-            throw new CalcExeption("Деление матрицы на вектор невозможно");
+            throw new CalcException("Деление матрицы на вектор невозможно");
         }
 
         if (other instanceof Matrix) {
-            throw new CalcExeption("Деление матрицы на матрицу невозможно");
+            throw new CalcException("Деление матрицы на матрицу невозможно");
         }
 
-        throw new CalcExeption("Деление числа на матрицу невозможно");
+        throw new CalcException("Деление числа на матрицу невозможно");
     }
 }

@@ -14,23 +14,23 @@ abstract class Var implements Operation {
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
-        throw new CalcExeption("сложение " + this + "+" + other + " невозможно");
+    public Var add(Var other) throws CalcException {
+        throw new CalcException("сложение " + this + "+" + other + " невозможно");
     }
 
     @Override
-    public Var sub(Var other) throws CalcExeption {
-        throw new CalcExeption("вычетание " + this + "-" + other + " невозможно");
+    public Var sub(Var other) throws CalcException {
+        throw new CalcException("вычетание " + this + "-" + other + " невозможно");
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
-        throw new CalcExeption("умножение " + this + "*" + other + " невозможно");
+    public Var mul(Var other) throws CalcException {
+        throw new CalcException("умножение " + this + "*" + other + " невозможно");
     }
 
     @Override
-    public Var div(Var other) throws CalcExeption {
-        throw new CalcExeption("деление " + this + "/" + other + " невозможно");
+    public Var div(Var other) throws CalcException {
+        throw new CalcException("деление " + this + "/" + other + " невозможно");
 
     }
 
@@ -38,16 +38,16 @@ abstract class Var implements Operation {
         vars.put(key, value);
     }
 
-    static Var createVar(String operand) throws CalcExeption {
-        if (operand.matches(Paterns.SCALAR))
+    static Var createVar(String operand) throws CalcException {
+        if (operand.matches(Patterns.SCALAR))
             return new Scalar(operand);
-        if (operand.matches(Paterns.VECTOR))
+        if (operand.matches(Patterns.VECTOR))
             return new Vector(operand);
-        if (operand.matches(Paterns.MATRIX))
+        if (operand.matches(Patterns.MATRIX))
             return new Matrix(operand);
         Var var = vars.get(operand);
         if (var == null)
-            throw new CalcExeption("Неивестная переменная " + operand);
+            throw new CalcException("Неивестная переменная " + operand);
         return var;
     }
 
@@ -60,12 +60,12 @@ abstract class Var implements Operation {
         }
     }
 
-    static void readVarFile() throws IOException, CalcExeption {
+    static void readVarFile() throws IOException, CalcException {
         File file = new File(fileName);
         if (file.exists()) {
             try (BufferedReader bufferedReader = new BufferedReader(new
                     FileReader(file))) {
-                Parcer local = new Parcer();
+                Parser local = new Parser();
                 while (bufferedReader.ready()) {
                     local.calc(bufferedReader.readLine());
                 }

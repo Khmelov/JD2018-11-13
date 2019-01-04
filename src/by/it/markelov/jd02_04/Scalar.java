@@ -21,7 +21,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double result = this.value + operand2.value;
@@ -31,7 +31,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var sub(Var other) throws CalcExeption {
+    public Var sub(Var other) throws CalcException {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double result = this.value - operand2.value;
@@ -41,7 +41,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
+    public Var mul(Var other) throws CalcException {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             double result = this.value * operand2.value;
@@ -51,14 +51,14 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other) throws CalcExeption {
+    public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             if (operand2.value == 0)
-                throw new CalcExeption("Деление на ноль");
+                throw new CalcException("Деление на ноль");
             double result = this.value / operand2.value;
             return new Scalar(result);
         }
-        throw new CalcExeption("Деление числа на вектор или матрицу невозможно");
+        throw new CalcException("Деление числа на вектор или матрицу невозможно");
     }
 }
