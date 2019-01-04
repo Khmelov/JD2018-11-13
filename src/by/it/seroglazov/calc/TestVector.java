@@ -4,12 +4,13 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TestVector {
+public class TestVector extends TestScalar {
 
     @Test
     public void testCreateVector() throws CalcException {
         Parcer parcer = new Parcer();
-        String res = parcer.calc("A={-1,2, 4.5,-5.6, 7.00}");
+        parcer.calc("V={-1,2,4.5, -5.6, 7.00}");
+        String res = parcer.calc("V");
         assertEquals("{-1.0, 2.0, 4.5, -5.6, 7.0}", res);
     }
 
@@ -58,7 +59,7 @@ public class TestVector {
     @Test(expected = CalcException.class)
     public void testVectorMulVectorWithNullResult() throws CalcException {
         Parcer parcer = new Parcer();
-        String res = parcer.calc("A={1,1,1}*{33,33}");
+        parcer.calc("A={1,1,1}*{33,33}");
         fail();
     }
 
@@ -72,7 +73,7 @@ public class TestVector {
     @Test(expected = CalcException.class)
     public void testVectorDivVector() throws CalcException {
         Parcer parcer = new Parcer();
-        String res = parcer.calc("A={1,1,1}/{2,2,2}");
+        parcer.calc("A={1,1,1}/{2,2,2}");
         fail();
     }
 

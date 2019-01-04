@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.*;
 
-public class TestFromHomeTask {
+public class Test_ALL extends TestMatrix{
 
     @Test
     public void testFromHomeTask() throws CalcException {

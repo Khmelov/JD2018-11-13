@@ -6,6 +6,15 @@ import static org.junit.Assert.*;
 
 public class TestScalar {
 
+
+    @Test
+    public void testCreateScalar() throws CalcException {
+        Parcer parcer = new Parcer();
+        parcer.calc("V=-2");
+        String res = parcer.calc("V");
+        assertEquals("-2.0", res);
+    }
+
     @Test
     public void testScalarMultiAdd() throws CalcException {
         Parcer parcer = new Parcer();
@@ -41,7 +50,7 @@ public class TestScalar {
     @Test(expected = CalcException.class)
     public void testScalarDivisionByZero() throws CalcException {
         Parcer parcer = new Parcer();
-        String res = parcer.calc("A=16.1/0");
+        parcer.calc("A=16.1/0");
         fail();
     }
 

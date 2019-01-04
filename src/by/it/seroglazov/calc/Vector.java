@@ -7,10 +7,10 @@ public class Vector extends Var {
 
     private double[] value;
 
-    @Override
+    /*@Override
     String getType() {
         return "Vector";
-    }
+    }*/
 
     public double[] getValue() {
         return value;
@@ -21,13 +21,14 @@ public class Vector extends Var {
         System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
+    @SuppressWarnings("unused")
     Vector(Vector v) {
         value = new double[v.value.length];
         System.arraycopy(v.value, 0, value, 0, v.value.length);
     }
 
-    Vector(String str) {
-        Matcher mch = Pattern.compile("\\{(.*)\\}").matcher(str);
+    Vector(String str) throws CalcException {
+        Matcher mch = Pattern.compile("\\{(.*)}").matcher(str);
         if (mch.find()) {
             String[] sArr = mch.group(1).replace(" ", "").split(",");
             value = new double[sArr.length];
@@ -35,7 +36,7 @@ public class Vector extends Var {
                 value[i] = Double.parseDouble(sArr[i]);
             }
         } else {
-            // Action if wrong string
+            throw new CalcException("Неверная строка ветора " + str);
         }
     }
 

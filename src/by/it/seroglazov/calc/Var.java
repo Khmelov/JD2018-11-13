@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public abstract class Var implements Operations, ScalarOperations, VectorOperations, MatrixOperations, OperationsDispatch {
 
-    private static HashMap<String, Var> vars = new HashMap<String, Var>();
+    private static HashMap<String, Var> vars = new HashMap<>();
 
     static Var saveVar(String name, Var var){
         vars.put(name, var);
@@ -36,7 +36,7 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
         return sb.toString();
     }*/
 
-    abstract String getType();
+    //abstract String getType();
 
     @Override
     public String toString() {
