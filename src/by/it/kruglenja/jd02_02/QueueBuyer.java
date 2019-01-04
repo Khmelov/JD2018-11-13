@@ -11,6 +11,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 public class QueueBuyer {
 
     private static LinkedList<Buyer> buyerQueue = new LinkedList<>();
+    private static LinkedList<Buyer> oldMansQueue = new LinkedList<>();
 
     public static int getBuyersInQueue() {
         return buyerQueue.size();
