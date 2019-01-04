@@ -94,15 +94,24 @@ public class Buyer extends Thread implements IBuyer, IUseBasket {
         }
     }
 
+    public void setStayingInLine(boolean stayingInLine) {
+        this.stayingInLine = stayingInLine;
+    }
+
+    private boolean stayingInLine = false;
+
     // Встать в очередь
     private void getInLine() {
+        stayingInLine = true;
         int c = shop.getInLine(this);
         if (Runner.FULL_LOG) System.out.println(this + " встал в очередь (очередь: " + c + ")");
         synchronized (this) {
-            try {
-                wait();
-            } catch (InterruptedException e) {
-                System.err.println("InterruptedException " + e.getMessage());
+            while (stayingInLine) {
+                try {
+                    wait();
+                } catch (InterruptedException e) {
+                    System.err.println("InterruptedException " + e.getMessage());
+                }
             }
         }
     }
