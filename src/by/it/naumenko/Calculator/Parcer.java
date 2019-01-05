@@ -25,7 +25,7 @@ public class Parcer {
             String res = calc(m.group(1));
             StringBuilder sb = new StringBuilder(expresion);
             expresion = sb.replace(m.start(), m.end(), res).toString(); // Заменяем содержимое скобок вычисленным значением
-            expresion = expresion.replaceAll(" ", ""); // Так как toString пишет с пробелами
+            //expresion = expresion.replaceAll(" ", ""); // Так как toString пишет с пробелами
             m = parentheses.matcher(expresion); // И теперь заново начинаем искать скобки уже в новом выражении, но без пробелов
         }
 
