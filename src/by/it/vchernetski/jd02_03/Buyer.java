@@ -1,11 +1,15 @@
-package by.it.vchernetski.jd02_02;
+package by.it.vchernetski.jd02_03;
 
+import org.omg.PortableInterceptor.DISCARDING;
+
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Buyer extends Thread implements IBuyer, IUseBacket {
     private Backet backet;
     protected boolean pensioneer;
+    public long timeToQueue = 0;
     protected Map<String,Integer> choosenGoods = new HashMap<>();
 
     Buyer(int number) {
@@ -26,6 +30,13 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void enterToMarket() {
+        try{
+            Dispatcher.semaphoreBuyers.acquire();
+            Dispatcher.buyersWithBacket.put(this);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 //        System.out.println(this + "enter to market");
     }
 
@@ -40,6 +51,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     @Override
     public void goToQueue() {
 //        System.out.println(this + " go to Cashier");
+        timeToQueue = System.nanoTime();
         QueueBuyer.add(this);
         synchronized (this){
             try{
@@ -49,10 +61,13 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
                 e.printStackTrace();
             }
         }
+        if(this.pensioneer) Dispatcher.pensioneerBuyerInQueueu.addAndGet(-1);
+
     }
 
     @Override
     public void takeBacket() {
+        Dispatcher.semaphoreBuyers.release();
         int timeOut = Util.random(500,2000);
         if(pensioneer) Util.sleep(timeOut*3/2);
         else Util.sleep(timeOut);
@@ -66,12 +81,13 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         for (int i = 0; i < numOfGoods; i++) {
             if (pensioneer) Util.sleep(timeOut * 3 / 2);
             else Util.sleep(timeOut);
-            choosenGoods.put(Backet.putGoods().getKey(),Backet.putGoods().getValue());
+            choosenGoods.put(Backet.putGoods().getKey(), Backet.putGoods().getValue());
         }
     }
 
     @Override
     public void goOut() {
+        Dispatcher.buyersWithBacket.remove(this);
         Dispatcher.removeBuyer();
 //        System.out.println(this + "go out from market");
     }

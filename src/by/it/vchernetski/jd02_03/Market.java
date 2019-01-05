@@ -1,10 +1,11 @@
-package by.it.vchernetski.jd02_02;
+package by.it.vchernetski.jd02_03;
 
 
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Market {
     public static List<Cashier> cashiers = new ArrayList<>();
@@ -13,8 +14,16 @@ public class Market {
 
     public static void main(String[] args) {
         System.out.println("Market opend");
-        System.out.printf("%15s  %18s  %18s  %18s  %18s  %11s %11s\n","Касса №1","Касса №2","Касса №3","Касса №4","Касса №5","очередь","выручка");
+        System.out.printf("%15s  %18s  %18s  %18s  %18s  %20s %11s\n","Касса №1","Касса №2","Касса №3","Касса №4","Касса №5","очередь","выручка");
         Good.fillGoods();
+        ExecutorService executorService = Executors.newFixedThreadPool(5);
+        Cashier cashier1 = new Cashier(1);
+        Cashier cashier2 = new Cashier(2);
+        cashiers.add(cashier1);
+        cashiers.add(cashier2);
+        executorService.execute(cashier1);
+        executorService.execute(cashier2);
+        executorService.shutdown();
         manager = new Manager();
         threads.add(manager);
         manager.start();
@@ -64,6 +73,6 @@ public class Market {
     private static void print(int time) {
         int wc = manager.getWorkingCashiers();
         System.out.println("======================================\n" + time + " sec" + "\t"
-                + QueueBuyer.getDequeSize() + " buyers in queue" + "\n работает касс: "+ wc+"\n======================================\n");
+                + QueueBuyer.buyers.size() + " buyers in queue" + "\n работает касс: "+ wc+"\n======================================\n");
     }
 }

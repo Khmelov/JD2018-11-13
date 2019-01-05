@@ -1,4 +1,4 @@
-package by.it.vchernetski.jd02_02;
+package by.it.vchernetski.jd02_03;
 
 import java.util.Map;
 
@@ -28,11 +28,7 @@ public class Cashier extends Thread {
                     }
                 }
             }
-            if (QueueBuyer.sizePensioneer() > 0) {
-                buyer = QueueBuyer.extractPensioner();
-            } else {
-                buyer = QueueBuyer.extractNotPensioner();
-            }
+            buyer = QueueBuyer.extract();
             if (buyer == null) Util.sleep(1);
             else {
                 int time = Util.random(2000, 5000);
@@ -89,36 +85,36 @@ public class Cashier extends Thread {
     public void printresult(Map.Entry<String,Integer> entry){
 
         if(this.toString().contains("1")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n",entry.getKey()+": "+entry.getValue()," "," "," "," "," "," ");
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10s|\n",entry.getKey()+": "+entry.getValue()," "," "," "," "," "," ");
         }
         if(this.toString().contains("2")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," ",entry.getKey()+": "+entry.getValue()," "," "," "," "," ");
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10s|\n"," ",entry.getKey()+": "+entry.getValue()," "," "," "," "," ");
         }
         if(this.toString().contains("3")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," "," ",entry.getKey()+": "+entry.getValue()," "," "," "," ");
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10s|\n"," "," ",entry.getKey()+": "+entry.getValue()," "," "," "," ");
         }
         if(this.toString().contains("4")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," "," "," ",entry.getKey()+": "+entry.getValue()," "," "," ");
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10s|\n"," "," "," ",entry.getKey()+": "+entry.getValue()," "," "," ");
         }
         if(this.toString().contains("5")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10s|%10s|\n"," "," "," "," ",entry.getKey()+": "+entry.getValue()," "," ");
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10s|\n"," "," "," "," ",entry.getKey()+": "+entry.getValue()," "," ");
         }
     }
     public void printSumAndQueue(int sum){
         if(this.toString().contains("1")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n","Сумма: "+sum," "," "," "," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10d|\n","Сумма: "+sum," "," "," "," ", QueueBuyer.buyers.size()+"(пенсионеров "+Dispatcher.pensioneerBuyerInQueueu.toString()+")",getsum());
         }
         if(this.toString().contains("2")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," ","Сумма: "+sum," "," "," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10d|\n"," ","Сумма: "+sum," "," "," ", QueueBuyer.buyers.size()+"(пенсионеров "+Dispatcher.pensioneerBuyerInQueueu.toString()+")",getsum());
         }
         if(this.toString().contains("3")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," "," ","Сумма: "+sum," "," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10d|\n"," "," ","Сумма: "+sum," "," ", QueueBuyer.buyers.size()+"(пенсионеров "+Dispatcher.pensioneerBuyerInQueueu.toString()+")",getsum());
         }
         if(this.toString().contains("4")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," "," "," ","Сумма: "+sum," ",QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10d|\n"," "," "," ","Сумма: "+sum," ", QueueBuyer.buyers.size()+"(пенсионеров "+Dispatcher.pensioneerBuyerInQueueu.toString()+")",getsum());
         }
         if(this.toString().contains("5")){
-            System.out.printf("%20s|%20s|%20s|%20s|%20s|%10d|%10d|\n"," "," "," "," ","Сумма: "+sum,QueueBuyer.getDequeSize(),getsum());
+            System.out.printf("%20s|%20s|%20s|%20s|%20s|%20s|%10d|\n"," "," "," "," ","Сумма: "+sum, QueueBuyer.buyers.size()+"(пенсионеров "+Dispatcher.pensioneerBuyerInQueueu.toString()+")",getsum());
         }
     }
 }
