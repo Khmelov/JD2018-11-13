@@ -1,4 +1,4 @@
-package by.it.mnovikov.calc;
+package by.it.mnovikov.calc2;
 
 /**
  * Created by user on 01.12.2018.
