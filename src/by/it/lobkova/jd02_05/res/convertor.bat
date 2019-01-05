@@ -1,0 +1,1 @@
+"C:\Program Files\Java\jdk1.8.0_181\bin\native2ascii.exe" -encoding utf-8 translate_ru_RU.txt translate_ru_RU.properties

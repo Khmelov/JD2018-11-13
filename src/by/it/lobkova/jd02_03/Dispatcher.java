@@ -1,4 +1,4 @@
-package by.it.lobkova.jd02_02;
+package by.it.lobkova.jd02_03;
 
 class Dispatcher {
     private static final Object localMonitor = new Object();
@@ -7,10 +7,6 @@ class Dispatcher {
 
     public static int getCashierCount() {
         return cashierCount;
-    }
-
-    public static void setCashierCount(int cashierCount) {
-        Dispatcher.cashierCount = cashierCount;
     }
 
     private static int cashierCount = 0;
@@ -30,6 +26,14 @@ class Dispatcher {
             buyerCounter = ++i;
             buyerInShop = ++j;
         }
+    }
+
+    static void addCashier() {
+        cashierCount++;
+    }
+
+    static void removeCashier() {
+        cashierCount--;
     }
 
     static void removeBuyer() {
