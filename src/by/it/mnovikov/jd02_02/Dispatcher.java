@@ -24,8 +24,8 @@ class Dispatcher {
         }
     }
 
-    static void removeBuyer () {
-        synchronized (localMonitor){
+    static void removeBuyer() {
+        synchronized (localMonitor) {
             buyerInShop--;
         }
     }
