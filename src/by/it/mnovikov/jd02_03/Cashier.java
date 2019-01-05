@@ -19,9 +19,7 @@ public class Cashier implements Runnable {
                 System.out.println(this + " started service " + buyer);
                 Util.sleep(Util.random(2000, 5000));
                 System.out.println(this + " finished service " + buyer);
-                synchronized (buyer) {
-                    buyer.notify();
-                }
+                buyer.stopWait();
             }
         }
         System.out.println(this + " закрылся");

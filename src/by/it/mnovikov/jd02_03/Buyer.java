@@ -1,6 +1,14 @@
 package by.it.mnovikov.jd02_03;
 
 public class Buyer extends Thread implements IBuyer {
+    private boolean wait = false;
+
+    void stopWait(){
+        synchronized ((this)){
+            wait = false;
+            this.notify();
+        }
+    }
 
     Buyer(int buyerNum) {
         super("Покупатель №" + buyerNum);
@@ -19,7 +27,7 @@ public class Buyer extends Thread implements IBuyer {
 
     @Override
     public void enterToMarket() {
-        System.out.println(this + " вошёл в магазин");
+        System.out.println(this + " вошёл в магазин.");
     }
 
 //    @Override
@@ -50,7 +58,9 @@ public class Buyer extends Thread implements IBuyer {
     @Override
     public void goToQueue() {
         QueueBuyer.add(this);
+        wait = true;
         synchronized (this){
+            while (wait)
             try {
                 this.wait();
             } catch (InterruptedException e) {
