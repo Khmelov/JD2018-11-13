@@ -18,6 +18,18 @@ public class Parcer {
 
     public String calc(String expresion) throws CalcExeption {
 
+        // Сперва ищем скобки и если есть, то рекурсивно запускаем саму себя в эту область
+        Pattern parentheses = Pattern.compile(Paterns.PARENTHESES);
+        Matcher m = parentheses.matcher(expresion);
+        while (m.find()) {
+            String res = calc(m.group(1));
+            StringBuilder sb = new StringBuilder(expresion);
+            expresion = sb.replace(m.start(), m.end(), res).toString(); // Заменяем содержимое скобок вычисленным значением
+            expresion = expresion.replaceAll(" ", ""); // Так как toString пишет с пробелами
+            m = parentheses.matcher(expresion); // И теперь заново начинаем искать скобки уже в новом выражении, но без пробелов
+        }
+
+
         List<String> asList = Arrays.asList(expresion.split(Paterns.OPERATION));
         List<String> operands = new ArrayList<>(asList);
         List<String> opertions = new ArrayList<>();

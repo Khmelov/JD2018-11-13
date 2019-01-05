@@ -21,12 +21,12 @@ public class ParcerTest {
         actual = parcer.calc("B2=A/2-1").intern();
         assertEquals("НЕ корректрое вычисление 4", "2.65", actual);
 
-        //actual = parcer.calc("C=B+(A*2)").intern();
-        actual = parcer.calc("C=b+c1").intern();
+        actual = parcer.calc("C=B+(A*2)").intern();
+        //actual = parcer.calc("C=b+c1").intern();
         assertEquals("НЕ корректрое вычисление 5", "40.15",actual);
 
-        //actual = parcer.calc("D=((C-0.15)-20)/(7-5)").intern();
-        actual = parcer.calc("D=c22/c23").intern();
+        actual = parcer.calc("D=((C-0.15)-20)/(7-5)").intern();
+        //actual = parcer.calc("D=c22/c23").intern();
         assertEquals("НЕ корректрое вычисление 6", "10",actual);
     }
 
@@ -52,8 +52,8 @@ public class ParcerTest {
         assertEquals("НЕ корректное первое вычисение с вектором", expected,actual);
 
 
-        //actual = parcer.calc("E={2,3}*(D/2)").intern();
-        actual = parcer.calc("E={2,3}*c32").intern();
+        actual = parcer.calc("E={2,3}*(d/2)").intern();
+        //actual = parcer.calc("E={2,3}*c32").intern();
         assertEquals("НЕ корректное первое вычисение с вектором", "{10, 15}",actual);
 
 
