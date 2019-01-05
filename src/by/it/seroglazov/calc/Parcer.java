@@ -1,32 +1,84 @@
 package by.it.seroglazov.calc;
 
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Parcer {
-    public Var calc(String expression) throws CalcExeption {
-        String[] operands = expression.split(Patterns.OPERATION);
-        Var two = Var.createVar(operands[1]);
-        if (expression.contains("=")) {
-            return Var.saveVar(operands[0], two);
+
+    private final Map<String, Integer> priority = new HashMap<String, Integer>() {
+        {
+            this.put("=", 0);
+            this.put("+", 1);
+            this.put("-", 1);
+            this.put("/", 2);
+            this.put("*", 2);
         }
-        Var one = Var.createVar(operands[0]);
-        // Now search +-*/=
-        Matcher matcher = Pattern.compile(Patterns.OPERATION).matcher(expression);
-        if (matcher.find()) {
-            String operation = matcher.group();
-            switch (operation) {
-                case "+":
-                    return one.add(two);
-                case "-":
-                    return one.sub(two);
-                case "*":
-                    return one.mul(two);
-                case "/":
-                    return one.div(two);
+    };
+
+    public String calc(String expression) throws CalcException {
+
+        // Сперва ищем скобки и если есть, то рекурсивно запускаем саму себя в эту область
+        Pattern parentheses = Pattern.compile(Patterns.PARENTHESES);
+        Matcher m = parentheses.matcher(expression);
+        while (m.find()) {
+            String res = calc(m.group(1));
+            StringBuilder sb = new StringBuilder(expression);
+            expression = sb.replace(m.start(), m.end(), res).toString(); // Заменяем содержимое скобок вычисленным значением
+            expression = expression.replaceAll(" ", ""); // Так как toString пишет с пробелами
+            m = parentheses.matcher(expression); // И теперь заново начинаем искать скобки уже в новом выражении, но без пробелов
+        }
+
+        List<String> asList = Arrays.asList(expression.split(Patterns.OPERATION));
+        List<String> operands = new ArrayList<>(asList);
+        List<String> operations = new ArrayList<>();
+
+        Pattern op = Pattern.compile(Patterns.OPERATION);
+        Matcher matcher = op.matcher(expression);
+        while (matcher.find()) operations.add(matcher.group());
+        if (operations.size() == 0) return Var.createVar(expression).toString();
+        while (operations.size() > 0) {
+            int number = getPriority(operations);
+            String operation = operations.remove(number);
+            String one = operands.remove(number);
+            String two = operands.get(number);
+            String res = oneOperation(one, operation, two);
+            operands.set(number, res);
+        }
+        return operands.get(0);
+    }
+
+    private int getPriority(List<String> operation) {
+        //= + * / *
+        int index = -1;
+        int currentPriority = -1;
+        for (int i = 0; i < operation.size(); i++) {
+            String o = operation.get(i);
+            Integer p = priority.get(o);
+            if (p > currentPriority) {
+                index = i;
+                currentPriority = p;
             }
         }
-        //throw new Exception()
+        return index;
+    }
+
+    private String oneOperation(String oneStr, String operation, String twoStr) throws CalcException {
+        Var two = Var.createVar(twoStr);
+        if (operation.equals("=")) {
+            return Var.saveVar(oneStr, two).toString();
+        }
+        Var one = Var.createVar(oneStr);
+        switch (operation) {
+            case "+":
+                return one.add(two).toString();
+            case "-":
+                return one.sub(two).toString();
+            case "*":
+                return one.mul(two).toString();
+            case "/":
+                return one.div(two).toString();
+        }
         return null;
     }
 }

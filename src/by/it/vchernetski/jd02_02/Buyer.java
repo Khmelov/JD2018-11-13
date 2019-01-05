@@ -26,12 +26,12 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void enterToMarket() {
-        System.out.println(this + "enter to market");
+//        System.out.println(this + "enter to market");
     }
 
     @Override
     public void chooseGoods() {
-        System.out.println(this + "started to choose goods");
+//        System.out.println(this + "started to choose goods");
         int timeOut = Util.random(500, 2000);
         if (pensioneer) Util.sleep(timeOut * 3 / 2);
         else Util.sleep(timeOut);
@@ -39,7 +39,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
     @Override
     public void goToQueue() {
-        System.out.println(this + " go to Cashier");
+//        System.out.println(this + " go to Cashier");
         QueueBuyer.add(this);
         synchronized (this){
             try{
@@ -56,7 +56,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         int timeOut = Util.random(500,2000);
         if(pensioneer) Util.sleep(timeOut*3/2);
         else Util.sleep(timeOut);
-        System.out.println(this + "take a backet");
+//        System.out.println(this + "take a backet");
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     @Override
     public void goOut() {
         Dispatcher.removeBuyer();
-        System.out.println(this + "go out from market");
+//        System.out.println(this + "go out from market");
     }
     @Override
     public String toString(){

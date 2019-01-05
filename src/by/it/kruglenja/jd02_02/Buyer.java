@@ -1,9 +1,13 @@
 package by.it.kruglenja.jd02_02;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Buyer extends Thread implements IBuyer {
 
     private Backet backet = new Backet();
     private int customerNumber;
+    public static List<Integer> queue = new ArrayList<>();
 
     Buyer(int number) {
         super("Покупатель №" + number);
@@ -17,6 +21,7 @@ public class Buyer extends Thread implements IBuyer {
         backet.takeBacket(customerNumber);
         chooseGoods();
         goToQueue();
+        CashierDispatcher.runChasier();
         goOut();
     }
 
@@ -38,6 +43,7 @@ public class Buyer extends Thread implements IBuyer {
         int timeout = Util.random(500, 2000);
         Util.sleep(timeout);
         System.out.println(this + "выбрал товар");
+
     }
 
     @Override
