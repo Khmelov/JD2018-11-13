@@ -1,10 +1,10 @@
 package by.it.kruglenja.jd02_02;
 
 public class Dispathcer {
-    final static int K_SPEED = 100;
+    final static int K_SPEED = 200;
     private static int buyerCounter = 0;
     private static final int bayersPlan = 100;
-    private static int bayersInShop = 0;
+    public static int bayersInShop = 0;
 
     private static final Object localMonitor = new Object();
 
@@ -39,6 +39,4 @@ public class Dispathcer {
             return buyerCounter < bayersPlan;
         }
     }
-
-
 }
