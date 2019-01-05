@@ -37,7 +37,7 @@ public class Market {
                     }
                 }
             }
-            if (second % 15 == 0) System.out.println("---------------------Секунда " + second + " " + Buyer.buyers.size());
+            if (second % 15 == 0) System.out.println("---------------------second " + second + " " + Buyer.buyers.size());
         }
         for (Buyer buyer : Buyer.buyers) {
             try {

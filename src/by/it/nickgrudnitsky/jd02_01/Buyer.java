@@ -54,9 +54,9 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     public void chooseGoods() {
         /*System.out.println(this + "choosing goods.");*/
         if (pensioneer) {
-            Util.sleep((int) (Util.random(500, 2000) * 1.5));
+            Util.sleep((int) (Util.random(5000, 10000) * 1.5));
         } else {
-            Util.sleep(Util.random(500, 2000));
+            Util.sleep(Util.random(5000, 10000));
         }
         System.out.println(this + "choosed goods.");
     }
