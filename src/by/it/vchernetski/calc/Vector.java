@@ -215,6 +215,7 @@ class Vector extends Var {
 
     @Override
     public Var mul(Vector other)throws CalcException {
+        if(this.value.length!=other.value.length) throw new CalcException("Векторы не совпадают по длине");
         Vector v = new Vector(Arrays.copyOf(this.value,this.value.length));
         double result = 0;
         for (int i = 0; i < this.value.length; i++) {
