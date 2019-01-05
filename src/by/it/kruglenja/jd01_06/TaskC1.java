@@ -4,26 +4,48 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class TaskC1 {
-    public static void main(String[] args) {
-        StringBuilder sb = new StringBuilder(Poem.text);
+    private static StringBuilder sb = new StringBuilder(Poem.text);
+    private static int biggestLength;
 
-        Pattern lineDivider = Pattern.compile("[а-яА-ЯёЁ[^\\\\n]]+");
-        Matcher matcher = lineDivider.matcher(sb);
-        int len = 0;
-        while (matcher.find()) {
-            System.out.println(matcher.group());
-            len++;
+    public static void main(String[] args) {
+        String[] lines = sb.toString().split("\n");
+        biggestLength = maxLength(lines);
+        spacedPrint(lines);
+    }
+
+    private static int maxLength(String[] lines) {
+        int maxLength = 0;
+        for (String line : lines) {
+            if (line.length() > maxLength) maxLength = line.length();
         }
-        matcher.reset();
-        String[] separatedLines = new String[len];
-        int count = 0;
-        while (matcher.find()) {
-            System.out.println(matcher.group());
-            separatedLines[count] = matcher.group();
-            count++;
-        }
-        for (int i = 0; i < separatedLines.length; i++) {
-            System.out.print(separatedLines[i]);
+        return maxLength;
+    }
+
+    private static void spacedPrint(String[] lines) {
+        for (String line : lines) {
+            StringBuilder mLine = new StringBuilder();
+            String[] sLine = line.split(" ");
+            int lineLength = line.length();
+            int wordCount = line.split(" ").length - 1;
+            int spaceNeed = (biggestLength - lineLength) / (wordCount);
+            int spaceRest = (biggestLength - lineLength) % (wordCount);
+            int wordAdded = 0;
+            for (String s : sLine) {
+                mLine.append(s);
+                int counter = spaceNeed;
+                boolean fsingleSpace = true;
+                while (counter >= 0 && wordAdded != wordCount) {
+                    mLine.append(" ");
+                    counter--;
+                    if (spaceRest > 0 && fsingleSpace){
+                        mLine.append(" ");
+                        spaceRest--;
+                        fsingleSpace = false;
+                    }
+                }
+                wordAdded++;
+            }
+            System.out.println(mLine.toString());
         }
     }
 }
