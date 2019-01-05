@@ -16,9 +16,9 @@ public class TaskA3 {
         int zeroPos = 0;
         while (!(str=sc.next()).equalsIgnoreCase("end")){
             Integer val = Integer.valueOf(str);
-            if (val> 0)
+            if (val == 0)
                 arr.add(zeroPos++, val);
-            else if (val == 0)
+            else if (val> 0)
                 arr.add(zeroPos, 0);
             else
                 arr.add(val);

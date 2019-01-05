@@ -1,8 +1,11 @@
 package by.it.berdnik.jd02_03;
 
+import java.util.concurrent.Semaphore;
+
 class Buyer extends Thread implements IBuyer {
 
     private boolean waiting = false;
+    Semaphore semaphore = new Semaphore(20);
 
     void stopWait(){
         synchronized (this) {
@@ -43,10 +46,16 @@ class Buyer extends Thread implements IBuyer {
 
     @Override
     public void chooseGoods() {
-        System.out.println(this + "started to choose goods");
-        int timeout = Util.random(500, 2000);
-        Util.sleep(timeout);
-        System.out.println(this + "choosed goods.");
+        try {
+            semaphore.acquire();
+            System.out.println(this + "started to choose goods");
+            int timeout = Util.random(500, 2000);
+            Util.sleep(timeout);
+            System.out.println(this + "choosed goods.");
+            semaphore.release();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
