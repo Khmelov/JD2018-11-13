@@ -1,11 +1,8 @@
 package by.it.seroglazov.calc;
 
 public interface VectorOperations {
-    Var add(Vector v) throws CalcExeption;
-
-    Var sub(Vector v) throws CalcExeption;
-
-    Var mul(Vector v) throws CalcExeption;
-
-    Var div(Vector v) throws CalcExeption;
+    Var add(Vector v) throws CalcException;
+    Var sub(Vector v) throws CalcException;
+    Var mul(Vector v) throws CalcException;
+    Var div(Vector v) throws CalcException;
 }

@@ -2,38 +2,40 @@ package by.it.kruglenja.jd01_11;
 
 import java.util.*;
 
-public class ListA<T>implements List<T> {
+public class ListA<T> implements List<T> {
 
     private T[] elements = (T[]) new Object[]{};
     private int size = 0;
 
     @Override
     public int indexOf(Object o) {
-        if (o == null){
+        if (o == null) {
             for (int i = 0; i < size; i++) {
                 if (elements[i] == null)
                     return i;
             }
-        }else {
-            for (int i = 0; i < size; i++){
+        } else {
+            for (int i = 0; i < size; i++) {
                 if (o.equals(elements[i]))
                     return i;
             }
         }
         return -1;
     }
+
     @Override
     public boolean add(T t) {
         if (size == elements.length)
-            elements= Arrays.copyOf(elements, (size*3)/2+1);
-        elements[size++]=t;
+            elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
+        elements[size++] = t;
         return false;
     }
+
     @Override
     public void add(int index, T element) {
         if (size == elements.length)
-            elements= Arrays.copyOf(elements, (size*3)/2+1);
-        System.arraycopy(elements, index, elements, index + 1, size-index);
+            elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
+        System.arraycopy(elements, index, elements, index + 1, size - index);
         elements[index] = element;
         size++;
     }
@@ -41,15 +43,16 @@ public class ListA<T>implements List<T> {
     @Override
     public T remove(int index) {
         T rem = elements[index];
-        System.arraycopy(elements, index+1, elements, index, size-1-index);
+        System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
         size--;
         return rem;
     }
+
     @Override
     public boolean remove(Object o) {
         int index = indexOf(o);
-        if (index>-1) remove(index);
-        return (index> - 1);
+        if (index > -1) remove(index);
+        return (index > -1);
     }
 
     @Override
@@ -57,12 +60,13 @@ public class ListA<T>implements List<T> {
         StringBuilder sb = new StringBuilder("[");
         String delimetr = "";
         for (int i = 0; i < size; i++) {
-                sb.append(delimetr).append(elements[i]);
-                delimetr = ", ";
-            }
-            sb.append("]");
-            return sb.toString();
+            sb.append(delimetr).append(elements[i]);
+            delimetr = ", ";
+        }
+        sb.append("]");
+        return sb.toString();
     }
+
     @Override
     public T get(int index) {
         return elements[index];
