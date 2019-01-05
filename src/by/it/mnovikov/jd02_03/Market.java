@@ -2,23 +2,21 @@ package by.it.mnovikov.jd02_03;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class Market {
 
     public static void main(String[] args) {
         List<Thread> threads = new ArrayList<>();
-//        Goods.setGoods();
-//        System.out.println(Goods.goods.entrySet());
         System.out.println("Магазин открылся");
 
-        for (int num = 1; num <= 2; num++) {
-            Cashier cashier = new Cashier(num);
-            Thread thread = new Thread(cashier);
-            thread.start();
-            threads.add(thread);
-        }
+        ExecutorService excServ = Executors.newFixedThreadPool(5);
+        excServ.execute(new Cashier(1));
+        excServ.execute(new Cashier(2));
+        excServ.shutdown();
 
-        for (int time = 0; Dispatcher.marketOpened(); time++) {
+        for ( ; Dispatcher.marketOpened(); ) {
             int buyerCount = Util.random(0, 2);
             for (int i = 0; i < buyerCount; i++) {
                 if (Dispatcher.marketOpened()) {
@@ -35,6 +33,9 @@ public class Market {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
+        while (!excServ.isTerminated()){
+            Util.sleep(1);
         }
         System.out.println("Магазин закрылся");
     }

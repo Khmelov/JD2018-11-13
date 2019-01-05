@@ -1,44 +1,35 @@
 package by.it.mnovikov.jd02_03;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 class Dispatcher {
 
     private static final Object localMonitor = new Object();
 
     static final int K_SPEED = 100;
 
-    private static int buyerCounter = 0;
-    private static int buyerInShop = 0;
+    private static AtomicInteger buyerCounter =  new AtomicInteger(0);
+    private static AtomicInteger buyerInShop = new AtomicInteger(0);
     private static final int buyerPlan = 100;
 
     static int getBuyerCounter() {
-        return buyerCounter;
+        return buyerCounter.get();
     }
 
     static void addBuyer() {
-        synchronized (localMonitor) {
-            int j = buyerCounter;
-            int i = buyerInShop;
-            Util.sleep(100);
-            buyerCounter = ++i;
-            buyerInShop = ++j;
-        }
+        buyerCounter.incrementAndGet();
+        buyerInShop.incrementAndGet();
     }
 
     static void removeBuyer() {
-        synchronized (localMonitor) {
-            buyerInShop--;
-        }
+        buyerInShop.decrementAndGet();
     }
 
     static boolean marketClosed() {
-        synchronized (localMonitor) {
-            return buyerCounter >= buyerPlan && buyerInShop == 0;
-        }
+            return buyerCounter.get() >= buyerPlan && buyerInShop.get() == 0;
     }
 
     static boolean marketOpened() {
-        synchronized (localMonitor) {
-            return buyerCounter < buyerPlan;
-        }
+            return buyerCounter.get() < buyerPlan;
     }
 }
