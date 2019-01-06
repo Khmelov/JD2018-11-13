@@ -1,11 +1,14 @@
 package by.it.vchernetski.calc;
 
+import by.it.vchernetski.calc.errors.Errors;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
 
 abstract  class Var implements Operation, OpDispatch, OpObjects {
+    protected static ResMan resMan = ResMan.INSTANCE;
     private static Map<String, Var> vars = new HashMap<>();
     static Var saveVar(String name, Var var){
         vars.put(name, var);
@@ -68,25 +71,25 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
         if (op.matches(Patterns.VECTOR)) return new Vector(op);
         if (op.matches(Patterns.MATRIX)) return new Matrix(op);
         else if (vars.containsKey((op))) return vars.get(op);
-        throw  new CalcException("невозможно создать "+op);
+        throw  new CalcException(resMan.get(Errors.ERR_CR)+op);
     }
     @Override
     public Var add(Var other) throws CalcException{
-        throw  new CalcException("Сложение "+this+"+"+other+" невозможно");
+        throw  new CalcException(resMan.get(Errors.ERR_ADD)+" "+this+"+"+other+resMan.get(Errors.ERR_IM));
     }
 
     @Override
     public Var sub(Var other) throws CalcException{
-        throw  new CalcException("Вычитание "+this+"-"+other+" невозможно");
+        throw  new CalcException(resMan.get(Errors.ERR_SUB)+" "+this+"-"+other+resMan.get(Errors.ERR_IM));
     }
 
     @Override
     public Var mul(Var other) throws CalcException{
-        throw  new CalcException("Умножение "+this+"*"+other+" невозможно");
+        throw  new CalcException(resMan.get(Errors.ERR_MUL)+" "+this+"*"+other+resMan.get(Errors.ERR_IM));
     }
 
     @Override
     public Var div(Var other) throws CalcException{
-        throw  new CalcException("Деление "+this+"/"+other+" невозможно");
+        throw  new CalcException(resMan.get(Errors.ERR_DIV)+" "+this+"/"+other+resMan.get(Errors.ERR_IM));
     }
 }
