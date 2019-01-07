@@ -1,4 +1,4 @@
-package by.it.akhmelev.jd01_15;
+package by.it.denisova.jd01_15;
 
 import java.io.File;
 
