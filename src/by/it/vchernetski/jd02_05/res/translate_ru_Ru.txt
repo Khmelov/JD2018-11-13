@@ -1,3 +1,4 @@
 str.welcome=Привет!
 str.question=Как дела?
 user.name = Вадим Чернецкий
+command = Неверная команда

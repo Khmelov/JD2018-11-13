@@ -1,16 +1,30 @@
 package by.it.vchernetski.jd02_05;
 
-import by.it.vchernetski.jd02_05.res.Messages;
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import java.util.Scanner;
 
 public class Runner {
     public static void main(String[] args) {
-        ResMan resMan = ResMan.INSTANCE;
-        if(args.length>=2) resMan.setLocale(new Locale(args[0],args[1]));
-        System.out.println(resMan.get(Messages.STR_WELCOM));
-        System.out.println(resMan.get(Messages.STR_QUESTION));
-        System.out.println(resMan.get(Messages.USER_Name));
+        Scanner sc = new Scanner(System.in);
+        OutPut outPut = new OutPut();
+        outPut.Print();
+        String task;
+        while (!(task = sc.nextLine()).equals("exit")){
+            switch (task){
+                case "be":
+                    outPut.changeLocale("be","BY");
+                    outPut.Print();
+                    break;
+                case "ru":
+                    outPut.changeLocale("ru","RU");
+                    outPut.Print();
+                    break;
+                case "en":
+                    outPut.changeLocale("en","EN");
+                    outPut.Print();
+                    break;
+                default:
+                    outPut.wrongCommand();
+            }
+        }
     }
 }
