@@ -1,0 +1,3 @@
+text.welcome=Сардэчна запрашаем!
+text.howDoYouDo=Як справы?
+user.name=Рэнат

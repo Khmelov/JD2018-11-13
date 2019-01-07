@@ -1,0 +1,3 @@
+text.welcome=Добро пожаловать!
+text.howDoYouDo=Как дела?
+user.name=Ренат

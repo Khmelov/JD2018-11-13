@@ -1,0 +1,3 @@
+text.welcome=Welcome!
+text.howDoYouDo=How do you do?
+user.name=Renat
