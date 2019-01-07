@@ -1,6 +1,10 @@
 package by.it.naumenko.Calculator;
 
+import by.it.naumenko.Calculator.resourse.ResourceManager;
+import by.it.naumenko.Calculator.resourse.TextTranslate;
+
 public class Matrix extends Var {
+    static ResourceManager resVar = ResourceManager.INSTANCE;
     private double[][] value;
 
     @Override
@@ -55,12 +59,12 @@ public class Matrix extends Var {
     public Var add(Var other) throws CalcExeption {
         //Сумма матрицы  и вектора
         if (other instanceof Vector)
-            throw new CalcExeption("Невозможно сложить матрицу и вектор");
+            throw new CalcExeption(resVar.get(TextTranslate.MATRIX_AND_VECTOR));//"Невозможно сложить матрицу и вектор");
         //Сумма матрицы  из матрицы
         if (other instanceof Matrix) {
             Matrix operand2 = (Matrix) other;
             if((this.value.length!=operand2.value.length)||(this.value[0].length!=operand2.value[0].length))
-                throw new CalcExeption("Не одинаковы размер матриц");
+                throw new CalcExeption(resVar.get(TextTranslate.SIZE_MATRIX));//"Не одинаковы размер матриц");
             double[][] massiv = new double[this.value.length][this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -85,12 +89,12 @@ public class Matrix extends Var {
 
     public Var sub(Var other) throws CalcExeption {
         if (other instanceof Vector)
-            throw new CalcExeption("Невозможно отнять вектор от матрицы");
+            throw new CalcExeption(resVar.get(TextTranslate.VECTOR_SUB_MATRIX));//"Невозможно отнять вектор от матрицы");
         //Вычетание матрицы  из матрицы
         if (other instanceof Matrix) {
             Matrix operand2 = (Matrix) other;
             if((this.value.length!=operand2.value.length)||(this.value[0].length!=operand2.value[0].length))
-                throw new CalcExeption("Не одинаковы размер матриц");
+                throw new CalcExeption(resVar.get(TextTranslate.SIZE_MATRIX));//"Не одинаковы размер матриц");
             double[][] massiv = new double[this.value.length][this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < this.value[i].length; j++) {
@@ -130,7 +134,7 @@ public class Matrix extends Var {
         if (other instanceof Matrix) {
             Matrix operand2 = (Matrix) other;
             if(this.value[0].length!=operand2.value.length)
-                throw new CalcExeption("Матрицы несовместимы");
+                throw new CalcExeption(resVar.get(TextTranslate.MATRIX_INCOMPATIBLE));//"Матрицы несовместимы");
             double[][] matr = new double[this.value.length][operand2.value[0].length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < operand2.value[0].length; j++) {
@@ -145,7 +149,7 @@ public class Matrix extends Var {
         if (other instanceof Vector) {
             Vector operand2 = (Vector) other;
             if(this.value[0].length!=operand2.value.length)
-                throw new CalcExeption("Матрица и вектор не совместимы");
+                throw new CalcExeption(resVar.get(TextTranslate.MATRIX_AND_VECTOR_INCOMPATIBLE));//"Матрица и вектор не совместимы");
             double[] vector = new double[this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 for (int j = 0; j < operand2.value.length; j++) {
@@ -154,7 +158,7 @@ public class Matrix extends Var {
             }
             return new Vector(vector);
         }
-        throw new CalcExeption("невозможно умножить вектор на матрицу");
+        throw new CalcExeption(resVar.get(TextTranslate.VECTOR_MULL_MATRIX));//"невозможно умножить вектор на матрицу");
     }
 
 
@@ -172,12 +176,12 @@ public class Matrix extends Var {
         }
         //Частное матрицы на матрицу
         if (other instanceof Matrix) {
-            throw new CalcExeption("Матрицу нельзя делит на матрицу");
+            throw new CalcExeption(resVar.get(TextTranslate.MATRIX_DIV_MATRIX));//"Матрицу нельзя делит на матрицу");
         }
 
         if (other instanceof Vector) {
-            throw new CalcExeption("Матрицу нельзя делить на вектор");
+            throw new CalcExeption(resVar.get(TextTranslate.MATRIX_DIV_VECTOR));//"Матрицу нельзя делить на вектор");
         }
-        throw new CalcExeption("делить число на матрицу");
+        throw new CalcExeption(resVar.get(TextTranslate.NUMBER_DIV_MATRIX));//"делить число на матрицу");
     }
 }

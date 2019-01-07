@@ -1,6 +1,10 @@
 package by.it.naumenko.Calculator;
 
+import by.it.naumenko.Calculator.resourse.ResourceManager;
+import by.it.naumenko.Calculator.resourse.TextTranslate;
+
 class Vector extends Var {
+    ResourceManager resVar = ResourceManager.INSTANCE;
 
     double[] value;
 
@@ -55,7 +59,7 @@ class Vector extends Var {
         if (other instanceof Vector) {
             Vector operand2 = (Vector) other;
             if(this.value.length!=operand2.value.length)
-                throw new CalcExeption("Не одинаковые размеры векторов");
+                throw new CalcExeption(resVar.get(TextTranslate.SIZE_VECTOR));//"Не одинаковые размеры векторов");
             double mas[] = new double[this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 mas[i] = this.value[i] - operand2.value[i];
@@ -78,7 +82,7 @@ class Vector extends Var {
         if (other instanceof Vector) {
             Vector operand2 = (Vector) other;
             if(this.value.length!=operand2.value.length)
-                throw new CalcExeption("Не одинаковые размеры векторов");
+                throw new CalcExeption(resVar.get(TextTranslate.SIZE_VECTOR));//"Не одинаковые размеры векторов");
             double mas[] = new double[this.value.length];
             for (int i = 0; i < this.value.length; i++) {
                 mas[i] = this.value[i] + operand2.value[i];
@@ -99,9 +103,9 @@ class Vector extends Var {
     @Override
     public Var div(Var other) throws CalcExeption {
         if(other instanceof Vector)
-            throw new CalcExeption("Невозможно разделить вектор на вектор");
+            throw new CalcExeption(resVar.get(TextTranslate.VECTOR_DIV_VECTOR));//"Невозможно разделить вектор на вектор");
         if(other instanceof Matrix)
-            throw new CalcExeption("Невозможно разделить вектор на матрицу");
+            throw new CalcExeption(resVar.get(TextTranslate.VECTOR_DIV_MATRIX));//"Невозможно разделить вектор на матрицу");
         if (other instanceof Scalar){
             Scalar operand2 = (Scalar)other;
             double[] mas = new double[this.value.length];

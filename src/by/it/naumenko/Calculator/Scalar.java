@@ -1,6 +1,10 @@
 package by.it.naumenko.Calculator;
 
+import by.it.naumenko.Calculator.resourse.ResourceManager;
+import by.it.naumenko.Calculator.resourse.TextTranslate;
+
 class Scalar extends Var {
+    static ResourceManager resVar = ResourceManager.INSTANCE;
     double value;
     int iValue;
 
@@ -63,11 +67,11 @@ class Scalar extends Var {
         if (other instanceof Scalar){
             Scalar operand2=(Scalar)other;
             if (operand2.value==0)
-                throw new CalcExeption("Деление на ноль");
+                throw new CalcExeption(resVar.get(TextTranslate.DIVISION_BY_ZERO));//"Деление на ноль");
             double rezultat = this.value/operand2.value;
             return new Scalar(rezultat);
 
         }
-        throw new CalcExeption("Невозможно разделить число на вектор или матрицу");
+        throw new CalcExeption(resVar.get(TextTranslate.NUMBER_DIV_VECTOR_OR_MATRIX));//"Невозможно разделить число на вектор или матрицу");
     }
 }
