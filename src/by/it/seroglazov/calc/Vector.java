@@ -7,10 +7,10 @@ public class Vector extends Var {
 
     private double[] value;
 
-    @Override
+    /*@Override
     String getType() {
         return "Vector";
-    }
+    }*/
 
     public double[] getValue() {
         return value;
@@ -21,13 +21,14 @@ public class Vector extends Var {
         System.arraycopy(value, 0, this.value, 0, value.length);
     }
 
+    @SuppressWarnings("unused")
     Vector(Vector v) {
         value = new double[v.value.length];
         System.arraycopy(v.value, 0, value, 0, v.value.length);
     }
 
-    Vector(String str) {
-        Matcher mch = Pattern.compile("\\{(.*)\\}").matcher(str);
+    Vector(String str) throws CalcException {
+        Matcher mch = Pattern.compile("\\{(.*)}").matcher(str);
         if (mch.find()) {
             String[] sArr = mch.group(1).replace(" ", "").split(",");
             value = new double[sArr.length];
@@ -35,7 +36,7 @@ public class Vector extends Var {
                 value[i] = Double.parseDouble(sArr[i]);
             }
         } else {
-            // Action if wrong string
+            throw new CalcException("Неверная строка ветора " + str);
         }
     }
 
@@ -98,7 +99,7 @@ public class Vector extends Var {
     }
 
     // Vector (+-) Vector = Vector or null (true - add; false - subtract)
-    private Var addOrSub(Vector v, boolean operation) throws CalcExeption {
+    private Var addOrSub(Vector v, boolean operation) throws CalcException {
         int op = operation ? 1 : -1;
         double[] nv = new double[value.length];
         if (value.length == v.value.length) {
@@ -113,19 +114,19 @@ public class Vector extends Var {
 
     // Vector + Vector = Vector or null
     @Override
-    public Var add(Vector other) throws CalcExeption {
+    public Var add(Vector other) throws CalcException {
         return addOrSub(other, true);
     }
 
     // Vector - Vector = Vector or null
     @Override
-    public Var sub(Vector other) throws CalcExeption {
+    public Var sub(Vector other) throws CalcException {
         return addOrSub(other, false);
     }
 
     // Vector * Vector = Scalar or null
     @Override
-    public Var mul(Vector other) throws CalcExeption {
+    public Var mul(Vector other) throws CalcException {
         double a = 0;
         if (value.length == other.value.length) {
             for (int i = 0; i < value.length; i++) {
@@ -137,71 +138,71 @@ public class Vector extends Var {
 
     // Vector / Vector = null
     @Override
-    public Var div(Vector other) throws CalcExeption {
+    public Var div(Vector other) throws CalcException {
         return super.div((Var)other);
     }
 
     // Vector + Matrix = null
     @Override
-    public Var add(Matrix other) throws CalcExeption {
+    public Var add(Matrix other) throws CalcException {
         return super.add((Var)other);
     }
 
     // Vector - Matrix = null
     @Override
-    public Var sub(Matrix other) throws CalcExeption {
+    public Var sub(Matrix other) throws CalcException {
         return super.sub((Var)other);
     }
 
     // Vector * Matrix = null
     @Override
-    public Var mul(Matrix other) throws CalcExeption {
+    public Var mul(Matrix other) throws CalcException {
         return super.mul((Var)other);
     }
 
     // Vector / Matrix = null
     @Override
-    public Var div(Matrix other) throws CalcExeption {
+    public Var div(Matrix other) throws CalcException {
         return super.div((Var)other);
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
+    public Var add(Var other) throws CalcException {
         return other.addDispatch(this);
     }
 
     @Override
-    public Var sub(Var other) throws CalcExeption {
+    public Var sub(Var other) throws CalcException {
         return other.subDispatch(this);
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
+    public Var mul(Var other) throws CalcException {
         return other.mulDispatch(this);
     }
 
     @Override
-    public Var div(Var other) throws CalcExeption {
+    public Var div(Var other) throws CalcException {
         return other.divDispatch(this);
     }
 
     @Override
-    public Var addDispatch(Var other) throws CalcExeption {
+    public Var addDispatch(Var other) throws CalcException {
         return other.add(this);
     }
 
     @Override
-    public Var subDispatch(Var other) throws CalcExeption {
+    public Var subDispatch(Var other) throws CalcException {
         return other.sub(this);
     }
 
     @Override
-    public Var mulDispatch(Var other) throws CalcExeption {
+    public Var mulDispatch(Var other) throws CalcException {
         return other.mul(this);
     }
 
     @Override
-    public Var divDispatch(Var other) throws CalcExeption {
+    public Var divDispatch(Var other) throws CalcException {
         return other.div(this);
     }
 }

@@ -2,7 +2,8 @@ package by.it.seroglazov.calc;
 
 import java.util.Scanner;
 
-public class ConsoleRunner2 {
+public class ConsoleRunner {
+
     public static void main(String[] args) {
         Parcer parcer = new Parcer();
         Printer printer = new Printer();
@@ -15,9 +16,9 @@ public class ConsoleRunner2 {
                 System.out.println(Var.getVars());
             } else {
                 try {
-                    Var res = parcer.calc(input);
+                    String res = parcer.calc(input);
                     printer.print(res);
-                } catch (CalcExeption e){
+                } catch (CalcException e){
                     System.out.println(e.getMessage());
                 }
 

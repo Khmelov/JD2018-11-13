@@ -1,9 +1,14 @@
-package by.it.vchernetski.calc;
+package by.it.akhmelev.calc_v4;
 
 
 import org.junit.Test;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintStream;
+import java.io.StringReader;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
