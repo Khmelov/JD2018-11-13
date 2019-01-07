@@ -1,30 +1,23 @@
 package by.it.vchernetski.jd02_02;
 
 
-import by.it._examples_.jd01_08._06_Object.Man;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class Market {
-    public static Map<Thread, Boolean> cashiers = new HashMap<>();
+    public static List<Cashier> cashiers = new ArrayList<>();
     public static List<Thread> threads = new ArrayList<>();
-
-    private static void print(int time) {
-        System.out.println("======================================\n" + time + " sec" + "\t"
-                + Dispatcher.getBuyerInShop() + " buyers" + "\n======================================\n");
-    }
+    private static Manager manager;
 
     public static void main(String[] args) {
         System.out.println("Market opend");
-//        System.out.printf("%20s  %20s  %20s  %20s  %20s  \t\t\t\t\t \t\t\t\t\t\n","Касса №1","Касса №2","Касса №3","Касса №4","Касса №5");
+        System.out.printf("%15s  %18s  %18s  %18s  %18s  %11s %11s\n","Касса №1","Касса №2","Касса №3","Касса №4","Касса №5","очередь","выручка");
         Good.fillGoods();
-        Manager manager = new Manager();
+        manager = new Manager();
         threads.add(manager);
         manager.start();
-        Util.sleep(2000);
         for (int time = 0; Dispatcher.marketOpened(); time++) {
             int sec = time % 60;
             if (time == 0) {
@@ -33,7 +26,7 @@ public class Market {
                     threads.add(buyer);
                     buyer.start();
                 }
-                print(time);
+//                print(time);
                 continue;
             }
             if (sec < 31 && Dispatcher.getBuyerInShop() < 10 + sec) {
@@ -56,7 +49,7 @@ public class Market {
                     }
                 }
             }
-            print(time);
+//            print(time);
             Util.sleep(1000);
         }
         for (Thread thread : threads) {
@@ -67,5 +60,10 @@ public class Market {
             }
         }
         System.out.println("Market closed");
+    }
+    private static void print(int time) {
+        int wc = manager.getWorkingCashiers();
+        System.out.println("======================================\n" + time + " sec" + "\t"
+                + QueueBuyer.getDequeSize() + " buyers in queue" + "\n работает касс: "+ wc+"\n======================================\n");
     }
 }

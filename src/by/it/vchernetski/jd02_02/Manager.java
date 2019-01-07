@@ -3,190 +3,58 @@ package by.it.vchernetski.jd02_02;
 import java.util.Map;
 
 public class Manager extends Thread {
+    private int workingCashiers=0;
     Manager() {
         super();
     }
 
     public void run() {
-        int numofCahsier = 1;
-        while (!Dispatcher.marketClosed()) {
-            int buyers = QueueBuyer.sizePensioneer()+QueueBuyer.sizeNotPensioneer();
-            if (buyers <= 5&& buyers!=0) {
-                int index = 1;
-                int count = 1;
-                if (Market.cashiers.size() < index) {
-                    for (int i = 1; i <= index; i++) {
-                        Cashier cashier = new Cashier(numofCahsier++);
-                        Thread thread = new Thread(cashier);
-                        Market.cashiers.put(thread, true);
-                        thread.start();
-                    }
-                } else {
-                    for (Map.Entry<Thread, Boolean> entry : Market.cashiers.entrySet()) {
-                        if (count <= index) {
-                            synchronized (entry.getKey()) {
-                                entry.getKey().notify();
-                                entry.setValue(true);
-                            }
-                            continue;
-                        } else {
-                            if (entry.getValue()) {
-//                                System.out.println(entry.getKey()+" closed");
-                                synchronized (entry.getKey()) {
-                                    try {
-                                        entry.getKey().wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                entry.setValue(false);
-                            }
-                        }
-                        count++;
-                    }
-                }
-            }
-            if (buyers > 5 && buyers <= 10) {
-                int index = 2;
-                int count = 1;
-                if (Market.cashiers.size() < index) {
-                    for (int i = 1; i <= index - Market.cashiers.size(); i++) {
-                        Cashier cashier = new Cashier(numofCahsier++);
-                        Thread thread = new Thread(cashier);
-                        Market.cashiers.put(thread, true);
-                        thread.start();
-                    }
-                } else {
-                    for (Map.Entry<Thread, Boolean> entry : Market.cashiers.entrySet()) {
-                        if (count <= index) {
-//                            System.out.println(entry.getKey()+" closed");
-                            synchronized (entry.getKey()) {
-                                entry.getKey().notify();
-                                entry.setValue(true);
-                            }
-                            continue;
-                        } else {
-                            if (entry.getValue()) {
-                                System.out.println(entry.getKey()+" closed");
-                                synchronized (entry.getKey()) {
-                                    try {
-                                        entry.getKey().wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                entry.setValue(false);
-                            }
-                        }
-                        count++;
-                    }
-                }
-            }
-            if (buyers > 10 && buyers <= 15) {
-                int index = 3;
-                int count = 1;
-                if (Market.cashiers.size() < index) {
-                    for (int i = 1; i <= index - Market.cashiers.size(); i++) {
-                        Cashier cashier = new Cashier(numofCahsier++);
-                        Thread thread = new Thread(cashier);
-                        Market.cashiers.put(thread, true);
-                        thread.start();
-                    }
-                } else {
-                    for (Map.Entry<Thread, Boolean> entry : Market.cashiers.entrySet()) {
-                        if (count <= index) {
-                            synchronized (entry.getKey()) {
-                                entry.getKey().notify();
-                                entry.setValue(true);
-                                continue;
-                            }
-                        } else {
-                            if (entry.getValue()) {
-//                                System.out.println(entry.getKey()+" closed");
-                                synchronized (entry.getKey()) {
-                                    try {
-                                        entry.getKey().wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                entry.setValue(false);
-                            }
-                        }
-                        count++;
-                    }
-                }
-            }
-            if (buyers > 15 && buyers <= 20) {
-                int index = 4;
-                int count = 1;
-                if (Market.cashiers.size() < index) {
-                    for (int i = 1; i <= index - Market.cashiers.size(); i++) {
-                        Cashier cashier = new Cashier(numofCahsier++);
-                        Thread thread = new Thread(cashier);
-                        Market.cashiers.put(thread, true);
-                        thread.start();
-                    }
-                } else {
-                    for (Map.Entry<Thread, Boolean> entry : Market.cashiers.entrySet()) {
-                        if (count <= index) {
-                            synchronized (entry.getKey()) {
-                                entry.getKey().notify();
-                                entry.setValue(true);
-                                continue;
-                            }
-                        } else {
-                            if (entry.getValue()) {
-//                                System.out.println(entry.getKey()+" closed");
-                                synchronized (entry.getKey()) {
-                                    try {
-                                        entry.getKey().wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                entry.setValue(false);
-                            }
-                        }
-                        count++;
-                    }
-                }
-            }
-            if (buyers > 20) {
-                int index = 5;
-                int count = 1;
-                if (Market.cashiers.size() < index) {
-                    for (int i = 1; i <= index - Market.cashiers.size(); i++) {
-                        Cashier cashier = new Cashier(numofCahsier++);
-                        Thread thread = new Thread(cashier);
-                        Market.cashiers.put(thread, true);
-                        thread.start();
-                    }
-                } else {
-                    for (Map.Entry<Thread, Boolean> entry : Market.cashiers.entrySet()) {
-                        if (count <= index) {
-                            synchronized (entry.getKey()) {
-                                entry.getKey().notify();
-                                entry.setValue(true);
-                                continue;
-                            }
-                        } else {
-                            if (!entry.getValue()) {
-//                                System.out.println(entry.getKey()+" closed");
-                                synchronized (entry.getKey()) {
-                                    try {
-                                        entry.getKey().wait();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-                                entry.setValue(false);
-                            }
-                        }
-                        count++;
-                    }
-                }
-            }
+        for (int i = 1; i < 6; i++) {
+            Cashier cashier = new Cashier(i);
+            Market.cashiers.add(cashier);
+            cashier.start();
         }
+        while (!Dispatcher.marketClosed()) {
+            int n = neededNumOfCashiers();
+            if(n==this.workingCashiers) {
+                Util.sleep(1000);
+                continue;
+            }
+            if(workingCashiers<n){
+                for (Cashier cashier:Market.cashiers) {
+                    if(workingCashiers==n) break;
+                    if(cashier.getStatus()) {
+                        this.workingCashiers++;
+                        cashier.goToWork();
+                    }
+                }
+                continue;
+            }
+            if(workingCashiers>n){
+                for (Cashier cashier:Market.cashiers) {
+                    if(workingCashiers==n) break;
+                    if(!(cashier.getStatus())) {
+                        this.workingCashiers--;
+                        cashier.stop=true;
+                    }
+                }
+            }
+            Util.sleep(2000);
+        }
+        for (Cashier cashier:Market.cashiers) {
+            cashier.close();
+        }
+    }
+    private static int neededNumOfCashiers(){
+        int dequeSize = QueueBuyer.getDequeSize();
+        if(dequeSize<=5) return 1;
+        if(dequeSize>5&&dequeSize<=10) return 2;
+        if(dequeSize>10&&dequeSize<=15) return 3;
+        if(dequeSize>15&&dequeSize<=20) return 4;
+        if(dequeSize>20) return 5;
+        return 0;
+    }
+    public synchronized  int getWorkingCashiers(){
+        return workingCashiers;
     }
 }
