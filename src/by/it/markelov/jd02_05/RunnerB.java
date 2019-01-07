@@ -6,7 +6,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.Scanner;
 
-public class Runner {
+public class RunnerB {
     public static void main(String[] args) {
         ResourceBundle resourceBundle;
         Date date = new Date();
