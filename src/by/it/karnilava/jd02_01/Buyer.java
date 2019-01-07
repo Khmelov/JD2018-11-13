@@ -4,11 +4,13 @@ package by.it.karnilava.jd02_01;
 
 public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
     int num; // номер покупателя
+    boolean pensioner;
 
     //консруктор покупателя с его номером
-    public Buyer(int num) {
+    public Buyer(int num, boolean pensioneer) {
         this.num = num;
         this.setName("Buyer # "+num+" ");
+        this.pensioner = pensioneer;
         start();
     }
 
@@ -35,7 +37,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
         try {
             int quantityOfGoods = Rnd.fromTo(1,4);
             for (int i = 0; i <quantityOfGoods ; i++) {
-                int pause = Rnd.fromTo(500, 2000);
+                int pause = (int)(Rnd.fromTo(500, 2000)*(pensioner ? 1.5 : 1));
                 Thread.sleep(pause);
                 int productOfChoice = Rnd.fromTo(1,4);
                int value = ListOfGoods.listOfGoods.get(productOfChoice);
@@ -52,13 +54,14 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
     @Override
     public void goOut() {
         System.out.println(this + "has come out the shop");
+        Runner.countBuyers--;
 
     }
 
     @Override
     public void takeBasket() {
         try {
-            int pause = Rnd.fromTo(100,200);
+            int pause =(int)( Rnd.fromTo(100,200)*(pensioner ? 1.5 : 1));
             Thread.sleep(pause);
         }
         catch (InterruptedException e){
@@ -75,7 +78,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
         try{
 
 
-            int pause = Rnd.fromTo(100, 200);
+            int pause = (int)(Rnd.fromTo(100, 200)*(pensioner ? 1.5 : 1));
             Thread.sleep(pause);
 
 
