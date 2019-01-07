@@ -1,5 +1,7 @@
 package by.it.naumenko.jd01_09;
 
+import by.it.naumenko.Calculator.CalcExeption;
+
 class Vector extends Var {
 
     double[] value;
@@ -105,6 +107,7 @@ class Vector extends Var {
             return new Vector(mas);
         }
         return other.div(this);
+
     }
 
     @Override
