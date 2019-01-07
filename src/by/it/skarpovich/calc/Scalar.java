@@ -1,5 +1,7 @@
 package by.it.skarpovich.calc;
 
+import by.it.skarpovich.calc.res.Messages;
+
 class Scalar extends Var {
     private double value;
 
@@ -43,7 +45,7 @@ class Scalar extends Var {
         if (other instanceof Scalar) {
             Scalar operand2 = (Scalar) other;
             if (operand2.value==0)
-                throw new CalcException(" деление на ноль");
+                throw new CalcException(ResMan.INSTANCE.get(Messages.STR_ZERO));
             double res = this.value / operand2.value;
             return new Scalar(res);
         } else
@@ -53,7 +55,6 @@ class Scalar extends Var {
     Scalar(Scalar scalar) {
         this.value = scalar.value;
     }
-
 
     Scalar(String strScalar) {
         this.value = Double.parseDouble(strScalar);
