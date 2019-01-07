@@ -19,11 +19,15 @@ class TextRes {
         switch (t) {
             case WELCOME: key = "text.welcome"; break;
             case HOW_DO_YOU_DO: key = "text.howDoYouDo";break;
+            case UNKNOWN_COMMAND: key = "text.unknownCommand"; break;
+            case LANGUAGE_CHANGED: key = "text.languageChanged"; break;
             default: key = "";
         }
         return rb.getString(key);
     }
 
+
+    @SuppressWarnings("SameParameterValue")
     static String get(user t){
         String key;
         switch (t) {
@@ -33,12 +37,12 @@ class TextRes {
         return rb.getString(key);
     }
 
-    static enum text {
-        WELCOME, HOW_DO_YOU_DO;
+    enum text {
+        WELCOME, HOW_DO_YOU_DO, UNKNOWN_COMMAND, LANGUAGE_CHANGED
     }
 
-    static enum user {
-        NAME;
+    enum user {
+        NAME
     }
 
 }
