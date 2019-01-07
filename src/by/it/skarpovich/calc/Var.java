@@ -1,32 +1,36 @@
 package by.it.skarpovich.calc;
 
+import by.it.skarpovich.calc.res.Messages;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
+
 abstract class Var implements Operation {
+    //ResMan resMan2 = ResMan.INSTANCE;
 
     private static Map<String, Var> vars = new HashMap<>();
     private static String filename = Util.getPath("vars.txt");
 
     @Override
     public Var add(Var other) throws CalcException {
-        throw new CalcException("Сложение " + this + "+" + other + " невозможно!");
+        throw new CalcException(ResMan.INSTANCE.get(Messages.STR_OPERATION) + " " + this + "+" + other + " " + ResMan.INSTANCE.get(Messages.STR_IMPOSSIBLE));
     }
 
     @Override
     public Var sub(Var other) throws CalcException {
-        throw new CalcException("Вычитание " + this + "-" + other + " невозможно!");
+        throw new CalcException(ResMan.INSTANCE.get(Messages.STR_OPERATION) + " " + this + "-" + other + " " + ResMan.INSTANCE.get(Messages.STR_IMPOSSIBLE));
     }
 
     @Override
     public Var mul(Var other) throws CalcException {
-        throw new CalcException("Умножение " + this + "*" + other + " невозможно!");
+        throw new CalcException(ResMan.INSTANCE.get(Messages.STR_OPERATION) + " " + this + "*" + other + " " + ResMan.INSTANCE.get(Messages.STR_IMPOSSIBLE));
     }
 
     @Override
     public Var div(Var other) throws CalcException {
-        throw new CalcException("Деление " + this + "/" + other + " невозможно!");
+        throw new CalcException(ResMan.INSTANCE.get(Messages.STR_OPERATION) + " " +  this + "/" + other + " " + ResMan.INSTANCE.get(Messages.STR_IMPOSSIBLE));
     }
 
     @Override
@@ -47,7 +51,7 @@ abstract class Var implements Operation {
             return new Matrix(operand);
         Var var = vars.get(operand);
         if (var == null)
-            throw new CalcException("Неизвестная переменная: " + operand);
+            throw new CalcException(ResMan.INSTANCE.get(Messages.STR_UNKNOWNVAR) +" "+ operand);
         return var;
     }
 
@@ -59,7 +63,7 @@ abstract class Var implements Operation {
                 out.printf("%s=%s\n", pair.getKey(), pair.getValue());
             }
         } catch (IOException e) {
-            System.err.print("Disk Error");
+            System.err.print(ResMan.INSTANCE.get(Messages.STR_DISKERROR));
         }
     }
 
@@ -74,9 +78,7 @@ abstract class Var implements Operation {
                 while (in.ready()) {
                     local.calc(in.readLine());
                 }
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (CalcException e) {
+            } catch (IOException | CalcException e) {
                 e.printStackTrace();
             }
     }

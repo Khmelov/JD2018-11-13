@@ -1,0 +1,7 @@
+str.error=ОШИБКА:
+str.operation=Операция
+str.zero=Деление на ноль!
+str.impossible=невозможна!
+str.diskerror=Ошибка диска!
+str.unknownvar=Неизвестная переменная
+str.testerror=Искусственная ошибка!
