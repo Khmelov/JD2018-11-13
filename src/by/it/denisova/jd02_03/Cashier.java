@@ -25,7 +25,7 @@ public class Cashier implements Runnable {
                     System.out.println(this + " started service " + buyer);
                     Util.sleep(Util.random(200, 5000));
                     int sum = 0;
-                    for (Good good: buyer.getBasket().goods) {
+                    for (by.it.denisova.jd02_03.good good: buyer.getBasket().goods) {
                         System.out.println("*** " + buyer + " buy - " + good.id + " = " + good.value + "$ ***");
                         sum += good.value;
                     }

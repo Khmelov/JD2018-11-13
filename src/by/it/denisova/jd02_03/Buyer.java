@@ -46,7 +46,7 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
 
         String strGoods = "";
 
-        for (Good d: basket.goods) {
+        for (good d: basket.goods) {
             strGoods += (d.id + " ");
         }
 

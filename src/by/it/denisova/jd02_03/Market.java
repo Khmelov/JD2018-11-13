@@ -7,7 +7,7 @@ package by.it.denisova.jd02_03;
 
 public class Market {
     static List<Basket> basketList = new ArrayList<>();
-    static List<Good> goodList = new ArrayList<>();
+    static List<good> goodList = new ArrayList<>();
 
     public static void main(String[] args) {
         initialSetup();
@@ -46,7 +46,7 @@ public class Market {
 
     private static void initialSetup() {
         for (int i = 0; i < 100; i++) {
-            goodList.add(new Good());
+            goodList.add(new good());
         }
 
         for (int i = 0; i < 3; i++) {
