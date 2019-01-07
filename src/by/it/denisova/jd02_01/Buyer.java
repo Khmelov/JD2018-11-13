@@ -1,23 +1,20 @@
 package by.it.denisova.jd02_01;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-
 public class Buyer extends Thread implements IBuyer, IUseBacket {
-    HashMap<Integer, Integer> backet;
+
+    private Basket basket;
 
     Buyer(int number) {
         super("Buyer № " + number);
-        backet = new HashMap<>();
     }
 
     @Override
     public void run() {
         enterToMarket();
-        takeBacket();
+        takeBasket();
         chooseGoods();
-        putGoodsToBacket();
+        putGoodsToBasket();
+        Market.basketList.add(putBasket());
         goOut();
     }
 
@@ -32,13 +29,18 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
         int time = Util.random(500, 2000);
         Util.sleep(time);
         int goodCount = Util.random(1, 4);
-        Good.getGoods();
-        List<Integer> buyerGoods = new ArrayList<>(goodCount);
 
         for (int i = 0; i < goodCount; i++) {
-            buyerGoods.add(Good.randomChooseGood());
+            basket.goods.add(Market.goodList.get(Util.random(Market.goodList.size() - 1)));
         }
-        System.out.println(this + " choose " + buyerGoods);
+
+        String strGoods = "";
+
+        for (Good d: basket.goods) {
+            strGoods += (d.id + " ");
+        }
+
+        System.out.println(this + " choose " + strGoods);
     }
 
     @Override
@@ -52,17 +54,28 @@ public class Buyer extends Thread implements IBuyer, IUseBacket {
     }
 
     @Override
-    public void takeBacket() {
+    public void takeBasket() {
+        if (Market.basketList.isEmpty()) {
+            Market.giveSomeBaskets();
+        }
+        Basket randomBasket = Market.basketList.get(Util.random(0, Market.basketList.size() - 1));
+        Market.basketList.remove(randomBasket);
+        basket = randomBasket;
         int time = Util.random(100, 200);
         Util.sleep(time);
         System.out.println(this + " take basket");
     }
 
     @Override
-    public void putGoodsToBacket() {
+    public void putGoodsToBasket() {
         int time = Util.random(100, 200);
         Util.sleep(time);
         System.out.println(this + " put the goods in the basket");
+    }
 
+    @Override
+    public Basket putBasket() {
+        basket.goods.clear();
+        return basket;
     }
 }

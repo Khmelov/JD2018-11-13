@@ -9,13 +9,13 @@ import java.util.Locale;
 
 public class PrintResult {
 
-    private DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG,Locale.getDefault());
-    private Locale locale;
+    private static DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.LONG,Locale.getDefault());
+
     private ResMan resMan = ResMan.INSTANCE;
     private Date data = new Date();
 
 
-    public void Print() {
+    public void print() {
         System.out.println(resMan.get(Messages.STR_WELCOME));
         System.out.println(resMan.get(Messages.STR_QUESTION));
         System.out.println(resMan.get(Messages.USER_NAME));
@@ -23,9 +23,10 @@ public class PrintResult {
     }
 
     public void changeLocale(String language, String country){
-        locale = new Locale(language,country);
+       Locale locale = new Locale(language,country);
         dateFormat = DateFormat.getDateInstance(DateFormat.LONG, locale);
         resMan.setLocale(locale);
+
 
     }
 }
