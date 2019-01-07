@@ -17,13 +17,13 @@ public class Cashier implements Runnable {
                 Util.sleep(1);
             } else {
                 System.out.println(this + " started service " + buyer);
-                Util.sleep(Util.random(2000, 5000));
+                Util.sleep(Util.random(200, 5000));
                 int sum = 0;
                 for (Good good: buyer.getBasket().goods) {
-                    System.out.println("*** " + good.id + " - " + good.value + " ***");
+                    System.out.println("*** " + buyer + " buy - " + good.id + " = " + good.value + "$ ***");
                     sum += good.value;
                 }
-                System.out.println("** The amount of goods = " + sum);
+                System.out.println("** The amount of goods = " + sum + "$");
                 System.out.println(this + " finished service " + buyer + "\n\n");
                 synchronized (buyer) {
                     buyer.notify();

@@ -7,16 +7,6 @@ public class Market {
     static List<Basket> basketList = new ArrayList<>();
     static List<Good> goodList = new ArrayList<>();
 
-    private static void initialSetup() {
-        for (int i = 0; i < 100; i++) {
-            goodList.add(new Good());
-        }
-
-        for (int i = 0; i < 3; i++) {
-            basketList.add(new Basket());
-        }
-    }
-
     public static void main(String[] args) {
         initialSetup();
         List<Thread> threads = new ArrayList<>();
@@ -59,6 +49,15 @@ public class Market {
             }
         }
         System.out.println("Market is closed");
+    }
+    private static void initialSetup() {
+        for (int i = 0; i < 100; i++) {
+            goodList.add(new Good());
+        }
+
+        for (int i = 0; i < 3; i++) {
+            basketList.add(new Basket());
+        }
     }
 
     public static void giveSomeBaskets() {

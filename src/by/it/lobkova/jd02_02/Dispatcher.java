@@ -5,6 +5,11 @@ class Dispatcher {
 
     static final int K_SPEED = 100;
 
+    private static int cashierCount = 0;
+    private static int buyerCounter = 0;
+    private static int buyerInShop = 0;
+    private static final int buyerPlan = 100;
+
     public static int getCashierCount() {
         return cashierCount;
     }
@@ -12,11 +17,6 @@ class Dispatcher {
     public static void setCashierCount(int cashierCount) {
         Dispatcher.cashierCount = cashierCount;
     }
-
-    private static int cashierCount = 0;
-    private static int buyerCounter = 0;
-    private static int buyerInShop = 0;
-    private static final int buyerPlan = 100;
 
     static int getBuyerCounter() {
         return buyerCounter;
