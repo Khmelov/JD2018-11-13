@@ -27,9 +27,16 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
 
     public static void save(){
         String filename = Util.getPath("vars.txt");
+        int i=0;
         try(PrintWriter out = new PrintWriter(new FileWriter(filename))) {
             for (Map.Entry<String, Var> pair : vars.entrySet()) {
-                out.printf("%s=%s\n",pair.getKey(),pair.getValue().toString());
+                if(i==0) {
+                    out.printf("%s=%s", pair.getKey(), pair.getValue().toString());
+                }
+                else{
+                    out.printf("\n%s=%s", pair.getKey(), pair.getValue().toString());
+                }
+                i++;
             }
         }
         catch (IOException e){
@@ -38,11 +45,12 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
     }
 
     public static void read() {
+        Parcer parcer = new Parcer();
         File file = new File(Util.getPath("vars.txt"));
         if (file.exists()) {
-            try (BufferedReader br = new BufferedReader(new FileReader(Util.getPath("matrix.txt")))) {
+            try (BufferedReader br = new BufferedReader(new FileReader(file))) {
                 while (br.ready()) {
-                    Parcer.calc(br.readLine());
+                    parcer.calc(br.readLine());
                 }
             } catch (IOException e) {
                 e.printStackTrace();

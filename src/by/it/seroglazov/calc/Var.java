@@ -1,11 +1,10 @@
 package by.it.seroglazov.calc;
 
 import java.util.HashMap;
-import java.util.TreeSet;
 
 public abstract class Var implements Operations, ScalarOperations, VectorOperations, MatrixOperations, OperationsDispatch {
 
-    private static HashMap<String, Var> vars = new HashMap<String, Var>();
+    private static HashMap<String, Var> vars = new HashMap<>();
 
     static Var saveVar(String name, Var var){
         vars.put(name, var);
@@ -37,7 +36,7 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
         return sb.toString();
     }*/
 
-    abstract String getType();
+    //abstract String getType();
 
     @Override
     public String toString() {
@@ -45,26 +44,26 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
-        throw new CalcExeption("Сложение " + this + " + " + other + " невозможно.");
+    public Var add(Var other) throws CalcException {
+        throw new CalcException("Сложение " + this + " + " + other + " невозможно.");
     }
 
     @Override
-    public Var sub(Var other) throws CalcExeption {
-        throw new CalcExeption("Вычитание " + this + " - " + other + " невозможно.");
+    public Var sub(Var other) throws CalcException {
+        throw new CalcException("Вычитание " + this + " - " + other + " невозможно.");
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
-        throw new CalcExeption("Умножение " + this + " * " + other + " невозможно.");
+    public Var mul(Var other) throws CalcException {
+        throw new CalcException("Умножение " + this + " * " + other + " невозможно.");
     }
 
     @Override
-    public Var div(Var other) throws CalcExeption {
-        throw new CalcExeption("Деление " + this + " / " + other + " невозможно.");
+    public Var div(Var other) throws CalcException {
+        throw new CalcException("Деление " + this + " / " + other + " невозможно.");
     }
 
-    static Var createVar(String strVar) throws CalcExeption {
+    static Var createVar(String strVar) throws CalcException {
         if (strVar.matches(Patterns.SCALAR))
             return new Scalar(strVar);
         if (strVar.matches(Patterns.VECTOR))
@@ -73,7 +72,7 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
             return new Matrix(strVar);
         if (vars.containsKey(strVar))
             return vars.get(strVar);
-        throw new CalcExeption("Невозможно создать " + strVar);
+        throw new CalcException("Невозможно создать " + strVar);
     }
 
 }
