@@ -6,15 +6,14 @@ import java.util.ResourceBundle;
 
 enum ResMan {
     INSTANCE;
+    private ResourceBundle resourceBundle;
 
-    private ResMan() {
+    ResMan() {
         setLocale(Locale.getDefault());
     }
 
-    private ResourceBundle resourceBundle;
-
     public void setLocale(Locale locale) {
-        resourceBundle = ResourceBundle.getBundle("by.it.akhmelev.jd02_05.res.translate", locale);
+        resourceBundle = ResourceBundle.getBundle("by.it.denisova.jd02_05.res.translate", locale);
     }
 
     public String get(String key) {

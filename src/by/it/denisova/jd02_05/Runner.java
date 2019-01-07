@@ -1,18 +1,29 @@
 package by.it.denisova.jd02_05;
 
 
-import by.it.denisova.jd02_05.res.Messages;
-
-import java.util.Locale;
+import java.util.Scanner;
 
 public class Runner {
+
     public static void main(String[] args) {
-        ResMan resMan = ResMan.INSTANCE;
-        if (args.length >= 2) {
-            resMan.setLocale(new Locale(args[0], args[1]));
+        PrintResult printResult = new PrintResult();
+        Scanner scanner = new Scanner(System.in);
+        String lang = scanner.next();
+        switch (lang) {
+            case "ru":
+                printResult.changeLocale("ru", "RU");
+                printResult.Print();
+                break;
+            case "be":
+                printResult.changeLocale("be", "BY");
+                printResult.Print();
+                break;
+            case "en":
+                printResult.changeLocale("eng", "US");
+                printResult.Print();
+                break;
+            default:
+                System.out.println("Язык не найден");
         }
-        System.out.println(resMan.get(Messages.STR_WELCOME));
-        System.out.println(resMan.get(Messages.STR_QUESTION));
-        System.out.println(resMan.get(Messages.USER_NAME));
     }
 }
