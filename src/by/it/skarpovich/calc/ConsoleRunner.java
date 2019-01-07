@@ -20,8 +20,6 @@ public class ConsoleRunner {
         if (args.length >= 2) {
             resMan.setLocale(new Locale(args[0], args[1]));
         }
-        //BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        // String s = bf.readLine();
 
         Locale locale;
         while (!(input = scanner.next()).equals("END")) {
