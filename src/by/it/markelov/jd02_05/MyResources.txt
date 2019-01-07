@@ -1,0 +1,4 @@
+welcome=Hello! How are you?
+introduce=My name is
+name=Sergey Markelov
+date=Now is:

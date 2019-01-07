@@ -16,11 +16,11 @@ public class Shop {
             for (int i = 0; i < byuerCount; i++) {
                 Byuer byuer = new Byuer(++Util.byuerCounter);
                 byuerList.add(byuer);
-                if (byuerList.size()%4==0)
+
+                byuer.start();if (byuerList.size()%4==0)
                     Byuer.pensioneer = true;
                 else
                     Byuer.pensioneer = false;
-                byuer.start();
             }
             Util.sleep(1000);
         }

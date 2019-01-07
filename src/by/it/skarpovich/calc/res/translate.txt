@@ -1,0 +1,7 @@
+str.error=ERROR:
+str.operation=Operation
+str.zero=Division by zero!
+str.impossible=is impossible!
+str.diskerror=Disk error!
+str.unknownvar=Unknown variable
+str.testerror=Simulated error!

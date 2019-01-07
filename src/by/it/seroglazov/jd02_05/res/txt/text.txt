@@ -1,0 +1,5 @@
+text.welcome=Welcome!
+text.howDoYouDo=How do you do?
+user.name=Renat
+text.unknownCommand=Unknown command
+text.languageChanged=Language changed to English

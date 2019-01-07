@@ -118,7 +118,10 @@ class Vector extends Var {
         StringBuilder sb = new StringBuilder("{");
         String del = "";
         for (double v : value) {
-            sb.append(del).append(v);
+            if (v%1==0)
+                sb.append(del).append((int)v);
+            else
+                sb.append(del).append(v);
             del = ", ";
         }
         sb.append("}");
