@@ -19,7 +19,7 @@ public class Parcer {
     public String calc(String expresion) throws CalcExeption {
 
         // Сперва ищем скобки и если есть, то рекурсивно запускаем саму себя в эту область
-        Pattern parentheses = Pattern.compile(Paterns.PARENTHESES);
+        Pattern parentheses = Pattern.compile(Paterns.SKOBKI);
         Matcher m = parentheses.matcher(expresion);
         while (m.find()) {
             String res = calc(m.group(1));
