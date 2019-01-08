@@ -1,9 +1,9 @@
-package by.it.kruglenja.jd02_02;
+package by.it.kruglenja.jd02_03;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Buyer extends Thread implements IBuyer {
+class Buyer extends Thread implements IBuyer {
 
     private Backet backet = new Backet();
     private int customerNumber;

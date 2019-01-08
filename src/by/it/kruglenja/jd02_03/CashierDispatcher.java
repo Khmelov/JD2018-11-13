@@ -1,11 +1,11 @@
-package by.it.kruglenja.jd02_02;
+package by.it.kruglenja.jd02_03;
 
 
 import java.util.ArrayList;
 import java.util.Collections;
 
 public class CashierDispatcher {
-    public static ArrayList<Boolean> cashierList = new ArrayList<Boolean>(Collections.nCopies(6, null));
+    public static ArrayList<Boolean> cashierList = new ArrayList<Boolean>(Collections.nCopies(6, false));
     private static boolean openCas = true;
     private static boolean closedCas = false;
 
@@ -15,10 +15,11 @@ public class CashierDispatcher {
 
     static void runChasier() {
         int x = QueueBuyer.getBuyersInQueue();
+
         if (x > max) {
             max = x;
         }
-        System.out.println("_-_-_-_-_- " + x + " покупателей в очереди, " + x + "- было максимум в очереди");
+        System.out.println("_-_-_-_-_- " + x + " покупателей в очереди, " + max + "- было максимум в очереди");
         if (x == 0) {
             Util.sleep(1);
         } else if (x > 0 && ((cashierList.get(1) == null) || (!cashierList.get(1)))) {
@@ -39,28 +40,28 @@ public class CashierDispatcher {
         }
 
         for (int i = 1; i < cashierList.size(); i++) {
-            if (cashierList.get(i) != null && cashierList.get(i))
+            if (cashierList.get(i))
                 openedCas++;
         }
+
     }
 
     private static void cashierAdd(int cassNum) {
-        if (cashierList.get(cassNum) == null) {
-            Cashier cashier = new Cashier(cassNum);
-            Thread thread = new Thread(cashier);
-            thread.start();
-            Market.threads.add(thread);
-            cashierList.set(cassNum, openCas);
-        }
+        Cashier cashier = new Cashier(cassNum);
+        Thread thread = new Thread(cashier);
+        thread.start();
+        Market.threads.add(thread);
+        cashierList.set(cassNum, openCas);
+
         if (openedCas > neededCass) {
             while (openedCas != neededCass) {
 
                 int randomcas = Util.random(1, 5);
-                if (cashierList.get(randomcas) !=null && cashierList.get(randomcas)) {
+                if (cashierList.get(randomcas)) {
                     try {
                         Market.threads.get(randomcas).wait();
                         cashierList.set(randomcas, closedCas);
-                        System.out.println("''''''Кассир " + randomcas + " временно не работает'''''''");
+                        System.out.println("Кассир " + randomcas + " временно не работает");
                         openedCas--;
                     } catch (InterruptedException e) {
                         e.printStackTrace();
@@ -68,17 +69,16 @@ public class CashierDispatcher {
                 }
             }
         } else if (openedCas < neededCass) {
+            int randomcas = Util.random(1, 5);
             while (openedCas != neededCass) {
-
-                int randomcas = Util.random(1, 5);
-                if (!cashierList.get(randomcas) && cashierList.get(randomcas)) {
+                if (!cashierList.get(randomcas)){
                     Market.threads.get(randomcas).notify();
                     cashierList.set(randomcas, openCas);
-                    System.out.println("'''''Касса " + randomcas + " заработала'''''");
+                    System.out.println("Касса " + randomcas + " заработала");
                     openedCas++;
                 }
             }
         }
-        System.out.println("+=+=+=+=+ " + openedCas + " касс открыто");
+        System.out.println(openedCas + " касс открыто");
     }
 }
