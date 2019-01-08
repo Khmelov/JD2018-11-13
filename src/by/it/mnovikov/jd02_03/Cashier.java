@@ -16,9 +16,10 @@ public class Cashier implements Runnable {
             if (buyer == null) {
                 Util.sleep(1);
             } else {
-                System.out.println(this + " started service " + buyer);
-                Util.sleep(Util.random(2000, 5000));
-                System.out.println(this + " finished service " + buyer);
+                System.out.println(this + " начал обслуживать " + buyer);
+                int timeout = Util.random(2000, 5000);
+                Util.sleep(timeout);
+                System.out.println(this + " закончил обслуживать " + buyer);
                 buyer.stopWait();
             }
         }
