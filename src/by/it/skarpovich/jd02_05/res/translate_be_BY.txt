@@ -1,0 +1,3 @@
+str.hello=Прывiтанне!
+str.question=Як справы?
+str.name=Сяргей К.
