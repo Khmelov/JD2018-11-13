@@ -18,7 +18,7 @@ public class Matrix extends Var {
             int cols = value[0].length;
             for (double[] aValue : value) { // Check: matrix should be rectangle
                 if (aValue.length != cols) {
-                    throw new CalcException("Неверный размер массива");
+                    throw new CalcException(ResMan.get("wrongArrSize"));
                 }
             }
             this.value = new double[value.length][cols];
@@ -44,7 +44,7 @@ public class Matrix extends Var {
 
         String strWithoutWhiteSpaces = str.replaceAll("\\s", "");
         if (!strWithoutWhiteSpaces.matches("[{]([{][^{}]+[}],)*[{][^{}]+[}][}]")) { // Pattern to string like {{2.0,3,9},{4.75,6,0},{1e2,0xA,010}}
-            throw new CalcException("Матрица не по шаблону.");
+            throw new CalcException(ResMan.get("matrixNotTemplate"));
         }
         Pattern extCurlyBrackets = Pattern.compile("[{](.*)[}]"); // Find all inside external curly brackets
         Matcher m1 = extCurlyBrackets.matcher(strWithoutWhiteSpaces);
@@ -54,7 +54,7 @@ public class Matrix extends Var {
             int counter = 0;
             while (m2.find()) counter++; // First step - simple counting internal {}
             if (counter == 0) {
-                throw new CalcException("Пустая матрица.");
+                throw new CalcException(ResMan.get("emptyMatrix"));
             }
             value = new double[counter][];
             m2.reset();
@@ -66,7 +66,7 @@ public class Matrix extends Var {
                     try {
                         value[i][j] = Double.parseDouble(strRows[j]);
                     } catch (NumberFormatException e){
-                        throw new CalcException("Неверное значение " + strRows[j] + ". " + e.getMessage());
+                        throw new CalcException(ResMan.get("wrongValue")+" " + strRows[j] + ". " + e.getMessage());
                     }
                 }
                 i++;
@@ -75,11 +75,11 @@ public class Matrix extends Var {
             int len = value[0].length; // At this point value has at least one element
             for (double[] v : value) {
                 if (v.length != len) {
-                    throw new CalcException("Матрица не прямоугольная");
+                    throw new CalcException(ResMan.get("matrixDoesntRectangle"));
                 }
             }
         } else {
-            throw new CalcException("Матрица не по шаблону");
+            throw new CalcException(ResMan.get("matrixNotTemplate"));
         }
     }
 
