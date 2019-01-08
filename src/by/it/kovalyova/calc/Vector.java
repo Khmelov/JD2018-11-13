@@ -32,7 +32,7 @@ class Vector extends Var {
     public String toString() {
         String res = "{";
         for (int i=0; i<this.value.length-1;i++){
-            res = res + Double.toString(value[i]) + ", ";
+            res = res + Double.toString(value[i]) + ",";
         }
         res = res + Double.toString(this.value[this.value.length-1])+"}";
         return res;
@@ -69,25 +69,28 @@ class Vector extends Var {
 
     @Override
     public Var sub(Var other) throws CalcException {
-        if (other instanceof Vector){
-            double[] otherval = ((Vector)other).value;
-            if (otherval.length!=value.length){
+        if (other instanceof Vector) {
+            double[] otherval = ((Vector) other).value;
+            if (otherval.length != value.length) {
                 throw new CalcException("Нельзя вычитать вектора разной длины");
             }
             double[] res = new double[value.length];
-            for (int i=0;i<otherval.length; i++) {
-                res[i]=this.value[i]-otherval[i];
+            for (int i = 0; i < otherval.length; i++) {
+                res[i] = this.value[i] - otherval[i];
             }
             return new Vector(res);
-        }
-    //    else if (other instanceof Scalar){
-     //       double otherval = ((Scalar)other).value;
-            double[] res = new double[]{0,0,0};
-            for (int i=0;i<value.length; i++) {
-      //          res[i]=this.value[i]-otherval;
+        } else if (other instanceof Scalar) {
+            double otherval = ((Scalar) other).value;
+            double[] res = new double[value.length];
+            for (int i = 0; i < value.length; i++) {
+                res[i] = this.value[i] - otherval;
             }
             return new Vector(res);
+        } else {
+            throw new CalcException("Тип второго операнда неизвестен");
         }
+
+    }
     //    else return other.sub(this);
 
     @Override
@@ -105,7 +108,7 @@ class Vector extends Var {
         }
         else if (other instanceof Scalar){
             double otherval = ((Scalar)other).value;
-            double[] res = new double[]{0,0,0};
+            double[] res = new double[value.length];
             for (int i=0;i<value.length; i++) {
                 res[i]=this.value[i]*otherval;
             }
@@ -114,21 +117,21 @@ class Vector extends Var {
         else return other.mul(this);
     }
 
-  //  @Override
- //   public Var div(Var other) {
-    //    if (other instanceof Vector) {
-  //          System.out.println("Не делим вектор");
-   //         return null;
-   //     }
-    //    else if (other instanceof Scalar){
-   //         double otherval = ((Scalar)other).value;
-   //         double[] res = new double[]{0,0,0};
+    @Override
+    public Var div(Var other) throws CalcException {
+        if (other instanceof Vector) {
+            System.out.println("Не делим вектор");
+            return null;
+        }
+        else if (other instanceof Scalar){
+            double otherval = ((Scalar)other).value;
+            double[] res = new double[value.length];
 
-    //        for (int i=0;i<value.length; i++) {
-   //             res[i]=this.value[i]/otherval;
-   //         }
-   //         return new Vector(res);
-  //      }
-  //      else return other.div(this);
-  //  }
+            for (int i=0;i<value.length; i++) {
+                res[i]=this.value[i]/otherval;
+            }
+            return new Vector(res);
+        }
+        else return other.div(this);
+    }
 }
