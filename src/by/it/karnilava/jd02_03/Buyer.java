@@ -27,7 +27,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
     @Override // покупатель приходит в зал и выбирает продукты
     public void run() {
 
-        //РЕАЛИЗАЦИЯ СЕМАФОРА
+        //РЕАЛИЗАЦИЯ СЕМАФОРА для покупателей
 //try {
 //semaphore.acquire();
             enterToMarket();
