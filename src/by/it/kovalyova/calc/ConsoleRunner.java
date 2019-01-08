@@ -10,9 +10,8 @@ public class ConsoleRunner {
         Parser parser=new Parser();
         //Printer printer=new Printer();
 
-
-        while (!(line=scan.nextLine()).equals("end")){
-            String result=parser.calc(line);
+        while (!(line = scan.nextLine()).equals("end")) {
+            String result = parser.parse(line);
             System.out.println(result);
         }
     }

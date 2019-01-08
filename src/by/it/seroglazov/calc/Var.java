@@ -1,18 +1,17 @@
 package by.it.seroglazov.calc;
 
 import java.util.HashMap;
-import java.util.TreeSet;
 
 public abstract class Var implements Operations, ScalarOperations, VectorOperations, MatrixOperations, OperationsDispatch {
 
-    private static HashMap<String, Var> vars = new HashMap<String, Var>();
+    private static HashMap<String, Var> vars = new HashMap<>();
 
-    static Var saveVar(String name, Var var){
+    static Var saveVar(String name, Var var) {
         vars.put(name, var);
         return var;
     }
 
-    static String getVars(){
+    static String getVars() {
         StringBuilder sb = new StringBuilder();
         for (String varName : vars.keySet()) {
             sb.append(varName);
@@ -20,24 +19,9 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
             sb.append(vars.get(varName));
             sb.append('\n');
         }
-        sb.deleteCharAt(sb.length()-1);
+        sb.deleteCharAt(sb.length() - 1);
         return sb.toString();
     }
-
-    /*static String getSortedVars(){
-        TreeSet<String> sortedNames = new TreeSet<>(vars.keySet());
-        StringBuilder sb = new StringBuilder();
-        for (String name : sortedNames) {
-            sb.append(name);
-            sb.append('=');
-            sb.append(vars.get(name));
-            sb.append('\n');
-        }
-        sb.deleteCharAt(sb.length()-1);
-        return sb.toString();
-    }*/
-
-    abstract String getType();
 
     @Override
     public String toString() {
@@ -45,26 +29,26 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
-        throw new CalcExeption("Сложение " + this + " + " + other + " невозможно.");
+    public Var add(Var other) throws CalcException {
+        throw new CalcException(ResMan.get("addition") + " " + this + " + " + other + " " + ResMan.get("impossible"));
     }
 
     @Override
-    public Var sub(Var other) throws CalcExeption {
-        throw new CalcExeption("Вычитание " + this + " - " + other + " невозможно.");
+    public Var sub(Var other) throws CalcException {
+        throw new CalcException(ResMan.get("subtraction") + " " + this + " - " + other + " " + ResMan.get("impossible"));
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
-        throw new CalcExeption("Умножение " + this + " * " + other + " невозможно.");
+    public Var mul(Var other) throws CalcException {
+        throw new CalcException(ResMan.get("multiple") + " "+ this + " * " + other + " " + ResMan.get("impossible"));
     }
 
     @Override
-    public Var div(Var other) throws CalcExeption {
-        throw new CalcExeption("Деление " + this + " / " + other + " невозможно.");
+    public Var div(Var other) throws CalcException {
+        throw new CalcException(ResMan.get("division") + " " + this + " / " + other + " " + ResMan.get("impossible"));
     }
 
-    static Var createVar(String strVar) throws CalcExeption {
+    static Var createVar(String strVar) throws CalcException {
         if (strVar.matches(Patterns.SCALAR))
             return new Scalar(strVar);
         if (strVar.matches(Patterns.VECTOR))
@@ -73,7 +57,7 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
             return new Matrix(strVar);
         if (vars.containsKey(strVar))
             return vars.get(strVar);
-        throw new CalcExeption("Невозможно создать " + strVar);
+        throw new CalcException(ResMan.get("impossibleToCreate")+" " + strVar);
     }
 
 }

@@ -1,0 +1,3 @@
+str.hello=Hello!
+str.question=How are you?
+str.name=Siarhei K.
