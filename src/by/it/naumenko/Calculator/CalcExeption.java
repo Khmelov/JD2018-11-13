@@ -1,10 +1,10 @@
 package by.it.naumenko.Calculator;
 
-import by.it.naumenko.Calculator.resourse.ResourceManager;
-import by.it.naumenko.Calculator.resourse.TextTranslate;
+import by.it.naumenko.expirements.calculator.resourse.ResourceManager;
+import by.it.naumenko.expirements.calculator.resourse.TextTranslate;
 
 public class CalcExeption extends Exception {
-    static ResourceManager resVar= ResourceManager.INSTANCE;
+    static ResourceManager resVar=ResourceManager.INSTANCE;
 
     public CalcExeption() {
     }

@@ -36,3 +36,4 @@ IncorrectFirstMatrix=НЕкорректное первое вычисение с
 IncorrectSecondMatrix=НЕкорректное второе вычисение с матрицей
 IncorrectThirdMatrix=НЕкорректное третье вычисение с матрицей
 IncorrectMatrixM=НЕкорректное создание матрицы m
+locale=какую локаль хотите использовать? en, be, ru
