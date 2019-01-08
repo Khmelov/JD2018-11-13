@@ -43,7 +43,7 @@ abstract class Var implements Operation {
 
     }
 
-
+// Определение типа переменной из строки
 
     static Var createVar(String operand) throws CalcException{
         operand = operand.trim().replace("\\s+", "");
