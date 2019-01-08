@@ -17,7 +17,7 @@ public class Cashier extends Thread implements Runnable, ICashier {
         this.numero = numero;
         this.setName("Cashier # " + numero + " ");
         numberOfOpenCashdesks.getAndAdd(+1);
-        System.out.println("Cashdesk # " + numero + " is open");
+        //System.out.println("Cashdesk # " + numero + " is open");
         //System.out.println();
         start();
     }
@@ -69,17 +69,17 @@ public class Cashier extends Thread implements Runnable, ICashier {
                     }
                 }
 //ОСНОВНОЙ КУСОК КОДА ДЛЯ вывода печати для части С
-//                synchronized (lock) {
-//                    printInfo(this.numero, currentBuyer);
-//                }
+                synchronized (lock) {
+                    printInfo(this.numero, currentBuyer);
+                }
                 // Конец куска кода
 
 
 
 
 
-                  System.out.println("Now " + currentBuyer + "'s turn");
-                   System.out.println(currentBuyer + " goes to " + this.getName());
+//                  System.out.println("Now " + currentBuyer + "'s turn");
+//                   System.out.println(currentBuyer + " goes to " + this.getName());
                 int sum = 0;
                 for (Map.Entry<Integer, Integer> element : currentBuyer.basketOfGoods.entrySet()) {
                  //   System.out.println(this.getName() + " took a good # " + element.getKey() + " from the basket of " + currentBuyer + ", value - " + element.getValue());
@@ -87,10 +87,10 @@ public class Cashier extends Thread implements Runnable, ICashier {
 
 
                 }
-                 System.out.println(currentBuyer + "'s check is " + sum + " dollars");
+                 //System.out.println(currentBuyer + "'s check is " + sum + " dollars");
                 Thread.sleep(Buyer.amountForCashier * 1000);
 
-                 System.out.println("Serving " + currentBuyer + " by " + this.getName() + " is done");
+                // System.out.println("Serving " + currentBuyer + " by " + this.getName() + " is done");
 
 
                 synchronized (currentBuyer) {
@@ -102,7 +102,7 @@ public class Cashier extends Thread implements Runnable, ICashier {
                 synchronized (lock) {
                     if ((QueueToCashier.queueToCashier.size() + QueueOfPensioneers.queueOfPensioneers.size()) <= 5 * (numberOfOpenCashdesks.get() - 1) && numberOfOpenCashdesks.get() > 1) {
                         AvailableCashdesks.availableCashdesks.add(numero);
-                        System.out.println("Cashdesk # " + numero + " is closed\n");
+                       // System.out.println("Cashdesk # " + numero + " is closed\n");
 
                         numberOfOpenCashdesks.getAndAdd(-1);
                         return;

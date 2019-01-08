@@ -54,9 +54,9 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
     public void enterToMarket() {
 
 
-        System.out.println(this + "has come to the shop");
+       // System.out.println(this + "has come to the shop");
             Runner.currentNumberOfBuyers.getAndAdd(+1);
-            System.out.println("Buyers inside - "+Runner.currentNumberOfBuyers.get());
+         //   System.out.println("Buyers inside - "+Runner.currentNumberOfBuyers.get());
 
 
 
@@ -72,14 +72,14 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
                 Thread.sleep(pause);
                 int productOfChoice = Rnd.fromTo(1, 4);
                 int value = ListOfGoods.listOfGoods.get(productOfChoice);
-                System.out.println(this + " want product#" + productOfChoice + ", value -" + value);
+              //  System.out.println(this + " want product#" + productOfChoice + ", value -" + value);
                 basketOfGoods.put(productOfChoice, value);
 
             }
         } catch (InterruptedException e) {
             System.out.println(this + " //некорректное завершение ожидания");
         }
-        System.out.println(this + "has chosen goods");
+      //  System.out.println(this + "has chosen goods");
     }
 
     @Override
@@ -98,15 +98,15 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
 
            if (pensioner) {
                QueueOfPensioneers.queueOfPensioneers.add(this);
-               System.out.println(this + " stands in the queue.HAVE A PRIORITY!");
+             //  System.out.println(this + " stands in the queue.HAVE A PRIORITY!");
                //System.out.println("Priority queue - " + QueueOfPensioneers.queueOfPensioneers);
            } else {
                QueueToCashier.queueToCashier.add(this);
-               System.out.println(this + " stands in the queue");
+             //  System.out.println(this + " stands in the queue");
 
            }
            int sizeOfQueue = QueueOfPensioneers.queueOfPensioneers.size() + QueueToCashier.queueToCashier.size();
-           System.out.println("Queue size is " + sizeOfQueue);
+         //  System.out.println("Queue size is " + sizeOfQueue);
        }
 
 
@@ -128,10 +128,10 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
         synchronized (lockOnBuyer) {
             try {
                 AvailableBaskets.availableBaskets.put(n);
-                System.out.println(this + "has come out the shop");
+              //  System.out.println(this + "has come out the shop");
                 Runner.currentNumberOfBuyers.getAndAdd(-1);
-                System.out.println("Buyers inside - " + Runner.currentNumberOfBuyers.get());
-                System.out.println("Baskets left - "+AvailableBaskets.availableBaskets.size());
+//                System.out.println("Buyers inside - " + Runner.currentNumberOfBuyers.get());
+//                System.out.println("Baskets left - "+AvailableBaskets.availableBaskets.size());
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -147,7 +147,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
                  n = AvailableBaskets.availableBaskets.take();
                 int pause = (int) (Rnd.fromTo(100, 200) * (pensioner ? 1.5 : 1));
                 Thread.sleep(pause);
-                System.out.println(this + "has taken a basket # " + n);
+               // System.out.println(this + "has taken a basket # " + n);
             } catch (InterruptedException e) {
                 System.out.println(this + " //некорректное завершение ожидания");
             }
@@ -169,7 +169,7 @@ public class Buyer extends Thread implements Runnable, IBuyer, IUseBasket {
         } catch (InterruptedException e) {
             System.out.println(this + " //некорректное завершение ожидания");
         }
-        System.out.println(this + "has put goods in the basket");
+       // System.out.println(this + "has put goods in the basket");
     }
 
 

@@ -18,20 +18,20 @@ public class Runner {
         new AvailableCashdesks();
         new AvailableBaskets();
 
-        System.out.println("The Shop is open");
+       // System.out.println("The Shop is open");
 
 //     НАЧАЛО ПЕЧАТИ ТАБЛИЦЫ
 //
-// for (int i = 0; i < 40 * 7 + 1; i++) {
-//            System.out.printf("_");
-//        }
-//        String delim = "|";
-//        System.out.println();
-//        System.out.printf("%40s%40s%40s%40s%40s%40s%40s%n", "Cashier #1"+delim,"Cashier #2"+delim,"Cashier #3"+delim,"Cashier #4"+delim,"Cashier #5"+delim,"Size of queue"+delim, "Gross Income"+delim);
-//        for (int i = 0; i < 40 * 7 + 1; i++) {
-//            System.out.printf("_");
-//        }
-//        System.out.println();
+ for (int i = 0; i < 40 * 7 + 1; i++) {
+            System.out.printf("_");
+        }
+        String delim = "|";
+        System.out.println();
+        System.out.printf("%40s%40s%40s%40s%40s%40s%40s%n", "Cashier #1"+delim,"Cashier #2"+delim,"Cashier #3"+delim,"Cashier #4"+delim,"Cashier #5"+delim,"Size of queue"+delim, "Gross Income"+delim);
+        for (int i = 0; i < 40 * 7 + 1; i++) {
+            System.out.printf("_");
+        }
+        System.out.println();
 //Конец куска, который надо для вывода табличного формата( С часть)
 
 
@@ -101,7 +101,7 @@ public class Runner {
             }
 //
 
-           System.out.println(time + " " + currentNumberOfBuyers);
+          // System.out.println(time + " " + currentNumberOfBuyers);
             Thread.sleep(1000);
         }
 
@@ -120,7 +120,7 @@ public class Runner {
                         Buyer buyer = new Buyer(countBuyers.get(), true);
                         queue.add(buyer);
 
-                        System.out.println("Attention! " + buyer + " is a pensioneer!");
+                       // System.out.println("Attention! " + buyer + " is a pensioneer!");
                     } else {
                         Buyer buyer = new Buyer(countBuyers.get(), false);
                         queue.add(buyer);
@@ -141,7 +141,7 @@ public class Runner {
                     Buyer buyer = new Buyer(countBuyers.get(), true);
                     queue.add(buyer);
 
-                    System.out.println("Attention! " + buyer + " is a pensioneer!");
+                    //System.out.println("Attention! " + buyer + " is a pensioneer!");
                 } else {
                     Buyer buyer = new Buyer(countBuyers.get(), false);
                     queue.add(buyer);
