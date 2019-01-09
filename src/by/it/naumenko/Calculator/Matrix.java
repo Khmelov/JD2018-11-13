@@ -9,6 +9,9 @@ public class Matrix extends Var {
         for (int i = 0; i < value.length; i++) {
             String del = "";
             for (int j = 0; j < value[i].length; j++) {
+                if (value[i][j]%1==0)
+                    stringBuilder.append(del).append((int)value[i][j]);
+                else
                 stringBuilder.append(del).append(value[i][j]);
                 del = ", ";
             }

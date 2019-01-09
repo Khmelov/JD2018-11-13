@@ -2,22 +2,30 @@ package by.it.naumenko.Calculator;
 
 class Scalar extends Var {
     double value;
+    int iValue;
+
+    public Scalar(int iValue) {
+        this.iValue = iValue;
+    }
 
     Scalar(double value) {
         this.value = value;
     }
 
     Scalar(String str){
-        value = Double.parseDouble(str);
+        this.value = Double.parseDouble(str);
     }
 
     Scalar(Scalar scalar){
-        value = scalar.value;
+        this.value = scalar.value;
     }
 
     @Override
     public String toString() {
+        if (value%1==0)
+            return Integer.toString((int) value);
         return Double.toString(value);
+
     }
 
     @Override
@@ -51,7 +59,7 @@ class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other)  throws CalcExeption{
+    public Var div(Var other)  throws CalcExeption {
         if (other instanceof Scalar){
             Scalar operand2=(Scalar)other;
             if (operand2.value==0)

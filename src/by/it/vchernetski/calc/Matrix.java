@@ -8,7 +8,7 @@ public class Matrix extends Var {
     Matrix(double[][] value){
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
-            System.arraycopy(value[i],0,this.value[i], 0,value.length);
+            System.arraycopy(value[i],0,this.value[i], 0,value[0].length);
         }
     }
 
@@ -23,7 +23,7 @@ public class Matrix extends Var {
         strvalue=strvalue.replaceAll("\\s","");
         Matcher m = Pattern.compile("\\{(.*)}").matcher(strvalue);
         if(m.find()) strvalue = m.group(1);
-        m = Pattern.compile("[\\d ,.]{2,}").matcher(strvalue);
+        m = Pattern.compile("[-?\\d\\.\\d? ,]{2,}").matcher(strvalue);
         int size=0;
         while (m.find()){
             size++;}
@@ -142,6 +142,10 @@ public class Matrix extends Var {
         return sb.toString();
     }
     @Override
+    public Var div(Var other) throws CalcException{
+        return other.divDisp(this);
+    }
+    @Override
     public Var addDisp(Var other)throws CalcException {
         return other.add(this);
     }
@@ -197,7 +201,13 @@ public class Matrix extends Var {
     @Override
     public Var div(Scalar other)throws CalcException {
         if(other.getValue() == 0) throw new CalcException("Деление на ноль");
-        return super.div((Var)other);
+        double[][] res = new double[this.value.length][this.value[0].length];
+        for (int i = 0; i < res.length; i++) {
+            for (int j = 0; j < res[i].length; j++) {
+                res[i][j] = this.value[i][j]/((Scalar) other).getValue();
+            }
+        }
+        return new Matrix(res);
     }
 
     @Override
@@ -206,7 +216,7 @@ public class Matrix extends Var {
         double[][] res = new double[this.value.length][this.value[0].length];
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < this.value[i].length; j++) {
-                    res[i][j] = other.value[i][j]+this.value[i][j];
+                res[i][j] = other.value[i][j]+this.value[i][j];
             }
         }
         return new Matrix(res);

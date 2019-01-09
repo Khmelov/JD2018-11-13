@@ -13,9 +13,9 @@ public class ConsoleRunner {
         Scanner scanner = new Scanner(System.in);
         String input;
         while (!(input=scanner.next()).equals("end")){
-            Var rechenie = null;
+            //String rechenie = null;
             try {
-                rechenie = parcer.calc(input);
+                String rechenie = parcer.calc(input);
                 printer.print(rechenie);
             } catch (CalcExeption calcExeption) {
                 System.out.println(calcExeption.getMessage());

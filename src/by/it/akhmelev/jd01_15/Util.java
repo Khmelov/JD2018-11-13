@@ -20,7 +20,7 @@ public class Util {
         return getPath(Util.class);
     }
 
-    static String getPath(String filename) {
+    public static String getPath(String filename) {
         return getPath() + filename;
     }
 }
