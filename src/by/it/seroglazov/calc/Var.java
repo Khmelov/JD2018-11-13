@@ -54,11 +54,11 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
 
     static Var createVar(String strVar) throws CalcException {
         if (strVar.matches(Patterns.SCALAR))
-            return new Scalar(strVar);
+            return VarCreator.SCALAR.create(strVar);
         if (strVar.matches(Patterns.VECTOR))
-            return new Vector(strVar);
+            return VarCreator.VECTOR.create(strVar);
         if (strVar.matches(Patterns.MATRIX))
-            return new Matrix(strVar);
+            return VarCreator.MATRIX.create(strVar);
         if (vars.containsKey(strVar))
             return vars.get(strVar);
         writeLogAndThrowException(ResMan.get("impossibleToCreate")+" " + strVar);

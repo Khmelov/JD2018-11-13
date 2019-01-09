@@ -27,7 +27,7 @@ public class Logger {
     private File file = new File(System.getProperty("user.dir"), "src/by/it/seroglazov/calc/log.txt");
 
     synchronized void add(String text) {
-        DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, ResMan.getLocale());
+        DateFormat df = DateFormat.getDateTimeInstance(DateFormat.DEFAULT, DateFormat.DEFAULT, ResMan.getLocale());
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))){
             String dt = df.format(new Date());
             bw.write(dt);
