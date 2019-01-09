@@ -11,7 +11,7 @@ public class Logger {
     private Logger() {
     }
 
-    Logger getInstance() {
+    static Logger getInstance() {
         if (logger == null) {
             synchronized (Logger.class) {
                 if (logger == null) {
@@ -23,7 +23,7 @@ public class Logger {
     }
 
     //синхронизация по объекту по this - logger
-    synchronized void log(String text) {
+    synchronized void logPrint(String text) {
         try (BufferedWriter out = new BufferedWriter(
                     new FileWriter("text.txt", true))) {
         } catch (IOException e) {
