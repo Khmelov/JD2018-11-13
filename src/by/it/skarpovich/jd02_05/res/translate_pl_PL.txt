@@ -1,0 +1,3 @@
+str.hello=Cześć!
+str.question=Jak się masz?
+str.name=Sergiusz K.

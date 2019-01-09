@@ -6,12 +6,6 @@ import java.util.regex.Pattern;
 public class Vector extends Var {
 
     private double[] value;
-
-    /*@Override
-    String getType() {
-        return "Vector";
-    }*/
-
     public double[] getValue() {
         return value;
     }
@@ -36,7 +30,7 @@ public class Vector extends Var {
                 value[i] = Double.parseDouble(sArr[i]);
             }
         } else {
-            throw new CalcException("Неверная строка ветора " + str);
+            throw new CalcException(ResMan.get("wrongVectorString") + " " + str);
         }
     }
 
@@ -108,7 +102,7 @@ public class Vector extends Var {
             }
             return new Vector(nv);
         } else { // Impossible if different length
-            return operation ? super.add((Var)v) : super.sub((Var)v);
+            return operation ? super.add((Var) v) : super.sub((Var) v);
         }
     }
 
@@ -133,37 +127,37 @@ public class Vector extends Var {
                 a += value[i] * other.value[i];
             }
             return new Scalar(a);
-        } else return super.mul((Var)other);
+        } else return super.mul((Var) other);
     }
 
     // Vector / Vector = null
     @Override
     public Var div(Vector other) throws CalcException {
-        return super.div((Var)other);
+        return super.div((Var) other);
     }
 
     // Vector + Matrix = null
     @Override
     public Var add(Matrix other) throws CalcException {
-        return super.add((Var)other);
+        return super.add((Var) other);
     }
 
     // Vector - Matrix = null
     @Override
     public Var sub(Matrix other) throws CalcException {
-        return super.sub((Var)other);
+        return super.sub((Var) other);
     }
 
     // Vector * Matrix = null
     @Override
     public Var mul(Matrix other) throws CalcException {
-        return super.mul((Var)other);
+        return super.mul((Var) other);
     }
 
     // Vector / Matrix = null
     @Override
     public Var div(Matrix other) throws CalcException {
-        return super.div((Var)other);
+        return super.div((Var) other);
     }
 
     @Override

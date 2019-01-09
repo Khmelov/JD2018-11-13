@@ -1,12 +1,8 @@
 package by.it.seroglazov.calc;
 
 public class Scalar extends Var {
-    private double value;
 
-    /*@Override
-    String getType() {
-        return "Scalar";
-    }*/
+    private double value;
 
     double getValue() {
         return value;
@@ -46,7 +42,7 @@ public class Scalar extends Var {
     @Override
     public Var div(Scalar s) throws CalcException {
         if (s.value == 0)
-            throw new CalcException("деление на ноль.");
+            throw new CalcException(ResMan.get("divisionByZero"));
         return new Scalar(value / s.value);
     }
 
