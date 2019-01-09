@@ -6,6 +6,8 @@ import java.util.regex.Pattern;
 
 
 public class Parcer {
+    private static  VarSelector varSelector;
+    private static VarCreator varCreator = new VarCreator();
     private final Map<String, Integer> priority = new HashMap<String, Integer>() {
         {
             this.put("=", 0);
@@ -38,7 +40,10 @@ public class Parcer {
         List<String> operations = new ArrayList<>();
         Matcher matcher = Pattern.compile(Patterns.OPERATION).matcher(expression);
         while (matcher.find()) operations.add(matcher.group());
-        if (operations.size() == 0) return Var.createVar(expression).toString();
+        if (operations.size() == 0) {
+            varSelector = VarSelector.getVarType(expression);
+            return varCreator.factoryMethod(varSelector,expression).toString();
+        }
         while (operations.size() > 0) {
             int number = getPriority(operations);
             String operation = operations.remove(number);
@@ -69,12 +74,14 @@ public class Parcer {
     }
 
     private String oneOperation(String operandF, String operation, String operandS) throws CalcException {
-        Var second = Var.createVar(operandS);
+        varSelector=VarSelector.getVarType(operandS);
+        Var second = varCreator.factoryMethod(varSelector,operandS);
         if (operation.equals("=")) {
             Var.saveVar(operandF, second);
             return second.toString();
         }
-        Var first = Var.createVar(operandF);
+        varSelector=VarSelector.getVarType(operandF);
+        Var first = varCreator.factoryMethod(varSelector, operandF);
         switch (operation) {
             case "+":
                 return first.add(second).toString();

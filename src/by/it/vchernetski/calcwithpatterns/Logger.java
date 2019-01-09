@@ -6,11 +6,12 @@ import java.io.IOException;
 
 public class Logger {
     private static Logger logger;
+    private volatile static boolean loggerCreated = false;
     private Logger(){}
     static Logger getInstance(){
-        if(logger==null){
+        if(!loggerCreated){
             synchronized (Logger.class){
-                if(logger==null)logger = new Logger();
+                if(!loggerCreated)logger = new Logger();
             }
         }
         return logger;

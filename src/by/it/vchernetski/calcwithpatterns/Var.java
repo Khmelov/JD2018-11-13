@@ -9,7 +9,7 @@ import java.util.TreeMap;
 
 abstract  class Var implements Operation, OpDispatch, OpObjects {
     protected static ResMan resMan = ResMan.INSTANCE;
-    private static Map<String, Var> vars = new HashMap<>();
+    protected static Map<String, Var> vars = new HashMap<>();
     static Var saveVar(String name, Var var){
         vars.put(name, var);
         return var;
@@ -66,13 +66,7 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
     public  String toString(){
         return "this Var";
     }
-    public static Var createVar(String op) throws CalcException{
-        if (op.matches(Patterns.SCALAR)) return new Scalar(op);
-        if (op.matches(Patterns.VECTOR)) return new Vector(op);
-        if (op.matches(Patterns.MATRIX)) return new Matrix(op);
-        else if (vars.containsKey((op))) return vars.get(op);
-        throw  new CalcException(resMan.get(Errors.ERR_CR)+" "+op);
-    }
+
     @Override
     public Var add(Var other) throws CalcException{
         throw  new CalcException(resMan.get(Errors.ERR_ADD)+" "+this+"+"+other+resMan.get(Errors.ERR_IM));
