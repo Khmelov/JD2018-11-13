@@ -1,9 +1,9 @@
 package by.it.kruglenja.jd01_12;
 
 
-import by.it.kruglenja.jd01_09.Patterns;
 
-import java.lang.reflect.Array;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;

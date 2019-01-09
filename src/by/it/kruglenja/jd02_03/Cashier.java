@@ -1,4 +1,4 @@
-package by.it.kruglenja.jd02_02;
+package by.it.kruglenja.jd02_03;
 
 public class Cashier implements Runnable {
     public String name;

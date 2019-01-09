@@ -1,10 +1,6 @@
-package by.it.kruglenja.jd02_02;
+package by.it.kruglenja.jd02_03;
 
-import java.io.DataInputStream;
-import java.util.ArrayList;
-import java.util.Deque;
 import java.util.LinkedList;
-import java.util.concurrent.ConcurrentLinkedDeque;
 
 /**
  * Created by user on 20.12.2018.

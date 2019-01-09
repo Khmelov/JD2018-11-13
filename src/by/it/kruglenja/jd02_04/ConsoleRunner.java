@@ -1,4 +1,4 @@
-package by.it.kruglenja.jd01_09;
+package by.it.kruglenja.jd02_04;
 
 import java.util.Scanner;
 
@@ -10,15 +10,10 @@ public class ConsoleRunner {
 
         Parser parser = new Parser();
         Printer printer = new Printer();
-        Var.read();
 
         while (!(line = sc.nextLine()).equals("end")){
-            try {
-                Var res = parser.calc(line);
-                printer.print(res);
-            }catch (CalcExeption e){
-                System.out.println(e.getMessage());
-            }
-        }Var.save();
+            Var res = parser.calc(line);
+            System.out.println(res);
+        }
     }
 }
