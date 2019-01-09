@@ -1,14 +1,10 @@
 package by.it.seroglazov.calc;
 
 public class Scalar extends Var {
+
     private double value;
 
-    @Override
-    String getType() {
-        return "Scalar";
-    }
-
-    public double getValue() {
+    double getValue() {
         return value;
     }
 
@@ -18,6 +14,7 @@ public class Scalar extends Var {
     Scalar(String strValue){
         value = Double.parseDouble(strValue);
     }
+    @SuppressWarnings("unused")
     Scalar(Scalar otherScalar){
         this.value = otherScalar.value;
     }
@@ -43,9 +40,9 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Scalar s) throws CalcExeption {
+    public Var div(Scalar s) throws CalcException {
         if (s.value == 0)
-            throw new CalcExeption("деление на ноль.");
+            throw new CalcException(ResMan.get("divisionByZero"));
         return new Scalar(value / s.value);
     }
 
@@ -55,7 +52,7 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var sub(Vector v) {
+    public Var sub(Vector v) throws CalcException {
         return v.sub(this).mul(new Scalar(-1));
     }
 
@@ -65,67 +62,67 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Vector v) throws CalcExeption {
+    public Var div(Vector v) throws CalcException {
         return super.div((Var)v);
     }
 
     @Override
-    public Var add(Matrix m) {
+    public Var add(Matrix m) throws CalcException {
         return m.add(this);
     }
 
     @Override
-    public Var sub(Matrix m) {
+    public Var sub(Matrix m) throws CalcException {
         return m.sub(this).mul(new Scalar(-1));
     }
 
     @Override
-    public Var mul(Matrix m) {
+    public Var mul(Matrix m) throws CalcException {
         return m.mul(this);
     }
 
     @Override
-    public Var div(Matrix m) throws CalcExeption {
+    public Var div(Matrix m) throws CalcException {
         return super.div((Var)m);
     }
 
     @Override
-    public Var add(Var other) throws CalcExeption {
+    public Var add(Var other) throws CalcException {
         return other.addDispatch(this);
     }
 
     @Override
-    public Var sub(Var other) throws CalcExeption {
+    public Var sub(Var other) throws CalcException {
         return other.subDispatch(this);
     }
 
     @Override
-    public Var mul(Var other) throws CalcExeption {
+    public Var mul(Var other) throws CalcException {
         return other.mulDispatch(this);
     }
 
     @Override
-    public Var div(Var other) throws CalcExeption {
+    public Var div(Var other) throws CalcException {
         return other.divDispatch(this);
     }
 
     @Override
-    public Var addDispatch(Var other) {
+    public Var addDispatch(Var other) throws CalcException {
         return other.add(this);
     }
 
     @Override
-    public Var subDispatch(Var other) {
+    public Var subDispatch(Var other) throws CalcException {
         return other.sub(this);
     }
 
     @Override
-    public Var mulDispatch(Var other) {
+    public Var mulDispatch(Var other) throws CalcException {
         return other.mul(this);
     }
 
     @Override
-    public Var divDispatch(Var other) throws CalcExeption {
+    public Var divDispatch(Var other) throws CalcException {
         return other.div(this);
     }
 }
