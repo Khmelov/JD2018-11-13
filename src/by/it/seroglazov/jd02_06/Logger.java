@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.Properties;
 
 public class Logger {
@@ -23,13 +25,19 @@ public class Logger {
         return instance;
     }
 
-    synchronized void add(String text) throws IOException {
-        String userDir = System.getProperty("user.dir");
-        File file = new File(userDir, "by/it/seroglazov/jd02_06/log.txt");
+    private File file = new File(System.getProperty("user.dir"), "src/by/it/seroglazov/jd02_06/log.txt");
+
+    synchronized void add(String text) {
+        DateFormat df = DateFormat.getDateTimeInstance();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))){
+            String dt = df.format(new Date());
+            bw.write(dt);
+            bw.write(" - ");
             bw.write(text);
             bw.newLine();
             bw.flush();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
