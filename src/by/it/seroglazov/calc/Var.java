@@ -67,6 +67,7 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
 
     static void writeLogAndThrowException(String text) throws CalcException {
         Logger.getInstance().add("ERROR: " + text);
+        Report.reportBuilder.addException("CalcException", text);
         throw new CalcException(text);
     }
 
