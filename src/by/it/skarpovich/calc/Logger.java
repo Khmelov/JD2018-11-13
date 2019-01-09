@@ -30,9 +30,7 @@ class Logger {
                 BufferedWriter out = new BufferedWriter(
                         new FileWriter(Util.getPath("log.txt"),true)
                 )) {
-
-
-
+            // Вывод текста и времени ошибки
             Date d = new Date();
             DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.SHORT, DateFormat.LONG, ResMan.INSTANCE.getLocale());
 
