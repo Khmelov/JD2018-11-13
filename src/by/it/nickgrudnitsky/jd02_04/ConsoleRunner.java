@@ -8,7 +8,7 @@ public class ConsoleRunner {
         Scanner scanner = new Scanner(System.in);
         String line;
 
-        Parser parser = new Parser();
+        Parcer parser = new Parcer();
         Printer printer = new Printer();
 
         Var.read();
@@ -21,7 +21,7 @@ public class ConsoleRunner {
                 Var.sortVar();
                 continue;
             }
-            Var result = null;
+            Var result;
             try {
                 result = parser.calc(line);
                 printer.print(result);

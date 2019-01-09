@@ -1,7 +1,10 @@
 package by.it.nickgrudnitsky.calc;
 
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 abstract class Var implements Operation {
 
@@ -57,9 +60,9 @@ abstract class Var implements Operation {
         if (file.exists()) {
             try (BufferedReader in = new BufferedReader(
                     new FileReader(Util.getPath("vars.txt")))) {
-                Parser parser = new Parser();
+                Parcer parser = new Parcer();
                 while (in.ready()) {
-                    parser.calc(in.readLine());
+                    parser.calcAndSave(in.readLine());
                 }
             } catch (IOException | CalcException e) {
                 e.printStackTrace();

@@ -21,7 +21,7 @@ public class Vector extends Var {
     }
 
     Vector(String strVector) {
-        Pattern pattern = Pattern.compile("[0-9]+");
+        Pattern pattern = Pattern.compile("-?[0-9]+\\.?[0-9]*");
         Matcher matcher = pattern.matcher(strVector);
         double[] array = new double[0];
         int i = 0;
@@ -31,7 +31,7 @@ public class Vector extends Var {
             array[i] = Double.parseDouble(matcher.group());
             i++;
         }
-        value = array;
+        this.value = array;
     }
 
     @Override

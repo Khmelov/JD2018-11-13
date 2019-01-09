@@ -60,9 +60,9 @@ abstract class Var implements Operation {
         if (file.exists()) {
             try (BufferedReader in = new BufferedReader(
                     new FileReader(Util.getPath("vars.txt")))) {
-                Parser parser = new Parser();
+                Parcer parser = new Parcer();
                 while (in.ready()) {
-                    parser.calc(in.readLine());
+                    parser.calcAndSave(in.readLine());
                 }
             } catch (IOException | CalcException e) {
                 e.printStackTrace();

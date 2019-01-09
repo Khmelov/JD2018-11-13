@@ -11,7 +11,7 @@ public class Matrix extends Var {
     Matrix(double[][] value) {
         this.value = new double[value.length][value[0].length];
         for (int i = 0; i < value.length; i++) {
-            this.value[i] = Arrays.copyOf(value[i], value[0].length);
+            System.arraycopy(value[i],0,this.value[i], 0,value[0].length);
         }
     }
 
@@ -20,14 +20,37 @@ public class Matrix extends Var {
     }
 
     Matrix(String strMatrix) {
-        Pattern pattern1 = Pattern.compile("[0-9]+(, ?[0-9])+");
+        strMatrix=strMatrix.replaceAll("\\s","");
+        Matcher m = Pattern.compile("\\{(.*)}").matcher(strMatrix);
+        if(m.find()) strMatrix = m.group(1);
+        m = Pattern.compile("[-?\\d\\.\\d? ,]{2,}").matcher(strMatrix);
+        int size=0;
+        while (m.find()){
+            size++;}
+        String[] lines = new String[size];
+        m.reset();
+        size=0;
+        while (m.find()){
+            lines[size++]=m.group();
+        }
+        String[][] mstr = new String[lines.length][lines[0].split(",").length];
+        this.value=new double[lines.length][lines[0].split(",").length];
+        for (int i = 0; i < lines.length; i++) {
+            mstr[i]=lines[i].split(",");
+        }
+        for (int i = 0; i < value.length; i++) {
+            for (int j = 0; j < value[i].length; j++) {
+                this.value[i][j]=Double.parseDouble(mstr[i][j]);
+            }
+        }
+        /*Pattern pattern1 = Pattern.compile("[0-9]+(, ?[0-9])+");
         Matcher matcher1 = pattern1.matcher(strMatrix);
         int i1 = 0;
         int rowsCount = 0;
         int columnsCount = 0;
         while (matcher1.find()) {
             rowsCount++;
-            Pattern pattern = Pattern.compile("[0-9]+");
+            Pattern pattern = Pattern.compile("-?[0-9]+\\.?[0-9]*");
             Matcher matcher = pattern.matcher(matcher1.group());
             while (matcher.find()) {
                 columnsCount++;
@@ -50,7 +73,7 @@ public class Matrix extends Var {
             }
             this.value[i1] = Arrays.copyOf(array, array.length);
             i1++;
-        }
+        }*/
     }
 
     @Override
@@ -100,12 +123,12 @@ public class Matrix extends Var {
         } else {
             if (other instanceof Matrix && value.length == ((Matrix) other).value.length && value[0].length == ((Matrix) other).value[0].length) {
                 double[][] rezult = new double[value.length][value[0].length];
-                for (int i = 0; i < rezult.length; i++) {
+                /*for (int i = 0; i < rezult.length; i++) {
                     System.arraycopy(value[i], 0, rezult[i], 0, rezult[0].length);
-                }
+                }*/
                 for (int i = 0; i < rezult.length; i++) {
                     for (int i1 = 0; i1 < rezult[0].length; i1++) {
-                        rezult[i][i1] -= ((Matrix) other).value[i][i1];
+                        rezult[i][i1] = value[i][i1] - ((Matrix) other).value[i][i1];
                     }
                 }
                 return new Matrix(rezult);
@@ -171,7 +194,7 @@ public class Matrix extends Var {
             }
             for (int i = 0; i < rezult.length; i++) {
                 for (int i1 = 0; i1 < rezult[0].length; i1++) {
-                    rezult[i][i1] += rezult[i][i1] / ((Scalar) other).getValue();
+                    rezult[i][i1] = rezult[i][i1] / ((Scalar) other).getValue();
                 }
             }
             return new Matrix(rezult);
