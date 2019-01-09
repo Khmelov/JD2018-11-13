@@ -30,22 +30,26 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
 
     @Override
     public Var add(Var other) throws CalcException {
-        throw new CalcException(ResMan.get("addition") + " " + this + " + " + other + " " + ResMan.get("impossible"));
+        writeLogAndThrowException(ResMan.get("addition") + " " + this + " + " + other + " " + ResMan.get("impossible"));
+        return null;
     }
 
     @Override
     public Var sub(Var other) throws CalcException {
-        throw new CalcException(ResMan.get("subtraction") + " " + this + " - " + other + " " + ResMan.get("impossible"));
+        writeLogAndThrowException(ResMan.get("subtraction") + " " + this + " - " + other + " " + ResMan.get("impossible"));
+        return null;
     }
 
     @Override
     public Var mul(Var other) throws CalcException {
-        throw new CalcException(ResMan.get("multiple") + " "+ this + " * " + other + " " + ResMan.get("impossible"));
+        writeLogAndThrowException(ResMan.get("multiple") + " "+ this + " * " + other + " " + ResMan.get("impossible"));
+        return null;
     }
 
     @Override
     public Var div(Var other) throws CalcException {
-        throw new CalcException(ResMan.get("division") + " " + this + " / " + other + " " + ResMan.get("impossible"));
+        writeLogAndThrowException(ResMan.get("division") + " " + this + " / " + other + " " + ResMan.get("impossible"));
+        return null;
     }
 
     static Var createVar(String strVar) throws CalcException {
@@ -57,7 +61,13 @@ public abstract class Var implements Operations, ScalarOperations, VectorOperati
             return new Matrix(strVar);
         if (vars.containsKey(strVar))
             return vars.get(strVar);
-        throw new CalcException(ResMan.get("impossibleToCreate")+" " + strVar);
+        writeLogAndThrowException(ResMan.get("impossibleToCreate")+" " + strVar);
+        return null;
+    }
+
+    static void writeLogAndThrowException(String text) throws CalcException {
+        Logger.getInstance().add("ERROR: " + text);
+        throw new CalcException(text);
     }
 
 }

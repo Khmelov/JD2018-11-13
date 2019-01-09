@@ -27,7 +27,8 @@ public class LoggerTest {
         logger.add("Строка 3");
 
         try {
-            List<String> strings = Files.readAllLines(Paths.get(System.getProperty("user.dir"), "src/by/it/seroglazov/jd02_06/log.txt"));
+            List<String> strings = Files.readAllLines(
+                    Paths.get(System.getProperty("user.dir"), "src/by/it/seroglazov/jd02_06/log.txt"));
             int s = strings.size();
             if (s < 3) fail();
             if (!strings.get(s-3).endsWith("Строка 1")) fail();

@@ -1,4 +1,4 @@
-package by.it.seroglazov.jd02_06;
+package by.it.seroglazov.calc;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -24,10 +24,10 @@ public class Logger {
         return instance;
     }
 
-    private File file = new File(System.getProperty("user.dir"), "src/by/it/seroglazov/jd02_06/log.txt");
+    private File file = new File(System.getProperty("user.dir"), "src/by/it/seroglazov/calc/log.txt");
 
     synchronized void add(String text) {
-        DateFormat df = DateFormat.getDateTimeInstance();
+        DateFormat df = DateFormat.getDateInstance(DateFormat.DEFAULT, ResMan.getLocale());
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))){
             String dt = df.format(new Date());
             bw.write(dt);
