@@ -1,4 +1,4 @@
-package by.it.kovalyova.calc;
+package by.it.berdnik.calc_v4;
 
 
 import org.junit.Test;
