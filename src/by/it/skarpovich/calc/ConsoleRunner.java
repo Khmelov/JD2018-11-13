@@ -22,7 +22,7 @@ public class ConsoleRunner {
         }
 
         Locale locale;
-        while (!(input = scanner.next()).equals("END")) {
+        while (!(input = scanner.next()).equalsIgnoreCase("end")) {
             try {
                 if (input.equals("be")) {
                     locale = new Locale("be", "BY");
@@ -38,7 +38,7 @@ public class ConsoleRunner {
                 } else {
                 String res = parser.calc(input);
                 printer.print(res);
-                    System.out.println(resMan.get(Messages.STR_TESTERROR));
+                    //System.out.println(resMan.get(Messages.STR_TESTERROR));
                 }
             } catch (CalcException e) {
                 System.out.println(e.getMessage());
