@@ -7,6 +7,24 @@ import static by.it.vchernetski.calcwithpatterns.Var.resMan;
 
 public class ConsoleRunner {
 
+    private static ReportWriter createReportWriter() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Choose report: 1 - full, 2 - short");
+        while (true) {
+            int choice = Integer.parseInt(sc.nextLine());
+            if (choice < 1 || choice > 2) {
+                System.out.println("Wrong input");
+                continue;
+            }
+            switch (choice) {
+                case 1:
+                    return new ReportWriter(resMan.getLocale(), new ReportFullBuilder());
+                case 2:
+                    return new ReportWriter(resMan.getLocale(), new ReportShortBuilder());
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Logger logger = Logger.getInstance();
         Scanner sc = new Scanner(System.in);
@@ -22,7 +40,7 @@ public class ConsoleRunner {
             logger.log(language);
             language = language.trim();
             lang = Integer.parseInt(language);
-            if(lang < 1 || lang > 3){
+            if (lang < 1 || lang > 3) {
                 System.out.println("Wrong input");
                 logger.log("Wrong input");
                 continue;
@@ -40,18 +58,22 @@ public class ConsoleRunner {
             }
             break;
         }
+        ReportWriter rw = createReportWriter();
         while (!(in = sc.nextLine()).equals("end")) {
             try {
                 String res = parcer.calc(in);
                 logger.log(in);
                 Printer.print(res);
                 logger.log(res);
+                rw.addOperation("Operation: " + in + "Result" +res);
             } catch (CalcException e) {
                 logger.log(e.getMessage());
+                rw.addError(e);
                 System.out.println(e.getMessage());
             }
         }
         logger.log("end");
         Var.save();
+        rw.finishReport();
     }
 }
