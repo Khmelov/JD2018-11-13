@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<persons>
+    <person>
+        <email> vasya@gmail.com</email>>
+        <nickname>Vasya</nickname>>
+        <password>Vasya0000</password>>
+        <ads>
+            <ad>
+                <description>Flat</description>>
+                <adress>Minsk Gorodetskaya 44 126</adress>>
+                <room>3</room>
+                <floor>3</floor>>
+                <area>55.5</area>>
+                <price>100000</price>>
+            </ad>>
+            <ad>
+                <description>Flat</description>>
+                <adress>Minsk Gorodetskaya 44 125</adress>>
+                <room>3</room>
+                <floor>3</floor>>
+                <area>40.5</area>>
+                <price>90000</price>>
+            </ad>>
+        </ads>>
+    </person>>
+</persons>

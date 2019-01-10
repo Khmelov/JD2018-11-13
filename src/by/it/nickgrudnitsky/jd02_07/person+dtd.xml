@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE persons SYSTEM "person.dtd">
+
+<persons>
+    <person>
+        <email> vasya@gmail.com</email>>
+        <nickname>Vasya</nickname>>
+        <password>Vasya0000</password>>
+        <ads>
+            <ad>
+                <description>Flat</description>>
+                <adress>Minsk Gorodetskaya 44 126</adress>>
+                <rooms>3</rooms>
+                <floor>3</floor>>
+                <floors>3</floors>>
+                <area>55.5</area>>
+                <price>100000</price>>
+            </ad>>
+            <ad>
+                <description>Flat</description>>
+                <adress>Minsk Gorodetskaya 44 125</adress>>
+                <rooms>3</rooms>
+                <floor>3</floor>>
+                <floors>3</floors>>
+                <area>40.5</area>>
+                <price>90000</price>>
+            </ad>>
+        </ads>>
+    </person>>
+</persons>
