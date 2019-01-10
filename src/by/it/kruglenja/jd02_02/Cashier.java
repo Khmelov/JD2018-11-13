@@ -16,7 +16,7 @@ public class Cashier implements Runnable {
                 Util.sleep(1);
             } else {
                 System.out.println(this + "начала обслуживание " + buyer);
-                int time = Util.random(2000, 5000);
+                int time = Util.random(3000, 5000);
                 Util.sleep(time);
                 System.out.println(this + "закончила обслуживание " + buyer);
                 synchronized (buyer) {

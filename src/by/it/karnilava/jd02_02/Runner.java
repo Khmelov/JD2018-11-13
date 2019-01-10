@@ -15,6 +15,7 @@ public class Runner {
         new ListOfGoods();
         new AvailableCashdesks();
 
+
        //  System.out.println("The Shop is open");
 
 //     НАЧАЛО ПЕЧАТИ ТАБЛИЦЫ

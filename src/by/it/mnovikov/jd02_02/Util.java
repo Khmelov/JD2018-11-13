@@ -2,6 +2,10 @@ package by.it.mnovikov.jd02_02;
 
 class Util {
 
+    static int random(int max) {
+        return random(0, max);
+    }
+
     static int random(int min, int max) {
         return min + (int) (Math.random() * (max - min + 1));
     }

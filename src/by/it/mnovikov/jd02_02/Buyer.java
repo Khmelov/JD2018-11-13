@@ -49,6 +49,7 @@ public class Buyer extends Thread implements IBuyer {
 
     @Override
     public void goToQueue() {
+        System.out.println(this + " пошёл на кассу.");
         QueueBuyer.add(this);
         synchronized (this){
             try {
