@@ -7,17 +7,7 @@ import java.util.Date;
 import java.util.Locale;
 
 public class ReportShortBuilder extends ReportBuilder{
-    @Override
-    public void writeToFile() {
-        try(BufferedWriter out = new BufferedWriter(new FileWriter(Util.getPath("ShortReport.txt")))){
-            out.write(report.getStartTime().toString());
-            out.write(report.getBodyReport().toString());
-            out.write(report.getFinishTime().toString());
-        }
-        catch (Exception e){
-            e.printStackTrace();
-        }
-    }
+
     @Override
     public void writeStartTime(Locale locale) {
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.SHORT, locale);
@@ -41,5 +31,16 @@ public class ReportShortBuilder extends ReportBuilder{
         DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG,DateFormat.SHORT, locale);
         Date date = new Date();
         report.setFinishTime(dateFormat.format(date)+"\n");
+    }
+    @Override
+    public void writeToFile() {
+        try(BufferedWriter out = new BufferedWriter(new FileWriter(Util.getPath("ShortReport.txt")))){
+            out.write(report.getStartTime().toString());
+            out.write(report.getBodyReport().toString());
+            out.write(report.getFinishTime().toString());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
