@@ -1,5 +1,7 @@
 package by.it.vchernetski.calc;
 
+import by.it.vchernetski.calc.errors.Errors;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -200,7 +202,7 @@ public class Matrix extends Var {
 
     @Override
     public Var div(Scalar other)throws CalcException {
-        if(other.getValue() == 0) throw new CalcException("Деление на ноль");
+        if(other.getValue() == 0) throw new CalcException(resMan.get(Errors.ERR_D0));
         double[][] res = new double[this.value.length][this.value[0].length];
         for (int i = 0; i < res.length; i++) {
             for (int j = 0; j < res[i].length; j++) {
@@ -212,7 +214,7 @@ public class Matrix extends Var {
 
     @Override
     public Var add(Matrix other) throws CalcException{
-        if(this.value.length!=other.value.length|this.value[0].length!=other.value[0].length) throw new CalcException("Матрицы не совпадают по размерам");
+        if(this.value.length!=other.value.length|this.value[0].length!=other.value[0].length) throw new CalcException(resMan.get(Errors.ERR_MS));
         double[][] res = new double[this.value.length][this.value[0].length];
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < this.value[i].length; j++) {
@@ -224,7 +226,7 @@ public class Matrix extends Var {
 
     @Override
     public Var sub(Matrix other) throws CalcException{
-        if(this.value.length!=other.value.length|this.value[0].length!=other.value[0].length) throw new CalcException("Матрицы не совпадают по размерам");
+        if(this.value.length!=other.value.length|this.value[0].length!=other.value[0].length) throw new CalcException(resMan.get(Errors.ERR_MS));
         double[][] res = new double[this.value.length][this.value[0].length];
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < this.value[i].length; j++) {
@@ -236,7 +238,7 @@ public class Matrix extends Var {
 
     @Override
     public Var mul(Matrix other) throws CalcException{
-        if(this.value[0].length!=other.value.length) throw new CalcException("Матрицы не согласованы");
+        if(this.value[0].length!=other.value.length) throw new CalcException(resMan.get(Errors.ERR_MC));
         double[][] res = new double[this.value.length][((Matrix) other).value[0].length];
         for (int i = 0; i < this.value.length; i++) {
             for (int j = 0; j < ((Matrix) other).value[i].length; j++) {
