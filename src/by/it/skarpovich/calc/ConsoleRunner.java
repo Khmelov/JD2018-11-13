@@ -16,6 +16,13 @@ public class ConsoleRunner {
         Scanner scanner = new Scanner(System.in);
         String input;
 
+
+         LoggerDirector reporter = LoggerDirector.getInstance();
+
+
+
+
+
         ResMan resMan = ResMan.INSTANCE;
         if (args.length >= 2) {
             resMan.setLocale(new Locale(args[0], args[1]));
@@ -24,6 +31,8 @@ public class ConsoleRunner {
         Locale locale;
         while (!(input = scanner.next()).equalsIgnoreCase("end")) {
             try {
+                reporter.log(input);
+
                 if (input.equals("be")) {
                     locale = new Locale("be", "BY");
                     resMan.setLocale(locale);
@@ -38,6 +47,7 @@ public class ConsoleRunner {
                 } else {
                 String res = parser.calc(input);
                 printer.print(res);
+                reporter.log(res);
                     //System.out.println(resMan.get(Messages.STR_TESTERROR));
                 }
             } catch (CalcException e) {
