@@ -21,6 +21,7 @@ public class Buyer extends Thread implements IBuyer {
         backet.takeBacket(customerNumber);
         chooseGoods();
         goToQueue();
+        Util.sleep(5000);
         CashierDispatcher.runChasier();
         goOut();
     }
@@ -37,12 +38,10 @@ public class Buyer extends Thread implements IBuyer {
 
     @Override
     public void chooseGoods() {
-
-        System.out.println(this + "выбирает товар");
         backet.putGoodsToBacket(customerNumber);
         int timeout = Util.random(500, 2000);
         Util.sleep(timeout);
-        System.out.println(this + "выбрал товар");
+        System.out.println(this + "выбрал товар и стал в очередь");
 
     }
 

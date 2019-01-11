@@ -13,11 +13,14 @@ class Dispatcher {
     static int getBuyerCounter() {
         return buyerCounter;
     }
+    static int getBuyerInShop() {
+        return buyerInShop;
+    }
 
     static void addBuyer() {
         synchronized (localMonitor) {
-            int j = buyerCounter;
-            int i = buyerInShop;
+            int i = buyerCounter;
+            int j = buyerInShop;
             Util.sleep(100);
             buyerCounter = ++i;
             buyerInShop = ++j;
