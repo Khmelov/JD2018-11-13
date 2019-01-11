@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT students (student)+>
+<!ELEMENT student (name, nickname, telephone, address)>
+<!ATTLIST student
+        login ID #REQUIRED
+        course CDATA #REQUIRED
+        >
+<!ELEMENT name (#PCDATA)>
+<!ELEMENT nickname (#PCDATA)>
+<!ELEMENT telephone (#PCDATA)>
+<!ELEMENT address (country, city, street)>
+<!ELEMENT country (#PCDATA)>
+<!ELEMENT city (#PCDATA)>
+<!ELEMENT street (#PCDATA)>
+
+
