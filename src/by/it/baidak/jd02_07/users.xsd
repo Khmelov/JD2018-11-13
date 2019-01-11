@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://zdes.chtougodno.com"
-        xmlns:mtp="http://zdes.chtougodno.com"
+        targetNamespace="http://it-academy.by/jd2018-11-13"
+        xmlns:mtp="http://it-academy.by/jd2018-11-13"
         elementFormDefault="qualified">
 
     <element name="users">
