@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ns:students xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:ns="http://akhmelev.it-academy.by/xml/students"
+          xsi:schemaLocation="http://akhmelev.it-academy.by/xml/students 04.xsd">
+    <ns:student login="IvanovMitarAlex7" course='it.jd.02'>
+        <ns:name>Ivanov Alexander</ns:name>
+        <ns:nickname>&quot;M&amp;M&apos;s&quot;</ns:nickname>
+        <ns:telephone>4586954</ns:telephone>
+        <ns:address>
+            <ns:country>Belarus</ns:country>
+            <ns:city>Minsk</ns:city>
+            <ns:street>Lenina 3</ns:street>
+        </ns:address>
+    </ns:student>
+
+    <ns:student login="zPav16" course='it.jd.02'>
+        <ns:name>Zimin Pavel</ns:name>
+        <ns:nickname>&lt;Daemond&gt;</ns:nickname>
+        <ns:telephone>2569854</ns:telephone>
+        <ns:address>
+            <ns:country>Belarus</ns:country>
+            <ns:city>Grodno</ns:city>
+            <ns:street>Gikalo 21</ns:street>
+        </ns:address>
+    </ns:student>
+</ns:students>
