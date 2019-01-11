@@ -18,7 +18,7 @@ public class Validator {
         try {
             Schema schema = factory.newSchema(new File(xsd));
             javax.xml.validation.Validator validator = schema.newValidator();
-            validator.validate(new StreamSource(xml));
+            validator.validate(new StreamSource(new File(xml)));
             System.out.println(xml+" valid");
         } catch (SAXException e) {
             System.err.println(xml+" non valid");
