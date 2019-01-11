@@ -11,7 +11,7 @@ abstract class Var implements Operation {
         vars.put(key, value);
     }
 
-    static Var createVar(String operand) throws ExceptionCalc {
+    static Var createVar(String operand) throws CalcException {
         if (operand.matches(Patterns.SCALAR)) return new Scalar(operand);
         if (operand.matches(Patterns.VECTOR)) return new Vector(operand);
         if (operand.matches(Patterns.MATRIX)) return new Matrix(operand);
@@ -19,24 +19,24 @@ abstract class Var implements Operation {
     }
 
     @Override
-    public Var add(Var other) throws ExceptionCalc {
-        throw new  ExceptionCalc("Сложение " + this + " и " + other + " невозможно");
+    public Var add(Var other) throws CalcException {
+        throw new CalcException("Сложение " + this + " и " + other + " невозможно");
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         System.out.println("Вычитание " + this + " + " + other + " невозможно");
         return null;
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         System.out.println("Умножение " + this + " + " + other + " невозможно");
         return null;
     }
 
     @Override
-    public Var div(Var other) throws ExceptionCalc {
+    public Var div(Var other) throws CalcException {
         System.out.println("Деление " + this + " + " + other + " невозможно");
         return null;
     }

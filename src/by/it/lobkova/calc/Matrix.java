@@ -1,7 +1,5 @@
 package by.it.lobkova.calc;
 
-import java.util.Arrays;
-
 public class Matrix extends Var {
 
     private double[][] value;
@@ -20,7 +18,7 @@ public class Matrix extends Var {
 
     Matrix(String value) {
         value = value.replaceAll("[{|}]{2,}", "");
-        String[] valueString = value.split("[}][\\s]?,[\\s]?[{]");
+        String[] valueString = value.split("[}][\\s]*[,]*[\\s]*[{]+");
         this.value = new double[valueString.length][];
 
         for (int i = 0; i < valueString.length; i++) {
@@ -44,13 +42,14 @@ public class Matrix extends Var {
         return result;
     }
 
+
     @Override
-    public Var add(Var other) throws ExceptionCalc {
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] res = getArrayCopy(value);
 
             for (int i = 0; i < res.length; i++) {
-                for (int j = 0; j < res.length; j++) {
+                for (int j = 0; j < res[i].length; j++) {
                     res[i][j] = res[i][j] + ((Scalar) other).getValue();
                 }
             }
@@ -58,7 +57,7 @@ public class Matrix extends Var {
         } else if (other instanceof Matrix) {
             double[][] mas1 = getArrayCopy(value);
             for (int i = 0; i < value.length; i++) {
-                for (int j = 0; j < value.length; j++) {
+                for (int j = 0; j < value[i].length; j++) {
                     mas1[i][j] += ((Matrix) other).getValue()[i][j];
                 }
             }
@@ -68,12 +67,12 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] res = getArrayCopy(value);
 
             for (int i = 0; i < res.length; i++) {
-                for (int j = 0; j < res.length; j++) {
+                for (int j = 0; j < res[i].length; j++) {
                     res[i][j] = res[i][j] - ((Scalar) other).getValue();
                 }
             }
@@ -81,7 +80,7 @@ public class Matrix extends Var {
         } else if (other instanceof Matrix) {
             double[][] mas1 = getArrayCopy(value);
             for (int i = 0; i < value.length; i++) {
-                for (int j = 0; j < value.length; j++) {
+                for (int j = 0; j < value[i].length; j++) {
                     mas1[i][j] -= ((Matrix) other).getValue()[i][j];
                 }
             }
@@ -91,7 +90,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] matrix = getArrayCopy(value);
             for (int i = 0; i < matrix.length; i++) {
@@ -127,7 +126,7 @@ public class Matrix extends Var {
     }
 
     @Override
-    public Var div(Var other) throws ExceptionCalc {
+    public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[][] matrix = getArrayCopy(value);
             for (int i = 0; i < matrix.length; i++) {
@@ -136,8 +135,7 @@ public class Matrix extends Var {
                 }
             }
             return new Matrix(matrix);
-        }
-        return super.div(other);
+        } else throw new CalcException("Деление " + this + " и " + other + " невозможно");
     }
 
     @Override
@@ -146,7 +144,7 @@ public class Matrix extends Var {
         String dilimiter = "";
         for (int i = 0; i < value.length; i++) {
             if (i >= 1) dilimiter = "}, {";
-            for (int j = 0; j < value.length; j++) {
+            for (int j = 0; j < value[i].length; j++) {
                 sb.append(dilimiter).append(value[i][j]);
                 dilimiter = ", ";
             }

@@ -4,7 +4,7 @@ package by.it.lobkova.calc;
 import java.util.Scanner;
 
 public class ConsoleRunner {
-    public static void main(String[] args) throws ExceptionCalc {
+    public static void main(String[] args) throws CalcException {
         Parcer parcer = new Parcer();
         Printer printer = new Printer();
         Scanner scanner = new Scanner(System.in);

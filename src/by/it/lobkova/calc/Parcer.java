@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class Parcer {
 
-    public Var calcs(String expression) throws ExceptionCalc {
+    public Var calcs(String expression) throws CalcException {
         String[] operand = expression.split(Patterns.SYMBOL);
 
         for (int i = 0; i < operand.length; i++) {
@@ -25,6 +25,10 @@ public class Parcer {
 
             Var one = Var.createVar(operand[0]);
 
+            if (one == null || two == null) {
+                return null;
+            }
+
             switch (operation) {
                 case "+":
                     return one.add(two);
@@ -35,7 +39,7 @@ public class Parcer {
                 case "/":
                     return one.div(two);
             }
-        } else throw new ExceptionCalc("Введена неверная операция");
+        } else throw new CalcException("Введена неверная операция");
         return null;
     }
 }
