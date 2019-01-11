@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<recipes>
+    <recipe id="1">
+        <name>white lady</name>
+        <tags>
+            <tag>all day cocktail</tag>
+        </tags>
+        <ingridients>
+            <ingredient>
+                <id>100</id>
+                <amount>4</amount>
+                <unit>cl</unit>
+            </ingredient>
+            <ingredient>
+                <id>104</id>
+                <amount>3</amount>
+                <unit>cl</unit>
+            </ingredient>
+        </ingridients>
+        <garnishes>
+            <garnish>
+                <id>105</id>
+            </garnish>
+        </garnishes>
+        <description>Add all ingredients into cocktail shaker filled with ice. Shake well and strain into large cocktail glass.</description>
+    </recipe>
+</recipes>

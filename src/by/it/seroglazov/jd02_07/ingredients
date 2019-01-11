@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ingredients>
+    <ingredient id="100">
+        <name>gin</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="101">
+        <name>freshly squeezed lemon juice</name>
+        <tags>
+            <tag>juice</tag>
+            <tag>citrus</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="102">
+        <name>cointreau</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>liqueur</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="104">
+        <name>triple sec</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>liqueur</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="105">
+        <name>lemon slice</name>
+        <tags>
+            <tag>citrus</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="106">
+        <name>bourbon whiskey</name>
+        <tags>
+            <tag>whisky</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="107">
+        <name>scotch whiskey</name>
+        <tags>
+            <tag>whisky</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="108">
+        <name>angostura aromatic bitters</name>
+        <tags>
+            <tag>bitter</tag>
+        </tags>
+    </ingredient>
+</ingredients>
