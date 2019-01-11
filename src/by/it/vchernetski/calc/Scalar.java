@@ -1,5 +1,7 @@
 package by.it.vchernetski.calc;
 
+import by.it.vchernetski.calc.errors.Errors;
+
 class Scalar extends Var {
     private double value;
     Scalar(double value) {
@@ -92,7 +94,7 @@ class Scalar extends Var {
     }
     @Override
     public Var div (Scalar other)throws CalcException{
-        if (other.value==0) throw new CalcException("Деление на ноль");
+        if (other.value==0) throw new CalcException(resMan.get(Errors.ERR_D0));
         return new Scalar(this.value/other.value);
     }
 

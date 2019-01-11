@@ -22,5 +22,4 @@ public class TestParcer {
         String expected="2.0";
         assertEquals("Incorrect calc A",expected,actual);
     }
-
 }

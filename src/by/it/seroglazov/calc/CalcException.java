@@ -7,11 +7,11 @@ public class CalcException extends Exception{
     }
 
     public CalcException(String message) {
-        super("ERROR: " + message);
+        super(message);
     }
 
     public CalcException(String message, Throwable cause) {
-        super("ERROR: " + message, cause);
+        super(message, cause);
     }
 
     public CalcException(Throwable cause) {
@@ -19,6 +19,6 @@ public class CalcException extends Exception{
     }
 
     protected CalcException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super("ERROR: " + message, cause, enableSuppression, writableStackTrace);
+        super(message, cause, enableSuppression, writableStackTrace);
     }
 }

@@ -6,7 +6,6 @@ import java.time.Clock;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.Date;
 
 public class Java8API {
     //что мы все psvm да psvm. Тесты же уже знаем.
