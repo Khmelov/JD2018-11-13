@@ -65,7 +65,7 @@ public class ConsoleRunner {
                 logger.log(in);
                 Printer.print(res);
                 logger.log(res);
-                rw.addOperation("Operation: " + in + "Result" +res);
+                rw.addOperation("Operation: " + in + " Result" +res);
             } catch (CalcException e) {
                 logger.log(e.getMessage());
                 rw.addError(e);
