@@ -1,11 +1,16 @@
 package by.it.seroglazov.calc;
 
+import java.io.File;
+import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
 public class ConsoleRunner {
 
     public static void main(String[] args) {
+        Report.reportBuilder
+                .setBeginWorkTime(new Date())
+                .setShortStyle(true); // <-- Если true - краткий отчет, если false - полный
         Parcer parcer = new Parcer();
         Printer printer = new Printer();
         Scanner scanner = new Scanner(System.in);
@@ -32,6 +37,11 @@ public class ConsoleRunner {
 
             }
         }
-
+        Report report = Report.reportBuilder
+                .setEndWorkTime(new Date())
+                .setLocale(ResMan.getLocale())
+                .setHeader("MAIN REPORT")
+                .build();
+        report.saveAsTextFile(new File(System.getProperty("user.dir"), "src/by/it/seroglazov/calc/report.txt"));
     }
 }

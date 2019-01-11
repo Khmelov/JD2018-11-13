@@ -42,7 +42,7 @@ public class Scalar extends Var {
     @Override
     public Var div(Scalar s) throws CalcException {
         if (s.value == 0)
-            throw new CalcException(ResMan.get("divisionByZero"));
+            writeLogAndThrowException(ResMan.get("divisionByZero"));
         return new Scalar(value / s.value);
     }
 
