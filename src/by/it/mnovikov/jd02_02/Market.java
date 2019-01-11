@@ -19,7 +19,7 @@ public class Market {
         }
 
         for (int time = 0; Dispatcher.marketOpened(); time++) {
-            int buyerCount = Util.random(0, 2);
+            int buyerCount = Util.random(2);//мод
             for (int i = 0; i < buyerCount; i++) {
                 if (Dispatcher.marketOpened()) {
                     Buyer buyer = new Buyer(Dispatcher.getBuyerCounter());

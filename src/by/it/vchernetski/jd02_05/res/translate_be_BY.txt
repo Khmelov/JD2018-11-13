@@ -1,0 +1,4 @@
+str.welcome=Прывiтанне!
+str.question=Як справы?
+user.name = Вадзiм Чарнецкi
+command = Няправільная каманда
