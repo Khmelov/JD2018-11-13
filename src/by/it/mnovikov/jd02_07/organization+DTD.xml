@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE organizations SYSTEM "organization.dtd">
+<organizations>
+    <organization>
+        <name>SoilQuality</name>
+        <adress>Минск, Кнорина, 111</adress>
+        <telephone>+375-29-288-12-19</telephone>
+        <email>soilquality@mail.ru</email>
+        <password>s0i|qu@\ity0811</password>
+        <ads>
+            <ad>
+                <title>Fast soil sampling</title>
+                <discription>Проведение пробоотбора проб почвы с использованием средств механизации</discription>
+                <sampler_type>автоматический</sampler_type>
+                <sampler_title>Nietfeld Speedprobe</sampler_title>
+                <productivity>60 проб/час</productivity>
+                <price>20 руб./га</price>
+            </ad>
+            <ad>
+                <title>Slow soil sampling</title>
+                <discription>Проведение пробоотбора проб почвы без использования средств механизации</discription>
+                <sampler_type>ручной</sampler_type>
+                <sampler_title>Nietfeld Speedprobe</sampler_title>
+                <productivity>10 проб/час</productivity>
+                <price>10 руб./га</price>
+            </ad>
+        </ads>
+    </organization>
+</organizations>

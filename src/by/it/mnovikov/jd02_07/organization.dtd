@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!ELEMENT organizations (organization)+>
+        <!ELEMENT organization (name, adress, telephone, email, password, ads)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT adress (#PCDATA)>
+        <!ELEMENT telephone (#PCDATA)>
+        <!ELEMENT email (#PCDATA)>
+        <!ELEMENT password (#PCDATA)>
+        <!ELEMENT ads (ad)+>
+        <!ELEMENT ad (title, discription, sampler_type, sampler_title, productivity, price)>
+        <!ELEMENT title (#PCDATA)>
+        <!ELEMENT discription (#PCDATA)>
+        <!ELEMENT sampler_type (#PCDATA)>
+        <!ELEMENT sampler_title (#PCDATA)>
+        <!ELEMENT productivity (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+
+
+
