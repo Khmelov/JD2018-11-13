@@ -53,12 +53,19 @@ abstract class Var implements Operation {
             return new Vector(operand);
         if (operand.matches(Patterns.MATRIX))
             return new Matrix(operand);
-        else if (vars.containsKey(operand))
-            return vars.get(operand);
 
-        throw  new CalcException("Невозможно создать "+operand);
+        Var var = vars.get(operand);
+        if (var == null){
+            throw  new CalcException("Некорректные данные "+operand);}
+        return var;
 
-    }
+        }
+
+
+
+
+
+
 
 
 }

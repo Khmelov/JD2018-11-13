@@ -13,6 +13,7 @@ class Scalar extends Var {
     }
 
     Scalar(String str) {
+
         this.value = Double.parseDouble(str);
 
     }
@@ -41,7 +42,9 @@ class Scalar extends Var {
             return new Scalar(sub);
         }
         else
-            return new Scalar(-1).mul(other).add(this);
+            return other.sub(this);
+
+            // так было return new Scalar(-1).mul(other).add(this);
 
     }
 

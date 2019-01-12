@@ -1,6 +1,6 @@
 package by.it.karnilava.calc;
 
-import java.util.HashMap;
+
 import java.util.Map;
 import java.util.Scanner;
 
@@ -27,7 +27,11 @@ public class ConsoleRunner {
 
             } else {
                 try {
-                    Var result = parser.calc(line);
+                    if (line.contains("(")){
+                       line= parser.hookcalc(line);
+
+                    }
+                    String result = parser.calc(line);
                     printer.print(result);
                 } catch (CalcException e) {
                     System.out.println(e.getMessage());
