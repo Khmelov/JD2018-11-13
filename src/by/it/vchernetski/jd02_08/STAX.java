@@ -6,7 +6,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 
 public class STAX {
-    private static String xml = System.getProperty("user.dir") + "/src/by/it/vchernetski/jd02_07/Drivers.xml";
+    private static String xml = System.getProperty("user.dir") + "/src/by/it/vchernetski/jd02_07/Drivers+xsd.xml";
 
     public static void main(String[] args) {
         String tab = "";
