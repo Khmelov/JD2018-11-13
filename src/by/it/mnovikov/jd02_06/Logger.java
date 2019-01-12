@@ -31,7 +31,7 @@ class Logger {
 
         try (
                 BufferedWriter out = new BufferedWriter(
-                        new FileWriter("E:\\Java\\JD2018-11-13\\src\\by\\it\\mnovikov\\jd02_06\\log.txt", true))) {
+                        new FileWriter(System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_06/log.txt", true))) {
             out.write(df.format(currentDate) + " " + text + "\n");
         } catch (IOException e) {
             e.printStackTrace();

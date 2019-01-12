@@ -1,5 +1,7 @@
 package by.it.vchernetski.calc;
 
+import by.it.vchernetski.calc.errors.Errors;
+
 import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -165,7 +167,7 @@ class Vector extends Var {
 
     @Override
     public Var div(Scalar other) throws CalcException{
-        if(other.getValue()==0) throw new CalcException("Деление на ноль");
+        if(other.getValue()==0) throw new CalcException(resMan.get(Errors.ERR_D0));
             Vector res = new Vector(Arrays.copyOf(this.value,this.value.length));
             for (int i = 0; i < res.value.length; i++) {
                 res.value[i] = res.value[i]/other.getValue();
@@ -195,7 +197,7 @@ class Vector extends Var {
 
     @Override
     public Var add(Vector other) throws CalcException{
-        if(this.value.length!=other.value.length) throw new CalcException("Векторы не совпадают по длине");
+        if(this.value.length!=other.value.length) throw new CalcException(resMan.get(Errors.ERR_VL));
         Vector res = new Vector(Arrays.copyOf(this.value, this.value.length));
         for (int i = 0; i < res.value.length; i++) {
             res.value[i] = res.value[i] + other.value[i];
@@ -205,7 +207,7 @@ class Vector extends Var {
 
     @Override
     public Var sub(Vector other) throws CalcException{
-        if(this.value.length!=other.value.length) throw new CalcException("Векторы не совпадают по длине");
+        if(this.value.length!=other.value.length) throw new CalcException(Errors.ERR_VL);
         Vector res = new Vector(Arrays.copyOf(this.value, this.value.length));
         for (int i = 0; i < res.value.length; i++) {
             res.value[i] = res.value[i] - other.value[i];
@@ -215,7 +217,7 @@ class Vector extends Var {
 
     @Override
     public Var mul(Vector other)throws CalcException {
-        if(this.value.length!=other.value.length) throw new CalcException("Векторы не совпадают по длине");
+        if(this.value.length!=other.value.length) throw new CalcException(Errors.ERR_VL);
         Vector v = new Vector(Arrays.copyOf(this.value,this.value.length));
         double result = 0;
         for (int i = 0; i < this.value.length; i++) {
