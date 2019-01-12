@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE organizations SYSTEM "organization.dtd">
-<organizations>
-    <organization login = "SQ_0818" password = "$0ilqu@lity0818">
+<organizations xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+               xmlns="http://it-academy.by/jd2018-11-13/mnovikov"
+               xsi:schemaLocation="http://it-academy.by/jd2018-11-13/mnovikov organization.xsd">
+    <organization>
         <name>SoilQuality</name>
         <adress>Минск, Кнорина, 111</adress>
         <telephone>+375-29-288-12-19</telephone>
@@ -12,16 +13,16 @@
                 <discription>Проведение пробоотбора проб почвы с использованием средств механизации</discription>
                 <sampler_type>автоматический</sampler_type>
                 <sampler_title>Nietfeld Speedprobe</sampler_title>
-                <productivity>60 проб/час</productivity>
-                <price>20 руб./га</price>
+                <productivity>60</productivity>
+                <price>20</price>
             </ad>
             <ad>
                 <title>Slow soil sampling</title>
                 <discription>Проведение пробоотбора проб почвы без использования средств механизации</discription>
                 <sampler_type>ручной</sampler_type>
                 <sampler_title>Nietfeld Speedprobe</sampler_title>
-                <productivity>10 проб/час</productivity>
-                <price>10 руб./га</price>
+                <productivity>10</productivity>
+                <price>10</price>
             </ad>
         </ads>
     </organization>
