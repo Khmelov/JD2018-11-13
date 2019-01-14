@@ -7,7 +7,7 @@
         <dateOfBirth>23.12.1994</dateOfBirth>
         <email>jeromeastero@gmai.com</email>
         <tel>+375333830046</tel>
-        <privelegy>true</privelegy>
+        <privelegy>false</privelegy>
         <ads>
             <ad>
                 <description>Лучшее авто за 4000$</description>
