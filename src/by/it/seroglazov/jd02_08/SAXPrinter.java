@@ -6,6 +6,7 @@ import org.xml.sax.helpers.DefaultHandler;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
+import java.io.File;
 import java.io.IOException;
 
 public class SAXPrinter extends DefaultHandler {
@@ -32,7 +33,7 @@ public class SAXPrinter extends DefaultHandler {
     private static SAXPrinter saxPrinter = new SAXPrinter();
 
     private static void myParse(String myFile, SAXParser parser) throws IOException, SAXException {
-        System.out.println("Parsing " + myFile);
+        System.out.println("Parsing " + new File(myFile).getAbsolutePath());
         parser.parse(myFile, saxPrinter);
         System.out.println("===============================================================================");
         System.out.println();
