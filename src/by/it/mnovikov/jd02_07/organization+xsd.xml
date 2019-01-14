@@ -13,16 +13,16 @@
                 <discription>Проведение пробоотбора проб почвы с использованием средств механизации</discription>
                 <sampler_type>автоматический</sampler_type>
                 <sampler_title>Nietfeld Speedprobe</sampler_title>
-                <productivity>60</productivity>
-                <price>20</price>
+                <productivity unit="sample/hour">60</productivity>
+                <price currency = "$">20</price>
             </ad>
             <ad>
                 <title>Slow soil sampling</title>
                 <discription>Проведение пробоотбора проб почвы без использования средств механизации</discription>
                 <sampler_type>ручной</sampler_type>
-                <sampler_title>Nietfeld Speedprobe</sampler_title>
-                <productivity>10</productivity>
-                <price>10</price>
+                <sampler_title>Bürkle GeoSampler</sampler_title>
+                <productivity unit="sample/hour">10</productivity>
+                <price currency = "$">10</price>
             </ad>
         </ads>
     </organization>

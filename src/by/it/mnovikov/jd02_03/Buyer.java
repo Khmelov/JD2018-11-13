@@ -1,13 +1,11 @@
 package by.it.mnovikov.jd02_03;
 
-import by.it.markelov.jd02_02.Goods;
-
 import java.util.concurrent.Semaphore;
 
 public class Buyer extends Thread implements IBuyer {
 
     private boolean wait = false;
-    Semaphore semaphore = new Semaphore(20,true);
+    private Semaphore semaphore = new Semaphore(20,true);
 
     void stopWait() {
         synchronized (this) {
