@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!ELEMENT persons (user)+>
-        <!ELEMENT user (name,sex,dateOfBirth,email,login,password,tel,ads)>
+        <!ELEMENT persons (user+,admin,guest?)>
+        <!ELEMENT user (name,sex,dateOfBirth,email,tel,privelegy,ads)>
+        <!ATTLIST user
+                login ID #REQUIRED
+                password CDATA #REQUIRED>
+        <!ATTLIST admin
+                login ID #REQUIRED
+                password CDATA #REQUIRED>
         <!ELEMENT name (#PCDATA)>
         <!ELEMENT sex (#PCDATA)>
         <!ELEMENT dateOfBirth (#PCDATA)>
         <!ELEMENT email (#PCDATA)>
-        <!ELEMENT login (#PCDATA)>
-        <!ELEMENT password (#PCDATA)>
         <!ELEMENT tel (#PCDATA)>
+        <!ELEMENT privelegy (#PCDATA)>
         <!ELEMENT ads (ad)*>
-<!ELEMENT ad (description,brand,model,color,body,year,equipment,mileage,crashed,price)>
+        <!ELEMENT ad (description,brand,model,color,body,year,equipment,mileage,crashed,price)>
         <!ELEMENT description (#PCDATA)>
         <!ELEMENT brand (#PCDATA)>
         <!ELEMENT model (#PCDATA)>
@@ -20,4 +25,8 @@
         <!ELEMENT mileage (#PCDATA)>
         <!ELEMENT crashed (#PCDATA)>
         <!ELEMENT price (#PCDATA)>
+        <!ELEMENT admin (privelegy)>
+        <!ELEMENT guest (privelegy)>
+
+
 

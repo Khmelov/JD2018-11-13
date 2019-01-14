@@ -3,14 +3,12 @@
          xmlns="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
          def:schemaLocation="2ccb5269-c8af-4950-ad9a-a53ac62d41be person.xsd"
 >
-    <user>
-        <fullname>Живов Антон Дмитриевич</fullname>
+    <user login="Jerome" password="A59915991">
+        <name>Живов Антон Дмитриевич</name>
         <dateOfBirth>23.12.1994</dateOfBirth>
-        <email>jeromeastero@gmail.com</email>
-        <login>Jerome</login>
-        <password>qwertyui</password>
-        <tel>+375-33-3830046</tel>
-        <privelegy>false</privelegy>
+        <email>jeromeastero@gmai.com</email>
+        <tel>+375333830046</tel>
+        <privelegy>true</privelegy>
         <ads>
             <ad>
                 <description>Лучшее авто за 4000$</description>
@@ -50,15 +48,10 @@
             </ad>
         </ads>
     </user>
-
-    <admin>
-        <login>admin</login>
-        <password>qwertyui9900</password>
+    <admin login="Admin" password="A59915991">
         <privelegy>true</privelegy>
     </admin>
-
     <guest>
         <privelegy>false</privelegy>
     </guest>
-
 </persons>

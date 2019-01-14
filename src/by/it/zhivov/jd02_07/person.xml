@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE persons SYSTEM "person.dtd">
 <persons>
-    <user>
+    <user login="Jerome" password="0123456789">
         <name>Живов Антон Дмитриевич</name>
         <sex>Мужской</sex>
         <dateOfBirth>23.12.1994</dateOfBirth>
         <email>jeromeastero@gmai.com</email>
-        <login>Jerome</login>
-        <password>0123456789</password>
         <tel>+375333830046</tel>
+        <privelegy>true</privelegy>
         <ads>
             <ad>
                 <description>Лучшее авто за 4000$</description>
@@ -48,4 +47,10 @@
             </ad>
         </ads>
     </user>
+    <admin login="admin" password="0123456789">
+        <privelegy>true</privelegy>
+    </admin>
+    <guest>
+        <privelegy>false</privelegy>
+    </guest>
 </persons>
