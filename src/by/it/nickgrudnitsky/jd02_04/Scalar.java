@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.calc;
+package by.it.nickgrudnitsky.jd02_04;
 
 class Scalar extends Var {
     private double value;
@@ -52,7 +52,7 @@ class Scalar extends Var {
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             if (((Scalar) other).value == 0) {
-                throw new CalcException(resManager.get(Errors.DIVISIONBYZERO));
+                throw new CalcException("Деление на 0 невозможно");
             }
             double rezult = this.value / ((Scalar) other).value;
             return new Scalar(rezult);

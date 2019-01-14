@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.calc;
+package by.it.nickgrudnitsky.jd02_04;
 
 import java.util.Arrays;
 import java.util.regex.Matcher;
@@ -105,7 +105,7 @@ public class Vector extends Var {
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             if (((Scalar) other).getValue() == 0) {
-                throw new CalcException(resManager.get(Errors.DIVISIONBYZERO));
+                throw new CalcException("Деление на 0 невозможно");
             }
             double[] rezult = Arrays.copyOf(value, value.length);
             for (int i = 0; i < rezult.length; i++) {

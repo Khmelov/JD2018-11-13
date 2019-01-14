@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.calc;
+package by.it.nickgrudnitsky.jd02_04;
 
 class Patterns {
     static final String REVESEPOLISHNOTATION = "\\{((\\{(([0-9]+\\.?[0-9]*),?)+}),?)+}|(?<![+/*=-])[+/*=)-]|[(]|(?<![A-Za-z]+[0-9]?)-?[0-9]+\\.?[0-9]*|[A-Za-z]+[0-9]?|\\{(([0-9]+\\.?[0-9]*),?)+}";

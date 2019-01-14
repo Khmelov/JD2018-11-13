@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.jd01_15;
+package by.it.nickgrudnitsky.jd02_04;
 
 import java.io.File;
 
@@ -10,7 +10,7 @@ public class Util {
     static String getPath(Class<?> clazz) {
         String simpleName = clazz.getSimpleName();
         String path = clazz.getName().replace(simpleName, "");
-        path = path.replace(".", File.separator);
+        path = path.replaceAll("\\.", File.separator);
         String root = System.getProperty("user.dir");
         String result = root + File.separator + "src" + File.separator + path;
         return result;
