@@ -19,19 +19,15 @@ public class Parser {
             throw new NullPointerException();
             //return ""; //TODO create error
         }
-        try {
-            switch (operation) {
-                case "+":
-                    return one.add(two).toString();
-                case "-":
-                    return one.sub(two).toString();
-                case "*":
-                    return one.mul(two).toString();
-                case "/":
-                    return one.div(two).toString();
-            }
-        } catch (CalcException e) {
-            System.out.println(e.getMessage());
+        switch (operation) {
+            case "+":
+                return one.add(two).toString();
+            case "-":
+                return one.sub(two).toString();
+            case "*":
+                return one.mul(two).toString();
+            case "/":
+                return one.div(two).toString();
         }
         return null;
     }
@@ -78,30 +74,40 @@ public class Parser {
 
 
     String parse(String expr) {
+        Logger logger = Logger.getInstance();
 
         //удаляем пробелы
-        expr=expr.trim().replaceAll("\\s+","");
+        expr = expr.trim().replaceAll("\\s+", "");
         //все выражения в скобках заменяем на их значения
         Pattern prts = Pattern.compile(Patterns.PRTS);
         Matcher m;
-        try {
-            while ((m = prts.matcher(expr)).matches()) {
+        while ((m = prts.matcher(expr)).matches()) {
+            try {
                 expr = m.group(1) + simpleexpr(m.group(2)) + m.group(3);
+            } catch (CalcException e) {
+                logger.log(e.getMessage());
+                return e.getMessage();
             }
-            Pattern assign = Pattern.compile(Patterns.ASSIGN);
-            m = assign.matcher(expr);
-            if (m.matches()) {
-
-                String s = simpleexpr(m.group(2));
+        }
+        Pattern assign = Pattern.compile(Patterns.ASSIGN);
+        m = assign.matcher(expr);
+        if (m.matches()) {
+            String s;
+            try {
+                s = simpleexpr(m.group(2));
+            } catch (CalcException e) {
+                logger.log(e.getMessage());
+                return e.getMessage();
+            }
+            try {
                 vars.put(m.group(1), Var.createVar(s));
-                return s;
-
+            } catch(CalcException e) {
+                logger.log(e.getMessage());
+                return e.getMessage();
             }
+            return s;
 
-        } catch(CalcException e) {
-            return e.getMessage();
         }
         return null;
-
     }
 }

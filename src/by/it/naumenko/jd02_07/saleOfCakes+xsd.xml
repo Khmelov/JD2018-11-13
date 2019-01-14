@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<saleOfCakes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://it-academy.by/jd2018-11-13/naumenko"
+             xsi:schemaLocation="http://it-academy.by/jd2018-11-13/naumenko saleOfCakes.xsd ">
+
+    <sale>
+        <data>12.01.2019</data>
+        <email_klient>Sergey@gmail.com</email_klient>
+        <id_tovara>1</id_tovara>
+        <virychka>60</virychka>
+    </sale>
+
+    <tovar>
+        <!--торты-->
+        <cake>
+            <name_cake>прекрасная краса</name_cake>
+            <weight>3</weight>
+            <biscuit_cake>красный бархат</biscuit_cake>
+            <filling_cake>вишневое конфи</filling_cake>
+            <cream_cake>creamChies</cream_cake>
+            <decoration_cake>ягоды</decoration_cake>
+            <price_cake>25</price_cake>
+        </cake>
+
+        <!--капкейки-->
+        <capCakes>
+            <biscuit_capCakes>красный бархат</biscuit_capCakes>
+            <cream_cup>creamChies</cream_cup>
+            <filling_cup>вишневое конфи</filling_cup>
+            <decoration_cup>ягоды</decoration_cup>
+            <count_cup>12</count_cup>
+            <price_cup>3</price_cup>
+            <color_cup>blue</color_cup>
+        </capCakes>
+
+        <!--пряники-->
+        <gingerbread>
+            <decoration_pr>ягоды</decoration_pr>
+            <size_pr>10</size_pr>
+            <count_pr>12</count_pr>
+            <price_pr>5</price_pr>
+            <!--<tecto>красный бархат</tecto>-->
+        </gingerbread>
+
+        <!--леденцы-->
+        <candy>
+            <form_candy>круг</form_candy>
+            <size_canndy>5</size_canndy>
+            <caramel_candy>малиновая</caramel_candy>
+            <count_candy>12</count_candy>
+            <decoration_candy>ягоды</decoration_candy>
+            <price_candy>5</price_candy>
+        </candy>
+
+        <!--зефир и меренги-->
+        <marshmallow>
+            <form_z>круг</form_z>
+            <size_z>7</size_z>
+            <taste_z>малиновый</taste_z>
+            <color_z>красный</color_z>
+            <count_z>12</count_z>
+            <decoration_Z>ягоды</decoration_Z>
+            <price_Z>0.5</price_Z>
+        </marshmallow>
+
+    </tovar>
+
+    <client>
+        <lastName>Пупкин</lastName>
+        <firstName>Сергей</firstName>
+        <email>Sergey@gmail.com</email>
+        <tel>8(029)370-19-67</tel>
+    </client>
+
+</saleOfCakes>
+
+
+
+
+
+
+

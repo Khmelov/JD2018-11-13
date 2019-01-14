@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+        <!ELEMENT clients (client+)>
+        <!ELEMENT client (e-mail, login, password, orders)>
+        <!ELEMENT e-mail (#PCDATA)>
+        <!ELEMENT login (#PCDATA)>
+        <!ELEMENT password (#PCDATA)>
+        <!ELEMENT orders (order*)>
+        <!ELEMENT order (name, code, size, colour, delivery_address, phone_number)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT code (#PCDATA)>
+        <!ELEMENT size (#PCDATA)>
+        <!ELEMENT colour (#PCDATA)>
+        <!ELEMENT delivery_address (#PCDATA)>
+        <!ELEMENT phone_number (#PCDATA)>
+
