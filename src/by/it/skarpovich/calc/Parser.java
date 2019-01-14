@@ -34,7 +34,7 @@ class Parser {
         Pattern op = Pattern.compile(Patterns.OPERATION);
         Matcher matcher = op.matcher(expression);
         while (matcher.find()) operations.add(matcher.group());
-        if (operations.size() == 0) return Var.createVar(expression).toString();
+        if (operations.size() == 0) return VarSelector.createVar(expression).toString();
         while (operations.size()>0){
             int number=getPriority(operations);
            // debug(operands,operations);
@@ -63,12 +63,12 @@ class Parser {
     }
 
     private String oneOperation(String oneStr, String operation, String twoStr) throws CalcException {
-        Var two = Var.createVar(twoStr);
+        Var two = VarSelector.createVar(twoStr);
         if (operation.equals("=")) {
             Var.setVar(oneStr, two);
             return two.toString();
         }
-        Var one = Var.createVar(oneStr);
+        Var one = VarSelector.createVar(oneStr);
         switch (operation) {
             case "+":
                 return one.add(two).toString();
