@@ -6,7 +6,7 @@ import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
 
 public class MyXSL {
-    final static String root= "src/by/it/vchernetski/jd02_08/";
+    private final static String root= System.getProperty("user.dir")+"/src/by/it/vchernetski/jd02_08/";
 
     public static void main(String[] args) {
         String fileName = root+"Drivers.xml";
