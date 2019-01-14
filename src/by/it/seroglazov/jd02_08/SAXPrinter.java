@@ -2,37 +2,38 @@ package by.it.seroglazov.jd02_08;
 
 import org.xml.sax.Attributes;
 import org.xml.sax.SAXException;
-import org.xml.sax.XMLReader;
 import org.xml.sax.helpers.DefaultHandler;
-import org.xml.sax.helpers.XMLReaderFactory;
-
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 public class SAXPrinter extends DefaultHandler {
     public static void main(String[] args) {
-        SAXPrinter saxPrinter = new SAXPrinter();
-        String str = "new" + 4 + 5 + 4.5+ 17+ "444"+34 + " " + 34.4545;
-        System.out.println(str);
         String parentDir = System.getProperty("user.dir") + "/src/by/it/seroglazov/jd02_07/";
         String myIngredientsFile = parentDir + "ingredients/ingredients+xsd.xml";
         String myRecipesFile = parentDir + "recipes/recipes+xsd.xml";
         String myUsersFile = parentDir + "users/users+xsd.xml";
         try {
-            XMLReader xmlReader = XMLReaderFactory.createXMLReader();
-            xmlReader.setContentHandler(saxPrinter);
-            myParse(myIngredientsFile, xmlReader);
-            myParse(myRecipesFile, xmlReader);
-            myParse(myUsersFile, xmlReader);
+            SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
+            SAXParser saxParser = saxParserFactory.newSAXParser();
+            myParse(myIngredientsFile, saxParser);
+            myParse(myRecipesFile, saxParser);
+            myParse(myUsersFile, saxParser);
         } catch (SAXException e) {
-            System.err.println("Error while getting XMLReadre: " + e.getMessage());
+            System.err.println("Error while getting XMLReader: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Error while parsing XML: " + e.getMessage());
+        } catch (ParserConfigurationException e) {
+            System.err.println("Error with XML Parser: " + e.getMessage());
         }
     }
 
-    private static void myParse(String myFile, XMLReader reader) throws IOException, SAXException {
+    private static SAXPrinter saxPrinter = new SAXPrinter();
+
+    private static void myParse(String myFile, SAXParser parser) throws IOException, SAXException {
         System.out.println("Parsing " + myFile);
-        reader.parse(myFile);
+        parser.parse(myFile, saxPrinter);
         System.out.println("===============================================================================");
         System.out.println();
     }
@@ -53,9 +54,9 @@ public class SAXPrinter extends DefaultHandler {
         System.out.printf("%s<%s", tab, qName);
         int len = attributes.getLength();
         for (int i = 0; i < len; i++) {
-            System.out.printf(" %s", attributes.getValue(i));
+            System.out.print(" " + attributes.getLocalName(i) + "=\"" +attributes.getValue(i) + "\"");
         }
-
+        System.out.println(">");
         tab = tab.concat("\t");
     }
 
