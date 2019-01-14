@@ -7,15 +7,17 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class StAXParse {
+public class STAXParse {
 
-    private static String xml = System.getProperty("user.dir") + "/src/by/it/zhivov/jd02_07/person+xsd.xml";
+    //private static String xml = System.getProperty("user.dir") + "/src/by/it/zhivov/jd02_07/person+xsd.xml";
 
-    public static void main(String[] args) {
+    static void staxParser(String xml) {
+        System.out.println("start StAX Parse\n");
         String tab = "";
         StringBuilder content = new StringBuilder();
+        try
 
-        try {
+        {
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             FileInputStream xmlFile = new FileInputStream(xml);
             XMLStreamReader reader = inputFactory.createXMLStreamReader(xmlFile);
@@ -52,13 +54,17 @@ public class StAXParse {
                         System.out.println(tab + "</" + reader.getLocalName() + ">");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
-                        System.out.println("end xml");
+                        //System.out.println("end xml");
                         break;
                 }
             }
 
-        } catch (FileNotFoundException | XMLStreamException e) {
+        } catch (FileNotFoundException |
+                XMLStreamException e)
+
+        {
             e.printStackTrace();
         }
     }
+
 }
