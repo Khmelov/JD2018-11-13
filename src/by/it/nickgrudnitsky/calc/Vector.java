@@ -105,6 +105,8 @@ public class Vector extends Var {
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             if (((Scalar) other).getValue() == 0) {
+                Logger logger = Logger.getInstance();
+                logger.log(resManager.get(resManager.get(Errors.DIVISIONBYZERO)));
                 throw new CalcException(resManager.get(Errors.DIVISIONBYZERO));
             }
             double[] rezult = Arrays.copyOf(value, value.length);
