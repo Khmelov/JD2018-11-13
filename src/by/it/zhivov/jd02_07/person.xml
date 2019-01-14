@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE persons SYSTEM "person.dtd">
 <persons>
-    <user login="Jerome" password="0123456789">
+    <user login="Jerome" password="A59915991">
         <name>Живов Антон Дмитриевич</name>
         <sex>Мужской</sex>
         <dateOfBirth>23.12.1994</dateOfBirth>
@@ -47,7 +46,7 @@
             </ad>
         </ads>
     </user>
-    <admin login="admin" password="0123456789">
+    <admin login="admin" password="A59915991">
         <privelegy>true</privelegy>
     </admin>
     <guest>
