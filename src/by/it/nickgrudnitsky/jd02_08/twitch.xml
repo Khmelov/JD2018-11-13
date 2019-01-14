@@ -13,13 +13,12 @@
         </viewer>
         <viewer>
             <email>pewdiepie@pewd.se</email>
-            <password>youlaughyouloose</password>
-            <nick>pewdiepie</nick>
+            <password>youloose</password>
+            <nickname>pewdiepie</nickname>
             <following>
                 <channelname>Ninja</channelname>
             </following>
         </viewer>
-
     </viewers>
 
     <streamers>
