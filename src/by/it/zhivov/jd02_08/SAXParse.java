@@ -6,11 +6,13 @@ import org.xml.sax.helpers.DefaultHandler;
 
 public class SAXParse extends DefaultHandler {
 
+
     private String tab;
     private StringBuilder content;
 
     @Override
     public void startDocument() throws SAXException {
+        System.out.println("start SAX Parse+\n");
         tab="";
         content=new StringBuilder();
     }
