@@ -1,4 +1,4 @@
-package by.it.akhmelev.jd02_05;
+package by.it.medvedeva.jd02_05;
 
 import java.util.Locale;
 import java.util.ResourceBundle;
