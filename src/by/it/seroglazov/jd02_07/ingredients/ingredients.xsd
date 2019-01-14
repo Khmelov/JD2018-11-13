@@ -17,7 +17,7 @@
     <complexType name="Ingredient">
         <sequence>
             <element name="name" type="string"/>
-            <element name="tags" minOccurs="0">
+            <element name="tags">
                 <complexType>
                     <sequence>
                         <element name="tag"

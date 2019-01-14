@@ -41,7 +41,7 @@
         </tags>
     </ingredient>
     <ingredient id="i107">
-        <name>scotch whiskey</name>
+        <name>scotch whisky</name>
         <tags>
             <tag>alcoholic beverage</tag>
             <tag>whisky</tag>
@@ -56,6 +56,8 @@
     </ingredient>
     <ingredient id="i109">
         <name>sugar</name>
+        <tags>
+        </tags>
     </ingredient>
     <ingredient id="i110">
         <name>plain water</name>
@@ -71,5 +73,7 @@
     </ingredient>
     <ingredient id="i112">
         <name>cocktail cherry</name>
+        <tags>
+        </tags>
     </ingredient>
 </ingredients>
