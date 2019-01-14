@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://it-academy.by/jd2018-11-13/seroglazov/ingredients"
+        xmlns:mtp="http://it-academy.by/jd2018-11-13/seroglazov/ingredients"
+        elementFormDefault="qualified">
+    <element name="ingredients">
+        <complexType>
+            <sequence>
+                <element name="ingredient"
+                         type="mtp:Ingredient"
+                         maxOccurs="unbounded"
+                />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Ingredient">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="tags">
+                <complexType>
+                    <sequence>
+                        <element name="tag"
+                                 type="string"
+                                 minOccurs="0"
+                                 maxOccurs="unbounded"/>
+                    </sequence>
+                </complexType>
+            </element>
+        </sequence>
+        <attribute name="id" use="required" type="ID"/>
+    </complexType>
+
+</schema>
