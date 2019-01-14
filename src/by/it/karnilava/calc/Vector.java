@@ -115,7 +115,7 @@ class Vector extends Var {
     public Var div (Var other) throws CalcException {
         if (other instanceof Scalar) {
             if ((((Scalar) other).getValue() ==0)){
-                throw new CalcException("Деление на ноль");}
+                throw new CalcException(SwitchLanguages.rb.getString("NullDivision"));}
             double[] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
                 res[i] = res[i] / ((Scalar) other).getValue();

@@ -56,7 +56,7 @@ public String hookcalc (String s){
                s= s.replace(matcherLine, substring);
 
             } catch (CalcException e) {
-                e.printStackTrace();
+                e.getMessage();
             }
 
         }

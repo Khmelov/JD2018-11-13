@@ -1,7 +1,9 @@
 package by.it.karnilava.calc;
 
 
+
 import java.util.Map;
+
 import java.util.Scanner;
 
 public class ConsoleRunner {
@@ -9,10 +11,16 @@ public class ConsoleRunner {
         Scanner scan = new Scanner(System.in);
         String line;
 
+
         Parser parser = new Parser();
         Printer printer = new Printer();
 
         while (!(line = scan.nextLine()).equals("end")) {
+            if (line.equals("ru")||line.equals("en")||line.equals("be")){
+                new SwitchLanguages(line);
+                line=scan.nextLine();
+            }
+
             if (line.equals("printvar")) {
 
                 for (Map.Entry<String, Var> entry : Var.vars.entrySet()) {
