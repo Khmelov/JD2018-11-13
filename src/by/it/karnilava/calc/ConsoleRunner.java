@@ -10,6 +10,7 @@ public class ConsoleRunner {
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
         String line;
+        LoggerErrors.getInstance();
 
 
         Parser parser = new Parser();
