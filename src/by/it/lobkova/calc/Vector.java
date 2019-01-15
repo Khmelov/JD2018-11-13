@@ -1,6 +1,8 @@
 package by.it.lobkova.calc;
 
 import java.util.Arrays;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Vector extends Var {
 
@@ -18,17 +20,17 @@ public class Vector extends Var {
         return value;
     }
 
-    Vector(String str) {
-        String[] string = str.replaceAll("[{}]", "").split("[,]");
-        double[] vector = new double[string.length];
-        for (int i = 0; i < vector.length; i++) {
-            vector[i] = Double.parseDouble(string[i]);
-        }
-        this.value = vector;
+    Vector(String str) throws ExceptionCalc {
+            String[] string = str.replaceAll("[{}]", "").split("[,]");
+            double[] vector = new double[string.length];
+            for (int i = 0; i < vector.length; i++) {
+                vector[i] = Double.parseDouble(string[i]);
+            }
+            this.value = vector;
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws ExceptionCalc {
         if (other instanceof Scalar) {
             double[] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
@@ -41,8 +43,7 @@ public class Vector extends Var {
                 res[i] = res[i] + ((Vector) other).value[i];
             }
             return new Vector(res);
-        }
-        else {
+        } else {
             return super.add(other);
         }
     }
@@ -61,8 +62,7 @@ public class Vector extends Var {
                 res[i] = res[i] - ((Vector) other).value[i];
             }
             return new Vector(res);
-        }
-         else {
+        } else {
             return super.sub(other);
         }
     }
@@ -93,16 +93,18 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws ExceptionCalc {
         if (other instanceof Scalar) {
-            double[] res = Arrays.copyOf(value, value.length);
-            for (int i = 0; i < res.length; i++) {
-                res[i] = res[i] / ((Scalar) other).getValue();
-            }
-            return new Vector(res);
+           // if (((Scalar) other).getValue() != 0) {
+                double[] res = Arrays.copyOf(value, value.length);
+                for (int i = 0; i < res.length; i++) {
+                    res[i] = res[i] / ((Scalar) other).getValue();
+                }
+                return new Vector(res);
+           // } else throw new ExceptionCalc("Деление на 0 невозможно");
         } else if (other instanceof Vector) {
-            System.out.println("Деление вектора на вектор невозможно");
-            }
+            throw new ExceptionCalc("Деление вектора на вектор невозмоно");
+        }
 
         return super.div(other);
     }

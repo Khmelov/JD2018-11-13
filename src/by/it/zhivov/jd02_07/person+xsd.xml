@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persons xmlns:def="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
+         def:schemaLocation="2ccb5269-c8af-4950-ad9a-a53ac62d41be person.xsd"
+>
+    <user>
+        <fullname>Живов Антон Дмитриевич</fullname>
+        <dateOfBirth>23.12.1994</dateOfBirth>
+        <email>jeromeastero@gmail.com</email>
+        <login>Jerome</login>
+        <password>qwertyui</password>
+        <tel>+375-33-3830046</tel>
+        <privelegy>false</privelegy>
+        <ads>
+            <ad>
+                <description>Лучшее авто за 4000$</description>
+                <brand>Toyota</brand>
+                <model>Camry</model>
+                <color>Grey</color>
+                <body>Sedan</body>
+                <year>2009</year>
+                <equipment>Full lux</equipment>
+                <mileage>126000</mileage>
+                <crashed>false</crashed>
+                <price>4300</price>
+            </ad>
+            <ad>
+                <description>Низкий таз</description>
+                <brand>ВАЗ</brand>
+                <model>2106</model>
+                <color>Murena</color>
+                <body>Sedan</body>
+                <year>1992</year>
+                <equipment>Standart</equipment>
+                <mileage>586000</mileage>
+                <crashed>true</crashed>
+                <price>250</price>
+            </ad>
+            <ad>
+                <description>Семейный авто</description>
+                <brand>Chrysler</brand>
+                <model>Voyager</model>
+                <color>Black</color>
+                <body>Minivan</body>
+                <year>1999</year>
+                <equipment>Comfort</equipment>
+                <mileage>250000</mileage>
+                <crashed>false</crashed>
+                <price>5500</price>
+            </ad>
+        </ads>
+    </user>
+
+    <admin>
+        <login>admin</login>
+        <password>qwertyui9900</password>
+        <privelegy>true</privelegy>
+    </admin>
+
+    <guest>
+        <privelegy>false</privelegy>
+    </guest>
+
+</persons>

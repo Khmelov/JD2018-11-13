@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://generate.JD02_09.akhmelev.it.by/"
+        xmlns:tns="http://generate.JD02_09.akhmelev.it.by/"
+        elementFormDefault="qualified">
+    <element name="students">
+        <complexType>
+            <sequence>
+                <element name="student"
+                         type="tns:Student"
+                         minOccurs="2"
+                         maxOccurs="unbounded" />
+            </sequence>
+        </complexType>
+    </element>
+    <complexType name="Student">
+        <sequence>
+            <element name="name" type="string" />
+            <element name="nickname" type="string" />
+            <element name="telephone" type="positiveInteger" />
+            <element name="address" type="tns:Address" />
+        </sequence>
+        <attribute name="login" type="tns:Login" use="required" />
+        <attribute name="course" use="optional" default="it.jd.02">
+            <simpleType>
+                <restriction base="string">
+                    <enumeration value="it.jd.01"/>
+                    <enumeration value="it.jd.02"/>
+                    <enumeration value="it.jd.03"/>
+                </restriction>
+            </simpleType>
+        </attribute>
+    </complexType>
+    <simpleType name="Login">
+        <restriction base="ID">
+            <pattern value="([a-zA-Z])[a-zA-Z0-9]{1,19}"/>
+        </restriction>
+    </simpleType>
+    <complexType name="Address">
+        <sequence>
+            <element name="country" type="string" />
+            <element name="city" type="string" />
+            <element name="street" type="string" />
+        </sequence>
+    </complexType>
+</schema>

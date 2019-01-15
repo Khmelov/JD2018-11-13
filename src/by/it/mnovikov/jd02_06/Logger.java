@@ -9,7 +9,7 @@ import java.util.Date;
 
 class Logger {
 
-    private static Logger logger;
+    private static volatile Logger logger;
 
     private Logger() {
     }

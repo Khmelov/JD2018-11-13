@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8" ?>
+        <!ELEMENT users (user)+>
+            <!ELEMENT user (email,nickname,password,posts)>
+                <!ELEMENT email (#PCDATA)>
+                <!ELEMENT nickname (#PCDATA)>
+                <!ELEMENT password (#PCDATA)>
+                <!ELEMENT posts (post)*>
+                    <!ELEMENT post (head, date)>
+                        <!ELEMENT head (#PCDATA)>
+                        <!ELEMENT date (#PCDATA)>
