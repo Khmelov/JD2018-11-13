@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ingredients xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns="http://it-academy.by/jd2018-11-13/seroglazov/ingredients"
+             xsi:schemaLocation="http://it-academy.by/jd2018-11-13/seroglazov/ingredients ingredients.xsd"
+>
+    <ingredient id="i100">
+        <name>gin</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i101">
+        <name>freshly squeezed lemon juice</name>
+        <tags>
+            <tag>juice</tag>
+            <tag>citrus</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i102">
+        <name>cointreau</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>liqueur</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i104">
+        <name>triple sec</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>liqueur</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i105">
+        <name>lemon</name>
+        <tags>
+            <tag>citrus</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i106">
+        <name>bourbon whiskey</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>whisky</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i107">
+        <name>scotch whisky</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>whisky</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i108">
+        <name>angostura aromatic bitters</name>
+        <tags>
+            <tag>alcoholic beverage</tag>
+            <tag>bitter</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i109">
+        <name>sugar</name>
+        <tags>
+        </tags>
+    </ingredient>
+    <ingredient id="i110">
+        <name>plain water</name>
+        <tags>
+            <tag>non-alcoholic beverage</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i111">
+        <name>orange</name>
+        <tags>
+            <tag>citrus</tag>
+        </tags>
+    </ingredient>
+    <ingredient id="i112">
+        <name>cocktail cherry</name>
+        <tags>
+        </tags>
+    </ingredient>
+</ingredients>

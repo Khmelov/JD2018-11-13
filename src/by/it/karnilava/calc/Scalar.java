@@ -13,6 +13,7 @@ class Scalar extends Var {
     }
 
     Scalar(String str) {
+
         this.value = Double.parseDouble(str);
 
     }
@@ -41,7 +42,9 @@ class Scalar extends Var {
             return new Scalar(sub);
         }
         else
-            return new Scalar(-1).mul(other).add(this);
+            return other.sub(this);
+
+
 
     }
 
@@ -60,7 +63,7 @@ class Scalar extends Var {
     public Var div(Var other) throws CalcException{
         if (other instanceof Scalar){
             if (((Scalar) other).value==0)
-                throw new CalcException("Деление на ноль");
+                throw new CalcException(SwitchLanguages.rb.getString("NullDivision"));
             double div = this.value/((Scalar) other).value;
             return new Scalar(div);
         }
