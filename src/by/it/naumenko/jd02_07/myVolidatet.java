@@ -20,7 +20,7 @@ public class myVolidatet {
             Schema schema = factory.newSchema(new File(pathXsd));
             Validator validator = schema.newValidator();
             validator.validate(new StreamSource(pathXml));
-            System.out.println(pathXml + " не валиден");
+            System.out.println(pathXml + "валиден");
         } catch (SAXException e) {
             System.err.println(pathXml + " не валиден");
         } catch (IOException e) {

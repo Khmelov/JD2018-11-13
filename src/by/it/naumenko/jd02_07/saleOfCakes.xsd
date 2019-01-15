@@ -49,7 +49,7 @@
             <element name="filling_cake" type="string"/>
             <element name="cream_cake" type="string"/>
             <element name="decoration_cake" type="string"/>
-            <element name="price_cake" type="float"/>
+            <element name="price_cake" type="myType:price_cake"/>
         </sequence>
     </complexType>
 
@@ -108,4 +108,12 @@
         </sequence>
     </complexType>
 
+    <complexType name="price_cake">
+        <simpleContent>
+            <extension base="float">
+                <attribute name="currensy" type="string"/>
+            </extension>
+        </simpleContent>
+
+    </complexType>
 </schema>
