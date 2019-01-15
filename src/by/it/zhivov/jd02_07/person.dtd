@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
         <!ELEMENT persons (user+,admin,guest?)>
-        <!ELEMENT user (name,dateOfBirth,email,tel,privelegy,ads)>
+        <!ELEMENT user (name,sex,dateOfBirth,email,tel,privelegy,ads)>
         <!ATTLIST user
                 login ID #REQUIRED
                 password CDATA #REQUIRED>
@@ -8,6 +8,7 @@
                 login ID #REQUIRED
                 password CDATA #REQUIRED>
         <!ELEMENT name (#PCDATA)>
+        <!ELEMENT sex (#PCDATA)>
         <!ELEMENT dateOfBirth (#PCDATA)>
         <!ELEMENT email (#PCDATA)>
         <!ELEMENT tel (#PCDATA)>

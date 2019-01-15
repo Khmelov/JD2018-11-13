@@ -3,8 +3,9 @@
 <persons>
     <user login="Jerome" password="0123456789">
         <name>Живов Антон Дмитриевич</name>
+        <sex>Мужской</sex>
         <dateOfBirth>23.12.1994</dateOfBirth>
-        <email>jeromeastero@gmail.com</email>
+        <email>jeromeastero@gmai.com</email>
         <tel>+375333830046</tel>
         <privelegy>false</privelegy>
         <ads>
