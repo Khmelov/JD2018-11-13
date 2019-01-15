@@ -11,10 +11,10 @@ public class XMLtoHTML_XSL {
     private final static String root = "src/by/it/zhivov/jd02_07/";
 
     static void xmlToHtml(String fileXML, String fileHTML, String fileXSL) {
-        System.out.println("\nStart XMLtoHTML_xpath transformation\n"+"xml:"+fileXML+"\n"+"xsl:"+fileXSL+"\n");
         StreamSource fileXml = new StreamSource(fileXML);
         StreamResult fileHtml = new StreamResult(fileHTML);
         StreamSource fileXsl = new StreamSource(fileXSL);
+        System.out.println("\nStart XMLtoHTML_xpath transformation\n"+"xml:"+fileXML+"\n"+"xsl:"+fileXSL+"\n");
         try {
             TransformerFactory worker = TransformerFactory.newInstance();
             Transformer transformer = worker.newTransformer(fileXsl);
