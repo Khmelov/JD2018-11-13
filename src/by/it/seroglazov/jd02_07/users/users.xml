@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<users>
+    <user nick_name="Renat">
+        <email>renat.seroglazov@gmail.com</email>
+        <bar>
+            <id>i100</id>
+            <id>i101</id>
+            <id>i102</id>
+            <id>i103</id>
+            <id>i104</id>
+            <id>i105</id>
+            <id>i106</id>
+            <id>i107</id>
+            <id>i108</id>
+            <id>i109</id>
+            <id>i110</id>
+            <id>i111</id>
+            <id>i112</id>
+        </bar>
+    </user>
+    <user nick_name="Vadim">
+        <email>vadim.chernetski1991@gmail.com</email>
+        <bar>
+            <id>i109</id> <!-- sugar-->
+            <id>i110</id> <!-- plain water-->
+            <id>i105</id> <!-- lemon -->
+        </bar>
+    </user>
+</users>

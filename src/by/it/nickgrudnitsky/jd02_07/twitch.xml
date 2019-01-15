@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<twitch>
+    <viewers>
+        <viewer>
+            <email>grudnitsky@gmail.com</email>
+            <password>password</password>
+            <nickname>NickGS</nickname>
+            <following>
+                <channelname>Ninja</channelname>
+                <channelname>pewdiepie</channelname>
+                <channelname>SilverName</channelname>
+            </following>
+        </viewer>
+        <viewer>
+            <email>pewdiepie@pewd.se</email>
+            <password>youlaughyouloose</password>
+            <nick>pewdiepie</nick>
+        </viewer>
+    </viewers>
+
+    <streamers>
+        <streamer>
+            <email>ninja@gmail.com</email>
+            <password>fortnightlover</password>
+            <channelname>Ninja</channelname>
+            <followers>
+                <nickname>NickGS</nickname>
+                <nickname>pewdiepie</nickname>
+            </followers>
+        </streamer>
+    </streamers>
+</twitch>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!ELEMENT persons (user)+>
+        <!ELEMENT user (name,sex,dateOfBirth,email,login,password,tel,ads)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT sex (#PCDATA)>
+        <!ELEMENT dateOfBirth (#PCDATA)>
+        <!ELEMENT email (#PCDATA)>
+        <!ELEMENT login (#PCDATA)>
+        <!ELEMENT password (#PCDATA)>
+        <!ELEMENT tel (#PCDATA)>
+        <!ELEMENT ads (ad)*>
+<!ELEMENT ad (description,brand,model,color,body,year,equipment,mileage,crashed,price)>
+        <!ELEMENT description (#PCDATA)>
+        <!ELEMENT brand (#PCDATA)>
+        <!ELEMENT model (#PCDATA)>
+        <!ELEMENT color (#PCDATA)>
+        <!ELEMENT body (#PCDATA)>
+        <!ELEMENT year (#PCDATA)>
+        <!ELEMENT equipment (#PCDATA)>
+        <!ELEMENT mileage (#PCDATA)>
+        <!ELEMENT crashed (#PCDATA)>
+        <!ELEMENT price (#PCDATA)>
+
