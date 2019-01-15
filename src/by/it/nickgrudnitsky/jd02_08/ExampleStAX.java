@@ -22,7 +22,7 @@ public class ExampleStAX {
                     case XMLStreamConstants.START_ELEMENT:
                     {
                         System.out.print(tab + "<" + streamReader.getLocalName());
-                        tab = "\t" + tab;
+                        tab = tab.concat("\t");
                         int countAttribute = streamReader.getAttributeCount();
                         for (int i = 0; i < countAttribute; i++) {
                             System.out.print(" " + streamReader.getAttributeLocalName(i) + "=");
@@ -33,7 +33,7 @@ public class ExampleStAX {
                     }
                     case XMLStreamConstants.CHARACTERS:
                     {
-                        value = value.append(streamReader.getText().trim());
+                        value.append(streamReader.getText().trim());
                         break;
                     }
                     case XMLStreamConstants.END_ELEMENT:
