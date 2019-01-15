@@ -5,12 +5,13 @@
     <xsl:template match="/students">
         <table border="1">
             <tr><td>Name</td><td>NickName</td><td>Phone</td><td>Address</td></tr>
-            <xsl:apply-templates/>
+        <xsl:apply-templates/>
         </table>
     </xsl:template>
 
     <xsl:template match="/students/student">
-    <tr><xsl:apply-templates/></tr>
+    <tr>
+        <xsl:apply-templates/></tr>
     </xsl:template>
 
     <xsl:template match="/students/student/name">
