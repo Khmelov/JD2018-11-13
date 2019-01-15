@@ -7,9 +7,9 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class StAXRunner {
+public class StAX_run {
 
-    public static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization+xsd.xml";
+    public static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization.xml";
 
     public static void main(String[] args) {
         String tabul = "";
@@ -19,9 +19,9 @@ public class StAXRunner {
         try {
             XMLInputFactory inputFactory = XMLInputFactory.newInstance();
             FileInputStream xmlFile = new FileInputStream(xml);
-            XMLStreamReader xmlStreamReader = inputFactory.createXMLStreamReader(xmlFile);
-            while (xmlStreamReader.hasNext()) {
-                int type = xmlStreamReader.next();
+            XMLStreamReader reader = inputFactory.createXMLStreamReader(xmlFile);
+            while (reader.hasNext()) {
+                int type = reader.next();
                 switch (type) {
                     case XMLStreamConstants.START_DOCUMENT:
                         System.out.println("Start");
@@ -31,17 +31,17 @@ public class StAXRunner {
                         break;
                     case XMLStreamConstants.START_ELEMENT:
                         StringBuilder att = new StringBuilder();
-                        int attributeCount = xmlStreamReader.getAttributeCount();
+                        int attributeCount = reader.getAttributeCount();
                         for (int i = 0; i < attributeCount; i++) {
-                            String name = xmlStreamReader.getAttributeLocalName(i);
-                            String value = xmlStreamReader.getAttributeValue(i);
+                            String name = reader.getAttributeLocalName(i);
+                            String value = reader.getAttributeValue(i);
                             att.append(" ").append(name).append("\"").append(value).append("\"");
                         }
-                        System.out.println(tabul + "<" + xmlStreamReader.getLocalName() + att + ">");
+                        System.out.println(tabul + "<" + reader.getLocalName() + att + ">");
                         tabul = "\t" + tabul;
                         break;
                     case XMLStreamConstants.CHARACTERS:
-                        String part = xmlStreamReader.getText();
+                        String part = reader.getText();
                         content.append(part.trim());
                         break;
                     case XMLStreamConstants.END_ELEMENT:
@@ -50,7 +50,7 @@ public class StAXRunner {
                             content.setLength(0);
                         }
                         tabul = tabul.substring(1);
-                        System.out.println(tabul + "<" + xmlStreamReader.getLocalName() + ">");
+                        System.out.println(tabul + "<" + reader.getLocalName() + ">");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
                         System.out.println("End");

@@ -11,7 +11,7 @@ import java.io.IOException;
 
 public class SAX_run {
 
-    private static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization+xsd.xml";
+    private static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization.xml";
 
     public static void main(String[] args) {
 

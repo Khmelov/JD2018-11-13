@@ -40,7 +40,7 @@ public class SaxHandler extends DefaultHandler {
             content.setLength(0);
         }
         tabul = tabul.substring(1);
-        System.out.println(tabul + "<" + qName + ">");
+        System.out.println(tabul + "</" + qName + ">");
     }
 
     @Override
