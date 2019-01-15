@@ -1,10 +1,14 @@
 package by.it.nickgrudnitsky.calc;
 
+
 import java.io.*;
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 abstract class Var implements Operation {
-
+    static ResManager resManager = ResManager.INSTANCE;
     private static Map<String, Var> vars = new HashMap<>();
 
     static void printVar() {
@@ -38,7 +42,7 @@ abstract class Var implements Operation {
         } else if (vars.containsKey(operand)) {
             return vars.get(operand);
         }
-        throw new CalcException("Невозможно создать " + operand);
+        throw new CalcException(resManager.get(Errors.IMPOSSIBLETOCREATE) + operand);
     }
 
     static void saveTo() throws IOException {
@@ -48,7 +52,7 @@ abstract class Var implements Operation {
                 out.printf("%s=%s\n", pair.getKey(), pair.getValue());
             }
         } catch (IOException e) {
-            System.out.println("Error");
+            System.out.println(resManager.get(Errors.ERROR));
         }
     }
 
@@ -57,9 +61,9 @@ abstract class Var implements Operation {
         if (file.exists()) {
             try (BufferedReader in = new BufferedReader(
                     new FileReader(Util.getPath("vars.txt")))) {
-                Parser parser = new Parser();
+                Parcer parser = new Parcer();
                 while (in.ready()) {
-                    parser.calc(in.readLine());
+                    parser.calcAndSave(in.readLine());
                 }
             } catch (IOException | CalcException e) {
                 e.printStackTrace();
@@ -69,26 +73,26 @@ abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {
-        throw new CalcException("Операция сложения " + this + " + " + other + " невозможна.");
+        throw new CalcException(resManager.get(Errors.ADDOPERATION) + this + " + " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public Var sub(Var other) throws CalcException {
-        throw new CalcException("Операция вычитания " + this + " - " + other + " невозможна.");
+        throw new CalcException(resManager.get(Errors.SUBOPERATION) + this + " - " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public Var mul(Var other) throws CalcException {
-        throw new CalcException("Операция умножения " + this + " * " + other + " невозможна.");
+        throw new CalcException(resManager.get(Errors.MULOPERATION) + this + " * " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public Var div(Var other) throws CalcException {
-        throw new CalcException("Операция деления " + this + " / " + other + " невозможна.");
+        throw new CalcException(resManager.get(Errors.DIVOPERATION) + this + " / " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public String toString() {
-        return "Это клаcc AbstractVar";
+        return resManager.get(Errors.THISISABSTRACTVAR);
     }
 }

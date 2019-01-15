@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+
+<twitch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="IT-Academy/JD2018-11-13/src/by/it/nickgrudnitsky"
+        xsi:schemaLocation="http://it-academy.by/jd2018-11-13/nickgrudnitsky twitch.xsd"
+>
+    <viewers>
+        <viewer>
+            <email>grudnitsky@gmail.com</email>
+            <password>password</password>
+            <nickname>NickGS</nickname>
+            <following>
+                <channelname>Ninja</channelname>
+                <channelname>pewdiepie</channelname>
+                <channelname>SilverName</channelname>
+            </following>
+        </viewer>
+        <viewer>
+            <email>pewdiepie@pewd.se</email>
+            <password>youlaughyouloose</password>
+            <nickname>pewdiepie</nickname>
+            <following>
+                <channelname>Ninja</channelname>
+            </following>
+        </viewer>
+    </viewers>
+
+    <streamers>
+        <streamer>
+            <email>ninja@gmail.com</email>
+            <password>fortnightlover</password>
+            <channelname>Ninja</channelname>
+            <followers>
+                <nickname>NickGS</nickname>
+                <nickname>pewdiepie</nickname>
+            </followers>
+        </streamer>
+    </streamers>
+</twitch>
