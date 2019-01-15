@@ -7,7 +7,7 @@ import javax.xml.stream.XMLStreamReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class SaxRunner {
+public class StAXRunner {
 
     public static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization+xsd.xml";
 
