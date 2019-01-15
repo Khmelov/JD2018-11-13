@@ -1,6 +1,5 @@
 package by.it.zhivov.jd02_08;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 public class Runner {
@@ -9,7 +8,7 @@ public class Runner {
     private static String pureXML =root+"person.xml";
     private static String fileHTML = root+"person.html";
     private static String fileXSL=root+"person.xsl";
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         Scanner in = new Scanner(System.in);
         System.out.println("1-SAXParseXML\n2-StAXParseXML\n3-XMLtoHTML_XPath\nВвод");
         int input = in.nextInt();
