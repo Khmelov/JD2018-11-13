@@ -1,39 +1,28 @@
 package by.it.zhivov.jd02_08;
 
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
 
 public class Runner {
-
-    private static String xml = System.getProperty("user.dir") + "/src/by/it/zhivov/jd02_07/person+xsd.xml";
-
+    private final static String root = "src/by/it/zhivov/jd02_07/";
+    private static String fileXML_xsd = System.getProperty("user.dir") + "/src/by/it/zhivov/jd02_07/person+xsd.xml";
+    private static String pureXML =root+"person.xml";
+    private static String fileHTML = root+"person.html";
+    private static String fileXSL=root+"person.xsl";
     public static void main(String[] args) throws IOException {
         Scanner in = new Scanner(System.in);
-        System.out.println("1-SAX;2-StAX");
+        System.out.println("1-SAXParseXML\n2-StAXParseXML\n3-XMLtoHTML_XPath\nВвод");
         int input = in.nextInt();
         switch (input) {
             case 1:
-                try {
-                    SAXParserFactory saxParserFactory = SAXParserFactory.newInstance();
-                    SAXParser saxParser = saxParserFactory.newSAXParser();
-                    DefaultHandler myhandler = new SAXParse();
-                    File xmlFile = new File(xml);
-                    saxParser.parse(xmlFile, myhandler);
-                } catch (ParserConfigurationException | SAXException | IOException e) {
-                    e.printStackTrace();
-                }
+                SAXParse.Parse(fileXML_xsd);
                 break;
             case 2:
-                STAXParse.staxParser(xml);
+                STAXParser.staxParser(fileXML_xsd);
                 break;
-
+            case 3:
+                XMLtoHTML_XSL.xmlToHtml(pureXML,fileHTML,fileXSL);
+                break;
         }
 
     }
