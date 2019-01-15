@@ -1,9 +1,22 @@
 package by.it.lobkova.calc;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Parcer {
+
+    private final Map<String, Integer> priority = new HashMap<String, Integer>() {
+        {
+            this.put("=", 0);
+            this.put("+", 1);
+            this.put("-", 1);
+            this.put("*", 2);
+            this.put("/", 2);
+        }
+    };
 
     public Var calcs(String expression) throws CalcException {
         String[] operand = expression.split(Patterns.SYMBOL);
@@ -41,6 +54,21 @@ public class Parcer {
             }
         } else throw new CalcException("Введена неверная операция");
         return null;
+    }
+
+    private int getPriority(List<String> operation) {
+        //= + * / *
+        int index=-1;
+        int currentPriopity=-1;
+        for (int i = 0; i < operation.size(); i++) {
+            String o = operation.get(i);
+            Integer p = priority.get(o);
+            if (p>currentPriopity) {
+                index=i;
+                currentPriopity=p;
+            }
+        }
+        return index;
     }
 }
 
