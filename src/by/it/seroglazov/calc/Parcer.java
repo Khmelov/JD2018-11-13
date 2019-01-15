@@ -17,7 +17,7 @@ class Parcer {
     };
 
     public String calc(String expression) throws CalcException {
-
+        String enteredOperation = expression;
         // Сперва ищем скобки и если есть, то рекурсивно запускаем саму себя в эту область
         Pattern parentheses = Pattern.compile(Patterns.PARENTHESES);
         Matcher m = parentheses.matcher(expression);
@@ -45,6 +45,7 @@ class Parcer {
             String res = oneOperation(one, operation, two);
             operands.set(number, res);
         }
+        Report.reportBuilder.addOperation(enteredOperation, operands.get(0));
         return operands.get(0);
     }
 

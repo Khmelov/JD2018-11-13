@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!ELEMENT Drivers (driver)*>
+        <!ELEMENT driver (fio, nickname, email, password, numbergarages,garages)>
+            <!ELEMENT fio (#PCDATA)>
+            <!ELEMENT nickname (#PCDATA)>
+            <!ELEMENT email (#PCDATA)>
+            <!ELEMENT password (#PCDATA)>
+            <!ELEMENT numbergarages (#PCDATA)>
+                <!ELEMENT garages (garage)+>
+                    <!ELEMENT garage (adress, carplaces, cars)>
+                        <!ELEMENT adress (#PCDATA)>
+                        <!ELEMENT carplaces (#PCDATA)>
+                            <!ELEMENT cars (car)+>
+                                <!ELEMENT car (model, color, year)>
+                                    <!ELEMENT model (#PCDATA)>
+                                    <!ELEMENT color (#PCDATA)>
+                                    <!ELEMENT year (#PCDATA)>
+
+

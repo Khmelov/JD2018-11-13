@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE users SYSTEM "users.dtd">
+<users>
+    <user>
+        <email>makasin@gm</email>
+        <nickname>makasin</nickname>
+        <password>12345678</password>
+        <posts>
+            <post>
+                <head>Привет как дела</head>
+                <date>31.12.2018</date>
+            </post>
+            <post>
+                <head>пкд</head>
+                <date>01.01.2019</date>
+            </post>
+        </posts>
+    </user>
+    <user>
+        <email>vasya@mail.ru</email>
+        <nickname>Vasya</nickname>
+        <password>Vasya1980</password>
+        <posts>
+            <post>
+                <head>Мой первый пост</head>
+                <date>03.01.2019</date>
+            </post>
+        </posts>
+    </user>
+</users>
