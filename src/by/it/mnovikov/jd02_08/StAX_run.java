@@ -27,7 +27,7 @@ public class StAX_run {
                         System.out.println("Start");
                         break;
                     case XMLStreamConstants.ATTRIBUTE:
-                        System.out.println("-------------");
+                        System.out.println("---------------------------------");
                         break;
                     case XMLStreamConstants.START_ELEMENT:
                         StringBuilder att = new StringBuilder();
@@ -46,11 +46,11 @@ public class StAX_run {
                         break;
                     case XMLStreamConstants.END_ELEMENT:
                         if (content.length() > 0) {
-                            System.out.println(content + tabul);
+                            System.out.println(tabul + content);
                             content.setLength(0);
                         }
                         tabul = tabul.substring(1);
-                        System.out.println(tabul + "<" + reader.getLocalName() + ">");
+                        System.out.println(tabul + "</" + reader.getLocalName() + ">");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
                         System.out.println("End");
