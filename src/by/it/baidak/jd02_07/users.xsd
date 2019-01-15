@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://it-academy.by/jd2018-11-13"
+        xmlns:mtp="http://it-academy.by/jd2018-11-13"
+        elementFormDefault="qualified">
+
+    <element name="users">
+        <complexType>
+            <sequence>
+                <element name="user"
+                         type="mtp:User"
+                         minOccurs="1"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="User">
+        <sequence>
+            <element name="email" type="string"/>
+            <element name="nickname" type="string"/>
+            <element name="password" type="string"/>
+            <element name="posts" type="mtp:Posts"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Posts">
+        <sequence>
+            <element name="post"
+                     type="mtp:Post"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Post">
+        <all>
+            <element name="head" type="string"/>
+            <element name="date" type="string"/>
+        </all>
+    </complexType>
+</schema>

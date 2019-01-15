@@ -1,15 +1,16 @@
 package by.it.nickgrudnitsky.calc;
 
 public class CalcException extends Exception {
+    private static ResManager resManager = ResManager.INSTANCE;
     public CalcException() {
     }
 
     public CalcException(String message) {
-        super("ERROR: " + message);
+        super(resManager.get(Errors.ERROR) + message);
     }
 
     public CalcException(String message, Throwable cause) {
-        super("ERROR: " + message, cause);
+        super(resManager.get(Errors.ERROR) + message, cause);
     }
 
     public CalcException(Throwable cause) {
@@ -17,6 +18,6 @@ public class CalcException extends Exception {
     }
 
     public CalcException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-        super("ERROR: " + message, cause, enableSuppression, writableStackTrace);
+        super(resManager.get(Errors.ERROR) + message, cause, enableSuppression, writableStackTrace);
     }
 }

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+        <!ELEMENT twitch (viewers)? (streamers)?>
+        <!ELEMENT viewers (viewer)*>
+        <!ELEMENT viewer (email, password, nickname, following)>
+        <!ELEMENT email (#PCDATA)>
+        <!ELEMENT password (#PCDATA)>
+        <!ELEMENT nickname (#PCDATA)>
+        <!ELEMENT following (channelname?)>
+        <!ELEMENT channelname (#PCDATA)>
+        <!ELEMENT  streamers (streamer)*>
+        <!ELEMENT  streamer (email, password, channelname, followers)>
+        <!ELEMENT followers (nickname)*>

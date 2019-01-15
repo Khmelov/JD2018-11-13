@@ -30,7 +30,7 @@ public class Vector extends Var {
                 value[i] = Double.parseDouble(sArr[i]);
             }
         } else {
-            throw new CalcException(ResMan.get("wrongVectorString") + " " + str);
+            writeLogAndThrowException(ResMan.get("wrongVectorString") + " " + str);
         }
     }
 
