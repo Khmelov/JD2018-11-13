@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE persons SYSTEM "person.dtd" >
 <persons>
-    <user login="Jerome" password="0123456789">
+    <user>
         <name>Живов Антон Дмитриевич</name>
-        <sex>Мужской</sex>
+        <login>Jerome</login>
+        <password>A59915991</password>
         <dateOfBirth>23.12.1994</dateOfBirth>
-        <email>jeromeastero@gmai.com</email>
+        <email>jeromeastero@gmail.com</email>
         <tel>+375333830046</tel>
         <privelegy>false</privelegy>
         <ads>
@@ -18,7 +19,7 @@
                 <year>2009</year>
                 <equipment>Full lux</equipment>
                 <mileage>126000</mileage>
-                <crashed>No</crashed>
+                <crashed>false</crashed>
                 <price>4300</price>
             </ad>
             <ad>
@@ -30,7 +31,7 @@
                 <year>1992</year>
                 <equipment>Standart</equipment>
                 <mileage>586000</mileage>
-                <crashed>Yes</crashed>
+                <crashed>false</crashed>
                 <price>250</price>
             </ad>
             <ad>
@@ -42,18 +43,17 @@
                 <year>1999</year>
                 <equipment>Comfort</equipment>
                 <mileage>250000</mileage>
-                <crashed>No</crashed>
+                <crashed>false</crashed>
                 <price>5500</price>
             </ad>
         </ads>
     </user>
-
-    <admin login="admin" password="9876543210">
+    <admin>
+        <login>Admin</login>
+        <password>A59915991</password>
         <privelegy>true</privelegy>
     </admin>
-
     <guest>
         <privelegy>false</privelegy>
     </guest>
-
 </persons>

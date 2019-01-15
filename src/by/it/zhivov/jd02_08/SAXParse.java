@@ -12,7 +12,7 @@ public class SAXParse extends DefaultHandler {
 
     @Override
     public void startDocument() throws SAXException {
-        System.out.println("start SAX Parse+\n");
+        System.out.println("start SAX Parse\n");
         tab="";
         content=new StringBuilder();
     }
