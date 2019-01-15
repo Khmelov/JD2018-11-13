@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
+        xmlns:lgc="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
+        elementFormDefault="qualified">
+    <element name="persons">
+        <complexType>
+            <sequence>
+                <element name="user"
+                         type="lgc:User"
+                         maxOccurs="unbounded"
+                />
+                <element name="admin"
+                         type="lgc:Admin"
+                />
+                <element name="guest"
+                         type="lgc:Guest"
+                         minOccurs="0"
+                         maxOccurs="unbounded"
+                />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="User">
+        <sequence>
+            <element name="fullname" type="lgc:Fullname"/>
+            <element name="dateOfBirth" type="lgc:DateOfBirth"/>
+            <element name="email" type="lgc:Email"/>
+            <element name="login" type="lgc:Login"/>
+            <element name="password" type="lgc:Password"/>
+            <element name="tel" type="lgc:Tel"/>
+            <element name="privelegy" type="boolean"/>
+            <element name="ads" type="lgc:Ads"/>
+        </sequence>
+
+    </complexType>
+    <simpleType name="Login">
+        <restriction base="ID">
+            <pattern value="[a-zA-Z][a-zA-Z0-9_]{3,20}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="Fullname">
+        <restriction base="string">
+            <pattern value="[a-zA-zа-яА-я ]{4,50}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="DateOfBirth">
+        <restriction base="string">
+            <pattern value="(0[1-9]|[12][0-9]|3[01])[.](0[1-9]|1[012])[.](19|20)\d\d"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="Email">
+        <restriction base="string">
+            <pattern value="[a-z][a-z0-9_]+@[a-z]+\.[a-z]+"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="Password">
+        <restriction base="string">
+            <pattern value="[a-zA-Z][a-zA-Z0-9!@#$%^*]{7,16}"/>
+        </restriction>
+    </simpleType>
+    <simpleType name="Tel">
+        <restriction base="string">
+            <pattern value="[+](375)-[0-9]{2,5}-[0-9]{7}"/>
+        </restriction>
+    </simpleType>
+
+
+    <complexType name="Ads">
+        <sequence>
+            <element
+                    name="ad"
+                    type="lgc:Ad"
+                    minOccurs="0"
+                    maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Ad">
+        <all>
+            <element name="description" type="string"/>
+            <element name="brand" type="string"/>
+            <element name="model" type="string"/>
+            <element name="color" type="string"/>
+            <element name="body" type="string"/>
+            <element name="year" type="positiveInteger"/>
+            <element name="equipment" type="string"/>
+            <element name="mileage" type="positiveInteger"/>
+            <element name="crashed" type="boolean"/>
+            <element name="price" type="positiveInteger"/>
+        </all>
+    </complexType>
+
+    <complexType name="Admin">
+        <sequence>
+            <element name="login" type="lgc:Login"/>
+            <element name="password" type="lgc:Password"/>
+            <element name="privelegy" type="boolean"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Guest">
+        <all>
+            <element name="privelegy" type="boolean"/>
+        </all>
+    </complexType>
+</schema>

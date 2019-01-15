@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE persons SYSTEM "person.dtd">
+<persons>
+    <user>
+        <name>Живов Антон Дмитриевич</name>
+        <sex>Мужской</sex>
+        <dateOfBirth>23.12.1994</dateOfBirth>
+        <email>jeromeastero@gmai.com</email>
+        <login>Jerome</login>
+        <password>0123456789</password>
+        <tel>+375333830046</tel>
+        <ads>
+            <ad>
+                <description>Лучшее авто за 4000$</description>
+                <brand>Toyota</brand>
+                <model>Camry</model>
+                <color>Grey</color>
+                <body>Sedan</body>
+                <year>2009</year>
+                <equipment>Full lux</equipment>
+                <mileage>126000</mileage>
+                <crashed>No</crashed>
+                <price>4300</price>
+            </ad>
+            <ad>
+                <description>Низкий таз</description>
+                <brand>ВАЗ</brand>
+                <model>2106</model>
+                <color>Murena</color>
+                <body>Sedan</body>
+                <year>1992</year>
+                <equipment>Standart</equipment>
+                <mileage>586000</mileage>
+                <crashed>Yes</crashed>
+                <price>250</price>
+            </ad>
+            <ad>
+                <description>Семейный авто</description>
+                <brand>Chrysler</brand>
+                <model>Voyager</model>
+                <color>Black</color>
+                <body>Minivan</body>
+                <year>1999</year>
+                <equipment>Comfort</equipment>
+                <mileage>250000</mileage>
+                <crashed>No</crashed>
+                <price>5500</price>
+            </ad>
+        </ads>
+    </user>
+</persons>

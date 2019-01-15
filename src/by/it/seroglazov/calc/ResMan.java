@@ -15,10 +15,17 @@ class ResMan {
 
     static void changeLanguage(Locale loc) {
         rb = ResourceBundle.getBundle(textResPath, loc);
+        locale = loc;
     }
 
     static String get(String key) {
         return rb.getString(key);
     }
+
+    static Locale getLocale() {
+        return locale;
+    }
+
+    private static Locale locale = Locale.getDefault();
 
 }
