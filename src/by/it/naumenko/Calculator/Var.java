@@ -1,38 +1,42 @@
 package by.it.naumenko.Calculator;
 
 
+import by.it.naumenko.expirements.calculator.resourse.ResourceManager;
+import by.it.naumenko.expirements.calculator.resourse.TextTranslate;
+
 import java.io.*;
 import java.util.HashMap;
 import java.util.Map;
 
 abstract class Var implements Operation {
+    static ResourceManager resVar = ResourceManager.INSTANCE;
     static Map<String, Var> vars = new HashMap<>();
     private static String filename = Util.getPath("vars.txt");
 
     @Override
     public String toString() {
-        return "Это класс Var";
+        return TextTranslate.THIS_CLASS + " Var";
     }
 
     @Override
     public Var add(Var other) throws CalcExeption {
-        throw new CalcExeption("сложение " + this + "+" + other + " невозможно");
+        throw new CalcExeption(resVar.get(TextTranslate.ADDITION) + this + " + " + other + resVar.get(TextTranslate.IMPOSSIBLE));
 
     }
 
     @Override
     public Var sub(Var other) throws CalcExeption {
-        throw new CalcExeption("вычетание " + this + "-" + other + " невозможно");
+        throw new CalcExeption(resVar.get(TextTranslate.SUBRACTION) + this + " - " + other + resVar.get(TextTranslate.IMPOSSIBLE));
     }
 
     @Override
     public Var mul(Var other) throws CalcExeption {
-        throw new CalcExeption("умножение " + this + "*" + other + " невозможно");
+        throw new CalcExeption(resVar.get(TextTranslate.MULTIPLICATION) + this + " * " + other + resVar.get(TextTranslate.IMPOSSIBLE));
     }
 
     @Override
     public Var div(Var other) throws CalcExeption {
-        throw new CalcExeption("деление " + this + "/" + other + " невозможно");
+        throw new CalcExeption(resVar.get(TextTranslate.DIVISION) + this + " / " + other + resVar.get(TextTranslate.IMPOSSIBLE));
 
     }
 
@@ -49,7 +53,7 @@ abstract class Var implements Operation {
             return new Matrix(operand);
         Var var = vars.get(operand);
         if (var == null)
-            throw new CalcExeption("Неивестная переменная " + operand);
+            throw new CalcExeption(resVar.get(TextTranslate.UNKNOW_VARIABLE) + " " + operand);
         return var;
     }
 
@@ -65,10 +69,10 @@ abstract class Var implements Operation {
     static void readVarFile() throws IOException, CalcExeption {
         File file = new File(filename);
         if (file.exists()) {
-            try(BufferedReader bufferedReader = new BufferedReader(new
+            try (BufferedReader bufferedReader = new BufferedReader(new
                     FileReader(file))) {
                 Parcer local = new Parcer();
-                while (bufferedReader.ready()){
+                while (bufferedReader.ready()) {
                     local.calc(bufferedReader.readLine());
                 }
             }

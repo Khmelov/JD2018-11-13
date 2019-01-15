@@ -1,3 +1,5 @@
 str.welcome=Привет!
 str.question=Как дела?
 user.name=Сергей Науменко
+locale=хотите поменять локаль?
+exit=выход

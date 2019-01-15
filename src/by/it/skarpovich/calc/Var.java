@@ -10,7 +10,7 @@ import java.util.Map;
 abstract class Var implements Operation {
     //ResMan resMan2 = ResMan.INSTANCE;
 
-    private static Map<String, Var> vars = new HashMap<>();
+    static Map<String, Var> vars = new HashMap<>();
     private static String filename = Util.getPath("vars.txt");
 
     @Override
@@ -42,18 +42,18 @@ abstract class Var implements Operation {
         vars.put(key, value);
     }
 
-    static Var createVar(String operand) throws CalcException {
-        if (operand.matches(Patterns.SCALAR))
-            return new Scalar(operand);
-        if (operand.matches(Patterns.VECTOR))
-            return new Vector(operand);
-        if (operand.matches(Patterns.MATRIX))
-            return new Matrix(operand);
-        Var var = vars.get(operand);
-        if (var == null)
-            throw new CalcException(ResMan.INSTANCE.get(Messages.STR_UNKNOWNVAR) +" "+ operand);
-        return var;
-    }
+//    static Var createVar(String operand) throws CalcException {
+//        if (operand.matches(Patterns.SCALAR))
+//            return new Scalar(operand);
+//        if (operand.matches(Patterns.VECTOR))
+//            return new Vector(operand);
+//        if (operand.matches(Patterns.MATRIX))
+//            return new Matrix(operand);
+//        Var var = vars.get(operand);
+//        if (var == null)
+//            throw new CalcException(ResMan.INSTANCE.get(Messages.STR_UNKNOWNVAR) +" "+ operand);
+//        return var;
+//    }
 
     static void save() {
 
