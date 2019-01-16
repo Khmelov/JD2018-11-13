@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://it-academy.by/jd2018-11-13/naumenko"
-        xmlns:myType="http://it-academy.by/jd2018-11-13/naumenko"
+        targetNamespace="http://beens.jd09_09.naumenko.it.by"
+        xmlns:myType="http://beens.jd09_09.naumenko.it.by"
         elementFormDefault="qualified">
     <element name="saleOfCakes">
         <complexType>
@@ -42,7 +42,7 @@
     </complexType>
 
     <complexType name="cake">
-        <all>
+        <sequence>
             <element name="name_cake" type="string"/>
             <element name="weight" type="positiveInteger"/>
             <element name="biscuit_cake" type="string"/>
@@ -50,7 +50,7 @@
             <element name="cream_cake" type="string"/>
             <element name="decoration_cake" type="string"/>
             <element name="price_cake" type="myType:price_cake"/>
-        </all>
+        </sequence>
     </complexType>
 
     <complexType name="capCakes">

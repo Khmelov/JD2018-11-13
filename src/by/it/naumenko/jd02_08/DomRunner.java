@@ -13,7 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 public class DomRunner {
-    static String xml = System.getProperty("user.dir") + "/src/by/it/naumenko/jd02_07/saleOfCakes+xsd.xml";
+    static String xml = System.getProperty("user.dir") + "/src/by/it/naumenko/jd02_07/cakes/cakes+xsd.xml";
 
     public static void main(String[] args) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
