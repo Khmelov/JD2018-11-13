@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://generate.jd02_09.seroglazov.it.by/recipes"
+        xmlns:mtp="http://generate.jd02_09.seroglazov.it.by/recipes"
+        elementFormDefault="qualified">
+
+    <element name="recipes">
+        <complexType>
+            <sequence>
+                <element name="recipe"
+                         type="mtp:Recipe"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Recipe">
+        <sequence>
+            <element name="cocktail_id" type="ID"/>
+            <element name="name" type="string"/>
+            <element name="tags" type="mtp:Tag"/>
+            <element name="ingredients" type="mtp:Ingredients"/>
+            <element name="description" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Tag">
+        <sequence>
+            <element name="tag" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Ingredients">
+        <sequence>
+            <element name="ingredient" type="mtp:Ingredient" minOccurs="2" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Ingredient">
+        <sequence>
+            <element name="id" type="string"/>
+            <element name="amount" type="mtp:Amount"/>
+            <element name="unit" type="string"/>
+            <element name="garnish" type="boolean"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="Amount">
+        <restriction base="string">
+            <pattern value="[0-9.-]+|few"/>
+        </restriction>
+    </simpleType>
+
+</schema>

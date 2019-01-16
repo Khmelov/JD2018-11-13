@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://generate.jd02_09.seroglazov.it.by/users"
+        xmlns:mtp="http://generate.jd02_09.seroglazov.it.by/users"
+        elementFormDefault="qualified">
+
+    <element name="users">
+        <complexType>
+            <sequence>
+                <element name="user" type="mtp:User" minOccurs="0" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="User">
+        <sequence>
+            <element name="id" type="ID"/>
+            <element name="nickname" type="mtp:Nickname"/>
+            <element name="email" type="mtp:Email"/>
+            <element name="bar" type="mtp:Bar"/>
+        </sequence>
+    </complexType>
+
+    <simpleType name="Nickname">
+        <restriction base="ID">
+            <pattern value=".{3,}"/>
+        </restriction>
+    </simpleType>
+
+    <simpleType name="Email">
+        <restriction base="string">
+            <pattern value="[a-zA-Z0-9_.-]+@[a-zA-Z0-9_.-]+.[a-zA-Z]+"/>
+        </restriction>
+    </simpleType>
+
+    <complexType name="Bar">
+        <sequence>
+            <element name="id" type="string" minOccurs="0" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+</schema>
