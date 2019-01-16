@@ -1,8 +1,7 @@
 package by.it.lobkova.calc;
 
 class Printer {
-    public void print(Var res) {
-        if (res != null)
+    public void print(String res) {
         System.out.println(res);
     }
 }

@@ -63,7 +63,7 @@ public class Scalar extends Var  {
             if (sc.value != 0) {
                 double result = this.value / sc.value;
                 return new Scalar(result);
-            } else throw new CalcException("Деление на 0 невозможно");
+            } else writeLogAndThrowException(ResMan.get("divisionByZero"));
         }
         return other.div(this);
     }

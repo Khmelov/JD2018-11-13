@@ -1,8 +1,6 @@
 package by.it.lobkova.calc;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -18,42 +16,35 @@ public class Parcer {
         }
     };
 
-    public Var calcs(String expression) throws CalcException {
-        String[] operand = expression.split(Patterns.SYMBOL);
-
-        for (int i = 0; i < operand.length; i++) {
-            operand[i] = operand[i].trim().replace("\\s+", "");
+    public String calc(String expression) throws CalcException {
+        String enteredOperation = expression;
+        // Сперва ищем скобки и если есть, то рекурсивно запускаем саму себя в эту область
+        Pattern parentheses = Pattern.compile(Patterns.PARENTHESES);
+        Matcher m = parentheses.matcher(expression);
+        while (m.find()) {
+            String res = calc(m.group(1));
+            StringBuilder sb = new StringBuilder(expression);
+            expression = sb.replace(m.start(), m.end(), res).toString(); // Заменяем содержимое скобок вычисленным значением
+            expression = expression.replaceAll(" ", ""); // Так как toString пишет с пробелами
+            m = parentheses.matcher(expression); // И теперь заново начинаем искать скобки уже в новом выражении, но без пробелов
         }
+        List<String> asList = Arrays.asList(expression.split(Patterns.OPERATION));
+        List<String> operands = new ArrayList<>(asList);
+        List<String> operations = new ArrayList<>();
 
-        Pattern pattern = Pattern.compile(Patterns.SYMBOL);
-        Matcher matcher = pattern.matcher(expression);
-
-        if (matcher.find()) {
-            String operation = matcher.group();
-            Var two = Var.createVar(operand[1]);
-            if (operation.equals("=")) {
-                Var.setVar(operand[0], two);
-                return two;
-            }
-
-            Var one = Var.createVar(operand[0]);
-
-            if (one == null || two == null) {
-                return null;
-            }
-
-            switch (operation) {
-                case "+":
-                    return one.add(two);
-                case "-":
-                    return one.sub(two);
-                case "*":
-                    return one.mul(two);
-                case "/":
-                    return one.div(two);
-            }
-        } else throw new CalcException("Введена неверная операция");
-        return null;
+        Pattern op = Pattern.compile(Patterns.OPERATION);
+        Matcher matcher = op.matcher(expression);
+        while (matcher.find()) operations.add(matcher.group());
+        if (operations.size() == 0) return Var.createVar(expression).toString();
+        while (operations.size()>0){
+            int number=getPriority(operations);
+            String operation=operations.remove(number);
+            String one=operands.remove(number);
+            String two=operands.get(number);
+            String res=oneOperation(one,operation,two);
+            operands.set(number,res);
+        }
+        return operands.get(0);
     }
 
     private int getPriority(List<String> operation) {
@@ -69,6 +60,26 @@ public class Parcer {
             }
         }
         return index;
+    }
+
+    private String oneOperation(String oneStr, String operation, String twoStr) throws CalcException {
+        Var two = Var.createVar(twoStr);
+        if (operation.equals("=")) {
+            Var.setVar(oneStr, two);
+            return two.toString();
+        }
+        Var one = Var.createVar(oneStr);
+        switch (operation) {
+            case "+":
+                return one.add(two).toString();
+            case "-":
+                return one.sub(two).toString();
+            case "*":
+                return one.mul(two).toString();
+            case "/":
+                return one.div(two).toString();
+        }
+        return null;
     }
 }
 
