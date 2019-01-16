@@ -10,7 +10,7 @@ public class Util {
     static String getPath(Class<?> clazz) {
         String simpleName = clazz.getSimpleName();
         String path = clazz.getName().replace(simpleName, "");
-        path = path.replaceAll("\\.", File.separator);
+        path = path.replace(".", File.separator);
         String root = System.getProperty("user.dir");
         String result = root + File.separator + "src" + File.separator + path;
         return result;

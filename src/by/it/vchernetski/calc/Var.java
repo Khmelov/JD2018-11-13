@@ -71,7 +71,7 @@ abstract  class Var implements Operation, OpDispatch, OpObjects {
         if (op.matches(Patterns.VECTOR)) return new Vector(op);
         if (op.matches(Patterns.MATRIX)) return new Matrix(op);
         else if (vars.containsKey((op))) return vars.get(op);
-        throw  new CalcException(resMan.get(Errors.ERR_CR)+op);
+        throw  new CalcException(resMan.get(Errors.ERR_CR)+" "+op);
     }
     @Override
     public Var add(Var other) throws CalcException{

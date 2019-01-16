@@ -21,25 +21,25 @@ abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {
-        throw new CalcException("Операция сложения " + "+" + this + other + " невозможна");
+        throw new CalcException(SwitchLanguages.rb.getString("Addition")+ "+" + this + other + SwitchLanguages.rb.getString("Impossible"));
 
     }
 
     @Override
     public Var sub(Var other)throws CalcException  {
-        throw new CalcException("Операция вычитания " + this + "-" + other + " невозможна");
+        throw new CalcException(SwitchLanguages.rb.getString("Subtraction") + this + "-" + other + SwitchLanguages.rb.getString("Impossible"));
 
     }
 
     @Override
     public Var mul(Var other)throws CalcException  {
-        throw new CalcException("Операция умножения " + this + "*" + other + " невозможна");
+        throw new CalcException(SwitchLanguages.rb.getString("Multiply") + this + "*" + other + SwitchLanguages.rb.getString("Impossible"));
 
 }
 
     @Override
     public Var div(Var other)throws CalcException  {
-        throw new CalcException("Операция деления " + this + "/" + other + " невозможна");
+        throw new CalcException(SwitchLanguages.rb.getString("Division") + this + "/" + other + SwitchLanguages.rb.getString("Impossible"));
 
     }
 
@@ -53,12 +53,19 @@ abstract class Var implements Operation {
             return new Vector(operand);
         if (operand.matches(Patterns.MATRIX))
             return new Matrix(operand);
-        else if (vars.containsKey(operand))
-            return vars.get(operand);
 
-        throw  new CalcException("Невозможно создать "+operand);
+        Var var = vars.get(operand);
+        if (var == null){
+            throw  new CalcException(SwitchLanguages.rb.getString("Incorrect")+" "+operand);}
+        return var;
 
-    }
+        }
+
+
+
+
+
+
 
 
 }

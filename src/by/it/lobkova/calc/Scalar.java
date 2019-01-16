@@ -1,6 +1,6 @@
 package by.it.lobkova.calc;
 
-public class Scalar extends Var {
+public class Scalar extends Var  {
 
     private double value;
 
@@ -26,7 +26,7 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var add(Var other) {
+    public Var add(Var other) throws ExceptionCalc {
         if (other instanceof Scalar) {
             Scalar sc = (Scalar) other;
             double result = this.value + sc.value;
@@ -57,11 +57,13 @@ public class Scalar extends Var {
     }
 
     @Override
-    public Var div(Var other) {
+    public Var div(Var other) throws ExceptionCalc {
         if (other instanceof Scalar) {
             Scalar sc = (Scalar) other;
-            double result = this.value / sc.value;
-            return new Scalar(result);
+            if (sc.value != 0) {
+                double result = this.value / sc.value;
+                return new Scalar(result);
+            } else throw new ExceptionCalc("Деление на 0 невозможно");
         }
         return other.div(this);
     }

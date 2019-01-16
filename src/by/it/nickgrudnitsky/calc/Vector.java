@@ -21,7 +21,7 @@ public class Vector extends Var {
     }
 
     Vector(String strVector) {
-        Pattern pattern = Pattern.compile("[0-9]+");
+        Pattern pattern = Pattern.compile("-?[0-9]+\\.?[0-9]*");
         Matcher matcher = pattern.matcher(strVector);
         double[] array = new double[0];
         int i = 0;
@@ -31,7 +31,7 @@ public class Vector extends Var {
             array[i] = Double.parseDouble(matcher.group());
             i++;
         }
-        value = array;
+        this.value = array;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Vector extends Var {
     public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
             if (((Scalar) other).getValue() == 0) {
-                throw new CalcException("Деление на 0 невозможно");
+                throw new CalcException(resManager.get(Errors.DIVISIONBYZERO));
             }
             double[] rezult = Arrays.copyOf(value, value.length);
             for (int i = 0; i < rezult.length; i++) {
