@@ -19,7 +19,7 @@
             <element name="cocktail_id" type="ID"/>
             <element name="name" type="string"/>
             <element name="tags" type="mtp:Tag"/>
-            <element name="ingredients" type="mtp:Ingredients"/>
+            <element name="components" type="mtp:Components"/>
             <element name="description" type="string"/>
         </sequence>
     </complexType>
@@ -30,13 +30,13 @@
         </sequence>
     </complexType>
 
-    <complexType name="Ingredients">
+    <complexType name="Components">
         <sequence>
-            <element name="ingredient" type="mtp:Ingredient" minOccurs="2" maxOccurs="unbounded"/>
+            <element name="component" type="mtp:Component" minOccurs="2" maxOccurs="unbounded"/>
         </sequence>
     </complexType>
 
-    <complexType name="Ingredient">
+    <complexType name="Component">
         <sequence>
             <element name="id" type="string"/>
             <element name="amount" type="mtp:Amount"/>
