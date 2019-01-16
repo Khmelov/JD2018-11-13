@@ -7,7 +7,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
 
 public class DOM_run {
 
-    private static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization+xsd.xml";
+    private static String xml = System.getProperty("user.dir") + "/src/by/it/mnovikov/jd02_08/organization.xml";
 
     public static void main(String[] args) {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
