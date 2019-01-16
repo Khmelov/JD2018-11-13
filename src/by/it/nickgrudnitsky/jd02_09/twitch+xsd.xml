@@ -3,13 +3,15 @@
 
 
 <twitch xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xmlns="IT-Academy/JD2018-11-13/src/by/it/nickgrudnitsky"
-        xsi:schemaLocation="http://it-academy.by/jd2018-11-13/nickgrudnitsky twitch.xsd"
+        xmlns= "http://beans.jd02_09.nickgrudnitsky.it.by/"
+        xsi:schemaLocation="http://beans.jd02_09.nickgrudnitsky.it.by/"
 >
     <viewers>
         <viewer>
+            <id>1</id>
             <email>grudnitsky@gmail.com</email>
             <password>password</password>
+            <roleID>1</roleID>
             <nickname>NickGS</nickname>
             <following>
                 <channelname>Ninja</channelname>
@@ -18,8 +20,10 @@
             </following>
         </viewer>
         <viewer>
+            <id>2</id>
             <email>pewdiepie@pewd.se</email>
-            <password>youlaughyouloose</password>
+            <password>youloose</password>
+            <roleID>1</roleID>
             <nickname>pewdiepie</nickname>
             <following>
                 <channelname>Ninja</channelname>
@@ -29,8 +33,10 @@
 
     <streamers>
         <streamer>
+            <id>3</id>
             <email>ninja@gmail.com</email>
             <password>fortnightlover</password>
+            <roleID>2</roleID>
             <channelname>Ninja</channelname>
             <followers>
                 <nickname>NickGS</nickname>

@@ -2,8 +2,8 @@
 
 
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="beans.jd02_09.nickgrudnitsky.it.by"
-        xmlns:mtp="beans.jd02_09.nickgrudnitsky.it.by"
+        targetNamespace="http://beans.jd02_09.nickgrudnitsky.it.by/"
+        xmlns:mtp="http://beans.jd02_09.nickgrudnitsky.it.by/"
         elementFormDefault="qualified">
     <element name="twitch">
         <complexType>
@@ -32,8 +32,10 @@
 
     <complexType name="Viewer">
         <sequence>
+            <element name="id" type="long"/>
             <element name="email" type="string"/>
             <element name="password" type="string"/>
+            <element name="roleID" type="int"/>
             <element name="nickname" type="string"/>
             <element name="following" type="mtp:Following"/>
         </sequence>
@@ -60,8 +62,10 @@
 
     <complexType name="Streamer">
         <sequence>
+            <element name="id" type="long"/>
             <element name="email" type="string"/>
             <element name="password" type="string"/>
+            <element name="roleID" type="int"/>
             <element name="channelname" type="string"/>
             <element name="followers" type="mtp:Followers"/>
         </sequence>
