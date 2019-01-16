@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://it-academy.by/jd2018-11-13/vchernetski"
-        xmlns:mtp="http://it-academy.by/jd2018-11-13/vchernetski"
+        targetNamespace="http://beans.jd02_09.vchernetski.it.by"
+        xmlns:mtp="http://beans.jd02_09.vchernetski.it.by"
         elementFormDefault="qualified">
     <element name="Drivers">
         <complexType>
