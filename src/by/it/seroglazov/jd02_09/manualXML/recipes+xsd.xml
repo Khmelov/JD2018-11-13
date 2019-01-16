@@ -28,10 +28,7 @@
                 <garnish>false</garnish>
             </component>
         </components>
-        <description>
-            Add all ingredients into cocktail shaker filled with ice.
-            Shake well and strain into large cocktail glass.
-        </description>
+        <description>Add all ingredients into cocktail shaker filled with ice. Shake well and strain into large cocktail glass.</description>
     </recipe>
     <recipe>
         <cocktail_id>c2</cocktail_id>
@@ -77,10 +74,6 @@
                 <garnish>true</garnish>
             </component>
         </components>
-        <description>
-            Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of plain water.
-            Muddle until dissolve. Fill the glass with ice cubes and add whiskey.
-            Garnish with orange slice and a cocktail cherry.
-        </description>
+        <description>Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolve. Fill the glass with ice cubes and add whiskey. Garnish with orange slice and a cocktail cherry.</description>
     </recipe>
 </recipes>
