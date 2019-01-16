@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
-        xmlns:lgc="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
+        targetNamespace="http://beans.jd02_09.zhivov.it.by/"
+        xmlns:lgc="http://beans.jd02_09.zhivov.it.by/"
         elementFormDefault="qualified">
     <element name="persons">
         <complexType>
