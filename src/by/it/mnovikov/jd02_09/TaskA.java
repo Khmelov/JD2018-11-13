@@ -1,45 +1,43 @@
 package by.it.mnovikov.jd02_09;
 
 import by.it.mnovikov.jd02_09.beans.Organizations;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 
 /**
  * Created by user on 15.01.2019.
  */
 public class TaskA {
 
-    private static String fileName = System.getProperty("user.dir")+"src/by/it/mnovikov/jd02_09/organization+xsd.xml";
+    private static String input = System.getProperty("user.dir")+"/src/by/it/mnovikov/jd02_09/organization+xsd.xml";
+    private static String output = System.getProperty("user.dir")+"/src/by/it/mnovikov/jd02_09/organizations.xml";
 
     public static void main(String[] args) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Organizations.class);
             System.out.println("=======================FROM XML=======================");
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
-            Organizations organizations = (Organizations) unmarshaller.unmarshal(new File(fileName));
-            System.out.println(organizations);
+            FileReader reader = new FileReader(input);
+            System.out.println("XML-file read:");
+            Organizations organization = (Organizations) unmarshaller.unmarshal(reader);
+            System.out.println(organization);
 
             Marshaller marshaller = jaxbContext.createMarshaller();
             System.out.println("=======================TO XML=======================");
             marshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
-            marshaller.marshal(organizations, System.out);
+            marshaller.marshal(organization, new File(output));
+            marshaller.marshal(organization, System.out);
 
-            System.out.println("=======================TO JSON=======================");
-            GsonBuilder gsonBuilder = new GsonBuilder();
-            Gson gson = gsonBuilder.serializeNulls().setPrettyPrinting().create();
-            String jsonText = gson.toJson(organizations);
-            System.out.println(jsonText);
-
-            System.out.println("=======================TO JSON=======================");
-
-        } catch (JAXBException e) {
+        } catch (JAXBException | FileNotFoundException e) {
             e.printStackTrace();
         }
     }
 }
+
+
