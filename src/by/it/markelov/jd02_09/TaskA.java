@@ -1,3 +1,4 @@
+/*
 package by.it.markelov.jd02_09;
 
 import by.it.markelov.jd02_09.schemetobeans.Clients;
@@ -38,3 +39,4 @@ public class TaskA {
         }
     }
 }
+*/

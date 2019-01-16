@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="schemeToBeans.jd02_09.markelov.it.by"
-        xmlns:tns="schemeToBeans.jd02_09.markelov.it.by"
+        targetNamespace="schemetoBeans.jd02_09.markelov.it.by"
+        xmlns:tns="schemetoBeans.jd02_09.markelov.it.by"
         elementFormDefault="qualified">
 
     <element name="clients">
