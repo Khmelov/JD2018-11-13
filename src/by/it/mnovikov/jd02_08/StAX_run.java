@@ -37,7 +37,7 @@ public class StAX_run {
                             String value = reader.getAttributeValue(i);
                             att.append(" ").append(name).append("\"").append(value).append("\"");
                         }
-                        System.out.println(tabul + "<" + reader.getLocalName() + att + ">");
+                        System.out.println(tabul + "[" + reader.getLocalName() + att + "]");
                         tabul = "\t" + tabul;
                         break;
                     case XMLStreamConstants.CHARACTERS:
@@ -50,7 +50,7 @@ public class StAX_run {
                             content.setLength(0);
                         }
                         tabul = tabul.substring(1);
-                        System.out.println(tabul + "</" + reader.getLocalName() + ">");
+                        System.out.println(tabul + "[/" + reader.getLocalName() + "]");
                         break;
                     case XMLStreamConstants.END_DOCUMENT:
                         System.out.println("End");
