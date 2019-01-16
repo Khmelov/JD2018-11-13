@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <persons xmlns:def="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
-         def:schemaLocation="2ccb5269-c8af-4950-ad9a-a53ac62d41be person.xsd"
+         xmlns="http://beans.jd02_09.zhivov.it.by/"
+         def:schemaLocation="http://beans.jd02_09.zhivov.it.by/ person.xsd"
 >
     <user>
         <name>Живов Антон Дмитриевич</name>
