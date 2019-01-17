@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <persons xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://it-academy.by/jd2018-11-13/lobkova"
-         xsi:schemaLocation="http://it-academy.by/jd2018-11-13/lobkova  person.xsd"
+         xmlns="http://lobkova/jd2018-11-13/it-academy.by"
+         xsi:schemaLocation="http://lobkova/jd2018-11-13/it-academy.by  person.xsd"
 >
     <person>
     <email>dashabertosh@gmail.com</email>
