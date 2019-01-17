@@ -34,18 +34,14 @@ import java.util.List;
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "", propOrder = {
-        "user",
-        "admin",
-        "guest"
+        "user"
 })
 @XmlRootElement(name = "persons")
 public class Persons {
 
     @XmlElement(required = true)
     protected List<User> user;
-    @XmlElement(required = true)
-    protected List <Admin> admin;
-    protected List<Guest> guest;
+
 
     /**
      * Gets the value of the user property.
@@ -74,12 +70,6 @@ public class Persons {
         return this.user;
     }
 
-    public List<Admin> getAdmin(){
-        if (admin == null) {
-            admin = new ArrayList<Admin>();
-        }
-        return this.admin;
-    }
     /**
      * Gets the value of the admin property.
      *
@@ -118,22 +108,12 @@ public class Persons {
      *
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Guest }
      */
-    public List<Guest> getGuest() {
-        if (guest == null) {
-            guest = new ArrayList<Guest>();
-        }
-        return this.guest;
-    }
+
 
     @Override
     public String toString() {
-        return "Persons {\n\t"
-                + user +
-                "\n\t" + admin +
-                "\n" + "\t" + guest +
-                "\n}";
+        return "Persons {\n\t" + user + "\n}";
     }
 
 }
