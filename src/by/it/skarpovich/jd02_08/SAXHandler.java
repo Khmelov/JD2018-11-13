@@ -30,8 +30,7 @@ class SAXHandler extends DefaultHandler {
             attr.append(" ").append(name).append("=\"").append(value).append("\"");
         }
         //конец
-
-        //Выводим название тега с атримбутом (если имеется)
+        //Выводим название тега с атрибутом (если имеется)
         System.out.println(tab + "<" + qName + attr + ">");
         tab ="\t" + tab;    // Добавляем табуляцию
     }

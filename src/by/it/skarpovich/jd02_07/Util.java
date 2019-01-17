@@ -16,7 +16,7 @@ public class Util {
         return result;
     }
 
-    static String getPath() {
+    public static String getPath() {
         return getPath(Util.class);
     }
 
