@@ -52,21 +52,6 @@ public class ObjectFactory {
         return new User();
     }
 
-    /**
-     * Create an instance of {@link Admin }
-     * 
-     */
-    public Admin createAdmin() {
-        return new Admin();
-    }
-
-    /**
-     * Create an instance of {@link Guest }
-     * 
-     */
-    public Guest createGuest() {
-        return new Guest();
-    }
 
     /**
      * Create an instance of {@link Ads }

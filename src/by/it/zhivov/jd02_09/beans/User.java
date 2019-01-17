@@ -72,14 +72,13 @@ public class User {
     public User() {
     }
 
-    public User(String name, String login, String password, String dateOfBirth, String email, String tel, boolean privelegy, Ads ads) {
+    public User(String name, String login, String password, String dateOfBirth, String email, String tel, Ads ads) {
         this.name = name;
         this.login = login;
         this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.email = email;
         this.tel = tel;
-        this.privelegy = privelegy;
         this.ads = ads;
     }
 
@@ -206,23 +205,7 @@ public class User {
     /**
      * Gets the value of the privelegy property.
      */
-    public boolean isPrivelegy() {
-        return privelegy;
-    }
 
-    /**
-     * Sets the value of the privelegy property.
-     */
-    public void setPrivelegy(boolean value) {
-        this.privelegy = value;
-    }
-
-    /**
-     * Gets the value of the ads property.
-     *
-     * @return possible object is
-     * {@link Ads }
-     */
     public Ads getAds() {
         return ads;
     }
@@ -246,7 +229,6 @@ public class User {
                 "\t\tdateOfBirth='" + dateOfBirth + '\'' + "\n" +
                 "\t\temail='" + email + '\'' + "\n" +
                 "\t\ttel='" + tel + '\'' + "\n" +
-                "\t\tprivelegy=" + privelegy + "\n" +
                 "\t\t" + ads + "\n" +
                 "\t}";
     }
