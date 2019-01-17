@@ -32,18 +32,20 @@ public class LoggerErrors {
         File f1 = new File(filename1);
         DataOutputStream  dos1 = null;
         try {
-            dos1 = new DataOutputStream(new FileOutputStream(f1,true));
+            dos1 = new DataOutputStream(new BufferedOutputStream(new FileOutputStream(f1, true)));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
         try {
            //Записываем сообщение
             dos1.writeUTF(string+"\n");
+            ListofErrors.listofErrors.add(string+" ");
             dos1.writeUTF("\n");
             //Записываем дату
             Date now = new Date();
-            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, TimeZone.LONG,Locale.getDefault());
+            DateFormat df = DateFormat.getDateTimeInstance(DateFormat.MEDIUM, TimeZone.LONG,SwitchLanguages.rb.getLocale());
             dos1.writeUTF(df.format(now)+"\n");
+            TimeofErrors.timeOfErrors.add(df.format(now)+"\n");
             dos1.writeUTF("\n");
             //Записываем время
 

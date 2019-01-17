@@ -2,15 +2,22 @@ package by.it.karnilava.calc;
 
 
 
+import java.util.Date;
 import java.util.Map;
 
 import java.util.Scanner;
 
 public class ConsoleRunner {
     public static void main(String[] args) {
+       //изменение 1
+        RuntimeReport.setStartTime(new Date());
         Scanner scan = new Scanner(System.in);
         String line;
         LoggerErrors.getInstance();
+        new ListofErrors();
+        new TimeofErrors();
+        new Director();
+
 
 
         Parser parser = new Parser();
@@ -47,6 +54,10 @@ public class ConsoleRunner {
                 }
             }
         }
+        RuntimeReport.setCancelTime(new Date());
+        System.out.println("Which kind of report do yoy want to get? Insert 'short' or 'full'");
+        line=scan.nextLine();
+        Director.buildReport(line);
     }
 
 
