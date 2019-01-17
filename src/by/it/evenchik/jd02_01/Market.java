@@ -1,8 +1,8 @@
 package by.it.evenchik.jd02_01;
 
-import static by.it.markelov.jd02_01.Dispatcher.K_ACCELERATION;
-import static by.it.markelov.jd02_01.Dispatcher.buyersIn;
-import static by.it.markelov.jd02_01.Goods.pricelist;
+import static by.it.evenchik.jd02_01.Dispatcher.K_ACCELERATION;
+import static by.it.evenchik.jd02_01.Dispatcher.buyersIn;
+import static by.it.evenchik.jd02_01.Goods.pricelist;
 
 public class Market {
 
