@@ -10,8 +10,8 @@ import java.io.File;
 
 public class TaskA {
 
-    static String fileName=System.getProperty("user.dir")+"/src/by/it/naumenko/jd02_09/cakes+xsd.xml";
-    static String newfileName=System.getProperty("user.dir")+"/src/by/it/naumenko/jd02_09/cakesMarsh+xsd.xml";
+    private final static String fileName=System.getProperty("user.dir")+"/src/by/it/naumenko/jd02_09/cakes+xsd.xml";
+    private final static String newfileName=System.getProperty("user.dir")+"/src/by/it/naumenko/jd02_09/cakesMarsh+xsd.xml";
     public static void main(String[] args) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Cakes.class);

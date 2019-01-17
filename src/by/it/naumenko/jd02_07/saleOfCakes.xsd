@@ -33,11 +33,11 @@
 
     <complexType name="tovar">
         <sequence>
-            <element name="cake" type="string"/>
-            <element name="capCakes" type="string"/>
-            <element name="gingerbread" type="string"/>
-            <element name="candy" type="string"/>
-            <element name="marshmallow" type="string"/>
+            <element name="cake" type="myType:cake"/>
+            <element name="capCakes" type="myType:capCakes"/>
+            <element name="gingerbread" type="myType:gingerbread"/>
+            <element name="candy" type="myType:candy"/>
+            <element name="marshmallow" type="myType:marshmallow"/>
         </sequence>
     </complexType>
 
@@ -70,7 +70,7 @@
             <element name="decoration_pr" type="string"/>
             <element name="size_pr" type="positiveInteger"/>
             <element name="count_pr" type="positiveInteger"/>
-            <element name="price_cup" type="float"/>
+            <element name="price_pr" type="float"/>
         </sequence>
     </complexType>
 
