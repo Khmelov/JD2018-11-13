@@ -8,7 +8,6 @@
 
 package by.it.zhivov.jd02_09.beans;
 
-import java.math.BigInteger;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
@@ -214,7 +213,7 @@ public class Ad {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link int }
      *     
      */
     public int getYear() {
@@ -226,7 +225,7 @@ public class Ad {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link int }
      *     
      */
     public void setYear(int value) {
@@ -262,7 +261,7 @@ public class Ad {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link int }
      *     
      */
     public int getMileage() {
@@ -274,7 +273,7 @@ public class Ad {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link int }
      *     
      */
     public void setMileage(int value) {
@@ -302,7 +301,7 @@ public class Ad {
      * 
      * @return
      *     possible object is
-     *     {@link BigInteger }
+     *     {@link int }
      *     
      */
     public int getPrice() {
@@ -314,7 +313,7 @@ public class Ad {
      * 
      * @param value
      *     allowed object is
-     *     {@link BigInteger }
+     *     {@link int }
      *     
      */
     public void setPrice(int value) {
