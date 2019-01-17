@@ -5,9 +5,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import static by.it.markelov.jd02_01.Dispatcher.buyersOut;
-import static by.it.markelov.jd02_01.Goods.pricelist;
-import static by.it.markelov.jd02_01.Util.random;
+import static by.it.evenchik.jd02_01.Dispatcher.buyersOut;
+import static by.it.evenchik.jd02_01.Goods.pricelist;
+import static by.it.evenchik.jd02_01.Util.random;
 
 public class Buyer extends Thread implements IBuyer, IUseBasket {
     public Buyer(String s) {
