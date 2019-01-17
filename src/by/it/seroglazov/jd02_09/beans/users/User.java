@@ -6,7 +6,7 @@
 //
 
 
-package by.it.seroglazov.jd02_09.generate.users;
+package by.it.seroglazov.jd02_09.beans.users;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -16,6 +16,7 @@ import javax.xml.bind.annotation.XmlSchemaType;
 import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.adapters.CollapsedStringAdapter;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
+import java.io.Serializable;
 
 
 /**
@@ -47,7 +48,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "email",
     "bar"
 })
-public class User {
+public class User implements Serializable {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -63,6 +64,21 @@ public class User {
     protected String email;
     @XmlElement(required = true)
     protected Bar bar;
+
+    public User() {
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append(": ").append(nickname).append(" ")
+        .append(email).append(" ");
+        if (bar != null) {
+            sb.append(bar);
+        }
+        sb.append("}");
+        return sb.toString();
+    }
 
     /**
      * Gets the value of the id property.

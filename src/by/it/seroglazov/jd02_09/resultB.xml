@@ -1,7 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<recipes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xmlns="http://generate.jd02_09.seroglazov.it.by/recipes"
-         xsi:schemaLocation="http://generate.jd02_09.seroglazov.it.by/recipes recipes.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<recipes xmlns="http://generate.jd02_09.seroglazov.it.by/recipes">
     <recipe>
         <cocktail_id>c1</cocktail_id>
         <name>white lady</name>

@@ -6,8 +6,9 @@
 //
 
 
-package by.it.seroglazov.jd02_09.generate.ingredients;
+package by.it.seroglazov.jd02_09.beans.ingredients;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
@@ -57,7 +58,7 @@ import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
     "name",
     "tags"
 })
-public class Ingredient {
+public class Ingredient implements Serializable {
 
     @XmlElement(required = true)
     @XmlJavaTypeAdapter(CollapsedStringAdapter.class)
@@ -68,6 +69,22 @@ public class Ingredient {
     protected String name;
     @XmlElement(required = true)
     protected Ingredient.Tags tags;
+
+    @SuppressWarnings("WeakerAccess")
+    public Ingredient() {
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append(id).append(": ").append(name).append(" {");
+        if (tags.tag != null) {
+            tags.tag.forEach(x -> sb.append(x).append(", "));
+            sb.delete(sb.length() - 2, sb.length());
+        }
+        sb.append("}");
+        return sb.toString();
+    }
 
     /**
      * Gets the value of the id property.
