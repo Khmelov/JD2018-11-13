@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class С_init {
+public class С_Init {
     public static void main(String[] args) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -107,7 +107,7 @@ public class С_init {
             statement.executeUpdate("INSERT INTO `markelov`.`shoe_sizes` (`ID`, `shoe_size`, `orders_ID`) VALUES (DEFAULT, 36, 2);");
             statement.executeUpdate("INSERT INTO `markelov`.`shoe_sizes` (`ID`, `shoe_size`, `orders_ID`) VALUES (DEFAULT, 40, 3);");
             statement.executeUpdate("INSERT INTO `markelov`.`shoe_collour` (`ID`, `shoe_collour`, `orders_ID`) VALUES (DEFAULT, 'Green', 1);");
-            statement.executeUpdate("INSERT INTO `markelov`.`shoe_collour` (`ID`, `shoe_collour`, `orders_ID`) VALUES (DEFAULT, 'Green', 1);");
+            statement.executeUpdate("INSERT INTO `markelov`.`shoe_collour` (`ID`, `shoe_collour`, `orders_ID`) VALUES (DEFAULT, 'Black', 2);");
             statement.executeUpdate("INSERT INTO `markelov`.`shoe_collour` (`ID`, `shoe_collour`, `orders_ID`) VALUES (DEFAULT, 'White', 3);");
         } catch (SQLException e) {
             e.printStackTrace();
