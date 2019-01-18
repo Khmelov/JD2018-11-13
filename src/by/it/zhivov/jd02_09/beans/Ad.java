@@ -17,9 +17,9 @@ import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>Java class for Ad complex type.
- * 
+ *
  * <p>The following schema fragment specifies the expected content contained within this class.
- * 
+ *
  * <pre>
  * &lt;complexType name="Ad">
  *   &lt;complexContent>
@@ -40,15 +40,13 @@ import javax.xml.bind.annotation.XmlType;
  *   &lt;/complexContent>
  * &lt;/complexType>
  * </pre>
- * 
- * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "Ad", propOrder = {
 
 })
 public class Ad {
-
+    protected String title;
     @XmlElement(required = true)
     protected String description;
     @XmlElement(required = true)
@@ -75,7 +73,8 @@ public class Ad {
     public Ad() {
     }
 
-    public Ad(String description, String brand, String model, String color, String body, int year, String equipment, int mileage, boolean crashed, int price) {
+    public Ad(String title, String description, String brand, String model, String color, String body, int year, String equipment, int mileage, boolean crashed, int price) {
+        this.title = title;
         this.description = description;
         this.brand = brand;
         this.model = model;
@@ -87,14 +86,17 @@ public class Ad {
         this.crashed = crashed;
         this.price = price;
     }
-
+    public String getTitle() {
+        return title;
+    }
+    public void setTitle(String value) {
+        this.title = value;
+    }
     /**
      * Gets the value of the description property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getDescription() {
         return description;
@@ -102,11 +104,9 @@ public class Ad {
 
     /**
      * Sets the value of the description property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setDescription(String value) {
         this.description = value;
@@ -114,11 +114,9 @@ public class Ad {
 
     /**
      * Gets the value of the brand property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBrand() {
         return brand;
@@ -126,11 +124,9 @@ public class Ad {
 
     /**
      * Sets the value of the brand property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBrand(String value) {
         this.brand = value;
@@ -138,11 +134,9 @@ public class Ad {
 
     /**
      * Gets the value of the model property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getModel() {
         return model;
@@ -150,11 +144,9 @@ public class Ad {
 
     /**
      * Sets the value of the model property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setModel(String value) {
         this.model = value;
@@ -162,11 +154,9 @@ public class Ad {
 
     /**
      * Gets the value of the color property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getColor() {
         return color;
@@ -174,11 +164,9 @@ public class Ad {
 
     /**
      * Sets the value of the color property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setColor(String value) {
         this.color = value;
@@ -186,11 +174,9 @@ public class Ad {
 
     /**
      * Gets the value of the body property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getBody() {
         return body;
@@ -198,11 +184,9 @@ public class Ad {
 
     /**
      * Sets the value of the body property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setBody(String value) {
         this.body = value;
@@ -210,11 +194,9 @@ public class Ad {
 
     /**
      * Gets the value of the year property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link int }
-     *     
+     *
+     * @return possible object is
+     * {@link int }
      */
     public int getYear() {
         return year;
@@ -222,11 +204,9 @@ public class Ad {
 
     /**
      * Sets the value of the year property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link int }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link int }
      */
     public void setYear(int value) {
         this.year = value;
@@ -234,11 +214,9 @@ public class Ad {
 
     /**
      * Gets the value of the equipment property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     *
+     * @return possible object is
+     * {@link String }
      */
     public String getEquipment() {
         return equipment;
@@ -246,11 +224,9 @@ public class Ad {
 
     /**
      * Sets the value of the equipment property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link String }
      */
     public void setEquipment(String value) {
         this.equipment = value;
@@ -258,11 +234,9 @@ public class Ad {
 
     /**
      * Gets the value of the mileage property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link int }
-     *     
+     *
+     * @return possible object is
+     * {@link int }
      */
     public int getMileage() {
         return mileage;
@@ -270,11 +244,9 @@ public class Ad {
 
     /**
      * Sets the value of the mileage property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link int }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link int }
      */
     public void setMileage(int value) {
         this.mileage = value;
@@ -282,7 +254,6 @@ public class Ad {
 
     /**
      * Gets the value of the crashed property.
-     * 
      */
     public boolean isCrashed() {
         return crashed;
@@ -290,7 +261,6 @@ public class Ad {
 
     /**
      * Sets the value of the crashed property.
-     * 
      */
     public void setCrashed(boolean value) {
         this.crashed = value;
@@ -298,11 +268,9 @@ public class Ad {
 
     /**
      * Gets the value of the price property.
-     * 
-     * @return
-     *     possible object is
-     *     {@link int }
-     *     
+     *
+     * @return possible object is
+     * {@link int }
      */
     public int getPrice() {
         return price;
@@ -310,11 +278,9 @@ public class Ad {
 
     /**
      * Sets the value of the price property.
-     * 
-     * @param value
-     *     allowed object is
-     *     {@link int }
-     *     
+     *
+     * @param value allowed object is
+     *              {@link int }
      */
     public void setPrice(int value) {
         this.price = value;
@@ -323,8 +289,9 @@ public class Ad {
     @Override
     public String toString() {
         return "Ad {\n" +
+                "\t\t\t\t\ttitle='" + title + '\'' + "\n" +
                 "\t\t\t\t\tdescription='" + description + '\'' + "\n" +
-                "\t\t\t\t\ttbrand='" + brand + '\'' + "\n" +
+                "\t\t\t\t\tbrand='" + brand + '\'' + "\n" +
                 "\t\t\t\t\tmodel='" + model + '\'' + "\n" +
                 "\t\t\t\t\tcolor='" + color + '\'' + "\n" +
                 "\t\t\t\t\tbody='" + body + '\'' + "\n" +
