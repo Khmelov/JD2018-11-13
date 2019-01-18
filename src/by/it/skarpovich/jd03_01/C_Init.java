@@ -6,11 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 class C_Init {
-    static void createDatabase() {
+    static void createDatabase(Statement statement) throws SQLException {
 
-        try (Connection connection = DriverManager.getConnection(CONFIG.URL_DB, CONFIG.USER_DB, CONFIG.PASSWORD_DB))
-        {
-            Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `skarpovich`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `skarpovich` DEFAULT CHARACTER SET utf8");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `skarpovich`.`roles` (" +
@@ -57,9 +54,5 @@ class C_Init {
             statement.executeUpdate("INSERT INTO `skarpovich`.`buyers` (`id`, `username`, `password`, `email`, `fullname`, `phone`, `roles_id`) VALUES (DEFAULT, 'john', 'john1', 'johndoe@yahoo.com', 'John Doe', '212-564-5555', 2);");
             statement.executeUpdate("INSERT INTO `skarpovich`.`purchases` (`id`, `item`, `item_id`, `color`, `price`, `shipping_address`, `buyers_id`) VALUES (DEFAULT, 'Iphone X 3gb/128gb', 1023000, 'black', 999, '444 W. 27th Street, 4th Floor, New York, NY 10001', 2);");
             statement.executeUpdate("INSERT INTO `skarpovich`.`purchases` (`id`, `item`, `item_id`, `color`, `price`, `shipping_address`, `buyers_id`) VALUES (DEFAULT, 'Xiaomi Redmi Note 5 3gb/32gb', 1070099, 'red', 200, '555 W. 27th Street, 5rd Floor, New York, NY 10001', 2);");
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
     }
 }
