@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`users` (
   `name` VARCHAR(100) NULL,
   `login` VARCHAR(45) NULL,
   `password` VARCHAR(26) NULL,
-  `dateofbirth` DATE NULL,
+  `dateofbirth` VARCHAR(10) NULL,
   `email` VARCHAR(45) NULL,
   `tel` VARCHAR(45) NULL,
   `roles_id` INT NOT NULL,
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`users` (
   CONSTRAINT `fk_users_roles`
     FOREIGN KEY (`roles_id`)
     REFERENCES `zhivov`.`roles` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE RESTRICT
+    ON UPDATE RESTRICT)
 ENGINE = InnoDB;
 
 
@@ -69,8 +69,8 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`ads` (
   CONSTRAINT `fk_ads_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `zhivov`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -95,7 +95,10 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `zhivov`;
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Petya', 'Petr2018', 'petpetya', '26.04.1993', 'petya@mail.ru', '+848651861668', 2);
+INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Petya', 'Petr2018', 'petyapetya', '26.04.1993', 'petya@mail.ru', '+848651861668', 2);
+INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL, 3);
+INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'm0rph3us', 'admin', 'admin', NULL, NULL, NULL, 1);
+INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Andrey', 'Dron2355', 'drondron', '16.05.1980', 'dron@mail.ru', '+5616516568', 2);
 
 COMMIT;
 
@@ -106,6 +109,7 @@ COMMIT;
 START TRANSACTION;
 USE `zhivov`;
 INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'TestTitle', 'TestDescription', 'Lancia', '53', 'yelow', 'coupe', 1996, 'standart', 186153, true, 580000, 1);
+INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, '2TestTitle', '2TestDescription', 'Opel', 'Astra', 'white', 'sedan', 2008, 'comfort', 40000, false, 1300000, 1);
 
 COMMIT;
 
