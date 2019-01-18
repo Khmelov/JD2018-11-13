@@ -2,7 +2,7 @@
 <!DOCTYPE persons SYSTEM "person.dtd" >
 <persons>
     <user>
-        <name>Живов Антон Дмитриевич</name>
+        <name>Zhivov Anton Dmitrievich</name>
         <login>Jerome</login>
         <password>A59915991</password>
         <dateOfBirth>23.12.1994</dateOfBirth>
@@ -11,7 +11,8 @@
         <privelegy>false</privelegy>
         <ads>
             <ad>
-                <description>Лучшее авто за 4000$</description>
+                <title>1</title>
+                <description>Best car for 4000</description>
                 <brand>Toyota</brand>
                 <model>Camry</model>
                 <color>Grey</color>
@@ -23,8 +24,9 @@
                 <price>4300</price>
             </ad>
             <ad>
-                <description>Низкий таз</description>
-                <brand>ВАЗ</brand>
+                <title>2</title>
+                <description>Lower trash</description>
+                <brand>VAZ</brand>
                 <model>2106</model>
                 <color>Murena</color>
                 <body>Sedan</body>
@@ -35,7 +37,8 @@
                 <price>250</price>
             </ad>
             <ad>
-                <description>Семейный авто</description>
+                <title>3</title>
+                <description>Family auto</description>
                 <brand>Chrysler</brand>
                 <model>Voyager</model>
                 <color>Black</color>
@@ -48,12 +51,4 @@
             </ad>
         </ads>
     </user>
-    <admin>
-        <login>Admin</login>
-        <password>A59915991</password>
-        <privelegy>true</privelegy>
-    </admin>
-    <guest>
-        <privelegy>false</privelegy>
-    </guest>
 </persons>
