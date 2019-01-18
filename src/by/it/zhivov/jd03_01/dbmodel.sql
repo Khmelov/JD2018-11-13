@@ -19,9 +19,9 @@ USE `zhivov` ;
 -- Table `zhivov`.`roles`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zhivov`.`roles` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `idroles` INT NOT NULL AUTO_INCREMENT,
   `role` VARCHAR(20) NULL,
-  PRIMARY KEY (`id`))
+  PRIMARY KEY (`idroles`))
 ENGINE = InnoDB;
 
 
@@ -29,21 +29,21 @@ ENGINE = InnoDB;
 -- Table `zhivov`.`users`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zhivov`.`users` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `idusers` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(100) NULL,
   `login` VARCHAR(45) NULL,
-  `password` VARCHAR(26) NULL,
-  `dateofbirth` VARCHAR(10) NULL,
+  `password` VARCHAR(16) NULL,
+  `dateofbirth` DATE NULL,
   `email` VARCHAR(45) NULL,
   `tel` VARCHAR(45) NULL,
-  `roles_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_users_roles_idx` (`roles_id` ASC),
-  CONSTRAINT `fk_users_roles`
-    FOREIGN KEY (`roles_id`)
-    REFERENCES `zhivov`.`roles` (`id`)
-    ON DELETE RESTRICT
-    ON UPDATE RESTRICT)
+  `roles_idroles` INT NOT NULL,
+  PRIMARY KEY (`idusers`),
+  INDEX `fk_users_roles1_idx` (`roles_idroles` ASC),
+  CONSTRAINT `fk_users_roles1`
+    FOREIGN KEY (`roles_idroles`)
+    REFERENCES `zhivov`.`roles` (`idroles`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -51,7 +51,7 @@ ENGINE = InnoDB;
 -- Table `zhivov`.`ads`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `zhivov`.`ads` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `idads` INT NOT NULL AUTO_INCREMENT,
   `title` VARCHAR(50) NULL,
   `description` VARCHAR(2000) NULL,
   `brand` VARCHAR(45) NULL,
@@ -63,14 +63,14 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`ads` (
   `mileage` INT NULL,
   `crashed` TINYINT NULL,
   `price` INT NULL,
-  `users_id` INT NOT NULL,
-  PRIMARY KEY (`id`),
-  INDEX `fk_ads_users1_idx` (`users_id` ASC),
+  `users_idusers` INT NOT NULL,
+  PRIMARY KEY (`idads`),
+  INDEX `fk_ads_users1_idx` (`users_idusers` ASC),
   CONSTRAINT `fk_ads_users1`
-    FOREIGN KEY (`users_id`)
-    REFERENCES `zhivov`.`users` (`id`)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    FOREIGN KEY (`users_idusers`)
+    REFERENCES `zhivov`.`users` (`idusers`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -79,26 +79,11 @@ SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 -- -----------------------------------------------------
--- Data for table `zhivov`.`roles`
--- -----------------------------------------------------
-START TRANSACTION;
-USE `zhivov`;
-INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');
-INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');
-INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');
-
-COMMIT;
-
-
--- -----------------------------------------------------
 -- Data for table `zhivov`.`users`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `zhivov`;
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Petya', 'Petr2018', 'petyapetya', '26.04.1993', 'petya@mail.ru', '+848651861668', 2);
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, NULL, NULL, NULL, NULL, NULL, NULL, 3);
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'm0rph3us', 'admin', 'admin', NULL, NULL, NULL, 1);
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Andrey', 'Dron2355', 'drondron', '16.05.1980', 'dron@mail.ru', '+5616516568', 2);
+INSERT INTO `zhivov`.`users` (`idusers`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_idroles`) VALUES (DEFAULT, 'Petya', 'Petr2018', 'petpetya', '26.04.1993', 'petya@mail.ru', '+848651861668', DEFAULT);
 
 COMMIT;
 
@@ -108,8 +93,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `zhivov`;
-INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'TestTitle', 'TestDescription', 'Lancia', '53', 'yelow', 'coupe', 1996, 'standart', 186153, true, 580000, 1);
-INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, '2TestTitle', '2TestDescription', 'Opel', 'Astra', 'white', 'sedan', 2008, 'comfort', 40000, false, 1300000, 1);
+INSERT INTO `zhivov`.`ads` (`idads`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `equipment`, `mileage`, `crashed`, `price`, `users_idusers`) VALUES (DEFAULT, 'TestTitle', 'TestDescription', 'Lancia', '53', 'yelow', 'coupe', 1996, 'standart', 186153, true, 580000, DEFAULT);
 
 COMMIT;
 
