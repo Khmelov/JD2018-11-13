@@ -38,7 +38,7 @@ class UserCRUD {
         }
     }
 
-    boolean update(User user) throws  SQLException {
+    User update(User user) throws  SQLException {
         String sql = String.format(
                 "UPDATE `users` SET " +
                         "`login` = '%s', `password` = '%s', " +
