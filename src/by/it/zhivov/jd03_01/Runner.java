@@ -1,6 +1,10 @@
 package by.it.zhivov.jd03_01;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Properties;
 
 public class Runner {
     public static void main(String[] args) {
@@ -10,11 +14,14 @@ public class Runner {
             e.printStackTrace();
         }
 
-        String url, login, password;
+        String url;
         url = "jdbc:mysql://127.0.0.1:2016";
-        login = "root";
-        password = "";
-        try (Connection connection = DriverManager.getConnection(url, login, password)) {
+        Properties properties = new Properties();
+        properties.setProperty("user", "root");
+        properties.setProperty("password", "qwertyui");
+        properties.setProperty("useSSL", "false"); //что бы не ругался на SSL for mySQL8
+        properties.setProperty("autoReconnect", "true");
+        try (Connection connection = DriverManager.getConnection(url, properties)) {
             if (connection.isClosed()) {
                 System.out.println("Connection to " + url + " failure");
             } else System.out.println("Connection to " + url + " complete");
