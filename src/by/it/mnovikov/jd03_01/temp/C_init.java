@@ -1,4 +1,4 @@
-package by.it.mnovikov.jd03_01;
+package by.it.mnovikov.jd03_01.temp;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
