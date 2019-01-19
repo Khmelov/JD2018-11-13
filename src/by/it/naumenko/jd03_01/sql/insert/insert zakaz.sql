@@ -1,0 +1,2 @@
+INSERT INTO `naumenko`.`zakaz` (`id_zakaz`, `date_zakaz`, `koltort`, `price_zakaz`, `users_id_users`, `cake_id_cake`) VALUES (DEFAULT, '2018-12-25 05:52:30', 1, 150, 2, 1);
+INSERT INTO `naumenko`.`zakaz` (`id_zakaz`, `date_zakaz`, `koltort`, `price_zakaz`, `users_id_users`, `cake_id_cake`) VALUES (DEFAULT, '2018-12-25 15:40:30', 2, 60, 3, 2);
