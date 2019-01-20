@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS `mnovikov`.`users` (
   `roles_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
   INDEX `fk_users_roles_idx` (`roles_ID` ASC),
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
   CONSTRAINT `fk_users_roles`
     FOREIGN KEY (`roles_ID`)
     REFERENCES `mnovikov`.`roles` (`ID`)
@@ -101,13 +103,13 @@ CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (
   CONSTRAINT `fk_orders_goods_orders1`
     FOREIGN KEY (`orders_ID`)
     REFERENCES `mnovikov`.`orders` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT `fk_orders_goods_goods1`
     FOREIGN KEY (`goods_ID`)
     REFERENCES `mnovikov`.`goods` (`ID`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 
@@ -142,8 +144,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mnovikov`;
-INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`) VALUES (DEFAULT, '2019-01-18', '09-01-01', 2);
-INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`) VALUES (DEFAULT, '2019-01-19', '01-02-02', 2);
+INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`) VALUES (DEFAULT, '2019-01-18', '09:01:01', 2);
+INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`) VALUES (DEFAULT, '2019-01-19', '01:02:02', 2);
 
 COMMIT;
 
