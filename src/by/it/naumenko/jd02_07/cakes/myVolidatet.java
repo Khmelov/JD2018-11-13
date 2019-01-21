@@ -1,4 +1,4 @@
-package by.it.naumenko.jd02_07;
+package by.it.naumenko.jd02_07.cakes;
 
 import org.xml.sax.SAXException;
 
@@ -14,8 +14,8 @@ public class myVolidatet {
     public static void main(String[] args) {
         String nsUri = XMLConstants.W3C_XML_SCHEMA_NS_URI;
         SchemaFactory factory = SchemaFactory.newInstance(nsUri);
-        String pathXml = Util.getPath("saleOfCakes+xsd.xml");
-        String pathXsd = Util.getPath("saleOfCakes.xsd");
+        String pathXml = Util.getPath("cakes+xsd.xml");
+        String pathXsd = Util.getPath("cakes.xsd");
         try {
             Schema schema = factory.newSchema(new File(pathXsd));
             Validator validator = schema.newValidator();

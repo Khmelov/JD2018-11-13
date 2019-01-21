@@ -33,24 +33,24 @@
 
     <complexType name="tovar">
         <sequence>
-            <element name="cake" type="element"/>
-            <element name="capCakes" type="element"/>
-            <element name="gingerbread" type="element"/>
-            <element name="candy" type="element"/>
-            <element name="marshmallow" type="element"/>
+            <element name="cake" type="myType:cake"/>
+            <element name="capCakes" type="myType:capCakes"/>
+            <element name="gingerbread" type="myType:gingerbread"/>
+            <element name="candy" type="myType:candy"/>
+            <element name="marshmallow" type="myType:marshmallow"/>
         </sequence>
     </complexType>
 
     <complexType name="cake">
-        <sequence>
+        <all>
             <element name="name_cake" type="string"/>
             <element name="weight" type="positiveInteger"/>
             <element name="biscuit_cake" type="string"/>
             <element name="filling_cake" type="string"/>
             <element name="cream_cake" type="string"/>
             <element name="decoration_cake" type="string"/>
-            <element name="price_cake" type="float"/>
-        </sequence>
+            <element name="price_cake" type="myType:price_cake"/>
+        </all>
     </complexType>
 
     <complexType name="capCakes">
@@ -70,7 +70,7 @@
             <element name="decoration_pr" type="string"/>
             <element name="size_pr" type="positiveInteger"/>
             <element name="count_pr" type="positiveInteger"/>
-            <element name="price_cup" type="float"/>
+            <element name="price_pr" type="float"/>
         </sequence>
     </complexType>
 
@@ -108,4 +108,12 @@
         </sequence>
     </complexType>
 
+    <complexType name="price_cake">
+        <simpleContent>
+            <extension base="float">
+                <attribute name="currensy" type="string"/>
+            </extension>
+        </simpleContent>
+
+    </complexType>
 </schema>
