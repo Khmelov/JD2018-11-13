@@ -17,7 +17,7 @@ public class Runner {
         String url = "jdbc:mysql://127.0.0.1:2016";
         Properties properties = new Properties();
         properties.setProperty("user", "root");
-        properties.setProperty("password", "");
+        properties.setProperty("password", "qwertyui");
         properties.setProperty("useSSL", "false"); //что бы не ругался на SSL for mySQL8
         properties.setProperty("autoReconnect", "true");
         try (Connection connection = DriverManager.getConnection(url, properties)) {
