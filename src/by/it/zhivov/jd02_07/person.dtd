@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-        <!ELEMENT persons (user+,admin,guest?)>
+    <!ELEMENT persons (user)+>
         <!ELEMENT user (name,login,password,dateOfBirth,email,tel,privelegy,ads)>
         <!ELEMENT login (#PCDATA)>
         <!ELEMENT password (#PCDATA)>
@@ -9,20 +9,19 @@
         <!ELEMENT email (#PCDATA)>
         <!ELEMENT tel (#PCDATA)>
         <!ELEMENT privelegy (#PCDATA)>
-        <!ELEMENT ads (ad)*>
-        <!ELEMENT ad (description,brand,model,color,body,year,equipment,mileage,crashed,price)>
-        <!ELEMENT description (#PCDATA)>
-        <!ELEMENT brand (#PCDATA)>
-        <!ELEMENT model (#PCDATA)>
-        <!ELEMENT color (#PCDATA)>
-        <!ELEMENT body (#PCDATA)>
-        <!ELEMENT year (#PCDATA)>
-        <!ELEMENT equipment (#PCDATA)>
-        <!ELEMENT mileage (#PCDATA)>
-        <!ELEMENT crashed (#PCDATA)>
-        <!ELEMENT price (#PCDATA)>
-        <!ELEMENT admin (login,password,privelegy)>
-        <!ELEMENT guest (privelegy)>
+            <!ELEMENT ads (ad)*>
+                <!ELEMENT ad (title,description,brand,model,color,body,year,equipment,mileage,crashed,price)>
+                <!ELEMENT title (#PCDATA)>
+                <!ELEMENT description (#PCDATA)>
+                <!ELEMENT brand (#PCDATA)>
+                <!ELEMENT model (#PCDATA)>
+                <!ELEMENT color (#PCDATA)>
+                <!ELEMENT body (#PCDATA)>
+                <!ELEMENT year (#PCDATA)>
+                <!ELEMENT equipment (#PCDATA)>
+                <!ELEMENT mileage (#PCDATA)>
+                <!ELEMENT crashed (#PCDATA)>
+                <!ELEMENT price (#PCDATA)>
 
 
 
