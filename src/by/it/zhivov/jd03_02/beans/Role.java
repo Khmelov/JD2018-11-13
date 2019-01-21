@@ -1,13 +1,13 @@
 package by.it.zhivov.jd03_02.beans;
 
-public class Roles {
+public class Role {
     private long id;
     private String role;
 
-    public Roles() {
+    public Role() {
     }
 
-    public Roles(long id, String role) {
+    public Role(long id, String role) {
         this.id = id;
         this.role = role;
     }
@@ -26,5 +26,13 @@ public class Roles {
 
     public void setRole(String role) {
         this.role = role;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "id=" + id +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

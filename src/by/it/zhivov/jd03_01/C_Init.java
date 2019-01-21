@@ -42,7 +42,7 @@ class C_Init {
                 "  `year` INT NULL,\n" +
                 "  `equipment` VARCHAR(45) NULL,\n" +
                 "  `mileage` INT NULL,\n" +
-                "  `crashed` TINYINT NULL,\n" +
+                "  `crashed` VARCHAR(5) NULL,\n" +
                 "  `price` INT NULL,\n" +
                 "  `users_id` INT NOT NULL,\n" +
                 "  PRIMARY KEY (`id`),\n" +
