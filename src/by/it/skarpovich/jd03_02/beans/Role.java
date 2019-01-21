@@ -1,22 +1,22 @@
 package by.it.skarpovich.jd03_02.beans;
 
 public class Role {
-private long id;
+private int id;
 private String role;
 
     public Role() {
     }
 
-    public Role(long id, String role) {
+    public Role(int id, String role) {
         this.id = id;
         this.role = role;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 

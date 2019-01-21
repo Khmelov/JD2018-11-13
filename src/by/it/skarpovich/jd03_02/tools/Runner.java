@@ -1,7 +1,5 @@
 package by.it.skarpovich.jd03_02.tools;
-
 import by.it.skarpovich.jd03_02.crud.CONFIG;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -18,7 +16,6 @@ public class Runner {
 
             Statement statement = connection.createStatement();  // Создаем объект statement и ссылку на него
             System.out.println("CREATE DATABASE or DELETE DATABASE? (c/d)");
-
             BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
             String question = bf.readLine();
 

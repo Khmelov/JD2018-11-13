@@ -44,41 +44,27 @@ class C_Init {
                     "  PRIMARY KEY (`id`)," +
                     "  UNIQUE INDEX `title_UNIQUE` (`title` ASC))" +
                     "ENGINE = InnoDB;");
-
-
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `skarpovich`.`orders` (" +
                     "  `id` INT NOT NULL AUTO_INCREMENT," +
                     "  `date` DATE NULL," +
                     "  `time` TIME NULL," +
                     "  `users_id` INT NOT NULL," +
+                    "  `items_id` INT NOT NULL," +
                     "  PRIMARY KEY (`id`)," +
                     "  INDEX `fk_orders_users1_idx` (`users_id` ASC)," +
+                    "  INDEX `fk_orders_items1_idx` (`items_id` ASC)," +
                     "  CONSTRAINT `fk_orders_users1`" +
                     "    FOREIGN KEY (`users_id`)" +
                     "    REFERENCES `skarpovich`.`users` (`id`)" +
                     "    ON DELETE CASCADE" +
-                    "    ON UPDATE CASCADE)" +
-                    "ENGINE = InnoDB;");
-
-
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `skarpovich`.`orders_items` (" +
-                    "  `orders_id` INT NOT NULL," +
-                    "  `items_id` INT NOT NULL," +
-                    "  INDEX `fk_orders_items_orders1_idx` (`orders_id` ASC)," +
-                    "  INDEX `fk_orders_items_items1_idx` (`items_id` ASC)," +
-                    "  CONSTRAINT `fk_orders_items_orders1`" +
-                    "    FOREIGN KEY (`orders_id`)" +
-                    "    REFERENCES `skarpovich`.`orders` (`id`)" +
-                    "    ON DELETE CASCADE" +
                     "    ON UPDATE CASCADE," +
-                    "  CONSTRAINT `fk_orders_items_items1`" +
+                    "  CONSTRAINT `fk_orders_items1`" +
                     "    FOREIGN KEY (`items_id`)" +
                     "    REFERENCES `skarpovich`.`items` (`id`)" +
-                    "    ON DELETE RESTRICT" +
-                    "    ON UPDATE RESTRICT)" +
+                    "    ON DELETE CASCADE" +
+                    "    ON UPDATE CASCADE)" +
                     "ENGINE = InnoDB;");
-
-
+            
 
             statement.executeUpdate("INSERT INTO `skarpovich`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `skarpovich`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
@@ -88,16 +74,15 @@ class C_Init {
                     "VALUES (DEFAULT, 'admin', 'admin', 'admin@admin.com', 'John Black', '911-911-9111', 'Kremlin, Russia', 1);");
             statement.executeUpdate("INSERT INTO `skarpovich`.`users` (`id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `roles_id`) " +
                     "VALUES (DEFAULT, 'john', 'john1', 'johndoe@yahoo.com', 'John Doe', '212-564-5555', '444 W. 27th Street, 4th Floor, New York, NY 10001', 2);");
+
             statement.executeUpdate("INSERT INTO `skarpovich`.`items` (`id`, `title`, `floors`, `square`, `materials`, `price`) " +
                     "VALUES (DEFAULT, 'Zx87', 1, 133, 'Aerated concrete, ceramic blocks', 510);");
             statement.executeUpdate("INSERT INTO `skarpovich`.`items` (`id`, `title`, `floors`, `square`, `materials`, `price`) " +
                     "VALUES (DEFAULT, 'Zx152', 2, 299, 'Aerated concrete, ceramic blocks', 650);");
             
-
-            statement.executeUpdate("INSERT INTO `skarpovich`.`orders` (`id`, `date`, `time`, `users_id`) VALUES (DEFAULT, '2019-01-19', '10:59:59', 2);");
-            statement.executeUpdate("INSERT INTO `skarpovich`.`orders` (`id`, `date`, `time`, `users_id`) VALUES (DEFAULT, '2019-01-20', '11:00:00', 2);");
-
-            statement.executeUpdate("INSERT INTO `skarpovich`.`orders_items` (`orders_id`, `items_id`) VALUES (1, 1);");
-            statement.executeUpdate("INSERT INTO `skarpovich`.`orders_items` (`orders_id`, `items_id`) VALUES (2, 2);");
+             statement.executeUpdate("INSERT INTO `skarpovich`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) " +
+                    "VALUES (DEFAULT, '2019-01-19', '10:59:59', 2, 1);");
+            statement.executeUpdate("INSERT INTO `skarpovich`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) " +
+                    "VALUES (DEFAULT, '2019-01-20', '11:00:00', 2, 2);");
     }
 }
