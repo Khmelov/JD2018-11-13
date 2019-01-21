@@ -90,7 +90,7 @@ public class VectorParserTest {
         } catch (CalcException e) {
             res = e.getMessage();
         }
-        assertTrue(res.contains("ERROR: Деление на ноль"));
+        assertTrue(res.contains( SwitchLanguages.rb.getString("NullDivision")));
 
 
     }

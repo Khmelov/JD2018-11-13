@@ -1,0 +1,13 @@
+wrongArrSize=Неверный размер массива
+matrixNotTemplate=Матрица не по шаблону
+emptyMatrix=Пустая матрица
+wrongValue=Неверное значение
+matrixDoesntRectangle=Матрица не прямоугольная
+divisionByZero=Деление на ноль
+impossible=невозможно
+addition=Сложение
+subtraction=Вычитание
+multiple=Умножение
+division=Деление
+impossibleToCreate=Невозможно создать
+wrongVectorString=Неверная строка ветора

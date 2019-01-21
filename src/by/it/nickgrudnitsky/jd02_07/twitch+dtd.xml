@@ -3,6 +3,7 @@
 <twitch>
     <viewers>
         <viewer>
+            <id>1</id>
             <email>grudnitsky@gmail.com</email>
             <password>password</password>
             <nickname>NickGS</nickname>
@@ -13,14 +14,19 @@
             </following>
         </viewer>
         <viewer>
+            <id>2</id>
             <email>pewdiepie@pewd.se</email>
-            <password>youlaughyouloose</password>
+            <password>youloose</password>
             <nickname>pewdiepie</nickname>
+            <following>
+                <channelname>Ninja</channelname>
+            </following>
         </viewer>
     </viewers>
 
     <streamers>
         <streamer>
+            <id>3</id>
             <email>ninja@gmail.com</email>
             <password>fortnightlover</password>
             <channelname>Ninja</channelname>

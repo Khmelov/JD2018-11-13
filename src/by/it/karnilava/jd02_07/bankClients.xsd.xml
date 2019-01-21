@@ -1,0 +1,18 @@
+<kar:clients xmlns:kar="http://it-academy.by/jd2018-11-13/karnilava">
+    <!--1 or more repetitions:-->
+    <kar:client>
+        <kar:id>3050992E011PB0</kar:id>
+        <kar:firstName>Natallia</kar:firstName>
+        <kar:lastName>Karnilava</kar:lastName>
+        <kar:password>string123</kar:password>
+        <kar:accounts account="depositAccount" number="3014564765012" state="open" balance="300 BYN"/>
+    </kar:client>
+    <kar:client>
+        <kar:id>4061167A014MP1</kar:id>
+        <kar:firstName>Иван</kar:firstName>
+        <kar:lastName>Петров</kar:lastName>
+        <kar:password>петя1234</kar:password>
+        <kar:accounts account="depositAccount" number="3011786987911" state="open" balance="15000 BYN"/>
+        <kar:accounts account="currentAccount" number="3014786987891" state="closed" balance="0 BYN"/>
+    </kar:client>
+</kar:clients>

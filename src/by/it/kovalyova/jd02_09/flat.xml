@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+
+<ads>
+    <ad>
+        <email>petya@mail.ru</email>
+        <nickname>Petya</nickname>
+        <password>PetyaPetya</password>
+        <flat>
+            <description>Квартира</description>
+            <address>Минск Грибоедова</address>
+            <rooms>3</rooms>
+            <floor>3</floor>
+            <floors>5</floors>
+            <area>70.5</area>
+            <price>130000</price>
+        </flat>
+    </ad>
+</ads>
