@@ -1,4 +1,4 @@
-package by.it.mnovikov.jd03_02.crud;
+package by.it.mnovikov.jd03_02.temp;
 
 public interface ConnC {
 

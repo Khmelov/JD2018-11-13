@@ -1,4 +1,4 @@
-package by.it.mnovikov.jd03_02.crud;
+package by.it.mnovikov.jd03_02.temp;
 
 import by.it.mnovikov.jd03_02.beans.User;
 
@@ -11,7 +11,7 @@ public class Runner {
         user.setLogin("LLLLLLL");
         user.setPassword("adsfasd");
         user.setEmail("dasfas@mail.ru");
-        user.setRoles_ID(2);
+//        user.setRoles_ID(2);
 
 //        if (UserCRUD.update(user)){
 //            System.out.println(user);
