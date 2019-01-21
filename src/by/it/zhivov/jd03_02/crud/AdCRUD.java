@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class AdCRUD {
-    boolean create(Ad ad) throws SQLException {
+    public boolean create(Ad ad) throws SQLException {
         String sqlCmd = String.format("INSERT INTO `ads` " +
                         "(`title`," +
                         "`description`, " +
@@ -38,7 +38,7 @@ public class AdCRUD {
         return false;
     }
 
-    Ad read(long id) throws SQLException {
+    public Ad read(long id) throws SQLException {
         String sqlCmd = String.format("SELECT `id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`," +
                 " `equipment`, `mileage`, `crashed`, `price`, `users_id` FROM `ads` WHERE id=%d", id);
         try (Connection connection = Connect.getConnection();
@@ -62,7 +62,7 @@ public class AdCRUD {
         }
     }
 
-    boolean update(Ad ad) throws SQLException {
+    public boolean update(Ad ad) throws SQLException {
         String sqlCmd = String.format(
                 "UPDATE `ads` SET " +
                         "`title`='%s'," +
@@ -80,7 +80,7 @@ public class AdCRUD {
                         "WHERE `ads`.`id`=%d",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(),
                 ad.getColor(), ad.getBody(), ad.getYear(), ad.getEquipment(), ad.getMillage(),
-                ad.isCrashed(), ad.getPrice(),ad.getId_User(), ad.getId()
+                ad.isCrashed(), ad.getPrice(), ad.getId_User(), ad.getId()
         );
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
@@ -88,7 +88,7 @@ public class AdCRUD {
         }
     }
 
-    boolean delete(Ad ad) throws SQLException {
+    public boolean delete(Ad ad) throws SQLException {
         String sqlCmd = String.format("DELETE FROM `ads` WHERE `ads`.`id`=%d", ad.getId());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
