@@ -1,0 +1,14 @@
+<?xml version= "1.0" encoding="UTF-8" ?>
+        <!ELEMENT spareparts (part)>
+        <!ELEMENT part (description)>
+        <!ELEMENT description (model, category, name, serial_number, weigth, size)>
+        <!ELEMENT model (#PCDATA)>
+        <!ELEMENT category (#PCDATA)>
+        <!ELEMENT name (#PCDATA)>
+        <!ELEMENT serial_number (#PCDATA)>
+        <!ELEMENT weigth (#PCDATA)>
+        <!ELEMENT size (#PCDATA)>
+        <!ELEMENT availableness (shops)+>
+        <!ELEMENT shops (adress,  quanity)>
+        <!ELEMENT adress (#PCDATA)>
+        <!ELEMENT quanity (#PCDATA)>

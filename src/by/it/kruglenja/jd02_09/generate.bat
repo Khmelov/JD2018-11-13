@@ -1,0 +1,1 @@
+xjc -d ../../../.. spareparts.xsd

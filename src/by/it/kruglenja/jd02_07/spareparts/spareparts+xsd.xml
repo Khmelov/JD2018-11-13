@@ -1,0 +1,32 @@
+<?xml version= "1.0" encoding="UTF-8" ?>
+<spareparts xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="C:\Users\Tom\IdeaProjects\JD2018-11-13\src\by\it\kruglenja\jd02_07\spareparts"
+            xsi:schemaLocation="C:\Users\Tom\IdeaProjects\JD2018-11-13\src\by\it\kruglenja\jd02_07\spareparts spareparts.xsd"
+>
+    <part>
+        <description>
+            <model>Mazda 3</model>
+            <category>Ходовая</category>
+            <name>Крестовина карданного вала</name>
+            <serial_number>000568963</serial_number>
+            <weigth>0.5</weigth>
+            <size>15.0*15.0*10</size>
+        </description>
+        <shops>
+            <adress>Ковалева, 11</adress>
+            <quanity>3</quanity>
+        </shops>
+        <shops>
+            <adress>Уборевича, 39</adress>
+            <quanity>3</quanity>
+        </shops>
+        <shops>
+            <adress>Селицкого, 141</adress>
+            <quanity>3</quanity>
+        </shops>
+        <shops>
+            <adress>Могилевская, 29</adress>
+            <quanity>3</quanity>
+        </shops>
+    </part>
+</spareparts>
