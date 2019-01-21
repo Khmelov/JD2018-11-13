@@ -30,11 +30,10 @@ public class C_Init {
                     "  `nickname` VARCHAR(100) NULL," +
                     "  `email` VARCHAR(100) NULL," +
                     "  `password` VARCHAR(100) NULL," +
-                    "  `users_id` INT NOT NULL," +
+                    "  `roles_id` INT NOT NULL," +
                     "  PRIMARY KEY (`id`)," +
-                    "  INDEX `fk_users_users_idx` (`users_id` ASC)," +
-                    "  CONSTRAINT `fk_users_users`" +
-                    "    FOREIGN KEY (`users_id`)" +
+                    "  CONSTRAINT `fk_users_roles1`" +
+                    "    FOREIGN KEY (`roles_id`)" +
                     "    REFERENCES `vchernetski`.`roles` (`id`)" +
                     "    ON DELETE NO ACTION" +
                     "    ON UPDATE NO ACTION)" +
@@ -68,9 +67,9 @@ public class C_Init {
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');");
-            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `users_id`) VALUES (DEFAULT, 'Ivan Ivanovich Ivanov', 2, 'ivanich', 'ivanich@mail.ru', 'user', 2);");
-            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `users_id`) VALUES (DEFAULT, 'Petr Petrovich Petrov', 0, 'petya', 'petya@yandex.ru', 'admin', 1);");
-            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `users_id`) VALUES (DEFAULT, 'Vasilii Vasil\\'evich Vasil\\'ev', 0, 'vasya', 'vasya@gmail.com', 'guest', 3);");
+            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Ivan Ivanovich Ivanov', 2, 'ivanich', 'ivanich@mail.ru', 'user', 2);");
+            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Petr Petrovich Petrov', 0, 'petya', 'petya@yandex.ru', 'admin', 1);");
+            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Vasilii Vasil\\'evich Vasil\\'ev', 0, 'vasya', 'vasya@gmail.com', 'guest', 3);");
             statement.executeUpdate("INSERT INTO `vchernetski`.`garages` (`id`, `adress`, `carplaces`, `users_id`) VALUES (DEFAULT, 'Minsk, Lenina 3', 2, 1);");
             statement.executeUpdate("INSERT INTO `vchernetski`.`garages` (`id`, `adress`, `carplaces`, `users_id`) VALUES (DEFAULT, 'Minsk, Moskovskaya 17', 1, 1);");
             statement.executeUpdate("INSERT INTO `vchernetski`.`cars` (`model`, `color`, `year`, `garages_id`) VALUES ('BMW X5', 'white', 2015, 1);");
