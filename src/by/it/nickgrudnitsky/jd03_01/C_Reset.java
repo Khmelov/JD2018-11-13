@@ -12,7 +12,7 @@ public class C_Reset {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "52861347Ewq")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `ngrudnitsky` ;");
 

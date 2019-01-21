@@ -13,7 +13,7 @@ public class C_Init {
             e.printStackTrace();
         }
 
-       try(Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "52861347Ewq")){
+       try(Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "")){
            Statement statement = connection.createStatement();
            statement.executeUpdate("DROP SCHEMA IF EXISTS `ngrudnitsky` ;");
            statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `ngrudnitsky` DEFAULT CHARACTER SET utf8 ;");
