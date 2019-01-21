@@ -1,9 +1,11 @@
 package by.it.seroglazov.jd03_02.crud;
 
 import by.it.seroglazov.jd03_02.MyDatabaseConnector;
-import by.it.seroglazov.jd03_02.beans.Amount;
+import by.it.seroglazov.jd03_02.Amount;
 import by.it.seroglazov.jd03_02.beans.Ingredient;
 import by.it.seroglazov.jd03_02.beans.Recipe;
+import by.it.seroglazov.jd03_02.beans.Rtype;
+import by.it.seroglazov.jd03_02.beans.Unit;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -35,7 +37,7 @@ public class RecipeCRUD {
                 }
                 // Insert relatives
                 sb.setLength(0);
-                sb.append("INSERT INTO `amounts` (`recipe_id`, `ingredient_id`, `amount`, `unit_id`) VALUES ");
+                sb.append("INSERT INTO `amounts` (`recipe_id`, `ingredient_id`, `text`, `unit_id`) VALUES ");
                 value = "(%d, %d, '%s', %d), ";
                 int counter = 0;
                 for (Recipe recipe : recipes) {
@@ -74,7 +76,7 @@ public class RecipeCRUD {
                 statement.executeUpdate(sqlDelTags);
                 StringBuilder sb = new StringBuilder();
                 sb.setLength(0);
-                sb.append("INSERT INTO `amounts` (`recipe_id`, `ingredient_id`, `amount`, `unit_id`) VALUES ");
+                sb.append("INSERT INTO `amounts` (`recipe_id`, `ingredient_id`, `text`, `unit_id`) VALUES ");
                 String value = "(%d, %d, '%s', %d), ";
                 int counter = 0;
                 for (Amount amount : recipe.getAmounts()) {
@@ -90,11 +92,18 @@ public class RecipeCRUD {
         return false;
     }
 
-    /*public Recipe read(long id) throws SQLException {
-        String sql = String.format("SELECT `name`, `description`, `rtype_id` FROM `recipes` WHERE id=%d", id);
-        String sqlTags = String.format("SELECT amounts.ingredient_id, .text FROM ingredients_itags " +
-                "INNER JOIN itags ON ingredients_itags.itags_id = itags.id " +
-                "WHERE ingredients_itags.ingredients_id = %d", id); // I wrote this SQL request by hands, cool!
+    public Recipe read(long id) throws SQLException {
+        String sql = String.format("SELECT recipes.name, recipes.description, recipes.rtype_id, rtypes.text " +
+                "FROM `recipes` " +
+                "INNER JOIN rtypes ON rtypes.id = recipes.rtype_id " +
+                "WHERE recipes.id = %d", id); // Wrote by hand too
+        String sql2 = String.format(
+                "SELECT amounts.ingredient_id, ingredients.name, " +
+                        "amounts.unit_id, units.name, " +
+                        "amounts.text FROM amounts\n" +
+                        "INNER JOIN ingredients ON amounts.ingredient_id = ingredients.id\n" +
+                        "INNER JOIN units ON amounts.unit_id = units.id\n" +
+                        "WHERE `amounts`.`recipe_id` = %d", id); // Belive or not I wrote this SQL request by hands, cool!
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
@@ -103,16 +112,21 @@ public class RecipeCRUD {
                 recipe = new Recipe();
                 recipe.setId(id);
                 recipe.setName(resultSet.getString(1));
+                recipe.setDescription(resultSet.getString(2));
+                Rtype rtype = new Rtype(resultSet.getLong(3), resultSet.getString(4));
+                recipe.setRtype(rtype);
             } else
                 return null;
-            ResultSet resultSetTags = statement.executeQuery(sqlTags);
+            ResultSet resultSetTags = statement.executeQuery(sql2);
             while (resultSetTags.next()) {
                 Ingredient ingredient = new Ingredient(resultSetTags.getLong(1), resultSetTags.getString(2));
-                recipe.addIngredient(ingredient);
+                Unit unit = new Unit(resultSetTags.getLong(3), resultSetTags.getString(4));
+                Amount amount = new Amount(ingredient, resultSetTags.getString(5), unit);
+                recipe.getAmounts().add(amount);
             }
             return recipe;
         }
-    }*/
+    }
 
 
 }

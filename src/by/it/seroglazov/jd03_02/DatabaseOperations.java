@@ -77,13 +77,13 @@ public class DatabaseOperations {
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `units` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
-                    "  `name` VARCHAR(45) NULL,\n" +
+                    "  `name` VARCHAR(100) NOT NULL,\n" +
                     "  PRIMARY KEY (`id`))\n" +
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `amounts` (\n" +
                     "  `recipe_id` INT NOT NULL,\n" +
                     "  `ingredient_id` INT NOT NULL,\n" +
-                    "  `amount` VARCHAR(10) NOT NULL,\n" +
+                    "  `text` VARCHAR(45) NOT NULL,\n" +
                     "  `unit_id` INT NOT NULL,\n" +
                     "  INDEX `fk_recipes_ingredients_recipes1_idx` (`recipe_id` ASC),\n" +
                     "  INDEX `fk_recipes_ingredients_ingredients1_idx` (`ingredient_id` ASC),\n" +

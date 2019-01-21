@@ -1,4 +1,7 @@
-package by.it.seroglazov.jd03_02.beans;
+package by.it.seroglazov.jd03_02;
+
+import by.it.seroglazov.jd03_02.beans.Ingredient;
+import by.it.seroglazov.jd03_02.beans.Unit;
 
 public class Amount {
     private Ingredient ingredient;

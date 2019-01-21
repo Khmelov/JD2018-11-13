@@ -1,5 +1,7 @@
 package by.it.seroglazov.jd03_02.beans;
 
+import by.it.seroglazov.jd03_02.Amount;
+
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
