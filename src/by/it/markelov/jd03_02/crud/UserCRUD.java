@@ -15,13 +15,15 @@ public class UserCRUD {
 
 
             String sql = String.format("INSERT INTO `users`(`Login`, `Password`, `E-Mail`, `roles_ID`) " +
-                    "VALUES (`%s`,`%s`,`%s`,%d);", user.getLogin(), user.getPassword(), user.getEmail(), user.getRoles_ID());
+                    "VALUES ('%s','%s','%s','%d');", user.getLogin(), user.getPassword(), user.getEmail(), user.getRoles_ID());
 
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             if (countCreatedObject == 1) {
                 ResultSet keys = statement.getGeneratedKeys();
-                int id = keys.getInt(1);
-                user.setId(id);
+                if (keys.next()) {
+                    int id = keys.getInt(1);
+                    user.setId(id);
+                }
             }
             return user;
         }
@@ -31,7 +33,7 @@ public class UserCRUD {
         User result = null;
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` WHERE ID=%d",
+            String sql = String.format("SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` WHERE ID='%d'",
                     user.getId());
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
@@ -42,7 +44,6 @@ public class UserCRUD {
                         resultSet.getString("E-Mail"),
                         resultSet.getInt("roles_ID")
                 );
-
             }
         }
         return result;
