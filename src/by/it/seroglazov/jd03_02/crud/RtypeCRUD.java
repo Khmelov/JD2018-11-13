@@ -1,32 +1,31 @@
 package by.it.seroglazov.jd03_02.crud;
 
 import by.it.seroglazov.jd03_02.MyDatabaseConnector;
-import by.it.seroglazov.jd03_02.beans.Ingredient;
+import by.it.seroglazov.jd03_02.beans.Rtype;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class IngredientCRUD {
-
-    public boolean create(Ingredient... ingredients) throws SQLException {
+public class RtypeCRUD {
+    public boolean create(Rtype... ingredients) throws SQLException {
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO `ingredients` (`id`, `name`) VALUES ");
+            sb.append("INSERT INTO `rtypes` (`id`, `text`) VALUES ");
             String value = "(DEFAULT, '%s'), ";
-            for (Ingredient ingredient : ingredients) {
-                sb.append(String.format(value, ingredient.getName()));
+            for (Rtype rtype : ingredients) {
+                sb.append(String.format(value, rtype.getText()));
             }
             sb.delete(sb.length()-2, sb.length());
             sb.append(';');
             String sql = sb.toString();
             if (ingredients.length == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();
-                for (Ingredient ingredient : ingredients) {
+                for (Rtype rtype : ingredients) {
                     if (generatedKeys.next()) {
-                        ingredient.setId(generatedKeys.getLong(1));
+                        rtype.setId(generatedKeys.getLong(1));
                     }
                 }
                 return true;
@@ -35,8 +34,8 @@ public class IngredientCRUD {
         }
     }
 
-    public boolean delete(Ingredient ingredient) throws SQLException {
-        String sql = String.format("DELETE FROM `ingredients` WHERE `ingredients`.`id` = %d ", ingredient.getId());
+    public boolean delete(Rtype rtype) throws SQLException {
+        String sql = String.format("DELETE FROM `rtypes` WHERE `rtypes`.`id` = %d ", rtype.getId());
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -45,25 +44,25 @@ public class IngredientCRUD {
         }
     }
 
-    public boolean update(Ingredient ingredient) throws SQLException {
-        String sql = String.format("UPDATE `ingredients` SET `name` = '%s' WHERE `ingredients`.`id` = %d;",
-                ingredient.getName(), ingredient.getId());
+    public boolean update(Rtype rtype) throws SQLException {
+        String sql = String.format("UPDATE `rtypes` SET `text` = '%s' WHERE `rtypes`.`id` = %d;",
+                rtype.getText(), rtype.getId());
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             return (1 == statement.executeUpdate(sql));
         }
     }
 
-    public Ingredient read(long id) throws SQLException {
-        String sql = String.format("SELECT `name` FROM `ingredients` WHERE id=%d", id);
+    public Rtype read(long id) throws SQLException {
+        String sql = String.format("SELECT `text` FROM `rtypes` WHERE id=%d", id);
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()){
-                Ingredient ingredient = new Ingredient();
-                ingredient.setId(id);
-                ingredient.setName(resultSet.getString(1));
-                return ingredient;
+                Rtype unit = new Rtype();
+                unit.setId(id);
+                unit.setText(resultSet.getString(1));
+                return unit;
             } else
                 return null;
         }

@@ -1,32 +1,31 @@
 package by.it.seroglazov.jd03_02.crud;
 
 import by.it.seroglazov.jd03_02.MyDatabaseConnector;
-import by.it.seroglazov.jd03_02.beans.Ingredient;
+import by.it.seroglazov.jd03_02.beans.Unit;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class IngredientCRUD {
-
-    public boolean create(Ingredient... ingredients) throws SQLException {
+public class UnitCRUD {
+    public boolean create(Unit... ingredients) throws SQLException {
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             StringBuilder sb = new StringBuilder();
-            sb.append("INSERT INTO `ingredients` (`id`, `name`) VALUES ");
+            sb.append("INSERT INTO `units` (`id`, `name`) VALUES ");
             String value = "(DEFAULT, '%s'), ";
-            for (Ingredient ingredient : ingredients) {
-                sb.append(String.format(value, ingredient.getName()));
+            for (Unit unit : ingredients) {
+                sb.append(String.format(value, unit.getName()));
             }
             sb.delete(sb.length()-2, sb.length());
             sb.append(';');
             String sql = sb.toString();
             if (ingredients.length == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();
-                for (Ingredient ingredient : ingredients) {
+                for (Unit unit : ingredients) {
                     if (generatedKeys.next()) {
-                        ingredient.setId(generatedKeys.getLong(1));
+                        unit.setId(generatedKeys.getLong(1));
                     }
                 }
                 return true;
@@ -35,8 +34,8 @@ public class IngredientCRUD {
         }
     }
 
-    public boolean delete(Ingredient ingredient) throws SQLException {
-        String sql = String.format("DELETE FROM `ingredients` WHERE `ingredients`.`id` = %d ", ingredient.getId());
+    public boolean delete(Unit unit) throws SQLException {
+        String sql = String.format("DELETE FROM `units` WHERE `units`.`id` = %d ", unit.getId());
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
 
@@ -45,25 +44,25 @@ public class IngredientCRUD {
         }
     }
 
-    public boolean update(Ingredient ingredient) throws SQLException {
-        String sql = String.format("UPDATE `ingredients` SET `name` = '%s' WHERE `ingredients`.`id` = %d;",
-                ingredient.getName(), ingredient.getId());
+    public boolean update(Unit unit) throws SQLException {
+        String sql = String.format("UPDATE `units` SET `name` = '%s' WHERE `units`.`id` = %d;",
+                unit.getName(), unit.getId());
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             return (1 == statement.executeUpdate(sql));
         }
     }
 
-    public Ingredient read(long id) throws SQLException {
-        String sql = String.format("SELECT `name` FROM `ingredients` WHERE id=%d", id);
+    public Unit read(long id) throws SQLException {
+        String sql = String.format("SELECT `name` FROM `units` WHERE id=%d", id);
         try (Connection connection = MyDatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()){
-                Ingredient ingredient = new Ingredient();
-                ingredient.setId(id);
-                ingredient.setName(resultSet.getString(1));
-                return ingredient;
+                Unit unit = new Unit();
+                unit.setId(id);
+                unit.setName(resultSet.getString(1));
+                return unit;
             } else
                 return null;
         }

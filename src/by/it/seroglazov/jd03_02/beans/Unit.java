@@ -4,6 +4,18 @@ public class Unit {
     private long id;
     private String name;
 
+    public Unit(long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Unit(String name) {
+        this.name = name;
+    }
+
+    public Unit() {
+    }
+
     public long getId() {
         return id;
     }
@@ -20,12 +32,11 @@ public class Unit {
         this.name = name;
     }
 
-    public Unit() {
-
-    }
-
-    public Unit(long id, String name) {
-        this.id = id;
-        this.name = name;
+    @Override
+    public String toString() {
+        return "Unit{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

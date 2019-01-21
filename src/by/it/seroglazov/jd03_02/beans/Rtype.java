@@ -1,21 +1,19 @@
 package by.it.seroglazov.jd03_02.beans;
 
-import java.util.List;
-
-public class Itag {
+public class Rtype {
     private long id;
     private String text;
 
-    public Itag(long id, String text) {
+    public Rtype() {
+    }
+
+    public Rtype(String text) {
+        this.text = text;
+    }
+
+    public Rtype(long id, String text) {
         this.id = id;
         this.text = text;
-    }
-
-    public Itag(String text) {
-        this.text = text;
-    }
-
-    public Itag() {
     }
 
     public long getId() {
@@ -32,5 +30,13 @@ public class Itag {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    @Override
+    public String toString() {
+        return "Rtype{" +
+                "id=" + id +
+                ", text='" + text + '\'' +
+                '}';
     }
 }
