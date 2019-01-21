@@ -2,8 +2,8 @@
 
 
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="IT-Academy/JD2018-11-13/src/by/it/nickgrudnitsky"
-        xmlns:mtp="IT-Academy/JD2018-11-13/src/by/it/nickgrudnitsky"
+        targetNamespace="http://beans.jd02_09.nickgrudnitsky.it.by/"
+        xmlns:mtp="http://beans.jd02_09.nickgrudnitsky.it.by/"
         elementFormDefault="qualified">
     <element name="twitch">
         <complexType>
@@ -35,6 +35,7 @@
             <element name="id" type="long"/>
             <element name="email" type="string"/>
             <element name="password" type="string"/>
+            <element name="roleID" type="int"/>
             <element name="nickname" type="string"/>
             <element name="following" type="mtp:Following"/>
         </sequence>
@@ -64,6 +65,7 @@
             <element name="id" type="long"/>
             <element name="email" type="string"/>
             <element name="password" type="string"/>
+            <element name="roleID" type="int"/>
             <element name="channelname" type="string"/>
             <element name="followers" type="mtp:Followers"/>
         </sequence>

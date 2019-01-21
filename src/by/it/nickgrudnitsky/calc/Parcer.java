@@ -7,12 +7,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 class Parcer {
-    public static void main(String[] args) throws CalcException {
+    /*public static void main(String[] args) throws CalcException {
         Parcer parser = new Parcer();
         Var.read();
         System.out.println(parser.calc("{2,3}*(10/2)"));
 
-    }
+    }*/
 
     public Var calc(String expression) throws CalcException {
         List<String> polishNotation = new ArrayList<>();
