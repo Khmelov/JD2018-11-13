@@ -20,14 +20,13 @@ class Connect {
     }
 
     static Connection getConnection() throws SQLException {
-        if (connection==null || connection.isClosed()){
+        if (connection == null || connection.isClosed()) {
             synchronized (Connect.class) {
-                if (connection==null || connection.isClosed()){
-                    connection= DriverManager.getConnection(Cn.URL, Cn.USER, Cn.PASSWORD);
+                if (connection == null || connection.isClosed()) {
+                    connection = DriverManager.getConnection(ConnC.URL_DB, ConnC.USER_DB, ConnC.PASSWORD_DB);
                 }
             }
         }
         return connection;
     }
-
 }
