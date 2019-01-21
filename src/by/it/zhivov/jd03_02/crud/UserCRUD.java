@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class UserCRUD {
-    boolean create(User user) throws SQLException {
+    public boolean create(User user) throws SQLException {
         String sqlCmd = String.format("INSERT INTO `users`" +
                         "(`name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) " +
                         "VALUES ('%s','%s','%s','%s','%s','%s','%d')",
@@ -27,7 +27,7 @@ public class UserCRUD {
         return false;
     }
 
-    User read(long id) throws SQLException {
+    public User read(long id) throws SQLException {
         String sqlCmd = String.format("SELECT `id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`," +
                 " `roles_id` FROM `users` WHERE id=%d", id);
         try (Connection connection = Connect.getConnection();
@@ -46,7 +46,7 @@ public class UserCRUD {
         }
     }
 
-    boolean update(User user) throws SQLException {
+    public boolean update(User user) throws SQLException {
         String sqlCmd = String.format(
                 "UPDATE `users` SET " +
                         "`name`='%s'," +
@@ -67,7 +67,7 @@ public class UserCRUD {
         }
     }
 
-    boolean delete(User user) throws SQLException {
+    public boolean delete(User user) throws SQLException {
         String sqlCmd = String.format("DELETE FROM `users` WHERE `users`.`id`=%d", user.getId());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
