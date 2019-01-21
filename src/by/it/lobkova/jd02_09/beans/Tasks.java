@@ -12,22 +12,20 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 
 /**
- * <p>Java class for anonymous complex type.
+ * <p>Java class for tasks complex type.
  * 
  * <p>The following schema fragment specifies the expected content contained within this class.
  * 
  * <pre>
- * &lt;complexType>
+ * &lt;complexType name="tasks">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
- *         &lt;element name="person" type="{http://beans.jd02_09.lobkova.it.by}person" maxOccurs="unbounded"/>
+ *         &lt;element name="task" type="{http://beans.jd02_09.lobkova.it.by}task" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -37,48 +35,46 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "", propOrder = {
-    "person"
+@XmlType(name = "tasks", propOrder = {
+    "task"
 })
-@XmlRootElement(name = "persons")
-public class Persons {
+public class Tasks {
 
-    @XmlElement(required = true)
-    protected List<Person> person;
+    protected List<Task> task;
 
     /**
-     * Gets the value of the person property.
+     * Gets the value of the task property.
      * 
      * <p>
      * This accessor method returns a reference to the live list,
      * not a snapshot. Therefore any modification you make to the
      * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the person property.
+     * This is why there is not a <CODE>set</CODE> method for the task property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * <pre>
-     *    getPerson().add(newItem);
+     *    getTask().add(newItem);
      * </pre>
      * 
      * 
      * <p>
      * Objects of the following type(s) are allowed in the list
-     * {@link Person }
+     * {@link Task }
      * 
      * 
      */
-    public List<Person> getPerson() {
-        if (person == null) {
-            person = new ArrayList<Person>();
+    public List<Task> getTask() {
+        if (task == null) {
+            task = new ArrayList<Task>();
         }
-        return this.person;
+        return this.task;
     }
 
     @Override
     public String toString() {
-        return "Persons{" +
-                "list=" + person +
+        return "Tasks{" +
+                "task=" + task +
                 '}';
     }
 }
