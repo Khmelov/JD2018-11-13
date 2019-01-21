@@ -29,12 +29,12 @@ public class UserCRUD {
         }
     }
 
-    public User read(User user) throws SQLException {
+    public User read(int id) throws SQLException {
         User result = null;
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format("SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` WHERE ID='%d'",
-                    user.getId());
+                    id);
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
                 result = new User(
@@ -53,11 +53,11 @@ public class UserCRUD {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format("UPDATE `users` SET " +
-                            "`Login`=`%s`," +
-                            "`Password`=`%s`," +
-                            "`E-Mail`=`%s`," +
-                            "`roles_ID`=%d " +
-                            "WHERE ID=%d",
+                            "`Login`='%s'," +
+                            "`Password`='%s'," +
+                            "`E-Mail`='%s'," +
+                            "`roles_ID`='%d' " +
+                            "WHERE ID='%d'",
                     user.getLogin(),
                     user.getPassword(),
                     user.getEmail(),
@@ -69,11 +69,10 @@ public class UserCRUD {
         }
     }
 
-
     public boolean delete(User user) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("DELETE FROM `users` WHERE ID=%d", user.getId());
+            String sql = String.format("DELETE FROM `users` WHERE ID='%d'", user.getId());
 
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             return (countCreatedObject == 1);
