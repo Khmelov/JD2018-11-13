@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
-        xmlns:lgc="2ccb5269-c8af-4950-ad9a-a53ac62d41be"
+        targetNamespace="http://beans.jd02_09.zhivov.it.by/"
+        xmlns:lgc="http://beans.jd02_09.zhivov.it.by/"
         elementFormDefault="qualified">
     <element name="persons">
         <complexType>
             <sequence>
                 <element name="user"
                          type="lgc:User"
-                         maxOccurs="unbounded"
-                />
-                <element name="admin"
-                         type="lgc:Admin"
-                />
-                <element name="guest"
-                         type="lgc:Guest"
-                         minOccurs="0"
                          maxOccurs="unbounded"
                 />
             </sequence>
@@ -84,30 +76,18 @@
 
     <complexType name="Ad">
         <all>
+            <element name="title" type="string"/>
             <element name="description" type="string"/>
             <element name="brand" type="string"/>
             <element name="model" type="string"/>
             <element name="color" type="string"/>
             <element name="body" type="string"/>
-            <element name="year" type="positiveInteger"/>
+            <element name="year" type="int"/>
             <element name="equipment" type="string"/>
-            <element name="mileage" type="positiveInteger"/>
+            <element name="mileage" type="int"/>
             <element name="crashed" type="boolean"/>
-            <element name="price" type="positiveInteger"/>
+            <element name="price" type="int"/>
         </all>
     </complexType>
 
-    <complexType name="Admin">
-        <sequence>
-            <element name="login" type="lgc:Login"/>
-            <element name="password" type="lgc:Password"/>
-            <element name="privelegy" type="boolean"/>
-        </sequence>
-    </complexType>
-
-    <complexType name="Guest">
-        <all>
-            <element name="privelegy" type="boolean"/>
-        </all>
-    </complexType>
 </schema>

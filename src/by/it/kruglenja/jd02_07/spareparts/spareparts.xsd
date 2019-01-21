@@ -1,0 +1,50 @@
+<?xml version= "1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="C:\Users\Tom\IdeaProjects\JD2018-11-13\src\by\it\kruglenja\jd02_07\spareparts"
+        xmlns:mtp="C:\Users\Tom\IdeaProjects\JD2018-11-13\src\by\it\kruglenja\jd02_07\spareparts"
+        elementFormDefault="qualified">
+    <element name="spareparts">
+        <complexType>
+            <sequence>
+                <element name="part"
+                         type="mtp:Part"
+                         minOccurs="1"
+                         maxOccurs="unbounded"
+                />
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Part">
+        <sequence>
+            <element name="description"
+                     type="mtp:Description"
+                     maxOccurs="1"
+            />
+
+            <element name="shops"
+                     type="mtp:Shops"
+                     minOccurs="1"
+                     maxOccurs="unbounded"
+            />
+        </sequence>
+    </complexType>
+
+    <complexType name="Description">
+        <sequence>
+            <element name="model" type="string"/>
+            <element name="category" type="string"/>
+            <element name="name" type="string"/>
+            <element name="serial_number" type="int"/>
+            <element name="weigth" type="float"/>
+            <element name="size" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Shops">
+        <sequence>
+            <element name="adress" type="string"/>
+            <element name="quanity" type="int"/>
+        </sequence>
+    </complexType>
+</schema>
