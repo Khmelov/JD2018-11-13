@@ -53,12 +53,14 @@ public class Dao {
         }
         return -1;
     }
+
     public static void restoreDB() throws SQLException {
         System.out.println("Staring DB restore");
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP SCHEMA IF EXISTS `zhivov`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `zhivov` DEFAULT CHARACTER SET utf8");
+            statement.executeUpdate("USE `zhivov`");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `zhivov`.`roles` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `role` VARCHAR(20) NULL,\n" +
@@ -93,7 +95,7 @@ public class Dao {
                     "  `equipment` VARCHAR(45) NULL,\n" +
                     "  `mileage` INT NULL,\n" +
                     "  `crashed` VARCHAR(5) NULL,\n" +
-                    "  `price` FLOAT NULL,\n" +
+                    "  `price` FLOAT NOT NULL,\n" +
                     "  `users_id` INT NOT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  INDEX `fk_ads_users1_idx` (`users_id` ASC),\n" +
