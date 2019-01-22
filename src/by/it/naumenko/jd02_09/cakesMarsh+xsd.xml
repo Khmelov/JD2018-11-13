@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<cakes xmlns="http://beens.jd02_09.naumenko.it.by">
+    <roles>
+        <id_roles>1</id_roles>
+        <role>admin</role>
+    </roles>
+    <users>
+        <id_user>1</id_user>
+        <login>naymchik</login>
+        <password>password</password>
+        <email>naumenkosergyns@gmail.com</email>
+        <id_roles>1</id_roles>
+    </users>
+    <cake>
+        <id_cake>1</id_cake>
+        <name_cake>красный бархот</name_cake>
+        <size_cake>20</size_cake>
+        <weight_cake>3</weight_cake>
+        <bescuit>красный бархот</bescuit>
+        <decoration>свежие ягоды</decoration>
+        <cream>чиз</cream>
+        <price_cake>50.0</price_cake>
+    </cake>
+    <zakaz>
+        <id_zakaz>1</id_zakaz>
+        <date_zakaz>10.01.2019</date_zakaz>
+        <koltort>2</koltort>
+        <price_zakaz>100.0</price_zakaz>
+        <id_user>1</id_user>
+        <id_cake>1</id_cake>
+    </zakaz>
+</cakes>
