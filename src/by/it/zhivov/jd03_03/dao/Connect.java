@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_03;
+package by.it.zhivov.jd03_03.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

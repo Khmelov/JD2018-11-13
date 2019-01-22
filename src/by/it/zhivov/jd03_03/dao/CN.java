@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_03;
+package by.it.zhivov.jd03_03.dao;
 
 
 public interface CN {

@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_03;
+package by.it.zhivov.jd03_03.dao;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -12,9 +12,9 @@ public interface InterfaceDao<Type> {
 
     Type read(long id) throws SQLException;
 
-    //List<Type> getALL() throws SQLException {
-      //  return getALL("");
-   // }
+    List<Type> getAll(String sqlSuffix) throws SQLException;
 
-    List<Type> getALL(String sqlSuffix) throws SQLException;
+    default List<Type> getALL() throws SQLException {
+        return getAll("");
+    }
 }
