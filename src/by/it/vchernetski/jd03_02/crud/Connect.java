@@ -18,6 +18,8 @@ public class Connect {
         if (connection == null || connection.isClosed()) {
             synchronized (Connect.class) {
                 if (connection == null || connection.isClosed()) {
+                    connection = DriverManager.getConnection(CN.URLSTART, CN.USER, CN.PASSWORD);
+                    connection.createStatement().executeUpdate("CREATE SCHEMA IF NOT EXISTS `vchernetski` DEFAULT CHARACTER SET utf8");
                     connection = DriverManager.getConnection(CN.URL, CN.USER, CN.PASSWORD);
                 }
             }
