@@ -15,41 +15,43 @@
         </complexType>
     </element>
     <complexType name="driver">
-        <all>
-            <element name="fio" type="string"/>
-            <element name="nickname" type="string"/>
-            <element name="email" type="string"/>
-            <element name="password" type="string"/>
-            <element name="numbergarages" type="int"/>
-            <element name="garages">
-                <complexType>
-                    <sequence>
-                        <element name="garage"
-                                 type="mtp:garage"
-                                 minOccurs="1"
-                                 maxOccurs="unbounded"
-                        />
-                    </sequence>
-                </complexType>
-            </element>
-        </all>
+        <sequence>
+            <element name="fio" type="string"></element>
+            <element name="nickname" type="string"></element>
+            <element name="email" type="string"></element>
+            <element name="password" type="string"></element>
+            <element name="numbergarages" type="int"></element>
+            <element name="garages"
+                     type="mtp:garages"
+                     minOccurs="1"
+                     maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="garages">
+        <sequence>
+            <element name="garage"
+                     type="mtp:garage"
+                     minOccurs="1"
+                     maxOccurs="unbounded"/>
+        </sequence>
     </complexType>
     <complexType name="garage">
-        <all>
+        <sequence>
             <element name="adress" type="string"/>
             <element name="carplaces" type="int"/>
-            <element name="cars">
-                <complexType>
-                    <sequence>
-                        <element name="car"
-                                 type="mtp:car"
-                                 minOccurs="1"
-                                 maxOccurs="unbounded"
-                                 />
-                    </sequence>
-                </complexType>
-            </element>
-        </all>
+            <element name="cars"
+                     type="mtp:cars"
+                     minOccurs="1"
+                     maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+    <complexType name="cars">
+        <sequence>
+            <element name="car"
+                     type="mtp:car"
+                     minOccurs="1"
+                     maxOccurs="unbounded"/>
+        </sequence>
     </complexType>
     <complexType name="car">
         <all>
