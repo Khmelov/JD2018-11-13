@@ -1,25 +1,18 @@
 package by.it.mnovikov.jd03_02.beans;
 
-import java.util.HashSet;
-import java.util.Set;
-
 public class Order {
 
     private int id;
-    private String date;
-    private String time;
+    private long date;
     private int users_ID;
-    private Set<Goods> goods = new HashSet<>();
 
     public Order() {
     }
 
-    public Order(int id, String date, String time, int users_ID, Set<Goods> goods) {
+    public Order(int id, long date, int users_ID) {
         this.id = id;
         this.date = date;
-        this.time = time;
         this.users_ID = users_ID;
-        this.goods = goods;
     }
 
     public int getId() {
@@ -30,20 +23,12 @@ public class Order {
         this.id = id;
     }
 
-    public String getDate() {
+    public long getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(long date) {
         this.date = date;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
     }
 
     public int getUsers_ID() {
@@ -54,14 +39,6 @@ public class Order {
         this.users_ID = users_ID;
     }
 
-    public Set<Goods> getGoods() {
-        return goods;
-    }
-
-    public void setGoods(Set<Goods> goods) {
-        this.goods = goods;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -70,19 +47,15 @@ public class Order {
         Order order = (Order) o;
 
         if (id != order.id) return false;
-        if (users_ID != order.users_ID) return false;
-        if (date != null ? !date.equals(order.date) : order.date != null) return false;
-        if (time != null ? !time.equals(order.time) : order.time != null) return false;
-        return goods != null ? goods.equals(order.goods) : order.goods == null;
+        if (date != order.date) return false;
+        return users_ID == order.users_ID;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (date != null ? date.hashCode() : 0);
-        result = 31 * result + (time != null ? time.hashCode() : 0);
+        result = 31 * result + (int) (date ^ (date >>> 32));
         result = 31 * result + users_ID;
-        result = 31 * result + (goods != null ? goods.hashCode() : 0);
         return result;
     }
 
@@ -90,10 +63,8 @@ public class Order {
     public String toString() {
         return "Order{" +
                 "id=" + id +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
+                ", date=" + date +
                 ", users_ID=" + users_ID +
-                ", goods=" + goods +
                 '}';
     }
 }

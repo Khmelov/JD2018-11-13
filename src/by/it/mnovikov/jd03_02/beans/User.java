@@ -1,6 +1,6 @@
 package by.it.mnovikov.jd03_02.beans;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class User {
     private int id;
@@ -9,16 +9,16 @@ public class User {
     private String email;
     private String first_name;
     private String last_name;
-    private String birthday;
+    private Timestamp birthday;
     private String adress;
     private int roles_id;
 
     public User() {
     }
 
-    public User(int id, String login, String password, String email,
-                String first_name, String last_name, String birthday,
-                String adress, int roles_id) {
+    public User(int id, String login, String password,
+                String email, String first_name, String last_name,
+                Timestamp birthday, String adress, int roles_id) {
         this.id = id;
         this.login = login;
         this.password = password;
@@ -78,11 +78,11 @@ public class User {
         this.last_name = last_name;
     }
 
-    public String getBirthday() {
+    public Timestamp getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(String birthday) {
+    public void setBirthday(Timestamp birthday) {
         this.birthday = birthday;
     }
 
