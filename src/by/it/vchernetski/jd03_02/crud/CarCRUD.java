@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class CarCRUD {
 
-    boolean create(Car car) throws SQLException {
+    public boolean create(Car car) throws SQLException {
         String sql = String.format("INSERT INTO `cars` " +
                         "(`model`, `color`, `year`, `garages_id`)" +
                         " VALUES ('%s', '%s', '%d', '%d')",
@@ -27,7 +27,7 @@ public class CarCRUD {
         return false;
     }
 
-    boolean delete(Car car) throws SQLException {
+    public  boolean delete(Car car) throws SQLException {
         String sql = String.format("DELETE FROM `cars` WHERE `cars`.`id` = %d",
                 car.getId());
         try (Connection connection = Connect.getConnection();
@@ -36,7 +36,7 @@ public class CarCRUD {
         }
     }
 
-    boolean update(Car car) throws SQLException {
+    public  boolean update(Car car) throws SQLException {
         String sql = String.format("UPDATE `cars` SET " +
                         "`model` = '%s', " +
                         "`color` = '%s', " +
@@ -50,7 +50,7 @@ public class CarCRUD {
         }
     }
 
-    Car read(long id) throws SQLException {
+    public  Car read(long id) throws SQLException {
         String sql = String.format("SELECT `id`, " +
                 "`model`, `color`, " +
                 "`year`, `garages_id` FROM `cars`" +

@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class GarageCRUD {
 
-    boolean create(Garage garage) throws SQLException {
+    public  boolean create(Garage garage) throws SQLException {
         String sql = String.format("INSERT INTO `garages` " +
                 "(`adress`, `carplaces`, `users_id`) " +
                 "VALUES ('%s', '%d', '%d')", garage.getAdress(), garage.getCarplaces(), garage.getUsers_id());
@@ -26,7 +26,7 @@ public class GarageCRUD {
         return false;
     }
 
-    boolean delete(Garage garage) throws SQLException {
+    public  boolean delete(Garage garage) throws SQLException {
         String sql = String.format("DELETE FROM `garages` " +
                 "WHERE `garages`.`id` = %d", garage.getId());
         try (Connection connection = Connect.getConnection();
@@ -35,7 +35,7 @@ public class GarageCRUD {
         }
     }
 
-    boolean update(Garage garage) throws SQLException {
+    public  boolean update(Garage garage) throws SQLException {
         String sql = String.format("UPDATE `garages` SET " +
                 "`adress` = '%s', " +
                 "`carplaces` = '%d', " +
@@ -48,7 +48,7 @@ public class GarageCRUD {
         }
     }
 
-    Garage read(long id) throws SQLException {
+    public  Garage read(long id) throws SQLException {
         String sql = String.format("SELECT `id`, " +
                 "`adress`, `carplaces`, `users_id` " +
                 "FROM `garages` WHERE id=%d",

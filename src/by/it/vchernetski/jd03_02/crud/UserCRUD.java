@@ -9,7 +9,7 @@ import java.sql.Statement;
 
 public class UserCRUD {
 
-    boolean create(User user) throws SQLException {
+    public boolean create(User user) throws SQLException {
         String sql = String.format("INSERT INTO `users` (`fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) " +
                 "VALUES ('%s', '%d', '%s', '%s', '%s', '%d')", user.getFio(), user.getNumbergarages(), user.getNickname(), user.getEmail(), user.getPassword(), user.getRoles_id());
         try (Connection connection = Connect.getConnection();
@@ -25,7 +25,7 @@ public class UserCRUD {
         return false;
     }
 
-    boolean delete(User user) throws SQLException {
+    public boolean delete(User user) throws SQLException {
         String sql = String.format("DELETE FROM `users` WHERE `users`.`id` = %d", user.getId());
         try(Connection connection = Connect.getConnection();
         Statement statement = connection.createStatement()) {
@@ -33,7 +33,7 @@ public class UserCRUD {
         }
     }
 
-    boolean update(User user) throws SQLException {
+    public  boolean update(User user) throws SQLException {
         String sql = String.format("UPDATE `users` SET " +
                 "`fio` = '%s', " +
                 "`numbergarages` = '%d', " +
@@ -47,7 +47,7 @@ public class UserCRUD {
             return (1 == statement.executeUpdate(sql));
         }
     }
-    User read(long id) throws SQLException {
+    public  User read(long id) throws SQLException {
         String sql = String.format("SELECT `id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id` FROM `users` WHERE id = %d",id);
         try(Connection connection = Connect.getConnection();
             Statement statement = connection.createStatement()) {

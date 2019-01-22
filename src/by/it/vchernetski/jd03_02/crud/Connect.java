@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class Connect {
+public class Connect {
     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
@@ -14,7 +14,7 @@ class Connect {
     }
     private static volatile Connection connection;
 
-    static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             synchronized (Connect.class) {
                 if (connection == null || connection.isClosed()) {

@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class RoleCRUD {
-    boolean create(Role role) throws SQLException {
+    public boolean create(Role role) throws SQLException {
         String sql = String.format("INSERT INTO `roles` (`role`) VALUES ('%s')", role.getRole());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
@@ -23,7 +23,7 @@ public class RoleCRUD {
         return false;
     }
 
-    boolean delete(Role role) throws SQLException {
+    public  boolean delete(Role role) throws SQLException {
         String sql = String.format("DELETE FROM `roles` WHERE `roles`.`id` = %d", role.getId());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
@@ -31,7 +31,7 @@ public class RoleCRUD {
         }
     }
 
-    boolean update(Role role) throws SQLException {
+    public  boolean update(Role role) throws SQLException {
         String sql = String.format("UPDATE `roles` SET `role` = '%s'" +
                         " WHERE `roles`.`id` = %d",
                 role.getRole(), role.getId());
@@ -41,7 +41,7 @@ public class RoleCRUD {
         }
     }
 
-    Role read(long id) throws SQLException {
+    public Role read(long id) throws SQLException {
         String sql = String.format("SELECT `id`, `role` FROM `roles` WHERE id = %d",id);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
