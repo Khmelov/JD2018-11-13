@@ -68,12 +68,12 @@ public class Runner {
         //read
         ad = adCRUD.read(ad.getId());
         System.out.println("\tRead ad successful\n" + ad + "\n");
-//            //delete ad
-//            if (adCRUD.delete(ad))
-//                System.out.println("\tDelete ad succefull\n" + ad + "\n");
-//            //delete user
-//            if (userCRUD.delete(user))
-//                System.out.println("\tDelete user successful\n" + user + "\n");
+            //delete ad
+            if (adCRUD.delete(ad))
+                System.out.println("\tDelete ad succefull\n" + ad + "\n");
+            //delete user
+            if (userCRUD.delete(user))
+                System.out.println("\tDelete user successful\n" + user + "\n");
 
     }
 }
