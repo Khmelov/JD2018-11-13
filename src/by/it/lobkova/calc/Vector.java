@@ -1,8 +1,6 @@
 package by.it.lobkova.calc;
 
 import java.util.Arrays;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class Vector extends Var {
 
@@ -20,7 +18,7 @@ public class Vector extends Var {
         return value;
     }
 
-    Vector(String str) throws ExceptionCalc {
+    Vector(String str) throws CalcException {
             String[] string = str.replaceAll("[{}]", "").split("[,]");
             double[] vector = new double[string.length];
             for (int i = 0; i < vector.length; i++) {
@@ -30,7 +28,7 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var add(Var other) throws ExceptionCalc {
+    public Var add(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
@@ -49,7 +47,7 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var sub(Var other) {
+    public Var sub(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
@@ -69,7 +67,7 @@ public class Vector extends Var {
 
 
     @Override
-    public Var mul(Var other) {
+    public Var mul(Var other) throws CalcException {
         if (other instanceof Scalar) {
             double[] res = Arrays.copyOf(value, value.length);
             for (int i = 0; i < res.length; i++) {
@@ -93,7 +91,7 @@ public class Vector extends Var {
     }
 
     @Override
-    public Var div(Var other) throws ExceptionCalc {
+    public Var div(Var other) throws CalcException {
         if (other instanceof Scalar) {
            // if (((Scalar) other).getValue() != 0) {
                 double[] res = Arrays.copyOf(value, value.length);
@@ -103,7 +101,7 @@ public class Vector extends Var {
                 return new Vector(res);
            // } else throw new ExceptionCalc("Деление на 0 невозможно");
         } else if (other instanceof Vector) {
-            throw new ExceptionCalc("Деление вектора на вектор невозмоно");
+            throw new CalcException("Деление вектора на вектор невозмоно");
         }
 
         return super.div(other);

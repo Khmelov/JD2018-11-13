@@ -62,8 +62,9 @@ class Scalar extends Var {
     @Override
     public Var div(Var other) throws CalcException{
         if (other instanceof Scalar){
-            if (((Scalar) other).value==0)
-                throw new CalcException(SwitchLanguages.rb.getString("NullDivision"));
+            if (((Scalar) other).value==0){
+                LoggerErrors.writeReport(SwitchLanguages.rb.getString("NullDivision"));
+                throw new CalcException(SwitchLanguages.rb.getString("NullDivision"));}
             double div = this.value/((Scalar) other).value;
             return new Scalar(div);
         }

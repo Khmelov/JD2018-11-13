@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://beans.jd02_09.mnovikov.it.by"
+        xmlns:mtp="http://beans.jd02_09.mnovikov.it.by"
+        elementFormDefault="qualified">
+    <element name="organizations">
+        <complexType>
+            <sequence>
+                <element name="organization"
+                         type="mtp:Organization"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Organization">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="adress" type="string"/>
+            <element name="telephone" type="string"/>
+            <element name="email" type="string"/>
+            <element name="ads"
+                     type="mtp:Ads"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Ads">
+        <sequence>
+            <element name="ad"
+                     type="mtp:Ad"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Ad">
+        <sequence>
+            <element name="title" type="string"/>
+            <element name="discription" type="string"/>
+            <element name="sampler_type" type="string"/>
+            <element name="sampler_title" type="string"/>
+            <element name="productivity" type="mtp:Productivity"/>
+            <element name="price" type="mtp:Price"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Productivity">
+        <simpleContent>
+            <extension base="float">
+                <attribute name="unit" type="string"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+
+    <complexType name="Price">
+        <simpleContent>
+            <extension base="float">
+                <attribute name="currency" type="string"/>
+            </extension>
+        </simpleContent>
+    </complexType>
+</schema>

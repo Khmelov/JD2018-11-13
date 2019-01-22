@@ -1,0 +1,2 @@
+INSERT INTO `naumenko`.`cake` (`id_cake`, `name_cake`, `size_cake`, `weight_cake`, `bescuit`, `decoration`, `cream`, `price_cake`) VALUES (DEFAULT, 'red barhot', 30, 5, 'redbarhot', 'caramel', 'chiss', 150);
+INSERT INTO `naumenko`.`cake` (`id_cake`, `name_cake`, `size_cake`, `weight_cake`, `bescuit`, `decoration`, `cream`, `price_cake`) VALUES (DEFAULT, 'milk girl', 18, 1, 'non', 'mars', 'chis', 30);

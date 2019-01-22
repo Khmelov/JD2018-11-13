@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<recipes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://generate.jd02_09.seroglazov.it.by/recipes"
+         xsi:schemaLocation="http://generate.jd02_09.seroglazov.it.by/recipes recipes.xsd">
+    <recipe>
+        <cocktail_id>c1</cocktail_id>
+        <name>white lady</name>
+        <tags>
+            <tag>all day cocktail</tag>
+        </tags>
+        <components>
+            <component>
+                <id>i100</id>
+                <amount>4</amount>
+                <unit>cl</unit>
+                <garnish>false</garnish>
+            </component>
+            <component>
+                <id>i104</id>
+                <amount>3</amount>
+                <unit>cl</unit>
+                <garnish>false</garnish>
+            </component>
+            <component>
+                <id>i105</id>
+                <amount>1</amount>
+                <unit>slice</unit>
+                <garnish>false</garnish>
+            </component>
+        </components>
+        <description>Add all ingredients into cocktail shaker filled with ice. Shake well and strain into large cocktail glass.</description>
+    </recipe>
+    <recipe>
+        <cocktail_id>c2</cocktail_id>
+        <name>old fashioned</name>
+        <tags>
+            <tag>before dinner cocktail</tag>
+        </tags>
+        <components>
+            <component>
+                <id>i106</id>
+                <amount>4.5</amount>
+                <unit>cl</unit>
+                <garnish>false</garnish>
+            </component>
+            <component>
+                <id>i108</id>
+                <amount>2</amount>
+                <unit>dash</unit>
+                <garnish>false</garnish>
+            </component>
+            <component>
+                <id>i109</id>
+                <amount>1</amount>
+                <unit>cube</unit>
+                <garnish>false</garnish>
+            </component>
+            <component>
+                <id>i110</id>
+                <amount>few</amount>
+                <unit>dash</unit>
+                <garnish>false</garnish>
+            </component>
+            <component>
+                <id>i111</id>
+                <amount>1</amount>
+                <unit>slice</unit>
+                <garnish>true</garnish>
+            </component>
+            <component>
+                <id>i112</id>
+                <amount>1</amount>
+                <unit>piece</unit>
+                <garnish>true</garnish>
+            </component>
+        </components>
+        <description>Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolve. Fill the glass with ice cubes and add whiskey. Garnish with orange slice and a cocktail cherry.</description>
+    </recipe>
+</recipes>

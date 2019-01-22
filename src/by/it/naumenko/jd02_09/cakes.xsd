@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://beens.jd02_09.naumenko.it.by"
+        xmlns:myType="http://beens.jd02_09.naumenko.it.by"
+        elementFormDefault="qualified">
+
+    <element name="cakes">
+        <complexType>
+            <sequence>
+                <element name="roles"
+                         type="myType:roles"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+                <element name="users"
+                         type="myType:users"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+                <element name="cake"
+                         type="myType:cake"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+                <element name="zakaz"
+                         type="myType:zakaz"
+                         minOccurs="0"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="roles">
+        <sequence>
+            <element name="id_roles" type="positiveInteger"/>
+            <element name="role" type="string"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="users">
+        <sequence>
+            <element name="id_user" type="positiveInteger"/>
+            <element name="login" type="string"/>
+            <element name="password" type="string"/>
+            <element name="email" type="string"/>
+            <element name="id_roles" type="positiveInteger"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="cake">
+        <sequence>
+            <element name="id_cake" type="positiveInteger"/>
+            <element name="name_cake" type="string"/>
+            <element name="size_cake" type="string"/>
+            <element name="weight_cake" type="string"/>
+            <element name="bescuit" type="string"/>
+            <element name="decoration" type="string"/>
+            <element name="cream" type="string"/>
+            <element name="price_cake" type="float"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="zakaz">
+        <sequence>
+            <element name="id_zakaz" type="positiveInteger"/>
+            <element name="date_zakaz" type="string"/>
+            <element name="koltort" type="positiveInteger"/>
+            <element name="price_zakaz" type="float"/>
+            <element name="id_user" type="positiveInteger"/>
+            <element name="id_cake" type="positiveInteger"/>
+        </sequence>
+    </complexType>
+
+
+</schema>
