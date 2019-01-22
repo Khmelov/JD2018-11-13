@@ -93,22 +93,13 @@ public class C_Reset {
 
     }
 
-/*    public static void resetRoles() throws SQLException {
+    public static void resetRoles() throws SQLException {
         String sqlCmd = "DELETE FROM `zhivov`.`roles`";
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate(sqlCmd);
             System.out.println("Reset \"roles\" table complete");
         }
-    }*/
 
-    public static void resetDB() throws SQLException {
-        try (Connection connection = Connect.getConnection();
-             Statement statement = connection.createStatement()) {
-            statement.executeUpdate("DROP TABLE IF EXISTS `zhivov`.`ads`");
-            statement.executeUpdate("DROP TABLE IF EXISTS `zhivov`.`users`");
-            statement.executeUpdate("DROP TABLE IF EXISTS `zhivov`.`roles`");
-            System.out.println("Reset DB complete");
-        }
     }
 }

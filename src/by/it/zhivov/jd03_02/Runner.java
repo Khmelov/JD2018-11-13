@@ -4,9 +4,10 @@ import by.it.zhivov.jd03_02.beans.Ad;
 import by.it.zhivov.jd03_02.beans.Role;
 import by.it.zhivov.jd03_02.beans.User;
 import by.it.zhivov.jd03_02.crud.AdCRUD;
-import by.it.zhivov.jd03_02.crud.C_Reset;
+import by.it.zhivov.jd03_02.crud.InnerJoin_id;
 import by.it.zhivov.jd03_02.crud.RoleCRUD;
 import by.it.zhivov.jd03_02.crud.UserCRUD;
+import by.it.zhivov.jd03_02.crud.C_Reset;
 
 import java.sql.SQLException;
 
@@ -15,7 +16,7 @@ public class Runner {
         {
             C_Reset.resetAds();
             C_Reset.resetUsers();
-            C_Reset.resetDB();
+            C_Reset.resetRoles();
             C_Reset.restoreDB();
         }
         UserCRUD userCRUD = new UserCRUD();
@@ -93,7 +94,9 @@ public class Runner {
             if (roleCRUD.delete(role))
                 System.out.println("\tDelete role successful\n" + user + "\n");
         }
-
+        InnerJoin_id.join();
+        InnerJoin_id.getAllRows();
+        InnerJoin_id.getRolesRows();
     }
 }
 
