@@ -26,7 +26,7 @@ public class Ex_01_Connection {
         //в некоторых случаях можно вообще ничего не загружать (например при запуске в IDEA)
         try (Connection connection=
                      DriverManager.getConnection
-                             (CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB);){
+                             (CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB)){
                 if (!connection.isClosed())
                     System.out.println("Соединение установлено");
                 connection.close();
