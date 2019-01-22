@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_02.crud;
+package by.it.zhivov.jd03_03;
 
 
 public interface CN {
