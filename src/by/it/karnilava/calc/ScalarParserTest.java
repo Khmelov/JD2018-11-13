@@ -67,7 +67,7 @@ public class ScalarParserTest {
         } catch (CalcException e) {
             res = e.getMessage();
         }
-        assertEquals("ERROR: Деление на ноль", res);
+        assertEquals(SwitchLanguages.rb.getString("ERROR")+" "+SwitchLanguages.rb.getString("NullDivision"), res);
 
 
     }

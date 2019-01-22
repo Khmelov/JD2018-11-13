@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Drivers xmlns="http://beans.jd02_09.vchernetski.it.by">
+    <driver>
+        <fio>Ivanov Ivan Ivanovich</fio>
+        <nickname>ivanich</nickname>
+        <email>ivanichivan@gmail.com</email>
+        <password>ivanich123</password>
+        <numbergarages>2</numbergarages>
+        <garages>
+            <garage>
+                <adress>Minsk Lenina 3</adress>
+                <carplaces>2</carplaces>
+                <cars>
+                    <car>
+                        <model>BMW X5</model>
+                        <color>white</color>
+                        <year>2015</year>
+                    </car>
+                    <car>
+                        <model>Range Rover Sport</model>
+                        <color>black</color>
+                        <year>2012</year>
+                    </car>
+                </cars>
+            </garage>
+            <garage>
+                <adress>Minsk Moskovskaya 17</adress>
+                <carplaces>1</carplaces>
+                <cars>
+                    <car>
+                        <model>Audi A4</model>
+                        <color>blue</color>
+                        <year>2018</year>
+                    </car>
+                </cars>
+            </garage>
+        </garages>
+    </driver>
+</Drivers>

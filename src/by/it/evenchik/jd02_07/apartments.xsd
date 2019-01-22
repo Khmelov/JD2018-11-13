@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+    <xs:element name="ads" type="adsType"/>
+    <xs:complexType name="flatType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="description"/>
+            <xs:element type="xs:string" name="address"/>
+            <xs:element type="xs:positiveInteger" name="rooms"/>
+            <xs:element type="xs:integer" name="floor"/>
+            <xs:element type="xs:positiveInteger" name="floors"/>
+            <xs:element type="xs:float" name="area"/>
+            <xs:element type="xs:string" name="condition"/>
+            <xs:element type="xs:string" name="price"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="adType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="email"/>
+            <xs:element type="xs:string" name="nick"/>
+            <xs:element type="xs:string" name="pass"/>
+            <xs:element type="flatType" name="flat"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="adsType">
+        <xs:sequence>
+            <xs:element type="adType" name="ad"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
