@@ -9,7 +9,7 @@ import java.sql.SQLException;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
-        for (int i = 0; i < 40; i++) {
+       // for (int i = 0; i < 40; i++) {
 
 
             Dao dao = Dao.getDao();
@@ -86,6 +86,6 @@ public class Runner {
                 if (dao.role.delete(role))
                     System.out.println("\tDelete role successful\n" + role + "\n");
             }
-        }
+       // }
     }
 }
