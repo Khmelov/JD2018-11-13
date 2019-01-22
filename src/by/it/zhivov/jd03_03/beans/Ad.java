@@ -12,7 +12,7 @@ public class Ad {
     private String equipment;
     private int millage;
     private boolean crashed;
-    private int price;
+    private double price;
     private long id_User;
 
     public Ad() {
@@ -122,11 +122,11 @@ public class Ad {
         this.crashed = crashed;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 

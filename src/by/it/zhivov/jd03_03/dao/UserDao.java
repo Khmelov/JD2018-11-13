@@ -8,11 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class UserDao implements InterfaceDao<User> {
 
     public boolean create(User user) throws SQLException {
-        String sqlCmd = String.format("INSERT INTO `users` " +
+        String sqlCmd = String.format(Locale.ENGLISH,
+                "INSERT INTO `users` " +
                         "(`name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) " +
                         "VALUES ('%s','%s','%s','%s','%s','%s','%d')",
                 user.getName(), user.getLogin(), user.getPassword(), user.getDateOfBirth(), user.getEmail(),
@@ -23,7 +25,8 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     public User read(long id) throws SQLException {
-        String sqlSuffix = String.format(" WHERE id=%d", id);
+        String sqlSuffix = String.format(Locale.ENGLISH,
+                " WHERE id=%d", id);
         List<User> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
     }
@@ -47,14 +50,16 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     public boolean delete(User user) throws SQLException {
-        String sqlCmd = String.format("DELETE FROM `users` WHERE `users`.`id`=%d", user.getId());
+        String sqlCmd = String.format(Locale.ENGLISH,
+                "DELETE FROM `users` WHERE `users`.`id`=%d", user.getId());
         return Dao.executeUpdate(sqlCmd);
     }
 
     @Override
     public List<User> getAll(String sqlSuffix) throws SQLException {
         List<User> result = new ArrayList<>();
-        String sqlCmd = String.format("SELECT * " +
+        String sqlCmd = String.format(Locale.ENGLISH,
+                "SELECT * " +
                 "FROM `users` %s", sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {

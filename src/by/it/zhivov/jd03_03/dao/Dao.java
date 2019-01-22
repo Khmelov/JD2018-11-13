@@ -93,7 +93,7 @@ public class Dao {
                     "  `equipment` VARCHAR(45) NULL,\n" +
                     "  `mileage` INT NULL,\n" +
                     "  `crashed` VARCHAR(5) NULL,\n" +
-                    "  `price` INT NULL,\n" +
+                    "  `price` FLOAT NULL,\n" +
                     "  `users_id` INT NOT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  INDEX `fk_ads_users1_idx` (`users_id` ASC),\n" +

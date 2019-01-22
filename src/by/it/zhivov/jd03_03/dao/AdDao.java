@@ -8,10 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class AdDao implements InterfaceDao<Ad> {
     public boolean create(Ad ad) throws SQLException {
-        String sqlCmd = String.format("INSERT INTO `ads` " +
+        String sqlCmd = String.format(Locale.ENGLISH,
+                "INSERT INTO `ads` " +
                         "(`title`," +
                         "`description`, " +
                         "`brand`," +
@@ -24,7 +26,7 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`crashed`," +
                         "`price`," +
                         "`users_id`) " +
-                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%s','%d','%b','%d','%d')",
+                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%s','%d','%b','%f','%d')",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(), ad.getColor(), ad.getBody(), ad.getYear(), ad.getEquipment(),
                 ad.getMillage(), ad.isCrashed(), ad.getPrice(), ad.getId_User());
         long id = Dao.executeCreateAndGetId(sqlCmd);
@@ -33,13 +35,14 @@ public class AdDao implements InterfaceDao<Ad> {
     }
 
     public Ad read(long id) throws SQLException {
-        String sqlSuffix = String.format(" WHERE id=%d", id);
+        String sqlSuffix = String.format(Locale.ENGLISH,
+                " WHERE id=%d", id);
         List<Ad> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
     }
 
     public boolean update(Ad ad) throws SQLException {
-        String sqlCmd = String.format(
+        String sqlCmd = String.format(Locale.ENGLISH,
                 "UPDATE `ads` SET " +
                         "`title`='%s'," +
                         "`description`='%s'," +
@@ -51,7 +54,7 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`equipment`='%s'," +
                         "`mileage`='%d'," +
                         "`crashed`='%b'," +
-                        "`price`='%d'," +
+                        "`price`='%f'," +
                         "`users_id`='%d' " +
                         "WHERE `ads`.`id`=%d",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(),
@@ -62,13 +65,15 @@ public class AdDao implements InterfaceDao<Ad> {
     }
 
     public boolean delete(Ad ad) throws SQLException {
-        String sqlCmd = String.format("DELETE FROM `ads` WHERE `ads`.`id`=%d", ad.getId());
+        String sqlCmd = String.format(Locale.ENGLISH,
+                "DELETE FROM `ads` WHERE `ads`.`id`=%d", ad.getId());
         return Dao.executeUpdate(sqlCmd);
     }
 
     public List<Ad> getAll(String sqlSuffix) throws SQLException {
         List<Ad> result = new ArrayList<>();
-        String sqlCmd = String.format("SELECT * " +
+        String sqlCmd = String.format(Locale.ENGLISH,
+                "SELECT * " +
                 "FROM `ads` %s", sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
