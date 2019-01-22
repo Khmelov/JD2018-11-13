@@ -1,0 +1,6 @@
+For input string: "x"
+For input string: "x"
+10
+10
+22
+11
