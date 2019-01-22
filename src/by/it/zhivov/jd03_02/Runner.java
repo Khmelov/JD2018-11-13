@@ -14,8 +14,8 @@ public class Runner {
             C_Reset.restoreDB();
             C_Reset.resetAds();
             C_Reset.resetUsers();
-            C_Reset.resetDB();
-            C_Reset.restoreDB();
+            //C_Reset.resetDB();
+            //C_Reset.restoreDB();
         }
 
         UserCRUD userCRUD = new UserCRUD();
