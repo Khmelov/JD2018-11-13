@@ -5,10 +5,7 @@ import by.it.zhivov.jd03_03.beans.Role;
 import by.it.zhivov.jd03_03.beans.User;
 import by.it.zhivov.jd03_03.dao.Dao;
 
-import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.util.Locale;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
@@ -26,7 +23,7 @@ public class Runner {
             System.out.println("\tCreate role successful\n" + role + "\n");
         //update
         role.setRole("superuser");
-        if (dao.role.update(role)) ;
+        if (dao.role.update(role))
         System.out.println("\tUpdate role successful\n" + role + "\n");
         //read
         role = dao.role.read(role.getId());
