@@ -1,15 +1,15 @@
 package by.it.vchernetski.jd03_02.beans;
 
-public class Garages {
+public class Garage {
     private long id;
     private String adress;
     private int carplaces;
     private long users_id;
 
-    public Garages() {
+    public Garage() {
     }
 
-    public Garages(long id, String adress, int carplaces, long users_id) {
+    public Garage(long id, String adress, int carplaces, long users_id) {
         this.id = id;
         this.adress = adress;
         this.carplaces = carplaces;
@@ -50,7 +50,7 @@ public class Garages {
 
     @Override
     public String toString() {
-        return "Garages{" +
+        return "Garage{" +
                 "id=" + id +
                 ", adress='" + adress + '\'' +
                 ", carplaces=" + carplaces +

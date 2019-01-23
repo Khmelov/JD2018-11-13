@@ -1,11 +1,10 @@
-package by.it.kovalyova.jd03_02.crud;
-
+package by.it.denisova.jd03_02.CRUD;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class Connect {
+class Connect {
 
     static {
         try {
@@ -14,16 +13,17 @@ public class Connect {
             e.printStackTrace();
         }
     }
+
     private static volatile Connection connection;
-    static public Connection getConnection() throws SQLException{
-        if (connection ==null || connection.isClosed()){
-            synchronized (Connect.class){
-                if (connection ==null || connection.isClosed()){
+
+    static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            synchronized (Connect.class) {
+                if (connection == null || connection.isClosed()) {
                     connection = DriverManager.getConnection(CN.URL, CN.USER, CN.PASSWORD);
                 }
             }
         }
         return connection;
     }
-
 }
