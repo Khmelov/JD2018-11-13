@@ -9,7 +9,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-class C_Reset {
+public class C_Reset {
 
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String portDB = "jdbc:mysql://127.0.0.1:2016/";
@@ -29,7 +29,7 @@ class C_Reset {
     }
 
 
-    void reset() {
+    public void reset() {
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
@@ -44,7 +44,7 @@ class C_Reset {
             statement.executeUpdate(getSQLFile(DROP_TABLE_CAKE));
             statement.executeUpdate(getSQLFile(DROP_TABLE_USERS));
             statement.executeUpdate(getSQLFile(DROP_TABLE_ROLES));
-            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
+            //statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
