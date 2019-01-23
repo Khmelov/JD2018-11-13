@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 
 public class UserCRUD {
     public User create(User user) throws SQLException {
@@ -14,7 +15,7 @@ public class UserCRUD {
              Statement statement = connection.createStatement()) {
 
 
-            String sql = String.format("INSERT INTO `users`(`Login`, `Password`, `E-Mail`, `roles_ID`) " +
+            String sql = String.format(Locale.ENGLISH, "INSERT INTO `users`(`Login`, `Password`, `E-Mail`, `roles_ID`) " +
                     "VALUES ('%s','%s','%s','%d');", user.getLogin(), user.getPassword(), user.getEmail(), user.getRoles_ID());
 
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
@@ -33,7 +34,7 @@ public class UserCRUD {
         User result = null;
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` WHERE ID='%d'",
+            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` WHERE ID='%d'",
                     id);
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
@@ -52,7 +53,7 @@ public class UserCRUD {
     public boolean update(User user) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("UPDATE `users` SET " +
+            String sql = String.format(Locale.ENGLISH, "UPDATE `users` SET " +
                             "`Login`='%s'," +
                             "`Password`='%s'," +
                             "`E-Mail`='%s'," +
@@ -72,7 +73,7 @@ public class UserCRUD {
     public boolean delete(User user) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("DELETE FROM `users` WHERE ID='%d'", user.getId());
+            String sql = String.format(Locale.ENGLISH, "DELETE FROM `users` WHERE ID='%d'", user.getId());
 
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             return (countCreatedObject == 1);

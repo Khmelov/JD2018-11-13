@@ -14,14 +14,14 @@ public class TestUser {
             userCRUD.create(user);
 
 //==================READ===========================
-            System.out.println(userCRUD.read(8));
+            //System.out.println(userCRUD.read(8));
 
 //===================UPDATE========================
-            user = new User(6, "+++LTest", "+++PTest", "+++ETest", 2);
-            userCRUD.update(user);
+            //user = new User(6, "+++LTest", "+++PTest", "+++ETest", 2);
+            //userCRUD.update(user);
 
 //===================DELETE========================
-            userCRUD.delete(user);
+            //userCRUD.delete(user);
 
         } catch (SQLException e) {
             e.printStackTrace();
