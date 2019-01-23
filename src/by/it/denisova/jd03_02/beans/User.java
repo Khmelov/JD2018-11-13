@@ -12,6 +12,22 @@ public class User {
 
     }
 
+    public User(long id, String login, String password, String email, long id_role) {
+        this.id = id;
+        this.login = login;
+        this.password = password;
+        this.email = email;
+        this.id_role = id_role;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public long getId() {
         return id;
     }
@@ -40,8 +56,8 @@ public class User {
         return id_role;
     }
 
-    public void setIdRole(long idRole) {
-        this.id_role = idRole;
+    public void setIdRole(long id_role) {
+        this.id_role = id_role;
     }
 
 
