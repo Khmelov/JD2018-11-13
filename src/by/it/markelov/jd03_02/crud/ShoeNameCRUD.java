@@ -1,6 +1,6 @@
 package by.it.markelov.jd03_02.crud;
 
-import by.it.markelov.jd03_02.beans.Role;
+import by.it.markelov.jd03_02.beans.ShoeName;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,51 +8,67 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Locale;
 
-public class RoleCRUD {
-    public Role create(Role role) throws SQLException {
+public class ShoeNameCRUD {
+    public ShoeName create(ShoeName shoeName) throws SQLException {
+
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(Locale.ENGLISH, "INSERT INTO `roles`(`Role`) VALUES ('%s');", role.getRole());
+
+
+            String sql = String.format(Locale.ENGLISH, "INSERT INTO `shoe_names`(" +
+                    "`Shoe_name`, " +
+                    "`orders_ID`) " +
+                    "VALUES ('%s','%d');", shoeName.getShoeName(), shoeName.getOrders_ID());
+
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             if (countCreatedObject == 1) {
                 ResultSet keys = statement.getGeneratedKeys();
                 if (keys.next()) {
                     int id = keys.getInt(1);
-                    role.setId(id);
+                    shoeName.setId(id);
                 }
             }
-            return role;
+            return shoeName;
         }
     }
 
-    public Role read(int id) throws SQLException {
-        Role result = null;
+    public ShoeName read(int id) throws SQLException {
+        ShoeName result = null;
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Role` FROM `roles` WHERE ID='%d'", id);
+            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Shoe_name`, `orders_ID` " +
+                    "FROM `shoe_names` WHERE ID='%d';", id);
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                result = new Role(
+                result = new ShoeName(
                         resultSet.getInt("ID"),
-                        resultSet.getString("Role"));
+                        resultSet.getString("Shoe_name"),
+                        resultSet.getInt("orders_ID")
+                );
             }
         }
         return result;
     }
 
-    public boolean update(Role role) throws SQLException {
+    public boolean update(ShoeName shoeName) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(Locale.ENGLISH,"UPDATE `roles` SET `Role`='sfsdfsafas' WHERE ID='%d';", role.getId());
+            String sql = String.format(Locale.ENGLISH, "UPDATE `shoe_names` SET " +
+                            "`Shoe_name`='%s',`orders_ID`='%d' WHERE ID='%d';",
+                    shoeName.getShoeName(),
+                    shoeName.getOrders_ID(),
+                    shoeName.getId());
+
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             return (countCreatedObject == 1);
         }
     }
 
-    public boolean delete(Role role) throws SQLException {
+    public boolean delete(ShoeName shoeName) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(Locale.ENGLISH,"DELETE FROM `roles` WHERE ID='%d';", role.getId());
+            String sql = String.format(Locale.ENGLISH, "DELETE FROM `shoe_names` WHERE ID='%d';", shoeName.getId());
+
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             return (countCreatedObject == 1);
         }
