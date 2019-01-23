@@ -43,7 +43,7 @@ public class RoleCRUD {
     public boolean update(Role role) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("UPDATE `roles` SET `Role`='sfsdfsafas' WHERE ID='%d';", role.getId());
+            String sql = String.format(Locale.ENGLISH,"UPDATE `roles` SET `Role`='sfsdfsafas' WHERE ID='%d';", role.getId());
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             return (countCreatedObject == 1);
         }
@@ -52,7 +52,7 @@ public class RoleCRUD {
     public boolean delete(Role role) throws SQLException {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format("DELETE FROM `roles` WHERE ID='%d';", role.getId());
+            String sql = String.format(Locale.ENGLISH,"DELETE FROM `roles` WHERE ID='%d';", role.getId());
             int countCreatedObject = statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS);
             return (countCreatedObject == 1);
         }
