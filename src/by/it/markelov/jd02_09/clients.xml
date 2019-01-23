@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<clients>
+    <client>
+        <e-mail>S_markelov@tut.by</e-mail>
+        <login>S_markelov</login>
+        <password>12345678</password>
+        <orders>
+            <order>
+                <name>sneakers</name>
+                <code>20681</code>
+                <size>42</size>
+                <colour>green</colour>
+                <delivery_address>Minsk, Belskogo, 27-79</delivery_address>
+                <phone_number>(29)715-97-50</phone_number>
+            </order>
+            <order>
+                <name>shoes</name>
+                <code>14205</code>
+                <size>42</size>
+                <colour>brown</colour>
+                <delivery_address>Minsk, Belskogo, 27-79</delivery_address>
+                <phone_number>(29)715-97-50</phone_number>
+            </order>
+        </orders>
+    </client>
+</clients>

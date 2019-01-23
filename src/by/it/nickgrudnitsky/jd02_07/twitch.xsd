@@ -32,6 +32,7 @@
 
     <complexType name="Viewer">
         <sequence>
+            <element name="id" type="long"/>
             <element name="email" type="string"/>
             <element name="password" type="string"/>
             <element name="nickname" type="string"/>
@@ -60,6 +61,7 @@
 
     <complexType name="Streamer">
         <sequence>
+            <element name="id" type="long"/>
             <element name="email" type="string"/>
             <element name="password" type="string"/>
             <element name="channelname" type="string"/>

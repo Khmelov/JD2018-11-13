@@ -7,10 +7,14 @@ public class CalcException extends Exception {
 
     public CalcException(String message) {
         super(resManager.get(Errors.ERROR) + message);
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.ERROR) + message);
     }
 
     public CalcException(String message, Throwable cause) {
         super(resManager.get(Errors.ERROR) + message, cause);
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.ERROR) + message);
     }
 
     public CalcException(Throwable cause) {
@@ -19,5 +23,7 @@ public class CalcException extends Exception {
 
     public CalcException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
         super(resManager.get(Errors.ERROR) + message, cause, enableSuppression, writableStackTrace);
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.ERROR) + message);
     }
 }

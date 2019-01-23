@@ -13,6 +13,7 @@ public class ConsoleRunner {
         Printer printer = new Printer();
 
         Var.read();
+        ReportWriter reportWriter = new ReportWriter(new ShortReportBuilder(), resManager.getLocale());
         while (!(line = scanner.nextLine()).equals("end")) {
             if (line.equals("printvar")) {
                 Var.printVar();
@@ -25,6 +26,7 @@ public class ConsoleRunner {
             Var result;
             try {
                 result = parser.calc(line);
+                reportWriter.addOperation("Operation: " + line + " Result " + result);
                 printer.print(result);
             } catch (CalcException e) {
                 System.out.println(e.getMessage());
@@ -40,5 +42,6 @@ public class ConsoleRunner {
             }
         }
         Var.saveTo();
+        reportWriter.finisReport();
     }
 }

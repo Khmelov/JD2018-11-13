@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <saleOfCakes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xmlns="http://it-academy.by/jd2018-11-13/naumenko"
-             xsi:schemaLocation="http://it-academy.by/jd2018-11-13/naumenko saleOfCakes.xsd ">
+             xsi:schemaLocation="http://it-academy.by/jd2018-11-13/naumenko saleOfCakes.xsd">
 
     <sale>
         <data>12.01.2019</data>
@@ -19,7 +19,7 @@
             <filling_cake>вишневое конфи</filling_cake>
             <cream_cake>creamChies</cream_cake>
             <decoration_cake>ягоды</decoration_cake>
-            <price_cake>25</price_cake>
+            <price_cake currensy="руб">25</price_cake>
         </cake>
 
         <!--капкейки-->
