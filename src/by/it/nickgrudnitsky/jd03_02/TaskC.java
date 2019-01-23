@@ -28,8 +28,8 @@ public class TaskC {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
-
+        }                                                               //"jdbc:mysql://127.0.0.1:2016/", "root", ""
+                                                                        //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `ngrudnitsky` DEFAULT CHARACTER SET utf8 ;");
@@ -95,7 +95,8 @@ public class TaskC {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
-        }
+        }                                                           //"jdbc:mysql://127.0.0.1:2016/", "root", ""
+                                                                    //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `ngrudnitsky`");
@@ -113,7 +114,8 @@ public class TaskC {
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-
+                                                                    //"jdbc:mysql://127.0.0.1:2016/", "root", ""
+                                                                    //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
             Statement statement = connection.createStatement();
             RoleCRUD roleCRUD = new RoleCRUD();
