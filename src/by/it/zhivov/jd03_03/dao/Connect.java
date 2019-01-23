@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_02.crud;
+package by.it.zhivov.jd03_03.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -15,11 +15,11 @@ public class Connect {
         }
     }
 
-    public static Connection getConnection() throws SQLException {
+    static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             synchronized (Connect.class) {
                 if (connection == null || connection.isClosed()) {
-                    connection = DriverManager.getConnection(CN.URL,CN.LOGIN,CN.PASSWORD);
+                    connection = DriverManager.getConnection(CN.URL, CN.LOGIN, CN.PASSWORD);
                 }
             }
         }
