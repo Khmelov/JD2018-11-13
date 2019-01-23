@@ -56,7 +56,7 @@ public class RoleDAO extends AbstractDAO implements InterfaceDAO<Role> {
         List<Role> resultList = new ArrayList<>();
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Role` FROM `roles` '%s'", where);
+            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Role` FROM `roles` %s", where);
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 Role role = new Role(

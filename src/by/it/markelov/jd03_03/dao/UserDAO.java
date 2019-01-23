@@ -22,7 +22,7 @@ public class UserDAO extends AbstractDAO implements InterfaceDAO<User> {
     }
 
     public User read(int id) throws SQLException {
-        String where = String.format(Locale.ENGLISH, "WHERE ID='%d'", id);
+        String where = String.format(Locale.ENGLISH, "WHERE ID='%d';", id);
         List<User> listUsers = getAll(where);
         if (listUsers.size() == 1) {
             return listUsers.get(0);
@@ -60,7 +60,7 @@ public class UserDAO extends AbstractDAO implements InterfaceDAO<User> {
         List<User> resultList = new ArrayList<>();
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
-            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` '%s';",
+            String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Login`, `Password`, `E-Mail`, `roles_ID` FROM `users` %s",
                     where);
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {

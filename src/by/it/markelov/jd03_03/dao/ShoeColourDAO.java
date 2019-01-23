@@ -58,7 +58,7 @@ public class ShoeColourDAO extends AbstractDAO implements InterfaceDAO<ShoeColou
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Shoe_colour`, `orders_ID` " +
-                    "FROM `shoe_colours` '%s';", where);
+                    "FROM `shoe_colours` %s", where);
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 ShoeColour shoeColour = new ShoeColour(

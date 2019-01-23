@@ -59,7 +59,7 @@ public class ShoeSizeDAO extends AbstractDAO implements InterfaceDAO<ShoeSize> {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Shoe_size`, `orders_ID` " +
-                    "FROM `shoe_sizes` '%s';", where);
+                    "FROM `shoe_sizes` %s", where);
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 ShoeSize shoeSize = new ShoeSize(

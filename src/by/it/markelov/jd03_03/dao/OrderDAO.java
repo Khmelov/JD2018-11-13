@@ -69,7 +69,7 @@ public class OrderDAO extends AbstractDAO implements InterfaceDAO<Order> {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format(Locale.ENGLISH, " SELECT `ID`, `Shoe_name`, `Shoe_size`, `Shoe_colour`, `Price`, `users_ID` " +
-                    "FROM `orders` '%s';", where);
+                    "FROM `orders` %s", where);
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 Order order = new Order(

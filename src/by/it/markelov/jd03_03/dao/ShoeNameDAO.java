@@ -60,7 +60,7 @@ public class ShoeNameDAO extends AbstractDAO implements InterfaceDAO<ShoeName> {
         try (Connection connection = ConnectionCreator.getConnection();
              Statement statement = connection.createStatement()) {
             String sql = String.format(Locale.ENGLISH, "SELECT `ID`, `Shoe_name`, `orders_ID` " +
-                    "FROM `shoe_names` '%s';", where);
+                    "FROM `shoe_names` %s", where);
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 ShoeName shoeName = new ShoeName(
