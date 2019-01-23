@@ -30,7 +30,7 @@ public class UserCRUD {
 
     boolean delete(User user) throws SQLException {
         String sql = String.format(
-                "DELETE FROM `users` WHERE `users`.`id` = %d",
+                "DELETE FROM `users` WHERE `users`.`id_user` = %d",
                 user.getId()
         );
         try (Connection connection = Connect.getConnection();
