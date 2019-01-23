@@ -1,7 +1,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <entry key="dataBaseName">denisova</entry>
-    <entry key="dataBaseURL">jdbc:mysql://127.0.0.1:3306/</entry>
+    <entry key="dataBaseURL">jdbc:mysql://127.0.0.1:2016/</entry>
     <entry key="userName">root</entry>
-    <entry key="password">denisova376</entry>
+    <entry key="password"></entry>
 </properties>

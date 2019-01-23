@@ -46,8 +46,8 @@ public class Config {
         Properties properties = new Properties();
         try {
             properties.loadFromXML(new FileInputStream(fileXMLName));
-            nameDatabase = properties.getProperty("databaseName");
-            databaseURL = properties.getProperty("databaseURL");
+            nameDatabase = properties.getProperty("dataBaseName");
+            databaseURL = properties.getProperty("dataBaseURL");
             userName = properties.getProperty("userName");
             password = properties.getProperty("password");
         } catch (IOException e) {
