@@ -43,7 +43,7 @@ public class DatabaseConnector {
         return connection;
     }
 
-    static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         return getConnection(true);
     }
 

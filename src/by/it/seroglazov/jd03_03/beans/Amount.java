@@ -1,5 +1,6 @@
 package by.it.seroglazov.jd03_03.beans;
 
+@SuppressWarnings("unused")
 public class Amount {
     private long recipe_id;
     private long ingredient_id;

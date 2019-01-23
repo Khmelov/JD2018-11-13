@@ -1,10 +1,10 @@
 package by.it.seroglazov.jd03_03;
 
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 
+@SuppressWarnings("ALL")
 public class Config {
     private String dataBaseName;
     private String dataBaseURL;

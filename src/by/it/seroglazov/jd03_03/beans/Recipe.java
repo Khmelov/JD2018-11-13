@@ -1,20 +1,21 @@
 package by.it.seroglazov.jd03_03.beans;
 
 
+@SuppressWarnings("unused")
 public class Recipe {
     private long id;
     private String name;
-    private int rtype_id;
+    private long rtype_id;
     private String description;
 
-    public Recipe(long id, String name, int rtype_id, String description) {
+    public Recipe(long id, String name, long rtype_id, String description) {
         this.id = id;
         this.name = name;
         this.rtype_id = rtype_id;
         this.description = description;
     }
 
-    public Recipe(String name, int rtype_id, String description) {
+    public Recipe(String name, long rtype_id, String description) {
         this.name = name;
         this.rtype_id = rtype_id;
         this.description = description;
@@ -39,11 +40,11 @@ public class Recipe {
         this.name = name;
     }
 
-    public int getRtype_id() {
+    public long getRtype_id() {
         return rtype_id;
     }
 
-    public void setRtype_id(int rtype_id) {
+    public void setRtype_id(long rtype_id) {
         this.rtype_id = rtype_id;
     }
 

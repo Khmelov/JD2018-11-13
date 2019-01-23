@@ -1,65 +1,49 @@
 package by.it.seroglazov.jd03_03;
 
-import by.it.seroglazov.jd03_03.beans.Ingredient;
-import by.it.seroglazov.jd03_03.beans.Recipe;
-import by.it.seroglazov.jd03_03.beans.Rtype;
+import by.it.seroglazov.jd03_03.beans.*;
+import by.it.seroglazov.jd03_03.dao.Dao;
+import by.it.seroglazov.jd03_03.dao.MyDao;
 
 import java.util.List;
 
 public class Runner {
+
+    static private Dao<Rtype> rtDao = new MyDao<>(new Rtype());
+    static private Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
+    static private Dao<Unit> unitDao = new MyDao<>(new Unit());
+    static private Dao<Amount> amDao = new MyDao<>(new Amount());
+    static private Dao<Recipe> recDao = new MyDao<>(new Recipe());
+
     public static void main(String[] args) {
-        /*DatabaseCreator creator = DatabaseCreator.getCreator();
+        DatabaseCreator creator = DatabaseCreator.getCreator();
+        creator.resetDatabase();
 
-        System.out.print("Delete database if exists... ");
-        if (!creator.deleteDatabase()) {
-            System.out.println("fail.");
-            return;
-        }
-        System.out.println("done.");
-
-        System.out.print("Create database... ");
-        if (!creator.createDatabase()) {
-            System.out.println("fail.");
-            return;
-        }
-        System.out.println("done.");
-
-        System.out.print("Create tables... ");
-        if (!creator.createAllTables()) {
-            System.out.println("fail.");
-            return;
-        }
-        System.out.println("done.");*/
-
-        /*System.out.print("Fill tables from XML file... ");
-        if (!creator.fillDatabaseFromXml()) {
-            System.out.println("fail.");
-            return;
-        }
-        System.out.println("done.");*/
-
-        Dao<Ingredient> daoIngredient = new MyDao<>(new Ingredient());
-        Dao<Recipe> daoRecipe = new MyDao<>(new Recipe());
-        Dao<Rtype> daoRtype = new MyDao<>(new Rtype());
-        Ingredient ing1 = new Ingredient("frozen vodka");
-        Rtype rtype = new Rtype("all day");
-        Recipe r = new Recipe("bloody maria", 1, "just drink vodka with tomato juice");
-        Recipe r2 = new Recipe("bloody maria2", 1, "just drink vodka with tomato juice");
-        try {
-            //daoIngredient.create(ing1);
-            //daoRtype.create(rtype);
-            //daoRecipe.create(r);
-            //daoRecipe.create(r2);
-            //System.out.println(ing1);
-            //System.out.println(rtype);
-            //System.out.println(r);
-            //System.out.println(r2);
-            //List<Recipe> list = daoRecipe.getAll("WHERE id=1");
-            Recipe rrr = daoRecipe.read(2);
-            System.out.println(rrr);
-        } catch (Exception e) {
-            System.err.println("Error: " + e.getMessage());
-        }
+        printAllRecipes();
 
     }
+
+    private static void printAllRecipes() {
+        try {
+            System.out.println("\nList of all cocktails:\n");
+            List<Recipe> allRecipes = recDao.getAll();
+            for (Recipe recipe : allRecipes) {
+                Rtype rtype = rtDao.read(recipe.getRtype_id());
+                System.out.printf("id=%s name='%s' type='%s'%n",
+                        recipe.getId(), recipe.getName(), rtype.getText());
+                List<Amount> amounts = amDao.getAll("WHERE recipe_id=" + recipe.getId());
+                for (Amount amount : amounts) {
+                    Ingredient ingredient = ingDao.read(amount.getIngredient_id());
+                    Unit unit = unitDao.read(amount.getUnit_id());
+                    System.out.printf("\t%s %s %s%n", amount.getText(), unit.getName(), ingredient.getName());
+                }
+                System.out.println(recipe.getDescription());
+                System.out.println();
+
+            }
+
+        } catch (Exception e) {
+            System.err.println("Error while working with database: " + e.getMessage());
+        }
+    }
+
 }

@@ -1,5 +1,6 @@
 package by.it.seroglazov.jd03_03.beans;
 
+@SuppressWarnings("unused")
 public class Ingredient {
     private long id;
     private String name;
