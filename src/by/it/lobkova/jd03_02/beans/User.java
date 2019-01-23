@@ -2,17 +2,39 @@ package by.it.lobkova.jd03_02.beans;
 
 public class User {
 
-    private int id;
+    private long id;
     private String email;
     private String login;
     private String password;
     private String name;
+    private long roles_ID;
 
-    public int getId() {
+    public User() {
+
+    }
+
+    public User(long id, String email, String login, String password, String name, long roles_ID) {
+        this.id = id;
+        this.email = email;
+        this.login = login;
+        this.password = password;
+        this.name = name;
+        this.roles_ID = roles_ID;
+    }
+
+    public long getRoles_id() {
+        return roles_ID;
+    }
+
+    public void setRoles_id(long roles_id) {
+        this.roles_ID = roles_id;
+    }
+
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 
@@ -46,5 +68,17 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", email='" + email + '\'' +
+                ", login='" + login + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", roles_ID=" + roles_ID +
+                '}';
     }
 }
