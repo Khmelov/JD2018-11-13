@@ -1,5 +1,8 @@
 package by.it.zhivov.jd03_03.beans;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+
 public class User {
     private long id;
     private String name;
@@ -56,7 +59,7 @@ public class User {
         this.password = password;
     }
 
-    public String getDateOfBirth() {
+    public String  getDateOfBirth() {
         return dateOfBirth;
     }
 

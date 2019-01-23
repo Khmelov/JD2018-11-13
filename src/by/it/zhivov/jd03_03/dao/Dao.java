@@ -71,7 +71,7 @@ public class Dao {
                     "  `name` VARCHAR(100) NULL,\n" +
                     "  `login` VARCHAR(45) NULL,\n" +
                     "  `password` VARCHAR(26) NULL,\n" +
-                    "  `dateofbirth` TIMESTAMP NOT NULL,\n" +
+                    "  `dateofbirth` VARCHAR(10) NULL,\n" +
                     "  `email` VARCHAR(45) NULL,\n" +
                     "  `tel` VARCHAR(45) NULL,\n" +
                     "  `roles_id` INT NOT NULL,\n" +

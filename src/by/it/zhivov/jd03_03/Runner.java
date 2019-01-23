@@ -5,7 +5,10 @@ import by.it.zhivov.jd03_03.beans.Role;
 import by.it.zhivov.jd03_03.beans.User;
 import by.it.zhivov.jd03_03.dao.Dao;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.util.Locale;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
@@ -34,7 +37,7 @@ public class Runner {
         user.setName("Genady");
         user.setLogin("4iba");
         user.setPassword("root");
-        user.setDateOfBirth("24.05.1989");
+        user.setDateOfBirth("24.05.1995");
         user.setEmail("gen4ik@mail.ru");
         user.setTel("+79038652555");
         user.setRoles_Id(2);
