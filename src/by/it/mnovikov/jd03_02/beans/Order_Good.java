@@ -1,13 +1,13 @@
 package by.it.mnovikov.jd03_02.beans;
 
-public class order_good {
+public class Order_Good {
     private int orders_id;
     private int goods_id;
 
-    public order_good() {
+    public Order_Good() {
     }
 
-    public order_good(int orders_id, int goods_id) {
+    public Order_Good(int orders_id, int goods_id) {
         this.orders_id = orders_id;
         this.goods_id = goods_id;
     }
@@ -33,7 +33,7 @@ public class order_good {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        order_good that = (order_good) o;
+        Order_Good that = (Order_Good) o;
 
         if (orders_id != that.orders_id) return false;
         return goods_id == that.goods_id;
@@ -48,7 +48,7 @@ public class order_good {
 
     @Override
     public String toString() {
-        return "order_good{" +
+        return "Order_Good{" +
                 "orders_id=" + orders_id +
                 ", goods_id=" + goods_id +
                 '}';

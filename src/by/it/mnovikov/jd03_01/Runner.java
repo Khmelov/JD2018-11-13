@@ -24,8 +24,8 @@ public class Runner {
             System.out.println("-------------------");
             C_Reset.deleteDB(statement);
             System.out.println("-------------------");
-//            C_Init.createDB(statement);
-//
+            C_Init.createDB(statement);
+
         } catch (SQLException e) {
             e.printStackTrace();
         }

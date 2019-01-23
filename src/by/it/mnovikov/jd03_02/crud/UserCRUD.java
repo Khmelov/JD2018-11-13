@@ -2,14 +2,11 @@ package by.it.mnovikov.jd03_02.crud;
 
 import by.it.mnovikov.jd03_02.beans.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UserCRUD {
 
-    boolean create(User user) throws SQLException {
+    public boolean create(User user) throws SQLException {
         String sql = String.format("INSERT INTO `users`(" +
                         "`login`, `password`, `email`, `first_name`," +
                         "`last_name`, `birthday`, `adress`, `roles_ID`)" +
@@ -30,7 +27,7 @@ public class UserCRUD {
         return false;
     }
 
-    boolean delete(User user) throws SQLException {
+    public boolean delete(User user) throws SQLException {
         String sql = String.format("DELETE FROM `users` WHERE `users`.`id`='%d'", user.getId());
         try (Connection connection = Connect_DB.getConnection();
              Statement statement = connection.createStatement()) {
@@ -38,7 +35,7 @@ public class UserCRUD {
         }
     }
 
-    boolean update(User user) throws SQLException {
+    public boolean update(User user) throws SQLException {
         String sql = String.format(
                 "UPDATE `users` SET" +
                         "`login`='%s',`password`='%s',`email`='%s'," +
@@ -53,7 +50,7 @@ public class UserCRUD {
         }
     }
 
-    User read(int id) throws SQLException {
+    public User read(int id) throws SQLException {
         String sql = String.format(
                 "SELECT `ID`, `login`, `password`, `email`, `first_name`, `last_name`," +
                         "`birthday`, `adress`, `roles_ID` FROM `users` WHERE id = %d", id);
@@ -61,16 +58,15 @@ public class UserCRUD {
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                int userId = resultSet.getInt("id");
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
                 String first_name = resultSet.getString("first_name");
                 String last_name = resultSet.getString("last_name");
-                long birthday = resultSet.getLong("birthday");
+                Timestamp birthday = resultSet.getTimestamp("birthday");
                 String adress = resultSet.getString("adress");
                 int roles_Id = resultSet.getInt("roles_ID");
-                return new User();
+                return new User(id, login, password, email, first_name, last_name, birthday, adress,roles_Id);
             } else return null;
         }
     }

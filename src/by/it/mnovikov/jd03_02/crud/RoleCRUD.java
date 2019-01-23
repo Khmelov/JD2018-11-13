@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-class RoleCRUD {
+public class RoleCRUD {
 
-    boolean create(Role role) throws SQLException {
+    public boolean create(Role role) throws SQLException {
         String sql = String.format("INSERT INTO `roles`(`role`) VALUES ('%s')", role.getRole());
         try (Connection connection = Connect_DB.getConnection();
              Statement statement = connection.createStatement()) {
@@ -24,7 +24,7 @@ class RoleCRUD {
         return false;
     }
 
-    boolean delete(Role role) throws SQLException {
+    public boolean delete(Role role) throws SQLException {
         String sql = String.format("DELETE FROM `roles` WHERE `roles`.`id` = '%d'", role.getId());
         try (Connection connection = Connect_DB.getConnection();
              Statement statement = connection.createStatement()) {
@@ -32,7 +32,7 @@ class RoleCRUD {
         }
     }
 
-    boolean update(Role role) throws SQLException {
+    public boolean update(Role role) throws SQLException {
         String sql = String.format("UPDATE `roles` SET" +
                         "`role`='%s' WHERE `roles`.`id` = '%d'",
                 role.getRole(), role.getId());
@@ -43,7 +43,7 @@ class RoleCRUD {
         }
     }
 
-    Role read(int id) throws SQLException {
+    public Role read(int id) throws SQLException {
         String sql = String.format("SELECT `id`, `role` FROM `roles` WHERE `roles`.`id` = '%d'", id);
         try (Connection connection = Connect_DB.getConnection();
              Statement statement = connection.createStatement()) {
