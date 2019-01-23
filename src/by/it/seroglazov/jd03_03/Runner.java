@@ -15,6 +15,7 @@ public class Runner {
     static private Dao<Recipe> recDao = new MyDao<>(new Recipe());
 
     public static void main(String[] args) {
+
         DatabaseCreator creator = DatabaseCreator.getCreator();
         creator.resetDatabase();
 
