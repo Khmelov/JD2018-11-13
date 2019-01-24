@@ -5,7 +5,10 @@ public enum Action {
     LOGIN(new CmdLogin()),
     LOGOUT(new CmdLogout()),
     SIGNUP(new CmdSignUp()),
-    ERROR(new CmdError());
+    ERROR(new CmdError()),
+    CREATEAD(new CmdCreateAd()),
+    LISTAD(new CmdListAd());
+
 
     Cmd cmd;
 

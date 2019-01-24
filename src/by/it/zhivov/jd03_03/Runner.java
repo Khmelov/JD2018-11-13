@@ -2,6 +2,8 @@ package by.it.zhivov.jd03_03;
 
 import by.it.zhivov.jd03_03.dao.*;
 import by.it.zhivov.jd03_03.beans.*;
+//import by.it.zhivov.project.java.dao.*;
+//import by.it.zhivov.project.java.beans.*;
 
 import java.sql.SQLException;
 
