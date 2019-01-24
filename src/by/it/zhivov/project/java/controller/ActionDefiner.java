@@ -1,4 +1,4 @@
-package by.it.zhivov.project.controller;
+package by.it.zhivov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
