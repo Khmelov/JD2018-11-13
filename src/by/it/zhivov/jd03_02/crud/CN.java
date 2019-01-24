@@ -7,6 +7,6 @@ public interface CN {
             "&" +
             "useUnicode=true&characterEncoding=UTF-8";
     String LOGIN = "root";
-    String PASSWORD = "qwertyui";
+    String PASSWORD = "";
 
 }

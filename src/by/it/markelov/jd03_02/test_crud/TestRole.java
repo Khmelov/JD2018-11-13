@@ -14,14 +14,14 @@ public class TestRole {
             roleCRUD.create(role);
 
 //==================READ===========================
-            Role readRole = roleCRUD.read(1);
-            System.out.println(readRole);
+            //Role readRole = roleCRUD.read(1);
+            //System.out.println(readRole);
 
 //===================UPDATE========================
-            roleCRUD.update(role);
+            //roleCRUD.update(role);
 
 //===================DELETE========================
-            roleCRUD.delete(role);
+            //roleCRUD.delete(role);
 
         } catch (SQLException e) {
             e.printStackTrace();
