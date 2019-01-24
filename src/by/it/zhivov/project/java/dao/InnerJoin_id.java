@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_03.dao;
+package by.it.zhivov.project.java.dao;
 
 import java.sql.*;
 
