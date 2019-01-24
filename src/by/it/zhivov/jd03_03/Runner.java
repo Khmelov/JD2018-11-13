@@ -1,9 +1,7 @@
 package by.it.zhivov.jd03_03;
 
-import by.it.zhivov.jd03_03.beans.Ad;
-import by.it.zhivov.jd03_03.beans.Role;
-import by.it.zhivov.jd03_03.beans.User;
-import by.it.zhivov.jd03_03.dao.Dao;
+import by.it.zhivov.jd03_03.dao.*;
+import by.it.zhivov.jd03_03.beans.*;
 
 import java.sql.SQLException;
 
@@ -24,7 +22,7 @@ public class Runner {
         //update
         role.setRole("superuser");
         if (dao.role.update(role))
-        System.out.println("\tUpdate role successful\n" + role + "\n");
+            System.out.println("\tUpdate role successful\n" + role + "\n");
         //read
         role = dao.role.read(role.getId());
         System.out.println("\tRead role successful\n" + role + "\n");
@@ -84,6 +82,9 @@ public class Runner {
             if (dao.role.delete(role))
                 System.out.println("\tDelete role successful\n" + role + "\n");
         }
-        // }
+        InnerJoin_id.join();
+        InnerJoin_id.getAllRows();
+        InnerJoin_id.getRolesRows();
     }
+    // }
 }
