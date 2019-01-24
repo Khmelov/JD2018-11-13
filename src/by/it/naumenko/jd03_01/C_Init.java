@@ -74,8 +74,8 @@ public void create() {
         try (Connection connection = DriverManager.getConnection(portDB, "root", "")
         ) {
             Statement statement = connection.createStatement();
-//            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
-//            statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `naumenko` DEFAULT CHARACTER SET utf8");
+            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
+            statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `naumenko` DEFAULT CHARACTER SET utf8");
 
             //Table `naumenko`.`roles`
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ROLES));
@@ -105,7 +105,7 @@ public void create() {
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            // System.err.println("драйвер не найден");
+             System.err.println("драйвер не найден");
         }
     }
 }

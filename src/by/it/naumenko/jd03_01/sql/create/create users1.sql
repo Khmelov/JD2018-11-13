@@ -1,14 +1,14 @@
 CREATE TABLE IF NOT EXISTS `naumenko`.`users` (
-  `id_users` INT NOT NULL AUTO_INCREMENT,
+  `id_user` INT NOT NULL AUTO_INCREMENT,
   `login` VARCHAR(100) NULL,
   `password` VARCHAR(45) NULL,
   `email` VARCHAR(100) NULL,
-  `roles_id_roles` INT NOT NULL,
-  PRIMARY KEY (`id_users`),
-  INDEX `fk_users_roles_idx` (`roles_id_roles` ASC),
+  `id_role` INT NOT NULL,
+  PRIMARY KEY (`id_user`),
+  INDEX `fk_users_roles_idx` (`id_role` ASC),
   CONSTRAINT `fk_users_roles`
-    FOREIGN KEY (`roles_id_roles`)
-    REFERENCES `naumenko`.`roles` (`id_roles`)
+    FOREIGN KEY (`id_role`)
+    REFERENCES `naumenko`.`roles` (`id_role`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)
 ENGINE = InnoDB;

@@ -1,4 +1,6 @@
-package by.it.naumenko.jd03_02.CRUD;
+package by.it.naumenko.jd03_03;
+
+import by.it.naumenko.jd03_02.CRUD.Conect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -16,7 +18,7 @@ public class Connected {
 
     private static volatile Connection connection;
 
-    public static Connection getConnection() throws SQLException {
+    static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             synchronized (Connected.class) {
                 if (connection == null || connection.isClosed())
