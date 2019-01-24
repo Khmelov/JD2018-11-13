@@ -2,12 +2,13 @@
 
         <!ELEMENT twitch (viewers)? (streamers)?>
         <!ELEMENT viewers (viewer)*>
-        <!ELEMENT viewer (email, password, nickname, following)>
+        <!ELEMENT viewer (id, email, password, nickname, following)>
+        <!ELEMENT id (#PCDATA)>
         <!ELEMENT email (#PCDATA)>
         <!ELEMENT password (#PCDATA)>
         <!ELEMENT nickname (#PCDATA)>
         <!ELEMENT following (channelname?)>
         <!ELEMENT channelname (#PCDATA)>
-        <!ELEMENT  streamers (streamer)*>
-        <!ELEMENT  streamer (email, password, channelname, followers)>
+        <!ELEMENT streamers (streamer)*>
+        <!ELEMENT streamer (id, email, password, channelname, followers)>
         <!ELEMENT followers (nickname)*>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+    <!ELEMENT cakes (roles,users,cake,zakaz)*>
+    <!ELEMENT roles (id_roles,role)>
+        <!ELEMENT id_roles (#PCDATA)>
+        <!ELEMENT role (#PCDATA)>
+
+    <!ELEMENT users (id_user,login,password,email,id_roles)>
+        <!ELEMENT id_user (#PCDATA)>
+        <!ELEMENT login (#PCDATA)>
+        <!ELEMENT password (#PCDATA)>
+        <!ELEMENT email (#PCDATA)>
+
+    <!ELEMENT cake (id_cake,name_cake,size_cake,weight_cake,bescuit,decoration,cream,price_cake)>
+        <!ELEMENT id_cake (#PCDATA)>
+        <!ELEMENT name_cake (#PCDATA)>
+        <!ELEMENT size_cake (#PCDATA)>
+        <!ELEMENT weight_cake (#PCDATA)>
+        <!ELEMENT bescuit (#PCDATA)>
+        <!ELEMENT decoration (#PCDATA)>
+        <!ELEMENT cream (#PCDATA)>
+        <!ELEMENT price_cake (#PCDATA)>
+
+    <!ELEMENT zakaz (id_zakaz,date_zakaz,koltort,price_zakaz,id_user,id_cake)>
+        <!ELEMENT id_zakaz (#PCDATA)>
+        <!ELEMENT date_zakaz (#PCDATA)>
+        <!ELEMENT koltort (#PCDATA)>
+        <!ELEMENT price_zakaz (#PCDATA)>

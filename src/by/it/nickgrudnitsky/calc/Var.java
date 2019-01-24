@@ -10,6 +10,7 @@ import java.util.TreeSet;
 abstract class Var implements Operation {
     static ResManager resManager = ResManager.INSTANCE;
     private static Map<String, Var> vars = new HashMap<>();
+    static VarFactory varFactory = new VarFactory();
 
     static void printVar() {
         for (Map.Entry<String, Var> entry : vars.entrySet()) {
@@ -34,14 +35,16 @@ abstract class Var implements Operation {
     static Var createVar(String operand) throws CalcException {
         operand = operand.trim().replace("\\s+", "");
         if (operand.matches(Patterns.SCALAR)) {
-            return new Scalar(operand);
+            return varFactory.createVar("SCALAR", operand);
         } else if (operand.matches(Patterns.VECTOR)) {
-            return new Vector(operand);
+            return varFactory.createVar("VECTOR", operand);
         } else if (operand.matches(Patterns.MATRIX)) {
-            return new Matrix(operand);
+            return varFactory.createVar("MATRIX", operand);
         } else if (vars.containsKey(operand)) {
             return vars.get(operand);
         }
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.IMPOSSIBLETOCREATE) + operand);
         throw new CalcException(resManager.get(Errors.IMPOSSIBLETOCREATE) + operand);
     }
 
@@ -52,6 +55,8 @@ abstract class Var implements Operation {
                 out.printf("%s=%s\n", pair.getKey(), pair.getValue());
             }
         } catch (IOException e) {
+            Logger logger = Logger.getInstance();
+            logger.log(resManager.get(Errors.ERROR));
             System.out.println(resManager.get(Errors.ERROR));
         }
     }
@@ -73,26 +78,36 @@ abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.ADDOPERATION) + this + " + " + other + resManager.get(Errors.IMPOSSIBLE));
         throw new CalcException(resManager.get(Errors.ADDOPERATION) + this + " + " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public Var sub(Var other) throws CalcException {
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.SUBOPERATION) + this + " - " + other + resManager.get(Errors.IMPOSSIBLE));
         throw new CalcException(resManager.get(Errors.SUBOPERATION) + this + " - " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public Var mul(Var other) throws CalcException {
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.MULOPERATION) + this + " * " + other + resManager.get(Errors.IMPOSSIBLE));
         throw new CalcException(resManager.get(Errors.MULOPERATION) + this + " * " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public Var div(Var other) throws CalcException {
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.DIVOPERATION) + this + " / " + other + resManager.get(Errors.IMPOSSIBLE));
         throw new CalcException(resManager.get(Errors.DIVOPERATION) + this + " / " + other + resManager.get(Errors.IMPOSSIBLE));
     }
 
     @Override
     public String toString() {
+        Logger logger = Logger.getInstance();
+        logger.log(resManager.get(Errors.THISISABSTRACTVAR));
         return resManager.get(Errors.THISISABSTRACTVAR);
     }
 }

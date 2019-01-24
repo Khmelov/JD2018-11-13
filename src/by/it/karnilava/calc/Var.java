@@ -21,24 +21,28 @@ abstract class Var implements Operation {
 
     @Override
     public Var add(Var other) throws CalcException {
+        LoggerErrors.writeReport(SwitchLanguages.rb.getString("Addition")+ "+" + this + other + SwitchLanguages.rb.getString("Impossible"));
         throw new CalcException(SwitchLanguages.rb.getString("Addition")+ "+" + this + other + SwitchLanguages.rb.getString("Impossible"));
 
     }
 
     @Override
     public Var sub(Var other)throws CalcException  {
+        LoggerErrors.writeReport(SwitchLanguages.rb.getString("Subtraction") + this + "-" + other + SwitchLanguages.rb.getString("Impossible"));
         throw new CalcException(SwitchLanguages.rb.getString("Subtraction") + this + "-" + other + SwitchLanguages.rb.getString("Impossible"));
 
     }
 
     @Override
     public Var mul(Var other)throws CalcException  {
+        LoggerErrors.writeReport(SwitchLanguages.rb.getString("Multiply") + this + "*" + other + SwitchLanguages.rb.getString("Impossible"));
         throw new CalcException(SwitchLanguages.rb.getString("Multiply") + this + "*" + other + SwitchLanguages.rb.getString("Impossible"));
 
 }
 
     @Override
     public Var div(Var other)throws CalcException  {
+       LoggerErrors.writeReport(SwitchLanguages.rb.getString("Division") + this + "/" + other + SwitchLanguages.rb.getString("Impossible"));
         throw new CalcException(SwitchLanguages.rb.getString("Division") + this + "/" + other + SwitchLanguages.rb.getString("Impossible"));
 
     }
@@ -56,6 +60,7 @@ abstract class Var implements Operation {
 
         Var var = vars.get(operand);
         if (var == null){
+           LoggerErrors.writeReport(SwitchLanguages.rb.getString("Incorrect")+" "+operand);
             throw  new CalcException(SwitchLanguages.rb.getString("Incorrect")+" "+operand);}
         return var;
 
