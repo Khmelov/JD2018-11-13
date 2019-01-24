@@ -1,4 +1,4 @@
-package by.it.zhivov.jd03_03.controller;
+package by.it.zhivov.project.controller;
 
  class CmdError  {
 }

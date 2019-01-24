@@ -1,10 +1,10 @@
-package by.it.zhivov.jd03_03.controller;
+package by.it.zhivov.project.controller;
 
 public enum Action {
-    INDEX {{
+        INDEX {
         cmd = new CmdIndex();
         String jsp = "/error.jsp";
-    }}, LOGIN {
+    }, LOGIN {
         cmd = new CmdLogin();
         String jsp = "/error.jsp";
     }, LOGOUT {
@@ -17,6 +17,5 @@ public enum Action {
         cmd = new CmdError();
         String jsp = "/error.jsp";
     }
-
     Cmd cmd;
 }
