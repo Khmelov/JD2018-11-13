@@ -42,7 +42,7 @@ public class RoleCRUD {
     boolean update(Role role) throws SQLException {
         String sql = String.format(
                 "UPDATE `roles` SET " +
-                        "`role` = '%s'," +
+                        "`role` = '%s'" +
                         "WHERE `role`.`id` = %d",
                 role.getRole(), role.getId());
         try (Connection connection = Connect.getConnection();
