@@ -1,6 +1,5 @@
 package by.it.vchernetski.calc;
 
-import by.it._examples_.jd01_11.Generics.Demo;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
