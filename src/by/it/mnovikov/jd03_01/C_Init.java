@@ -33,17 +33,17 @@ class C_Init {
                 "    ON DELETE RESTRICT" +
                 "    ON UPDATE RESTRICT)" +
                 "ENGINE = InnoDB;");
-        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders` (\n" +
-                "  `ID` INT NOT NULL AUTO_INCREMENT,\n" +
-                "  `date` TIMESTAMP(6) NULL,\n" +
-                "  `users_ID` INT NOT NULL,\n" +
-                "  PRIMARY KEY (`ID`),\n" +
-                "  INDEX `fk_orders_users1_idx` (`users_ID` ASC),\n" +
-                "  CONSTRAINT `fk_orders_users1`\n" +
-                "    FOREIGN KEY (`users_ID`)\n" +
-                "    REFERENCES `mnovikov`.`users` (`ID`)\n" +
-                "    ON DELETE CASCADE\n" +
-                "    ON UPDATE CASCADE)\n" +
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders` (" +
+                "  `ID` INT NOT NULL AUTO_INCREMENT," +
+                "  `date` TIMESTAMP(6) NULL," +
+                "  `users_ID` INT NOT NULL," +
+                "  PRIMARY KEY (`ID`)," +
+                "  INDEX `fk_orders_users1_idx` (`users_ID` ASC)," +
+                "  CONSTRAINT `fk_orders_users1`" +
+                "    FOREIGN KEY (`users_ID`)" +
+                "    REFERENCES `mnovikov`.`users` (`ID`)" +
+                "    ON DELETE CASCADE" +
+                "    ON UPDATE CASCADE)" +
                 "ENGINE = InnoDB");
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`goods` (" +
                 "  `ID` INT NOT NULL AUTO_INCREMENT," +
@@ -54,11 +54,13 @@ class C_Init {
                 "  `price` DOUBLE NULL," +
                 "  PRIMARY KEY (`ID`))" +
                 "ENGINE = InnoDB");
-        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (" +
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (\n" +
+                "  `ID` INT NOT NULL AUTO_INCREMENT," +
                 "  `orders_ID` INT NOT NULL," +
                 "  `goods_ID` INT NOT NULL," +
                 "  INDEX `fk_orders_goods_orders1_idx` (`orders_ID` ASC)," +
                 "  INDEX `fk_orders_goods_goods1_idx` (`goods_ID` ASC)," +
+                "  PRIMARY KEY (`ID`)," +
                 "  CONSTRAINT `fk_orders_goods_orders1`" +
                 "    FOREIGN KEY (`orders_ID`)" +
                 "    REFERENCES `mnovikov`.`orders` (`ID`)" +
@@ -69,7 +71,7 @@ class C_Init {
                 "    REFERENCES `mnovikov`.`goods` (`ID`)" +
                 "    ON DELETE CASCADE" +
                 "    ON UPDATE CASCADE)" +
-                "ENGINE = InnoDB");
+                "ENGINE = InnoDB;");
 
         //наполнение таблицы ролей
         statement.executeUpdate("INSERT INTO `mnovikov`.`roles` (`ID`, `role`) VALUES (DEFAULT, 'Administrator')");

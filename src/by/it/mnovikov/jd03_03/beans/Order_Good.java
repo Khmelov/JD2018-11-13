@@ -1,15 +1,25 @@
 package by.it.mnovikov.jd03_03.beans;
 
 public class Order_Good {
+    private int id;
     private int orders_id;
     private int goods_id;
 
     public Order_Good() {
     }
 
-    public Order_Good(int orders_id, int goods_id) {
+    public Order_Good(int id, int orders_id, int goods_id) {
+        this.id = id;
         this.orders_id = orders_id;
         this.goods_id = goods_id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public int getOrders_id() {
@@ -35,13 +45,15 @@ public class Order_Good {
 
         Order_Good that = (Order_Good) o;
 
+        if (id != that.id) return false;
         if (orders_id != that.orders_id) return false;
         return goods_id == that.goods_id;
     }
 
     @Override
     public int hashCode() {
-        int result = orders_id;
+        int result = id;
+        result = 31 * result + orders_id;
         result = 31 * result + goods_id;
         return result;
     }
@@ -49,7 +61,8 @@ public class Order_Good {
     @Override
     public String toString() {
         return "Order_Good{" +
-                "orders_id=" + orders_id +
+                "id=" + id +
+                ", orders_id=" + orders_id +
                 ", goods_id=" + goods_id +
                 '}';
     }

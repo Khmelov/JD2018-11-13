@@ -95,10 +95,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mnovikov`.`orders_goods` ;
 
 CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `orders_ID` INT NOT NULL,
   `goods_ID` INT NOT NULL,
   INDEX `fk_orders_goods_orders1_idx` (`orders_ID` ASC),
   INDEX `fk_orders_goods_goods1_idx` (`goods_ID` ASC),
+  PRIMARY KEY (`ID`),
   CONSTRAINT `fk_orders_goods_orders1`
     FOREIGN KEY (`orders_ID`)
     REFERENCES `mnovikov`.`orders` (`ID`)
@@ -165,9 +167,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mnovikov`;
-INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (1, 1);
-INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (1, 2);
-INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (2, 1);
+INSERT INTO `mnovikov`.`orders_goods` (`ID`, `orders_ID`, `goods_ID`) VALUES (DEFAULT, 1, 1);
+INSERT INTO `mnovikov`.`orders_goods` (`ID`, `orders_ID`, `goods_ID`) VALUES (DEFAULT, 1, 2);
+INSERT INTO `mnovikov`.`orders_goods` (`ID`, `orders_ID`, `goods_ID`) VALUES (DEFAULT, 2, 1);
 
 COMMIT;
 

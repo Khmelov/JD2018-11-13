@@ -1,15 +1,17 @@
 package by.it.mnovikov.jd03_03.beans;
 
+import java.sql.Timestamp;
+
 public class Order {
 
     private int id;
-    private long date;
+    private Timestamp date;
     private int users_ID;
 
     public Order() {
     }
 
-    public Order(int id, long date, int users_ID) {
+    public Order(int id, Timestamp date, int users_ID) {
         this.id = id;
         this.date = date;
         this.users_ID = users_ID;
@@ -23,11 +25,11 @@ public class Order {
         this.id = id;
     }
 
-    public long getDate() {
+    public Timestamp getDate() {
         return date;
     }
 
-    public void setDate(long date) {
+    public void setDate(Timestamp date) {
         this.date = date;
     }
 
@@ -47,17 +49,18 @@ public class Order {
         Order order = (Order) o;
 
         if (id != order.id) return false;
-        if (date != order.date) return false;
-        return users_ID == order.users_ID;
+        if (users_ID != order.users_ID) return false;
+        return date != null ? date.equals(order.date) : order.date == null;
     }
 
     @Override
     public int hashCode() {
         int result = id;
-        result = 31 * result + (int) (date ^ (date >>> 32));
+        result = 31 * result + (date != null ? date.hashCode() : 0);
         result = 31 * result + users_ID;
         return result;
     }
+
 
     @Override
     public String toString() {

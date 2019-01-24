@@ -48,10 +48,9 @@ public class OrderCRUD {
         try (Statement statement = Connect_DB.getConnection().createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             if (resultSet.next()) {
-                int orderId = resultSet.getInt("id");
                 Timestamp date = resultSet.getTimestamp("date");
                 int users_ID = resultSet.getInt("users_ID");
-                return new Order();
+                return new Order(id, date, users_ID);
             } else return null;
         }
     }
