@@ -42,7 +42,6 @@ public class Dao {
 
     static boolean executeUpdate(String sql) throws SQLException {
         try (Connection connection = Connect.getConnection();
-
              Statement statement = connection.createStatement()) {
             return (1 == statement.executeUpdate(sql));
         }

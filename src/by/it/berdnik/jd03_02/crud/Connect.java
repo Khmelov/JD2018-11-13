@@ -7,7 +7,7 @@ import java.sql.Driver;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class ConnectionCreator {
+class Connect {
 
     static {
         Driver driver;
@@ -18,7 +18,7 @@ class ConnectionCreator {
         } catch (ClassNotFoundException e) {
             System.out.println("Error loading driver: " + e);
         } catch (SQLException e) {
-            System.out.println("Error: not register driver: "+e);
+            System.out.println("Error: not register driver: " + e);
         }
     }
 
@@ -26,10 +26,10 @@ class ConnectionCreator {
 
     public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-                synchronized (by.it.berdnik.jd03_02.crud.CN.USER_DB) {
-                    if (connection == null || connection.isClosed())
-                        connection = DriverManager.getConnection(by.it.berdnik.jd03_02.crud.CN.URL_DB, by.it.berdnik.jd03_02.crud.CN.USER_DB, by.it.berdnik.jd03_02.crud.CN.PASSWORD_DB);
-                }
+            synchronized (by.it.berdnik.jd03_02.crud.CN.USER_DB) {
+                if (connection == null || connection.isClosed())
+                    connection = DriverManager.getConnection(by.it.berdnik.jd03_02.crud.CN.URL_DB, by.it.berdnik.jd03_02.crud.CN.USER_DB, by.it.berdnik.jd03_02.crud.CN.PASSWORD_DB);
+            }
         }
         return connection;
     }
