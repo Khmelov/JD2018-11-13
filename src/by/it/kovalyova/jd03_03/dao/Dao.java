@@ -21,7 +21,7 @@ public class Dao {
     }
     private Dao() {
         role=new UniversalDAO<>(new Role(), "roles");
-        user=new UniversalDAO<>(new User(), "users");
+        user=new UserDao();
         ad=new UniversalDAO<>(new Ad(), "ads");
 
 

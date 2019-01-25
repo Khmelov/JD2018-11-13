@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements InterfaceDao<User>{
@@ -16,11 +17,10 @@ public class UserDao implements InterfaceDao<User>{
                 user.getLogin(), user.getPassword(), user.getEmail(), user.getRoles_Id()
         );
         long id = Dao.executeCreateAndGetId(sql);
-        if (id > 0) {
-            user.setId(id);
-            return true;
-        } else
-            return false;
+        user.setId(id);
+           return  (id > 0);
+
+
     }
 
    public boolean delete(User user) throws SQLException {
@@ -66,7 +66,24 @@ public class UserDao implements InterfaceDao<User>{
 
     @Override
     public List<User> getAll(String sqlSuffix) throws SQLException {
-        return null;
-    }
+        List<User> result=new ArrayList<>();
+        String sql = String.format("SELECT `id`, `login`, `password`, `email`, `roles_id` " +
+                "FROM `users` %s",sqlSuffix);
+        try (Connection connection = Connect.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            while (resultSet.next()) {
+                // id ok
+                Long id = resultSet.getLong("id");
+                String login = resultSet.getString("login");
+                String password = resultSet.getString("password");
+                String email = resultSet.getString("email");
+                long roles_Id = resultSet.getLong("roles_Id");
+                 User user = new User(id, login, password, email, roles_Id);
+                 result.add(user);
+            }
 
+                return result;
+        }
+    }
 }
