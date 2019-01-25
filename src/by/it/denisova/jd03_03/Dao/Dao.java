@@ -1,5 +1,6 @@
 package by.it.denisova.jd03_03.Dao;
 
+import by.it.denisova.jd03_03.beans.Question;
 import by.it.denisova.jd03_03.beans.Role;
 import by.it.denisova.jd03_03.beans.Test;
 import by.it.denisova.jd03_03.beans.User;

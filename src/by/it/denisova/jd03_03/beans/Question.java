@@ -8,6 +8,12 @@ public class Question {
     public Question() {
     }
 
+    public Question(long id, String question, long id_test) {
+        this.id = id;
+        this.question = question;
+        this.id_test = id_test;
+    }
+
     public long getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package by.it.denisova.jd03_03.Dao;
 
 import by.it.denisova.jd03_03.Dao.Dao;
+import by.it.denisova.jd03_03.beans.Question;
 import by.it.denisova.jd03_03.beans.Role;
 import by.it.denisova.jd03_03.beans.Test;
 import by.it.denisova.jd03_03.beans.User;
@@ -10,6 +11,19 @@ import java.sql.SQLException;
 public class Runner {
     public static void main(String[] args) throws SQLException {
         Dao dao =  Dao.getDao();
+
+        System.out.println("-------------------ROLE----------------------");
+        Role role = new Role();
+        role.setRole("Admin");
+        if(dao.role.create(role)) {
+            System.out.println("created " + role);
+        }
+        role.setRole("user");
+        if(dao.role.update(role)){
+            System.out.println("Updated " + role);
+        }
+        role = dao.role.read((role.getId()));
+        System.out.println("read " + role);
 
         System.out.println("-------------------USER----------------------");
 
@@ -32,18 +46,7 @@ public class Runner {
             System.out.println("user deleted " + user);
         }
 
-        System.out.println("-------------------ROLE----------------------");
-        Role role = new Role();
-        role.setRole("Admin");
-        if(dao.role.create(role)) {
-            System.out.println("created " + role);
-        }
-        role.setRole("user");
-        if(dao.role.update(role)){
-            System.out.println("Updated " + role);
-        }
-        role = dao.role.read((role.getId()));
-        System.out.println("read " + role);
+
 
         System.out.println("-------------------TEST----------------------");
         Test test = new Test();
