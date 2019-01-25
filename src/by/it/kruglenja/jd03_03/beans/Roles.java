@@ -1,10 +1,10 @@
 package by.it.kruglenja.jd03_03.beans;
 
-public class Role {
-    public Role() {
+public class Roles {
+    public Roles() {
     }
 
-    public Role(long id, String role) {
+    public Roles(long id, String role) {
         this.id = id;
         this.role = role;
     }
