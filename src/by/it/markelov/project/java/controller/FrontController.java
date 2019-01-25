@@ -1,4 +1,4 @@
-package by.it.markelov.jd03_04.java.controller;
+package by.it.markelov.project.java.controller;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;

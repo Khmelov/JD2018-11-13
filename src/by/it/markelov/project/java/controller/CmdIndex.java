@@ -1,10 +1,10 @@
-package by.it.markelov.jd03_04.java.controller;
+package by.it.markelov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-class CmdLogout extends Cmd{
+class CmdIndex extends Cmd{
     @Override
     Action execute(HttpServletRequest req) {
-        return Action.ERROR;
+        return null;
     }
 }

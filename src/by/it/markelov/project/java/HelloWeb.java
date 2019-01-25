@@ -1,4 +1,4 @@
-package by.it.markelov.jd03_04.java;
+package by.it.markelov.project.java;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;

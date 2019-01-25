@@ -8,7 +8,7 @@
 
     <servlet>
         <servlet-name>HelloWebName</servlet-name>
-        <servlet-class>by.it.markelov.jd03_04.java.HelloWeb</servlet-class>
+        <servlet-class>by.it.markelov.project.java.HelloWeb</servlet-class>
     </servlet>
 
     <servlet-mapping>
@@ -19,7 +19,7 @@
 
     <servlet>
         <servlet-name>FrontController</servlet-name>
-        <servlet-class>by.it.markelov.jd03_04.java.controller.FrontController</servlet-class>
+        <servlet-class>by.it.markelov.project.java.controller.FrontController</servlet-class>
     </servlet>
 
     <servlet-mapping>
