@@ -46,23 +46,10 @@ public class UserDao implements InterfaceDao<User>{
 
 
    public User read(long id) throws SQLException {
-        String sql = String.format("SELECT `id`, `login`, `password`, `email`, `roles_id` " +
-                "FROM `users` WHERE id=%d", id);
-        try (Connection connection = Connect.getConnection();
-             Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()) {
-                // id ok
-                String login = resultSet.getString("login");
-                String password = resultSet.getString("password");
-                String email = resultSet.getString("email");
-                long roles_Id = resultSet.getLong("roles_Id");
-                return new User(id, login, password, email, roles_Id);
-            } else
-                return null;
-
-        }
-    }
+        String sqlSuffix = String.format("WHERE id=%d", id);
+       List<User> all = getAll(sqlSuffix);
+       return all.size() > 0 ? all.get(0) : null;
+          }
 
     @Override
     public List<User> getAll(String sqlSuffix) throws SQLException {
