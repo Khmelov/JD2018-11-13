@@ -5,7 +5,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-class Connect {
+public class Connect {
 
     static {
         try {
@@ -15,7 +15,7 @@ class Connect {
         }
     }
     private static volatile Connection connection;
-    static Connection getConnection() throws SQLException{
+    static public Connection getConnection() throws SQLException{
         if (connection ==null || connection.isClosed()){
             synchronized (Connect.class){
                 if (connection ==null || connection.isClosed()){
