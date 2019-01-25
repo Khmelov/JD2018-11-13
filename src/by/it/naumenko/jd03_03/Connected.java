@@ -18,7 +18,7 @@ public class Connected {
 
     private static volatile Connection connection;
 
-    static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             synchronized (Connected.class) {
                 if (connection == null || connection.isClosed())
