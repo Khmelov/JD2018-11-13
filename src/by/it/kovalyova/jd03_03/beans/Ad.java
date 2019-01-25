@@ -3,27 +3,30 @@ package by.it.kovalyova.jd03_03.beans;
 public class Ad {
     private long id;
     private  String description;
-    private String address;
+    private String adress;
     private int floor;
     private int floors;
     private  int rooms;
     private double area;
     private double price;
+    private long user_id;
 
 
     public Ad(){
     }
 
-    public Ad(long id, String description, String addess, int floor, int floors, int rooms, double area, double price) {
+    public Ad(long id, String description, String address, int floor, int floors, int rooms, double area, double price, long user_id) {
         this.id = id;
         this.description = description;
-        this.address = address;
+        this.adress = adress;
         this.floor = floor;
         this.floors = floors;
         this.rooms = rooms;
         this.area = area;
         this.price = price;
+        this.user_id = user_id;
     }
+
 
     public long getId() {
         return id;
@@ -41,12 +44,12 @@ public class Ad {
         this.description = description;
     }
 
-    public String getAddress() {
-        return address;
+    public String getAdress() {
+        return adress;
     }
 
-    public void setAddess(String address) {
-        this.address = address;
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 
     public int getFloor() {
@@ -89,17 +92,24 @@ public class Ad {
         this.price = price;
     }
 
+
+    public long getUser_id() { return user_id; }
+
+    public void setUser_id(long user_id) { this.user_id = user_id; }
+
     @Override
     public String toString() {
         return "Ad{" +
                 "id=" + id +
                 ", description='" + description + '\'' +
-                ", address='" + address + '\'' +
+                ", adress='" + adress + '\'' +
                 ", floor=" + floor +
                 ", floors=" + floors +
                 ", rooms=" + rooms +
                 ", area=" + area +
                 ", price=" + price +
+                ", user_id=" + user_id +
                 '}';
     }
 }
+

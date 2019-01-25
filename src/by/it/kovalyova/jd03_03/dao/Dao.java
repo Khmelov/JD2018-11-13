@@ -20,7 +20,7 @@ public class Dao {
         Connect.reset();
     }
     private Dao() {
-        role=new UniversalDAO<>(new Role(), "roles");
+        role=new RoleDao();
         user=new UserDao();
         ad=new UniversalDAO<>(new Ad(), "ads");
 
