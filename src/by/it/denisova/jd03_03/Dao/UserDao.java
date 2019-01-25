@@ -13,7 +13,7 @@ public class UserDao implements InterfaceDao<User> {
 
     public boolean create(User user) throws SQLException {
         String sql = String.format(
-                "INSERT INTO `users` (`login`, `password`, `email`, `roles_id`) " +
+                "INSERT INTO `users` (`login`, `password`, `email`, `id_role`) " +
                         "VALUES ('%s', '%s', '%s', '%d')",
                 user.getLogin(), user.getPassword(), user.getEmail(), user.getIdRole()
         );
@@ -24,7 +24,7 @@ public class UserDao implements InterfaceDao<User> {
 
     public boolean delete(User user) throws SQLException {
         String sql = String.format(
-                "DELETE FROM `users` WHERE `users`.`id` = %d",
+                "DELETE FROM `users` WHERE `users`.`id_user` = %d",
                 user.getId()
         );
         return Dao.executeUpdate(sql);

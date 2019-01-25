@@ -1,6 +1,7 @@
 package by.it.denisova.jd03_03.Dao;
 
 import by.it.denisova.jd03_03.beans.Role;
+import by.it.denisova.jd03_03.beans.Test;
 import by.it.denisova.jd03_03.beans.User;
 
 import java.sql.Connection;
@@ -13,9 +14,12 @@ public class Dao {
     private static volatile Dao dao;
     public InterfaceDao<Role> role;
     public InterfaceDao<User> user;
+    public InterfaceDao<Test> test;
 
     public Dao() {
-
+        role = new RoleDao();
+        user = new UserDao();
+        test = new TestDao();
     }
 
     public static Dao getDao(){
