@@ -6,11 +6,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 
 public class BuyerCRUD {
 
     boolean create(Buyer buyer) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "INSERT INTO `buyers` (`item`, `specif`, `price`,`address`, `users_id`) " +
                         "VALUES ('%s', '%s', '%d', '%s', '%d')",
                 buyer.getItem(), buyer.getSpecif(), buyer.getPrice(), buyer.getAddress(), buyer.getUsers_Id());

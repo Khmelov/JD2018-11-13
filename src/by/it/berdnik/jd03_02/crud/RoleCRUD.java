@@ -43,7 +43,7 @@ public class RoleCRUD {
         String sql = String.format(
                 "UPDATE `roles` SET " +
                         "`role` = '%s'" +
-                        "WHERE `role`.`id` = %d",
+                        "WHERE `id` = %d",
                 role.getRole(), role.getId());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
