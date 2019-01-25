@@ -19,7 +19,7 @@ class C_Init {
                 "  `name` VARCHAR(100) NULL,\n" +
                 "  `login` VARCHAR(45) NULL,\n" +
                 "  `password` VARCHAR(26) NULL,\n" +
-                "  `dateofbirth` VARCHAR(10) NULL,\n" +
+                "  `dateofbirth` TIMESTAMP NOT NULL,\n" +
                 "  `email` VARCHAR(45) NULL,\n" +
                 "  `tel` VARCHAR(45) NULL,\n" +
                 "  `roles_id` INT NOT NULL,\n" +
@@ -43,7 +43,7 @@ class C_Init {
                 "  `equipment` VARCHAR(45) NULL,\n" +
                 "  `mileage` INT NULL,\n" +
                 "  `crashed` VARCHAR(5) NULL,\n" +
-                "  `price` INT NULL,\n" +
+                "  `price` FLOAT NULL,\n" +
                 "  `users_id` INT NOT NULL,\n" +
                 "  PRIMARY KEY (`id`),\n" +
                 "  INDEX `fk_ads_users1_idx` (`users_id` ASC),\n" +
