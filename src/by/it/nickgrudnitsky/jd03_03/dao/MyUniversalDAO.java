@@ -10,33 +10,32 @@ import java.util.List;
 
 public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
 
-    private Type bean; //принимаемый бин
-    private String table; //имя таблицы
-    private Field[] fields; //все поля бина
+    private Type bean; 
+    private String table;
+    private Field[] fields;
 
-    public MyUniversalDAO(Type bean) { //конструктор, который принимает бин
-        this.bean = bean; //записываем бин
-        table = bean.getClass().getSimpleName().toLowerCase() + "s"; //записываем название таблицы
-        fields = bean.getClass().getDeclaredFields(); //получаем все поля бина и записываем их
+    public MyUniversalDAO(Type bean) {
+        this.bean = bean;
+        table = bean.getClass().getSimpleName().toLowerCase() + "s";
+        fields = bean.getClass().getDeclaredFields();
     }
 
     @Override
     public boolean create(Type bean) throws SQLException {
-        StringBuilder dbsField = new StringBuilder(); //стрингбилдер для полей
-        StringBuilder values = new StringBuilder(); //стрингбилдер для значений
-        String delimeter = ""; //запятая
+        StringBuilder dbsField = new StringBuilder();
+        StringBuilder values = new StringBuilder();
+        String delimeter = "";
         try {
             for (int i = 1; i < fields.length; i++) {
                 Field field = fields[i];
-                field.setAccessible(true); //обходим приватность полей
-                dbsField.append(delimeter).append(field.getName()); //собираем поля
-                values.append(delimeter).append("'").append(field.get(bean)).append("'"); //собираем значения
-                delimeter = ",";
+                field.setAccessible(true);
+                dbsField.append(delimeter).append(field.getName());
+                values.append(delimeter).append("'").append(field.get(bean)).append("'");
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
-        String sql = "INSERT INTO " + table + " (" + dbsField + ") VALUES (" + values + ");"; //собираем sql запрос
+        String sql = "INSERT INTO " + table + " (" + dbsField + ") VALUES (" + values + ");";
         int id = -1;
         try (Connection connection = MyConnection.getConnection();
              Statement statement = connection.createStatement()) {
@@ -112,7 +111,7 @@ public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
-                Type type = (Type) bean.getClass().newInstance(); // создаем новый бин, куда будем складывать поля
+                Type type = (Type) bean.getClass().newInstance();
                 for (int i = 0; i < fields.length; i++) {
                     Field field = fields[i];
                     field.setAccessible(true);
