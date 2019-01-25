@@ -10,9 +10,8 @@ public class Runner {
 
     public static void main(String[] args) throws SQLException {
         TaskCRUD taskCRUD = new TaskCRUD();
-        TaskA taskA = new TaskA();
         Task task =new Task();
-        task.setName_task("user5");
+        task.setName_task("user77772010");
         task.setDescription_task("task5p");
         task.setDate(2201);
         task.setGoals_ID(1);

@@ -23,7 +23,8 @@ public class Dao {
     }
 
     private Dao() {
-
+        user = new UserDao();
+        task = new TaskDao();
     }
 
     public static Dao getDao(){

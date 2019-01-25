@@ -53,9 +53,8 @@ public class UserDao implements IDao<User> {
                 "FROM `users` %s",sql);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
-            ResultSet resultSet = statement.executeQuery(sql);
+            ResultSet resultSet = statement.executeQuery(sqlSuffix);
             while (resultSet.next()) {
-                //id ok
                 long id = resultSet.getLong("id");
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
