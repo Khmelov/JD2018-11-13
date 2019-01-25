@@ -25,6 +25,7 @@ public class Dao {
     private Dao() {
         user = new UserDao();
         task = new TaskDao();
+        goal = new GoalDao();
     }
 
     public static Dao getDao(){
