@@ -2,9 +2,9 @@ package by.it.berdnik.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
- class CmdIndex extends Cmd {
+class CmdIndex extends Cmd{
     @Override
-    Action axecute(HttpServletRequest req) {
+    Action execute(HttpServletRequest req) {
         return null;
     }
 }
