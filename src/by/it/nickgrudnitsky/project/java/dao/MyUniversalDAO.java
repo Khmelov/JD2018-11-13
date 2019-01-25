@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.jd03_03.dao;
+package by.it.nickgrudnitsky.project.java.dao;
 
 import java.lang.reflect.Field;
 import java.sql.Connection;
