@@ -1,9 +1,8 @@
-package by.it.denisova.jd03_03;
+package by.it.denisova.project.java.Dao;
 
-import by.it.denisova.jd03_03.Dao.Dao;
-import by.it.denisova.jd03_03.beans.Role;
-import by.it.denisova.jd03_03.beans.Test;
-import by.it.denisova.jd03_03.beans.User;
+import by.it.denisova.project.java.beans.Role;
+import by.it.denisova.project.java.beans.Test;
+import by.it.denisova.project.java.beans.User;
 
 import java.sql.SQLException;
 
