@@ -14,10 +14,12 @@ public interface Interface_DAO<Type> {
 
     boolean delete(Type bean) throws SQLException;
 
-    Type read(long id) throws SQLException;
+    Type read(int id) throws SQLException;
 
     List<Type> getAll(String sqlSuffix) throws SQLException;
 
-    List<Type> getAll() throws SQLException;
+    default List<Type> getAll() throws SQLException {
+        return getAll("");
+    }
 
 }
