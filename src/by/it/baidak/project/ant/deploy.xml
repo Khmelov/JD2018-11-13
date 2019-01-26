@@ -1,0 +1,184 @@
+<!-- Ant довольно простая, но несколько разросшаяся система сборки
+поэтому для полного понимания кода потребуется документация
+Смотрите тут https://ant.apache.org/manual/
+-->
+
+<project name="Ant to AKHMELEV" default="10deploy" basedir="..">
+
+    <!-- подключаем файл с настройками -->
+    <property file="ant/deploy.properties"/>
+
+    <!-- описываем classpath для копилятора -->
+    <!-- каждый jar нужно описать отдельно (!),
+         компилятор считает, что это как бы отдельный каталог -->
+    <path id="classpath">
+        <fileset dir="${local.lib.dir}" includes="jstl-1.2.jar"/>
+        <fileset dir="${local.lib.dir}" includes="mysql-connector-java.jar"/>
+        <fileset dir="${global.lib.dir}" includes="servlet-api.jar"/>
+    </path>
+
+    <!-- начинаем выполнять шаги (т.е. цели). -->
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- очистка рабочего каталога, тут будут собираться все файлы -->
+    <target name="01clean">
+        <echo>Cleaning the ${build.dir}</echo>
+        <delete dir="${build.dir}"/>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- пересоздание рабочего каталога для классов и библиотек -->
+    <target name="02init" depends="01clean">
+        <echo>Creating the build directory</echo>
+        <mkdir dir="${build.dir}/WEB-INF/classes"/>
+        <mkdir dir="${build.dir}/WEB-INF/lib"/>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- компиляция файлов проекта -->
+    <target name="03compile" depends="02init">
+        <echo>Compile the source files</echo>
+        <javac srcdir="${src.dir}" destdir="${build.dir}/WEB-INF/classes" debug="true">
+            <classpath refid="classpath"/>
+        </javac>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- копирование в рабочую директорию -->
+    <target name="04copy" depends="03compile">
+        <!-- копирование кофигурации -->
+        <copy todir="${build.dir}/WEB-INF">
+            <fileset dir="${conf.dir}"/>
+        </copy>
+        <!-- копирование jsp css и т.д.-->
+        <copy todir="${build.dir}">
+            <fileset dir="${web.content}"/>
+        </copy>
+        <!-- копирование jar, нужных для запуска на сервере -->
+        <copy todir="${build.dir}/WEB-INF/lib">
+            <fileset dir="${local.lib.dir}"/>
+        </copy>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- формирование итоговой war-сборки (архивация)
+        подробнее тут https://ru.wikipedia.org/wiki/WAR_(%D1%82%D0%B8%D0%BF_%D1%84%D0%B0%D0%B9%D0%BB%D0%B0)
+    -->
+    <target name="05war" depends="04copy">
+        <echo>Building the war file</echo>
+        <war destfile="${dist.dir}/${web.root}.war" webxml="${build.dir}/WEB-INF/web.xml">
+            <fileset dir="${build.dir}"/>
+        </war>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- повторная очистка рабочего каталога, все уже в архиве и более не нужно -->
+    <target name="06finalize" depends="05war">
+        <echo>Cleaning the ${build.dir}</echo>
+        <delete dir="${build.dir}"/>
+    </target>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- поиск tomcat т.е. ставим флаг has.tomcat -->
+    <target name="07if-has-tomcat" depends="06finalize">
+        <property environment="env"/>
+        <condition property="has.tomcat">
+            <!--<available file="${tomcat.home.dir}"/>-->
+            <http url="${tomcat.base.url}"/>
+        </condition>
+    </target>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- проверка, есть ли старый вариант приложения в tomcat
+    и если есть то приготовим среду для выполнения команд томката
+    из ant -->
+    <target name="08check-if-deployed" depends="07if-has-tomcat" if="has.tomcat">
+        <condition property="is.webapp.olddeployed">
+            <http url="${tomcat.base.url}/${web.root}"/>
+        </condition>
+
+        <path id="tomcat.classpath">
+            <fileset dir="${global.lib.dir}">
+                <include name="khmelov_tomcat_lib.jar"/>
+            </fileset>
+            <!--<fileset dir="ant/lib_tomcat">-->
+            <!--<include name="catalina-ant.jar"/>-->
+            <!--<include name="tomcat-coyote.jar"/>-->
+            <!--<include name="tomcat-util.jar"/>-->
+            <!--</fileset>-->
+            <!--<fileset dir="ant/lib_tomcat">-->
+            <!--<include name="tomcat-juli.jar"/>-->
+            <!--</fileset>-->
+        </path>
+
+        <!-- Configure the custom Ant tasks for the Manager application -->
+        <taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask" classpathref="tomcat.classpath"/>
+        <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="tomcat.classpath"/>
+        <taskdef name="list" classname="org.apache.catalina.ant.ListTask" classpathref="tomcat.classpath"/>
+        <taskdef name="reload" classname="org.apache.catalina.ant.ReloadTask" classpathref="tomcat.classpath"/>
+        <taskdef name="findleaks" classname="org.apache.catalina.ant.FindLeaksTask" classpathref="tomcat.classpath"/>
+        <taskdef name="resources" classname="org.apache.catalina.ant.ResourcesTask" classpathref="tomcat.classpath"/>
+        <taskdef name="start" classname="org.apache.catalina.ant.StartTask" classpathref="tomcat.classpath"/>
+        <taskdef name="stop" classname="org.apache.catalina.ant.StopTask" classpathref="tomcat.classpath"/>
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- дальнейшие корманды выполняются томкатом.
+    Удаляем старое приложение. Аналог кнопки undeploy в
+    http://localhost:28080/manager/html/list
+    -->
+
+    <!-- вариант удаления который проверяет наличие сайта перед удалением
+    <target name="09undeploy" depends="07if-has-tomcat, 08check-if-deployed" if="is.webapp.olddeployed">
+        <echo>url=${tomcat.manager.url} login=${tomcat.user.name} password="${tomcat.user.password}" path="/${web.root}"</echo>
+        <undeploy
+                url="${tomcat.manager.url}"
+                username="${tomcat.user.name}"
+                password="${tomcat.user.password}"
+                path="/${web.root}"
+        />
+    </target>
+    -->
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- аварийный вариант удаления. Нужен если ant не завершается нормально
+    Вручную удаляем старое приложение. Аналог кнопки undeploy в
+    -->
+    <target name="09-Manual-Undeploy" depends="08check-if-deployed">
+        <!-- TOMCAT undeploy-->
+        <echo>Back bad deploy</echo>
+        <undeploy failonerror="false"
+                  url="${tomcat.manager.url}"
+                  username="${tomcat.user.name}"
+                  password="${tomcat.user.password}"
+                  path="/${web.root}"
+        />
+    </target>
+
+
+    <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
+    <!-- ставим новое приложение. Аналог кнопки deploy в
+    http://localhost:28080/manager/html/list -->
+    <target name="10deploy" depends="09-Manual-Undeploy" if="has.tomcat">
+        <echo>Deploy ${war.fullpath}</echo>
+        <deploy
+                url="${tomcat.manager.url}"
+                username="${tomcat.user.name}"
+                password="${tomcat.user.password}"
+                path="/${web.root}"
+                war="${war.fullpath}"
+        />
+        <condition property="is.webapp.ok.deployed">
+            <http url="${tomcat.base.url}/${web.root}"/>
+        </condition>
+    </target>
+
+    <!-- запуск браузера по умолчанию (только Windows) -->
+    <target name="Win browser" depends="10deploy">
+        <exec executable="cmd.exe" spawn="true">
+            <arg value="/k start ${tomcat.base.url}/${web.root}"/>
+        </exec>
+    </target>
+</project>
