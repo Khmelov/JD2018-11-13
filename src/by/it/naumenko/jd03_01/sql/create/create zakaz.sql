@@ -3,18 +3,18 @@ CREATE TABLE IF NOT EXISTS `naumenko`.`zakaz` (
   `date_zakaz` DATETIME NULL,
   `koltort` INT NULL,
   `price_zakaz` DECIMAL NULL,
-  `users_id_users` INT NOT NULL,
-  `cake_id_cake` INT NOT NULL,
+  `id_user` INT NOT NULL,
+  `id_cake` INT NOT NULL,
   PRIMARY KEY (`id_zakaz`),
-  INDEX `fk_zakaz_users1_idx` (`users_id_users` ASC),
-  INDEX `fk_zakaz_cake1_idx` (`cake_id_cake` ASC),
+  INDEX `fk_zakaz_users1_idx` (`id_user` ASC),
+  INDEX `fk_zakaz_cake1_idx` (`id_cake` ASC),
   CONSTRAINT `fk_zakaz_users1`
-    FOREIGN KEY (`users_id_users`)
-    REFERENCES `naumenko`.`users` (`id_users`)
+    FOREIGN KEY (`id_user`)
+    REFERENCES `naumenko`.`users` (`id_user`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT,
   CONSTRAINT `fk_zakaz_cake1`
-    FOREIGN KEY (`cake_id_cake`)
+    FOREIGN KEY (`id_cake`)
     REFERENCES `naumenko`.`cake` (`id_cake`)
     ON DELETE RESTRICT
     ON UPDATE RESTRICT)

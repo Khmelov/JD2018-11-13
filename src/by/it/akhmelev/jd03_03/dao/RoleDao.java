@@ -51,6 +51,8 @@ public class RoleDao implements InterfaceDao<Role> {
         List<Role> result=new ArrayList<>();
         String sql = String.format("SELECT * " +
                 "FROM `roles` %s",sqlSuffix);
+        System.out.println(sql);
+        System.out.println(sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
