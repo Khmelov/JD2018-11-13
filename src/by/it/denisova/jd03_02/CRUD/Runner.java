@@ -8,6 +8,20 @@ import java.sql.SQLException;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
+        System.out.println("-------------------ROLE----------------------");
+        RoleCRUD roleCRUD = new RoleCRUD();
+        Role role = new Role();
+        role.setRole("Admin");
+        if(roleCRUD.create(role)) {
+            System.out.println("created " + role);
+        }
+        role.setRole("user");
+        if(roleCRUD.update(role)){
+            System.out.println("Updated " + role);
+        }
+        role = roleCRUD.read((role.getId()));
+        System.out.println("read " + role);
+
         System.out.println("-------------------USER----------------------");
         UserCRUD userCRUD = new UserCRUD();
         User user = new User();
@@ -29,19 +43,7 @@ public class Runner {
             System.out.println("user deleted " + user);
         }
 
-        System.out.println("-------------------ROLE----------------------");
-        RoleCRUD roleCRUD = new RoleCRUD();
-        Role role = new Role();
-        role.setRole("Admin");
-        if(roleCRUD.create(role)) {
-            System.out.println("created " + role);
-        }
-        role.setRole("user");
-        if(roleCRUD.update(role)){
-            System.out.println("Updated " + role);
-        }
-        role = roleCRUD.read((role.getId()));
-        System.out.println("read " + role);
+
 
         System.out.println("-------------------TEST----------------------");
         TestCRUD testCRUD = new TestCRUD();
