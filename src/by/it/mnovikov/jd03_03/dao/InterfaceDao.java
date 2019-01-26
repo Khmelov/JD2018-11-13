@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by user on 22.01.2019.
  */
-public interface Interface_DAO<Type> {
+public interface InterfaceDao<Type> {
 
     boolean create(Type bean) throws SQLException;
 

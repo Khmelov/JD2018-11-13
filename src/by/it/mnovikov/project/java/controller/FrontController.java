@@ -10,6 +10,7 @@ import java.io.IOException;
 
 public class FrontController extends HttpServlet {
 
+
     @Override
     public void init() throws ServletException {
         try {
@@ -36,6 +37,8 @@ public class FrontController extends HttpServlet {
             ServletContext servletContext = req.getServletContext();
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
             requestDispatcher.forward(req, resp);
-        } else resp.sendRedirect("do?command=" + next.toString().toLowerCase());
+        }
+        else
+            resp.sendRedirect("do?command="+next.toString().toLowerCase());
     }
 }

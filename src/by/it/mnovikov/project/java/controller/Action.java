@@ -5,7 +5,7 @@ enum Action {
     INDEX (new CmdIndex()),
     LOGIN (new CmdLogin()),
     LOGOUT (new CmdLogout()),
-    SIGNUP (new CmdLogout()),
+    SIGNUP (new CmdSignup()),
     ERROR (new CmdError());
 
     Cmd cmd;
