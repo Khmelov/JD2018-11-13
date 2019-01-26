@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <schema xmlns="http://www.w3.org/2001/XMLSchema"
-        targetNamespace="http://it-academy.by/jd2018-11-13/lobkova"
-        xmlns:mtp="http://it-academy.by/jd2018-11-13/lobkova"
+        targetNamespace="http://beans.jd02_09.lobkova.it.by"
+        xmlns:mtp="http://beans.jd02_09.lobkova.it.by"
         elementFormDefault="qualified">
     <element name="persons">
         <complexType>
