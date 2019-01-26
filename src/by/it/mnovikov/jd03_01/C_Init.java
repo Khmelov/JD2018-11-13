@@ -20,10 +20,10 @@ class C_Init {
                 "  `email` VARCHAR(45) NULL," +
                 "  `first_name` VARCHAR(45) NULL," +
                 "  `last_name` VARCHAR(45) NULL," +
-                "  `birthday` DATE NULL," +
+                "  `birthday` TIMESTAMP(6) NULL," +
                 "  `adress` VARCHAR(500) NULL," +
                 "  `roles_ID` INT NOT NULL," +
-                "  PRIMARY KEY (`ID`)," +
+                "    PRIMARY KEY (`ID`)," +
                 "  INDEX `fk_users_roles_idx` (`roles_ID` ASC)," +
                 "  UNIQUE INDEX `login_UNIQUE` (`login` ASC)," +
                 "  UNIQUE INDEX `email_UNIQUE` (`email` ASC)," +
@@ -32,11 +32,10 @@ class C_Init {
                 "    REFERENCES `mnovikov`.`roles` (`ID`)" +
                 "    ON DELETE RESTRICT" +
                 "    ON UPDATE RESTRICT)" +
-                "ENGINE = InnoDB");
+                "ENGINE = InnoDB;");
         statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders` (" +
                 "  `ID` INT NOT NULL AUTO_INCREMENT," +
-                "  `date` DATE NULL," +
-                "  `time` TIME NULL," +
+                "  `date` TIMESTAMP(6) NULL," +
                 "  `users_ID` INT NOT NULL," +
                 "  PRIMARY KEY (`ID`)," +
                 "  INDEX `fk_orders_users1_idx` (`users_ID` ASC)," +
@@ -55,11 +54,13 @@ class C_Init {
                 "  `price` DOUBLE NULL," +
                 "  PRIMARY KEY (`ID`))" +
                 "ENGINE = InnoDB");
-        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (" +
+        statement.executeUpdate("CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (\n" +
+                "  `ID` INT NOT NULL AUTO_INCREMENT," +
                 "  `orders_ID` INT NOT NULL," +
                 "  `goods_ID` INT NOT NULL," +
                 "  INDEX `fk_orders_goods_orders1_idx` (`orders_ID` ASC)," +
                 "  INDEX `fk_orders_goods_goods1_idx` (`goods_ID` ASC)," +
+                "  PRIMARY KEY (`ID`)," +
                 "  CONSTRAINT `fk_orders_goods_orders1`" +
                 "    FOREIGN KEY (`orders_ID`)" +
                 "    REFERENCES `mnovikov`.`orders` (`ID`)" +
@@ -70,21 +71,43 @@ class C_Init {
                 "    REFERENCES `mnovikov`.`goods` (`ID`)" +
                 "    ON DELETE CASCADE" +
                 "    ON UPDATE CASCADE)" +
-                "ENGINE = InnoDB");
+                "ENGINE = InnoDB;");
+
+        //наполнение таблицы ролей
         statement.executeUpdate("INSERT INTO `mnovikov`.`roles` (`ID`, `role`) VALUES (DEFAULT, 'Administrator')");
         statement.executeUpdate("INSERT INTO `mnovikov`.`roles` (`ID`, `role`) VALUES (DEFAULT, 'Customer')");
-        statement.executeUpdate("INSERT INTO `mnovikov`.`users` (`ID`, `login`, `password`, `email`, `first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) " +
-                "VALUES (DEFAULT, 'Administrator', 'root111', 'admin@mail.ru', 'Maksim', 'Novikov', '1986-01-01', 'Minsk, Knorina 1', 1)");
-        statement.executeUpdate("INSERT INTO `mnovikov`.`users` (`ID`, `login`, `password`, `email`, `first_name`, `last_name`, `birthday`, `adress`, `roles_ID`)" +
-                "VALUES (DEFAULT, 'customer_01', 'qwerty', 'cus_01@mail.ru', 'Pavel', 'Derevyanko', '1980-02-02', 'Minsk, Lenina 1/5', 2)");
-        statement.executeUpdate("INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`)" +
-                "VALUES (DEFAULT, '2019-01-18', '09:01:01', 2)");
-        statement.executeUpdate("INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`)" +
-                "VALUES (DEFAULT, '2019-01-19', '01:02:02', 2)");
-        statement.executeUpdate("INSERT INTO `mnovikov`.`goods` (`ID`, `title`, `discription`, `type`, `productivity`, `price`)" +
-                "VALUES (DEFAULT, 'Nietfeld Speedprobe', 'Speedprob is a towed work implement for extracting soil samples at a depth of 12-30 cm at a travelling speed of 8-12 km/hr., depending on the soil type and properties.', 'auto', 16, 7000)");
-        statement.executeUpdate("INSERT INTO `mnovikov`.`goods` (`ID`, `title`, `discription`, `type`, `productivity`, `price`)" +
-                "VALUES (DEFAULT, 'Nietfeld BOPROB', 'BOPROB is a towed work implement for extracting soil samples at a depth of 10-30 cm at a travelling speed of 3-12 km/hr., depending on the soil type and properties.', 'mauto', 15, 8000)");
+
+        //наполнение таблицы пользователей
+        statement.executeUpdate("INSERT INTO `mnovikov`.`users`" +
+                "(`ID`, `login`, `password`, `email`," +
+                "`first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) VALUES" +
+                "(DEFAULT, 'Administrator', 'root111', 'admin@mail.ru'," +
+                "'Maksim', 'Novikov', '1986-02-12 11:0:00', 'Minsk, Knorina 1', 1)");
+        statement.executeUpdate("INSERT INTO `mnovikov`.`users`" +
+                "(`ID`, `login`, `password`, `email`," +
+                "`first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) VALUES" +
+                "(DEFAULT, 'customer_01', 'qwerty', 'cus_01@mail.ru'," +
+                "'Pavel', 'Derevyanko', '1980-01-01 12:00:30', 'Minsk, Lenina 1/5', 2)");
+
+        //наполнение таблицы заказов
+        statement.executeUpdate("INSERT INTO `mnovikov`.`orders`" +
+                "(`ID`, `date`, `users_ID`) VALUES(DEFAULT, '2019-01-20 20:18:55', 2)");
+        statement.executeUpdate("INSERT INTO `mnovikov`.`orders`" +
+                "(`ID`, `date`, `users_ID`) VALUES (DEFAULT, '2019-01-21 21:11:51', 2)");
+
+        //наполнение таблицы товаров
+        statement.executeUpdate("INSERT INTO `mnovikov`.`goods`" +
+                "(`ID`, `title`, `discription`," +
+                "`type`, `productivity`, `price`) VALUES" +
+                "(DEFAULT, 'Nietfeld Speedprobe', 'Speedprob is a towed work implement for extracting soil samples at a depth of 12-30 cm at a travelling speed of 8-12 km/hr., depending on the soil type and properties.'," +
+                "'auto', 16.8, 7000.67)");
+        statement.executeUpdate("INSERT INTO `mnovikov`.`goods`" +
+                "(`ID`, `title`, `discription`," +
+                "`type`, `productivity`, `price`)" +
+                "VALUES (DEFAULT, 'Nietfeld BOPROB', 'BOPROB is a towed work implement for extracting soil samples at a depth of 10-30 cm at a travelling speed of 3-12 km/hr., depending on the soil type and properties.'," +
+                "'mauto', 15.3, 8000.5)");
+
+        //наполнение таблицы товар-заказ
         statement.executeUpdate("INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (1, 1)");
         statement.executeUpdate("INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (1, 2)");
         statement.executeUpdate("INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (2, 1)");
