@@ -27,9 +27,8 @@ public class RoleDao implements InterfaceDao<Role>{
    public boolean delete(Role role) throws SQLException {
         String sql = String.format(
                "DELETE FROM `roles` WHERE `roles`.`id` = %d",
-               role.getId()
-       );
-       return Dao.executeUpdate(sql);
+               role.getId());
+        return Dao.executeUpdate(sql);
     }
 
     public boolean update(Role role) throws SQLException {
@@ -37,7 +36,7 @@ public class RoleDao implements InterfaceDao<Role>{
                 "UPDATE `roles` SET " +
                         "`role` = '%s'" +
                         "WHERE `roles`.`id` = %d",
-               role.getRole(), role.getId()
+                role.getRole(), role.getId()
         );
         return Dao.executeUpdate(sql);
         }
@@ -45,15 +44,15 @@ public class RoleDao implements InterfaceDao<Role>{
 
    public Role read(long id) throws SQLException {
         String sqlSuffix = String.format("WHERE id=%d", id);
-       List<Role> all = getAll(sqlSuffix);
-       return all.size() > 0 ? all.get(0) : null;
-          }
+        List<Role> all = getAll(sqlSuffix);
+        return all.size() > 0 ? all.get(0) : null;
+    }
 
     @Override
     public List<Role> getAll(String sqlSuffix) throws SQLException {
         List<Role> result=new ArrayList<>();
         String sql = String.format("SELECT * " +
-                "FROM `users` %s",sqlSuffix);
+                "FROM `roles` %s",sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);

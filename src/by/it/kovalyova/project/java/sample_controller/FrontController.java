@@ -1,13 +1,9 @@
 package by.it.kovalyova.project.java.sample_controller;
 
-import by.it._examples_.jd03_04.java.sample_controller.ActionCommand;
-import by.it._examples_.jd03_04.java.sample_controller.ActionFactory;
-import by.it._examples_.jd03_04.java.sample_controller.Actions;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+//import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -28,8 +24,8 @@ public class FrontController extends HttpServlet {
     private void processRequest(HttpServletRequest request,
                                 HttpServletResponse response)
             throws ServletException, IOException {
-        by.it._examples_.jd03_04.java.sample_controller.ActionFactory client = new by.it._examples_.jd03_04.java.sample_controller.ActionFactory(); // определение команды, пришедшей из JSP
-        by.it._examples_.jd03_04.java.sample_controller.ActionCommand command = client.defineCommand(request);
+        ActionFactory client = new ActionFactory(); // определение команды, пришедшей из JSP
+        ActionCommand command = client.defineCommand(request);
 
         //вызов реализованного метода execute() и передача параметров
         //классу-обработчику конкретной команды. Обработчик должен вернуть адрес view
@@ -47,7 +43,7 @@ public class FrontController extends HttpServlet {
             //getServletContext().getRequestDispatcher(viewPage).forward(request,response);
         } else {
             // установка страницы c cообщением об ошибке
-            viewPage = by.it._examples_.jd03_04.java.sample_controller.Actions.ERROR.jsp;
+            viewPage = Actions.ERROR.jsp;
             response.sendRedirect(request.getContextPath() + viewPage);
         }
     }
