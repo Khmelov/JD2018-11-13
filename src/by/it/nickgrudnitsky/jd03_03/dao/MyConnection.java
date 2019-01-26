@@ -1,4 +1,4 @@
-package by.it.nickgrudnitsky.jd03_03;
+package by.it.nickgrudnitsky.jd03_03.dao;
 
 
 
@@ -9,10 +9,10 @@ import java.sql.SQLException;
 
 public class MyConnection {
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:2016/ngrudnitsky?" +
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/ngrudnitsky?" +
             "useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "12345Qwe";
     private static volatile Connection connection;
 
     static {
