@@ -1,8 +1,5 @@
 package by.it.mnovikov.project.java.controller;
 
-/**
- * Created by user on 24.01.2019.
- */
 enum Action {
 
     INDEX (new CmdIndex()),
