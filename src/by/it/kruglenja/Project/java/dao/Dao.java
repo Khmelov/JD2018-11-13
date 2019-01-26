@@ -1,9 +1,6 @@
-package by.it.kruglenja.jd03_03.dao;
+package by.it.kruglenja.Project.java.dao;
 
-import by.it.kruglenja.jd03_03.beans.Order;
-import by.it.kruglenja.jd03_03.beans.Roles;
-import by.it.kruglenja.jd03_03.beans.User;
-import by.it.kruglenja.jd03_03.beans.Spareparts;
+import by.it.kruglenja.Project.java.beans.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,19 +8,20 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Dao {
+
     private static volatile Dao dao;
 
-    public InterfaceDao<Roles> roles;
+    public InterfaceDao<Roles> role;
     public InterfaceDao<User> user;
     public InterfaceDao<Order> order;
     public InterfaceDao<Spareparts> spareparts;
 
     private Dao() {
-        roles = new UniversalDao<>(new Roles(), "roles");
+        role = new UniversalDao<>(new Roles(), "roles");
 //        user = new UniversalDao<>(new User(), "users");
-        dao.user = new UserDao();
+        user = new UserDao();
         order = new UniversalDao<>(new Order(), "order");
-        spareparts = new UniversalDao<>(new Spareparts(), "spareparts");
+        spareparts = new SparepartsDao();
     }
 
     public static Dao getDao() {

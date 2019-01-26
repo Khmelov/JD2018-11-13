@@ -1,4 +1,4 @@
-package by.it.kruglenja.jd03_03.beans;
+package by.it.kruglenja.Project.java.beans;
 
 public class Spareparts {
     private long id;

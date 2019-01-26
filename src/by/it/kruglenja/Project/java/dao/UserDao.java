@@ -1,7 +1,7 @@
-package by.it.kruglenja.jd03_03.dao;
+package by.it.kruglenja.Project.java.dao;
 
 
-import by.it.kruglenja.jd03_02.beans.User;
+import by.it.kruglenja.Project.java.beans.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -11,7 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao implements InterfaceDao<User> {
-
 
     public boolean create(User user) throws SQLException {
         String sql = String.format("INSERT INTO `users` (`login`, `password`, `email`, `phone_number`, `roles_id`)" +
@@ -59,7 +58,7 @@ public class UserDao implements InterfaceDao<User> {
                 user.setLogin(res.getString("login"));
                 user.setPassword(res.getString("password"));
                 user.setPhone_number(res.getString("phone_number"));
-                user.setRoles_Id(res.getLong("fk_users_roles1"));
+                user.setRoles_Id(res.getLong("roles_id"));
                 users.add(user);
             }
         }

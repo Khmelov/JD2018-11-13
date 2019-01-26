@@ -1,16 +1,21 @@
-package by.it.kruglenja.jd03_03.dao;
+package by.it.kruglenja.Project.java.dao;
 
-import by.it.kruglenja.jd03_03.beans.Roles;
-import by.it.kruglenja.jd03_03.beans.Spareparts;
-import by.it.kruglenja.jd03_03.beans.User;
+import by.it.kruglenja.Project.java.beans.Roles;
+import by.it.kruglenja.Project.java.beans.Spareparts;
+import by.it.kruglenja.Project.java.beans.User;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
+        Locale.setDefault(new Locale("en", "US"));
         //User dao
         User user = new User();
         Dao dao = Dao.getDao();
+        Spareparts spareparts = new Spareparts();
 
         user.setLogin("RTX");
         user.setPassword("2012");
@@ -32,7 +37,7 @@ public class Runner {
 //        }
         System.out.println("\n" + "+-+-+-+-+-+-+-+Spareparts dao+-+-+-+-+-+-+-+");
 
-        Spareparts spareparts = new Spareparts();
+
 
         spareparts.setModel("Opel");
         spareparts.setCategory("engune");
@@ -45,9 +50,15 @@ public class Runner {
             System.out.println("create -------->" + spareparts);
             spareparts.setModel("Lada");
         }
-        if (dao.spareparts.update(spareparts)) {
-            spareparts = dao.spareparts.read(spareparts.getId());
-            System.out.println("read -------->" + spareparts);
+//        if (dao.spareparts.update(spareparts)) {
+//            spareparts = dao.spareparts.read(spareparts.getId());
+//            System.out.println("read -------->" + spareparts);
+//        }
+        List<Spareparts> all = new ArrayList<>();
+        all = dao.spareparts.getAll("");
+        System.out.println("\n" + "+-+-+-+-+-+-+-+SP getall+-+-+-+-+-+-+-+");
+        for (Spareparts s : all) {
+            System.out.println(s);
         }
 //        if (dao.spareparts.delete(spareparts)) {
 //            System.out.println("spareparts -------->" + spareparts.getName() + " deleted");
@@ -57,13 +68,20 @@ public class Runner {
 
         roles.setRole("Cleaner");
 
-        if (dao.roles.create(roles)) {
+        if (dao.role.create(roles)) {
             System.out.println("create -------->" + roles);
             roles.setRole("Special customer");
         }
-        if (dao.roles.update(roles)) {
-            roles = dao.roles.read(roles.getId());
+        if (dao.role.update(roles)) {
+            roles = dao.role.read(roles.getId());
             System.out.println("read -------->" + roles);
         }
+        List<User> all1 = new ArrayList<>();
+        all1 = dao.user.getAll("VAsyA");
+        for (User s : all1) {
+            System.out.println(s);
+        }
+
+
     }
 }

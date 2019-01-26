@@ -1,6 +1,5 @@
-package by.it.kruglenja.jd03_03.dao;
+package by.it.kruglenja.Project.java.dao;
 
-import by.it.kruglenja.jd03_03.beans.Roles;
 
 import java.sql.SQLException;
 import java.util.List;

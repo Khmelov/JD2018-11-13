@@ -1,4 +1,4 @@
-package by.it.kruglenja.jd03_03.dao;
+package by.it.kruglenja.Project.java.dao;
 
 public interface CN {
     String URL="jdbc:mysql://127.0.0.1:2016/kruglenja"+

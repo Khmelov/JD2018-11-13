@@ -1,4 +1,4 @@
-package by.it.kruglenja.jd03_03.dao;
+package by.it.kruglenja.Project.java.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
