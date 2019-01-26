@@ -11,15 +11,14 @@ import java.io.IOException;
 public class FrontController extends HttpServlet {
 
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        process(req,resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
+        process(req,resp);
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -29,8 +28,7 @@ public class FrontController extends HttpServlet {
             ServletContext servletContext = req.getServletContext();
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
             requestDispatcher.forward(req, resp);
-        }
-        else
-            resp.sendRedirect("do?command="+next.toString().toLowerCase());
+        } else
+            resp.sendRedirect("do?command=" + next.toString().toLowerCase());
     }
 }
