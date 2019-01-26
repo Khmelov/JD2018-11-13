@@ -22,7 +22,6 @@ public class CacheControlFilter implements Filter {
 
     @Override
     public void destroy() {
-
     }
 
 }
