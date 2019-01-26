@@ -1,11 +1,15 @@
 package by.it.akhmelev.project05.java.controller;
 
+import by.it.akhmelev.project05.java.dao.Dao;
+
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
-class CmdError implements Cmd {
+class CmdReset implements Cmd {
     @Override
     public Action execute(HttpServletRequest req)  throws SQLException {
-        return null;
+        Dao.getDao().reset();
+
+        return Action.INDEX;
     }
 }
