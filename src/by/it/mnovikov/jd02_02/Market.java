@@ -7,8 +7,8 @@ public class Market {
 
     public static void main(String[] args) {
         List<Thread> threads = new ArrayList<>();
-//        Goods.setGoods();
-//        System.out.println(Goods.goods.entrySet());
+//        Good.setGoods();
+//        System.out.println(Good.goods.entrySet());
         System.out.println("Магазин открылся");
 
         for (int num = 1; num <= 2; num++) {

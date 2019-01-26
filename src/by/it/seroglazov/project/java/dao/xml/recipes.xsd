@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="http://xml.jd03_03.seroglazov.it.by/recipes"
+        xmlns:mtp="http://xml.jd03_03.seroglazov.it.by/recipes"
+        elementFormDefault="qualified">
+
+    <element name="recipes">
+        <complexType>
+            <sequence>
+                <element name="recipe" type="mtp:Recipe" maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+    <complexType name="Recipe">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="type" type="string"/>
+            <element name="description" type="string"/>
+            <element name="ingredient" type="mtp:Ingredient" maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Ingredient">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="amount" type="string"/>
+            <element name="unit" type="string"/>
+        </sequence>
+    </complexType>
+
+</schema>
