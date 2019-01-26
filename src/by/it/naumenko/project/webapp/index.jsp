@@ -2,6 +2,6 @@
 <%@ include file="include/head.htm" %>
 <body>
 <%@ include file="include/menu.htm" %>
-<p>INDEX: ${message}</p>
+<p>PAGE INDEX: ${message}</p>
 </body>
 </html>

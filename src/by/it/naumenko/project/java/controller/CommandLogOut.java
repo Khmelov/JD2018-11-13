@@ -2,9 +2,9 @@ package by.it.naumenko.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CommandLogOut implements ICommand {
+class CommandLogOut extends Command {
     @Override
-    public String exequit(HttpServletRequest request) {
-        return "/logout.jsp";
+    public Actions exequit(HttpServletRequest request) {
+        return null;
     }
 }

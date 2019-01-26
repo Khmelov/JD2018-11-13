@@ -1,30 +1,22 @@
 package by.it.naumenko.project.java.controller;
 
 enum Actions {
-    SIGNUP{
-        {
-            this.command = new CommandSignup();
-        }
-    },
-    LOGIN{
-        {
-            this.command = new CommandLogin();
-        }
-    },
-    LOGOUT{
-        {
-            this.command = new CommandLogOut();
-        }
-    },
-    ERROR{
-        {
-            this.command = new CommandError();
-        }
-    };
+    SIGNUP (new CommandSignup()),
+    LOGIN (new CommandLogin()),
+    LOGOUT (new CommandLogOut()),
+    INDEX (new CommandIndex()),
+    ERROR (new CommandError());
 
-    public String jsp = "/error.jsp";
-    public ICommand command;
-    public ICommand getCommand(){
-        return command;
+    Command command;
+
+    Actions(Command com) {
+        command=com;
     }
+    String getJsp() {
+        return "/" + command.toString() + ".jsp";
+    }
+
+//    public String getCommand() {
+//        return "/" + command.toString() + ".jsp";
+//    }
 }

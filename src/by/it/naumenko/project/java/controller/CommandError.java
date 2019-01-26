@@ -2,9 +2,9 @@ package by.it.naumenko.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CommandError implements ICommand {
+class CommandError extends Command {
     @Override
-    public String exequit(HttpServletRequest request) {
-        return "/error.jsp";
+    public Actions exequit(HttpServletRequest request) {
+        return null;
     }
 }

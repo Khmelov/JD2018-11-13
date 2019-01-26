@@ -2,9 +2,9 @@ package by.it.naumenko.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CommandLogin implements ICommand {
+class CommandLogin extends Command {
     @Override
-    public String exequit(HttpServletRequest request) {
-        return "/login.jsp";
+    public Actions exequit(HttpServletRequest request) {
+        return null;
     }
 }

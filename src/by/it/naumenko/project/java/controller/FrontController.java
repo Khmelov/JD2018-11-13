@@ -9,21 +9,42 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 public class FrontController extends HttpServlet {
+
+    public void init() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        process(req,resp);
+        process(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        process(req,resp);
+        process(req, resp);
     }
 
-    private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+    private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        ServletContext servletContext = getServletContext();
-        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
-        dispatcher.forward(req,resp);
+        Actions action = ActionDefiner.define(req);
+        Actions next = action.command.exequit(req);
+        if (next == null || next == action) {
+            ServletContext servletContext = req.getServletContext();
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
+            requestDispatcher.forward(req, resp);
+        }
+        else
+            resp.sendRedirect("do?command="+next.toString().toLowerCase());
+
+
+//        ServletContext servletContext = getServletContext();
+//        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
+//        dispatcher.forward(req,resp);
 
     }
 }
