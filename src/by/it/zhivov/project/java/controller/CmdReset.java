@@ -1,19 +1,14 @@
 package by.it.zhivov.project.java.controller;
 
-import by.it.zhivov.project.java.beans.Ad;
 import by.it.zhivov.project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.util.List;
 
-public class CmdIndex implements Cmd {
-
-
+public class CmdReset implements Cmd{
     @Override
     public Action execute(HttpServletRequest req) throws SQLException {
-        List<Ad> allAds = Dao.getDao().ad.getALL();
-        req.setAttribute("ads",allAds);
+        Dao.restoreDB();
         return null;
     }
 }

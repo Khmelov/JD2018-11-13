@@ -2,9 +2,9 @@ package by.it.zhivov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CmdLogin extends Cmd{
+public class CmdLogin implements Cmd{
     @Override
-    Action execute(HttpServletRequest req) {
+   public Action execute(HttpServletRequest req) {
         return null;
     }
 }
