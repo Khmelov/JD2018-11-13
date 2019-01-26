@@ -1,21 +1,53 @@
-package by.it.vchernetski.jd03_01;
+package by.it.vchernetski.project.java.dao;
 
+import java.sql.*;
 
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
-
-public class C_Init {
-    public static void main(String[] args) {
+public class Connect {
+    static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
         }
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")){
-            Statement statement = connection.createStatement();
+    }
+
+    private static volatile Connection connection;
+
+    public static Connection getConnection() throws SQLException {
+        if (connection == null || connection.isClosed()) {
+            synchronized (Connect.class) {
+                if (connection == null || connection.isClosed()) {
+                    connection = DriverManager.getConnection(CN.URLSTART, CN.USER, CN.PASSWORD);
+                    connection.createStatement().executeUpdate("CREATE SCHEMA IF NOT EXISTS `vchernetski` DEFAULT CHARACTER SET utf8");
+                    connection = DriverManager.getConnection(CN.URL, CN.USER, CN.PASSWORD);
+                }
+            }
+        }
+        return connection;
+    }
+
+    public static void deleteSCHEMA() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "");
+             Statement statement = connection.createStatement()) {
+            statement.executeUpdate("DROP SCHEMA IF EXISTS `vchernetski`");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void resetSCHEMA() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "");
+             Statement statement = connection.createStatement()){
             statement.executeUpdate("DROP SCHEMA IF EXISTS `vchernetski`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `vchernetski` DEFAULT CHARACTER SET utf8");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `vchernetski`.`roles` (" +
@@ -79,4 +111,33 @@ public class C_Init {
             e.printStackTrace();
         }
     }
+    public static void getUsersWithRoles(){
+        String sql = "SELECT * FROM roles INNER JOIN users ON users.roles_id=roles.id";
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/vchernetski", "root", "");
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                ResultSetMetaData metaData = resultSet.getMetaData();
+                System.out.print(metaData.getColumnLabel(2)+": "+resultSet.getString(2)+"\t\t");
+                System.out.print(metaData.getColumnLabel(4)+": "+resultSet.getString(4)+"\t\t");
+                System.out.print(metaData.getColumnLabel(3)+": "+resultSet.getString(3)+"\t\t");
+                System.out.println();
+            }
+            resultSet=statement.executeQuery("SELECT COUNT(*) FROM roles WHERE id>0");
+            if(resultSet.next()){
+                System.out.println("количество возможных ролей: "+resultSet.getInt(1));
+            }resultSet=statement.executeQuery("SELECT COUNT(*) FROM users WHERE id>0");
+            if(resultSet.next()){
+                System.out.println("количество пользователей: "+resultSet.getInt(1));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
+
