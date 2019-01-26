@@ -4,12 +4,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-/**
- * Created by user on 19.01.2019.
- */
-
-class Connect {
-    private static volatile Connection connection;
+public class Connect_DB {
 
     static {
         try {
@@ -19,11 +14,13 @@ class Connect {
         }
     }
 
-    static Connection getConnection() throws SQLException {
+    private static volatile Connection connection;
+
+    public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            synchronized (Connect.class) {
+            synchronized (Connect_DB.class) {
                 if (connection == null || connection.isClosed()) {
-                    connection = DriverManager.getConnection(ConnC.URL_DB, ConnC.USER_DB, ConnC.PASSWORD_DB);
+                    connection = DriverManager.getConnection(CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB);
                 }
             }
         }

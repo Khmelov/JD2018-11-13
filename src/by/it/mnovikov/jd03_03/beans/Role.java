@@ -1,4 +1,4 @@
-package by.it.mnovikov.jd03_02.beans;
+package by.it.mnovikov.jd03_03.beans;
 
 public class Role {
 
