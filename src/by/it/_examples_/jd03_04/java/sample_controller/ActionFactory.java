@@ -2,7 +2,7 @@ package by.it._examples_.jd03_04.java.sample_controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-class ActionFactory {
+public class ActionFactory {
     ActionCommand defineCommand(HttpServletRequest request) {
         ActionCommand current = new CommandError();
         // извлечение имени команды из запроса ?command=action_name

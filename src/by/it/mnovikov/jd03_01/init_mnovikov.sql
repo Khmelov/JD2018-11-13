@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `mnovikov`.`users` (
   `email` VARCHAR(45) NULL,
   `first_name` VARCHAR(45) NULL,
   `last_name` VARCHAR(45) NULL,
-  `birthday` DATE NULL,
+  `birthday` TIMESTAMP(6) NULL,
   `adress` VARCHAR(500) NULL,
   `roles_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
@@ -61,8 +61,7 @@ DROP TABLE IF EXISTS `mnovikov`.`orders` ;
 
 CREATE TABLE IF NOT EXISTS `mnovikov`.`orders` (
   `ID` INT NOT NULL AUTO_INCREMENT,
-  `date` DATE NULL,
-  `time` TIME NULL,
+  `date` TIMESTAMP(6) NULL,
   `users_ID` INT NOT NULL,
   PRIMARY KEY (`ID`),
   INDEX `fk_orders_users1_idx` (`users_ID` ASC),
@@ -96,10 +95,12 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `mnovikov`.`orders_goods` ;
 
 CREATE TABLE IF NOT EXISTS `mnovikov`.`orders_goods` (
+  `ID` INT NOT NULL AUTO_INCREMENT,
   `orders_ID` INT NOT NULL,
   `goods_ID` INT NOT NULL,
   INDEX `fk_orders_goods_orders1_idx` (`orders_ID` ASC),
   INDEX `fk_orders_goods_goods1_idx` (`goods_ID` ASC),
+  PRIMARY KEY (`ID`),
   CONSTRAINT `fk_orders_goods_orders1`
     FOREIGN KEY (`orders_ID`)
     REFERENCES `mnovikov`.`orders` (`ID`)
@@ -133,8 +134,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mnovikov`;
-INSERT INTO `mnovikov`.`users` (`ID`, `login`, `password`, `email`, `first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) VALUES (DEFAULT, 'Administrator', 'root111', 'admin@mail.ru', 'Maksim', 'Novikov', '1986-01-01', 'Minsk, Knorina 1', 1);
-INSERT INTO `mnovikov`.`users` (`ID`, `login`, `password`, `email`, `first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) VALUES (DEFAULT, 'customer_01', 'qwerty', 'cus_01@mail.ru', 'Pavel', 'Derevyanko', '1980-02-02', 'Minsk, Lenina 1/5', 2);
+INSERT INTO `mnovikov`.`users` (`ID`, `login`, `password`, `email`, `first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) VALUES (DEFAULT, 'Administrator', 'root111', 'admin@mail.ru', 'Maksim', 'Novikov', '1986-02-12 11:0:00', 'Minsk, Knorina 1', 1);
+INSERT INTO `mnovikov`.`users` (`ID`, `login`, `password`, `email`, `first_name`, `last_name`, `birthday`, `adress`, `roles_ID`) VALUES (DEFAULT, 'customer_01', 'qwerty', 'cus_01@mail.ru', 'Pavel', 'Derevyanko', '1980-01-01 12:00:30', 'Minsk, Lenina 1/5', 2);
 
 COMMIT;
 
@@ -144,8 +145,8 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mnovikov`;
-INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`) VALUES (DEFAULT, '2019-01-18', '09:01:01', 2);
-INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `time`, `users_ID`) VALUES (DEFAULT, '2019-01-19', '01:02:02', 2);
+INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `users_ID`) VALUES (DEFAULT, '2019-01-20 20:18:55', 2);
+INSERT INTO `mnovikov`.`orders` (`ID`, `date`, `users_ID`) VALUES (DEFAULT, '2019-01-21 21:11:51', 2);
 
 COMMIT;
 
@@ -166,9 +167,9 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `mnovikov`;
-INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (1, 1);
-INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (1, 2);
-INSERT INTO `mnovikov`.`orders_goods` (`orders_ID`, `goods_ID`) VALUES (2, 1);
+INSERT INTO `mnovikov`.`orders_goods` (`ID`, `orders_ID`, `goods_ID`) VALUES (DEFAULT, 1, 1);
+INSERT INTO `mnovikov`.`orders_goods` (`ID`, `orders_ID`, `goods_ID`) VALUES (DEFAULT, 1, 2);
+INSERT INTO `mnovikov`.`orders_goods` (`ID`, `orders_ID`, `goods_ID`) VALUES (DEFAULT, 2, 1);
 
 COMMIT;
 

@@ -40,8 +40,8 @@ public class Buyer extends Thread implements IBuyer {
 //    public void putGoodsToBacket() {
 //        int countGoods = Util.random(1, 4);
 //        for (int i = 0; i < countGoods; i++) {
-//            int position = Util.random(0, Goods.goods.size() - 1);
-//            Goods.getPosition(Goods.goods, position);
+//            int position = Util.random(0, Good.goods.size() - 1);
+//            Good.getPosition(Good.goods, position);
 //            Util.sleepTime(100, 200);
 //        }
 //        System.out.println(this + " положил товары в корзинку");

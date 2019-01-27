@@ -1,0 +1,7 @@
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+    <entry key="dataBaseName">seroglazov</entry>
+    <entry key="dataBaseURL">jdbc:mysql://127.0.0.1:2016/</entry>
+    <entry key="userName">root</entry>
+    <entry key="password"/>
+</properties>

@@ -3,7 +3,7 @@ package by.it._examples_.jd03_03.badpath;
 import java.sql.SQLException;
 import java.util.List;
 
-interface InterfaceDAO<TYPE> {
+public interface InterfaceDAO<TYPE> {
     //READ чтение отдельной сущности
     TYPE read(int id) throws SQLException;
 
