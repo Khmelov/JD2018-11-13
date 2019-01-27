@@ -2,18 +2,20 @@
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
-<%@ include file="include/menu.htm" %>
+    <%@ include file="include/menu.htm" %>
+
     <form class="form-horizontal" action="do?command=Login" method="post">
         <fieldset>
 
             <!-- Form Name -->
-            <legend>SignUp</legend>
+            <legend>Login</legend>
 
             <!-- Text input-->
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login">Login</label>
                 <div class="col-md-4">
-                    <input id="login" name="login" value="testUser" type="text" placeholder="enter login" class="form-control input-md"
+                    <input id="login" name="login" value="TestUser" type="text" placeholder="enter login"
+                           class="form-control input-md"
                            required="">
                 </div>
             </div>
@@ -30,9 +32,9 @@
 
             <!-- Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="signup"></label>
+                <label class="col-md-4 control-label" for="signin"></label>
                 <div class="col-md-4">
-                    <button id="login" name="login" class="btn btn-success">Sign Up</button>
+                    <button id="signin" name="signin" class="btn btn-success">Login</button>
                 </div>
             </div>
 

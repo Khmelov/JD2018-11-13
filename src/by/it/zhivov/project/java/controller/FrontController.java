@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 
 public class FrontController extends HttpServlet {
     @Override
@@ -34,16 +33,19 @@ public class FrontController extends HttpServlet {
         Action next = null;
         try {
             next = action.cmd.execute(req);
-            ServletContext servletContext = req.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
-            requestDispatcher.forward(req, resp);
         } catch (Exception e) {
-            e.printStackTrace();
+            req.setAttribute("message", e.toString());
+            toJsp(req, resp, Action.ERROR.getJsp());
         }
+
         if (next == null || next == action) {
-            ServletContext servletContext = req.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
-            requestDispatcher.forward(req, resp);
+            toJsp(req, resp, action.getJsp());
         } else resp.sendRedirect("do?command=" + next.toString().toLowerCase());
+    }
+
+    private void toJsp(HttpServletRequest req, HttpServletResponse resp, String jsp) throws ServletException, IOException {
+        ServletContext servletContext = req.getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(jsp);
+        requestDispatcher.forward(req, resp);
     }
 }

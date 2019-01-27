@@ -2,12 +2,17 @@ package by.it.zhivov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Form {
-    static String getString(HttpServletRequest req, String name, String pattern) {
-        String result = req.getParameter("name");
+class Form {
+
+    static boolean isPost(HttpServletRequest req) {
+        return req.getMethod().equalsIgnoreCase("POST");
+    }
+
+    static String getString(HttpServletRequest req, String name, String pattern) throws SiteExeption {
+        String result = req.getParameter(name);
         if (result.matches(pattern))
             return result;
-        throw SiteExeption("name=" + result + " incorrect");
+        throw new SiteExeption("name=" + result + " incorrect");
     }
 
     static String getString(HttpServletRequest req, String name) throws SiteExeption {
@@ -19,7 +24,7 @@ public class Form {
         return Double.parseDouble(str);
     }
 
-    static double getInteger(HttpServletRequest req, String name) {
+    static int getInteger(HttpServletRequest req, String name) {
         String str = req.getParameter(name);
         return Integer.parseInt(str);
     }
