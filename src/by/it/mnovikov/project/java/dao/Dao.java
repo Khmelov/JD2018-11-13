@@ -18,7 +18,7 @@ public class Dao {
     public InterfaceDao<Order_Good> order_good;
 
     public void reset() {
-        Connect.reset();
+        Connect.resetDB();
     }
 
     private Dao() {

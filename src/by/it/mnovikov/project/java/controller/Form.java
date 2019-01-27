@@ -10,7 +10,8 @@ public class Form {
 
     static String getString(HttpServletRequest req, String name, String pattern) throws SiteException {
         String result = req.getParameter(name);
-        if (result.matches(pattern)) return result;
+        if (result.matches(pattern))
+            return result;
         throw new SiteException("name=" + result + "incorrect");
     }
 

@@ -13,9 +13,9 @@ public class UserDao implements InterfaceDao<User> {
         String sql = String.format("INSERT INTO `users`(" +
                         "`login`, `password`, `email`, `first_name`," +
                         "`last_name`, `birthday`, `adress`, `roles_ID`)" +
-                        "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s')",
+                        "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')",
                 user.getLogin(), user.getPassword(), user.getEmail(), user.getFirst_name(),
-                user.getLast_name(), user.getBirthday(), user.getAdress()
+                user.getLast_name(), user.getBirthday(), user.getAdress(), user.getRoles_id()
         );
         int id = Dao.executeCreateAndGetId(sql);
         user.setId(id);
