@@ -3,7 +3,7 @@ package by.it.vchernetski.project.java.controller;
 import javax.servlet.http.HttpServletRequest;
 
 abstract class Cmd {
-    abstract Action execute(HttpServletRequest request);
+    abstract Action execute(HttpServletRequest request) throws Exception;
 
     @Override
     public String toString() {

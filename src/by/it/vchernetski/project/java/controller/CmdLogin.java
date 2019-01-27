@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 
  class CmdLogin extends Cmd{
     @Override
-    Action execute(HttpServletRequest request) {
+    Action execute(HttpServletRequest request)throws Exception {
         return null;
     }
 }
