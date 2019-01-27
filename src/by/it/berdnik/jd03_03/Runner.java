@@ -10,6 +10,7 @@ public class Runner {
     public static void main(String[] args) throws SQLException {
         Dao dao = Dao.getDao();
         //dao.reset();
+        System.out.println("================ USER ================");
         User user = new User();
         user.setNickname("LLLLLL");
         user.setPassword("PPPPPP");
@@ -25,6 +26,7 @@ public class Runner {
         if (dao.user.delete(user))
             System.out.println("DELETE: " + user);
         ///role
+        System.out.println("================ ROLE ================");
         Role role= new Role();
         role.setRole("RRRRR");
         if (dao.role.create(role))
@@ -37,10 +39,11 @@ public class Runner {
         if (dao.role.delete(role))
             System.out.println("DELETE: " + role);
         ///buyer
+        System.out.println("================ BUYER ================");
         Buyer buyer= new Buyer(2, "Notebook", "MSI", 222, "Adddress", 2);
         if (dao.buyer.create(buyer))
             System.out.println("CREATE: " + buyer);
-        buyer.setItem("описание");
+        buyer.setItem("Notebook222222");
         if (dao.buyer.update(buyer))
             System.out.println("UPDATE: " + buyer);
         buyer = dao.buyer.read(buyer.getId());

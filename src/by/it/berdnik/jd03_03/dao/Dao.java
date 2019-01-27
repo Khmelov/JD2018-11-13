@@ -24,8 +24,6 @@ public class Dao {
         role = new RoleDao();
         user = new UserDao();
         buyer = new BuyerDao();
-        //или так
-//        ad = new UniversalDAO<>(new Ad(), "ads");
     }
 
     public static Dao getDao() {
