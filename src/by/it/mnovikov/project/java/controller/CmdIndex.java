@@ -1,10 +1,17 @@
 package by.it.mnovikov.project.java.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import by.it.mnovikov.project.java.beans.Good;
+import by.it.mnovikov.project.java.dao.Dao;
 
-class CmdIndex extends Cmd {
+import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
+import java.util.List;
+
+class CmdIndex implements Cmd {
     @Override
-    Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest req) throws SQLException {
+        List<Good> goods = Dao.getDao().good.getAll();
+        req.setAttribute("goods", goods);
         return null;
     }
 }

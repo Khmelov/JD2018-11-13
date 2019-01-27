@@ -2,9 +2,10 @@ package by.it.mnovikov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-class CmdSignup extends Cmd {
+class CmdSignUp implements Cmd {
+
     @Override
-    Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest req) {
         return null;
     }
 }

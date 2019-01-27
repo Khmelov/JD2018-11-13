@@ -14,8 +14,10 @@
         <servlet-name>FrontController</servlet-name>
         <servlet-class>by.it.mnovikov.project.java.controller.FrontController</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/do</url-pattern>
     </servlet-mapping>
+
 </web-app>
