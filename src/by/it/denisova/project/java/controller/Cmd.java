@@ -1,10 +1,11 @@
 package by.it.denisova.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
 abstract class Cmd {
 
-    abstract Action execute(HttpServletRequest req);
+    abstract Action execute(HttpServletRequest req) throws SQLException;
 
     @Override
     public String toString() {
