@@ -12,7 +12,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-class C_Init {
+public class C_Init {
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String portDB = "jdbc:mysql://127.0.0.1:2016/";
     private final static String CREATE_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create roles.sql";
@@ -63,7 +63,7 @@ class C_Init {
         return insertLIst.get(i);
     }
 // зоздание БД
-    void create() {
+public void create() {
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
@@ -74,7 +74,7 @@ class C_Init {
         try (Connection connection = DriverManager.getConnection(portDB, "root", "")
         ) {
             Statement statement = connection.createStatement();
-//            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
+            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `naumenko` DEFAULT CHARACTER SET utf8");
 
             //Table `naumenko`.`roles`
@@ -105,7 +105,7 @@ class C_Init {
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-            // System.err.println("драйвер не найден");
+             System.err.println("драйвер не найден");
         }
     }
 }

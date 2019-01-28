@@ -79,8 +79,8 @@ CREATE TABLE IF NOT EXISTS `vchernetski`.`cars` (
   CONSTRAINT `fk_cars_garages1`
     FOREIGN KEY (`garages_id`)
     REFERENCES `vchernetski`.`garages` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ENGINE = InnoDB;
 
 CREATE INDEX `fk_cars_garages1_idx` ON `vchernetski`.`cars` (`garages_id` ASC);

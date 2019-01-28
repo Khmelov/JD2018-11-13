@@ -1,7 +1,5 @@
 package by.it.mnovikov.jd01_09;
 
-import by.it.burlakov.jd01_07.Matrix;
-
 import java.util.regex.Pattern;
 
 /**
