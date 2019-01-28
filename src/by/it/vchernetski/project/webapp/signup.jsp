@@ -23,11 +23,27 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="email">Email</label>
   <div class="col-md-4">
-  <input id="email" name="email" type="text" value="password" placeholder="type email" class="form-control input-md" required="">
+  <input id="email" name="email" type="text" value="email@mail.ru" placeholder="type email" class="form-control input-md" required="">
+
+  </div>
+</div>
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="fio">FIO</label>
+  <div class="col-md-4">
+  <input id="fio" name="fio" value="fiofio" type="text" placeholder="" class="form-control input-md" required="">
 
   </div>
 </div>
 
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="numberofgarages">Number of garages</label>
+  <div class="col-md-4">
+  <input id="numberofgarages" name="numberofgarages" value="2" type="text" placeholder="" class="form-control input-md" required="">
+
+  </div>
+</div>
 <!-- Password input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="password">Password</label>
@@ -39,7 +55,7 @@
 
 <!-- Button -->
 <div class="form-group">
-  <label class="col-md-4 control-label" action="do?command=SignUp" method="POST" for="signup"></label>
+  <label class="col-md-4 control-label"  for="signup"></label>
   <div class="col-md-4">
     <button id="signup" name="signup" class="btn btn-success">SignUp</button>
   </div>

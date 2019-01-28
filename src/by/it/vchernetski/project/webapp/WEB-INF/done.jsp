@@ -3,7 +3,9 @@
 <body>
 <div class="container">
 <%@ include file="include/menu.htm" %>
-<p>INDEX:all cars <br> ${cars}</p>
+<p>Car Created</p>
 </div>
 </body>
 </html>
+
+

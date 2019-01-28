@@ -30,12 +30,15 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Action action = ActionDefiner.define(req);
+        Action action = Action.define(req);
         Action next = null;
         try {
             next = action.cmd.execute(req);
         } catch (Exception e) {
-            e.printStackTrace();
+            req.setAttribute("message", e.toString());
+            ServletContext servletContext = req.getServletContext();
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(Action.ERROR.getjsp());
+            requestDispatcher.forward(req, resp);
         }
         if (next == null || next == action) {
             resp.setHeader("Cache-Control", "no-cache");

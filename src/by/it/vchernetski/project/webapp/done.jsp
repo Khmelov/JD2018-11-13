@@ -3,7 +3,9 @@
 <body>
 <div class="container">
 <%@ include file="include/menu.htm" %>
-<p>Cmd Logout: ${message}</p>
+<p>DONE</p>
 </div>
 </body>
 </html>
+
+

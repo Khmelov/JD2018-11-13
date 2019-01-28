@@ -1,10 +1,19 @@
 package by.it.vchernetski.project.java.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import by.it.vchernetski.project.java.beans.Car;
+import by.it.vchernetski.project.java.dao.MyDAO;
 
- class CmdIndex extends Cmd{
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+
+class CmdIndex implements Cmd{
     @Override
-    Action execute(HttpServletRequest request)throws Exception {
+    public Action execute(HttpServletRequest request)throws Exception {
+        MyDAO<Car> dao = MyDAO.getDao();
+        Car car = new Car();
+        dao.setBean(car);
+        List<Car> all = dao.getAll();
+        request.setAttribute("cars",all);
         return null;
     }
 }
