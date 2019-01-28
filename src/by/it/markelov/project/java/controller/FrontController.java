@@ -36,8 +36,13 @@ public class FrontController extends HttpServlet {
         Action next = null;
         try {
             next = action.cmd.execute(req);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            req.setAttribute("message", e.toString());
+
+            ServletContext servletContext = req.getServletContext();
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(Action.ERROR.getJsp());
+            requestDispatcher.forward(req, resp);
+
         }
         if (next == null || next == action) {
             ServletContext servletContext = req.getServletContext();

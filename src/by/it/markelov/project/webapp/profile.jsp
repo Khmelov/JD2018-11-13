@@ -4,7 +4,7 @@
 <div class="container">
 
 <%@ include file="include/menu.htm" %>
-<p>Cmd Logout: ${message}</p>
+<p>Profile User: <br> ${user}</p>
 </div>
 </body>
 </html>

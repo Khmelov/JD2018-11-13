@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 abstract class Cmd {
 
-    abstract Action execute(HttpServletRequest req) throws SQLException;
+    abstract Action execute(HttpServletRequest req) throws SQLException, SiteException;
 
     @Override
     public String toString() {
