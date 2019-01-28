@@ -6,13 +6,14 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 
 public class BuyerCRUD {
 
     boolean create(Buyer buyer) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "INSERT INTO `buyers` (`item`, `specif`, `price`,`address`, `users_id`) " +
-                        "VALUES ('%s', '%s', '%d', '%s', '%d')",
+                        "VALUES ('%s', '%s', '%f', '%s', '%d')",
                 buyer.getItem(), buyer.getSpecif(), buyer.getPrice(), buyer.getAddress(), buyer.getUsers_Id());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
@@ -46,13 +47,13 @@ public class BuyerCRUD {
     }
 
     boolean update(Buyer buyer) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "UPDATE `buyers` SET " +
                         "`item` = '%s', `specif` = '%s', " +
-                        "`price` = '%d', `address` = '%s', `users_id` = '%d' " +
+                        "`price` = '%f', `address` = '%s', `users_id` = '%d' " +
                         "WHERE `buyers`.`id` = %d",
                 buyer.getItem(), buyer.getSpecif(), buyer.getPrice(),
-                buyer.getAddress(), buyer.getId());
+                buyer.getAddress(), buyer.getUsers_Id(), buyer.getId());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             return (1 == statement.executeUpdate(sql));
@@ -61,7 +62,7 @@ public class BuyerCRUD {
 
     boolean delete(Buyer buyer) throws SQLException {
         String sql = String.format(
-                "DELETE FROM `buyers` WHERE `users`.`id` = %d",
+                "DELETE FROM `buyers` WHERE `users_id` = %d",
                 buyer.getId());
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
