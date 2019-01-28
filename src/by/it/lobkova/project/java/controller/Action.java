@@ -4,9 +4,10 @@ import javax.servlet.http.HttpServletRequest;
 
 enum Action {
 
+    RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
-    LOGOUT(new CmdLogout()),
+    PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError());
 

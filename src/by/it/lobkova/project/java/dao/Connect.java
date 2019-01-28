@@ -1,7 +1,5 @@
 package by.it.lobkova.project.java.dao;
 
-import by.it.lobkova.jd03_02.crud.CN;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -90,10 +88,6 @@ public class Connect {
                     "ENGINE = InnoDB;");
             statement.executeUpdate("INSERT INTO `lobkova`.`roles` (`id`, `role`) VALUES (DEFAULT, 'administrator');");
             statement.executeUpdate("INSERT INTO `lobkova`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
-            statement.executeUpdate("INSERT INTO `lobkova`.`users` (`id`, `email`, `login`, `password`, `name`, `roles_ID`) VALUES (NULL, 'user2@user', 'user2', 'user2', 'user2', '2');");
-            statement.executeUpdate("INSERT INTO `lobkova`.`users` (`id`, `email`, `login`, `password`, `name`, `roles_ID`) VALUES (NULL, 'user3@user', 'user3', 'user3', 'user3', '2');");
-            statement.executeUpdate("INSERT INTO `lobkova`.`users` (`id`, `email`, `login`, `password`, `name`, `roles_ID`) VALUES (NULL, 'user4@user', 'user4', 'user4', 'user4', '2');");
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
