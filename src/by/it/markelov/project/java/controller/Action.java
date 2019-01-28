@@ -3,10 +3,14 @@ package by.it.markelov.project.java.controller;
 enum Action {
 
     INDEX(new CmdIndex()),
+    ORDER(new CmdOrder()),
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError());
+
+
+
 
     Cmd cmd;
 
