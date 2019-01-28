@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 // @WebServlet("/do")
 public class FrontController extends HttpServlet {
@@ -29,7 +30,12 @@ public class FrontController extends HttpServlet {
 
         //вызов реализованного метода execute() и передача параметров
         //классу-обработчику конкретной команды. Обработчик должен вернуть адрес view
-        String viewPage = command.execute(request);
+        String viewPage = null;
+        try {
+            viewPage = command.execute(request);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
         response.setHeader("Cache-Control", "no-store");
 
