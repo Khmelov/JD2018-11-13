@@ -30,7 +30,7 @@ public class TaskC {
             e.printStackTrace();
         }                                                               //"jdbc:mysql://127.0.0.1:2016/", "root", ""
                                                                         //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `ngrudnitsky` DEFAULT CHARACTER SET utf8 ;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `ngrudnitsky`.`roles` (\n" +
@@ -97,7 +97,7 @@ public class TaskC {
             e.printStackTrace();
         }                                                           //"jdbc:mysql://127.0.0.1:2016/", "root", ""
                                                                     //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `ngrudnitsky`");
             System.out.println("Successfully deleted DBS.");
@@ -116,7 +116,7 @@ public class TaskC {
         }
                                                                     //"jdbc:mysql://127.0.0.1:2016/", "root", ""
                                                                     //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe")) {
             Statement statement = connection.createStatement();
             RoleCRUD roleCRUD = new RoleCRUD();
             Role role1 = new Role("admin");
@@ -134,7 +134,7 @@ public class TaskC {
 
             StreamerCRUD streamerCRUD= new StreamerCRUD();
             Streamer streamer1 = new Streamer("ninja@gmail.com", "fortnightlover", "Ninja", 2);
-            Streamer streamer2 = new Streamer("silvername@gmail.com@pewd.se", "hearthstone", "SilverName", 2);
+            Streamer streamer2 = new Streamer("silvername@gmail.com", "hearthstone", "SilverName", 2);
             streamerCRUD.create(streamer1);
             streamerCRUD.create(streamer2);
 

@@ -1,17 +1,16 @@
-package by.it.nickgrudnitsky.project.java.controller;
+package by.it.kruglenja.Project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-class ActionDefiner {
-
-    static Action define(HttpServletRequest req) {
-        Action result = Action.ERROR;
+public class ActionDefiner {
+    static Action definer(HttpServletRequest req) {
         String command = req.getParameter("command");
+        Action result = Action.ERROR;
         if (command != null && !command.isEmpty()) {
             try {
                 result = Action.valueOf(command.toUpperCase());
             } catch (IllegalArgumentException e) {
-                //create error
+                System.out.println("wrong command");
             }
         }
         return result;
