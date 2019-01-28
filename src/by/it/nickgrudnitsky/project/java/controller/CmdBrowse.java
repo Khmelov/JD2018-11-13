@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 
-class CmdIndex extends Cmd {
-    @Override
-    Action execute(HttpServletRequest req) throws SQLException {
-        List<Game> games = MyDao.getDao().game.getAll();
-        req.setAttribute("games", games);
-        return null;
-    }
+class CmdBrowse extends Cmd {
+   @Override
+   Action execute(HttpServletRequest req) throws SQLException {
+       List<Game> games = MyDao.getDao().game.getAll();
+       req.setAttribute("games", games);
+       return null;
+   }
 }
