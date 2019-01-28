@@ -3,9 +3,8 @@
 <body>
 <div class="container">
 <%@ include file="include/menu.htm" %>
-<p>ERROR: ${message}</p>
+<p>User Profile:<br> ${user}</p>
+
 </div>
 </body>
 </html>
-
-

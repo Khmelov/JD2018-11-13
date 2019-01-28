@@ -1,4 +1,4 @@
-package by.it.skarpovich.project.java.controller;
+package by.it.skarpovich.project.old.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
