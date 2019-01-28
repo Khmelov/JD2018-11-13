@@ -6,9 +6,8 @@
 </head>
 <body>
 	<%@ include file="include/menu.htm" %>
-	<p>ERROR: ${message}</p>
-	<c:remove var="message" scope="session" /> 
+	<div class="container">
+		${recipe_list}
+	</div>
 </body>
 </html>
-
-

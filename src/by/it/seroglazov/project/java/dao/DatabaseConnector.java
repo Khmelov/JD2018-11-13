@@ -1,6 +1,7 @@
 package by.it.seroglazov.project.java.dao;
 
 import by.it.seroglazov.project.java.MyConstants;
+import by.it.seroglazov.project.java.controller.SiteException;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -19,16 +20,16 @@ public class DatabaseConnector {
         }
         try {
             config = new Config();
-            config.loadFromXml(MyConstants.configFileFullName);
+            config.loadFromXml();
         } catch (IOException e) {
-            System.err.println("Can't read config file " + MyConstants.configFileFullName
-                    + " with message: " + e.getMessage());
+            /*System.err.println("Can't read config file " + MyConstants.configFileFullName
+                    + " with message: " + e.getMessage());*/
         }
     }
 
     private static volatile Connection connection;
 
-    static Connection getConnection(boolean withDatabaseName) throws SQLException {
+    static Connection getConnection(boolean withDatabaseName) throws SQLException, SiteException {
         if (connection == null || connection.isClosed()) {
             synchronized (DatabaseConnector.class) {
                 if (connection == null || connection.isClosed()) {
@@ -45,7 +46,7 @@ public class DatabaseConnector {
         return connection;
     }
 
-    public static Connection getConnection() throws SQLException {
+    public static Connection getConnection() throws SQLException, SiteException {
         return getConnection(true);
     }
 

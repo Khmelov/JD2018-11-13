@@ -6,8 +6,7 @@
 </head>
 <body>
 	<%@ include file="include/menu.htm" %>
-	<p>ERROR: ${message}</p>
-	<c:remove var="message" scope="session" /> 
+	<div class="container"><h1>Database was dropped!</h1></div>
 </body>
 </html>
 
