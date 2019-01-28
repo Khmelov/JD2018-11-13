@@ -33,7 +33,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Action action = ActionDefiner.define(req);
+        Action action = Action.define(req);
         Action next = action.cmd.execute(req);
         if (next == null || next == action) {
             ServletContext servletContext = req.getServletContext();
