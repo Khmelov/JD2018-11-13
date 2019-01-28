@@ -1,4 +1,4 @@
-<html>
+<html lang="en">
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">

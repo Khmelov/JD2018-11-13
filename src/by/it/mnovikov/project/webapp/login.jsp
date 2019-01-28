@@ -1,10 +1,10 @@
-<html>
+<html lang="en">
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
     <%@ include file="include/menu.htm" %>
 
-    <form class="form-horizontal" action="do?command=Login">
+    <form class="form-horizontal" action="do?command=Login" method="POST">
         <fieldset>
 
             <!-- Form Name -->

@@ -2,7 +2,7 @@ package by.it.mnovikov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class Form {
+class Form {
 
     static boolean isPost(HttpServletRequest req) {
         return req.getMethod().equalsIgnoreCase("POST");

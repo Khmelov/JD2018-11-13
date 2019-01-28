@@ -19,8 +19,8 @@ class CmdSignUp implements Cmd {
             String lastName = Form.getString(req, "last_name");
             String birthday = Form.getString(req, "birthday");
             String adress = Form.getString(req, "adress");
-            User user = new User(0, login, password, email,
-                    firstName, lastName, Timestamp.valueOf(birthday), adress, 2);
+            User user = new User(0, login, password, email, firstName, lastName,
+                    Timestamp.valueOf(birthday), adress, 2);
             Dao dao = Dao.getDao();
             if (dao.user.create(user))
                 req.getSession().setAttribute("user", user);
