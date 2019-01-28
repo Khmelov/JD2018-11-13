@@ -2,6 +2,6 @@
 <%@ include file="include/head.htm" %>
 <body>
 <%@ include file="include/menu.htm" %>
-<p>INDEX: ${message}</p>
+<p>${posts}</p>
 </body>
 </html>
