@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 enum Action {
 
     PROFILE(new CmdProfile()),
+    BROWSE(new CmdBrowse()),
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),

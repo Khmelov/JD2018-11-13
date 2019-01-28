@@ -1,7 +1,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menu.htm" %>
+<%@ include file="include/menuOut.htm" %>
 <form class="form-horizontal" action="do?command=LogIn" method="POST">
 <fieldset>
 

@@ -12,7 +12,7 @@ class CmdSignup extends Cmd {
     Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (Form.isPost(req)) {
 
-            String username = Form.getString(req, "username", "[A-Za-z0-9]");
+            String username = Form.getString(req, "username", "[A-Za-z0-9]+");
             String password = Form.getString(req, "password");
             String email = Form.getString(req, "email", "[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+");
             String roleString = req.getParameter("role");

@@ -65,6 +65,12 @@ public class MyConnection {
                     "    ON DELETE RESTRICT\n" +
                     "    ON UPDATE RESTRICT)\n" +
                     "ENGINE = InnoDB;");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `ngrudnitsky`.`games` (\n" +
+                    "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+                    "  `game` VARCHAR(100) NULL,\n" +
+                    "  `link` VARCHAR(200) NULL,\n" +
+                    "  PRIMARY KEY (`id`))\n" +
+                    "ENGINE = InnoDB;");
 
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'streamer');");
@@ -73,6 +79,12 @@ public class MyConnection {
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'pewdiepie@pewd.se', 'youloose', 'pewdiepie', 3);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'ninja@gmail.com', 'fortnightlover', 'Ninja', 2);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'silvername@gmail.com', 'hearthstone', 'SilverName', 2);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'HearthStone', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Fortnight', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'DOTA 2', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'PUBG', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'League of Legends', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Overwatch', NULL);");
 
         }
     }

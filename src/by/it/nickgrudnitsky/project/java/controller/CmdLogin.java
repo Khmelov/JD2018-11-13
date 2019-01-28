@@ -4,6 +4,7 @@ import by.it.nickgrudnitsky.project.java.beans.Viewer;
 import by.it.nickgrudnitsky.project.java.dao.MyDao;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,7 +18,8 @@ class CmdLogin extends Cmd {
             List<Viewer> viewers = MyDao.getDao().viewer.getAll(where);
             if (viewers.size()==1){
                 Viewer viewer = viewers.get(0);
-                req.getSession().setAttribute("user", viewer);
+                HttpSession session = Session.getSession(req);
+                session.setAttribute("user", viewer);
                 return Action.PROFILE;
             }
         }
