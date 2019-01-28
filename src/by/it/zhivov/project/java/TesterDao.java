@@ -11,7 +11,7 @@ import java.sql.SQLException;
 public class TesterDao {
     public static void main(String[] args) throws SQLException {
         for (int i = 0; i < 20; i++) {
-            Dao.restoreDB();
+            //Dao.restoreDB();
             Dao dao = Dao.getDao();
             Role role = new Role();
             User user = new User();
@@ -92,7 +92,7 @@ public class TesterDao {
             InnerJoin_id.join();
             InnerJoin_id.getAllRows();
             InnerJoin_id.getRolesRows();
-            Dao.restoreDB();
+            //Dao.restoreDB();
         }
     }
 }

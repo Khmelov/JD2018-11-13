@@ -44,9 +44,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="dateofbirth">Birth Date</label>
                 <div class="col-md-4">
-                    <input id="dateofbirth" name="dateofbirth" type="text" placeholder="required"
+                    <input id="dateofbirth" name="dateofbirth" type="date" placeholder="yyyy-mm-dd"
                            class="form-control input-md" required="">
-
                 </div>
             </div>
 
@@ -54,7 +53,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="email">Email</label>
                 <div class="col-md-4">
-                    <input id="email" name="email" type="text" placeholder="required" class="form-control input-md"
+                    <input id="email" name="email" type="email" placeholder="required" class="form-control input-md"
                            required="">
 
                 </div>

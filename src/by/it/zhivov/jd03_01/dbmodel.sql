@@ -33,7 +33,7 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`users` (
   `name` VARCHAR(100) NULL,
   `login` VARCHAR(45) NULL,
   `password` VARCHAR(26) NULL,
-  `dateofbirth` VARCHAR(10) NULL,
+  `dateofbirth` DATE NULL,
   `email` VARCHAR(45) NULL,
   `tel` VARCHAR(45) NULL,
   `roles_id` INT NOT NULL,
@@ -101,9 +101,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `zhivov`;
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'm0rph3us', 'admin', 'admin', NULL, NULL, NULL, 1);
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Petya', 'Petr2018', 'petyapetya', '26.04.1993', 'petya@mail.ru', '+848651861668', 2);
-INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Andrey', 'Dron2355', 'drondron', '16.05.1980', 'dron@mail.ru', '+5616516568', 2);
+INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (1, 'm0rph3us', 'admin', 'admin', NULL, NULL, NULL, 1);
 
 COMMIT;
 
@@ -113,8 +111,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `zhivov`;
-INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Best Car', 'This car the beast of car', 'Lancia', '53', 'yelow', 'coupe', 1996, 2.6, 0, 'full', 'standart', 186153, 1, 580000, 2);
-INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Power Opel', 'Opel Astra 2.0 Turbo', 'Opel', 'Astra', 'white', 'sedan', 2008, 2.0, 1, 'fwd', 'comfort', 40000, 0, 1300000, 2);
+INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Best Car', 'This car the beast of cars', 'Lancia', '53', 'yelow', 'coupe', 1996, 2.6, 0, 'full', 'standart', 186153, 1, 580000, 1);
 
 COMMIT;
 

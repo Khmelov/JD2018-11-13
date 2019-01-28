@@ -141,7 +141,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="engine">Engine capacity</label>
                 <div class="col-md-4">
-                    <input id="engine" name="engine" type="text" placeholder="" class="form-control input-md"
+                    <input id="engine" name="engine" type="text" placeholder="2.5" class="form-control input-md"
                            required="">
 
                 </div>
@@ -218,7 +218,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="price">Price</label>
                 <div class="col-md-4">
-                    <input id="price" name="price" type="text" placeholder="" class="form-control input-md" required="">
+                    <input id="price" name="price" type="text" placeholder="1500.75" class="form-control input-md" required="">
 
                 </div>
             </div>

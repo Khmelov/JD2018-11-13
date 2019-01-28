@@ -4,14 +4,10 @@ import by.it.zhivov.project.java.beans.Ad;
 import by.it.zhivov.project.java.beans.Role;
 import by.it.zhivov.project.java.beans.User;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 public class Dao {
     private static volatile Dao dao;
-
     public InterfaceDao<Role> role;
     public InterfaceDao<User> user;
     public InterfaceDao<Ad> ad;
@@ -56,7 +52,10 @@ public class Dao {
 
     public static void restoreDB() throws SQLException {
         System.out.println("Staring DB restore");
-        try (Connection connection = Connect.getConnection();
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/?" +
+                "useSSL=false" +
+                "&" +
+                "useUnicode=true&characterEncoding=UTF-8", "root", "");
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP SCHEMA IF EXISTS `zhivov`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `zhivov` DEFAULT CHARACTER SET utf8");
@@ -71,7 +70,7 @@ public class Dao {
                     "  `name` VARCHAR(100) NULL,\n" +
                     "  `login` VARCHAR(45) NULL,\n" +
                     "  `password` VARCHAR(26) NULL,\n" +
-                    "  `dateofbirth` VARCHAR(10) NULL,\n" +
+                    "  `dateofbirth` DATE NULL,\n" +
                     "  `email` VARCHAR(45) NULL,\n" +
                     "  `tel` VARCHAR(45) NULL,\n" +
                     "  `roles_id` INT NOT NULL,\n" +
@@ -115,10 +114,6 @@ public class Dao {
             statement.executeUpdate("INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user')");
             statement.executeUpdate("INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest')");
             statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'm0rph3us', 'admin', 'admin', NULL, NULL, NULL, 1)");
-            statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Petya', 'Petr2018', 'petyapetya', '26.04.1993', 'petya@mail.ru', '+848651861668', 2)");
-            statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Andrey', 'Dron2355', 'drondron', '16.05.1980', 'dron@mail.ru', '+5616516568', 2)");
-            statement.executeUpdate("INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Best Car', 'This car the beast of car', 'Lancia', '53', 'yelow', 'coupe', 1996, 2.6, 0, 'full', 'standart', 186153, 1, 580000, 2)");
-            statement.executeUpdate("INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Power Opel', 'Opel Astra 2.0 Turbo', 'Opel', 'Astra', 'white', 'sedan', 2008, 2.0, 1, 'fwd', 'comfort', 40000, 0, 1300000, 2)");
             System.out.println("DB restored successful");
         }
     }
