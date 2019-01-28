@@ -1,16 +1,19 @@
-package by.it.mnovikov.project.java.dao;
+package by.it.mnovikov.jd03_03.dao;
 
-import by.it.mnovikov.project.java.beans.User;
+import by.it.mnovikov.jd03_03.beans.User;
 
-import java.sql.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class UserDao implements InterfaceDao<User> {
 
-
     public boolean create(User user) throws SQLException {
-        String sql = String.format("INSERT INTO `users`(" +
+        String sql = String.format(Locale.ENGLISH,"INSERT INTO `users`(" +
                         "`login`, `password`, `email`, `first_name`," +
                         "`last_name`, `birthday`, `adress`, `roles_ID`)" +
                         "VALUES ('%s', '%s', '%s', '%s', '%s', '%s', '%s', '%d')",
@@ -19,18 +22,18 @@ public class UserDao implements InterfaceDao<User> {
         );
         int id = Dao.executeCreateAndGetId(sql);
         user.setId(id);
-        return false;
+        return (id>0);
     }
 
     public boolean delete(User user) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "DELETE FROM `users` WHERE `users`.`id`='%d'", user.getId()
         );
         return Dao.executeUpdate(sql);
     }
 
     public boolean update(User user) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "UPDATE `users` SET" +
                         "`login`='%s',`password`='%s',`email`='%s'," +
                         "`first_name`='%s',`last_name`='%s',`birthday`='%s'," +
@@ -42,15 +45,15 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     public User read(int id) throws SQLException {
-        String sqlSuffix = String.format("WHERE id = %d", id);
-        List<User> users = getAll(sqlSuffix);
-        return users.size() > 0 ? users.get(0) : null;
-    }
+        String sqlSuffix = String.format(Locale.ENGLISH,"WHERE id=%d", id);
+        List<User> all = getAll(sqlSuffix);
+        return all.size() > 0 ? all.get(0) : null;
+}
 
     @Override
     public List<User> getAll(String sqlSuffix) throws SQLException {
         List<User> result = new ArrayList<>();
-        String sql = String.format("SELECT * FROM `users` '%s'", sqlSuffix);
+        String sql = String.format(Locale.ENGLISH,"SELECT * FROM `users` '%s'", sqlSuffix);
         try (Statement statement = Connect.getConnection().createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {

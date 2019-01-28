@@ -17,14 +17,14 @@ import java.util.List;
 //  нет потокобезопасности, совсем, т.к. это только пример, иначе код заметно усложнится.
 //  Поэтому - никакого реального применения, используйте сие только в учебных целях!
 
-public class UniversalDAO<TypeBean> implements Interface_DAO<TypeBean> {
+public class UniversalDao<TypeBean> implements InterfaceDao<TypeBean> {
 
     private TypeBean bean; //это некий неизвестный bean
     private String table; //это его таблица в базе
     private Field[] fields; //это поля bean
 
     //конструктор DAO
-    public UniversalDAO(TypeBean bean, String sqlTableName) {
+    public UniversalDao(TypeBean bean, String sqlTableName) {
         this.bean = bean;
         this.table = sqlTableName;
         this.fields = bean.getClass().getDeclaredFields();

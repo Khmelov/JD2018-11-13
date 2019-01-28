@@ -1,8 +1,6 @@
 package by.it.mnovikov.project.java.dao;
 
-import by.it.mnovikov.project.java.beans.Ad;
-import by.it.mnovikov.project.java.beans.Role;
-import by.it.mnovikov.project.java.beans.User;
+import by.it.mnovikov.project.java.beans.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,25 +13,27 @@ public class Dao {
 
     public InterfaceDao<Role> role;
     public InterfaceDao<User> user;
-    public InterfaceDao<Ad> ad;
+    public InterfaceDao<Order> order;
+    public InterfaceDao<Good> good;
+    public InterfaceDao<Order_Good> order_good;
 
-    public void reset(){
-        Connect.reset();
+    public void reset() {
+        Connect.resetDB();
     }
 
     private Dao() {
-        role=new RoleDao();
-        user=new UserDao();
-        ad=new AdDao();
-        //или так
-        ad=new UniversalDAO<>(new Ad(),"ads");
+        role = new RoleDao();
+        user = new UserDao();
+        order = new UniversalDAO<>(new Order(), "orders");
+        good = new UniversalDAO<>(new Good(), "goods");
+        order_good = new UniversalDAO<>(new Order_Good(), "orders_goods");
     }
 
-    public static Dao getDao(){
-        if (dao== null) {
+    public static Dao getDao() {
+        if (dao == null) {
             synchronized (Dao.class) {
-                if (dao== null) {
-                    dao=new Dao();
+                if (dao == null) {
+                    dao = new Dao();
                 }
             }
         }
@@ -47,13 +47,13 @@ public class Dao {
         }
     }
 
-    static long executeCreateAndGetId(String sql) throws SQLException {
+    static int executeCreateAndGetId(String sql) throws SQLException {
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    return generatedKeys.getLong(1);
+                    return generatedKeys.getInt(1);
                 }
             }
         }

@@ -1,6 +1,6 @@
-package by.it.mnovikov.project.java.dao;
+package by.it.mnovikov.jd03_03.dao;
 
-import by.it.mnovikov.project.java.beans.Role;
+import by.it.mnovikov.jd03_03.beans.Role;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -8,11 +8,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 public class RoleDao implements InterfaceDao<Role> {
 
     public boolean create(Role role) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "INSERT INTO `roles` (`role`) " +
                         "VALUES ('%s')",
                 role.getRole()
@@ -23,7 +24,7 @@ public class RoleDao implements InterfaceDao<Role> {
     }
 
     public boolean delete(Role role) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "DELETE FROM `roles` WHERE `roles`.`id` = %d",
                 role.getId()
         );
@@ -31,7 +32,7 @@ public class RoleDao implements InterfaceDao<Role> {
     }
 
     public boolean update(Role role) throws SQLException {
-        String sql = String.format(
+        String sql = String.format(Locale.ENGLISH,
                 "UPDATE `roles` SET " +
                         "`role` = '%s'" +
                         "WHERE `roles`.`id` = %d",
@@ -41,7 +42,7 @@ public class RoleDao implements InterfaceDao<Role> {
     }
 
     public Role read(int id) throws SQLException {
-        String sqlSuffix = String.format("WHERE id=%d", id);
+        String sqlSuffix = String.format(Locale.ENGLISH,"WHERE id=%d", id);
         List<Role> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
     }
@@ -49,7 +50,7 @@ public class RoleDao implements InterfaceDao<Role> {
     @Override
     public List<Role> getAll(String sqlSuffix) throws SQLException {
         List<Role> result=new ArrayList<>();
-        String sql = String.format("SELECT * " +
+        String sql = String.format(Locale.ENGLISH,"SELECT * " +
                 "FROM `roles` %s",sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
