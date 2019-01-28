@@ -6,6 +6,7 @@ public class Answer {
     private String answer;
     private String status;
 
+
     public Answer() {
     }
 

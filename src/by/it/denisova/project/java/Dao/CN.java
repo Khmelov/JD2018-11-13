@@ -1,4 +1,4 @@
-package by.it.denisova.project.java.Dao;
+package by.it.denisova.project.java.dao;
 
 public interface CN {
     String URL = "jdbc:mysql://127.0.0.1:2016/denisova?" +
