@@ -61,8 +61,8 @@ public class C_Init {
                     "  CONSTRAINT `fk_cars_garages1`" +
                     "    FOREIGN KEY (`garages_id`)" +
                     "    REFERENCES `vchernetski`.`garages` (`id`)" +
-                    "    ON DELETE NO ACTION" +
-                    "    ON UPDATE NO ACTION)" +
+                    "    ON DELETE CASCADE" +
+                    "    ON UPDATE CASCADE)" +
                     "ENGINE = InnoDB;");
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
