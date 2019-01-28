@@ -1,6 +1,5 @@
 package by.it.seroglazov.project.java.dao;
 
-import by.it.seroglazov.project.java.MyConstants;
 import by.it.seroglazov.project.java.controller.SiteException;
 
 import java.io.IOException;
@@ -8,7 +7,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class DatabaseConnector {
+class DatabaseConnector {
 
     private static Config config;
 

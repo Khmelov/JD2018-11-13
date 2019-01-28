@@ -35,7 +35,7 @@ public class CmdRecipesList extends Cmd {
                         .append("<br>\n");
             }
             sb.append("</p>\n");
-            sb.append("<p>").append(recipe.getDescription()).append("<p>\n</div>");
+            sb.append("<p>").append(recipe.getDescription()).append("</p>\n</div>");
         }
 
         req.getSession().setAttribute("recipe_list", sb.toString());

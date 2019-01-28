@@ -20,7 +20,9 @@ enum Action {
 
     ERROR(new CmdError()),
 
-    RESET(new CmdReset());
+    RESET(new CmdReset()),
+
+    INGLIST (new CmdIngList());
 
     Cmd cmd;
 

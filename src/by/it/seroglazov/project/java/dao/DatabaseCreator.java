@@ -1,8 +1,6 @@
 package by.it.seroglazov.project.java.dao;
 
-import by.it.seroglazov.project.java.MyConstants;
 import by.it.seroglazov.project.java.beans.*;
-import by.it.seroglazov.project.java.controller.FrontController;
 import by.it.seroglazov.project.java.controller.SiteException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -10,7 +8,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.InputSource;
 
-import javax.servlet.ServletContext;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -23,11 +20,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
 import java.nio.file.OpenOption;
-import java.nio.file.Paths;
-import java.nio.file.StandardOpenOption;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;

@@ -28,7 +28,7 @@ class CmdAddRecipe extends Cmd {
             String name = Form.getString(req, "recipe_name", patt);
             // If that cocktail already in DB then show Error page with message
             if (name.length() == 0 || recDao.findFirstByFieldValue("name", name) != null) {
-                throw new SiteException("Cocktail with name " + name + " already exists");
+                throw new SiteException("Cocktail with name '" + name + "' already exists");
             }
 
             // Take cocktail type from form
