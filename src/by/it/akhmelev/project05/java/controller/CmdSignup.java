@@ -7,18 +7,18 @@ import by.it.akhmelev.project05.java.dao.Dao;
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 
-class CmdSignup extends Cmd {
+class CmdSignup implements Cmd {
     @Override
-    Action execute(HttpServletRequest req) throws SQLException {
-        if (req.getMethod().equalsIgnoreCase("POST")) {
-
-            String login = req.getParameter("login");
-            String password = req.getParameter("password");
-            String email = req.getParameter("email");
+    public Action execute(HttpServletRequest req) throws SQLException, SiteException {
+        if (Form.isPost(req)) {
+            String login = Form.getString(req,"login");
+            String password = Form.getString(req,"password","[a-zA-Z0-9_-]{4,}");
+            String email = Form.getString(req,"email");
             User user = new User(0, login, password, email, 2);
             Dao dao = Dao.getDao();
             if (dao.user.create(user))
-                return Action.INDEX;
+                req.getSession().setAttribute("user",user);
+                return Action.PROFILE;
         }
 
         return Action.SIGNUP;
