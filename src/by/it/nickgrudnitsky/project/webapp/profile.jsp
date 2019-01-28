@@ -2,6 +2,6 @@
 <%@ include file="include/head.htm" %>
 <body>
 <%@ include file="include/menu.htm" %>
-<p>Cmd Logout: ${message}</p>
+<p>Cmd Profile:<br> ${user}</p>
 </body>
 </html>

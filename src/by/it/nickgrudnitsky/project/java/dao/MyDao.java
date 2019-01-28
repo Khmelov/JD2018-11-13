@@ -1,8 +1,11 @@
 package by.it.nickgrudnitsky.project.java.dao;
 
+
 import by.it.nickgrudnitsky.project.java.beans.Role;
 import by.it.nickgrudnitsky.project.java.beans.Streamer;
 import by.it.nickgrudnitsky.project.java.beans.Viewer;
+
+import java.sql.SQLException;
 
 
 public class MyDao {
@@ -12,6 +15,9 @@ public class MyDao {
     public InterfaceDao<Viewer> viewer;
     public InterfaceDao<Streamer> streamer;
 
+    public void reset() throws SQLException {
+        MyConnection.reset();
+    }
 
     private MyDao() {
         role = new MyUniversalDAO<>(new Role());
