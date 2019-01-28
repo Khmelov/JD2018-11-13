@@ -39,14 +39,14 @@ public class Runner {
         role=dao.role.read(role.getId());
         System.out.println("READ: "+role);
         if (dao.role.delete(role))
-            System.out.println("DELETE"+role);
+            System.out.println("DELETE: "+role);
 
         ///ad
 
-        Ad ad=new Ad(0, "описание", "Грибоедова 5",3,5,3,75,130000,2);
+        Ad ad=new Ad(1,"$120000",5,5);
         if (dao.ad.create(ad))
             System.out.println("CREATE: "+ad);
-        ad.setDescription("описание 222222");
+        ad.setPrice("$222222");
         if (dao.ad.update(ad))
             System.out.println("UPDATE: "+ad);
         ad=dao.ad.read(ad.getId());

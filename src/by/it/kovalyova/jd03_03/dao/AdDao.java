@@ -20,7 +20,7 @@ public class AdDao implements InterfaceDao<Ad>{
                         " VALUES (" +
                         "'%f','%d','%d')",
 
-                ad.getPrice(),ad.getUser_id()
+                ad.getPrice(),ad.getUsers_id()
         );
         long id = Dao.executeCreateAndGetId(sql);
         ad.setId(id);
@@ -43,7 +43,7 @@ public class AdDao implements InterfaceDao<Ad>{
                         " `price`='%f]," +
                         "`users_id`='%d',`flats_id`='%d'" +
                         " WHERE `id`='%d',",
-               ad.getPrice(), ad.getUser_id()
+               ad.getPrice(), ad.getUsers_id()
         );
         return Dao.executeUpdate(sql);
         }
