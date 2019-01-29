@@ -84,7 +84,7 @@ public class UniversalDAO<TypeBean> implements InterfaceDao<TypeBean> {
 
     //=======================================================================================================
     //метод чтения по ID делает выборку получая все, но с условием.
-    public TypeBean read(long id) throws SQLException {
+    public TypeBean read(int id) throws SQLException {
         List<TypeBean> beans = getAll("WHERE ID=" + id + " LIMIT 0,1");
         if (beans.size() > 0) {
             return beans.get(0);

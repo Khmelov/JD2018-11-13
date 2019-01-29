@@ -3,7 +3,7 @@
 Смотрите тут https://ant.apache.org/manual/
 -->
 
-<project name="Ant to YOURLOGIN" default="10deploy" basedir="..">
+<project name="Ant to MNOVIKOV" default="10deploy" basedir="..">
 
     <!-- подключаем файл с настройками -->
     <property file="ant/deploy.properties"/>
