@@ -2,9 +2,9 @@ package by.it.berdnik.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-class CmdLogout extends Cmd{
+class CmdLogout implements Cmd{
     @Override
-    Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest req) {
         return Action.ERROR;
     }
 }
