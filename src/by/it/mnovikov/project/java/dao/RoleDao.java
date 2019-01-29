@@ -17,7 +17,7 @@ public class RoleDao implements InterfaceDao<Role> {
                         "VALUES ('%s')",
                 role.getRole()
         );
-        long id = Dao.executeCreateAndGetId(sql);
+        int id = Dao.executeCreateAndGetId(sql);
         role.setId(id);
         return (id > 0);
     }
@@ -40,7 +40,7 @@ public class RoleDao implements InterfaceDao<Role> {
         return Dao.executeUpdate(sql);
     }
 
-    public Role read(long id) throws SQLException {
+    public Role read(int id) throws SQLException {
         String sqlSuffix = String.format("WHERE id=%d", id);
         List<Role> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
@@ -56,7 +56,7 @@ public class RoleDao implements InterfaceDao<Role> {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 //id ok
-                long id = resultSet.getLong("id");
+                int id = resultSet.getInt("id");
                 String strRole = resultSet.getString("role");
                 Role role = new Role(id, strRole);
                 result.add(role);

@@ -175,10 +175,20 @@
         </condition>
     </target>
 
-    <!-- запуск браузера по умолчанию (только Windows) -->
+    <!-- запуск браузера по умолчанию (только Windows)-->
+
+    <!--
     <target name="Win browser" depends="10deploy">
         <exec executable="cmd.exe" spawn="true">
             <arg value="/k start ${tomcat.base.url}/${web.root}"/>
+        </exec>
+    </target>
+    -->
+
+    <!--запуск браузера(safari) на Mac 100% (возможно linux)-->
+    <target name="Mac browser" depends="10deploy">
+        <exec executable="open" spawn="true">
+            <arg value="${tomcat.base.url}/${web.root}"/>
         </exec>
     </target>
 </project>
