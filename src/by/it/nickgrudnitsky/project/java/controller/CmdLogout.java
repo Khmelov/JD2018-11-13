@@ -8,12 +8,12 @@ import javax.servlet.http.HttpSession;
 
 class CmdLogout extends Cmd {
     @Override
-    Action execute(HttpServletRequest req) throws SiteException {
+    Action execute(HttpServletRequest req) {
         if (Form.isPost(req)){
-            HttpSession session = Session.getSession(req);
+            HttpSession session = req.getSession();
             session.removeAttribute("user");
             session.invalidate();
         }
-        return Action.BROWSE;
+        return Action.LOGIN;
     }
 }
