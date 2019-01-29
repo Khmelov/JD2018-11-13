@@ -3,7 +3,8 @@
 <body>
 <div    class="container">
 <%@ include file="include/menu.htm" %>
-<p>INDEX: ${message}</p>
+    <p>SPAREPARTS CATALOG <<br> ${catalog}</p>
+
 </div>
 </body>
 </html>

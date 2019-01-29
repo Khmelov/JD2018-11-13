@@ -27,7 +27,8 @@ class Connect {
         }
         return connection;
     }
-   static void reset(){
+
+    static void deleteDb() {
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `kruglenja` ;");
@@ -37,7 +38,14 @@ class Connect {
             statement.executeUpdate("DROP TABLE IF EXISTS `kruglenja`.`spareParts` ;");
             System.out.println("DB deleted");
             statement.executeUpdate("DROP SCHEMA IF EXISTS `kruglenja` ;");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 
+    static void createDb() {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
+            Statement statement = connection.createStatement();
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `kruglenja` DEFAULT CHARACTER SET utf8 ;");
 
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `kruglenja`.`roles` (" +

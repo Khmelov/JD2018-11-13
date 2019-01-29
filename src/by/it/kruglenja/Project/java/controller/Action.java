@@ -1,6 +1,10 @@
 package by.it.kruglenja.Project.java.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 public enum Action {
+    RESET(new CmdReset()),
+    DELETE(new CmdDelete()),
     INDEX( new CmdIndex()),
     LOGIN( new CmdLogin()),
     SIGNUP( new CmdSignup()),
@@ -15,6 +19,19 @@ public enum Action {
         this.cmd = cmdIndex;
     }
     String getJsp(){
-        return  "/" + cmd.toString() + ".jsp";
+        return  "/" + this.name().toLowerCase() + ".jsp";
+    }
+
+    static Action definer(HttpServletRequest req) {
+        String command = req.getParameter("command");
+        Action result = Action.ERROR;
+        if (command != null && !command.isEmpty()) {
+            try {
+                result = Action.valueOf(command.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                System.out.println("wrong command");
+            }
+        }
+        return result;
     }
 }

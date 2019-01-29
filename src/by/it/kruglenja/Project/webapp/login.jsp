@@ -4,7 +4,7 @@
 <div class="container">
     <%@ include file="include/menu.htm" %>
 
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="do?command=Login" method="post">
         <fieldset>
 
             <!-- Form Name -->
@@ -12,9 +12,9 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="Login">Login</label>
+                <label class="col-md-4 control-label" for="login">Login</label>
                 <div class="col-md-4">
-                    <input id="Login" value="testUSER" name="Login" type="text" placeholder="" class="form-control input-md">
+                    <input id="login" value="testUSER" name="login" type="text" placeholder="" class="form-control input-md">
 
                 </div>
             </div>
@@ -24,7 +24,6 @@
                 <label class="col-md-4 control-label" for="password">Password</label>
                 <div class="col-md-4">
                     <input id="password" value="testPASSWORD" name="password" type="password" placeholder="" class="form-control input-md">
-
                 </div>
             </div>
 
