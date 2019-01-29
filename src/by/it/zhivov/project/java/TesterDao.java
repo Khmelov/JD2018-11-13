@@ -36,7 +36,7 @@ public class TesterDao {
             user.setName("Genady");
             user.setLogin("4iba");
             user.setPassword("root");
-            user.setDateOfBirth("24.05.1995");
+            user.setDateOfBirth("1994.05.24");
             user.setEmail("gen4ik@mail.ru");
             user.setTel("+79038652555");
             user.setRoles_Id(2);
