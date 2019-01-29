@@ -8,7 +8,7 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Create Ad</legend>
+            <legend>Создать объявление</legend>
 
             <!-- Text input-->
             <div class="form-group">

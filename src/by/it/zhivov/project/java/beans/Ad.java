@@ -170,22 +170,22 @@ public class Ad {
 
     @Override
     public String toString() {
-        return "Ad{" +
-                "id=" + id + "\n" +
-                ", title='" + title + '\'' + "\n" +
-                ", description='" + description + '\'' + "\n" +
-                ", brnd='" + brnd + '\'' + "\n" +
-                ", model='" + model + '\'' + "\n" +
-                ", color='" + color + '\'' + "\n" +
-                ", body='" + body + '\'' + "\n" +
-                ", year=" + year + "\n" +
-                ", engine=" + engine + "\n" +
-                ", at=" + at + "\n" +
-                ", driveunit='" + driveunit + '\'' + "\n" +
-                ", equipment='" + equipment + '\'' + "\n" +
-                ", millage=" + millage + "\n" +
-                ", crashed=" + crashed + "\n" +
-                ", price=" + price + "\n" +
+        return "<br>Ad{" +
+                "id=" + id + "\n<br>" +
+                ", title='" + title + '\'' + "\n<br>" +
+                ", description='" + description + '\'' + "\n<br>" +
+                ", brnd='" + brnd + '\'' + "\n<br>" +
+                ", model='" + model + '\'' + "\n<br>" +
+                ", color='" + color + '\'' + "\n<br>" +
+                ", body='" + body + '\'' + "\n<br>" +
+                ", year=" + year + "\n<br>" +
+                ", engine=" + engine + "\n<br>" +
+                ", at=" + at + "\n<br>" +
+                ", driveunit='" + driveunit + '\'' + "\n<br>" +
+                ", equipment='" + equipment + '\'' + "\n<br>" +
+                ", millage=" + millage + "\n<br>" +
+                ", crashed=" + crashed + "\n<br>" +
+                ", price=" + price + "\n<br>" +
                 ", users_id=" + id_User +
                 '}';
     }
