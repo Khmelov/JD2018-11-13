@@ -3,7 +3,7 @@ package by.it.denisova.project.java.controller;
 import javax.servlet.http.HttpServletRequest;
 
 enum Action {
-
+    ANSWERQUESTION(new CmdAnswerQuestion()),
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
@@ -11,6 +11,7 @@ enum Action {
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError()),
     TEST(new CmdCreateTest());
+
 
     Cmd cmd;
 
