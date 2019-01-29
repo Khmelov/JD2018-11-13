@@ -1,0 +1,32 @@
+.Forms {
+     float: left; /*Задаем обтекание*/
+     line-height: 20px;/*Высота строки +  верт. центрирования текста*/
+     font-size: 20px;
+     color: white;
+     background:rgb(17,24,27);
+     margin-top: 30px;
+     width: 350px; /*Фиксируем ширину блока*/
+     margin-right: 20px;
+     text-align: left; /*Центрируем текст по горизонтали*/
+    }
+legend{
+     color: yellow;
+     font-size: 30px
+}
+
+body{
+     background:rgb(17,24,27);
+}
+.FormSignup {
+     font-size: 20px;
+     color: white;
+
+}
+.FormLogin {
+     font-size: 20px;
+     color: white;
+
+}
+p{
+    color: white;
+}

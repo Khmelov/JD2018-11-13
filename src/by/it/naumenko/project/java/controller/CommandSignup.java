@@ -19,10 +19,12 @@ class CommandSignup extends Command {
 //            Dao dao = Dao.getDao();
             MyDAO<Users> dao = new MyDAO<>(new Users(),"users");
             if(dao.create(user)) {
+                System.out.println("User create");
 
                 //request.getSession().setAttribute("user",user);
                 return Actions.INDEX;
             }
+            System.out.println("user no create");
             return Actions.ERROR;
         }
         return Actions.SIGNUP;

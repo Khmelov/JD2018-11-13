@@ -22,6 +22,8 @@ public class RunnerMyDao {
         System.out.println("READ: "+user);
         myDAOU.delete(user);
         System.out.println("DELETE: "+user);
+
+        //myDAOU.getAll()
         List<Users> lU =  myDAOU.getAll();
         System.out.println("\n\n===============================================вся таблица USER=========================================");
         for (int i = 0; i < lU.size(); i++)

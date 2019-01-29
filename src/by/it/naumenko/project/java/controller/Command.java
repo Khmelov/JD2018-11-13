@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 abstract class Command {
 
-    abstract Actions exequit(HttpServletRequest req) throws SQLException;
+    abstract Actions exequit(HttpServletRequest req) throws SQLException, SiteException;
 
     @Override
     public String toString() {

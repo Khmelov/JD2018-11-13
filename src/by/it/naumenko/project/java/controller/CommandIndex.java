@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 class CommandIndex extends Command {
     @Override
     Actions exequit(HttpServletRequest request) {
-        return null;
+
+        return Actions.INDEX;
     }
 }

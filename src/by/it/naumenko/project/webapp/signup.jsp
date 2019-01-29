@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <%@ include file="include/head.htm" %>
@@ -5,6 +6,7 @@
 <div class="container">
 <%@ include file="include/menu.htm" %>
 
+  <div class="FormSignup">
 	<form class="form-horizontal" action ="do?command=signup" method="POST">
     <fieldset>
 
@@ -38,17 +40,17 @@
       </div>
     </div>
 
-    <!-- Button (Double) -->
+    <!-- Button -->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="OKbutton"></label>
-      <div class="col-md-8">
-        <button id="submith" name="submith" class="btn btn-success">OK</button>
-
+      <label class="col-md-4 control-label" for="signup"></label>
+      <div class="col-md-4">
+        <button type="submit" id="signup" name="signup" class="btn btn-success">SignUP</button>
       </div>
     </div>
 
     </fieldset>
     </form>
+  </div>
 </div>
 </body>
 </html>

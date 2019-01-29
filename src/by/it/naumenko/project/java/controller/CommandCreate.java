@@ -2,10 +2,10 @@ package by.it.naumenko.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
-class CommandError extends Command {
+class CommandCreate extends Command {
     @Override
     public Actions exequit(HttpServletRequest request) {
 
-        return Actions.ERROR;
+        return Actions.CREATE;
     }
 }

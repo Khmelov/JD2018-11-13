@@ -1,12 +1,9 @@
 package by.it.naumenko.project.java.dao;
 
-//import com.mysql.jdbc.Field;
-
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class MyDAO<MyBeen> {
@@ -45,7 +42,6 @@ public class MyDAO<MyBeen> {
         }
 //        "INSERT INTO `roles`(`role`) VALUES ('%s')",
         String sql = "insert INTO `" + nameTable + "` (" + namesField + ") values(" + value + ")";
-        System.out.println(sql);
 
         int id = executeUpdate(sql, true);
         if (id > 0)
@@ -82,7 +78,7 @@ public class MyDAO<MyBeen> {
             e.printStackTrace();
         }
 //        UPDATE `users` SET `login` = 'sehseth', `password` = 'sthetsh', `email` = 'thseth', `id_roles` = '5' WHERE `users`.`id_users` = 13
-        System.out.println(sql);
+
         return (0 < executeUpdate(sql, true));
 
     }
@@ -139,7 +135,6 @@ public class MyDAO<MyBeen> {
                 Connection connection = Connected.getConnection();
                 Statement statement = connection.createStatement()
         ) {
-            System.out.println(sql);
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()) {
@@ -148,10 +143,6 @@ public class MyDAO<MyBeen> {
                     Field field = fields[i - 1];
                     field.setAccessible(true);
                     try {
-                        if (field.getType() == Boolean.class || field.getType() == boolean.class)
-                            field.set(newBeen, rs.getBoolean(field.getName()));
-                        if (field.getType() == Byte.class || field.getType() == byte.class)
-                            field.set(newBeen, rs.getByte(field.getName()));
                         if (field.getType() == Integer.class || field.getType() == int.class)
                             field.set(newBeen, rs.getInt(field.getName()));
                         if (field.getType() == Double.class || field.getType() == double.class)
@@ -160,15 +151,11 @@ public class MyDAO<MyBeen> {
                             field.set(newBeen, rs.getFloat(field.getName()));
                         if (field.getType() == Long.class || field.getType() == long.class)
                             field.set(newBeen, rs.getLong(field.getName()));
-                        if (field.getType() == Short.class || field.getType() == short.class)
-                            field.set(newBeen, rs.getShort(field.getName()));
                         if (field.getType() == String.class)
                             field.set(newBeen, rs.getString(field.getName()));
                         if (field.getType() == Timestamp.class)
                             field.set(newBeen, rs.getTimestamp(field.getName()));
-                        if (field.getType() == Date.class)
-                            field.set(newBeen, rs.getDate(field.getName()));
-                        //... и т.д. Но учтите, что протестированы только String int и Integer
+
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }
@@ -195,7 +182,6 @@ public class MyDAO<MyBeen> {
                 Connection connection = Connected.getConnection();
                 Statement statement = connection.createStatement()
         ) {
-            System.out.println(sql);
             ResultSet rs = statement.executeQuery(sql);
 
             while (rs.next()) {
@@ -204,10 +190,6 @@ public class MyDAO<MyBeen> {
                     Field field = fields[i - 1];
                     field.setAccessible(true);
                     try {
-                        if (field.getType() == Boolean.class || field.getType() == boolean.class)
-                            field.set(newBeen, rs.getBoolean(field.getName()));
-                        if (field.getType() == Byte.class || field.getType() == byte.class)
-                            field.set(newBeen, rs.getByte(field.getName()));
                         if (field.getType() == Integer.class || field.getType() == int.class)
                             field.set(newBeen, rs.getInt(field.getName()));
                         if (field.getType() == Double.class || field.getType() == double.class)
@@ -216,15 +198,10 @@ public class MyDAO<MyBeen> {
                             field.set(newBeen, rs.getFloat(field.getName()));
                         if (field.getType() == Long.class || field.getType() == long.class)
                             field.set(newBeen, rs.getLong(field.getName()));
-                        if (field.getType() == Short.class || field.getType() == short.class)
-                            field.set(newBeen, rs.getShort(field.getName()));
                         if (field.getType() == String.class)
                             field.set(newBeen, rs.getString(field.getName()));
                         if (field.getType() == Timestamp.class)
                             field.set(newBeen, rs.getTimestamp(field.getName()));
-                        if (field.getType() == Date.class)
-                            field.set(newBeen, rs.getDate(field.getName()));
-                        //... и т.д. Но учтите, что протестированы только String int и Integer
                     } catch (IllegalAccessException e) {
                         e.printStackTrace();
                     }

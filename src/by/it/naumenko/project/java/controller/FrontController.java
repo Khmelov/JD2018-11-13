@@ -38,6 +38,8 @@ public class FrontController extends HttpServlet {
             next = action.command.exequit(req);
         } catch (SQLException e) {
             e.printStackTrace();
+        } catch (SiteException e) {
+            e.printStackTrace();
         }
         if (next == null || next == action) {
             ServletContext servletContext = req.getServletContext();

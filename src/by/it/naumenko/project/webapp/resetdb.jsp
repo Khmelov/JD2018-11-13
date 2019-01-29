@@ -4,8 +4,7 @@
 <body>
     <div class="container">
         <%@ include file="include/menu.htm" %>
-        <p><img src="image/error.png" width="100" height="100" alt="ERROR">ОШИБА  ${message}</p>
-        <p>привет я ошибка</p>
+        <p><img src="image/db2.png" width="100" height="100" alt="DataBase Reset"> DataBase Reset ${message}</p>
 
     </div>
 </body>
