@@ -6,6 +6,6 @@ import java.sql.SQLException;
 class CmdProfile implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException {
-        return null;
+        return Action.PROFILE;
     }
 }
