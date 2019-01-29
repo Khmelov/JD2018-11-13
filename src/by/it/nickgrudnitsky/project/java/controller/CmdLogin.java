@@ -18,7 +18,6 @@ class CmdLogin extends Cmd {
             List<Viewer> viewers = MyDao.getDao().viewer.getAll(where);
             if (viewers.size()==1){
                 Viewer viewer = viewers.get(0);
-
                 HttpSession session = req.getSession(true);
                 session.setAttribute("user", viewer);
                 return Action.PROFILE;
