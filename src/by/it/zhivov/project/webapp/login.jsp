@@ -1,10 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
     <%@ include file="include/menu.htm" %>
 
-    <form class="form-horizontal" action="do?command=Login" method="post">
+    <form class="form-horizontal" action="do?command=Login" method="POST">
         <fieldset>
 
             <!-- Form Name -->
@@ -14,7 +15,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="login">Login</label>
                 <div class="col-md-4">
-                    <input id="login" name="login" value="TestUser" type="text" placeholder="enter login"
+                    <input id="login" name="login" value="admin" type="text" placeholder="enter login"
                            class="form-control input-md"
                            required="">
                 </div>
@@ -24,7 +25,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Password</label>
                 <div class="col-md-4">
-                    <input id="password" name="password" value="testPassword" type="password" placeholder="placeholder"
+                    <input id="password" name="password" value="admin" type="password" placeholder="placeholder"
                            class="form-control input-md" required="">
 
                 </div>

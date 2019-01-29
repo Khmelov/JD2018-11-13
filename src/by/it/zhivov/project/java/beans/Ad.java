@@ -171,22 +171,22 @@ public class Ad {
     @Override
     public String toString() {
         return "Ad{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", brnd='" + brnd + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", body='" + body + '\'' +
-                ", year=" + year +
-                ", engine=" + engine +
-                ", at=" + at +
-                ", driveunit='" + driveunit + '\'' +
-                ", equipment='" + equipment + '\'' +
-                ", millage=" + millage +
-                ", crashed=" + crashed +
-                ", price=" + price +
-                ", id_User=" + id_User +
+                "id=" + id + "\n" +
+                ", title='" + title + '\'' + "\n" +
+                ", description='" + description + '\'' + "\n" +
+                ", brnd='" + brnd + '\'' + "\n" +
+                ", model='" + model + '\'' + "\n" +
+                ", color='" + color + '\'' + "\n" +
+                ", body='" + body + '\'' + "\n" +
+                ", year=" + year + "\n" +
+                ", engine=" + engine + "\n" +
+                ", at=" + at + "\n" +
+                ", driveunit='" + driveunit + '\'' + "\n" +
+                ", equipment='" + equipment + '\'' + "\n" +
+                ", millage=" + millage + "\n" +
+                ", crashed=" + crashed + "\n" +
+                ", price=" + price + "\n" +
+                ", users_id=" + id_User +
                 '}';
     }
 }

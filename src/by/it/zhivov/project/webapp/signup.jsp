@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <%@ include file="include/head.htm" %>
 <body>
@@ -12,7 +13,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Login</label>
+                <label class="col-md-4 control-label" for="login">Логин</label>
                 <div class="col-md-4">
                     <input id="login" name="login" type="text" placeholder="required" class="form-control input-md"
                            required="">
@@ -22,7 +23,7 @@
 
             <!-- Password input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Password</label>
+                <label class="col-md-4 control-label" for="password">Пароль</label>
                 <div class="col-md-4">
                     <input id="password" name="password" type="password" placeholder="required"
                            class="form-control input-md" required="">
@@ -32,7 +33,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="name">Name</label>
+                <label class="col-md-4 control-label" for="name">ФИО</label>
                 <div class="col-md-4">
                     <input id="name" name="name" type="text" placeholder="required" class="form-control input-md"
                            required="">
@@ -42,7 +43,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="dateofbirth">Birth Date</label>
+                <label class="col-md-4 control-label" for="dateofbirth">Дата рождения</label>
                 <div class="col-md-4">
                     <input id="dateofbirth" name="dateofbirth" type="date" placeholder="yyyy-mm-dd"
                            class="form-control input-md" required="">
@@ -61,7 +62,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="tel">Telephone</label>
+                <label class="col-md-4 control-label" for="tel">Телефон</label>
                 <div class="col-md-4">
                     <input id="tel" name="tel" type="text" placeholder="+375xxxxxxxxx" class="form-control input-md"
                            required="">
@@ -73,7 +74,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="signup"></label>
                 <div class="col-md-4">
-                    <button id="signup" name="signup" class="btn btn-primary">SignUp</button>
+                    <button id="signup" name="signup" class="btn btn-primary">Зарегистрироваться</button>
                 </div>
             </div>
 

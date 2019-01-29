@@ -79,20 +79,20 @@ public class TesterDao {
             ad = dao.ad.read(ad.getId());
             System.out.println("\tRead ad successful\n" + ad + "\n");
             {
-                //delete ad
-                if (dao.ad.delete(ad))
-                    System.out.println("\tDelete ad succefull\n" + ad + "\n");
-                //delete user
-                if (dao.user.delete(user))
-                    System.out.println("\tDelete user successful\n" + user + "\n");
+//                //delete ad
+//                if (dao.ad.delete(ad))
+//                    System.out.println("\tDelete ad succefull\n" + ad + "\n");
+//                //delete user
+//                if (dao.user.delete(user))
+//                    System.out.println("\tDelete user successful\n" + user + "\n");
                 //delete role
                 if (dao.role.delete(role))
                     System.out.println("\tDelete role successful\n" + role + "\n");
             }
-            InnerJoin_id.join();
             InnerJoin_id.getAllRows();
             InnerJoin_id.getRolesRows();
             //Dao.restoreDB();
         }
+        //Dao.restoreDB();
     }
 }
