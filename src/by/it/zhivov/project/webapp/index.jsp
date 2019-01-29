@@ -1,7 +1,9 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menu.htm" %>
-<p>INDEX: ${message}</p>
+<div class="container">
+    <%@ include file="include/menu.htm" %>
+    <p>All Ads: ${ads}</p>
+</div>
 </body>
 </html>
