@@ -9,7 +9,8 @@ enum Action {
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
-    ERROR(new CmdError());
+    ERROR(new CmdError()),
+    TEST(new CmdCreateTest());
 
     Cmd cmd;
 

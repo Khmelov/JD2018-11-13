@@ -3,7 +3,7 @@
 <body>
 <div class="container">
     <%@ include file="include/menu.htm" %>
-    <form class="form-horizontal">
+    <form class="form-horizontal"  action="do?command=Test" method="POST">
         <fieldset>
 
             <!-- Form Name -->
@@ -17,8 +17,17 @@
 
                 </div>
             </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="createTest"></label>
+                <div class="col-md-4">
+                    <button id="createTest" name="createTest" class="btn btn-primary">Create</button>
+                </div>
+            </div>
         </fieldset>
     </form>
 </div>
 </body>
 </html>
+
