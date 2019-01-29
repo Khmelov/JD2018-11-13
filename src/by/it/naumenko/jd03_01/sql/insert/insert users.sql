@@ -1,3 +1,3 @@
-INSERT INTO `naumenko`.`users` (`id_users`, `login`, `password`, `email`, `roles_id_roles`) VALUES (DEFAULT, 'root', '', 'naumenkosergeyns@gmail.com', 1);
-INSERT INTO `naumenko`.`users` (`id_users`, `login`, `password`, `email`, `roles_id_roles`) VALUES (DEFAULT, 'vasya', 'vasya', 'vasya@yandex.ru', 2);
-INSERT INTO `naumenko`.`users` (`id_users`, `login`, `password`, `email`, `roles_id_roles`) VALUES (DEFAULT, 'kolya', 'kolya', 'kolya@mail.ru', 3);
+INSERT INTO `naumenko`.`users` (`id_user`, `login`, `password`, `email`, `id_role`) VALUES (DEFAULT, 'root', '', 'naumenkosergeyns@gmail.com', 1);
+INSERT INTO `naumenko`.`users` (`id_user`, `login`, `password`, `email`, `id_role`) VALUES (DEFAULT, 'vasya', 'vasya', 'vasya@yandex.ru', 2);
+INSERT INTO `naumenko`.`users` (`id_user`, `login`, `password`, `email`, `id_role`) VALUES (DEFAULT, 'kolya', 'kolya', 'kolya@mail.ru', 3);

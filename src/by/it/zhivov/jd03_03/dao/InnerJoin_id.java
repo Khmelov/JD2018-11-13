@@ -1,7 +1,5 @@
 package by.it.zhivov.jd03_03.dao;
 
-import by.it.zhivov.jd03_02.crud.Connect;
-
 import java.sql.*;
 
 public class InnerJoin_id {
