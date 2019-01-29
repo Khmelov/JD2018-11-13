@@ -1,8 +1,6 @@
 package by.it.denisova.project.java.dao;
 
-import by.it.denisova.project.java.beans.Role;
-import by.it.denisova.project.java.beans.Test;
-import by.it.denisova.project.java.beans.User;
+import by.it.denisova.project.java.beans.*;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,11 +13,15 @@ public class Dao {
     public InterfaceDao<Role> role;
     public InterfaceDao<User> user;
     public InterfaceDao<Test> test;
+    public InterfaceDao<Question> question;
+    public InterfaceDao<Answer> answer;
 
     public Dao() {
         role = new RoleDao();
         user = new UserDao();
         test = new TestDao();
+        question = new QuestionDao();
+        answer = new AnswerDao();
     }
 
     public static Dao getDao(){

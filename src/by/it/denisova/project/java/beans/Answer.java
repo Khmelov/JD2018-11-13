@@ -10,6 +10,13 @@ public class Answer {
     public Answer() {
     }
 
+    public Answer(long id, long id_question, String answer, String status) {
+        this.id = id;
+        this.id_question = id_question;
+        this.answer = answer;
+        this.status = status;
+    }
+
     public long getId() {
         return id;
     }
