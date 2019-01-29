@@ -9,6 +9,11 @@ import javax.servlet.http.HttpSession;
  * Created by user on 29.01.2019.
  */
 public class Util {
+
+    static boolean checkUser (HttpServletRequest req){
+        return findUser(req)!=null;
+    }
+
     static User findUser (HttpServletRequest req){
         HttpSession session = req.getSession(false);
         if (session!=null){
@@ -19,8 +24,4 @@ public class Util {
         }
         return null;
     }
-//
-//    static boolean checkUser (HttpServletRequest req){
-//        return findUser(null);
-//    }
 }
