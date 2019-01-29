@@ -1,13 +1,11 @@
 package by.it.mnovikov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
-/**
- * Created by user on 24.01.2019.
- */
-class CmdError extends Cmd {
+class CmdError implements Cmd {
     @Override
-    Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest req) throws SQLException {
         return null;
     }
 }
