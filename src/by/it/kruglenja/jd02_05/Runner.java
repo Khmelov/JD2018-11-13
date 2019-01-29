@@ -1,10 +1,8 @@
 package by.it.kruglenja.jd02_05;
 
 
-import by.it.akhmelev.jd02_05.res.Messages;
+import by.it.kruglenja.jd02_05.res.Messages;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Scanner;
 
