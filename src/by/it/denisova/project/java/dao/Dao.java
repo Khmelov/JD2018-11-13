@@ -15,6 +15,7 @@ public class Dao {
     public InterfaceDao<Test> test;
     public InterfaceDao<Question> question;
     public InterfaceDao<Answer> answer;
+    public InterfaceDao<Lesson> lesson;
 
     public Dao() {
         role = new RoleDao();
@@ -22,6 +23,7 @@ public class Dao {
         test = new TestDao();
         question = new QuestionDao();
         answer = new AnswerDao();
+        lesson = new LessonDao();
     }
 
     public static Dao getDao(){

@@ -93,6 +93,20 @@ public class Runner {
         answer = dao.answer.read( answer.getId());
         System.out.println( answer);
 
+        System.out.println("-------------------LESSON----------------------");
+        Lesson lesson = new Lesson();
+        lesson.setId_test(1);
+        lesson.setId_theme(1);
+        lesson.setId_type(1);
+        lesson.setTheory("some theory 1717");
+
+        if(dao.lesson.create(lesson)) {
+            System.out.println("CREATED " + lesson);
+        }
+
+//        lesson = dao.lesson.read(answer.getId());
+//        System.out.println("READE " + lesson); не работает Read кидается NullPointerException
+
 //        answer.setAnswer("wrong");
 //        if(dao.answer.update( answer)) {
 //            System.out.println("Updated " +  answer);
