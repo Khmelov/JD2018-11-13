@@ -21,7 +21,7 @@ class CmdLogin extends Cmd {
             Base64.Encoder encoder = Base64.getEncoder();
             byte[] encode = encoder.encode(password.getBytes());
             String hashPassword = new String(encode);
-            String where = String.format(" WHERE password='%s' and nickname='%s' LIMIT 0,1", password, nickname);
+            String where = String.format(" WHERE password='%s' and nickname='%s' LIMIT 0,1", hashPassword, nickname);
             List<Viewer> viewers = MyDao.getDao().viewer.getAll(where);
             if (viewers.size()==1){
                 Viewer viewer = viewers.get(0);
