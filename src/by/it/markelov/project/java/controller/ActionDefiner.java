@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 class ActionDefiner {
 
     static Action define(HttpServletRequest req) {
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         String command = req.getParameter("command");
         if (command != null && !command.isEmpty()) {
             try {
