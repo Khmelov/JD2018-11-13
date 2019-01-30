@@ -9,13 +9,13 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend>SignUp</legend>
+            <legend>Регистрация</legend>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Логин</label>
+                <label class="col-md-4 control-label" for="login">Логин*</label>
                 <div class="col-md-4">
-                    <input id="login" name="login" type="text" placeholder="required" class="form-control input-md"
+                    <input id="login" name="login" type="text" placeholder="" class="form-control input-md"
                            required="">
 
                 </div>
@@ -23,9 +23,9 @@
 
             <!-- Password input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Пароль</label>
+                <label class="col-md-4 control-label" for="password">Пароль*</label>
                 <div class="col-md-4">
-                    <input id="password" name="password" type="password" placeholder="required"
+                    <input id="password" name="password" type="password" placeholder=""
                            class="form-control input-md" required="">
 
                 </div>
@@ -33,9 +33,9 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="name">ФИО</label>
+                <label class="col-md-4 control-label" for="name">ФИО*</label>
                 <div class="col-md-4">
-                    <input id="name" name="name" type="text" placeholder="required" class="form-control input-md"
+                    <input id="name" name="name" type="text" placeholder="" class="form-control input-md"
                            required="">
 
                 </div>
@@ -43,7 +43,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="dateofbirth">Дата рождения</label>
+                <label class="col-md-4 control-label" for="dateofbirth">Дата рождения*</label>
                 <div class="col-md-4">
                     <input id="dateofbirth" name="dateofbirth" type="date" placeholder="yyyy-mm-dd"
                            class="form-control input-md" required="">
@@ -52,9 +52,9 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="email">Email</label>
+                <label class="col-md-4 control-label" for="email">Email*</label>
                 <div class="col-md-4">
-                    <input id="email" name="email" type="email" placeholder="required" class="form-control input-md"
+                    <input id="email" name="email" type="email" placeholder="" class="form-control input-md"
                            required="">
 
                 </div>
@@ -62,7 +62,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="tel">Телефон</label>
+                <label class="col-md-4 control-label" for="tel">Телефон*</label>
                 <div class="col-md-4">
                     <input id="tel" name="tel" type="text" placeholder="+375xxxxxxxxx" class="form-control input-md"
                            required="">

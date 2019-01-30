@@ -9,13 +9,13 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Login</legend>
+            <legend>Войти</legend>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="login">Login</label>
+                <label class="col-md-4 control-label" for="login">Логин</label>
                 <div class="col-md-4">
-                    <input id="login" name="login" value="admin" type="text" placeholder="enter login"
+                    <input id="login" name="login" type="text" placeholder=""
                            class="form-control input-md"
                            required="">
                 </div>
@@ -23,9 +23,9 @@
 
             <!-- Password input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="password">Password</label>
+                <label class="col-md-4 control-label" for="password">Пароль</label>
                 <div class="col-md-4">
-                    <input id="password" name="password" value="admin" type="password" placeholder="placeholder"
+                    <input id="password" name="password" type="password" placeholder=""
                            class="form-control input-md" required="">
 
                 </div>
