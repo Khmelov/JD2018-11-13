@@ -34,6 +34,13 @@ public class Dao {
         }
         return dao;
     }
+    public void reset(){
+        Connect.deleteDb();
+        Connect.createDb();
+    }
+    public void delete(){
+        Connect.deleteDb();
+    }
 
     static boolean executeUpdate(String sql) throws SQLException {
         try (Connection connection = Connect.getConnection();

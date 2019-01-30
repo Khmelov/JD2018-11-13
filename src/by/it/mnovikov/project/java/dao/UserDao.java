@@ -24,7 +24,8 @@ public class UserDao implements InterfaceDao<User> {
 
     public boolean delete(User user) throws SQLException {
         String sql = String.format(
-                "DELETE FROM `users` WHERE `users`.`id`='%d'", user.getId()
+                "DELETE FROM `users` WHERE `users`.`ID`='%d'",
+                user.getId()
         );
         return Dao.executeUpdate(sql);
     }
@@ -34,7 +35,7 @@ public class UserDao implements InterfaceDao<User> {
                 "UPDATE `users` SET" +
                         "`login`='%s',`password`='%s',`email`='%s'," +
                         "`first_name`='%s',`last_name`='%s',`birthday`='%s'," +
-                        "`adress`='%s',`roles_ID`='%d' WHERE `users`.`id`=%d",
+                        "`adress`='%s',`roles_ID`='%d' WHERE `users`.`ID`=%d",
                 user.getLogin(), user.getPassword(), user.getEmail(),
                 user.getFirst_name(), user.getLast_name(), user.getBirthday(),
                 user.getAdress(), user.getRoles_id(), user.getId());
@@ -42,7 +43,7 @@ public class UserDao implements InterfaceDao<User> {
     }
 
     public User read(int id) throws SQLException {
-        String sqlSuffix = String.format("WHERE id = %d", id);
+        String sqlSuffix = String.format("WHERE ID = %d", id);
         List<User> users = getAll(sqlSuffix);
         return users.size() > 0 ? users.get(0) : null;
     }
@@ -50,22 +51,23 @@ public class UserDao implements InterfaceDao<User> {
     @Override
     public List<User> getAll(String sqlSuffix) throws SQLException {
         List<User> result = new ArrayList<>();
-        String sql = String.format("SELECT * FROM `users` '%s'", sqlSuffix);
+        String sql = String.format("SELECT `ID`, `login`, `password`, `email`, `first_name`, " +
+                "`last_name`, `birthday`, `adress`, `roles_ID` FROM `users` '%s'", sqlSuffix);
         try (Statement statement = Connect.getConnection().createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 //id ok
-                int id = resultSet.getInt("id");
+                int id = resultSet.getInt("ID");
                 String strLogin = resultSet.getString("login");
                 String strPassword = resultSet.getString("password");
                 String strEmail = resultSet.getString("email");
                 String strFirstName = resultSet.getString("first_name");
-                String strLastName = resultSet.getString("Last_name");
+                String strLastName = resultSet.getString("last_name");
                 Timestamp birthday = resultSet.getTimestamp("birthday");
-                String adress = resultSet.getString("adress");
+                String strAdress = resultSet.getString("adress");
                 int rolesID = resultSet.getInt("roles_ID");
                 User user = new User(id, strLogin, strPassword, strEmail,
-                        strFirstName, strLastName, birthday, adress, rolesID);
+                        strFirstName, strLastName, birthday, strAdress, rolesID);
                 result.add(user);
             }
             return result;

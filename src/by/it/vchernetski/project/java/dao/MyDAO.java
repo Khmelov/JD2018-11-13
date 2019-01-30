@@ -14,14 +14,16 @@ public class MyDAO<T> implements InterfaceDAO {
     private static MyDAO dao;
     private volatile static boolean DaoCreated = false;
 
-    private MyDAO(T bean) {
-        this.bean = bean;
-    }
+    private MyDAO() {
 
-    public static MyDAO getDao(Object bean){
+    }
+    public void setBean(T bean){
+        this.bean=bean;
+    }
+    public static MyDAO getDao(){
         if(!DaoCreated){
             synchronized (MyDAO.class){
-                if(!DaoCreated) dao = new MyDAO(bean);
+                if(!DaoCreated) dao = new MyDAO();
             }
         }
         return dao;
