@@ -13,9 +13,6 @@ public class User {
     private String adress;
     private int roles_id;
 
-    public User() {
-    }
-
     public User(int id, String login, String password,
                 String email, String first_name, String last_name,
                 Timestamp birthday, String adress, int roles_id) {

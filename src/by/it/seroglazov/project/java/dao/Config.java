@@ -44,12 +44,17 @@ public class Config {
         this.password = password;
     }
 
-    public void loadFromXml(String xmlFileName) throws IOException {
-        Properties properties = new Properties();
+    public void loadFromXml() throws IOException {
+        /*Properties properties = new Properties();
         properties.loadFromXML(new FileInputStream(xmlFileName)); //auto close stream
         dataBaseName = properties.getProperty("dataBaseName");
         dataBaseURL = properties.getProperty("dataBaseURL");
         userName = properties.getProperty("userName");
-        password = properties.getProperty("password");
+        password = properties.getProperty("password");*/
+
+        dataBaseName = "seroglazov";
+        dataBaseURL = "jdbc:mysql://127.0.0.1:2016/";
+        userName = "root";
+        password = "";
     }
 }

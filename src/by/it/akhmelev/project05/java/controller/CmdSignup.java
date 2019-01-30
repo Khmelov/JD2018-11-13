@@ -20,7 +20,6 @@ class CmdSignup implements Cmd {
                 req.getSession().setAttribute("user",user);
                 return Action.PROFILE;
         }
-
         return Action.SIGNUP;
     }
 }

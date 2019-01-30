@@ -31,6 +31,7 @@ public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
                 field.setAccessible(true);
                 dbsField.append(delimeter).append(field.getName());
                 values.append(delimeter).append("'").append(field.get(bean)).append("'");
+                delimeter = ",";
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();

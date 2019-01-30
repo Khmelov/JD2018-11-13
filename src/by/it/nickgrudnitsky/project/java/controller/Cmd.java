@@ -1,15 +1,11 @@
 package by.it.nickgrudnitsky.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.sql.SQLException;
 
 abstract class Cmd {
 
-    abstract Action execute(HttpServletRequest req);
+    abstract Action execute(HttpServletRequest req, HttpServletResponse resp) throws Exception;
 
-    @Override
-    public String toString() {
-        String simpleName = this.getClass().getSimpleName();
-        String cmd = simpleName.replaceFirst("Cmd", "");
-        return cmd.toLowerCase();
-    }
 }
