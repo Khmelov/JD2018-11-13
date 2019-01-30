@@ -28,6 +28,11 @@ public class RunnerMyDao {
         System.out.println("\n\n===============================================вся таблица USER=========================================");
         for (int i = 0; i < lU.size(); i++)
             System.out.println(lU.get(i));
+        String where = String.format(" WHERE password='%s' and login='%s' LIMIT 0,1", "vasya", "vasrtya");
+        List <Users> IIU = myDAOU.getAll(where);
+        System.out.println("USER SERCH:");
+        for (int i = 0; i < IIU.size(); i++)
+            System.out.println(IIU.get(i));
         System.out.println("========================================================================================================\n\n");
 
 
