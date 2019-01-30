@@ -1,4 +1,4 @@
-package by.it.denisova.project.java.Dao;
+package by.it.denisova.project.java.dao;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;

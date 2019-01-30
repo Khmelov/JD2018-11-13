@@ -1,8 +1,6 @@
-package by.it.denisova.project.java.Dao;
+package by.it.denisova.project.java.dao;
 
-import by.it.denisova.project.java.beans.Role;
-import by.it.denisova.project.java.beans.Test;
-import by.it.denisova.project.java.beans.User;
+import by.it.denisova.project.java.beans.*;
 
 import java.sql.SQLException;
 
@@ -57,10 +55,52 @@ public class Runner {
         }
 
         test = dao.test.read(test.getId());
-        System.out.println(test);
+        System.out.println("read" + test);
 
         if(dao.test.delete(test)) {
             System.out.println("test deleted" + test);
         }
+
+        System.out.println("-------------------QUESTION----------------------");
+        Question question = new Question();
+        question.setQuestion("some question");
+        question.setId_test(1);
+        if(dao.question.create(question)) {
+            System.out.println("Created " + question);
+        }
+        question.setQuestion("some question 22");
+
+        if(dao.question.update(question)) {
+            System.out.println("Updated " + question);
+        }
+
+        question = dao.question.read(question.getId());
+        System.out.println("read!!!" + question);
+        if(dao.question.delete(question)) {
+            System.out.println("Deleted " + question);
+        }
+
+        System.out.println("-------------------Answer----------------------");
+        Answer answer = new Answer();
+        answer.setAnswer("some question");
+        answer.setId_question(1);
+        answer.setStatus("right");
+        if(dao.answer.create(answer)) {
+            System.out.println("Created " + answer);
+        }
+        System.out.println(answer.getId());
+
+        answer = dao.answer.read( answer.getId());
+        System.out.println( answer);
+
+//        answer.setAnswer("wrong");
+//        if(dao.answer.update( answer)) {
+//            System.out.println("Updated " +  answer);
+//        }
+
+
+//        if(dao.answer.delete( answer)) {
+//            System.out.println("Deleted " +  answer);
+//        }
   }
 }

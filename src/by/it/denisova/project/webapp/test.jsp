@@ -3,11 +3,11 @@
 <body>
 <div class="container">
     <%@ include file="include/menu.htm" %>
-    <form class="form-horizontal"  action="do?command=CreateTest" method="POST">
+    <form class="form-horizontal"  action="do?command=Test" method="POST">
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Create Test00</legend>
+            <legend>Create Test</legend>
 
             <!-- Text input-->
             <div class="form-group">
