@@ -33,11 +33,12 @@ public class FrontController extends HttpServlet {
         Action next = null;
         try {
             next = action.cmd.execute(req);
+            String login = req.getParameter("login");
+            String password = req.getParameter("password");
         } catch (Exception e) {
             req.setAttribute("message", e.toString());
             toJsp(req, resp, Action.ERROR.getJsp());
         }
-
         if (next == null || next == action) {
             toJsp(req, resp, action.getJsp());
         } else resp.sendRedirect("do?command=" + next.toString().toLowerCase());

@@ -24,6 +24,7 @@ class CmdProfile implements Cmd {
         String where = String.format(" WHERE `users_id`='%d'", user.getId());
         List<Ad> ads = Dao.getDao().ad.getAll(where);
         req.setAttribute("ads", ads);
+
         return Action.PROFILE;
     }
 }
