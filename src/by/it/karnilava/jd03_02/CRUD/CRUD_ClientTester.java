@@ -27,7 +27,6 @@ public class CRUD_ClientTester {
 
         }
 
-
         if (clientCRUD.update(client)) {
             System.out.println("UPDATE: " + client);
             client = clientCRUD.read(client.getIdClient());
