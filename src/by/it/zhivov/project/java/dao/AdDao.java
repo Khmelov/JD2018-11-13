@@ -21,13 +21,17 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`color`," +
                         "`body`," +
                         "`year`," +
+                        "`engine`," +
+                        "`at`," +
+                        "`driveunit`," +
                         "`equipment`," +
                         "`mileage`," +
                         "`crashed`," +
                         "`price`," +
                         "`users_id`) " +
-                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%s','%d','%b','%f','%d')",
-                ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(), ad.getColor(), ad.getBody(), ad.getYear(), ad.getEquipment(),
+                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%f','%d','%s','%s','%d','%d','%f','%d')",
+                ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(), ad.getColor(), ad.getBody(),
+                ad.getYear(), ad.getEngine(), ad.getAt(), ad.getDriveunit(), ad.getEquipment(),
                 ad.getMillage(), ad.isCrashed(), ad.getPrice(), ad.getId_User());
         long id = Dao.executeCreateAndGetId(sqlCmd);
         ad.setId(id);
@@ -51,15 +55,18 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`color`='%s'," +
                         "`body`='%s'," +
                         "`year`='%d'," +
+                        "`engine`='%f'," +
+                        "`at`='%d'," +
+                        "`driveunit`='%s'," +
                         "`equipment`='%s'," +
                         "`mileage`='%d'," +
-                        "`crashed`='%b'," +
+                        "`crashed`='%d'," +
                         "`price`='%f'," +
                         "`users_id`='%d' " +
                         "WHERE `ads`.`id`=%d",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(),
-                ad.getColor(), ad.getBody(), ad.getYear(), ad.getEquipment(), ad.getMillage(),
-                ad.isCrashed(), ad.getPrice(), ad.getId_User(), ad.getId()
+                ad.getColor(), ad.getBody(), ad.getYear(), ad.getEngine(), ad.getAt(), ad.getDriveunit(),
+                ad.getEquipment(), ad.getMillage(), ad.isCrashed(), ad.getPrice(), ad.getId_User(), ad.getId()
         );
         return Dao.executeUpdate(sqlCmd);
     }
@@ -74,7 +81,7 @@ public class AdDao implements InterfaceDao<Ad> {
         List<Ad> result = new ArrayList<>();
         String sqlCmd = String.format(Locale.ENGLISH,
                 "SELECT * " +
-                "FROM `ads` %s", sqlSuffix);
+                        "FROM `ads` %s", sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sqlCmd);
@@ -87,12 +94,15 @@ public class AdDao implements InterfaceDao<Ad> {
                 String color = resultSet.getString("color");
                 String body = resultSet.getString("body");
                 int year = resultSet.getInt("year");
+                double engine = resultSet.getDouble("engine");
+                int at = resultSet.getInt("at");
+                String driveunit = resultSet.getString("driveunit");
                 String equipment = resultSet.getString("equipment");
                 int mileage = resultSet.getInt("mileage");
-                boolean crashed = resultSet.getBoolean("crashed");
+                int crashed = resultSet.getInt("crashed");
                 int price = resultSet.getInt("price");
                 long users_id = resultSet.getLong("users_id");
-                Ad ad = new Ad(id, title, description, brand, model, color, body, year, equipment, mileage, crashed, price, users_id);
+                Ad ad = new Ad(id, title, description, brand, model, color, body, year, engine, at, driveunit, equipment, mileage, crashed, price, users_id);
                 result.add(ad);
             }
             return result;

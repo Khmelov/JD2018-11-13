@@ -4,7 +4,7 @@
                       http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
          version="3.0"
          metadata-complete="true">
-    <display-name>Сервлет Controller</display-name>
+    <display-name>Servlet Controller</display-name>
     <!--
     Для любого сервлета нужно определить два тега servlet и servlet-mapping.
     Важно чтобы внутри каждого из этих тегов были теги servlet-name
@@ -14,8 +14,11 @@
         <servlet-name>FrontController</servlet-name>
         <servlet-class>by.it.mnovikov.project.java.controller.FrontController</servlet-class>
     </servlet>
+
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/do</url-pattern>
     </servlet-mapping>
+
+
 </web-app>
