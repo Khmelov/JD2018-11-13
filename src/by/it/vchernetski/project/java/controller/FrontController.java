@@ -3,13 +3,16 @@ package by.it.vchernetski.project.java.controller;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Base64;
 
 public class FrontController extends HttpServlet {
+    protected static HttpServletResponse response;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         process(req, resp);
@@ -30,10 +33,12 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        response=resp;
         Action action = Action.define(req);
         Action next = null;
         try {
             next = action.cmd.execute(req);
+
         } catch (Exception e) {
             req.setAttribute("message", e.toString());
             ServletContext servletContext = req.getServletContext();

@@ -1,3 +1,4 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <%@ include file="include/head.htm" %>
 <body>
@@ -8,7 +9,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Sign Up</legend>
+<legend>LogIn</legend>
 
 <!-- Text input-->
 <div class="form-group">
@@ -32,7 +33,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="signup"></label>
   <div class="col-md-4">
-    <button id="login" name="lohin" class="btn btn-success">Login</button>
+    <button id="login" name="login" class="btn btn-success">Login</button>
   </div>
 </div>
 </fieldset>
