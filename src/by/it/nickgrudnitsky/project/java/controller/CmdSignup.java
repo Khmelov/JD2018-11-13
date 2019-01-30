@@ -31,8 +31,11 @@ class CmdSignup extends Cmd {
                 if (myDao.viewer.create(viewer)) {
                     session.setAttribute("user", viewer);
                     Cookie passwordCookie = new Cookie("password", hasPassword);
+                    Cookie nicknameCookie = new Cookie("nickname", username);
+                    nicknameCookie.setMaxAge(60);
                     passwordCookie.setMaxAge(60);
                     resp.addCookie(passwordCookie);
+                    resp.addCookie(nicknameCookie);
                     return Action.PROFILE;
                 }
             } else {
@@ -41,8 +44,11 @@ class CmdSignup extends Cmd {
                 if (myDao.streamer.create(streamer)) {
                     session.setAttribute("user", streamer);
                     Cookie passwordCookie = new Cookie("password", hasPassword);
+                    Cookie nicknameCookie = new Cookie("nickname", username);
+                    nicknameCookie.setMaxAge(60);
                     passwordCookie.setMaxAge(60);
                     resp.addCookie(passwordCookie);
+                    resp.addCookie(nicknameCookie);
                     return Action.PROFILE;
                 }
             }
