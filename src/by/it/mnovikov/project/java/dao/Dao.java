@@ -23,7 +23,7 @@ public class Dao {
 
     private Dao() {
         role = new RoleDao();
-        user = new UserDao();
+        user = new UniversalDAO<>(new User(), "users");
         order = new UniversalDAO<>(new Order(), "orders");
         good = new UniversalDAO<>(new Good(), "goods");
         order_good = new UniversalDAO<>(new Order_Good(), "orders_goods");

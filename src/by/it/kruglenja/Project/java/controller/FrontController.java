@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class FrontController extends HttpServlet {
     @Override
@@ -26,17 +27,21 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         process(req, resp);
-
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Action action = ActionDefiner.definer(req);
-        Action next = action.cmd.execute(req);
+        Action action = Action.definer(req);
+        Action next = null;
+        try {
+            next = action.cmd.execute(req);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         if (next == null || next == action) {
             ServletContext servletContext = req.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.jsp);
+            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
             requestDispatcher.forward(req, resp);
         }
-        resp.sendRedirect("/do?command="+next.toString().toLowerCase());
+        resp.sendRedirect("do?command=" + next.toString().toLowerCase());
     }
 }
