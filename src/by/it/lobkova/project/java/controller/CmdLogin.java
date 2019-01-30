@@ -4,6 +4,7 @@ import by.it.lobkova.project.java.beans.User;
 import by.it.lobkova.project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 

@@ -11,6 +11,7 @@ enum Action {
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError());
 
+
     Cmd cmd;
 
     Action(Cmd cmdIndex) {
@@ -29,7 +30,6 @@ enum Action {
                 result = Action.valueOf(command.toUpperCase());
             }
             catch (IllegalArgumentException e){
-                //create our error
             }
         }
         return result;
