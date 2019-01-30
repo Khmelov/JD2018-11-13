@@ -11,11 +11,11 @@
                         <fieldset>
 
                         <!-- Form Name -->
-                        <legend>CreateUser</legend>
+                        <legend>Регистрация</legend>
 
                         <!-- Text input-->
                         <div class="form-group">
-                          <label class="col-md-8 control-label" for="login">login</label>
+                          <label class="col-md-8 control-label" for="login">Логин</label>
                           <div class="col-md-8">
                           <input id="login" name="login" type="text" placeholder="min6" class="form-control input-md" required="">
 
@@ -24,7 +24,7 @@
 
                         <!-- Text input-->
                         <div class="form-group">
-                          <label class="col-md-8 control-label" for="password">password</label>
+                          <label class="col-md-8 control-label" for="password">Пароль</label>
                           <div class="col-md-8">
                           <input id="password" name="password" type="text" placeholder="min6" class="form-control input-md" required="">
 
@@ -84,7 +84,7 @@
                     <div class="form-group">
                       <label class="col-md-8 control-label" for="createC"></label>
                       <div class="col-md-8">
-                        <button id="createC" name="createC" class="btn btn-success">Create</button>
+                        <button id="createC" name="createC" class="btn btn-success">Зарегистрироваться</button>
                       </div>
                     </div>
 

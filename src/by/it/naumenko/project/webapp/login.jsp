@@ -5,7 +5,7 @@
 <div class="container">
 <%@ include file="include/menu.htm" %>
   <div class="FormLogin">
-    <form class="form-horizontal">
+    <form class="form-horizontal"action ="do?command=login" method="POST">
     <fieldset>
 
     <!-- Form Name -->

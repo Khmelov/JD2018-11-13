@@ -13,22 +13,34 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ResetDB {
+
+    private static final String xammp = "/tomcat/webapps/naumenko";
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String portDB = "jdbc:mysql://127.0.0.1:2016/";
-    private final static String CREATE_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/create/create roles.sql";
-    private final static String CREATE_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/create/create cake.sql";
-    private final static String CREATE_TABLE_USERS =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/create/create users1.sql";
-    private final static String CREATE_TABLE_ZAKAZ =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/create/create zakaz.sql";
-    private final static String INSERT_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/insert/insert cake.sql";
-    private final static String INSERT_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/insert/insert roles.sql";
-    private final static String INSERT_TABLE_USERS =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/insert/insert users.sql";
-    private final static String INSERT_TABLE_ZAKAZ =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/insert/insert zakaz.sql";
+    private final static String CREATE_TABLE_ROLES = System.getProperty("user.dir") + xammp + "/sql/create/create roles.sql";
+    private final static String CREATE_TABLE_CAKE = System.getProperty("user.dir") + xammp + "/sql/create/create cake.sql";
+    private final static String CREATE_TABLE_USERS = System.getProperty("user.dir") + xammp + "/sql/create/create users1.sql";
+    private final static String CREATE_TABLE_ZAKAZ = System.getProperty("user.dir") + xammp + "/sql/create/create zakaz.sql";
+    private final static String INSERT_TABLE_CAKE = System.getProperty("user.dir") + xammp + "/sql/insert/insert cake.sql";
+    private final static String INSERT_TABLE_ROLES = System.getProperty("user.dir") + xammp + "/sql/insert/insert roles.sql";
+    private final static String INSERT_TABLE_USERS = System.getProperty("user.dir") + xammp + "/sql/insert/insert users.sql";
+    private final static String INSERT_TABLE_ZAKAZ = System.getProperty("user.dir") + xammp + "/sql/insert/insert zakaz.sql";
 
 
-        //считать содержимое запроса из файла в строку
+    static {
+        try {
+            Class.forName(driver);
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            //System.err.println("драйвер не найден");
+        }
+
+    }
+
+    //считать содержимое запроса из файла в строку
     static String getSQLFile(String filename) throws IOException {
         FileReader fin = new FileReader(filename);
-        StringBuilder sb=new StringBuilder();
+        StringBuilder sb = new StringBuilder();
         int c;
         while ((c = fin.read()) != -1)
             sb.append((char) c);
@@ -37,9 +49,9 @@ public class ResetDB {
 
     // подсчет сколько строк в insert файле
     static int getSQLFileInsertCount(String filename) throws IOException {
-        List<String> insertLIst=new ArrayList<>();
+        List<String> insertLIst = new ArrayList<>();
 
-        BufferedReader  reader = new BufferedReader(new FileReader(filename));
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
         String line;
         while ((line = reader.readLine()) != null) {
             insertLIst.add(line);
@@ -49,17 +61,19 @@ public class ResetDB {
 
     //запись insert файла построчно в list
     static String getSQLFileInsert(String filename, int i) throws IOException {
-        List<String> insertLIst=new ArrayList<>();
+        List<String> insertLIst = new ArrayList<>();
 
-        BufferedReader  reader = new BufferedReader(new FileReader(filename));
+        BufferedReader reader = new BufferedReader(new FileReader(filename));
         String line;
         while ((line = reader.readLine()) != null) {
             insertLIst.add(line);
         }
         return insertLIst.get(i);
     }
-// зоздание БД
-public void createDB() {
+
+    // зоздание БД
+    public void createDB() {
+
         try {
             Class.forName(driver);
         } catch (ClassNotFoundException e) {
@@ -80,28 +94,28 @@ public void createDB() {
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ZAKAZ));
 
             int count = getSQLFileInsertCount(INSERT_TABLE_CAKE);
-            for (int i = 0; i <count ; i++) {
-                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_CAKE,i));
+            for (int i = 0; i < count; i++) {
+                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_CAKE, i));
             }
 
             count = getSQLFileInsertCount(INSERT_TABLE_ROLES);
-            for (int i = 0; i <count ; i++) {
-                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ROLES,i));
+            for (int i = 0; i < count; i++) {
+                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ROLES, i));
             }
 
             count = getSQLFileInsertCount(INSERT_TABLE_USERS);
-            for (int i = 0; i <count ; i++) {
-                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_USERS,i));
+            for (int i = 0; i < count; i++) {
+                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_USERS, i));
             }
 
             count = getSQLFileInsertCount(INSERT_TABLE_ZAKAZ);
-            for (int i = 0; i <count ; i++) {
-                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ZAKAZ,i));
+            for (int i = 0; i < count; i++) {
+                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ZAKAZ, i));
             }
 
         } catch (SQLException | IOException e) {
             e.printStackTrace();
-             System.err.println("драйвер не найден");
+            System.err.println("драйвер не найден");
         }
     }
 }

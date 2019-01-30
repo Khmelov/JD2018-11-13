@@ -11,13 +11,14 @@ import java.sql.Statement;
 
 public class DropDB {
 
+    private static final String xammp = "/tomcat/webapps/naumenko";
     private static final String driver = "com.mysql.jdbc.Driver";
     private static final String portDB = "jdbc:mysql://127.0.0.1:2016/";
 
-    private final static String DROP_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/drop/drop cake.sql";
-    private final static String DROP_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/drop/drop roles.sql";
-    private final static String DROP_TABLE_USERS=System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/drop/drop users.sql";
-    private final static String DROP_TABLE_ZAKAZ=System.getProperty("user.dir")+"/src/by/it/naumenko/project/java/dao/sql/drop/drop zakaz.sql";
+    private final static String DROP_TABLE_CAKE =System.getProperty("user.dir")+ xammp + "/sql/drop/drop cake.sql";
+    private final static String DROP_TABLE_ROLES =System.getProperty("user.dir")+ xammp + "/sql/drop/drop roles.sql";
+    private final static String DROP_TABLE_USERS=System.getProperty("user.dir")+ xammp + "/sql/drop/drop users.sql";
+    private final static String DROP_TABLE_ZAKAZ=System.getProperty("user.dir")+ xammp + "/sql/drop/drop zakaz.sql";
 
     static String getSQLFile(String filename) throws IOException {
         FileReader fin = new FileReader(filename);

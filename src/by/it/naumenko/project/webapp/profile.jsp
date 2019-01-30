@@ -5,7 +5,7 @@
     <div class="container">
         <%@ include file="include/menu.htm" %>
         <p><img src="image/error.png" width="100" height="100" alt="ERROR"> Profile ${message}</p>
-        <p>Profile User:<br> ${user}</p>
+        <p><br> ${user}</p>
 
         <!-- Button -->
             <div class="form-group">

@@ -11,7 +11,7 @@
     <fieldset>
 
     <!-- Form Name -->
-    <legend>registration</legend>
+    <legend>Регистрация</legend>
 
     <!-- Text input-->
     <div class="form-group">
@@ -33,7 +33,7 @@
 
     <!-- Password input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="passwordinput">password</label>
+      <label class="col-md-4 control-label" for="passwordinput">Пароль</label>
       <div class="col-md-4">
         <input id="password" name="password" value ="password" type="password" placeholder="placeholder" class="form-control input-md">
 
