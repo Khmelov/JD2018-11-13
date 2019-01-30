@@ -110,7 +110,7 @@ class Connect {
                     "VALUES (DEFAULT, 'john', 'john1', 'johndoe@yahoo.com', 'John Doe', '212-564-5555', '444 W. 27th Street, 4th Floor, New York, NY 10001', 2);");
             //added user
             statement.executeUpdate("INSERT INTO `skarpovich`.`users` (`id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `roles_id`) " +
-                    "VALUES (DEFAULT, 'billy', 'john1', 'billgates@yahoo.com', 'Bill Gates', '111-555-7777', 'Best street 10, 4th Floor, Los Angeles, LA 23001', 2);");
+                    "VALUES (DEFAULT, 'john2', 'john1', 'billgates@yahoo.com', 'Bill Gates', '111-555-7777', 'Best street 10, 4th Floor, Los Angeles, LA 23001', 2);");
 
             //added item
             statement.executeUpdate("INSERT INTO `skarpovich`.`items` (`id`, `title`, `floors`, `square`, `materials`, `price`) " +
@@ -128,7 +128,7 @@ class Connect {
                     "VALUES (DEFAULT, '2019-01-20', '11:00:00', 2, 2);");
             // added order
             statement.executeUpdate("INSERT INTO `skarpovich`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) " +
-                    "VALUES (DEFAULT, '2019-01-20', '05:04:04', 2, 3);");
+                    "VALUES (DEFAULT, '2019-01-20', '05:04:04', 3, 3);");
 
 
         } catch (SQLException e) {

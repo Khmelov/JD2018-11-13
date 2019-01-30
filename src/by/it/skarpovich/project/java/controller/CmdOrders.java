@@ -14,7 +14,7 @@ public class CmdOrders implements Cmd {
         User currentUsername = (User) req.getSession().getAttribute("user");
         if (currentUsername != null) {
             List<Order> orders;
-            //int currentUsername_Id=currentUsername.getId();
+
             if (currentUsername.getRoles_id() == 2) {
                 String sqlSuffix = "WHERE users_id=" + currentUsername.getId();
                 orders = Dao.getDao().order.getAll(sqlSuffix);
