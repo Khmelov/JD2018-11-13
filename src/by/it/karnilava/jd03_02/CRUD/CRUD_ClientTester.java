@@ -24,7 +24,6 @@ public class CRUD_ClientTester {
             client.setFirstName("Misha");
             client.setLastName("Volkoff");
             client.setID_passport("3210119E011PB1");
-
         }
 
         if (clientCRUD.update(client)) {
