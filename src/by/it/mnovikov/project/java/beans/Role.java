@@ -2,22 +2,22 @@ package by.it.mnovikov.project.java.beans;
 
 public class Role {
 
-    private long id;
+    private int id;
     private String role;
 
     public Role() {
     }
 
-    public Role(long id, String role) {
+    public Role(int id, String role) {
         this.id = id;
         this.role = role;
     }
 
-    public long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -30,10 +30,25 @@ public class Role {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Role role1 = (Role) o;
+
+        if (id != role1.id) return false;
+        return role != null ? role.equals(role1.role) : role1.role == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id;
+        result = 31 * result + (role != null ? role.hashCode() : 0);
+        return result;
+    }
+
+    @Override
     public String toString() {
-        return "Role{" +
-                "id=" + id +
-                ", role='" + role + '\'' +
-                '}';
+        return "Role{" + "id=" + id + ", role='" + role + '\'' + '}';
     }
 }

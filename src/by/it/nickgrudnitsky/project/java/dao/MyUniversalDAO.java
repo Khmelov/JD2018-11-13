@@ -14,7 +14,7 @@ public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
     private String table;
     private Field[] fields;
 
-    public MyUniversalDAO(Type bean) {
+     MyUniversalDAO(Type bean) {
         this.bean = bean;
         table = bean.getClass().getSimpleName().toLowerCase() + "s";
         fields = bean.getClass().getDeclaredFields();
@@ -31,6 +31,7 @@ public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
                 field.setAccessible(true);
                 dbsField.append(delimeter).append(field.getName());
                 values.append(delimeter).append("'").append(field.get(bean)).append("'");
+                delimeter = ",";
             }
         } catch (IllegalAccessException e) {
             e.printStackTrace();
@@ -76,7 +77,7 @@ public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
                 sql.append(delimeter).append(field.getName()).append("='").append(field.get(bean)).append("'");
                 delimeter = ", ";
             }
-            sql.append(" WHERE " + table + ".id=" + fields[0].get(bean) + ";");
+            sql.append(" WHERE ").append(table).append(".id=").append(fields[0].get(bean)).append(";");
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }
@@ -111,6 +112,7 @@ public class MyUniversalDAO<Type> implements InterfaceDao<Type> {
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
+                @SuppressWarnings("true")
                 Type type = (Type) bean.getClass().newInstance();
                 for (int i = 0; i < fields.length; i++) {
                     Field field = fields[i];

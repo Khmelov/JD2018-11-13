@@ -1,10 +1,17 @@
 package by.it.lobkova.project.java.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import by.it.lobkova.project.java.beans.Goal;
+import by.it.lobkova.project.java.dao.Dao;
 
-class CmdIndex extends Cmd{
+import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
+import java.util.List;
+
+class CmdIndex implements Cmd{
     @Override
-    Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest req) throws SQLException {
+        List<Goal> goals = Dao.getDao().goal.getAll();
+        req.setAttribute("goals", goals );
         return null;
     }
 }
