@@ -17,9 +17,7 @@ class CmdSignup extends Cmd {
         if (Form.isPost(req)) {
             String username = Form.getString(req, "username", "[A-Za-z0-9А-Яа-я]+");
             String password = Form.getString(req, "password", "[A-Za-z0-9*$%#]+");
-            Base64.Encoder encoder = Base64.getEncoder();
-            byte[] encode = encoder.encode(password.getBytes());
-            String hasPassword = new String(encode);
+            String hasPassword = Util.enCode(password);
             String email = Form.getString(req, "email", "[A-Za-z0-9]+@[A-Za-z0-9]+.[A-Za-z0-9]+");
             String roleString = req.getParameter("role");
             long role = Long.parseLong(roleString);
@@ -29,6 +27,8 @@ class CmdSignup extends Cmd {
                 Viewer viewer = new Viewer(email, hasPassword, username, role);
                 MyDao myDao = MyDao.getDao();
                 if (myDao.viewer.create(viewer)) {
+                    String decodePassword = Util.deCode(hasPassword);
+                    viewer.setPassword(decodePassword);
                     session.setAttribute("user", viewer);
                     Cookie passwordCookie = new Cookie("password", hasPassword);
                     Cookie nicknameCookie = new Cookie("nickname", username);
@@ -42,6 +42,8 @@ class CmdSignup extends Cmd {
                 Streamer streamer = new Streamer(email, hasPassword, username, role);
                 MyDao myDao = MyDao.getDao();
                 if (myDao.streamer.create(streamer)) {
+                    String decodePassword = Util.deCode(hasPassword);
+                    streamer.setPassword(decodePassword);
                     session.setAttribute("user", streamer);
                     Cookie passwordCookie = new Cookie("password", hasPassword);
                     Cookie nicknameCookie = new Cookie("nickname", username);
