@@ -1,2 +1,0 @@
-DROP TABLE `naumenko`.`roles`
-

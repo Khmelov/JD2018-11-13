@@ -16,7 +16,7 @@ class CommandLogin extends Command {
         if (Form.isPost(request)) {
             String login = Form.getString(request, "login");
             String password = Form.getString(request, "password");
-            String where = String.format(" WHERE password = '%s' and login='%s' LIMIT 0,1", Util.hashMD5(password), login);
+            String where = String.format(" WHERE hashpas = '%s' and login='%s' LIMIT 0,1", Util.hashMD5(password), login);
             MyDAO<Users> myDAO = new MyDAO<>(new Users(), "users");
             List<Users> users = myDAO.getAll(where);
             System.out.println(where);

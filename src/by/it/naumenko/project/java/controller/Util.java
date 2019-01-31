@@ -52,7 +52,7 @@ public class Util {
                     cookie = c;
                     log = cookie.getValue();
                     UC = true;
-                    System.out.printf("кука %s найдена value=%s", userCookie, cookie.getValue());
+                    //System.out.printf("кука %s найдена value=%s", userCookie, cookie.getValue());
                 }
             }
         }
@@ -65,12 +65,12 @@ public class Util {
                     cookie = c;
                     pasw = cookie.getValue();
                     PC = true;
-                    System.out.printf("кука %s найдена value=%s", passwordCookie, cookie.getValue());
+                    //System.out.printf("кука %s найдена value=%s", passwordCookie, cookie.getValue());
                 }
             }
         }
         if (UC && PC) {
-            String where = String.format(" WHERE password = '%s' and login='%s' LIMIT 0,1", pasw, log);
+            String where = String.format(" WHERE hashpas = '%s' and login='%s' LIMIT 0,1", pasw, log);
             MyDAO<Users> myDAO = new MyDAO<>(new Users(), "users");
             List<Users> users = myDAO.getAll(where);
             System.out.println(where);

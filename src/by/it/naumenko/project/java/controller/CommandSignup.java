@@ -20,7 +20,7 @@ class CommandSignup extends Command {
             String login = Form.getString(request,"login");
             String password = Form.getString(request,"password");
             String email = Form.getString(request,"email");
-            Users user = new Users(0,login,Util.hashMD5(password),email,2);
+            Users user = new Users(0,login,password,email,Util.hashMD5(password),2);
 //            Dao dao = Dao.getDao();
             MyDAO<Users> dao = new MyDAO<>(new Users(),"users");
             if(dao.create(user)) {

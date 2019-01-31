@@ -3,6 +3,7 @@ CREATE TABLE IF NOT EXISTS `naumenko`.`users` (
   `login` VARCHAR(100) NULL,
   `password` VARCHAR(45) NULL,
   `email` VARCHAR(100) NULL,
+  `hashpas` VARCHAR(100) NULL,
   `id_role` INT NOT NULL,
   PRIMARY KEY (`id_user`),
   INDEX `fk_users_roles_idx` (`id_role` ASC),

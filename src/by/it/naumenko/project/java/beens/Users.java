@@ -5,17 +5,20 @@ public class Users {
     private String login;
     private String password;
     private String email;
+    private String hashpas;
     private long id_role;
 
     public Users(long id_user,
                  String login,
                  String password,
                  String email,
+                 String hashpas,
                  long id_roles) {
         this.id_user = id_user;
         this.login = login;
         this.password = password;
         this.email = email;
+        this.hashpas = hashpas;
         this.id_role = id_roles;
     }
 
@@ -26,8 +29,17 @@ public class Users {
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", hashpasw='" + hashpas + '\'' +
                 ", id_roles=" + id_role +
                 '}';
+    }
+
+    public void setHashpas(String hashpas) {
+        this.hashpas = hashpas;
+    }
+
+    public String getHashpas() {
+        return hashpas;
     }
 
     public void setId_user(long id_user) {

@@ -1,6 +1,6 @@
 package by.it.naumenko.project.java.dao;
 
-import by.it.naumenko.project.java.beens.Users ;
+import by.it.naumenko.project.java.beens.Users;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -68,8 +68,9 @@ class UserDAO implements InterfaceDao<Users> {
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
+                String hashpas = resultSet.getString("hashpas");
                 long id_roles = resultSet.getLong("id_role");
-                Users users = new Users(id, login, password, email, id_roles);
+                Users users = new Users(id, login, password, email, hashpas, id_roles);
                 result.add(users);
             }
             return result;
@@ -92,8 +93,9 @@ class UserDAO implements InterfaceDao<Users> {
                 String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
+                String hashpas = resultSet.getString("hashpas");
                 long id_roles = resultSet.getLong("id_role");
-                Users users = new Users(id, login, password, email, id_roles);
+                Users users = new Users(id, login, password, email,hashpas, id_roles);
                 AllZap.add(users);
             }
             return AllZap;
