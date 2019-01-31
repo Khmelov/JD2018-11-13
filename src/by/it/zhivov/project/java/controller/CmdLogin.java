@@ -4,6 +4,7 @@ import by.it.zhivov.project.java.beans.User;
 import by.it.zhivov.project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -17,6 +18,7 @@ public class CmdLogin implements Cmd {
             List<User> users = Dao.getDao().user.getAll(where);
             if (users.size() == 1) {
                 User user = users.get(0);
+                HttpSession session = req.getSession();
                 req.getSession().setAttribute("user", user);
                 return Action.PROFILE;
             }
