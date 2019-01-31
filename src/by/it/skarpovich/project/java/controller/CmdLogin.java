@@ -1,9 +1,7 @@
 package by.it.skarpovich.project.java.controller;
 
-
 import by.it.skarpovich.project.java.beans.User;
 import by.it.skarpovich.project.java.dao.Dao;
-
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
@@ -19,6 +17,10 @@ class CmdLogin implements Cmd {
             if (users.size() == 1) {
                 User user = users.get(0);
                 req.getSession().setAttribute("user", user);
+
+                req.getSession().setAttribute("username", username);
+                req.getSession().setAttribute("password", password);
+                req.getSession().setMaxInactiveInterval(30);
                 return Action.PROFILE;
             }
         }
