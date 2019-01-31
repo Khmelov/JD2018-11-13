@@ -10,10 +10,12 @@
             <a class="nav-item nav-link" href="do?command=Reset">Reset</a>
             <a class="nav-item nav-link" href="do?command=SignUp">SignUp</a>
             <a class="nav-item nav-link" href="do?command=Login">Login</a>
+            <c:if test="${user!=null}">
             <a class="nav-item nav-link" href="do?command=Profile">Profile</a>
             <a class="nav-item nav-link" href="do?command=Basket">Basket</a>
             <a class="nav-item nav-link" href="do?command=Goods">Goods</a>
             <a class="nav-item nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            </c:if>
         </div>
     </div>
 </nav>
