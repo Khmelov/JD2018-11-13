@@ -16,6 +16,7 @@ public class OrderDao implements InterfaceDao<Order> {
                         + " VALUES ('%d', '%s', '%.2f', '%d', '%d')",
                 order.getQuanity(), order.getDeliveryTime(), order.getTotalPrice(),
                 order.getSparePart_id(), order.getUsers_id());
+        System.out.println(sql);
         long id = Dao.executeCrate(sql);
         order.setId(id);
         return (id > 0);
@@ -47,7 +48,7 @@ public class OrderDao implements InterfaceDao<Order> {
     @Override
     public List<Order> getAll(String sqlSuffix) throws SQLException {
         List<Order> sp = new ArrayList<>();
-        String sql = String.format("SELECT * FROM  'order' %s", sqlSuffix);
+        String sql = String.format("SELECT * FROM  `order` %s", sqlSuffix);
         System.out.println(sql);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {

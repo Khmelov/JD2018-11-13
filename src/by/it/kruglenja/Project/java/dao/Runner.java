@@ -46,7 +46,6 @@ public class Runner {
         System.out.println("\n" + "+-+-+-+-+-+-+-+Spareparts dao+-+-+-+-+-+-+-+");
 
 
-
         spareparts.setModel("Opel");
         spareparts.setCategory("engune");
         spareparts.setName("coils");
@@ -107,14 +106,13 @@ public class Runner {
             dao.order.read(order.getId());
         }
         System.out.println("<_USER GETALL_>");
-        List<Order> allo;
-        allo = dao.order.getAll();
+        List<Order> allo = dao.order.getAll("WHERE `users_id`='2'");
         for (Order s : allo) {
             System.out.println(s);
         }
 
-        if (dao.order.delete(order)) {
-            System.out.println("order -------->" + order.getQuanity() + "--------> deleted");
-        }
+//        if (dao.order.delete(order)) {
+//            System.out.println("order -------->" + order.getQuanity() + "--------> deleted");
+//        }
     }
 }

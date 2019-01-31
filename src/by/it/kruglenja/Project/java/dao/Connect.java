@@ -105,8 +105,12 @@ class Connect {
             statement.executeUpdate("INSERT INTO `kruglenja`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');");
             statement.executeUpdate("INSERT INTO `kruglenja`.`users` (`id`, `login`, `password`, `email`, `phone_number`, `roles_id`) VALUES (DEFAULT, 'admin', 'admin', 'admin@admin', '+9849871891789', 1);");
             statement.executeUpdate("INSERT INTO `kruglenja`.`users` (`id`, `login`, `password`, `email`, `phone_number`, `roles_id`) VALUES (DEFAULT, 'user', 'user', 'user@user', '+9849871891789', 2);");
-            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 12, 'Послезавтра', 10.24, 1, 2);");
-            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 12, 'Послезавтра', 4.44, 2, 2);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 3, 'testTimeа', 13.23, 1, 1);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 3, 'testTimeа', 3.43, 2, 1);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 12, 'testTimeа', 4.44, 2, 1);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 12, 'testTimeа', 4.44, 1, 2);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 4, 'testTimeа', 4.44, 1, 2);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`) VALUES (DEFAULT, 4, 'testTimeа', 4.44, 2, 2);");
             System.out.println("DB created");
         } catch (SQLException e) {
             e.printStackTrace();

@@ -11,7 +11,8 @@ public enum Action {
     LOGOUT( new CmdLogout()),
     ORDER(new CmdOrder()),
     ERROR(new CmdError()),
-    PROFILE(new CmdProfile());
+    PROFILE(new CmdProfile()),
+    FILLCATALOG(new CmdFillCatalog());
 
 
     Cmd cmd;

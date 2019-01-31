@@ -10,6 +10,9 @@ import java.sql.SQLException;
 public class CmdProfile implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException {
+        if (!Util.checkUser(req)){
+            return Action.LOGIN;
+        }
         if ( req.getMethod().equalsIgnoreCase("post")) {
             String phone_number = req.getParameter("pNumber");
             Dao dao = Dao.getDao();
