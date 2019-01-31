@@ -3,9 +3,6 @@ package by.it.mnovikov.project.java.filters;
 import javax.servlet.*;
 import java.io.IOException;
 
-/**
- * Created by user on 29.01.2019.
- */
 public class FilterEncoding implements Filter {
 
     private String encode = null;
