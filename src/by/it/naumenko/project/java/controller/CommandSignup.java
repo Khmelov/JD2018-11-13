@@ -5,7 +5,6 @@ import by.it.naumenko.project.java.beens.Users;
 import by.it.naumenko.project.java.dao.MyDAO;
 
 import javax.security.auth.login.LoginException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.security.NoSuchAlgorithmException;
@@ -25,14 +24,7 @@ class CommandSignup extends Command {
 //            Dao dao = Dao.getDao();
             MyDAO<Users> dao = new MyDAO<>(new Users(),"users");
             if(dao.create(user)) {
-                Cookie cookieLogin = new Cookie("login",login);
-                Cookie cookiePassword = new Cookie("password",Util.hashMD5(password));
-
-                cookieLogin.setMaxAge(60*60*24*30);
-                cookiePassword.setMaxAge(60*60*24*30);
-
-                response.addCookie(cookieLogin);
-                response.addCookie(cookiePassword);
+               Util.createCookie(response,login,password);
                 //request.getSession().setAttribute("user",user);
                 return Actions.PROFILE;
             }

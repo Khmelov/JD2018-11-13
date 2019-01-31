@@ -12,8 +12,9 @@ public class CommandLogOut extends Command {
 
         if (Form.isPost(request)) {
             if (Form.getString(request, "logout") != null) {
-                request.getSession().invalidate();
-                return Actions.LOGIN;
+
+               Util.deleteCookie(request,response);
+               return Actions.LOGIN;
             }
         }
         return Actions.PROFILE;
