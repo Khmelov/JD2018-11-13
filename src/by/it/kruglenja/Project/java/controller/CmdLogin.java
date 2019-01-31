@@ -9,10 +9,10 @@ import java.util.List;
 
 public class CmdLogin implements Cmd {
     @Override
-    public Action execute(HttpServletRequest req) throws SQLException {
-        if (req.getMethod().equalsIgnoreCase("post")) {
-            String login = req.getParameter("login");
-            String password = req.getParameter("password");
+    public Action execute(HttpServletRequest req) throws SQLException, SiteExpression {
+        if (Form.isPost(req)) {
+            String login = Form.getString(req,"login");
+            String password = Form.getString(req,"password", "[a-zA-Z0-9_-]{6,}");
 
             String sql = String.format(" WHERE login='%s' AND password='%s' LIMIT 0,1", login, password);
             List<User> userDb = Dao.getDao().user.getAll(sql);

@@ -34,14 +34,20 @@ public class FrontController extends HttpServlet {
         Action next = null;
         try {
             next = action.cmd.execute(req);
-        } catch (SQLException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+            req.setAttribute("message", e.toString());
+            getJsp(req, resp, Action.ERROR);
+
         }
         if (next == null || next == action) {
-            ServletContext servletContext = req.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
-            requestDispatcher.forward(req, resp);
+            getJsp(req, resp, action);
         }
         resp.sendRedirect("do?command=" + next.toString().toLowerCase());
+    }
+
+    private void getJsp(HttpServletRequest req, HttpServletResponse resp, Action error) throws ServletException, IOException {
+        ServletContext servletContext = req.getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(error.getJsp());
+        requestDispatcher.forward(req, resp);
     }
 }

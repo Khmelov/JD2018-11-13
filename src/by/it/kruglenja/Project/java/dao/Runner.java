@@ -14,9 +14,10 @@ public class Runner {
     public static void main(String[] args) throws SQLException {
         Locale.setDefault(new Locale("en", "US"));
         //User dao
-        User user = new User();
         Dao dao = Dao.getDao();
+        User user = new User();
         Spareparts spareparts = new Spareparts();
+        Order order = new Order();
 
         user.setLogin("RTX");
         user.setPassword("2012");
@@ -37,7 +38,7 @@ public class Runner {
 //            System.out.println("user -------->" + user.getLogin() + "--------> deleted");
 //        }
         System.out.println("<_USER GETALL_>");
-        List<User> all1 = new ArrayList<>();
+        List<User> all1;
         all1 = dao.user.getAll();
         for (User s : all1) {
             System.out.println(s);
@@ -83,12 +84,37 @@ public class Runner {
             roles = dao.role.read(roles.getId());
             System.out.println("read -------->" + roles);
         }
-        List<Order> all12 = new ArrayList<>();
-        all12 = dao.order.getAll();
-        for (Order f : all12) {
-            System.out.println(f);
+//        List<Order> all12;
+//        all12 = dao.order.getAll();
+//        for (Order f : all12) {
+//            System.out.println(f);
+//        }
+        System.out.println("\n" + "+-+-+-+-+-+-+-+Order dao+-+-+-+-+-+-+-+");
+
+/////////////////////////////////////
+        order.setQuanity(555);
+        order.setDeliveryTime("After tommorow");
+        order.setTotalPrice(222.599);
+        order.setSparePart_id(1);
+        order.setUsers_id(2);
+        if (dao.order.create(order)) {
+
+            System.out.println("create -------->" + order);
+            order.setTotalPrice(228.322);
+            System.out.println("change price ---222.599----->228.322" + order);
+        }
+        if (dao.order.update(order)) {
+            dao.order.read(order.getId());
+        }
+        System.out.println("<_USER GETALL_>");
+        List<Order> allo;
+        allo = dao.order.getAll();
+        for (Order s : allo) {
+            System.out.println(s);
         }
 
-
+        if (dao.order.delete(order)) {
+            System.out.println("order -------->" + order.getQuanity() + "--------> deleted");
+        }
     }
 }

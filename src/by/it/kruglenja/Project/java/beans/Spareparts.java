@@ -8,11 +8,12 @@ public class Spareparts {
     private String serial_number;
     private double weight;
     private double price;
+    private int storageQuanity;
 
     public Spareparts() {
     }
 
-    public Spareparts(long id, String model, String category, String name, String serial_number, double weight, double price) {
+    public Spareparts(long id, String model, String category, String name, String serial_number, double weight, double price, int storageQuanity) {
         this.id = id;
         this.model = model;
         this.category = category;
@@ -20,7 +21,12 @@ public class Spareparts {
         this.serial_number = serial_number;
         this.weight = weight;
         this.price = price;
+        this.storageQuanity = storageQuanity;
     }
+
+    public int getStorageQuanity() { return storageQuanity; }
+
+    public void setStorageQuanity(int storageQuanity) { this.storageQuanity = storageQuanity; }
 
     public long getId() { return id; }
 
@@ -60,6 +66,7 @@ public class Spareparts {
                 ", serial_number='" + serial_number + '\'' +
                 ", weight=" + weight +
                 ", price=" + price +
+                ", storageQuanity=" + storageQuanity +
                 '}';
     }
 }
