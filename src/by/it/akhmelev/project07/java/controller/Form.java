@@ -31,6 +31,11 @@ class Form {
         return Integer.parseInt(str);
     }
 
+    static long getLong(HttpServletRequest req, String name){
+        String str = req.getParameter(name);
+        return Long.parseLong(str);
+    }
+
 
 
 }
