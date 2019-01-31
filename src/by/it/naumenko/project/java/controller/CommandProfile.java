@@ -1,19 +1,16 @@
 package by.it.naumenko.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
 public class CommandProfile extends Command {
 
     @Override
-    Actions exequit(HttpServletRequest req) throws SQLException, SiteException {
+    Actions exequit(HttpServletRequest req, HttpServletResponse response) throws SQLException, SiteException {
 
-//        HttpSession session = req.getSession(false);
-//        if (session!=null){
-//            Object oUser = session.getAttribute("user");
-//            if (oUser!=null)
-//                Users user = (Users) oUser;
-//        }
+        if (!Util.checkUser(req))
+            return Actions.LOGIN;
 
         if(Form.isPost(req)) {
             if (Form.getString(req, "logout") != null) {

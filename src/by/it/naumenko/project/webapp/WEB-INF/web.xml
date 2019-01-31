@@ -10,6 +10,10 @@
     Важно чтобы внутри каждого из этих тегов были теги servlet-name
     и имя сервлета в них было одинаковым!!! Здесь это имя HelloWorld
     -->
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
+
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>by.it.naumenko.project.java.controller.FrontController</servlet-class>
@@ -18,23 +22,24 @@
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/do</url-pattern>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
 
-    <!--<filter>-->
-        <!--<filter-name>FilterEncoding</filter-name>-->
-        <!--<filter-class>by.it.naumenko.project.java.filter.DaoFilter</filter-class>-->
-        <!--<init-param>-->
-            <!--<param-name>encode</param-name>-->
-            <!--<param-value>UTF-8</param-value>-->
-        <!--</init-param>-->
+    <filter>
+        <filter-name>DaoFilter</filter-name>
+        <filter-class>by.it.naumenko.project.java.filter.DaoFilter</filter-class>
+        <init-param>
+            <param-name>daofilter</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
 
-    <!--</filter>-->
+    </filter>
 
-    <!--<filter-mapping>-->
-        <!--<filter-name>FilterEncoding</filter-name>-->
-        <!--<url-pattern>/*</url-pattern>-->
-    <!--</filter-mapping>-->
+    <filter-mapping>
+        <filter-name>DaoFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
     <!--
     Подключим точно так же второй сервлета-контроллер с именем FrontControllerServlet
     -->

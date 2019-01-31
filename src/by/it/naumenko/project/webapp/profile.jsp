@@ -7,13 +7,11 @@
         <p><img src="image/error.png" width="100" height="100" alt="ERROR"> Profile ${message}</p>
         <p><br> ${user}</p>
 
-        <!-- Button -->
-            <div class="form-group">
-              <label class="col-md-4 control-label" for="login"></label>
-              <div class="col-md-4">
-                <button id="logout" name="logout" class="btn btn-success">LogOUT</button>
-              </div>
-            </div>
+      <!--   Button
+             <form class="form-inline my-2 my-lg-0" action ="do?command=profile" method="POST">
+                <button class="btn btn-outline-success my-2 my-sm-0" id="logout" name="logout" type="submit">Выход</button>
+             </form>
+             -->
     </div>
 </body>
 </html>

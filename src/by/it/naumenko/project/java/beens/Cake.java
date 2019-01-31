@@ -100,13 +100,13 @@ public class Cake {
     public String toString() {
         return "Cake{" +
                 "id_cake=" + id_cake +
-                ", name_cake='" + name_cake + '\'' +
-                ", size_cake=" + size_cake +
-                ", weight_cake=" + weight_cake +
-                ", bescuit='" + bescuit + '\'' +
-                ", decoration='" + decoration + '\'' +
-                ", cream='" + cream + '\'' +
-                ", price_cake=" + price_cake +
-                '}';
+                ", название торта='" + name_cake + '\'' +
+                ", размер торта=" + size_cake +
+                ", вес торта=" + weight_cake +
+                ", бисквит='" + bescuit + '\'' +
+                ", украшения='" + decoration + '\'' +
+                ", крем='" + cream + '\'' +
+                ", цена торта=" + price_cake +
+                "}\n";
     }
 }

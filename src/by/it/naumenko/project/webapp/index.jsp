@@ -5,7 +5,7 @@
 <div class="container">
 
 <%@ include file="include/menu.htm" %>
-<p>PAGE INDEX: ${message}</p>
+<p>ALL cakes:<br> ${cake}</p>
 
 </div>
 </body>

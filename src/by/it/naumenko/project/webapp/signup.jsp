@@ -15,7 +15,7 @@
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="logininput">nickname</label>
+      <label class="col-md-4 control-label" for="logininput">Имя пользователя</label>
       <div class="col-md-4">
       <input id="logininput" name="login" value="naymchik" type="text" placeholder="placeholder" class="form-control input-md">
 
@@ -24,7 +24,7 @@
 
     <!-- Text input-->
     <div class="form-group">
-      <label class="col-md-4 control-label" for="emailinput">email</label>
+      <label class="col-md-4 control-label" for="emailinput">E-mail</label>
       <div class="col-md-4">
       <input id="email" name="email" value="naymchik@yandex.ru" type="text" placeholder="placeholder" class="form-control input-md">
 
