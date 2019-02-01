@@ -1,10 +1,12 @@
-package by.it.karnilava.jd03_02.CRUD;
+package by.it.karnilava.jd03_03;
 
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public class Connect {
 
-    static {
+     static {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
@@ -14,7 +16,7 @@ public class Connect {
 
     private static volatile Connection connection;
 
-    public static Connection getConnection() throws SQLException {
+   public static Connection getConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
             synchronized (Connect.class) {
                 if (connection == null || connection.isClosed()) {
@@ -24,6 +26,4 @@ public class Connect {
         }
         return connection;
     }
-
-
 }
