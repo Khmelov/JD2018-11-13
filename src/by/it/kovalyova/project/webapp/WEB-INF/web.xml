@@ -11,8 +11,8 @@
     и имя сервлета в них было одинаковым!!! Здесь это имя HelloWorld
     -->
     <servlet>
-        <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>by.it._examples_.jd03_04.java.HelloWorld</servlet-class>
+        <servlet-name>MyProj</servlet-name>
+        <servlet-class>by.it.kovalyova.project.java.HelloWorld</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>HelloWorld</servlet-name>
@@ -24,7 +24,7 @@
     -->
     <servlet>
         <servlet-name>FrontControllerServlet</servlet-name>
-        <servlet-class>by.it._examples_.jd03_04.java.sample_controller.FrontController</servlet-class>
+        <servlet-class>by.it.kovalyova.project.java.sample_controller.FrontController</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>FrontControllerServlet</servlet-name>

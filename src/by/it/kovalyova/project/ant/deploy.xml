@@ -17,6 +17,13 @@
         <fileset dir="${global.lib.dir}" includes="servlet-api.jar"/>
     </path>
 
+    <path id="tomcat.classpath">
+    <fileset dir="${global.lib.dir}">
+        <include name="khmelov_tomcat_lib.jar"/>
+    </fileset>
+    </path>
+
+
     <!-- начинаем выполнять шаги (т.е. цели). -->
 
     <!-- - - - - - - - - - - - - - - - - - - - - - - - - -  - - -  -->
@@ -149,6 +156,15 @@
     <target name="09-Manual-Undeploy" depends="08check-if-deployed">
         <!-- TOMCAT undeploy-->
         <echo>Back bad deploy</echo>
+        <pathconvert property="test1.test1" refid="tomcat.classpath"/>
+        <echo>"${test1.test1}"</echo>
+        <available classname="org.apache.catalina.ant.UndeployTask"
+                   classpath="tomcat.classpath" property="test.test"/>
+        <fail message="no class">
+            <condition>
+                <not><isset property="test.test"/></not>
+            </condition>
+        </fail>
         <undeploy failonerror="false"
                   url="${tomcat.manager.url}"
                   username="${tomcat.user.name}"

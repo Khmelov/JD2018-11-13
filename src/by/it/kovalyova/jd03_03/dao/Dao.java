@@ -1,6 +1,7 @@
 package by.it.kovalyova.jd03_03.dao;
 
 import by.it.kovalyova.jd03_03.beans.Ad;
+import by.it.kovalyova.jd03_03.beans.Flat;
 import by.it.kovalyova.jd03_03.beans.Role;
 import by.it.kovalyova.jd03_03.beans.User;
 
@@ -15,6 +16,7 @@ public class Dao {
     public InterfaceDao<Role> role;
     public InterfaceDao<User> user;
     public InterfaceDao<Ad> ad;
+    public InterfaceDao<Flat> flat;
 
     public void reset(){
         Connect.reset();
@@ -23,6 +25,7 @@ public class Dao {
         role=new RoleDao();
         user=new UserDao();
         ad=new UniversalDAO<>(new Ad(), "ads");
+        flat=new UniversalDAO<>(new Flat(), "flats");
 
 
     }

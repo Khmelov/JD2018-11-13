@@ -40,7 +40,7 @@ public class AdDao implements InterfaceDao<Ad>{
     public boolean update(Ad ad) throws SQLException {
         String sql = String.format(
                 "UPDATE `ads` SET" +
-                        " `price`='%f]," +
+                        " `price`='%f'," +
                         "`users_id`='%d',`flats_id`='%d'" +
                         " WHERE `id`='%d',",
                ad.getPrice(), ad.getUsers_id()
