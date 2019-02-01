@@ -10,6 +10,7 @@ enum Action {
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError()),
     CREATE(new CmdCreate()),
+    EDITUSERS(new CmdEditUsers()),
     GETLIST(new CmdList()),
     LOGOUT(new CmdLogout()),
     DONE(new CmdDone());

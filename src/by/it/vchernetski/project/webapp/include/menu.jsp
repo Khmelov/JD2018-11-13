@@ -10,9 +10,12 @@
             <a class="nav-item nav-link" href="do?command=signup">Sign-Up</a>
             <a class="nav-item nav-link" href="do?command=Login">LogIn</a>
             <a class="nav-item nav-link" href="do?command=Profile">Profile</a>
+            <c:if test="${user!=null}">
             <a class="nav-item nav-link" href="do?command=create">Create Car</a>
             <a class="nav-item nav-link" href="do?command=getlist">ListCar</a>
-            <a class="nav-item nav-link" href="do?command=logout">Logout
+            <a class="nav-item nav-link" href="do?command=editusers">Edit Users</a>
+            <a class="nav-item nav-link" href="do?command=logout">Logout</a>
+            </c:if>
             </a>
         </div>
     </div>

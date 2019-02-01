@@ -1,5 +1,8 @@
 package by.it.vchernetski.project.java.controller;
 
+import by.it.vchernetski.project.java.beans.Role;
+import by.it.vchernetski.project.java.dao.MyDAO;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Base64;
+import java.util.List;
 
 public class FrontController extends HttpServlet {
     protected static HttpServletResponse response;
