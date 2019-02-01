@@ -19,6 +19,7 @@ public class DropDB {
     private final static String DROP_TABLE_ROLES =System.getProperty("user.dir")+ xammp + "/sql/drop/drop roles.sql";
     private final static String DROP_TABLE_USERS=System.getProperty("user.dir")+ xammp + "/sql/drop/drop users.sql";
     private final static String DROP_TABLE_ZAKAZ=System.getProperty("user.dir")+ xammp + "/sql/drop/drop zakaz.sql";
+    private final static String DROP_TABLE_PROFIL=System.getProperty("user.dir")+ xammp + "/sql/drop/drop profil.sql";
 
     static String getSQLFile(String filename) throws IOException {
         FileReader fin = new FileReader(filename);
@@ -41,6 +42,7 @@ public class DropDB {
         try (Connection connection = DriverManager.getConnection(portDB, "root", "")
         ) {
             Statement statement = connection.createStatement();
+            statement.executeUpdate(getSQLFile(DROP_TABLE_PROFIL));
             statement.executeUpdate(getSQLFile(DROP_TABLE_ZAKAZ));
             statement.executeUpdate(getSQLFile(DROP_TABLE_CAKE));
             statement.executeUpdate(getSQLFile(DROP_TABLE_USERS));

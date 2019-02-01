@@ -21,10 +21,12 @@ public class ResetDB {
     private final static String CREATE_TABLE_CAKE = System.getProperty("user.dir") + xammp + "/sql/create/create cake.sql";
     private final static String CREATE_TABLE_USERS = System.getProperty("user.dir") + xammp + "/sql/create/create users1.sql";
     private final static String CREATE_TABLE_ZAKAZ = System.getProperty("user.dir") + xammp + "/sql/create/create zakaz.sql";
+    private final static String CREATE_TABLE_PROFIL = System.getProperty("user.dir") + xammp + "/sql/create/create profil.sql";
     private final static String INSERT_TABLE_CAKE = System.getProperty("user.dir") + xammp + "/sql/insert/insert cake.sql";
     private final static String INSERT_TABLE_ROLES = System.getProperty("user.dir") + xammp + "/sql/insert/insert roles.sql";
     private final static String INSERT_TABLE_USERS = System.getProperty("user.dir") + xammp + "/sql/insert/insert users.sql";
     private final static String INSERT_TABLE_ZAKAZ = System.getProperty("user.dir") + xammp + "/sql/insert/insert zakaz.sql";
+    private final static String INSERT_TABLE_PROFIL = System.getProperty("user.dir") + xammp + "/sql/insert/insert profil.sql";
 
 
     static {
@@ -92,6 +94,7 @@ public class ResetDB {
             statement.executeUpdate(getSQLFile(CREATE_TABLE_CAKE));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_USERS));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ZAKAZ));
+            statement.executeUpdate(getSQLFile(CREATE_TABLE_PROFIL));
 
             int count = getSQLFileInsertCount(INSERT_TABLE_CAKE);
             for (int i = 0; i < count; i++) {
@@ -111,6 +114,11 @@ public class ResetDB {
             count = getSQLFileInsertCount(INSERT_TABLE_ZAKAZ);
             for (int i = 0; i < count; i++) {
                 statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ZAKAZ, i));
+            }
+
+            count = getSQLFileInsertCount(INSERT_TABLE_PROFIL);
+            for (int i = 0; i < count; i++) {
+                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_PROFIL, i));
             }
 
         } catch (SQLException | IOException e) {

@@ -7,6 +7,8 @@ CREATE TABLE IF NOT EXISTS `naumenko`.`users` (
   `id_role` INT NOT NULL,
   PRIMARY KEY (`id_user`),
   INDEX `fk_users_roles_idx` (`id_role` ASC),
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC),
+  UNIQUE INDEX `login_UNIQUE` (`login` ASC),
   CONSTRAINT `fk_users_roles`
     FOREIGN KEY (`id_role`)
     REFERENCES `naumenko`.`roles` (`id_role`)
