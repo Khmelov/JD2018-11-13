@@ -1,7 +1,6 @@
 package by.it.mnovikov.jd02_05;
 
-
-import by.it.akhmelev.jd02_05.res.Messages;
+import by.it.mnovikov.jd02_05.res.Messages;
 
 import java.io.BufferedReader;
 import java.io.IOException;
