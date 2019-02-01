@@ -1,7 +1,7 @@
 package by.it.skarpovich.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
-class Form {
+public class Form {
 
 
     static boolean isPost(HttpServletRequest req){

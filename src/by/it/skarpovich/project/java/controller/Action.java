@@ -12,7 +12,7 @@ enum Action {
     ADDPROJECT(new CmdAddProject()),
     EDITUSERS(new CmdEditUsers()),
     //SUCCESS(new CmdSuccess()),
-    ORDERS(new CmdOrders()),
+
     ERROR(new CmdError());
 
     Cmd cmd;
