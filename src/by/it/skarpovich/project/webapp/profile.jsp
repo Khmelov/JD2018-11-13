@@ -4,6 +4,9 @@
 <body>
 <div class="container">
 <%@ include file="include/menu.htm" %>
+
+
+
 <p>User Profile:<br> ${user}</p>
 <p>Orders List: <br> ${orders}</p>
 <em>(Shows USER ORDERS LIST for Users and FULL ORDERS LIST for admins)</em>

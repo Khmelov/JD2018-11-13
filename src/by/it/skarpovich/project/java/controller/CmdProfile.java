@@ -21,20 +21,15 @@ class CmdProfile implements Cmd {
                 return Action.LOGIN;
             }
         }
-
         User user = Util.findUser(req);
-        if (user.getRoles_id() == 1) {
-            List<Order> orders = Dao.getDao().order.getAll();
-            req.setAttribute("orders", orders);
-        } else {
-            String where = String.format("WHERE `users_id`='%d'", user.getId());
+        String where=String.format(" WHERE `users_id`='%d'",user.getId());
 
-            List<Order> orders = Dao.getDao().order.getAll(where);
-            req.setAttribute("orders", orders);
-        }
+        List<Order> orders = Dao.getDao().order.getAll(where);
+        req.setAttribute("orders", orders);
 
         return Action.PROFILE;
     }
 }
+
 
 
