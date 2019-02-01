@@ -14,6 +14,7 @@ class CommandLogin extends Command {
     @Override
     public Actions exequit(HttpServletRequest request, HttpServletResponse response) throws SiteException, SQLException, LoginException, NoSuchAlgorithmException {
         if (Form.isPost(request)) {
+            //long idUser = Form.getLong(request,"id_user");
             String login = Form.getString(request, "login");
             String password = Form.getString(request, "password");
             String where = String.format(" WHERE hashpas = '%s' and login='%s' LIMIT 0,1", Util.hashMD5(password), login);

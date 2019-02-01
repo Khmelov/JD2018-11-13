@@ -9,6 +9,19 @@
      margin-right: 20px;
      text-align: left; /*Центрируем текст по горизонтали*/
     }
+
+.FormsDR {
+     float: left; /*Задаем обтекание*/
+     line-height: 20px;/*Высота строки +  верт. центрирования текста*/
+     font-size: 20px;
+     color: white;
+     background:rgb(17,24,27);
+     margin-top: 10px;
+     width: 150px; /*Фиксируем ширину блока*/
+     margin-right: 5px;
+     text-align: left; /*Центрируем текст по горизонтали*/
+    }
+
 legend{
      color: yellow;
      font-size: 30px
@@ -23,6 +36,11 @@ body{
 
 }
 .FormLogin {
+     font-size: 20px;
+     color: white;
+
+}
+.FormProfil {
      font-size: 20px;
      color: white;
 
