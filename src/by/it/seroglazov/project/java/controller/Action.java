@@ -22,7 +22,9 @@ enum Action {
 
     RESET(new CmdReset()),
 
-    INGLIST (new CmdIngList());
+    INGLIST (new CmdIngList()),
+
+    PROFILE ();
 
     Cmd cmd;
 

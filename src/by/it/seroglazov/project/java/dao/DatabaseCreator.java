@@ -191,6 +191,8 @@ public class DatabaseCreator {
             statement.executeUpdate("DROP TABLE IF EXISTS recipes");
             statement.executeUpdate("DROP TABLE IF EXISTS rtypes");
             statement.executeUpdate("DROP TABLE IF EXISTS ingredients");
+            statement.executeUpdate("DROP TABLE IF EXISTS users");
+            statement.executeUpdate("DROP TABLE IF EXISTS userings");
         } catch (SQLException e) {
             System.err.println("Can't delete tables with message: " + e.getMessage());
             return false;
@@ -208,6 +210,30 @@ public class DatabaseCreator {
                     "  PRIMARY KEY (`id`),\n" +
                     " UNIQUE INDEX `name_UNIQUE` (`name` ASC))\n" +
                     " ENGINE = InnoDB;");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `users` (\n" +
+                    "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
+                    "  `name` VARCHAR(100) NOT NULL,\n" +
+                    "  `password` VARCHAR(100) NULL,\n" +
+                    "  PRIMARY KEY (`id`),\n" +
+                    "  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\n" +
+                    "  UNIQUE INDEX `name_UNIQUE` (`name` ASC))\n" +
+                    "ENGINE = InnoDB;");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `userings` (\n" +
+                    "  `user_id` INT NOT NULL,\n" +
+                    "  `ingredient_id` INT(11) NOT NULL,\n" +
+                    "  INDEX `fk_ingredients_has_users_users1_idx` (`user_id` ASC),\n" +
+                    "  INDEX `fk_ingredients_has_users_ingredients1_idx` (`ingredient_id` ASC),\n" +
+                    "  CONSTRAINT `fk_ingredients_has_users_ingredients1`\n" +
+                    "    FOREIGN KEY (`ingredient_id`)\n" +
+                    "    REFERENCES `ingredients` (`id`)\n" +
+                    "    ON DELETE CASCADE\n" +
+                    "    ON UPDATE NO ACTION,\n" +
+                    "  CONSTRAINT `fk_ingredients_has_users_users1`\n" +
+                    "    FOREIGN KEY (`user_id`)\n" +
+                    "    REFERENCES `users` (`id`)\n" +
+                    "    ON DELETE CASCADE\n" +
+                    "    ON UPDATE NO ACTION)\n" +
+                    "ENGINE = InnoDB\n");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `rtypes` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `text` VARCHAR(100) NOT NULL,\n" +
