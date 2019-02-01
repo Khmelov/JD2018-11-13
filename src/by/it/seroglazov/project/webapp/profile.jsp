@@ -1,9 +1,18 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.htm" %>
+<head>
+	<title>Profile</title>
+	<style>
+       #profile {
+        color: #fff;
+       }
+    </style>
+	<%@ include file="include/head.jsp" %>
+</head>
 <body>
+<%@ include file="include/menu.jsp" %>
 <div class="container">
-<%@ include file="include/menu.htm" %>
 <p>Profile User:<br> ${user}</p>
 <p>User ingredients:<br> ${ings}</p>
 
@@ -22,6 +31,14 @@
 </div>
 </fieldset>
 </form>
+
+<div class="container">
+    <c:forEach items="${ingredients}" var="ingredient">
+        <div class="border border-info rounded px-3 my-2">
+            <p>${ingredient.name}</p>
+        </div>
+    </c:forEach>
+</div>
 
 
 </div>

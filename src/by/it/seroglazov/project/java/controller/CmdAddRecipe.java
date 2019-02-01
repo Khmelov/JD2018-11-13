@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 class CmdAddRecipe extends Cmd {
 
     private static final int ingrCount = 4;
-    private static final String patt = "[a-zA-Z0-9 -]+";
-    private static final String patt2 = "[a-zA-Z0-9 -]*";
+
 
     @Override
     Action execute(HttpServletRequest req) throws Exception {
@@ -23,14 +22,21 @@ class CmdAddRecipe extends Cmd {
             Dao<Recipe> recDao = new MyDao<>(new Recipe());
 
             // Take cocktail name from form
-            String name = Form.getParameterMatchesPattern(req, "recipe_name", patt);
-            // If that cocktail already in DB then show Error page with message
+            String name = null;
+            try {
+                name = Form.getParameterMatchesPattern(req, "recipe_name", Patterns.cocktailName);
+            } catch (SiteException e) {
+                req.setAttribute("error_message", "Cocktail name is incorrect");
+                return Action.ADDRECIPE;
+            }
+
             if (name.length() == 0 || recDao.findFirstByFieldValue("name", name) != null) {
-                throw new SiteException("Cocktail with name '" + name + "' already exists");
+                req.setAttribute("error_message", "Cocktail with name '" + name + "' already exists");
+                return Action.ADDRECIPE;
             }
 
             // Take cocktail type from form
-            String type = Form.getParameterMatchesPattern(req, "recipe_type", patt);
+            String type = Form.getParameterMatchesPattern(req, "recipe_type", Patterns.cocktailType);
             // If that type is already in DB then take it otherwise create new type in DB
             Rtype rtype = rtDao.findFirstByFieldValue("text", type);
             if (rtype == null) {
@@ -46,7 +52,7 @@ class CmdAddRecipe extends Cmd {
             String sUnit[] = new String[ingrCount];
             for (int i = 0; i < ingrCount - 1; i++) {
                 // Get Ingredient from BD, if not exist - create
-                sIng[i] = Form.getParameterMatchesPattern(req, "ingredient_" + String.valueOf(i + 1), patt2);
+                sIng[i] = Form.getParameterMatchesPattern(req, "ingredient_" + String.valueOf(i + 1), Patterns.ingredientName);
                 bIngs[i] = (sIng[i].length() > 0);
                 if (bIngs[i]) {
                     ings[i] = ingDao.findFirstByFieldValue("name", sIng[i]);
@@ -55,7 +61,7 @@ class CmdAddRecipe extends Cmd {
                         ingDao.create(ings[i]);
                     }
                     // Get Unit from BD, if not exist - create
-                    sUnit[i] = Form.getParameterMatchesPattern(req, "unit_" + String.valueOf(i + 1), patt2);
+                    sUnit[i] = Form.getParameterMatchesPattern(req, "unit_" + String.valueOf(i + 1), Patterns.unit);
                     units[i] = unitDao.findFirstByFieldValue("name", sUnit[i]);
                     if (units[i] == null) {
                         units[i] = new Unit(sUnit[i]);
@@ -65,7 +71,7 @@ class CmdAddRecipe extends Cmd {
             }
 
             // Take description from form
-            String description = Form.getParameterMatchesPattern(req, "description");
+            String description = Form.getParameterMatchesPattern(req, "description", Patterns.description);
 
             // Add new recipe to DB
             Recipe recipe = new Recipe(name, rtype.getId(), description);
@@ -76,7 +82,7 @@ class CmdAddRecipe extends Cmd {
             //
             for (int i = 0; i < ingrCount - 1; i++) {
                 if (bIngs[i]) {
-                    String sAmount = Form.getParameterMatchesPattern(req, "amount_" + String.valueOf(i + 1), patt2);
+                    String sAmount = Form.getParameterMatchesPattern(req, "amount_" + String.valueOf(i + 1), Patterns.amount);
                     amDao.create(new Amount(recipe.getId(), ings[i].getId(), sAmount, units[i].getId()));
                 }
             }

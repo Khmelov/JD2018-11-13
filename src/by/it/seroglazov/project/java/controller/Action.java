@@ -14,8 +14,6 @@ enum Action {
 
     LOGIN(new CmdLogin()),
 
-    LOGOUT(new CmdLogout()),
-
     SIGNUP(new CmdSignUp()),
 
     ERROR(new CmdError()),
@@ -24,7 +22,7 @@ enum Action {
 
     INGLIST (new CmdIngList()),
 
-    PROFILE ();
+    PROFILE (new CmdProfile());
 
     Cmd cmd;
 

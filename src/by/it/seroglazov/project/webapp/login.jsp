@@ -1,21 +1,38 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.htm" %>
+<head>
+	<title>Login</title>
+	<style>
+	   #loginmenu {
+	    color: #fff;
+	   }
+	</style>
+	<%@ include file="include/head.jsp" %>
+</head>
 <body>
+<%@ include file="include/menu.jsp" %>
+
 <div class="container">
-<%@ include file="include/menu.htm" %>
+
+<c:if test="${wrong_name!=null}">
+    <p>User with this login and password does&apos;t exists</p>
+</c:if>
+<c:if test="${wrong_password!=null}">
+    <p>Password is incorrect</p>
+</c:if>
 
 <form class="form-horizontal" action="do?command=Login" method="POST">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Sign Up</legend>
+<legend>Login</legend>
 
-<!-- Text input-->
+<!-- login input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="login">Login</label>
   <div class="col-md-4">
-  <input id="login" name="login" value="Test user 1" type="text" placeholder="min 6 symbols" class="form-control input-md" required="">
+  <input id="login" name="login" value="TestUser" type="text" placeholder="min 6 symbols" class="form-control input-md" required>
 
   </div>
 </div>
@@ -24,12 +41,12 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="password">Password</label>
   <div class="col-md-4">
-    <input id="password" name="password" value="test password 1 type="password" placeholder="" class="form-control input-md" required="">
+    <input id="password" name="password" value="TestPassword" type="password" placeholder="" class="form-control input-md" required>
 
   </div>
 </div>
 
-<!-- Button -->
+<!-- login Button -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="signup"></label>
   <div class="col-md-4">

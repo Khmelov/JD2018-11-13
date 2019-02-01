@@ -14,19 +14,18 @@ class CmdProfile extends Cmd {
 
     @Override
     public Action execute(HttpServletRequest req) throws Exception {
-        if (!Util.checkUser(req))
+        if (!Util.checkUserInSession(req))
             return Action.LOGIN;
 
         if (Form.isPost(req)) {
             if (req.getParameter("logout") != null) {
-            //if (Form.getParameterMatchesPattern(req, "logout") != null) {
                 req.getSession().invalidate();
                 return Action.LOGIN;
             }
         }
 
-        User user = Util.findUser(req);
-        String where=String.format(" WHERE `users_id`='%d'",user.getId());
+        User user = Util.findUserInSession(req);
+        String where=String.format(" WHERE `user_id`='%d'",user.getId());
 
         Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
         Dao<Usering> uiDao = new MyDao<>(new Usering());
@@ -38,9 +37,7 @@ class CmdProfile extends Cmd {
             Ingredient ingredient = ingDao.read(userIngr.getIngredient_id());
             ingredients.add(ingredient);
         }
-        req.setAttribute("ingredients", ingredients);
-
-
+        req.getSession().setAttribute("ingredients", ingredients);
 
         return Action.PROFILE;
     }

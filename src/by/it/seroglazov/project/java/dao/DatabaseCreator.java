@@ -118,7 +118,6 @@ public class DatabaseCreator {
             validator.validate(xmlFile);
         } catch (Exception e) {
             throw new SiteException("Can't validate file recipes.xml");
-            //System.err.println("Can't validate file: " + MyConstants.xmlRecipesFileName + " reason: " + e.getMessage());
         }
         return true;
     }
@@ -165,8 +164,7 @@ public class DatabaseCreator {
                     "` DEFAULT CHARACTER SET utf8 ;");
 
         } catch (SQLException e) {
-            System.err.println("Can't create database with message: " + e.getMessage());
-            return false;
+            throw new SiteException("Can't create database with message: " + e.getMessage());
         }
         return true;
     }
@@ -214,8 +212,10 @@ public class DatabaseCreator {
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `name` VARCHAR(100) NOT NULL,\n" +
                     "  `password` VARCHAR(100) NULL,\n" +
+                    "  `email` VARCHAR(100) NOT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  UNIQUE INDEX `id_UNIQUE` (`id` ASC),\n" +
+                    "  UNIQUE INDEX `email_UNIQUE` (`email` ASC),\n" +
                     "  UNIQUE INDEX `name_UNIQUE` (`name` ASC))\n" +
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `userings` (\n" +

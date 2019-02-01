@@ -9,16 +9,46 @@ import javax.servlet.http.HttpServletRequest;
 class CmdSignUp extends Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws Exception {
-        if (Form.isPost(req)) {
-            String login = Form.getParameterMatchesPattern(req, "login");
-            String password = Form.getParameterMatchesPattern(req, "password", "[a-zA-Z0-9_-]{4,}");
-            String email = Form.getParameterMatchesPattern(req, "email");
-            User user = new User(login, password);
+
+        if (Util.checkUserInSession(req)) {
+            return Action.PROFILE;
+
+        } if (Form.isPost(req)) {
+
+            String login = null;
+            try {
+                login = Form.getParameterMatchesPattern(req, "login", Patterns.login);
+            } catch (SiteException e) {
+                req.setAttribute("wrong_login", new Object());
+                return Action.SIGNUP;
+            }
+
+            String password = null;
+            try {
+                password = Form.getParameterMatchesPattern(req, "password", Patterns.password);
+            } catch (SiteException e) {
+                req.setAttribute("wrong_password", new Object());
+                return Action.SIGNUP;
+            }
+
+            String email = null;
+            try {
+                email = Form.getParameterMatchesPattern(req, "email", Patterns.email);
+            } catch (SiteException e) {
+                req.setAttribute("wrong_email", new Object());
+                return Action.SIGNUP;
+            }
+
+            User user = new User(login, password, email);
             Dao<User> usDao = new MyDao<>(new User());
+
             if (usDao.create(user))
                 req.getSession().setAttribute("user", user);
-            return Action.PROFILE;
-        }
 
-        return Action.SIGNUP;
+            return Action.PROFILE;
+
+        } else {
+            return Action.SIGNUP;
+        }
     }
+}

@@ -7,11 +7,11 @@ import javax.servlet.http.HttpSession;
 
 class Util {
 
-    static boolean checkUser(HttpServletRequest req) {
-        return findUser(req)!=null;
+    static boolean checkUserInSession(HttpServletRequest req) {
+        return findUserInSession(req)!=null;
     }
 
-    static User findUser(HttpServletRequest req) {
+    static User findUserInSession(HttpServletRequest req) {
         HttpSession session = req.getSession(false);
         if (session != null) {
             Object oUser = session.getAttribute("user");
