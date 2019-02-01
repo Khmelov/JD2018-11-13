@@ -8,10 +8,8 @@
 
 <div class="container">
     <%@ include file="include/menu.jsp" %>
-
-
+    <br>
     <c:forEach items="${users}" var="user">
-
         <form class="update-user-${user.id}" action="do?command=EditUsers" method="POST">
             <div class="row">
                 <div class="col-md-3">
@@ -21,7 +19,7 @@
                 <c:choose>
                     <c:when test="${user.id==1}">
                         <div class="col-md-3">
-                            <label for="dateofbirth">Логин</label>
+                            <label for="login">Логин</label>
                             <input readonly id="login" class="form-control input-md" name="login"
                                    value="${user.login}"/>
                         </div>

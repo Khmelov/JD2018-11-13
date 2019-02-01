@@ -32,23 +32,28 @@
                     <li class="nav-item dropdown">
                         <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Админка
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                            <a class="dropdown-item" href="do?command=EditUsers">Пользователи</a>
-                            <a class="dropdown-item" href="#">Объявления</a>
-                            <a class="dropdown-item" href="#">БД</a>
-                        </div>
-                    </li>
+                    <c:if test="${user.roles_Id==1}">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Админка
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="do?command=EditUsers">Пользователи</a>
+                                <a class="dropdown-item" href="do?command=EditAds">Объявления</a>
+                            </div>
+
+                        </li>
+
+
+                    </c:if>
                 </c:otherwise>
             </c:choose>
         </ul>
+
         <c:if test="${user!=null}">
             <form class="form-inline my-2 my-lg-0" action="do?command=Profile" method="POST">
-                <button id="logout" name="logout" class="btn btn-danger">Выйти</button>
+                <button id="logout" name="logout" class="btn btn-dark">Выйти</button>
             </form>
         </c:if>
     </div>

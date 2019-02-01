@@ -1,10 +1,10 @@
 package by.it.zhivov.project.java.controller;
 
+import by.it.zhivov.project.java.beans.Ad;
 import by.it.zhivov.project.java.beans.User;
 import by.it.zhivov.project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
 import java.sql.SQLException;
 import java.util.List;
 

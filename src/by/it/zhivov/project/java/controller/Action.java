@@ -6,6 +6,7 @@ public enum Action {
 
     RESET(new CmdReset()),
     EDITUSERS(new CmdEditUsers()),
+    EDITADS(new CmdEditAds()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
