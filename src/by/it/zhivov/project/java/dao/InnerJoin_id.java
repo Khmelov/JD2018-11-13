@@ -24,7 +24,7 @@ public class InnerJoin_id {
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery("SELECT COUNT(*) FROM `users` INNER JOIN `roles` ON `users`.`roles_id`=`roles`.`id`");
             if (resultSet.next()) {
-                System.out.println("Колличество строк: " + resultSet.getInt(1));
+                System.out.println("Колличество пользователей: " + resultSet.getInt(1));
                 return resultSet.getInt(1);
             }
         }

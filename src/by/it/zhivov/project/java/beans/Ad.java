@@ -170,23 +170,23 @@ public class Ad {
 
     @Override
     public String toString() {
-        return "Ad{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", brnd='" + brnd + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", body='" + body + '\'' +
-                ", year=" + year +
-                ", engine=" + engine +
-                ", at=" + at +
-                ", driveunit='" + driveunit + '\'' +
-                ", equipment='" + equipment + '\'' +
-                ", millage=" + millage +
-                ", crashed=" + crashed +
-                ", price=" + price +
-                ", id_User=" + id_User +
+        return "<br>Ad{" +
+                "id=" + id + "\n<br>" +
+                ", title='" + title + '\'' + "\n<br>" +
+                ", description='" + description + '\'' + "\n<br>" +
+                ", brnd='" + brnd + '\'' + "\n<br>" +
+                ", model='" + model + '\'' + "\n<br>" +
+                ", color='" + color + '\'' + "\n<br>" +
+                ", body='" + body + '\'' + "\n<br>" +
+                ", year=" + year + "\n<br>" +
+                ", engine=" + engine + "\n<br>" +
+                ", at=" + at + "\n<br>" +
+                ", driveunit='" + driveunit + '\'' + "\n<br>" +
+                ", equipment='" + equipment + '\'' + "\n<br>" +
+                ", millage=" + millage + "\n<br>" +
+                ", crashed=" + crashed + "\n<br>" +
+                ", price=" + price + "\n<br>" +
+                ", users_id=" + id_User +
                 '}';
     }
 }

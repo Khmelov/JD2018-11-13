@@ -2,18 +2,16 @@ package by.it.nickgrudnitsky.project.java.controller;
 
 
 
+
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.HttpServletResponse;
 
 
 class CmdLogout extends Cmd {
     @Override
-    Action execute(HttpServletRequest req) throws SiteException {
-        if (Form.isPost(req)){
-            HttpSession session = Session.getSession(req);
-            session.removeAttribute("user");
-            session.invalidate();
-        }
-        return Action.BROWSE;
+    Action execute(HttpServletRequest req, HttpServletResponse resp) {
+                req.getSession().invalidate();
+                return Action.LOGIN;
     }
 }
