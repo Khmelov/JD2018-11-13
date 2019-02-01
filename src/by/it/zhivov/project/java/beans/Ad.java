@@ -9,16 +9,19 @@ public class Ad {
     private String color;
     private String body;
     private int year;
+    private double engine;
+    private int at;
+    private String driveunit;
     private String equipment;
     private int millage;
-    private boolean crashed;
+    private int crashed;
     private double price;
     private long id_User;
 
     public Ad() {
     }
 
-    public Ad(long id, String title, String description, String brnd, String model, String color, String body, int year, String equipment, int millage, boolean crashed, int price, long id_User) {
+    public Ad(long id, String title, String description, String brnd, String model, String color, String body, int year, double engine, int at, String driveunit, String equipment, int millage, int crashed, double price, long id_User) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -27,6 +30,9 @@ public class Ad {
         this.color = color;
         this.body = body;
         this.year = year;
+        this.engine = engine;
+        this.at = at;
+        this.driveunit = driveunit;
         this.equipment = equipment;
         this.millage = millage;
         this.crashed = crashed;
@@ -62,8 +68,8 @@ public class Ad {
         return brnd;
     }
 
-    public void setBrnd(String brand) {
-        this.brnd = brand;
+    public void setBrnd(String brnd) {
+        this.brnd = brnd;
     }
 
     public String getModel() {
@@ -98,6 +104,30 @@ public class Ad {
         this.year = year;
     }
 
+    public double getEngine() {
+        return engine;
+    }
+
+    public void setEngine(double engine) {
+        this.engine = engine;
+    }
+
+    public int getAt() {
+        return at;
+    }
+
+    public void setAt(int at) {
+        this.at = at;
+    }
+
+    public String getDriveunit() {
+        return driveunit;
+    }
+
+    public void setDriveunit(String driveunit) {
+        this.driveunit = driveunit;
+    }
+
     public String getEquipment() {
         return equipment;
     }
@@ -114,11 +144,11 @@ public class Ad {
         this.millage = millage;
     }
 
-    public boolean isCrashed() {
+    public int isCrashed() {
         return crashed;
     }
 
-    public void setCrashed(boolean crashed) {
+    public void setCrashed(int crashed) {
         this.crashed = crashed;
     }
 
@@ -140,20 +170,23 @@ public class Ad {
 
     @Override
     public String toString() {
-        return "Ad{" +
-                "id=" + id +
-                ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
-                ", brand='" + brnd + '\'' +
-                ", model='" + model + '\'' +
-                ", color='" + color + '\'' +
-                ", body='" + body + '\'' +
-                ", year=" + year +
-                ", equipment='" + equipment + '\'' +
-                ", millage=" + millage +
-                ", crashed=" + crashed +
-                ", price=" + price +
-                ", id_User=" + id_User +
+        return "<br>Ad{" +
+                "id=" + id + "\n<br>" +
+                ", title='" + title + '\'' + "\n<br>" +
+                ", description='" + description + '\'' + "\n<br>" +
+                ", brnd='" + brnd + '\'' + "\n<br>" +
+                ", model='" + model + '\'' + "\n<br>" +
+                ", color='" + color + '\'' + "\n<br>" +
+                ", body='" + body + '\'' + "\n<br>" +
+                ", year=" + year + "\n<br>" +
+                ", engine=" + engine + "\n<br>" +
+                ", at=" + at + "\n<br>" +
+                ", driveunit='" + driveunit + '\'' + "\n<br>" +
+                ", equipment='" + equipment + '\'' + "\n<br>" +
+                ", millage=" + millage + "\n<br>" +
+                ", crashed=" + crashed + "\n<br>" +
+                ", price=" + price + "\n<br>" +
+                ", users_id=" + id_User +
                 '}';
     }
 }

@@ -23,7 +23,7 @@ public class Connect {
                 if (connection == null || connection.isClosed()) {
                     //"jdbc:mysql://127.0.0.1:2016/", "root", ""
                     //"jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe"
-                    connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "");
+                    connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/", "root", "12345Qwe");
                 }
             }
         }

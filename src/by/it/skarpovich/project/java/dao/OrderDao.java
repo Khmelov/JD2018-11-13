@@ -50,6 +50,13 @@ public class OrderDao implements InterfaceDao<Order> {
         return all.size() > 0 ? all.get(0) : null;
     }
 
+    public Order readByUserId(int UserId) throws SQLException {
+        String sqlSuffix = String.format("WHERE users_id=%d", UserId);
+        List<Order> all = getAll(sqlSuffix);
+        return all.size() > 0 ? all.get(0) : null;
+    }
+
+
     @Override
     public List<Order> getAll(String sqlSuffix) throws SQLException {
         List<Order> result=new ArrayList<>();
