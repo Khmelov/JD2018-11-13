@@ -25,8 +25,6 @@ class CmdLoginStreamer extends Cmd {
             List<Streamer> streamers = MyDao.getDao().streamer.getAll(where);
             if (streamers.size()==1){
                 Streamer streamer = streamers.get(0);
-                String decode = Util.deCode(hashPassword);
-                streamer.setPassword(decode);
                 HttpSession session = req.getSession(true);
                 session.setAttribute("user", streamer);
                 session.setAttribute("password", hashPassword);

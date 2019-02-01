@@ -2,7 +2,6 @@ package by.it.nickgrudnitsky.project.java.filters;
 
 import by.it.nickgrudnitsky.project.java.beans.Streamer;
 import by.it.nickgrudnitsky.project.java.beans.Viewer;
-import by.it.nickgrudnitsky.project.java.controller.Util;
 import by.it.nickgrudnitsky.project.java.dao.MyDao;
 
 import javax.servlet.*;
@@ -43,8 +42,6 @@ public class CookieControl implements Filter {
                 List<Viewer> viewers = dao.viewer.getAll(whereV);
                 if (viewers.size()==1) {
                     Viewer viewer = viewers.get(0);
-                    String decodePassword = Util.deCode(viewer.getPassword());
-                    viewer.setPassword(decodePassword);
                     req.getSession(true).setAttribute("user", viewer);
                 }
             } catch (SQLException e) {
@@ -54,8 +51,6 @@ public class CookieControl implements Filter {
                 List<Streamer> streamers = dao.streamer.getAll(whereS);
                 if (streamers.size()==1) {
                     Streamer streamer = streamers.get(0);
-                    String decodePassword = Util.deCode(streamer.getPassword());
-                    streamer.setPassword(decodePassword);
                     req.getSession(true).setAttribute("user", streamer);
                 }
             } catch (SQLException e) {

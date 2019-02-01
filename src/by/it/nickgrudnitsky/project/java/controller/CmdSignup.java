@@ -27,8 +27,7 @@ class CmdSignup extends Cmd {
                 Viewer viewer = new Viewer(email, hasPassword, username, role);
                 MyDao myDao = MyDao.getDao();
                 if (myDao.viewer.create(viewer)) {
-                    String decodePassword = Util.deCode(hasPassword);
-                    viewer.setPassword(decodePassword);
+
                     session.setAttribute("user", viewer);
                     Cookie passwordCookie = new Cookie("password", hasPassword);
                     Cookie nicknameCookie = new Cookie("nickname", username);
@@ -42,8 +41,7 @@ class CmdSignup extends Cmd {
                 Streamer streamer = new Streamer(email, hasPassword, username, role);
                 MyDao myDao = MyDao.getDao();
                 if (myDao.streamer.create(streamer)) {
-                    String decodePassword = Util.deCode(hasPassword);
-                    streamer.setPassword(decodePassword);
+
                     session.setAttribute("user", streamer);
                     Cookie passwordCookie = new Cookie("password", hasPassword);
                     Cookie nicknameCookie = new Cookie("nickname", username);
