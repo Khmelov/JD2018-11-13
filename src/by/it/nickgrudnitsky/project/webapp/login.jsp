@@ -1,12 +1,13 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <%@ include file="include/head.htm" %>
 <body>
 <%@ include file="include/menuOut.htm" %>
-<form class="form-horizontal" action="do?command=LogIn" method="POST">
+<form class="form-horizontal" action="do?command=Login" method="POST">
 <fieldset>
 
 <!-- Form Name -->
-<legend>Form Name</legend>
+<legend>Log In</legend>
 
 <!-- Text input-->
 <div class="form-group">

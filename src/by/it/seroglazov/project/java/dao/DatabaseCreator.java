@@ -1,11 +1,12 @@
 package by.it.seroglazov.project.java.dao;
 
-import by.it.seroglazov.project.java.MyConstants;
 import by.it.seroglazov.project.java.beans.*;
+import by.it.seroglazov.project.java.controller.SiteException;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilder;
@@ -17,21 +18,24 @@ import javax.xml.validation.SchemaFactory;
 import javax.xml.validation.Validator;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.StringReader;
+import java.nio.file.OpenOption;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-class DatabaseCreator {
+public class DatabaseCreator {
 
     private static Config config;
 
     static {
         try {
             config = new Config();
-            config.loadFromXml(MyConstants.configFileFullName);
+            config.loadFromXml();
         } catch (IOException e) {
-            System.err.println("Can't read config file " + MyConstants.configFileFullName
-                    + " with message: " + e.getMessage());
+            /*System.err.println("Can't read config file " + MyConstants.configFileFullName
+                    + " with message: " + e.getMessage());*/
         }
     }
 
@@ -43,23 +47,28 @@ class DatabaseCreator {
     }
 
 
-    static DatabaseCreator getCreator() {
+    public static DatabaseCreator getCreator() {
         return InstanceHolder.instance;
     }
 
-    @SuppressWarnings("WeakerAccess")
-    boolean fillDatabaseFromXml() {
-        if (!Validate()) return false;
+    public boolean fillDatabaseFromXml() throws SiteException {
+        //if (!Validate()) return false;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder;
         Document document;
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            document = documentBuilder.parse(new File(MyConstants.xmlRecipesFileName));
+            //InputStream xmlResource =
+            OpenOption options;
+            //Files.write(Paths.get("recipe.xml"), recipeXML.getBytes(), StandardOpenOption.CREATE);
+            InputSource is = new InputSource(new StringReader(recipeXML));
+            document = documentBuilder.parse(is);
+            //document = documentBuilder.parse(new File(MyConstants.xmlRecipesFileName));
         } catch (Exception e) {
-            System.err.println("Can't parse XML file: " + MyConstants.xmlRecipesFileName);
-            return false;
+            //System.err.println("Can't parse XML file: " + MyConstants.xmlRecipesFileName);
+            throw new SiteException("Can't parse xml file recipes.xml");
         }
+
         Element root = document.getDocumentElement();
         NodeList nodes = root.getElementsByTagName("recipe");
         try {
@@ -91,21 +100,25 @@ class DatabaseCreator {
                 }
             }
         } catch (Exception e) {
-            System.err.println("Error while parsing xml file: " + MyConstants.xmlRecipesFileName);
+            throw new SiteException("Can't parse xml file recipes.xml");
+            //System.err.println("Error while parsing xml file: " + MyConstants.xmlRecipesFileName);
         }
         return true;
     }
 
-    private boolean Validate() {
+    private boolean Validate() throws SiteException {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try {
-            Source xmlFile = new StreamSource(new File(MyConstants.xmlRecipesFileName));
-            Schema schema = schemaFactory.newSchema(new File(MyConstants.xsdSchemaFileName));
+            InputStream xmlResource = DatabaseCreator.class.getResourceAsStream("recipe.xml");
+            Source xmlFile = new StreamSource(xmlResource);
+
+            InputStream xsdResource = DatabaseCreator.class.getResourceAsStream("recipe.xsd");
+            Schema schema = schemaFactory.newSchema(new StreamSource(xsdResource));
             Validator validator = schema.newValidator();
             validator.validate(xmlFile);
         } catch (Exception e) {
-            System.err.println("Can't validate file: " + MyConstants.xmlRecipesFileName + " reason: " + e.getMessage());
-            return false;
+            throw new SiteException("Can't validate file recipes.xml");
+            //System.err.println("Can't validate file: " + MyConstants.xmlRecipesFileName + " reason: " + e.getMessage());
         }
         return true;
     }
@@ -144,7 +157,7 @@ class DatabaseCreator {
     }
 
     @SuppressWarnings("WeakerAccess")
-    boolean createDatabase() {
+    boolean createDatabase() throws SiteException {
         try (Connection connection = DatabaseConnector.getConnection(false);
              Statement statement = connection.createStatement()) {
 
@@ -159,19 +172,18 @@ class DatabaseCreator {
     }
 
     @SuppressWarnings("WeakerAccess")
-    boolean deleteDatabase() {
+    boolean deleteDatabase() throws SiteException {
         try (Connection connection = DatabaseConnector.getConnection(false);
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP SCHEMA IF EXISTS `" + config.getDataBaseName() + "` ;");
         } catch (SQLException e) {
-            System.err.println("Can't delete database with message: " + e.getMessage());
-            return false;
+            throw new SiteException("Can't delete database with message: " + e.getMessage());
         }
         return true;
     }
 
     @SuppressWarnings("unused")
-    boolean deleteAllTable() {
+    boolean deleteAllTable() throws SiteException {
         try (Connection connection = DatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("DROP TABLE IF EXISTS amounts");
@@ -187,7 +199,7 @@ class DatabaseCreator {
     }
 
     @SuppressWarnings("WeakerAccess")
-    boolean createAllTables() {
+    boolean createAllTables() throws SiteException {
         try (Connection connection = DatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `ingredients` (\n" +
@@ -253,7 +265,7 @@ class DatabaseCreator {
         }
     }
 
-    void resetDatabase() {
+    public void resetDatabase() throws SiteException {
 
         System.out.print("Delete database if exists... ");
         if (!deleteDatabase()) {
@@ -278,9 +290,120 @@ class DatabaseCreator {
 
         System.out.print("Fill tables from XML file... ");
         if (!fillDatabaseFromXml()) {
-            System.out.println("fail.");
+            //System.out.println("fail.");
             return;
         }
         System.out.println("done.");
     }
+
+    private String recipeXML = "<?xml version=\"1.0\" encoding=\"UTF-8\" ?>" +
+            "<recipes xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"" +
+            "         xmlns=\"http://xml.jd03_03.seroglazov.it.by/recipes\"" +
+            "         xsi:schemaLocation=\"http://xml.jd03_03.seroglazov.it.by/recipes recipes.xsd\">" +
+            "    <recipe>" +
+            "        <name>white lady</name>" +
+            "        <type>all day cocktail</type>" +
+            "        <description>Add all ingredients into cocktail shaker filled with ice. Shake well and strain into large cocktail glass.</description>" +
+            "        <ingredient>" +
+            "            <name>gin</name>" +
+            "            <amount>4</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>triple sec</name>" +
+            "            <amount>3</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>fresh lemon juice</name>" +
+            "            <amount>2</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "    </recipe>" +
+            "    <recipe>" +
+            "        <name>old fashioned</name>" +
+            "        <type>before dinner cocktail</type>" +
+            "        <description>Place sugar cube in old-fashioned glass and saturate with bitters, add a dash of plain water. Muddle until dissolve. Fill the glass with ice cubes and add whiskey. Garnish with orange slice and a cocktail cherry.</description>" +
+            "        <ingredient>" +
+            "            <name>bourbon whiskey</name>" +
+            "            <amount>4.5</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>angostura aromatic bitters</name>" +
+            "            <amount>2</amount>" +
+            "            <unit>dash</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>plain water</name>" +
+            "            <amount>few</amount>" +
+            "            <unit>dash</unit>" +
+            "        </ingredient>" +
+            "    </recipe>" +
+            "    <recipe>" +
+            "        <name>margarita</name>" +
+            "        <type>all day cocktail</type>" +
+            "        <description>Pour all ingredients into shaker with ice. Shake well and strain into cocktail glass rimmed with salt (note:Fruit Margarita – blend selected fruit with the above recipe).</description>" +
+            "        <ingredient>" +
+            "            <name>tequila</name>" +
+            "            <amount>3.5</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>cointreau</name>" +
+            "            <amount>2</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>fresh lime juice</name>" +
+            "            <amount>1.5</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "    </recipe>" +
+            "    <recipe>" +
+            "        <name>cuba libre</name>" +
+            "        <type>longdrink</type>" +
+            "        <description>Build all ingredients in a highball glass filled with ice. Garnish with lime wedge.</description>" +
+            "        <ingredient>" +
+            "            <name>white rum</name>" +
+            "            <amount>5</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>cola</name>" +
+            "            <amount>12</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>fresh lime juice</name>" +
+            "            <amount>1</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "    </recipe>" +
+            "    <recipe>" +
+            "        <name>mojito</name>" +
+            "        <type>longdrink</type>" +
+            "        <description>Muddle mint springs with sugar and lime juice. Add splash of soda water and fill glass with cracked ice. Pour rum and top with soda water. Garnish with spring of mint leaves and lemon slice. Serve with straw.</description>" +
+            "        <ingredient>" +
+            "            <name>white rum</name>" +
+            "            <amount>4</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>fresh lime juice</name>" +
+            "            <amount>3</amount>" +
+            "            <unit>cl</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>mint</name>" +
+            "            <amount>6</amount>" +
+            "            <unit>sprig</unit>" +
+            "        </ingredient>" +
+            "        <ingredient>" +
+            "            <name>soda water</name>" +
+            "            <amount>top</amount>" +
+            "            <unit>none</unit>" +
+            "        </ingredient>" +
+            "    </recipe>" +
+            "</recipes>";
 }
