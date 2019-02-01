@@ -4,6 +4,7 @@ package by.it.nickgrudnitsky.project.java.controller;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,7 +28,7 @@ public class FrontController extends HttpServlet {
         Action action = Action.define(req);
         Action next = null;
         try {
-            next = action.cmd.execute(req);
+            next = action.cmd.execute(req, resp);
         } catch (Exception e) {
             req.setAttribute("message", e.toString());
             toJsp(req, resp, Action.ERROR.getJsp());

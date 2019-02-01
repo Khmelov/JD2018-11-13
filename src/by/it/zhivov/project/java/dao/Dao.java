@@ -75,10 +75,6 @@ public class Dao {
                     "  `tel` VARCHAR(45) NULL,\n" +
                     "  `roles_id` INT NOT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
-                    "  INDEX `fk_users_roles_idx` (`roles_id` ASC) VISIBLE,\n" +
-                    "  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,\n" +
-                    "  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,\n" +
-                    "  UNIQUE INDEX `tel_UNIQUE` (`tel` ASC) VISIBLE,\n" +
                     "  CONSTRAINT `fk_users_roles`\n" +
                     "    FOREIGN KEY (`roles_id`)\n" +
                     "    REFERENCES `zhivov`.`roles` (`id`)\n" +
@@ -103,7 +99,6 @@ public class Dao {
                     "  `price` DOUBLE NULL,\n" +
                     "  `users_id` INT NOT NULL,\n" +
                     "  PRIMARY KEY (`id`),\n" +
-                    "  INDEX `fk_ads_users1_idx` (`users_id` ASC) VISIBLE,\n" +
                     "  CONSTRAINT `fk_ads_users1`\n" +
                     "    FOREIGN KEY (`users_id`)\n" +
                     "    REFERENCES `zhivov`.`users` (`id`)\n" +

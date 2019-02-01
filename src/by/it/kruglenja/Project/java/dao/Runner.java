@@ -1,5 +1,6 @@
 package by.it.kruglenja.Project.java.dao;
 
+import by.it.kruglenja.Project.java.beans.Order;
 import by.it.kruglenja.Project.java.beans.Roles;
 import by.it.kruglenja.Project.java.beans.Spareparts;
 import by.it.kruglenja.Project.java.beans.User;
@@ -35,6 +36,12 @@ public class Runner {
 //        if (dao.user.delete(user)) {
 //            System.out.println("user -------->" + user.getLogin() + "--------> deleted");
 //        }
+        System.out.println("<_USER GETALL_>");
+        List<User> all1 = new ArrayList<>();
+        all1 = dao.user.getAll();
+        for (User s : all1) {
+            System.out.println(s);
+        }
         System.out.println("\n" + "+-+-+-+-+-+-+-+Spareparts dao+-+-+-+-+-+-+-+");
 
 
@@ -76,10 +83,10 @@ public class Runner {
             roles = dao.role.read(roles.getId());
             System.out.println("read -------->" + roles);
         }
-        List<User> all1 = new ArrayList<>();
-        all1 = dao.user.getAll("VAsyA");
-        for (User s : all1) {
-            System.out.println(s);
+        List<Order> all12 = new ArrayList<>();
+        all12 = dao.order.getAll();
+        for (Order f : all12) {
+            System.out.println(f);
         }
 
 

@@ -46,17 +46,18 @@ public class Reset {
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `kruglenja`.`order` (" +
                     "  `id` BIGINT NOT NULL AUTO_INCREMENT," +
+                    "  `spareePart_id` BIGINT NULL," +
                     "  `quanity` INT NULL," +
-                    "  `deliveryTime` VARCHAR(45) NULL," +
-                    "  `totalPrice` DOUBLE NULL," +
+                    "  `deliveryTime` INT NULL," +
+                    "  `totalPrice` INT NULL," +
                     "  `users_id` BIGINT NOT NULL," +
                     "  PRIMARY KEY (`id`)," +
-                    "  INDEX `fk_order_users_idx` (`users_id` ASC)," +
-                    "  CONSTRAINT `fk_order_users`" +
+                    "  INDEX `fk_order_users1_idx` (`users_id` ASC)," +
+                    "  CONSTRAINT `fk_order_users1`" +
                     "    FOREIGN KEY (`users_id`)" +
                     "    REFERENCES `kruglenja`.`users` (`id`)" +
-                    "    ON DELETE CASCADE" +
-                    "    ON UPDATE CASCADE)" +
+                    "    ON DELETE NO ACTION" +
+                    "    ON UPDATE NO ACTION)" +
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `kruglenja`.`spareParts` (" +
                     "  `id` BIGINT NOT NULL AUTO_INCREMENT," +
@@ -74,8 +75,8 @@ public class Reset {
             statement.executeUpdate("INSERT INTO `kruglenja`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');");
             statement.executeUpdate("INSERT INTO `kruglenja`.`users` (`id`, `login`, `password`, `email`, `phone_number`, `roles_id`) VALUES (DEFAULT, 'admin', 'admin', 'admin@admin', '+9849871891789', 1);");
             statement.executeUpdate("INSERT INTO `kruglenja`.`users` (`id`, `login`, `password`, `email`, `phone_number`, `roles_id`) VALUES (DEFAULT, 'user', 'user', 'user@user', '+9849871891789', 2);");
-            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `users_id`) VALUES (DEFAULT, 12, 15, 1024.25, 2);");
-            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `quanity`, `deliveryTime`, `totalPrice`, `users_id`) VALUES (DEFAULT, 12, 44, 443.24, 1);");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `spareePart_id`, `quanity`, `deliveryTime`, `totalPrice`, `users_id`) VALUES (DEFAULT, NULL, 12, 15, 1024, 2);\n");
+            statement.executeUpdate("INSERT INTO `kruglenja`.`order` (`id`, `spareePart_id`, `quanity`, `deliveryTime`, `totalPrice`, `users_id`) VALUES (DEFAULT, NULL, 12, 44, 444, 1);\n");
             statement.executeUpdate("INSERT INTO `kruglenja`.`spareParts` (`id`, `model`, `category`, `name`, `serial_number`, `weight`, `price`) VALUES (DEFAULT, 'Mazda', 'engine', 'engine', 051871051184, '12', 1024);");
             statement.executeUpdate("INSERT INTO `kruglenja`.`spareParts` (`id`, `model`, `category`, `name`, `serial_number`, `weight`, `price`) VALUES (DEFAULT, 'Ford', 'motor', 'motor', 214045204524, '352', 41233);");
             System.out.println("DB created");
