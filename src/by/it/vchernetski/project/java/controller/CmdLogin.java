@@ -24,8 +24,11 @@ class CmdLogin implements Cmd {
             byte[] encode = encoder.encode(password.getBytes());
             String encodepassword = new String(encode);
             Cookie pas = new Cookie("password", encodepassword);
-            pas.setMaxAge(60);
+            Cookie log = new Cookie("login", login);
+            pas.setMaxAge(30000);
+            log.setMaxAge(30000);
             FrontController.response.addCookie(pas);
+            FrontController.response.addCookie(log);
             User user = new User();
             MyDAO<User> dao = MyDAO.getDao();
             dao.setBean(user);
@@ -34,7 +37,7 @@ class CmdLogin implements Cmd {
                 user = list.get(0);
                 user.setPassword(encodepassword);
                 HttpSession session = request.getSession();
-                session.setMaxInactiveInterval(30);
+                session.setMaxInactiveInterval(15);
                 session.setAttribute("user", user);
                 return Action.PROFILE;
             } else throw new MyException("There is no such user");
