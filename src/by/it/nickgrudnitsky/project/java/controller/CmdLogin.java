@@ -9,12 +9,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
-import java.util.Base64;
 import java.util.List;
 
 class CmdLogin extends Cmd {
     @Override
     Action execute(HttpServletRequest req, HttpServletResponse resp) throws SiteException, SQLException {
+        if (Util.checkViewer(req)){
+            return Action.PROFILE;
+        }
         if (Form.isPost(req)){
             String nickname = Form.getString(req, "username", "[A-Za-z0-9А-Яа-я]+");
             String password = Form.getString(req, "password", "[A-Za-z0-9*$%#=]+");
@@ -23,14 +25,13 @@ class CmdLogin extends Cmd {
             List<Viewer> viewers = MyDao.getDao().viewer.getAll(where);
             if (viewers.size()==1){
                 Viewer viewer = viewers.get(0);
-                Base64.Decoder decoder = Base64.getDecoder();
-                byte[] decode = decoder.decode(viewer.getPassword());
-                viewer.setPassword(new String(decode));
+                String decodePassword = Util.deCode(viewer.getPassword());
+                viewer.setPassword(decodePassword);
                 HttpSession session = req.getSession(true);
                 session.setAttribute("user", viewer);
                 session.setAttribute("password", hashPassword);
                 session.setAttribute("nickname", nickname);
-                session.setMaxInactiveInterval(30);
+                session.setMaxInactiveInterval(5);
                 Cookie passwordCookie = new Cookie("password", hashPassword);
                 Cookie nicknameCookie = new Cookie("nickname", nickname);
                 nicknameCookie.setMaxAge(60);

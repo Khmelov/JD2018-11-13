@@ -14,6 +14,9 @@ import java.util.List;
 class CmdLoginStreamer extends Cmd {
     @Override
     Action execute(HttpServletRequest req, HttpServletResponse resp) throws SiteException, SQLException {
+        if (Util.checkStreamer(req)){
+            return Action.PROFILESTREAMER;
+        }
         if (Form.isPost(req)){
             String nickname = Form.getString(req, "username", "[A-Za-z0-9А-Яа-я]+");
             String password = Form.getString(req, "password", "[A-Za-z0-9*$%#=]+");
@@ -28,7 +31,7 @@ class CmdLoginStreamer extends Cmd {
                 session.setAttribute("user", streamer);
                 session.setAttribute("password", hashPassword);
                 session.setAttribute("nickname", nickname);
-                session.setMaxInactiveInterval(30);
+                session.setMaxInactiveInterval(5);
                 Cookie passwordCookie = new Cookie("password", hashPassword);
                 Cookie nicknameCookie = new Cookie("nickname", nickname);
                 nicknameCookie.setMaxAge(60);

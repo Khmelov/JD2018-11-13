@@ -10,7 +10,7 @@ class CmdProfileStreamer extends Cmd {
    @Override
    Action execute(HttpServletRequest req, HttpServletResponse resp) throws SiteException {
 
-       if (!Util.checkStreamer(req, resp)){
+       if (!Util.checkStreamer(req)){
            return Action.LOGINSTREAMER;
        }
 
