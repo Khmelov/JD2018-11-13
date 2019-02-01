@@ -32,15 +32,17 @@ public class AnswerDao implements InterfaceDao<Answer> {
 
     public boolean update(Answer answer) throws SQLException {
         String sql = String.format(
-                "UPDATE `answers` SET " +
-                        "`answer` = '%s', `status` = '%s', `id_question` = %d ",
-                answer.getAnswer(), answer.getStatus(), answer.getId_question()
+                "UPDATE `answers` SET `answer` = '%s', " +
+                        "`status` = '%s', `id_question` = '%d'" +
+                        " WHERE `answers`.`id_answer` = '%d'",
+                answer.getAnswer(), answer.getStatus(),
+                answer.getId_question(), answer.getId()
         );
         return Dao.executeUpdate(sql);
     }
 
     public Answer read(long id) throws SQLException {
-        String sqlSuffix = String.format("WHERE id_question = %d", id);
+        String sqlSuffix = String.format(" WHERE id_answer = %d", id);
         List<Answer> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
     }

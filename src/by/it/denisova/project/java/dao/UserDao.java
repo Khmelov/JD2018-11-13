@@ -35,7 +35,7 @@ public class UserDao implements InterfaceDao<User> {
                 "UPDATE `users` SET " +
                         "`login` = '%s', `password` = '%s', " +
                         "`email` = '%s',  `id_role` = '%d' " +
-                        "WHERE `users`.`id_user` = %d",
+                        "WHERE `users`.`id_user` = %d" ,
                 user.getLogin(), user.getPassword(),
                 user.getEmail(), user.getIdRole(),
                 user.getId()

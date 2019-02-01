@@ -76,9 +76,9 @@ public class Runner {
 
         question = dao.question.read(question.getId());
         System.out.println("read!!!" + question);
-        if(dao.question.delete(question)) {
-            System.out.println("Deleted " + question);
-        }
+//        if(dao.question.delete(question)) {
+//            System.out.println("Deleted " + question);
+//        }
 
         System.out.println("-------------------Answer----------------------");
         Answer answer = new Answer();
@@ -90,8 +90,16 @@ public class Runner {
         }
         System.out.println(answer.getId());
 
-        answer = dao.answer.read( answer.getId());
+        answer.setAnswer("1926");
+        if(dao.answer.update(answer)) {
+            System.out.println("UPDATED " + answer);
+        }
+        answer = dao.answer.read(answer.getId());
         System.out.println( answer);
+
+        if(dao.answer.delete(answer)) {
+            System.out.println("DELETED " +answer);
+        }
 
         System.out.println("-------------------LESSON----------------------");
         Lesson lesson = new Lesson();
@@ -104,8 +112,8 @@ public class Runner {
             System.out.println("CREATED " + lesson);
         }
 
-//        lesson = dao.lesson.read(answer.getId());
-//        System.out.println("READE " + lesson); не работает Read кидается NullPointerException
+//       lesson = dao.lesson.read(answer.getId());
+//       System.out.println("READE " + lesson); //не работает Read кидается NullPointerException
 
 //        answer.setAnswer("wrong");
 //        if(dao.answer.update( answer)) {
