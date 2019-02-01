@@ -8,7 +8,8 @@ enum Actions {
     ERROR(new CommandError()),
     RESETDB(new CommandResetDB()),
     DROPDB(new CommandDropDB()),
-    PROFILE(new CommandProfile()),
+    PROFILE(new CommandProfil()),
+    EDITPROFIL(new CommandEditProfil()),
     CREATE(new CommandCreate());
 
 

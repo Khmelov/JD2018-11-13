@@ -74,6 +74,7 @@ public class MyDAO<MyBeen> {
             }
             fields[0].setAccessible(true);
             sql = sql.concat(" WHERE `" + fields[0].getName() + "` = '" + fields[0].get(been) + "'");
+            System.out.println(sql);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         }

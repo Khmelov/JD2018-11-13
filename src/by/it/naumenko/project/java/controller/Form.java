@@ -30,7 +30,7 @@ public class Form {
         return Long.parseLong(str);
     }
 
-    static double getInteger(HttpServletRequest req, String name){
+    static int getInteger(HttpServletRequest req, String name){
         String str = req.getParameter(name);
         return Integer.parseInt(str);
     }

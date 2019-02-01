@@ -1,29 +1,33 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <%@ include file="include/head.htm" %>
 <body>
     <div class="container">
         <%@ include file="include/menu.htm" %>
-        <p><img src="image/error.png" width="100" height="100" alt="ERROR"> Profile ${message}</p>
-        <p><br> ${profil}</p>
-        <form class="form-horizontal">
+        <p><img src="image/profil2.png" width="300" height="300" alt="Профиль"> </p>
+        <p><input id="foto" name="foto" class="input-file" type="file"></p>
+
+        <form class="form-horizontal" action ="do?command=editProfil" method="POST">
         		<fieldset>
         		  	<div class="FormProfil">
         				<legend>Профиль</legend>
+
+
 
         		          <!-- Text input-->
         		          <div class="form-group">
         		            <label class="col-md-4 control-label" for="name">Имя</label>
         		          	<div class="col-md-4">
-        		            	<input id="name" name="name" type="text" placeholder="" class="form-control input-md">
+        		            	<input id="name_profile" name="name_profile" value="${profil.name_profil}" type="text" placeholder="" class="form-control input-md">
         		          	</div>
         		          </div>
 
 
         		          <div class="form-group">
-        		            <label class="col-md-4 control-label" for="lastName">Фамилия</label>
+        		            <label class="col-md-4 control-label"  for="lastName">Фамилия</label>
         		            <div class="col-md-4">
-        		            	<input id="lastName" name="lastName" type="text" placeholder="" class="form-control input-md">
+        		            	<input id="lastName_profil" name="lastName_profil" value="${profil.lastName_profil}" type="text" placeholder="" class="form-control input-md">
         		            </div>
         		          </div>
 
@@ -31,7 +35,8 @@
         		        <p style="color: yellow">День Рождения:</p>
         		        <div class="row">
         		        	<div class="col-md-1">
-        		                  <select id="dayBirth" name="dayBirth" class="form-control">
+        		        	    <input id="dayBirth" name="dayBirth" value="${profil.dayBirth}" type="text" placeholder="число" class="form-control input-md">
+        		                <!--  <select id="dayBirth" name="dayBirth" class="form-control">
         		                    <option value="1">1</option>
         		                    <option value="2">2</option>
         		                    <option value="3">3</option>
@@ -63,11 +68,13 @@
         		                    <option value="29">29</option>
         		                    <option value="30">30</option>
         		                    <option value="31">31</option>
-        		                  </select>
+        		                  </select>-->
         		             </div>
 
         		            <div class="col-md-2">
-        		                  <select id="mountBirth" name="mountBirth" class="form-control">
+        		                  <input id="mountBirth" name="mountBirth" value="${profil.mountBirth}" type="text" placeholder="месяц" class="form-control input-md">
+
+        		                  <!--<select id="mountBirth" name="mountBirth" class="form-control">
         		                    <option value="1">Январь</option>
         		                    <option value="2">Февраль</option>
         		                    <option value="3">Март</option>
@@ -80,28 +87,29 @@
         		                    <option value="10">Октябрь</option>
         		                    <option value="11">Ноябрь</option>
         		                    <option value="12">Декабрь</option>
-        		                  </select>
+        		                  </select>-->
         		             </div>
 
 
+                            <div>
+                                <input id="yearBirth" name="yearBirth" value="${profil.yearBirth}"  type="text" placeholder="" class="form-control input-md">
+                            </div>
 
-        					<div class="col-md-2">
-        		               <input id="yearBirth" name="yearBirth" type="text" placeholder="" class="form-control input-md">
-        		            </div>
-        				</div>
+
+        				 </div>
 
         				<div class="form-group">
         		            <label class="col-md-4 control-label" for="pol">Пол</label>
         		            <div class="col-md-4">
         		            	<div class="radio">
         		              		<label for="pol-0">
-        		                		<input type="radio" name="pol" id="pol-0" value="men" checked="checked">Муж
+        		                		<input type="radio" name="pol" id="pol-0" value="men" >men
         		              		</label>
         		            	</div>
 
         			            <div class="radio">
         			              	<label for="pol-1">
-        			                	<input type="radio" name="pol" id="pol-1" value="wom">Жен
+        			                	<input type="radio" name="pol" id="pol-1" value="women" >women
         			              	</label>
         			            </div>
         		            </div>
@@ -111,7 +119,7 @@
         		        <div class="form-group">
         		            <label class="col-md-4 control-label" for="city">Город</label>
         		            <div class="col-md-4">
-        		            	<input id="city" name="city" type="text" placeholder="" class="form-control input-md">
+        		            	<input id="city" name="city" value="${profil.city}" type="text" placeholder="" class="form-control input-md">
         		            </div>
         		        </div>
 
@@ -119,7 +127,7 @@
         				<div class="form-group">
         		            <label class="col-md-4 control-label" for="street">Улица</label>
         		            <div class="col-md-4">
-        		            <input id="street" name="street" type="text" placeholder="" class="form-control input-md">
+        		            <input id="street" name="street" value="${profil.street}" type="text" placeholder="" class="form-control input-md">
 
         		            </div>
         		          </div>
@@ -128,14 +136,14 @@
         		        <div class="form-group">
         		            <label class="col-md-4 control-label" for="home">Дом</label>
         		            <div class="col-md-4">
-        		        	    <input id="home" name="home" type="text" placeholder="" class="form-control input-md">
+        		        	    <input id="home" name="home" value="${profil.home}" type="text" placeholder="" class="form-control input-md">
         		            </div>
         		        </div>
 
         		        <div class="form-group">
         		            <label class="col-md-4 control-label" for="korpus">Корпус</label>
         		            <div class="col-md-4">
-        			            <input id="korpus" name="korpus" type="text" placeholder="" class="form-control input-md">
+        			            <input id="korpus" name="korpus" value="${profil.korpus}" type="text" placeholder="" class="form-control input-md">
         		            </div>
         		        </div>
 
@@ -143,15 +151,15 @@
         		        <div class="form-group">
         		            <label class="col-md-4 control-label" for="kvartira">квартира</label>
         		            <div class="col-md-4">
-        		        	    <input id="kvartira" name="kvartira" type="text" placeholder="" class="form-control input-md">
+        		        	    <input id="kvartira" name="kvartira" value="${profil.kvartira}" type="text" placeholder="" class="form-control input-md">
         		            </div>
         		        </div>
 
 
         		        <div class="form-group">
-        		            <label class="col-md-4 control-label" for="telefon">Тел</label>
+        		            <label class="col-md-4 control-label" for="tel">Тел</label>
         		            <div class="col-md-4">
-        		        	    <input id="telefon" name="telefon" type="text" placeholder="+375" class="form-control input-md">
+        		        	    <input id="tel" name="tel" value="${profil.tel}" type="text" placeholder="+375" class="form-control input-md">
         		            </div>
         		         </div>
 
@@ -159,15 +167,15 @@
         		        <div class="form-group">
         		            <label class="col-md-4 control-label" for="about">О себе</label>
         		            <div class="col-md-4">
-        			            <textarea class="form-control" id="about" name="about"></textarea>
+        			            <textarea class="form-control" id="about"  name="about">${profil.about}</textarea>
         		            </div>
         		        </div>
 
 
         		        <div class="form-group">
-        		            <label class="form-inline my-2 my-lg-0" for="ok"></label>
+        		            <label class="form-inline my-2 my-lg-0" for="save"></label>
         		            <div class="col-md-4">
-        		        	    <button id="ok" name="ok" class="btn btn-outline-primary my-2 my-sm-0">Сохранить</button>
+        		        	    <button id="save" name="save" class="btn btn-outline-primary my-2 my-sm-0">Сохранить</button>
         		            </div>
         		        </div>
         		  	</div>

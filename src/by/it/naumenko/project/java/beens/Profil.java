@@ -39,8 +39,8 @@ public class Profil {
         this.mountBirth = mountBirth;
     }
 
-    public void setYearDirth(int yearDirth) {
-        this.yearBirth = yearDirth;
+    public void setYearBirth(int yearBirth) {
+        this.yearBirth = yearBirth;
     }
 
     public void setPol(String pol) {
@@ -104,7 +104,7 @@ public class Profil {
         return mountBirth;
     }
 
-    public int getYearDirth() {
+    public int getYearBirth() {
         return yearBirth;
     }
 
@@ -194,6 +194,11 @@ public class Profil {
         this.tel = tel;
         this.kol_zakaz = kol_zakaz;
         this.about = about;
+        this.id_user = id_user;
+    }
+
+    public Profil(long id_profil, long id_user) {
+        this.id_profil = id_profil;
         this.id_user = id_user;
     }
 

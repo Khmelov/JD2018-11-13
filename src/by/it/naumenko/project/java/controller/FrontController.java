@@ -36,7 +36,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            process(req, resp);
+            process(req,resp);
         } catch (LoginException e) {
             e.printStackTrace();
         } catch (NoSuchAlgorithmException e) {
@@ -50,23 +50,22 @@ public class FrontController extends HttpServlet {
         Actions next = null;
         try {
             next = action.command.exequit(req,resp);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } catch (SiteException e) {
+        } catch (SQLException | SiteException e) {
             e.printStackTrace();
         }
         if (next == null || next == action) {
-            ServletContext servletContext = req.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
-            requestDispatcher.forward(req, resp);
+            toJSP(req,resp,action.getJsp());
         }
         else
             resp.sendRedirect("do?command="+next.toString().toLowerCase());
 
+    }
 
-//        ServletContext servletContext = getServletContext();
-//        RequestDispatcher dispatcher = servletContext.getRequestDispatcher("/index.jsp");
-//        dispatcher.forward(req,resp);
+    private void toJSP(HttpServletRequest request, HttpServletResponse response,String jsp) throws ServletException, IOException {
+        ServletContext servletContext = request.getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(jsp);
+        requestDispatcher.forward(request, response);
+
 
     }
 }
