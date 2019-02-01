@@ -10,6 +10,7 @@ enum Action {
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
     ADDPROJECT(new CmdAddProject()),
+    EDITUSERS(new CmdEditUsers()),
     //SUCCESS(new CmdSuccess()),
     ORDERS(new CmdOrders()),
     ERROR(new CmdError());

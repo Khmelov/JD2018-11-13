@@ -7,9 +7,37 @@
 
 
 
-<p>User Profile:<br> ${user}</p>
-<p>Orders List: <br> ${orders}</p>
-<em>(Shows USER ORDERS LIST for Users and FULL ORDERS LIST for admins)</em>
+
+
+
+
+<div class="page-header">
+    <h1>Список заказов</h1>
+
+</div>
+
+<div class="row">
+    <div class="col-md-2">Дата</div>
+    <div class="col-md-2">Время</div>
+    <div class="col-md-2">Проект)</div>
+</div>
+
+<c:forEach items="${orders}" var="varOrders">
+    <br>
+    <div class="row">
+        <div class="col-md-2">${varOrders.date} </div>
+        <div class="col-md-2">${varOrders.time} </div>
+        <div class="col-md-2">${varOrders.items_id} </div>
+    </div>
+</c:forEach>
+<br><br>
+
+
+
+
+
+
+
 <form class="form-horizontal" action="do?command=Profile" method="POST">
 <fieldset>
 

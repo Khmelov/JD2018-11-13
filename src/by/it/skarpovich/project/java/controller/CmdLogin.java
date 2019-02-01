@@ -18,8 +18,6 @@ class CmdLogin implements Cmd {
                 User user = users.get(0);
                 req.getSession().setAttribute("user", user);
 
-                req.getSession().setAttribute("username", username);
-                req.getSession().setAttribute("password", password);
                 req.getSession().setMaxInactiveInterval(30);
                 return Action.PROFILE;
             }
