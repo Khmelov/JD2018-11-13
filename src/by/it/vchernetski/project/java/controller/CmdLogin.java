@@ -25,8 +25,8 @@ class CmdLogin implements Cmd {
             String encodepassword = new String(encode);
             Cookie pas = new Cookie("password", encodepassword);
             Cookie log = new Cookie("login", login);
-            pas.setMaxAge(30000);
-            log.setMaxAge(30000);
+            pas.setMaxAge(300);
+            log.setMaxAge(300);
             FrontController.response.addCookie(pas);
             FrontController.response.addCookie(log);
             User user = new User();

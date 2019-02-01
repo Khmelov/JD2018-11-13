@@ -12,7 +12,7 @@ class CmdLogout implements Cmd {
         if(Util.checkUser(request)){
             Cookie[] cookies = request.getCookies();
             for (Cookie cook:cookies) {
-                cook.setMaxAge(-1);
+                cook.setMaxAge(0);
                 FrontController.response.addCookie(cook);
             }
         }
