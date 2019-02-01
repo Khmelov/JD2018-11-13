@@ -2,6 +2,7 @@ package by.it.markelov.project.java.controller;
 
 enum Action {
 
+    RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     ORDER(new CmdOrder()),
     LOGIN(new CmdLogin()),
