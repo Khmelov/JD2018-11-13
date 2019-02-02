@@ -35,7 +35,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="password">Password</label>
                 <div class="col-md-4">
-                    <input id="passwordrepeat" value="testPASSWORD" name="passwordrepeat" type="password" placeholder=""
+                    <input id="passwordValidation" value="testPASSWORD" name="passwordValidation" type="password" placeholder=""
                            class="form-control input-md">
 
                 </div>

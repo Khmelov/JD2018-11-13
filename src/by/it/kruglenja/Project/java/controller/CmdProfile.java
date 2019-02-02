@@ -13,14 +13,9 @@ public class CmdProfile implements Cmd {
         if (!Util.checkUser(req)){
             return Action.LOGIN;
         }
-        if ( req.getMethod().equalsIgnoreCase("post")) {
-            String phone_number = req.getParameter("pNumber");
-            Dao dao = Dao.getDao();
-            User user = new User();
-            if (dao.user.update(user)) {
-                req.getSession().setAttribute("user", user);
-                user.setPhone_number(phone_number);
-            }
+        if (Form.isPost(req)) {
+           return Action.EDITUSERS;
+
         }
         return Action.PROFILE; }
 }

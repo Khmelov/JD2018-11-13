@@ -13,6 +13,11 @@ public class CmdSignup implements Cmd {
         if (Form.isPost(req)) {
             String login = Form.getString(req, "login");
             String password = Form.getString(req, "password", "[а-яa-zA-Z0-9_-]{6,}");
+            String passwordValidation = Form.getString(req, "passwordValidation", "[а-яa-zA-Z0-9_-]{6,}");
+            if (!password.equals(passwordValidation)){
+                req.getSession().setAttribute("message", "Подтверждение не совпадает с паролем!");
+                return Action.SIGNUP;
+            }
             String email = Form.getString(req, "email");
             String phone_number = Form.getString(req, "phone_number");
 

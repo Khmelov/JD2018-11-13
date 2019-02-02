@@ -16,7 +16,6 @@ public class Runner {
         //User dao
         Dao dao = Dao.getDao();
         User user = new User();
-        Spareparts spareparts = new Spareparts();
         Order order = new Order();
 
         user.setLogin("RTX");
@@ -28,11 +27,12 @@ public class Runner {
 
         if (dao.user.create(user)) {
             System.out.println("create -------->" + user);
-            user.setLogin("VAsyA");
             System.out.println("change login -------->" + user);
         }
+        user.setLogin("XXX");
+        user.setRoles_Id(1);
         if (dao.user.update(user)) {
-            user = dao.user.read(user.getId());
+            System.out.println("Updated " + dao.user.getAll());
         }
 //        if (dao.user.delete(user)) {
 //            System.out.println("user -------->" + user.getLogin() + "--------> deleted");
@@ -46,23 +46,24 @@ public class Runner {
         System.out.println("\n" + "+-+-+-+-+-+-+-+Spareparts dao+-+-+-+-+-+-+-+");
 
 
-        spareparts.setModel("Opel");
-        spareparts.setCategory("engune");
-        spareparts.setName("coils");
-        spareparts.setSerial_number("41dfsaf5");
-        spareparts.setWeight(14.5);
-        spareparts.setPrice(99.9);
+//        spareparts.setModel("Opel");
+//        spareparts.setCategory("engune");
+//        spareparts.setName("coils");
+//        spareparts.setSerial_number("41dfsaf5");
+//        spareparts.setWeight(14.5);
+//        spareparts.setPrice(99.9);
+        Spareparts spareparts = new Spareparts(0,"fgh","gh", "ghj", "ghjgh", 456.56, 56.66, 6 );
 
         if (dao.spareparts.create(spareparts)) {
-            System.out.println("create -------->" + spareparts);
-            spareparts.setModel("Lada");
+            System.out.println("create  fgh-------->" + spareparts);
+//            spareparts.setModel("Lada");
         }
 //        if (dao.spareparts.update(spareparts)) {
 //            spareparts = dao.spareparts.read(spareparts.getId());
 //            System.out.println("read -------->" + spareparts);
 //        }
         List<Spareparts> all = new ArrayList<>();
-        all = dao.spareparts.getAll("");
+        all = dao.spareparts.getAll();
         System.out.println("\n" + "+-+-+-+-+-+-+-+SP getall+-+-+-+-+-+-+-+");
         for (Spareparts s : all) {
             System.out.println(s);

@@ -5,7 +5,7 @@
 <body>
 <div class="container">
     <%@ include file="include/menu.htm" %>
-<form class="form-horizontal">
+<form class="form-horizontal" action="do?command=FillCatalog" method="post">
     <fieldset>
 
         <!-- Form Name -->
@@ -13,7 +13,7 @@
 
         <!-- Select Basic -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="selectModel">car_model</label>
+            <label class="col-md-4 control-label" for="selectModel">Марка автомобиля</label>
             <div class="col-md-4">
                 <select id="selectModel" name="selectModel" class="form-control">
                     <option value="---">Choose something</option>
@@ -22,7 +22,7 @@
                     <option value="Hyundai">Hyundai</option>
                     <option value="Kia South Korea">Kia South Korea</option>
                     <option value="General Motors">General Motors</option>
-                    <option value="Ford">Ford</option>
+                    <option value="Ford" selected>Ford</option>
                     <option value="Honda Japan">Honda Japan</option>
                     <option value="FCA Italy">FCA Italy</option>
                     <option value="Renault France">Renault France</option>
@@ -43,13 +43,13 @@
 
         <!-- Select Basic -->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="selectCategory">part_category</label>
+            <label class="col-md-4 control-label" for="selectCategory">Категория</label>
             <div class="col-md-4">
                 <select id="selectCategory" name="selectCategory" class="form-control">
                     <option value="---">Choose something</option>
                     <option value="Wheels">Wheels</option>
                     <option value="Engine">Engine</option>
-                    <option value="Electrronic">Electrronic</option>
+                    <option value="Electrronic" selected>Electrronic</option>
                     <option value="Glass">Glass</option>
                     <option value="Clutch">Clutch</option>
                 </select>
@@ -57,55 +57,54 @@
         </div>
 
         <!-- Text input-->
+        <%--<div class="form-group">--%>
+            <%--<label class="col-md-4 control-label" for="partCategory">part_category</label>--%>
+            <%--<div class="col-md-4">--%>
+                <%--<input id="partCategory" name="partCategory" type="text" placeholder="" class="form-control input-md">--%>
+
+            <%--</div>--%>
+        <%--</div>--%>
+
+        <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="partCategory">part_category</label>
+            <label class="col-md-4 control-label" for="partName">Наименование</label>
             <div class="col-md-4">
-                <input id="partCategory" name="partCategory" type="text" placeholder="" class="form-control input-md">
+                <input id="partName" name="partName" value="Катушки зажигания" type="text" placeholder="" class="form-control input-md">
+
+            </div>
+        </div>
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="serialNumber">Серийный номер</label>
+            <div class="col-md-4">
+                <input id="serialNumber" name="serialNumber" value="015875AASC644548" type="text" placeholder="" class="form-control input-md">
+
+            </div>
+        </div>
+
+
+        <!-- Text input-->
+        <div class="form-group">
+            <label class="col-md-4 control-label" for="weigth">Вес</label>
+            <div class="col-md-4">
+                <input id="weigth" name="weigth" value="22.11" type="text" placeholder="" class="form-control input-md">
 
             </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="serialNumber">serial_number</label>
+            <label class="col-md-4 control-label" for="price">Цена</label>
             <div class="col-md-4">
-                <input id="serialNumber" name="serialNumber" type="text" placeholder="" class="form-control input-md">
-
+                <input id="price" name="price" type="text" value="48.36" placeholder="" class="form-control input-md">
             </div>
         </div>
 
         <!-- Text input-->
         <div class="form-group">
-            <label class="col-md-4 control-label" for="partName">part_name</label>
+            <label class="col-md-4 control-label" for="storageQuanity">Остаток</label>
             <div class="col-md-4">
-                <input id="partName" name="partName" type="text" placeholder="" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="weigth">weigth</label>
-            <div class="col-md-4">
-                <input id="weigth" name="weigth" type="text" placeholder="" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="price">price</label>
-            <div class="col-md-4">
-                <input id="price" name="price" type="text" placeholder="" class="form-control input-md">
-
-            </div>
-        </div>
-
-        <!-- Text input-->
-        <div class="form-group">
-            <label class="col-md-4 control-label" for="storageQuanity">storage_quanity</label>
-            <div class="col-md-4">
-                <input id="storageQuanity" name="storageQuanity" type="text" placeholder="" class="form-control input-md">
+                <input id="storageQuanity" name="storageQuanity" value="6" type="text" placeholder="" class="form-control input-md">
 
             </div>
         </div>
@@ -113,7 +112,7 @@
         <div class="form-group">
             <label class="col-md-4 control-label" for="ADD"></label>
             <div class="col-md-4">
-                <button id="ADD" name="ADD" class="btn btn-primary">ADD</button>
+                <button id="ADD" name="ADD" class="btn btn-primary">ДОБАВИТЬ</button>
             </div>
         </div>
     </fieldset>

@@ -36,7 +36,7 @@ public class FrontController extends HttpServlet {
             next = action.cmd.execute(req);
         } catch (Exception e) {
             req.setAttribute("message", e.toString());
-            getJsp(req, resp, Action.ERROR);
+            getJsp(req, resp, Action.INDEX);
 
         }
         if (next == null || next == action) {

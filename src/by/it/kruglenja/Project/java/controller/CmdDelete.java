@@ -9,6 +9,8 @@ public class CmdDelete  implements Cmd {
     @Override
     public Action execute(HttpServletRequest req)throws SQLException {
         Dao.getDao().delete();
-        return Action.INDEX;
+        req.getSession().setAttribute("message", "База данных удалена!");
+        return Action.ERROR;
+
     }
 }

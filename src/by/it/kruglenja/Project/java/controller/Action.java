@@ -14,8 +14,9 @@ public enum Action {
     PROFILE(new CmdProfile()),
     PARTTOBUCKET(new CmdPartToBucket()),
     DELETEORDERPART(new DeleteOrderPart()),
-    EDITUSERS(new CmdEditUsers()),
+    EDITUSERS(new CmdEditUser()),
     FILLCATALOG(new CmdFillCatalog());
+
 
     Cmd cmd;
     Action(Cmd cmdIndex) {
@@ -32,7 +33,7 @@ public enum Action {
             try {
                 result = Action.valueOf(command.toUpperCase());
             } catch (IllegalArgumentException e) {
-                System.out.println(command + " is wrong command" );
+                System.out.println("wrong command");
             }
         }
         return result;
