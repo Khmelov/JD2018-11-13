@@ -1,10 +1,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.jsp" %>
 <body>
     <div class="container">
-        <%@ include file="include/menu.htm" %>
+        <%@ include file="include/menu.jsp" %>
         <p><img src="image/profil2.png" width="300" height="300" alt="Профиль"> </p>
         <p><input id="foto" name="foto" class="input-file" type="file"></p>
 

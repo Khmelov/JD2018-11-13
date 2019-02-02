@@ -1,6 +1,6 @@
 package by.it.naumenko.project.java.controller;
 
-import by.it.naumenko.project.java.beens.Users;
+import by.it.naumenko.project.java.beens.Roles;
 import by.it.naumenko.project.java.dao.MyDAO;
 
 import javax.security.auth.login.LoginException;
@@ -9,18 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 
-class CommandCreate extends Command {
+class CommandCreateRole extends Command {
     @Override
     public Actions exequit(HttpServletRequest request, HttpServletResponse response) throws SiteException, LoginException, NoSuchAlgorithmException, SQLException {
 
         if (Form.isPost(request)) {
-            String login = Form.getString(request, "login");
-            String password = Form.getString(request, "password");
-            String email = Form.getString(request, "email");
-            //long id_role = Form.getLong(request, "id_role");
-            Users user = new Users(0,login,password,email,Util.hashMD5(password),2);
-            MyDAO<Users> usersMyDAO = new MyDAO<>(new Users(),"users");
-            usersMyDAO.create(user);
+            String role = Form.getString(request, "role");
+            Roles roles = new Roles(0, role);
+            MyDAO<Roles> rolesMyDAO = new MyDAO<>(new Roles(), "roles");
+            rolesMyDAO.create(roles);
             return Actions.PROFILE;
         }
         return Actions.CREATE;

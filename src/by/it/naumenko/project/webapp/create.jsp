@@ -1,13 +1,14 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-    <%@ include file="include/head.htm" %>
+    <%@ include file="include/head.jsp" %>
 
  <body>
     <div class="container">
-        <%@ include file="include/menu.htm" %>
+        <%@ include file="include/menu.jsp" %>
 
         <div class ="Forms">
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="do?command=Create" method="POST">
                         <fieldset>
 
                         <!-- Form Name -->
@@ -43,19 +44,36 @@
                         <!-- Select Basic -->
                         <div class="form-group">
                           <label class="col-md-8 control-label" for="role">Role</label>
-                          <div class="col-md-1">
-                            <select id="role" name="role" class="form-control">
-                              <option value="1">Option one</option>
-                              <option value="2">Option two</option>
+                          <div class="col-md-6">
+                            <select id="id_role" name="id_role" class="form-control">
+                              <c:forEach items="${roles}" var="role">
+                                <option value ="${role.id_role}" role=${role.id_role} ${role.id_role==user.id_role?"selected":""}>
+                                            ${id_role.role}
+                                </option>
+                              </c:forEach>
                             </select>
                           </div>
                         </div>
 
+
+                        <!--<div class=col-md-2>
+                                                <select id="role" name="roles_Id" class="form-control">
+                                                    <c:forEach items="${roles}" var="role">
+                                                        <option value="${role.id}" role=${role.id} ${role.id==user.roles_Id?"selected":""}>
+                                                                ${id_role.role}
+                                                        </option>
+                                                    </c:forEach>
+                                                </select>
+                                            </div>
+
+                            -->
+
+
                         <!-- Button -->
                         <div class="form-group">
-                          <label class="col-md-8 control-label" for="createU"></label>
+                          <label class="col-md-8 control-label" for="createUser"></label>
                           <div class="col-md-8">
-                            <button id="createU" name="createU" class="btn btn-success">Create</button>
+                            <button id="createUser" name="createUser" class="btn btn-success">Зарегистрироваться</button>
                           </div>
                         </div>
 
@@ -65,7 +83,7 @@
 
                 <div class="Forms">
 
-                    <form class="form-horizontal">
+                    <form class="form-horizontal" action="do?command=CreateRole" method="POST">
                     <fieldset>
 
                     <!-- Form Name -->
@@ -82,9 +100,9 @@
 
                     <!-- Button -->
                     <div class="form-group">
-                      <label class="col-md-8 control-label" for="createC"></label>
+                      <label class="col-md-8 control-label" for="createRole"></label>
                       <div class="col-md-8">
-                        <button id="createC" name="createC" class="btn btn-success">Зарегистрироваться</button>
+                        <button id="createRole" name="createRole" class="btn btn-success">Создать</button>
                       </div>
                     </div>
 
@@ -95,7 +113,7 @@
                 </div>
 
                 <div class="Forms">
-                       <form class="form-horizontal">
+                       <form class="form-horizontal" action="do?command=CreateCake" method="POST">
                        <fieldset>
 
                        <!-- Form Name -->
@@ -103,27 +121,27 @@
 
                        <!-- Text input-->
                        <div class="form-group">
-                         <label class="col-md-8 control-label" for="namecake">NameCake</label>
+                         <label class="col-md-8 control-label" for="name_cake">NameCake</label>
                          <div class="col-md-8">
-                         <input id="namecake" name="namecake" type="text" placeholder="" class="form-control input-md" required="">
+                         <input id="name_cake" name="name_cake" type="text" placeholder="" class="form-control input-md" required="">
 
                          </div>
                        </div>
 
                        <!-- Text input-->
                        <div class="form-group">
-                         <label class="col-md-8 control-label" for="sizecake">SizeCake</label>
+                         <label class="col-md-8 control-label" for="size_cake">SizeCake</label>
                          <div class="col-md-8">
-                         <input id="sizecake" name="sizecake" type="text" placeholder="" class="form-control input-md">
+                         <input id="size_cake" name="size_cake" type="text" placeholder="" class="form-control input-md">
 
                          </div>
                        </div>
 
                        <!-- Text input-->
                        <div class="form-group">
-                         <label class="col-md-8 control-label" for="weight">Weight</label>
+                         <label class="col-md-8 control-label" for="weight_cake">Weight</label>
                          <div class="col-md-8">
-                         <input id="weight" name="weight" type="text" placeholder="" class="form-control input-md">
+                         <input id="weight_cake" name="weight_cake" type="text" placeholder="" class="form-control input-md">
 
                          </div>
                        </div>
@@ -148,18 +166,18 @@
 
                        <!-- Text input-->
                        <div class="form-group">
-                         <label class="col-md-8 control-label" for="pricecake">PriceCake</label>
+                         <label class="col-md-8 control-label" for="price_cake">PriceCake</label>
                          <div class="col-md-8">
-                         <input id="pricecake" name="pricecake" type="text" placeholder="" class="form-control input-md">
+                         <input id="price_cake" name="price_cake" type="text" placeholder="" class="form-control input-md">
 
                          </div>
                        </div>
 
                        <!-- Button -->
                        <div class="form-group">
-                         <label class="col-md-8 control-label" for="createC"></label>
+                         <label class="col-md-8 control-label" for="createCake"></label>
                          <div class="col-md-8">
-                           <button id="createC" name="createC" class="btn btn-success">Create</button>
+                           <button id="createCake" name="createCake" class="btn btn-success">Create</button>
                          </div>
                        </div>
 

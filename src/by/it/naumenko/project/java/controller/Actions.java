@@ -10,7 +10,9 @@ enum Actions {
     DROPDB(new CommandDropDB()),
     PROFILE(new CommandProfil()),
     EDITPROFIL(new CommandEditProfil()),
-    CREATE(new CommandCreate());
+    CREATE(new CommandCreate()),
+    CREATECAKE(new CommandCreateCake()),
+    CREATEROLE(new CommandCreateRole());
 
 
     Command command;
