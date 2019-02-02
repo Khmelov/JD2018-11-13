@@ -54,7 +54,6 @@ public class MyDao<T> implements Dao<T> {
         values.append("); ");
         sb.append(values);
         String sql = sb.toString();
-        System.out.println(sql);
         try (Connection connection = DatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
