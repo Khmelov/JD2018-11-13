@@ -42,6 +42,7 @@ public class FrontController extends HttpServlet {
         Action next = null;
         try {
             next = action.cmd.execute(req);
+
         } catch (Exception e) {
             StringBuilder message = new StringBuilder(e.toString());
             message.append("<p>");
@@ -51,6 +52,8 @@ public class FrontController extends HttpServlet {
             req.setAttribute("message", message);
             toJsp(req, resp, Action.ERROR.getJsp());
         }
+
+
         if (next == null || next == action) {
             toJsp(req, resp, action.getJsp());
         } else resp.sendRedirect("do?command=" + next.toString().toLowerCase());

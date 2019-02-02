@@ -4,7 +4,7 @@
 <body>
 <div class="container">
     <%@ include file="include/menu.jsp" %>
-    <form class="form-horizontal" action="do?command=CreateAd" method="POST">
+    <form class="form-horizontal" action="do?command=CreateAd" method="POST" enctype="multipart/form-data">
         <fieldset>
 
             <!-- Form Name -->

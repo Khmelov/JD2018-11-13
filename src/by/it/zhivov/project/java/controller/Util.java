@@ -20,4 +20,15 @@ public class Util {
         }
         return null;
     }
+
+    static boolean isAdmin(HttpServletRequest req) {
+        HttpSession session = req.getSession(false);
+        if (session != null) {
+            User user = Util.findUser(req);
+            if (user != null) {
+                return user.getId() == 1;
+            }
+        }
+        return false;
+    }
 }
