@@ -1,34 +1,29 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.jsp" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
+    <%@ include file="include/menu.jsp" %>
     <form class="form-horizontal" action="do?command=CreateAd" method="POST">
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Create Ad</legend>
+            <legend>Создать объявление</legend>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="title">Title</label>
+                <label class="col-md-4 control-label" for="title">Заголовок объявления</label>
                 <div class="col-md-4">
                     <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
 
                 </div>
             </div>
 
-            <!-- Text input-->
-            <div class="form-group">
-                <label class="col-md-4 control-label" for="description">Description</label>
-                <div class="col-md-4">
-                    <textarea id="description" name="description" maxlength="2000" placeholder="Enter the description" class="form-control input-md" required=""></textarea>
-                </div>
-            </div>
+
 
             <!-- Select Basic -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="brnd">Brand</label>
+                <label class="col-md-4 control-label" for="brnd">Выберите марку</label>
                 <div class="col-md-4">
                     <select id="brnd" name="brnd" class="form-control">
                         <option value="Acura">Acura</option>
@@ -89,7 +84,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="model">Model</label>
+                <label class="col-md-4 control-label" for="model">Модель</label>
                 <div class="col-md-4">
                     <input id="model" name="model" type="text" placeholder="" class="form-control input-md" required="">
 
@@ -98,7 +93,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="color">Color</label>
+                <label class="col-md-4 control-label" for="color">Цвет</label>
                 <div class="col-md-4">
                     <input id="color" name="color" type="text" placeholder="" class="form-control input-md" required="">
 
@@ -107,30 +102,30 @@
 
             <!-- Select Basic -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="body">Body</label>
+                <label class="col-md-4 control-label" for="body">Кузов</label>
                 <div class="col-md-4">
                     <select id="body" name="body" class="form-control">
-                        <option value="Sedan">Sedan</option>
-                        <option value="Hatchback">Hatchback</option>
-                        <option value="Universal">Universal</option>
-                        <option value="Liftback">Liftback</option>
-                        <option value="Coupe">Coupe</option>
-                        <option value="Cabriolet">Cabriolet</option>
-                        <option value="Roadster">Roadster</option>
-                        <option value="Targa">Targa</option>
-                        <option value="Limo">Limo</option>
-                        <option value="Offroad">Offroad</option>
-                        <option value="Crossover">Crossover</option>
-                        <option value="Pickup">Pickup</option>
-                        <option value="Furgon">Furgon</option>
-                        <option value="Minivan">Minivan</option>
+                        <option value="Sedan">Седан</option>
+                        <option value="Hatchback">Хэтчбек</option>
+                        <option value="Universal">Универсал</option>
+                        <option value="Liftback">Лифтбек</option>
+                        <option value="Coupe">Купе</option>
+                        <option value="Cabriolet">Кабриолет</option>
+                        <option value="Roadster">Роадстер</option>
+                        <option value="Targa">Тарга</option>
+                        <option value="Limo">Лимузин</option>
+                        <option value="Offroad">Джип</option>
+                        <option value="Crossover">Кроссовер</option>
+                        <option value="Pickup">Пикап</option>
+                        <option value="Furgon">Фургон</option>
+                        <option value="Minivan">Минивен</option>
                     </select>
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="year">Year</label>
+                <label class="col-md-4 control-label" for="year">Год выпуска</label>
                 <div class="col-md-4">
                     <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
 
@@ -139,7 +134,7 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="engine">Engine capacity</label>
+                <label class="col-md-4 control-label" for="engine">Обьем двигателя</label>
                 <div class="col-md-4">
                     <input id="engine" name="engine" type="text" placeholder="2.5" class="form-control input-md"
                            required="">
@@ -149,49 +144,49 @@
 
             <!-- Multiple Radios (inline) -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="at">Transmission</label>
+                <label class="col-md-4 control-label" for="at">Коробка передач</label>
                 <div class="col-md-4">
                     <label class="radio-inline" for="at-0">
                         <input type="radio" name="at" id="at-0" value="1" checked="checked">
-                        Automatic
+                        Автоматическая
                     </label>
                     <label class="radio-inline" for="at-1">
                         <input type="radio" name="at" id="at-1" value="0">
-                        Manual
+                        Механическая
                     </label>
                 </div>
             </div>
 
             <!-- Select Basic -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="driveunit">Drive unit</label>
+                <label class="col-md-4 control-label" for="driveunit">Привод</label>
                 <div class="col-md-4">
                     <select id="driveunit" name="driveunit" class="form-control">
-                        <option value="FWD">FWD</option>
-                        <option value="RWD">RWD</option>
-                        <option value="4WD">4WD</option>
-                        <option value="AWD">AWD</option>
+                        <option value="FWD">Передний</option>
+                        <option value="RWD">Задний</option>
+                        <option value="4WD">Полный(постоянный)</option>
+                        <option value="AWD">Полный(подключаемый)</option>
                     </select>
                 </div>
             </div>
 
             <!-- Select Basic -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="equipment">Equipment</label>
+                <label class="col-md-4 control-label" for="equipment">Комплектация</label>
                 <div class="col-md-4">
                     <select id="equipment" name="equipment" class="form-control">
-                        <option value="Base">Base</option>
-                        <option value="Minimal">Minimal</option>
-                        <option value="Middle">Middle</option>
-                        <option value="Top">Top</option>
-                        <option value="Premium">Premium</option>
+                        <option value="Base">Базовая</option>
+                        <option value="Minimal">Минимальная</option>
+                        <option value="Middle">Средняя</option>
+                        <option value="Top">Люкс</option>
+                        <option value="Premium">Премиум</option>
                     </select>
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="millage">Millage</label>
+                <label class="col-md-4 control-label" for="millage">Пробег</label>
                 <div class="col-md-4">
                     <input id="millage" name="millage" type="text" placeholder="" class="form-control input-md"
                            required="">
@@ -201,22 +196,30 @@
 
             <!-- Multiple Radios (inline) -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="crashed">Crashed/restored</label>
+                <label class="col-md-4 control-label" for="crashed">Бывал ли авто в ДТП?</label>
                 <div class="col-md-4">
                     <label class="radio-inline" for="crashed-0">
                         <input type="radio" name="crashed" id="crashed-0" value="0" checked="checked">
-                        No
+                        Нет
                     </label>
                     <label class="radio-inline" for="crashed-1">
                         <input type="radio" name="crashed" id="crashed-1" value="1">
-                        Yes
+                        Да
                     </label>
                 </div>
             </div>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="price">Price</label>
+                <label class="col-md-4 control-label" for="description">Описание</label>
+                <div class="col-md-4">
+                    <textarea id="description" name="description" maxlength="2000" placeholder="Максимум 2000 символов" class="form-control input-md" required=""></textarea>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="price">Цена</label>
                 <div class="col-md-4">
                     <input id="price" name="price" type="text" placeholder="1500.75" class="form-control input-md" required="">
 
@@ -225,7 +228,7 @@
 
             <!-- File Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="upload">Upload photo</label>
+                <label class="col-md-4 control-label" for="upload">Фото</label>
                 <div class="col-md-4">
                     <input id="upload" name="upload" class="input-file" type="file">
                 </div>
@@ -235,7 +238,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="createad"></label>
                 <div class="col-md-4">
-                    <button id="createad" name="createad" class="btn btn-primary">Create</button>
+                    <button id="createad" name="createad" class="btn btn-primary">Создать объявление</button>
                 </div>
             </div>
 

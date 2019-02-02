@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
 -- Schema zhivov
@@ -38,10 +38,6 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`users` (
   `tel` VARCHAR(45) NULL,
   `roles_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_users_roles_idx` (`roles_id` ASC) VISIBLE,
-  UNIQUE INDEX `login_UNIQUE` (`login` ASC) VISIBLE,
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) VISIBLE,
-  UNIQUE INDEX `tel_UNIQUE` (`tel` ASC) VISIBLE,
   CONSTRAINT `fk_users_roles`
     FOREIGN KEY (`roles_id`)
     REFERENCES `zhivov`.`roles` (`id`)
@@ -71,7 +67,6 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`ads` (
   `price` DOUBLE NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `fk_ads_users1_idx` (`users_id` ASC) VISIBLE,
   CONSTRAINT `fk_ads_users1`
     FOREIGN KEY (`users_id`)
     REFERENCES `zhivov`.`users` (`id`)

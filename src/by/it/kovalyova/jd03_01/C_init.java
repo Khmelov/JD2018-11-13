@@ -38,7 +38,7 @@ public class C_init {
                    "    ON UPDATE RESTRICT)\n" +
                    "ENGINE = InnoDB;");
            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `kovalyova`.`flats` (" + "" + "\n"+
-                   "           `id` INT UNSIGNED NOT NULL," + "\n"+
+                   "           `id` INT UNSIGNED NOT NULL AUTO_INCREMENT," + "\n"+
                    "           `description` VARCHAR(1000) NULL," + "\n"+
                    "           `address` VARCHAR(100) NULL," + "\n"+
                    "           `floor` INT NULL," + "\n"+
@@ -50,7 +50,7 @@ public class C_init {
 
            statement.executeUpdate("" +
                    "       CREATE TABLE IF NOT EXISTS `kovalyova`.`ads` (" + "\n" +
-                   "      `id` INT NOT NULL," + "\n" +
+                   "      `id` INT NOT NULL AUTO_INCREMENT," + "\n" +
                    "      `price` VARCHAR(45) NULL," + "\n" +
                    "      `users_id` INT NOT NULL," + "\n" +
                    "      `flats_id` INT UNSIGNED NOT NULL," + "\n" +

@@ -1,14 +1,15 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html lang="en">
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.jsp" %>
 <body>
 <div class="container">
 
-    <%@ include file="include/menu.htm" %>
+    <%@ include file="include/menu.jsp" %>
     <form class="form-horizontal" action="do?command=SignUp" method="POST">
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Sign Up</legend>
+            <legend>Регистрация нового пользователя</legend>
 
             <!-- Text input-->
             <div class="form-group">
@@ -82,7 +83,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="signup"></label>
                 <div class="col-md-4">
-                    <button id="signup" name="signup" class="btn btn-primary">SignUp</button>
+                    <button id="signup" name="signup" class="btn btn-primary">Втудыть</button>
                 </div>
             </div>
 

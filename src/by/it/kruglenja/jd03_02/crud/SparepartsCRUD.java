@@ -6,11 +6,12 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Locale;
 
 public class SparepartsCRUD {
     boolean crate(Spareparts spareparts) throws SQLException {
-        String sql = String.format("INSERT INTO `sparepart` ( `model`, `category`, `name`, `serial_number`, `weight`, `price`)" +
-                        " VALUES ('%s', '%s', '%s', '%s', '12.3', '14.5')",
+        String sql = String.format(Locale.US, "INSERT INTO `sparepart` ( `model`, `category`, `name`, `serial_number`, `weight`, `price`)" +
+                        " VALUES ('%s', '%s', '%s', '%s', '%f', '%f')",
                 spareparts.getModel(), spareparts.getCategory(), spareparts.getName(),
                 spareparts.getSerial_number(), spareparts.getWeight() , spareparts.getPrice());
         try (Connection connection = Connect.getConnection();
@@ -35,7 +36,7 @@ public class SparepartsCRUD {
     }
 
     boolean update(Spareparts spareparts) throws SQLException {
-        String sql = String.format("UPDATE `sparepart` SET `model` = '%s', `category` = '%s', `name` = '%s', " +
+        String sql = String.format(Locale.US, "UPDATE `sparepart` SET `model` = '%s', `category` = '%s', `name` = '%s', " +
                         "`serial_number` = '%s', `weight` = '%f', `price` = '%f' WHERE `sparepart`.`id` = %d",
                 spareparts.getModel(), spareparts.getCategory(), spareparts.getName(), spareparts.getSerial_number(),
                 spareparts.getWeight(), spareparts.getPrice(), spareparts.getId());
@@ -46,7 +47,7 @@ public class SparepartsCRUD {
     }
 
     Spareparts read(long id) throws SQLException {
-        String sql = String.format("SELECT `id`, `model`, `category`, `name`, `serial_number`, `weight`," +
+        String sql = String.format(Locale.US,"SELECT `id`, `model`, `category`, `name`, `serial_number`, `weight`," +
                 " `price` FROM `sparepart` WHERE id = %d", id);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {

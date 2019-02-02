@@ -5,6 +5,8 @@ import javax.servlet.http.HttpServletRequest;
 public enum Action {
 
     RESET(new CmdReset()),
+    EDITUSERS(new CmdEditUsers()),
+    EDITADS(new CmdEditAds()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
@@ -19,7 +21,7 @@ public enum Action {
     }
 
     static Action define(HttpServletRequest req) {
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         String command = req.getParameter("command");
         if (command != null && !command.isEmpty()) {
             try {

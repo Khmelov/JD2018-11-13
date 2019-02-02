@@ -10,11 +10,11 @@ class CmdSignup implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (Form.isPost(req)) {
-            String username = Form.getString(req,"username", "[a-zA-Z0-9_]{4,}" );
-            String password = Form.getString(req,"password","[a-zA-Z0-9_]{4,}");
-            String email = Form.getString(req,"email", "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$");
+            String username = Form.getString(req,"username", "[a-zA-Zа-яёА-ЯЁ0-9_]{4,}");
+            String password = Form.getString(req,"password", "[a-zA-Zа-яёА-ЯЁ0-9_]{4,}");
+            String email = Form.getString(req,"email");
             String fullname = Form.getString(req,"fullname");
-            String phone = Form.getString(req,"phone", "[a-zA-Z0-9_-]{4,}");
+            String phone = Form.getString(req,"phone");
             String address = Form.getString(req,"address");
             User user = new User(0, username, password, email, fullname, phone, address, 2);
             Dao dao = Dao.getDao();
@@ -26,3 +26,4 @@ class CmdSignup implements Cmd {
         return Action.SIGNUP;
     }
 }
+// pattern "[a-zA-Z0-9_-]{4,}");

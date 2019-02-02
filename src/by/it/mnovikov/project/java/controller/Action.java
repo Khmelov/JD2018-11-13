@@ -9,6 +9,8 @@ enum Action {
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignUp()),
+    CREATEGOOD(new CmdCreateGood()),
+    EDITTABLES(new CmdEditTables()),
     ERROR(new CmdError());
 
     Cmd cmd;
@@ -22,7 +24,7 @@ enum Action {
     }
 
     static Action define(HttpServletRequest req) {
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         String command = req.getParameter("command");
         if (command != null && !command.isEmpty()) {
             try {
