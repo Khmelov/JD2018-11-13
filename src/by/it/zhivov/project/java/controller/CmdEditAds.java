@@ -13,7 +13,7 @@ class CmdEditAds implements Cmd {
     public Action execute(HttpServletRequest req) throws SQLException, SiteExeption {
         if (Util.checkUser(req)) {
             Dao dao = Dao.getDao();
-
+            if (Util.isAdmin(req))
             if (Form.isPost(req)) {
                 long id = Form.getLong(req,"id");
                 String title = Form.getString(req, "title");

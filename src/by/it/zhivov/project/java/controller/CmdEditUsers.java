@@ -28,7 +28,6 @@ class CmdEditUsers implements Cmd {
                         dao.user.update(user);
                     else if (req.getParameter("Delete") != null)
                         dao.user.delete(user);
-                    return Action.EDITUSERS;
                 }
                 List<User> users = dao.user.getALL();
                 req.setAttribute("users", users);
