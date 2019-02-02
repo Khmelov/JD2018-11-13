@@ -21,14 +21,14 @@ class Form {
         return getParameterMatchesPattern(req,name,".*");
     }*/
 
-    static double getDouble1(HttpServletRequest req, String name){
+    static double getDouble(HttpServletRequest req, String name){
         String str = req.getParameter(name);
         return Double.parseDouble(str);
     }
 
-    static double getInteger1(HttpServletRequest req, String name){
+    static long getLong(HttpServletRequest req, String name){
         String str = req.getParameter(name);
-        return Integer.parseInt(str);
+        return Long.parseLong(str);
     }
 
 

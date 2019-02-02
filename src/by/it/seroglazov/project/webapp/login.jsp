@@ -16,10 +16,16 @@
 <div class="container">
 
 <c:if test="${wrong_name!=null}">
-    <p>User with this login and password does&apos;t exists</p>
+    <br>
+     <div class="alert alert-danger" role="alert">
+        User with this login and password does&apos;t exists
+     </div>
 </c:if>
 <c:if test="${wrong_password!=null}">
-    <p>Password is incorrect</p>
+    <br>
+    <div class="alert alert-danger" role="alert">
+        Password is incorrect
+    </div>
 </c:if>
 
 <form class="form-horizontal" action="do?command=Login" method="POST">

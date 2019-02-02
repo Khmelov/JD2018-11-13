@@ -161,7 +161,8 @@ public class DatabaseCreator {
              Statement statement = connection.createStatement()) {
 
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `" + config.getDataBaseName() +
-                    "` DEFAULT CHARACTER SET utf8 ;");
+                    "` DEFAULT CHARACTER SET utf8");
+                    //"` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci");
 
         } catch (SQLException e) {
             throw new SiteException("Can't create database with message: " + e.getMessage());
@@ -219,8 +220,10 @@ public class DatabaseCreator {
                     "  UNIQUE INDEX `name_UNIQUE` (`name` ASC))\n" +
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `userings` (\n" +
+                    "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `user_id` INT NOT NULL,\n" +
                     "  `ingredient_id` INT(11) NOT NULL,\n" +
+                    "  PRIMARY KEY (`id`),\n" +
                     "  INDEX `fk_ingredients_has_users_users1_idx` (`user_id` ASC),\n" +
                     "  INDEX `fk_ingredients_has_users_ingredients1_idx` (`ingredient_id` ASC),\n" +
                     "  CONSTRAINT `fk_ingredients_has_users_ingredients1`\n" +

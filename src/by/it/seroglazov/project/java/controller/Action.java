@@ -22,7 +22,15 @@ enum Action {
 
     INGLIST (new CmdIngList()),
 
-    PROFILE (new CmdProfile());
+    PROFILE (new CmdProfile()),
+
+    ADDINGTOBAR (new CmdAddIngToBar()),
+
+    REMINGFROMBAR (new CmdRemIngFromBar()),
+
+    DELETERECIPE (new CmdDeleteRecipe()),
+
+    CHANGERECIPE (new CmdChangeRecipe());
 
     Cmd cmd;
 

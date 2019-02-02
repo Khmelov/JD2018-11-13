@@ -14,6 +14,11 @@
 <body>
 	<%@ include file="include/menu.jsp" %>
 	<div class="container">
+	<c:if test="${error_message!=null}">
+        <br>
+        <div class="alert alert-danger" role="alert">${error_message}</div>
+        <c:remove var="error_message" scope="session" />
+    </c:if>
 		${recipe_list}
 	</div>
 </body>

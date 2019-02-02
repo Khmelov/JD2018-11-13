@@ -13,14 +13,13 @@
 <body>
 <%@ include file="include/menu.jsp" %>
 <div class="container">
-<p>Profile User:<br> ${user}</p>
-<p>User ingredients:<br> ${ings}</p>
+<p class="text-info">
+Name = ${user.name}<br>
+Email = ${user.email}
+</p>
 
 <form class="form-horizontal" action="do?command=Profile" method="POST">
 <fieldset>
-
-<!-- Form Name -->
-<legend>Logout</legend>
 
 <!-- Button -->
 <div class="form-group">
@@ -32,13 +31,13 @@
 </fieldset>
 </form>
 
-<div class="container">
+<!--<div class="container">
     <c:forEach items="${ingredients}" var="ingredient">
         <div class="border border-info rounded px-3 my-2">
             <p>${ingredient.name}</p>
         </div>
     </c:forEach>
-</div>
+</div>-->
 
 
 </div>

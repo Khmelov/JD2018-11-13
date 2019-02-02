@@ -50,7 +50,7 @@ class CmdAddRecipe extends Cmd {
             Unit units[] = new Unit[ingrCount];
             String sIng[] = new String[ingrCount];
             String sUnit[] = new String[ingrCount];
-            for (int i = 0; i < ingrCount - 1; i++) {
+            for (int i = 0; i < ingrCount; i++) {
                 // Get Ingredient from BD, if not exist - create
                 sIng[i] = Form.getParameterMatchesPattern(req, "ingredient_" + String.valueOf(i + 1), Patterns.ingredientName);
                 bIngs[i] = (sIng[i].length() > 0);
@@ -80,7 +80,7 @@ class CmdAddRecipe extends Cmd {
             }
 
             //
-            for (int i = 0; i < ingrCount - 1; i++) {
+            for (int i = 0; i < ingrCount; i++) {
                 if (bIngs[i]) {
                     String sAmount = Form.getParameterMatchesPattern(req, "amount_" + String.valueOf(i + 1), Patterns.amount);
                     amDao.create(new Amount(recipe.getId(), ings[i].getId(), sAmount, units[i].getId()));

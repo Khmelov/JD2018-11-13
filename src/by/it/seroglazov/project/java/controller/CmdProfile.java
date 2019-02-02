@@ -25,19 +25,19 @@ class CmdProfile extends Cmd {
         }
 
         User user = Util.findUserInSession(req);
-        String where=String.format(" WHERE `user_id`='%d'",user.getId());
+        //String where=String.format(" WHERE `user_id`='%d'",user.getId());
 
-        Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
-        Dao<Usering> uiDao = new MyDao<>(new Usering());
+        //Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
+        //Dao<Usering> uiDao = new MyDao<>(new Usering());
 
-        List<Usering> userIngrList = uiDao.getAll(where);
-        List<Ingredient> ingredients = new LinkedList<>();
+        //List<Usering> userIngrList = uiDao.getAll(where);
+        //List<Ingredient> ingredients = new LinkedList<>();
 
-        for (Usering userIngr : userIngrList) {
+        /*for (Usering userIngr : userIngrList) {
             Ingredient ingredient = ingDao.read(userIngr.getIngredient_id());
             ingredients.add(ingredient);
-        }
-        req.getSession().setAttribute("ingredients", ingredients);
+        }*/
+        //req.getSession().setAttribute("ingredients", ingredients);
 
         return Action.PROFILE;
     }
