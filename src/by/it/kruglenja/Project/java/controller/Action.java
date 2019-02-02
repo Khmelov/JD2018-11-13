@@ -12,8 +12,10 @@ public enum Action {
     ORDER(new CmdOrder()),
     ERROR(new CmdError()),
     PROFILE(new CmdProfile()),
+    PARTTOBUCKET(new CmdPartToBucket()),
+    DELETEORDERPART(new DeleteOrderPart()),
+    EDITUSERS(new CmdEditUsers()),
     FILLCATALOG(new CmdFillCatalog());
-
 
     Cmd cmd;
     Action(Cmd cmdIndex) {
@@ -25,12 +27,12 @@ public enum Action {
 
     static Action definer(HttpServletRequest req) {
         String command = req.getParameter("command");
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         if (command != null && !command.isEmpty()) {
             try {
                 result = Action.valueOf(command.toUpperCase());
             } catch (IllegalArgumentException e) {
-                System.out.println("wrong command");
+                System.out.println(command + " is wrong command" );
             }
         }
         return result;
