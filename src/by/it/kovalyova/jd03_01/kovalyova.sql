@@ -57,7 +57,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `kovalyova`.`flats` ;
 
 CREATE TABLE IF NOT EXISTS `kovalyova`.`flats` (
-  `id` INT UNSIGNED NOT NULL,
+  `id` INT UNSIGNED NOT NULL AUTO_INCREMENT,
   `description` VARCHAR(1000) NULL,
   `address` VARCHAR(100) NULL,
   `floor` INT NULL,
@@ -74,7 +74,7 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `kovalyova`.`ads` ;
 
 CREATE TABLE IF NOT EXISTS `kovalyova`.`ads` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `price` VARCHAR(45) NULL,
   `users_id` INT NOT NULL,
   `flats_id` INT UNSIGNED NOT NULL,

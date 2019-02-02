@@ -1,6 +1,5 @@
 package by.it.akhmelev.project07.java.controller;
 
-import by.it.akhmelev.project07.java.beans.Role;
 import by.it.akhmelev.project07.java.beans.User;
 import by.it.akhmelev.project07.java.dao.Dao;
 

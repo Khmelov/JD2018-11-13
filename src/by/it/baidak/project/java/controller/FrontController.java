@@ -31,14 +31,26 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Action action = ActionDefiner.define(req);
-        Action next = action.cmd.execute(req);
-        if (next == null || next == action) {
-            ServletContext servletContext = req.getServletContext();
-            RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
-            requestDispatcher.forward(req, resp);
+        Action action = Action.define(req);
+        Action next = null;
+        try { next = action.cmd.execute(req);
+              if (next == null || next == action) {
+                  toJsp(req, resp, action.getJsp());
+              }
+              else
+                  resp.sendRedirect("do?command="+next.toString().toLowerCase());
+        } catch (Exception e) {
+            StackTraceElement[] stackTrace = e.getStackTrace();
+            StringBuilder sb = new StringBuilder();
+            for (StackTraceElement stackTraceElement : stackTrace) sb.append(stackTraceElement + "\n");
+            req.setAttribute("message",sb.toString());
+            toJsp(req, resp, Action.ERROR.getJsp());
         }
-        else
-            resp.sendRedirect("do?command="+next.toString().toLowerCase());
+    }
+
+    private void toJsp(HttpServletRequest req, HttpServletResponse resp, String jsp) throws ServletException, IOException {
+        ServletContext servletContext = req.getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(jsp);
+        requestDispatcher.forward(req, resp);
     }
 }
