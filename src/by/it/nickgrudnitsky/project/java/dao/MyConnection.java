@@ -8,10 +8,10 @@ import java.sql.Statement;
 
 public class MyConnection {
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:3306/ngrudnitsky?" +
+    private static final String URL = "jdbc:mysql://127.0.0.1:2016/ngrudnitsky?" +
             "useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root";
-    private static final String PASSWORD = "12345Qwe";
+    private static final String PASSWORD = "";
     private static volatile Connection connection;
 
     static {
@@ -75,9 +75,9 @@ public class MyConnection {
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'streamer');");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'viewer');\n");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'grud97@gmail.com', 'password', 'NickGS', 3);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'grud97@gmail.com', '5F4DCC3B5AA765D61D8327DEB882CF99', 'NickGS', 3);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'pewdiepie@pewd.se', 'youloose', 'pewdiepie', 3);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'ninja@gmail.com', 'fortnightlover', 'Ninja', 2);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'ninja@gmail.com', 'FEE22A76AEDE2572C76FA9FCF36038C9', 'Ninja', 2);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'silvername@gmail.com', 'hearthstone', 'SilverName', 2);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'HearthStone', NULL);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Fortnight', NULL);");
