@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 class CmdProfile implements Cmd{
    @Override
    public Action execute(HttpServletRequest request)throws Exception {
-       return null;
+       if(!Util.checkUser(request)){
+           return Action.LOGIN;
+       }
+       return Action.PROFILE;
    }
 }
