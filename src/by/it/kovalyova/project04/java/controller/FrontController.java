@@ -34,7 +34,7 @@ public class FrontController extends HttpServlet {
         Action next=action.cmd.execute(req);
         if (next == null || next == action) {
         ServletContext servletContext = req.getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.jsp);
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
         requestDispatcher.forward(req, resp);
         }
         else
