@@ -14,11 +14,17 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="title">Заголовок объявления</label>
                 <div class="col-md-4">
-                    <input id="title" name="title" type="text" placeholder="" class="form-control input-md" required="">
-
+                    <input id="title" name="title" type="text" placeholder=" " class="form-control input-md" required
+                           pattern="[a-zа-яA-Z-А-Я][a-zа-яA-ZА-Я0-9\-!?,. ]*" minlength="8" maxlength="50">
+                    <span class="form__error">
+                        <div>латиница, кириллица</div>
+                        <div>первый символ - буква в верхнем или нижнем регистре</div>
+                        <div>от 8 до 50 символов</div>
+                        <div>буквы в верхнем и нижнем регистре, цифры</div>
+                        <div>символы \ - ! ? , . ]*</div>
+                      </span>
                 </div>
             </div>
-
 
 
             <!-- Select Basic -->
@@ -86,8 +92,13 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="model">Модель</label>
                 <div class="col-md-4">
-                    <input id="model" name="model" type="text" placeholder="" class="form-control input-md" required="">
-
+                    <input id="model" name="model" type="text" placeholder=" " class="form-control input-md" required
+                           pattern="[a-zA-Zа-яА-Я0-9 ]*" minlength="1" maxlength="45">
+                    <span class="form__error">
+                        <div>латиница, кириллица</div>
+                        <div>от 1 до 45 символов</div>
+                        <div>буквы в верхнем и нижнем регистре, цифры</div>
+                      </span>
                 </div>
             </div>
 
@@ -95,8 +106,14 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="color">Цвет</label>
                 <div class="col-md-4">
-                    <input id="color" name="color" type="text" placeholder="" class="form-control input-md" required="">
-
+                    <input id="color" name="color" type="text" placeholder=" " class="form-control input-md" required
+                           pattern="[a-zA-Zа-яА-Я- ]*" minlength="1" maxlength="45">
+                    <span class="form__error">
+                        <div>латиница, кириллица</div>
+                        <div>от 1 до 45 символов</div>
+                        <div>буквы в верхнем и нижнем регистре</div>
+                        <div>символ "-"</div>
+                      </span>
                 </div>
             </div>
 
@@ -127,8 +144,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="year">Год выпуска</label>
                 <div class="col-md-4">
-                    <input id="year" name="year" type="text" placeholder="" class="form-control input-md" required="">
-
+                    <input id="year" name="year" type="number" placeholder=" " class="form-control input-md" required
+                           minlength="4" maxlength="4" min="1900" max="2019">
                 </div>
             </div>
 
@@ -136,8 +153,9 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="engine">Обьем двигателя</label>
                 <div class="col-md-4">
-                    <input id="engine" name="engine" type="text" placeholder="2.5" class="form-control input-md"
-                           required="">
+                    <input id="engine" name="engine" type="number" step="0.1" placeholder="2.5"
+                           class="form-control input-md"
+                           required>
 
                 </div>
             </div>
@@ -188,7 +206,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="millage">Пробег</label>
                 <div class="col-md-4">
-                    <input id="millage" name="millage" type="text" placeholder="" class="form-control input-md"
+                    <input id="millage" name="millage" type="number" placeholder=" " class="form-control input-md"
                            required="">
 
                 </div>
@@ -213,7 +231,8 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="description">Описание</label>
                 <div class="col-md-4">
-                    <textarea id="description" name="description" maxlength="2000" placeholder="Максимум 2000 символов" class="form-control input-md" required=""></textarea>
+                    <textarea id="description" name="description" minlength="7" maxlength="2000" placeholder=" "
+                              class="form-control input-md" required></textarea>
                 </div>
             </div>
 
@@ -221,7 +240,9 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="price">Цена</label>
                 <div class="col-md-4">
-                    <input id="price" name="price" type="text" placeholder="1500.75" class="form-control input-md" required="">
+                    <input id="price" name="price" type="number" step="0.01" placeholder="1500.75"
+                           class="form-control input-md"
+                           required>
 
                 </div>
             </div>
