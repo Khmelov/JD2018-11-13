@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 
 enum Action {
 
-//    RESET(new CmdReset()),
+    RESET(new CmdReset()),
     INDEX(new CmdIndex()),
+    CREATEAD(new CmdCreateBuyer()),
     LOGIN(new CmdLogin()),
-//    PROFILE(new CmdProfile()),
+    PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
+//    EDITBUYERS(new CmdEditBuyers()),
     ERROR(new CmdError());
 
     Cmd cmd;
@@ -22,7 +24,7 @@ enum Action {
     }
 
     static Action define(HttpServletRequest req) {
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         String command = req.getParameter("command");
         if (command != null && !command.isEmpty()) {
             try {
