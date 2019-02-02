@@ -1,4 +1,4 @@
-package by.it.karnilava.jd03_03;
+package by.it.karnilava.jd03_03.dao;
 
 public interface ConnectionSettings {
 

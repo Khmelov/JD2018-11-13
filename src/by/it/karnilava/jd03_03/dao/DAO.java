@@ -1,7 +1,5 @@
 package by.it.karnilava.jd03_03.dao;
 
-import by.it.karnilava.jd03_03.Connect;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;

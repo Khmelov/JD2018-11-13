@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.it.karnilava.jd03_03.Connect;
 import by.it.karnilava.jd03_03.beans.State;
 
 import java.sql.Statement;
