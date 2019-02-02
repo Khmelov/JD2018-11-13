@@ -8,7 +8,7 @@ public class TaskA {
 
     public static void main(String[] args) throws IOException {
 
-
+//
         String src = System.getProperty("user.dir") + "/src/by/it/zhivov/";
         String filename = src + "jd01_15/matrix.txt";
         File f1 = new File(filename);
