@@ -9,26 +9,26 @@ class Form {
         return req.getMethod().equalsIgnoreCase("POST");
     }
 
-    static String getString(HttpServletRequest req, String name, String pattern) throws SiteException {
-        String result = req.getParameter(name);
+    static String getParameterMatchesPattern(HttpServletRequest req, String parameter, String pattern) throws SiteException {
+        String result = req.getParameter(parameter);
         if (result.matches(pattern))
             return result;
-        throw new SiteException("name="+result+" incorrect");
+        throw new SiteException("parameter="+result+" incorrect");
     }
 
 
-    static String getString(HttpServletRequest req, String name) throws SiteException {
-        return getString(req,name,".*");
-    }
+    /*static String getParameterMatchesPattern(HttpServletRequest req, String name) throws SiteException {
+        return getParameterMatchesPattern(req,name,".*");
+    }*/
 
     static double getDouble(HttpServletRequest req, String name){
         String str = req.getParameter(name);
         return Double.parseDouble(str);
     }
 
-    static double getInteger(HttpServletRequest req, String name){
+    static long getLong(HttpServletRequest req, String name){
         String str = req.getParameter(name);
-        return Integer.parseInt(str);
+        return Long.parseLong(str);
     }
 
 

@@ -1,54 +1,56 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
-<head>
-	<title></title>
-</head>
+<%@ include file="include/head.jsp" %>
 <body>
-	<form class="form-horizontal">
-<fieldset>
+<div class="container">
+<%@ include file="include/menu.jsp" %>
 
-<!-- Form Name -->
-<legend>registration</legend>
+  <div class="FormSignup">
+	<form class="form-horizontal" action ="do?command=signup" method="POST">
+    <fieldset>
 
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="logininput">nickname</label>  
-  <div class="col-md-4">
-  <input id="logininput" name="logininput" type="text" placeholder="placeholder" class="form-control input-md">
-    
+    <!-- Form Name -->
+    <legend>Регистрация</legend>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="logininput">Имя пользователя</label>
+      <div class="col-md-4">
+      <input id="logininput" name="login" value="naymchik" type="text" placeholder="placeholder" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Text input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="emailinput">E-mail</label>
+      <div class="col-md-4">
+      <input id="email" name="email" value="naymchik@yandex.ru" type="text" placeholder="placeholder" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Password input-->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="passwordinput">Пароль</label>
+      <div class="col-md-4">
+        <input id="password" name="password" value ="password" type="password" placeholder="placeholder" class="form-control input-md">
+
+      </div>
+    </div>
+
+    <!-- Button -->
+    <div class="form-group">
+      <label class="col-md-4 control-label" for="signup"></label>
+      <div class="col-md-4">
+        <button type="submit" id="signup" name="signup" class="btn btn-success">SignUP</button>
+      </div>
+    </div>
+
+    </fieldset>
+    </form>
   </div>
 </div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="emailinput">email</label>  
-  <div class="col-md-4">
-  <input id="emailinput" name="emailinput" type="text" placeholder="placeholder" class="form-control input-md">
-    
-  </div>
-</div>
-
-<!-- Password input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="passwordinput">password</label>
-  <div class="col-md-4">
-    <input id="passwordinput" name="passwordinput" type="password" placeholder="placeholder" class="form-control input-md">
-    
-  </div>
-</div>
-
-<!-- Button (Double) -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="OKbutton"></label>
-  <div class="col-md-8">
-    <button id="OKbutton" name="OKbutton" class="btn btn-danger">OK</button>
-    <button id="CancelButton" name="CancelButton" class="btn btn-danger">Cancel</button>
-  </div>
-</div>
-
-</fieldset>
-</form>
-
-
 </body>
 </html>

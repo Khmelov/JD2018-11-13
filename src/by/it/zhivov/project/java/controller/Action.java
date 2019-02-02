@@ -1,14 +1,18 @@
 package by.it.zhivov.project.java.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 public enum Action {
+
+    RESET(new CmdReset()),
+    EDITUSERS(new CmdEditUsers()),
+    EDITADS(new CmdEditAds()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
-    LOGOUT(new CmdLogout()),
+    PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignUp()),
     ERROR(new CmdError()),
-    CREATEAD(new CmdCreateAd()),
-    LISTAD(new CmdListAd());
-
+    CREATEAD(new CmdCreateAd());
 
     Cmd cmd;
 
@@ -16,8 +20,21 @@ public enum Action {
         cmd = cmdIndex;
     }
 
+    static Action define(HttpServletRequest req) {
+        Action result = Action.INDEX;
+        String command = req.getParameter("command");
+        if (command != null && !command.isEmpty()) {
+            try {
+                result = Action.valueOf(command.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                //create error
+            }
+        }
+        return result;
+    }
+
     String getJsp() {
-        return "/" + cmd.toString() + ".jsp";
+        return "/" + this.name().toLowerCase() + ".jsp";
     }
 
 }

@@ -35,9 +35,6 @@ public class Rtype {
 
     @Override
     public String toString() {
-        return "Rtype{" +
-                "id=" + id +
-                ", text='" + text + '\'' +
-                '}';
+        return text;
     }
 }

@@ -27,4 +27,6 @@ public interface Dao<T> {
         else return null;
     }
 
+    boolean delete(String sqlCondition) throws Exception;
+
 }

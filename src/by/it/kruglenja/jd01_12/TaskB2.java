@@ -1,7 +1,5 @@
 package by.it.kruglenja.jd01_12;
 
-import by.it.vchernetski.jd01_04.TaskB;
-
 import java.util.*;
 
 public class TaskB2 {

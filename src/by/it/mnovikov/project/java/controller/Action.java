@@ -1,25 +1,38 @@
 package by.it.mnovikov.project.java.controller;
 
-/**
- * Created by user on 24.01.2019.
- */
+import javax.servlet.http.HttpServletRequest;
+
 enum Action {
 
-    INDEX (new CmdIndex()),
-    LOGIN (new CmdLogin()),
-    LOGOUT (new CmdLogout()),
-    SIGNUP (new CmdLogout()),
-    ERROR (new CmdError());
+    RESET(new CmdReset()),
+    INDEX(new CmdIndex()),
+    LOGIN(new CmdLogin()),
+    PROFILE(new CmdProfile()),
+    SIGNUP(new CmdSignUp()),
+    CREATEGOOD(new CmdCreateGood()),
+    EDITTABLES(new CmdEditTables()),
+    ERROR(new CmdError());
 
     Cmd cmd;
 
-    Action (Cmd cmdIndex){
+    Action(Cmd cmdIndex) {
         cmd = cmdIndex;
     }
 
-    String getJsp(){
-        return  "/" + cmd.toString() + ".jsp";
+    String getJsp() {
+        return "/" + this.name().toLowerCase() + ".jsp";
     }
 
-
+    static Action define(HttpServletRequest req) {
+        Action result = Action.INDEX;
+        String command = req.getParameter("command");
+        if (command != null && !command.isEmpty()) {
+            try {
+                result = Action.valueOf(command.toUpperCase());
+            } catch (IllegalArgumentException e) {
+                //create our error
+            }
+        }
+        return result;
+    }
 }
