@@ -109,6 +109,12 @@ public class Dao {
             statement.executeUpdate("INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user')");
             statement.executeUpdate("INSERT INTO `zhivov`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest')");
             statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'm0rph3us', 'admin', 'admin', '1994-12-23', 'jeromeastero@gmail.com', '+375333830046', 1)");
+            statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Живов Антон Дмитриевич', 'zhivov', 'zhivov', '1994-12-23', 'drel@icloud.com', '+375333830040', 2)");
+            statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Живова Анна Русальская', 'zhivova', 'zhivova', '1995-07-11', 'eva_skandi@mail.ru', '+375291873010', 2)");
+            statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Шишко Алексей Евгеньевич', 'shishko', 'shishko', '1992-04-16', 'shishka_bel@mail.ru', '+375336549877', 2)");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Не бито, не крашено', 'Хорошая машина на каждый день', 'BMW', '325', 'Grey', 'Седан', '2008', '2.5', '1', 'RWD', 'Стандартная', '120000', '0', '860000', '2')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Мощный джип', 'Никогда нигде не застревал', 'Dodge', 'Durango', 'Black', 'Джип', '2005', '5.8', '1', '4WD', 'Базовая', '460000', '1', '620000', '2')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Никогда не подводит', 'Самая простая машина, отдам в подарок комплект резины', 'Toyota', 'Corolla', 'Blue', 'Седан', '2012', '2.0', '0', 'FWD', 'Стандартная', '320000', '0', '400000', '3')");
             System.out.println("DB restored successful");
         }
     }

@@ -23,7 +23,7 @@ public class CmdCreateAd implements Cmd {
             int year = Form.getInteger(req, "year");
             double engine = Form.getDouble(req, "engine");
             int at = Form.getInteger(req, "at");
-            String driveunit = Form.getString(req, "driveunit", "[a-zA-Zа-яА-Я0-9]{1,15}");
+            String driveunit = Form.getString(req, "driveunit", "[a-zA-Zа-яА-Я0-9()]{1,45}");
             String equipment = Form.getString(req, "equipment", "[a-zA-Zа-яА-Я]{1,45}");
             int millage = Form.getInteger(req, "millage");
             int crashed = Form.getInteger(req, "crashed");

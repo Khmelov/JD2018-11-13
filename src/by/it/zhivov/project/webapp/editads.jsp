@@ -59,7 +59,7 @@
                            value="${ad.driveunit}"/>
                 </div>
                 <div class="col-md-3">
-                    <label for="equipment">Привод</label>
+                    <label for="equipment">Комплектация</label>
                     <input readonly id="equipment" class="form-control input-md" name="equipment"
                            value="${ad.equipment}"/>
                 </div>

@@ -13,6 +13,7 @@
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>by.it.zhivov.project.java.controller.FrontController</servlet-class>
+        <multipart-config/>
     </servlet>
 
     <servlet-mapping>
