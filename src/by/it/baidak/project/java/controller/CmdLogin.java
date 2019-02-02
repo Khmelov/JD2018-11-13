@@ -13,11 +13,13 @@ class CmdLogin extends Cmd{
         if (Form.isPost(req)) {
             String login = Form.getString(req, "login");
             String password = Form.getString(req, "password", "[a-zA-Z0-9_-]{4,}");
-            String where = String.format(" WHERE password='%s' and login='%s' LIMIT 0,1", password, login);
+            String where = String.format(" WHERE pass='%s' and nickname='%s' LIMIT 0,1", password, login);
             List<User> users = DAO.getDAO().user.get(where);
             if (users.size() == 1) {
                 User user = users.get(0);
                 req.getSession().setAttribute("user", user);
+                req.getSession().setAttribute("roleID",user.getRoles_Id());
+                req.getSession().setMaxInactiveInterval(1*30);
                 return Action.INDEX;
             }
         }

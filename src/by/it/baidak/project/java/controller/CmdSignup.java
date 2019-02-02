@@ -18,6 +18,8 @@ class CmdSignup extends Cmd{
             DAO dao = DAO.getDAO();
             if (dao.user.create(user))
                 req.getSession().setAttribute("user",user);
+                req.getSession().setAttribute("roleID",user.getRoles_Id());
+                req.getSession().setMaxInactiveInterval(1*30);
                 return Action.INDEX;
             }
         else return Action.SIGNUP;

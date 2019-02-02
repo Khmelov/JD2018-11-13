@@ -39,10 +39,15 @@ public class PostDAO extends AbstractDAO implements IDAO<Post> {
         return (executeUpdate(sql,true) > 0);
     }
 
+    public boolean deleteByID(long id) throws SQLException {
+        Post post = new Post(id,0,"","");
+        return delete(post);
+    }
+
     @Override
     public boolean delete(Post entity) throws SQLException {
         String sql = String.format(
-                "DELETE FROM `posts` WHERE `users`.`id` = %d",
+                "DELETE FROM `posts` WHERE `id` = %d",
                 entity.getId()
         );
         return (executeUpdate(sql,true) > 0);
@@ -60,8 +65,8 @@ public class PostDAO extends AbstractDAO implements IDAO<Post> {
                 String head = resultSet.getString("head");
                 String date = resultSet.getString("date");
                 long userID = resultSet.getLong("users_id");
-                Post user = new Post(id, userID, head, date);
-                result.add(user);
+                Post post = new Post(id, userID, head, date);
+                result.add(post);
             }
             return result;
         }

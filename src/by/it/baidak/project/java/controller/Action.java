@@ -8,8 +8,9 @@ enum Action {
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
-    LOGOUT(new CmdLogout()),
     SIGNUP(new CmdSignup()),
+    PROFILE(new CmdProfile()),
+    REMOVEPOST(new CmdRemovePost()),
     ERROR(new CmdError());
 
     Cmd cmd;
@@ -30,7 +31,6 @@ enum Action {
                 result = Action.valueOf(command.toUpperCase());
             }
             catch (IllegalArgumentException e) {
-                //create our error
             }
         }
         return result;

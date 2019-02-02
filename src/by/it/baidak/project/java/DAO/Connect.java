@@ -79,9 +79,9 @@ class Connect {
             statement.executeUpdate("INSERT INTO `baidak`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin')");
             statement.executeUpdate("INSERT INTO `baidak`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
             statement.executeUpdate("INSERT INTO `baidak`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');");
-            statement.executeUpdate("INSERT INTO `baidak`.`users` (`id`, `nickname`, `email`, `pass`, `roles_id`) VALUES (DEFAULT, 'makasin', 'maksimb@gm', '1234567', 2);");
-            statement.executeUpdate("INSERT INTO `baidak`.`users` (`id`, `nickname`, `email`, `pass`, `roles_id`) VALUES (DEFAULT, 'gen', 'post@gmail', 'sql123', 2);");
-            statement.executeUpdate("INSERT INTO `baidak`.`posts` (`id`, `head`, `date`, `users_id`) VALUES (DEFAULT, 'my first post', '18.01.2019', 2);");
+            statement.executeUpdate("INSERT INTO `baidak`.`users` (`id`, `nickname`, `email`, `pass`, `roles_id`) VALUES (DEFAULT, 'admin', 'admin@gm.com', 'admin', 1);");
+            statement.executeUpdate("INSERT INTO `baidak`.`users` (`id`, `nickname`, `email`, `pass`, `roles_id`) VALUES (DEFAULT, 'user', 'user@gm.com', 'user', 2);");
+            statement.executeUpdate("INSERT INTO `baidak`.`posts` (`id`, `head`, `date`, `users_id`) VALUES (DEFAULT, 'my first post', 'Sat Feb 02 06:38:53 MSK 2019', 2);");
         } catch (SQLException e){
             e.printStackTrace();
         }
