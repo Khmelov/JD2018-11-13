@@ -1,6 +1,6 @@
 package by.it.kovalyova.project04.java.controller;
 
-public enum  Action {
+enum  Action {
 
     INDEX {
         {

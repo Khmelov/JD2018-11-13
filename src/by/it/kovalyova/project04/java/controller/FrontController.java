@@ -38,6 +38,6 @@ public class FrontController extends HttpServlet {
         requestDispatcher.forward(req, resp);
         }
         else
-            resp.sendRedirect("/do?command="+next.toString().toLowerCase());
+            resp.sendRedirect("do?command="+next.toString().toLowerCase());
     }
 }
