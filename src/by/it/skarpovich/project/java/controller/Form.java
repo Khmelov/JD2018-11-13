@@ -1,8 +1,7 @@
 package by.it.skarpovich.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
-
-class Form {
+public class Form {
 
 
     static boolean isPost(HttpServletRequest req){
@@ -29,6 +28,11 @@ class Form {
     static int getInteger(HttpServletRequest req, String name){
         String str = req.getParameter(name);
         return Integer.parseInt(str);
+    }
+
+    static long getLong(HttpServletRequest req, String name){
+        String str = req.getParameter(name);
+        return Long.parseLong(str);
     }
 
 
