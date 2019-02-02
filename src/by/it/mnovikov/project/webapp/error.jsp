@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<html lang="en">
+<html>
 <%@ include file="include/head.jsp" %>
 <body>
 <div class="container">

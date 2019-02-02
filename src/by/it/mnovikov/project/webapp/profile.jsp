@@ -4,13 +4,10 @@
 <body>
 <div class="container">
     <%@ include file="include/menu.jsp" %>
-    <p>Profile User:<br> ${user}</p>
+    <p>Профиль пользователя:<br> ${user}</p>
 
     <form class="form-horizontal" action="do?command=Profile" method="POST">
         <fieldset>
-
-            <!-- Form Name -->
-            <legend>LogOUT</legend>
 
             <!-- Button -->
             <div class="form-group">
@@ -19,7 +16,6 @@
                     <button id="logout" name="logout" class="btn btn-primary">Logout</button>
                 </div>
             </div>
-
         </fieldset>
     </form>
 </div>

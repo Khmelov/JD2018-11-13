@@ -14,9 +14,11 @@ public class FilterEncoding implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if (encode!=null && !encode.equalsIgnoreCase(servletRequest.getCharacterEncoding()))
+        if (encode != null &&
+                !encode.equalsIgnoreCase(servletRequest.getCharacterEncoding()))
             servletRequest.setCharacterEncoding(encode);
-        if (encode!=null && !encode.equalsIgnoreCase(servletResponse.getCharacterEncoding()))
+        if (encode != null &&
+                !encode.equalsIgnoreCase(servletResponse.getCharacterEncoding()))
             servletResponse.setCharacterEncoding(encode);
         filterChain.doFilter(servletRequest, servletResponse);
     }
