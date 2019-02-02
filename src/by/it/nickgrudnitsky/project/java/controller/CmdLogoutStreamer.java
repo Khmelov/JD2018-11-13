@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-class CmdLogout extends Cmd {
+class CmdLogoutStreamer extends Cmd {
     @Override
     Action execute(HttpServletRequest req, HttpServletResponse resp) {
         req.getSession().invalidate();
@@ -16,6 +16,6 @@ class CmdLogout extends Cmd {
         passwordCookie.setMaxAge(0);
         resp.addCookie(passwordCookie);
         resp.addCookie(nicknameCookie);
-        return Action.LOGIN;
+        return Action.LOGINSTREAMER;
     }
 }
