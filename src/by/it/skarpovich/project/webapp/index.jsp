@@ -14,7 +14,7 @@
 
 <div class="row">
     <div class="col-md-2">Название</div>
-    <div class="col-md-1">Этажность</div>
+    <div class="col-md-2">Этажность</div>
     <div class="col-md-2">Площадь(м2)</div>
     <div class="col-md-4">Материал стен</div>
     <div class="col-md-1">Цена</div>
@@ -26,11 +26,11 @@
     <br>
     <div class="row">
         <div class="col-md-2">${varItems.title} </div>
-        <div class="col-md-1">${varItems.floors} </div>
+        <div class="col-md-2">${varItems.floors} </div>
         <div class="col-md-2">${varItems.square} </div>
         <div class="col-md-4">${varItems.materials} </div>
         <div class="col-md-1">${varItems.price} </div>
-   <div class="col-md-1"><form class="update-varItems-${varItems.id}" action="do?command=EditUsers" method=POST>
+   <div class="col-md-1"><form class="update-varItems-${varItems.id}" action="do?command=" method=POST>
 
                          <button id="Update" value="Buy" name="Buy" class="btn btn-success">
                              Купить

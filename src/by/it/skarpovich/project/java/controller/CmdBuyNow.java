@@ -1,9 +1,7 @@
 package by.it.skarpovich.project.java.controller;
 
-import by.it.skarpovich.project.java.beans.Item;
 import by.it.skarpovich.project.java.beans.Order;
 import by.it.skarpovich.project.java.dao.Dao;
-
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.Date;

@@ -9,15 +9,16 @@
         <div class="navbar-nav">
         <c:choose>
             <c:when test="${user==null}">
-                <a class="nav-item nav-link" href="do?command=Reset">Жизнь с нуля</a>
+               <a class="nav-item nav-link" href="do?command=Login">Авторизация</a>
                 <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
-                <a class="nav-item nav-link" href="do?command=Login">Авторизация</a>
-                 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
+                                 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
+                  <a class="nav-item nav-link" href="do?command=Reset">Сброс</a>
+
             </c:when>
             <c:otherwise>
 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
-                <a class="nav-item nav-link" href="do?command=EditUsers">Админка</a>
-                <a class="nav-item nav-link" href="do?command=addProject">Создать</a>
+                <a class="nav-item nav-link" href="do?command=EditUsers">Панель администратора</a>
+                <a class="nav-item nav-link" href="do?command=addProject">Добавить проект</a>
             </c:otherwise>
         </c:choose>
         </div>
