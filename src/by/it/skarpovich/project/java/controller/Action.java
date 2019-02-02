@@ -11,6 +11,7 @@ enum Action {
     SIGNUP(new CmdSignup()),
     ADDPROJECT(new CmdAddProject()),
     EDITUSERS(new CmdEditUsers()),
+    BUYNOW(new CmdBuyNow()),
     //SUCCESS(new CmdSuccess()),
 
     ERROR(new CmdError());

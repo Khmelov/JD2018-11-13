@@ -6,14 +6,6 @@
 <div class="container">
 <%@ include file="include/menu.jsp" %>
 
-<!-- Основное содержимое -->
-
-
-
-
-
-
-
 
 <div class="page-header">
     <h1>Каталог проектов</h1>
@@ -22,11 +14,11 @@
 
 <div class="row">
     <div class="col-md-2">Название</div>
-    <div class="col-md-2">Этажность</div>
+    <div class="col-md-1">Этажность</div>
     <div class="col-md-2">Площадь(м2)</div>
     <div class="col-md-4">Материал стен</div>
     <div class="col-md-1">Цена</div>
-
+ <div class="col-md-1"> </div>
 
 </div>
 
@@ -34,15 +26,18 @@
     <br>
     <div class="row">
         <div class="col-md-2">${varItems.title} </div>
-        <div class="col-md-2">${varItems.floors} </div>
+        <div class="col-md-1">${varItems.floors} </div>
         <div class="col-md-2">${varItems.square} </div>
         <div class="col-md-4">${varItems.materials} </div>
         <div class="col-md-1">${varItems.price} </div>
+   <div class="col-md-1"><form class="update-varItems-${varItems.id}" action="do?command=EditUsers" method=POST>
 
-    </div>
+                         <button id="Update" value="Buy" name="Buy" class="btn btn-success">
+                             Купить
+                         </button>
+
+    </div>   </div>
 </c:forEach>
-
-<br><br>
 
 
 
