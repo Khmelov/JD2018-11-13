@@ -2,7 +2,8 @@ package by.it.kovalyova.project04.java.dao;
 
 
 
-import by.it.kovalyova.jd03_03.beans.Ad;
+
+import by.it.kovalyova.project04.java.beans.Ad;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

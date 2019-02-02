@@ -1,9 +1,10 @@
 package by.it.kovalyova.project04.java.dao;
 
-import by.it.kovalyova.jd03_03.beans.Ad;
-import by.it.kovalyova.jd03_03.beans.Flat;
-import by.it.kovalyova.jd03_03.beans.Role;
-import by.it.kovalyova.jd03_03.beans.User;
+
+import by.it.kovalyova.project04.java.beans.Ad;
+import by.it.kovalyova.project04.java.beans.Flat;
+import by.it.kovalyova.project04.java.beans.Role;
+import by.it.kovalyova.project04.java.beans.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

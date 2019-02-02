@@ -32,4 +32,7 @@ enum  Action {
     Cmd cmd = new CmdError();
     String jsp="/error.jsp";
 
+    public String getJsp() {
+        return jsp;
+    }
 }
