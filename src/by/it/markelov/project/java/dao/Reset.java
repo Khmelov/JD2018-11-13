@@ -1,12 +1,12 @@
-package by.it.markelov.jd03_01;
+package by.it.markelov.project.java.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class С_Init {
-    public static void main(String[] args) {
+public class Reset {
+    static void reset () {
         try {
             Class.forName("com.mysql.jdbc.Driver");
         } catch (ClassNotFoundException e) {
