@@ -13,8 +13,6 @@ class CmdIndex extends Cmd{
         List<Order> orders = DAO.getInstance().order.getAll("");
         req.setAttribute("orders", orders);
 
-
-
         return null;
     }
 }

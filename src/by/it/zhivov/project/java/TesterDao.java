@@ -34,8 +34,8 @@ public class TesterDao {
             //манипуляции с таблицей user
             //create
             user.setName("Genady");
-            user.setLogin("4iba");
-            user.setPassword("root");
+            user.setLogin("Gen4ik");
+            user.setPassword("Gen4ik");
             user.setDateOfBirth("1994.05.24");
             user.setEmail("gen4ik@mail.ru");
             user.setTel("+79038652555");

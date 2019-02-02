@@ -64,7 +64,7 @@ public class UserDAO extends AbstractDAO implements IDAO<User> {
                 String nickname = resultSet.getString("nickname");
                 String pass = resultSet.getString("pass");
                 long roles_Id = resultSet.getLong("roles_id");
-                User user = new User(id, email, nickname, pass, roles_Id);
+                User user = new User(id, nickname, pass, email, roles_Id);
                 result.add(user);
             }
             return result;
