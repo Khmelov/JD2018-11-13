@@ -14,15 +14,23 @@ enum Action {
 
     LOGIN(new CmdLogin()),
 
-    LOGOUT(new CmdLogout()),
-
     SIGNUP(new CmdSignUp()),
 
     ERROR(new CmdError()),
 
     RESET(new CmdReset()),
 
-    INGLIST (new CmdIngList());
+    INGLIST (new CmdIngList()),
+
+    PROFILE (new CmdProfile()),
+
+    ADDINGTOBAR (new CmdAddIngToBar()),
+
+    REMINGFROMBAR (new CmdRemIngFromBar()),
+
+    DELETERECIPE (new CmdDeleteRecipe()),
+
+    CHANGERECIPE (new CmdChangeRecipe());
 
     Cmd cmd;
 

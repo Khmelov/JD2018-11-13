@@ -5,11 +5,14 @@ import javax.servlet.http.HttpServletRequest;
 enum Action {
 
     PROFILE(new CmdProfile()),
+    PROFILESTREAMER(new CmdProfileStreamer()),
     BROWSE(new CmdBrowse()),
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
+    LOGINSTREAMER(new CmdLoginStreamer()),
     LOGOUT(new CmdLogout()),
+    LOGOUTSTREAMER(new CmdLogoutStreamer()),
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError());
 
