@@ -79,10 +79,9 @@ class Vector extends Var {
             }
             return new Vector(resMul);
         } else if (other instanceof Vector) {
-            //double resMul[] = Arrays.copyOf(value, value.length);
             double sum=0;
             for (int i = 0; i < value.length; i++) {
-                sum += value[i] * ((Vector) other).value[i];//сумма произведений элементов векторов
+                sum += value[i] * ((Vector) other).value[i];
             }
             return new Scalar(sum);
         } else return super.mul(other);

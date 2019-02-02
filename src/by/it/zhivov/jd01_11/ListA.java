@@ -8,8 +8,8 @@ public class ListA<T> implements List<T> {
 
     @Override
     public boolean add(T t) {
-        if (size == elements.length) {//если количество элементов достигнет длины массива
-            elements = Arrays.copyOf(elements, elements.length * 3 / 2 + 1);//увеличиваем размер массива
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, elements.length * 3 / 2 + 1);
         }
         elements[size] = t;
         size++;
@@ -43,7 +43,6 @@ public class ListA<T> implements List<T> {
         return sb.toString();
     }
 
-    ///////////////////////////////STUBS////////////////////////////////////////////////////////////////////////////////////
     @Override
     public int size() {
         return 0;

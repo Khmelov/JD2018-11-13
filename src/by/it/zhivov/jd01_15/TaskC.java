@@ -45,21 +45,13 @@ public class TaskC {
                         System.out.println("Ошибка! Введите другое имя каталога");
                         System.out.println(filename);
                     }
-
-
-
                 }
             }
-
-
-
 
             if (line.equals("dir")) {
                 System.out.println("Содержимое папки " + catalog.getName());
                 searchFiles(catalog);
             }
-
-
         }
     }
 
@@ -79,9 +71,7 @@ public class TaskC {
             if (el.isFile()) {
                 System.out.printf("%-20s%-10s%n" ,el.getName()," <FILE> ");
                 cointFiles++;
-
             }
-
         }
         System.out.println("Количество файлов: "+cointFiles);
         System.out.println("Количество папок: "+countDirectories);

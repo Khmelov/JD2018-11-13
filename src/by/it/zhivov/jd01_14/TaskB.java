@@ -15,7 +15,6 @@ public class TaskB {
         int count = 0;
         int countPunctuation = 0;
         while (res != null) {
-            // System.out.println(res);
 
             Pattern p = Pattern.compile("[а-яА-ЯёЁ]+");
             Matcher m = p.matcher(res);
@@ -62,7 +61,7 @@ public class TaskB {
             }
 
 
-//
+
         }
     }
 }

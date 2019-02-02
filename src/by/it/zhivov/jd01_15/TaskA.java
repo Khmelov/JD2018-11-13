@@ -8,7 +8,7 @@ public class TaskA {
 
     public static void main(String[] args) throws IOException {
 
-
+//
         String src = System.getProperty("user.dir") + "/src/by/it/zhivov/";
         String filename = src + "jd01_15/matrix.txt";
         File f1 = new File(filename);
@@ -22,8 +22,6 @@ public class TaskA {
             for (int i = 0; i < 6; i++) {
                 for (int j = 0; j < 4; j++) {
                     mas[i][j] = new Random().nextInt(31) - 15;
-
-                    // System.out.printf("%-3s", mas[i][j] + " ");
                     System.out.printf("%3d%1s", mas[i][j]," ");
                     dos1.writeBytes(String.format("%3d%1s", mas[i][j]," "));
                 }

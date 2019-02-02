@@ -24,17 +24,17 @@ class Matrix extends Var {
     //конструктор 3
     public Matrix(String strMatrix) {
         String s = strMatrix.replaceAll(" ", "");
-        String[] strings = s.split("},");//сплитуем строку в массив
+        String[] strings = s.split("},");
         for (int i = 0; i < strings.length; i++) {
-            strings[i] = strings[i].replaceAll("[}{]", "").trim();//убираем фиг. скобки и пробелы в элементах массива
+            strings[i] = strings[i].replaceAll("[}{]", "").trim();
         }
-        String splitstrings[][] = new String[strings.length][strings.length];//создаем двумерный массив и заполняем его
+        String splitstrings[][] = new String[strings.length][strings.length];
         for (int i = 0; i < strings.length; i++) {
             String[] split = strings[i].split(",");
             System.arraycopy(split, 0, splitstrings[i], 0, split.length);
         }
 
-        value = new double[splitstrings.length][splitstrings[0].length];//преобразуем строки в double и заполняем массив
+        value = new double[splitstrings.length][splitstrings[0].length];
         for (int i = 0; i < value.length; i++) {
             for (int j = 0; j < value[0].length; j++) {
                 value[i][j] = Double.parseDouble(splitstrings[i][j]);

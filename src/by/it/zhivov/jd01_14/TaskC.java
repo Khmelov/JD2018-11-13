@@ -34,13 +34,7 @@ public class TaskC {
             if (dos1 != null) {
                 dos1.close();
             }
-
-
-//
         }
-
-
-
     }
 
     private static void searchFiles(File object) throws IOException {
@@ -57,13 +51,7 @@ public class TaskC {
                 dos1.writeBytes("file:" + el.getName());
                 dos1.writeBytes("\n");
             }
-
-
         }
-
-
     }
-
-
 }
 

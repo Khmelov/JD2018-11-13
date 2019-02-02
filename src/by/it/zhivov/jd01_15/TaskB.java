@@ -58,17 +58,9 @@ public class TaskB {
                             q = is.read();
                         }
                         b = is.read();
-
-
                     }
-
-
                 }
-
-
                 sb.append((char) b);
-
-
             }
             System.out.println(sb);
             dos1.writeBytes(sb.toString());

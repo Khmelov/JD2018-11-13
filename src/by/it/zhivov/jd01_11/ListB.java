@@ -4,12 +4,12 @@ import java.util.*;
 
 public class ListB<T> implements List<T> {
     private T[] elements = (T[]) new Object[0];
-    private int size = 0; //количество элементов в массиве
+    private int size = 0;
 
     @Override
     public boolean add(T t) {
-        if (size == elements.length) {//если количество элементов достигнет длины массива
-            elements = Arrays.copyOf(elements, elements.length * 3 / 2 + 1);//увеличиваем размер массива
+        if (size == elements.length) {
+            elements = Arrays.copyOf(elements, elements.length * 3 / 2 + 1);
         }
         elements[size] = t;
         size++;
@@ -40,7 +40,7 @@ public class ListB<T> implements List<T> {
 
     @Override
     public void add(int index, T t) {
-        elements = Arrays.copyOf(elements, elements.length + 1);//увеличиваем размер массива на 1
+        elements = Arrays.copyOf(elements, elements.length + 1);
         System.arraycopy(elements, index, elements, index + 1, elements.length - index - 1);
         size++;
         elements[index] = t;
@@ -68,8 +68,6 @@ public class ListB<T> implements List<T> {
         sb.append("]");
         return sb.toString();
     }
-
-    ///////////////////////////////STUBS////////////////////////////////////////////////////////////////////////////////////
 
     @Override
     public int size() {
