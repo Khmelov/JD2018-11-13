@@ -1,3 +1,4 @@
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
@@ -14,9 +15,9 @@
             <div class=col-md-1>Пароль</div>
             <div class=col-md-1>Email</div>
             <div class=col-md-1>ФИО</div>
-                <div class=col-md-1>Тел</div>
-                        <div class=col-md-1>Адрес</div>
-                        <div class=col-md-1>Роль</div>
+            <div class=col-md-1>Тел</div>
+            <div class=col-md-1>Адрес</div>
+            <div class=col-md-1>Роль</div>
     </div>
 </div>
 
@@ -40,22 +41,19 @@
                         <input id="email" class="form-control input-md" name="email"
                                value="${user.email}"/>
                     </div>
-                          <div class=col-md-1>
-                                            <input id="fullname" class="form-control input-md" name="fullname"
-                                                   value="${user.fullname}"/>
+                    <div class=col-md-1>
+                        <input id="fullname" class="form-control input-md" name="fullname"
+                               value="${user.fullname}"/>
+                    </div>
+                           <div class=col-md-1>
+                                            <input id="phone" class="form-control input-md" name="phone"
+                                                   value="${user.phone}"/>
                                         </div>
 
-
-      <div class=col-md-1>
-                        <input id="phone" class="form-control input-md" name="phone"
-                               value="${user.phone}"/>
-                    </div>
-
-      <div class=col-md-1>
-                        <input id="address" class="form-control input-md" name="address"
-                               value="${user.address}"/>
-                    </div>
-
+                           <div class=col-md-1>
+                                            <input id="address" class="form-control input-md" name="address"
+                                                   value="${user.address}"/>
+                                        </div>
 
                     <div class=col-md-1>
                         <select id="role" name="roles_id" class="form-control">
@@ -69,18 +67,16 @@
 
                     <div class=col-md-1>
                         <button id="Update" value="Update" name="Update" class="btn btn-success">
-                            Обн
+                            Обновить
                         </button>
                     </div>
 
                     <div class=col-md-1>
                         <button id="Delete" value="Delete" name="Delete" class="btn btn-danger">
-                            Уд
+                            Удалить
                         </button>
                     </div>
-
                 </div>
-                <br>
             </form>
     </c:forEach>
 </div>
@@ -89,5 +85,4 @@
 </div>
 </body>
 </html>
-
 
