@@ -2,7 +2,7 @@
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
-SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
+SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
 -- Schema zhivov
@@ -59,11 +59,11 @@ CREATE TABLE IF NOT EXISTS `zhivov`.`ads` (
   `body` VARCHAR(45) NULL,
   `year` INT NULL,
   `engine` DOUBLE NULL,
-  `at` INT NULL,
+  `at` VARCHAR(20) NULL,
   `driveunit` VARCHAR(15) NULL,
   `equipment` VARCHAR(45) NULL,
   `mileage` INT NULL,
-  `crashed` INT NULL,
+  `crashed` VARCHAR(20) NULL,
   `price` DOUBLE NULL,
   `users_id` INT NOT NULL,
   PRIMARY KEY (`id`),
@@ -106,7 +106,7 @@ COMMIT;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `zhivov`;
-INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Best Car', 'This car the beast of cars', 'Lancia', '53', 'yelow', 'coupe', 1996, 2.6, 0, 'full', 'standart', 186153, 1, 580000, 1);
+INSERT INTO `zhivov`.`ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (DEFAULT, 'Best Car', 'This car the beast of cars', 'Lancia', '53', 'yelow', 'coupe', 1996, 2.6, '0', 'full', 'standart', 186153, '1', 580000, 1);
 
 COMMIT;
 

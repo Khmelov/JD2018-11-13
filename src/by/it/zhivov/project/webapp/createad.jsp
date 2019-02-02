@@ -147,11 +147,11 @@
                 <label class="col-md-4 control-label" for="at">Коробка передач</label>
                 <div class="col-md-4">
                     <label class="radio-inline" for="at-0">
-                        <input type="radio" name="at" id="at-0" value="1" checked="checked">
+                        <input type="radio" name="at" id="at-0" value="Automatic" checked="checked">
                         Автоматическая
                     </label>
                     <label class="radio-inline" for="at-1">
-                        <input type="radio" name="at" id="at-1" value="0">
+                        <input type="radio" name="at" id="at-1" value="Manual">
                         Механическая
                     </label>
                 </div>
@@ -196,14 +196,14 @@
 
             <!-- Multiple Radios (inline) -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="crashed">Бывал ли авто в ДТП?</label>
+                <label class="col-md-4 control-label">Бывал ли авто в ДТП?</label>
                 <div class="col-md-4">
                     <label class="radio-inline" for="crashed-0">
-                        <input type="radio" name="crashed" id="crashed-0" value="0" checked="checked">
+                        <input type="radio" name="crashed" id="crashed-0" value="No" checked="checked">
                         Нет
                     </label>
                     <label class="radio-inline" for="crashed-1">
-                        <input type="radio" name="crashed" id="crashed-1" value="1">
+                        <input type="radio" name="crashed" id="crashed-1" value="Yes">
                         Да
                     </label>
                 </div>

@@ -22,11 +22,11 @@ public class CmdCreateAd implements Cmd {
             String body = Form.getString(req, "body", "[a-zA-Zа-яА-Я]{1,45}");
             int year = Form.getInteger(req, "year");
             double engine = Form.getDouble(req, "engine");
-            int at = Form.getInteger(req, "at");
+            String at = Form.getString(req, "at");
             String driveunit = Form.getString(req, "driveunit", "[a-zA-Zа-яА-Я0-9()]{1,45}");
             String equipment = Form.getString(req, "equipment", "[a-zA-Zа-яА-Я]{1,45}");
             int millage = Form.getInteger(req, "millage");
-            int crashed = Form.getInteger(req, "crashed");
+            String crashed = Form.getString(req, "crashed");
             double price = Form.getDouble(req, "price");
             User user = Util.findUser(req);
             Ad ad = new Ad(0, title, description, brnd, model, color, body, year, engine, at, driveunit, equipment, millage, crashed, price, user.getId());

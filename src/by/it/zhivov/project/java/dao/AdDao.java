@@ -29,7 +29,7 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`crashed`," +
                         "`price`," +
                         "`users_id`) " +
-                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%f','%d','%s','%s','%d','%d','%f','%d')",
+                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%f','%s','%s','%s','%d','%s','%f','%d')",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(), ad.getColor(), ad.getBody(),
                 ad.getYear(), ad.getEngine(), ad.getAt(), ad.getDriveunit(), ad.getEquipment(),
                 ad.getMillage(), ad.getCrashed(), ad.getPrice(), ad.getId_User());
@@ -95,11 +95,11 @@ public class AdDao implements InterfaceDao<Ad> {
                 String body = resultSet.getString("body");
                 int year = resultSet.getInt("year");
                 double engine = resultSet.getDouble("engine");
-                int at = resultSet.getInt("at");
+                String at = resultSet.getString("at");
                 String driveunit = resultSet.getString("driveunit");
                 String equipment = resultSet.getString("equipment");
                 int mileage = resultSet.getInt("mileage");
-                int crashed = resultSet.getInt("crashed");
+                String crashed = resultSet.getString("crashed");
                 int price = resultSet.getInt("price");
                 long users_id = resultSet.getLong("users_id");
                 Ad ad = new Ad(id, title, description, brand, model, color, body, year, engine, at, driveunit, equipment, mileage, crashed, price, users_id);

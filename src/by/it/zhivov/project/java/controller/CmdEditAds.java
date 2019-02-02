@@ -24,11 +24,11 @@ class CmdEditAds implements Cmd {
                 String body = Form.getString(req, "body");
                 int year = Form.getInteger(req, "year");
                 double engine = Form.getDouble(req, "engine");
-                int at = Form.getInteger(req, "at");
+                String at = Form.getString(req, "at");
                 String driveunit = Form.getString(req, "driveunit");
                 String equipment = Form.getString(req, "equipment");
                 int millage = Form.getInteger(req, "millage");
-                int crashed = Form.getInteger(req, "crashed");
+                String crashed = Form.getString(req, "crashed");
                 double price = Form.getDouble(req, "price");
                 long id_User = Form.getLong(req,"id_User");
                 Ad ad = new Ad(id,title,description,brnd,model,color,body,year,engine,at,driveunit,equipment,millage,crashed,price,id_User);

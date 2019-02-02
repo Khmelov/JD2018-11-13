@@ -61,11 +61,11 @@ public class TesterDao {
             ad.setBody("Hatchback");
             ad.setYear(2016);
             ad.setEngine(2.5);
-            ad.setAt(1);
+            ad.setAt("Automatic");
             ad.setDriveunit("Full");
             ad.setEquipment("Lux");
             ad.setMillage(42000);
-            ad.setCrashed(0);
+            ad.setCrashed("Yes");
             ad.setPrice(156000.3);
             ad.setId_User(user.getId());
             if (dao.ad.create(ad))
