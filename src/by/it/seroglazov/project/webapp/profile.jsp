@@ -8,8 +8,8 @@
 <body>
 	<div class="container">
 		<%@ include file="include/menu.jsp" %>
-		<div class="container">
-			<h5 class="text-primary">
+		<div class="m-3">
+			<h5>
 				Name = ${user.name}<br>
 				Email = ${user.email}
 			</h5>

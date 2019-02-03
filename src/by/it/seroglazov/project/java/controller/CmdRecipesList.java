@@ -10,12 +10,25 @@ import java.util.List;
 class CmdRecipesList extends Cmd {
     @Override
     Action execute(HttpServletRequest req) throws Exception {
-        long id;
+        String reqIngrId = req.getParameter("id");
+        String reqUserId = req.getParameter("userid");
+        long ingId = 0;
+        long userId = 0;
         try {
-            id = Form.getLong(req, "id");
-        } catch (NumberFormatException e) {
-            id = 0;
+            if (reqIngrId != null) {
+                ingId = Long.parseLong(reqIngrId);
+            }
+        } catch (NumberFormatException ignored) {
         }
+        if (ingId == 0) {
+            try {
+                if (reqUserId != null) {
+                    userId = Long.parseLong(reqUserId);
+                }
+            } catch (NumberFormatException ignored) {
+            }
+        }
+
         Dao<Rtype> rtDao = new MyDao<>(new Rtype());
         Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
         Dao<Unit> unitDao = new MyDao<>(new Unit());
@@ -26,9 +39,13 @@ class CmdRecipesList extends Cmd {
 
         String sqlSuff;
         List<Recipe> recipes;
-        if (id > 0) {
+        if (ingId > 0) {
             sqlSuff = "WHERE `recipes`.`id` IN " +
-                    "(SELECT `amounts`.`recipe_id` FROM `amounts` WHERE `amounts`.`ingredient_id`='" + id + "')";
+                    "(SELECT `amounts`.`recipe_id` FROM `amounts` WHERE `amounts`.`ingredient_id`='" + ingId + "')";
+        } else if (userId > 0) {
+            sqlSuff = "WHERE `recipes`.`id` IN " +
+                    "(SELECT `amounts`.`recipe_id` FROM `amounts` WHERE `amounts`.`ingredient_id` IN " +
+                    "(SELECT `userings`.`ingredient_id` FROM `userings` WHERE `userings`.`user_id`='" + userId + "'))";
         } else {
             sqlSuff = "";
         }

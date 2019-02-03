@@ -30,9 +30,7 @@ enum Action {
 
     DELETERECIPE (new CmdDeleteRecipe()),
 
-    CHANGERECIPE (new CmdChangeRecipe()),
-
-    INGUSAGES (new CmdIngUsages());
+    CHANGERECIPE (new CmdChangeRecipe());
 
     Cmd cmd;
 
