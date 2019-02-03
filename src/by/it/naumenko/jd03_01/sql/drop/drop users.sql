@@ -1,1 +1,1 @@
-DROP TABLE `naumenko`.`users`
+DROP TABLE `naumenko2`.`users`

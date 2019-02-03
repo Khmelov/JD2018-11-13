@@ -19,10 +19,12 @@ public class C_Init {
     private final static String CREATE_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create cake.sql";
     private final static String CREATE_TABLE_USERS =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create users1.sql";
     private final static String CREATE_TABLE_ZAKAZ =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create zakaz.sql";
+    private final static String CREATE_TABLE_PROFIL =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create profil.sql";
     private final static String DROP_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop cake.sql";
     private final static String DROP_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop roles.sql";
     private final static String DROP_TABLE_USERS=System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop users.sql";
     private final static String DROP_TABLE_ZAKAZ=System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop zakaz.sql";
+    private final static String INSERT_TABLE_PROFIL =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/insert/insert profil.sql";
     private final static String INSERT_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/insert/insert cake.sql";
     private final static String INSERT_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/insert/insert roles.sql";
     private final static String INSERT_TABLE_USERS =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/insert/insert users.sql";
@@ -74,14 +76,15 @@ public void create() {
         try (Connection connection = DriverManager.getConnection(portDB, "root", "")
         ) {
             Statement statement = connection.createStatement();
-            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko`");
-            statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `naumenko` DEFAULT CHARACTER SET utf8");
+            statement.executeUpdate("DROP SCHEMA IF EXISTS `naumenko2`");
+            statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `naumenko2` DEFAULT CHARACTER SET utf8");
 
-            //Table `naumenko`.`roles`
+            //Table `naumenko2`.`roles`
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ROLES));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_CAKE));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_USERS));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ZAKAZ));
+            statement.executeUpdate(getSQLFile(CREATE_TABLE_PROFIL));
 
             int count = getSQLFileInsertCount(INSERT_TABLE_CAKE);
             for (int i = 0; i <count ; i++) {
@@ -92,7 +95,7 @@ public void create() {
             for (int i = 0; i <count ; i++) {
                 statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ROLES,i));
             }
-
+//
             count = getSQLFileInsertCount(INSERT_TABLE_USERS);
             for (int i = 0; i <count ; i++) {
                 statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_USERS,i));
@@ -101,6 +104,10 @@ public void create() {
             count = getSQLFileInsertCount(INSERT_TABLE_ZAKAZ);
             for (int i = 0; i <count ; i++) {
                 statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_ZAKAZ,i));
+            }
+            count = getSQLFileInsertCount(INSERT_TABLE_PROFIL);
+            for (int i = 0; i <count ; i++) {
+                statement.executeUpdate(getSQLFileInsert(INSERT_TABLE_PROFIL,i));
             }
 
         } catch (SQLException | IOException e) {
