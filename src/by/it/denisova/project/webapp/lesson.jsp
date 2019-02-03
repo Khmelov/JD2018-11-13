@@ -1,9 +1,10 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.html" %>
+<%@ include file="include/head.jsp" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.html" %>
+    <%@ include file="include/menu.jsp" %>
     <form class="form-horizontal" action="do?command=Lesson" method="POST">
         <fieldset>
 
@@ -12,11 +13,14 @@
 
             <!-- Select Basic -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="selectbasic">Test</label>
+                <label class="col-md-4 control-label" for="test">Test</label>
                 <div class="col-md-4">
-                    <select id="selectbasic" name="selectbasic" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+
+                    <select id="test" name="test" class="form-control">
+                        <c:forEach items="${tests}" var="test">
+                        <option value="${test.id}">${test.test_name}</option>
+                        </c:forEach>
+                        <%--<option value="2">2</option>--%>
                     </select>
                 </div>
             </div>
@@ -26,8 +30,9 @@
                 <label class="col-md-4 control-label" for="type">Type</label>
                 <div class="col-md-4">
                     <select id="type" name="type" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <c:forEach items="${types}" var="type">
+                        <option value="${type.id}">${type.type}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>
@@ -46,8 +51,9 @@
                 <label class="col-md-4 control-label" for="theme">Theme</label>
                 <div class="col-md-4">
                     <select id="theme" name="theme" class="form-control">
-                        <option value="1">1</option>
-                        <option value="2">2</option>
+                        <c:forEach items="${themes}" var="theme">
+                        <option value="${theme.id}">${theme.theme}</option>
+                        </c:forEach>
                     </select>
                 </div>
             </div>

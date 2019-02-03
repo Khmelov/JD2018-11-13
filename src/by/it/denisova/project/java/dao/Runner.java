@@ -124,5 +124,24 @@ public class Runner {
 //        if(dao.answer.delete( answer)) {
 //            System.out.println("Deleted " +  answer);
 //        }
+        System.out.println("-------------------TYPE----------------------");
+
+        TypeLesson typeLesson = new TypeLesson();
+        typeLesson.setType("some Type23:45");
+        if(dao.type.create(typeLesson)) {
+            System.out.println("Created " + typeLesson);
+        }
+
+        typeLesson.setType("new type 23:48");
+        if (dao.type.update(typeLesson)) {
+            System.out.println("Updated " + typeLesson);
+        }
+
+        typeLesson = dao.type.read(typeLesson.getId());
+        System.out.println(typeLesson);
+
+        if (dao.type.delete(typeLesson)) {
+            System.out.println("Deleted " + typeLesson);
+        }
   }
 }
