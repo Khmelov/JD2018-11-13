@@ -148,6 +148,23 @@
     -->
     <target name="09-Manual-Undeploy" depends="08check-if-deployed">
         <!-- TOMCAT undeploy-->
+
+        <path id="tomcat.classpath">
+            <fileset dir="${global.lib.dir}">
+                <include name="khmelov_tomcat_lib.jar"/>
+            </fileset>
+            <!--<fileset dir="ant/lib_tomcat">-->
+            <!--<include name="catalina-ant.jar"/>-->
+            <!--<include name="tomcat-coyote.jar"/>-->
+            <!--<include name="tomcat-util.jar"/>-->
+            <!--</fileset>-->
+            <!--<fileset dir="ant/lib_tomcat">-->
+            <!--<include name="tomcat-juli.jar"/>-->
+            <!--</fileset>-->
+        </path>
+
+        <taskdef name="undeploy" classname="org.apache.catalina.ant.UndeployTask" classpathref="tomcat.classpath"/>
+
         <echo>Back bad deploy</echo>
         <undeploy failonerror="false"
                   url="${tomcat.manager.url}"

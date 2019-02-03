@@ -1,38 +1,40 @@
 package by.it.kovalyova.project04.java.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 enum  Action {
 
-    INDEX {
-        {
-        cmd=new CmdIndex();
-        jsp="/index.jsp";
-        }
-    },   LOGIN {
-        {
-            cmd=new CmdLogin();
-            jsp="/login.jsp";
-        }
-    },  LOGOUT{
-        {
-            cmd=new CmdLogout();
-            jsp="/logout.jsp";
-        }
-    },   SIGNUP{
-        {
-            cmd=new CmdSignup();
-            jsp="/signup.jsp";
-        }
-    },ERROR{
-        {
-            cmd=new CmdError();
-            jsp="/error.jsp";
-        }
-    };
+    RESET(new CmdReset()),
+    INDEX(new CmdIndex()),
+    LOGIN(new CmdLogin()),
+    PROFILE(new CmdProfile()),
+    SIGNUP(new CmdSignup()),
+    ERROR(new CmdError());
 
-    Cmd cmd = new CmdError();
-    String jsp="/error.jsp";
+    Cmd cmd;
+    Action(Cmd cmdIndex) {
+        cmd=cmdIndex;
+        }
 
-    public String getJsp() {
-        return jsp;
+
+    String getJsp() {
+        return "/" + this.name().toLowerCase() + ".jsp";
+    }
+
+
+
+    static Action define(HttpServletRequest req){
+        Action result=Action.ERROR;
+        String command = req.getParameter("command");
+        if (command!=null && !command.isEmpty()){
+            try {
+                result=Action.valueOf(command.toUpperCase());
+            }
+            catch (IllegalArgumentException e){
+                //create our error
+            }
+
+        }
+        return result;
     }
 }

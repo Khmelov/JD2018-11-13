@@ -1,17 +1,16 @@
 package by.it.kovalyova.project04.java.controller;
 
-import by.it.kovalyova.project04.java.beans.Ad;
 import by.it.kovalyova.project04.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.util.List;
 
-class CmdIndex implements Cmd {
-    @Override
+class CmdReset implements Cmd {
+
+@Override
    public Action execute(HttpServletRequest req) throws SQLException {
-        List<Ad> ads = Dao.getDao().ad.getAll();
-        req.setAttribute("ads",ads);
-        return null;
+        Dao.getDao().reset();
+
+        return Action.INDEX;
     }
 }

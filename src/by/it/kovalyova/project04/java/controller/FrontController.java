@@ -30,14 +30,26 @@ public class FrontController extends HttpServlet {
     }
 
     private void process(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Action action = ActionDefiner.define(req);
-        Action next=action.cmd.execute(req);
+        Action action = Action.define(req);
+        Action next= null;
+        try {
+            next = action.cmd.execute(req);
+        } catch (Exception e) {
+            req.setAttribute("message",e.toString());
+            toJsp(req, resp, Action.ERROR);
+        }
+
+
         if (next == null || next == action) {
-        ServletContext servletContext = req.getServletContext();
-        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(action.getJsp());
-        requestDispatcher.forward(req, resp);
+            toJsp(req, resp, action);
         }
         else
             resp.sendRedirect("do?command="+next.toString().toLowerCase());
+    }
+
+    private void toJsp(HttpServletRequest req, HttpServletResponse resp, Action error) throws ServletException, IOException {
+        ServletContext servletContext = req.getServletContext();
+        RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(error.getJsp());
+        requestDispatcher.forward(req, resp);
     }
 }

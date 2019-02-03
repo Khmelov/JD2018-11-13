@@ -1,8 +1,14 @@
 package by.it.kovalyova.project04.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
 
-class CmdError extends Cmd {
-    @Override
-    Action execute(HttpServletRequest req) {return null;}
-}
+    class CmdError implements Cmd{
+
+        @Override
+        public Action execute(HttpServletRequest req) throws SQLException{
+                return null;
+            }
+
+        }
+
