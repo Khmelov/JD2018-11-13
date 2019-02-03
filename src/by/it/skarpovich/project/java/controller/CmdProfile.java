@@ -1,35 +1,37 @@
 package by.it.skarpovich.project.java.controller;
 
-import by.it.skarpovich.project.java.beans.Order;
 import by.it.skarpovich.project.java.beans.User;
 import by.it.skarpovich.project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
-import java.util.List;
 
 class CmdProfile implements Cmd {
 
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
-        if (!Util.checkUser(req))
-            return Action.LOGIN;
 
-        if (Form.isPost(req)) {
-            if (Form.getString(req, "logout") != null) {
-                req.getSession().invalidate();
-                return Action.LOGIN;
+        if (Util.checkUser(req)) {
+            Dao dao = Dao.getDao();
+            if (Form.isPost(req)) {
+                int id = Form.getInteger(req, "id");
+                String username = Form.getString(req, "username", "[a-zA-Zа-яёА-ЯЁ0-9_]{4,}");
+                String password = Form.getString(req, "password", "[a-zA-Zа-яёА-ЯЁ0-9_]{4,}");
+                String email = Form.getString(req, "email");
+                String fullname = Form.getString(req, "fullname");
+                String phone = Form.getString(req, "phone");
+                String address = Form.getString(req, "address");
+                int roles_id = Form.getInteger(req, "roles_id");
+                User user = new User(id, username, password, email, fullname, phone, address, roles_id);
+
+                if (req.getParameter("Update") != null)
+                    dao.user.update(user);
+
+               req.setAttribute("user", user);
+
             }
+            return Action.PROFILE;
         }
-        User user = Util.findUser(req);
-        String where=String.format(" WHERE `users_id`='%d'",user.getId());
-
-        List<Order> orders = Dao.getDao().order.getAll(where);
-        req.setAttribute("orders", orders);
-
-        return Action.PROFILE;
+        return Action.LOGIN;
     }
 }
-
-
-

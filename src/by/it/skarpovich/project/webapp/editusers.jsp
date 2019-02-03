@@ -6,7 +6,10 @@
 <body>
 <div class="container">
 <%@ include file="include/menu.jsp" %>
-
+<div class="page-header">
+    <h1>Редактирование пользователей</h1>
+    <p class="lead">Редактирование данных пользователей</p>
+</div>
 
 <div class="container">
     <div class="row">
@@ -23,7 +26,7 @@
 
 <div class="container">
     <c:forEach items="${users}" var="user">
-            <form class="update-user-${user.id}" action="do?command=EditUsers" method="POST">
+            <form class="update-user-${user.id}" action="do?command=editusers" method="POST">
                 <div class="row">
                     <div class=col-md-1>
                         <input id="id" class="form-control input-md" name="id"

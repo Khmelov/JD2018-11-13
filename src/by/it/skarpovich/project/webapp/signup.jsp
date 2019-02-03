@@ -7,7 +7,7 @@
 
 
 <%@ include file="include/menu.jsp" %>
-<form class="form-horizontal" action="do?command=SignUp" method="POST">
+<form class="form-horizontal" action="do?command=signup" method="POST">
 <fieldset>
 
 <!-- Form Name -->

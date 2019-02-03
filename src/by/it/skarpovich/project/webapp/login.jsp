@@ -6,11 +6,13 @@
 <div class="container">
 <%@ include file="include/menu.jsp" %>
 
-<form class="form-horizontal" action="do?command=Login" method="POST">
+<form class="form-horizontal" action="do?command=login" method="POST">
 <fieldset>
 
-<!-- Form Name -->
-<legend>Log In</legend>
+<div class="page-header">
+    <h1>Авторизация</h1>
+    <p class="lead">Введите логин и пароль.</p>
+</div>
 
 <!-- Text input-->
 <div class="form-group">

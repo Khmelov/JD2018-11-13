@@ -8,18 +8,29 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
         <c:choose>
-            <c:when test="${user==null}">
-               <a class="nav-item nav-link" href="do?command=Login">Авторизация</a>
-                <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
-                                 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
-                  <a class="nav-item nav-link" href="do?command=Reset">Сброс</a>
-
-            </c:when>
-            <c:otherwise>
+          <c:when test="${userRole==1}">
 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
-                <a class="nav-item nav-link" href="do?command=EditUsers">Панель администратора</a>
-                <a class="nav-item nav-link" href="do?command=addProject">Добавить проект</a>
-            </c:otherwise>
+                <a class="nav-item nav-link" href="do?command=editusers">Пользователи</a>
+                <a class="nav-item nav-link" href="do?command=editorders">Все Заказы</a>
+                <a class="nav-item nav-link" href="do?command=addproject">Добавить проект</a>
+                 <a class="nav-item nav-link" href="logout.jsp">Выход</a>
+                   <a class="nav-item nav-link" href="do?command=reset">Сброс</a>
+                                </c:when>
+
+                  <c:when test="${userRole==2}">
+         <a class="nav-item nav-link" href="do?command=profile">Профиль</a>
+         <a class="nav-item nav-link" href="do?command=orders">Мои Заказы</a>
+         <a class="nav-item nav-link" href="logout.jsp">Выход</a>
+                  <a class="nav-item nav-link" href="do?command=reset">Сброс</a>
+                                        </c:when>
+
+            <c:otherwise>
+                           <a class="nav-item nav-link" href="do?command=logIn">Авторизация</a>
+                            <a class="nav-item nav-link" href="do?command=signUp">Регистрация</a>
+                                                                                <a class="nav-item nav-link" href="do?command=reset">Сброс</a>
+                        </c:otherwise>
+
+
         </c:choose>
         </div>
     </div>

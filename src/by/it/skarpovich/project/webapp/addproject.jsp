@@ -8,9 +8,10 @@
 <form class="form-horizontal" action="do?command=AddProject" method="POST">
 <fieldset>
 
-<!-- Form Name -->
-<legend>Add Project</legend>
-
+<div class="page-header">
+    <h1>Добавление проектов</h1>
+    <p class="lead">Добавление новых архитектурных проектов</p>
+</div>
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="title">Title</label>

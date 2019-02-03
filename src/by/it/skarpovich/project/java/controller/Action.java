@@ -7,10 +7,13 @@ enum Action {
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
+    LOGOUT(new CmdLogOut()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
     ADDPROJECT(new CmdAddProject()),
+    ORDERS(new CmdOrders()),
     EDITUSERS(new CmdEditUsers()),
+    EDITORDERS(new CmdEditOrders()),
     BUYNOW(new CmdBuyNow()),
     //SUCCESS(new CmdSuccess()),
 
@@ -21,7 +24,6 @@ enum Action {
     Action(Cmd cmdIndex) {
         cmd = cmdIndex;
     }
-
     String getJsp() {
         return "/" + this.name().toLowerCase() + ".jsp";
     }
