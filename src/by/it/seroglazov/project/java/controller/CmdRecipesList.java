@@ -10,7 +10,12 @@ import java.util.List;
 class CmdRecipesList extends Cmd {
     @Override
     Action execute(HttpServletRequest req) throws Exception {
-
+        long id;
+        try {
+            id = Form.getLong(req, "id");
+        } catch (NumberFormatException e) {
+            id = 0;
+        }
         Dao<Rtype> rtDao = new MyDao<>(new Rtype());
         Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
         Dao<Unit> unitDao = new MyDao<>(new Unit());
@@ -19,7 +24,19 @@ class CmdRecipesList extends Cmd {
 
         StringBuilder sb = new StringBuilder();
 
-        List<Recipe> recipes = recDao.getAll();
+        String sqlSuff;
+        List<Recipe> recipes;
+        if (id > 0) {
+            sqlSuff = "WHERE `recipes`.`id` IN " +
+                    "(SELECT `amounts`.`recipe_id` FROM `amounts` WHERE `amounts`.`ingredient_id`='" + id + "')";
+        } else {
+            sqlSuff = "";
+        }
+        recipes = recDao.getAll(sqlSuff);
+        if (recipes.size() == 0) {
+            req.setAttribute("error_message", "No one cocktail matches conditions");
+        }
+
         for (Recipe recipe : recipes) {
             Rtype rtype = rtDao.read(recipe.getRtype_id());
             List<Amount> amounts = amDao.getAll("WHERE recipe_id=" + recipe.getId());

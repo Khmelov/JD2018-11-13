@@ -41,57 +41,25 @@
             </fieldset>
 
                 <fieldset>
-                    <!-- Ingredient 1 -->
-                    <div class="form-row form-group">
-                        <div class="form-group col-sm-4">
-                            <label class="control-label" for="ingredient_1">Ingredient</label>
-                            <input id="ingredient_1" name="ingredient_1" type="text" class="form-control input-md" value="gin" required>
+
+                    <c:forEach var="vari" begin="1" end="5">
+                        <div class="form-row form-group">
+                            <div class="form-group col-sm-4">
+                                <label class="control-label" for="ingredient_${vari}">Ingredient</label>
+                                <input id="ingredient_${vari}" name="ingredient_${vari}" type="text" class="form-control input-md" value="" placeholder="name">
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label class="control-label" for="amount_${vari}">Amount</label>
+                                <input id="amount_${vari}" name="amount_${vari}" type="text" class="form-control input-md" value="" placeholder="amount">
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label class="control-label" for="unit_${vari}">Unit</label>
+                                <input id="unit_${vari}" name="unit_${vari}" type="text" class="form-control input-md" value="" placeholder="unit">
+                            </div>
                         </div>
-                        <div class="form-group col-sm-2">
-                            <label class="control-label" for="amount_1">Amount</label>
-                            <input id="amount_1" name="amount_1" type="text" class="form-control input-md" value="3" required>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <label class="control-label" for="unit_1">Unit</label>
-                            <input id="unit_1" name="unit_1" type="text" class="form-control input-md" value="cl" required>
-                        </div>
-                    </div>
-                    <!-- Ingredient 2 -->
-                    <div class="form-row form-group">
-                        <div class="form-group col-sm-4">
-                            <input id="ingredient_2" name="ingredient_2" type="text" class="form-control input-md" value="coda water" placeholder="name" required>
-                        </div>
-                        <div class="form-group col-sm-2">
-                            <input id="amount_2" name="amount_2" type="text" class="form-control input-md" value="few" placeholder="amount" required>
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input id="unit_2" name="unit_2" type="text" class="form-control input-md" value="dash" placeholder="unit" required>
-                        </div>
-                    </div>
-                    <!-- Ingredient 3 -->
-                    <div class="form-row form-group">
-                        <div class="form-group col-sm-4">
-                            <input id="ingredient_3" name="ingredient_3" type="text" class="form-control input-md" placeholder="name">
-                        </div>
-                        <div class="form-group col-sm-2">
-                            <input id="amount_3" name="amount_3" type="text" class="form-control input-md" placeholder="amount">
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input id="unit_3" name="unit_3" type="text" class="form-control input-md" placeholder="unit">
-                        </div>
-                    </div>
-                    <!-- Ingredient 4 -->
-                    <div class="form-row form-group">
-                        <div class="form-group col-sm-4">
-                            <input id="ingredient_4" name="ingredient_4" type="text" class="form-control input-md" placeholder="name">
-                        </div>
-                        <div class="form-group col-sm-2">
-                            <input id="amount_4" name="amount_4" type="text" class="form-control input-md" placeholder="amount">
-                        </div>
-                        <div class="form-group col-sm-3">
-                            <input id="unit_4" name="unit_4" type="text" class="form-control input-md" placeholder="unit">
-                        </div>
-                    </div>
+                    </c:forEach>
+
+
                 </fieldset>
 			<input type="submit" class="btn btn-primary" value="create">	
 		</form>

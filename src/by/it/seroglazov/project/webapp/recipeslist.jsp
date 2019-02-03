@@ -14,7 +14,6 @@
 			<div class="alert alert-danger" role="alert">
 				${error_message}
 			</div>
-			<c:remove var="error_message" scope="session" />
 		</c:if>
 		${recipe_list}
 	</div>

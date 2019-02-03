@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 class CmdAddRecipe extends Cmd {
 
-    private static final int ingrCount = 4;
+    private static final int ingrCount = 5;
 
 
     @Override
