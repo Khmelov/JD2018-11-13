@@ -1,8 +1,11 @@
 package by.it.seroglazov.project.java.dao;
 
+import by.it.seroglazov.project.java.controller.SiteException;
+
 import java.lang.reflect.Field;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +21,7 @@ public class MyDao<T> implements Dao<T> {
     }
 
     @Override
-    public boolean create(T t) throws Exception {
+    public boolean create(T t) throws SiteException, IllegalAccessException, SQLException {
         Class cl = tObject.getClass();
         Field[] fields = cl.getDeclaredFields();
         StringBuilder sb = new StringBuilder();
@@ -43,7 +46,7 @@ public class MyDao<T> implements Dao<T> {
                 else if (type == int.class)
                     values.append(field.getInt(t));
                 else
-                    throw new Exception("Unexpected field type: " + type + ". Expected types are int, long and String");
+                    throw new SiteException("Unexpected field type: " + type + ". Expected types are int, long and String");
                 values.append("', ");
             }
 

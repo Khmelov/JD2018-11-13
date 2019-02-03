@@ -4,21 +4,18 @@
 <html>
 <head>
 	<title>Cocktails list</title>
-	<style>
-           #recipes {
-            color: #fff;
-           }
-        </style>
 	<%@ include file="include/head.jsp" %>
 </head>
-<body>
-	<%@ include file="include/menu.jsp" %>
+<body>	
 	<div class="container">
-	<c:if test="${error_message!=null}">
-        <br>
-        <div class="alert alert-danger" role="alert">${error_message}</div>
-        <c:remove var="error_message" scope="session" />
-    </c:if>
+		<%@ include file="include/menu.jsp" %>
+		<c:if test="${error_message!=null}">
+			<br>
+			<div class="alert alert-danger" role="alert">
+				${error_message}
+			</div>
+			<c:remove var="error_message" scope="session" />
+		</c:if>
 		${recipe_list}
 	</div>
 </body>

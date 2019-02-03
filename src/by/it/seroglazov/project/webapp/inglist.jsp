@@ -4,16 +4,12 @@
 <html>
 <head>
 	<title>Cocktails list</title>
-	<style>
-           #ingredients {
-            color: #fff;
-           }
-        </style>
 	<%@ include file="include/head.jsp" %>
 </head>
 <body>
-	<%@ include file="include/menu.jsp" %>
+
 	<div class="container">
+        <%@ include file="include/menu.jsp" %>
         <c:if test="${error_message!=null}">
             <br>
             <div class="alert alert-danger" role="alert">${error_message}</div>

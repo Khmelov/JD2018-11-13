@@ -7,9 +7,11 @@
 	<%@ include file="include/head.jsp" %>
 </head>
 <body>
-	<%@ include file="include/menu.jsp" %>
-	<p>ERROR: ${message}</p>
-	<c:remove var="message" scope="session" /> 
+    <div class="container">
+	    <%@ include file="include/menu.jsp" %>
+	    <p>ERROR: ${message}</p>
+	    <c:remove var="message" scope="session" />
+	</div>
 </body>
 </html>
 

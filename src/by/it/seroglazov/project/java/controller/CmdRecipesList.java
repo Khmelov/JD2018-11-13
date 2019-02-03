@@ -26,9 +26,13 @@ class CmdRecipesList extends Cmd {
             sb.append("<div class=\"border border-info rounded px-3 my-2\">\n")
                     .append("<div class=\"row\">")
                     .append("<div class=\"col-sm-8\">")
-                    .append("<h3 class=\"text-info\">").append(recipe.getName()).append("</h3>\n")
-                    .append("<em>").append(rtype.getText()).append("</em><br>\n");
-            sb.append("<p>");
+                    .append("<span class=\"text-info\" style=\"font-size: 1.8em\">")
+                    .append(recipe.getName())
+                    .append("</span>\n")
+                    .append("<em class=\"border border-seconday rounded p-1 mx-2\">")
+                    .append(rtype.getText())
+                    .append("</em>\n")
+                    .append("<p>");
             for (Amount amount : amounts) {
                 Ingredient ing = ingDao.read(amount.getIngredient_id());
                 Unit unit = unitDao.read(amount.getUnit_id());

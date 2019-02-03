@@ -4,16 +4,12 @@
 <html>
 <head>
 	<title>Add cocktail recipe</title>
-	<style>
-           #addrecipe {
-            color: #fff;
-           }
-        </style>
 	<%@ include file="include/head.jsp" %>
 </head>
 <body>
-	<%@ include file="include/menu.jsp" %>
+
 	<div class="container">
+	<%@ include file="include/menu.jsp" %>
 	    <c:if test="${error_message!=null}">
             <br>
             <div class="alert alert-danger" role="alert">${error_message}</div>
@@ -22,27 +18,27 @@
 
 			<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
             <fieldset>
-                    <legend>New cocktail recipe</legend>
+                <legend>New cocktail recipe</legend>
 
-                    <!-- Name -->
-                    <div class="form-row form-group">
-                        <label class="col-md-2 col-form-label text-right" for="recipe_name">Name</label>
-                        <input class="form-control col-md-4" type="text"  name="recipe_name" value="test mojito" required>
-                    </div>
+                <!-- Name -->
+                <div class="form-row form-group">
+                    <label class="col-md-2 col-form-label text-right" for="recipe_name">Name</label>
+                    <input class="form-control col-md-4" type="text"  name="recipe_name" value="test mojito" required>
+                </div>
 
-                    <!-- Type -->
-                    <div class="form-row form-group">
-                        <label class="col-md-2 col-form-label text-right" for="recipe_type">Type</label>
-                        <input class="form-control col-md-4" type="text" name="recipe_type" value="test after dinner cocktail"  required>
-                    </div>
+                <!-- Type -->
+                <div class="form-row form-group">
+                    <label class="col-md-2 col-form-label text-right" for="recipe_type">Type</label>
+                    <input class="form-control col-md-4" type="text" name="recipe_type" value="test after dinner cocktail"  required>
+                </div>
 
 
-                    <!-- Description -->
-                    <div class="form-row form-group">
-                        <label class="col-md-2 control-label text-right" for="description">Description</label>
-                        <textarea class="form-control col-md" name="description">Test recipe text: pour all ingredients into a glass and drink!</textarea>
-                    </div>
-                </fieldset>
+                <!-- Description -->
+                <div class="form-row form-group">
+                    <label class="col-md-2 control-label text-right" for="description">Description</label>
+                    <textarea class="form-control col-md" name="description">Test recipe text: pour all ingredients into a glass and drink!</textarea>
+                </div>
+            </fieldset>
 
                 <fieldset>
                     <!-- Ingredient 1 -->
@@ -63,46 +59,37 @@
                     <!-- Ingredient 2 -->
                     <div class="form-row form-group">
                         <div class="form-group col-sm-4">
-                            <label class="control-label" for="ingredient_2">Ingredient</label>
-                            <input id="ingredient_2" name="ingredient_2" type="text" class="form-control input-md" value="coda water" required>
+                            <input id="ingredient_2" name="ingredient_2" type="text" class="form-control input-md" value="coda water" placeholder="name" required>
                         </div>
                         <div class="form-group col-sm-2">
-                            <label class="control-label" for="amount_2">Amount</label>
-                            <input id="amount_2" name="amount_2" type="text" class="form-control input-md" value="few" required>
+                            <input id="amount_2" name="amount_2" type="text" class="form-control input-md" value="few" placeholder="amount" required>
                         </div>
                         <div class="form-group col-sm-3">
-                            <label class="control-label" for="unit_2">Unit</label>
-                            <input id="unit_2" name="unit_2" type="text" class="form-control input-md" value="dash" required>
+                            <input id="unit_2" name="unit_2" type="text" class="form-control input-md" value="dash" placeholder="unit" required>
                         </div>
                     </div>
                     <!-- Ingredient 3 -->
                     <div class="form-row form-group">
                         <div class="form-group col-sm-4">
-                            <label class="control-label" for="ingredient_3">Ingredient</label>
-                            <input id="ingredient_3" name="ingredient_3" type="text" class="form-control input-md">
+                            <input id="ingredient_3" name="ingredient_3" type="text" class="form-control input-md" placeholder="name">
                         </div>
                         <div class="form-group col-sm-2">
-                            <label class="control-label" for="amount_3">Amount</label>
-                            <input id="amount_3" name="amount_3" type="text" class="form-control input-md">
+                            <input id="amount_3" name="amount_3" type="text" class="form-control input-md" placeholder="amount">
                         </div>
                         <div class="form-group col-sm-3">
-                            <label class="control-label" for="unit_3">Unit</label>
-                            <input id="unit_3" name="unit_3" type="text" class="form-control input-md">
+                            <input id="unit_3" name="unit_3" type="text" class="form-control input-md" placeholder="unit">
                         </div>
                     </div>
                     <!-- Ingredient 4 -->
                     <div class="form-row form-group">
                         <div class="form-group col-sm-4">
-                            <label class="control-label" for="ingredient_4">Ingredient</label>
-                            <input id="ingredient_4" name="ingredient_4" type="text" class="form-control input-md">
+                            <input id="ingredient_4" name="ingredient_4" type="text" class="form-control input-md" placeholder="name">
                         </div>
                         <div class="form-group col-sm-2">
-                            <label class="control-label" for="amount_4">Amount</label>
-                            <input id="amount_4" name="amount_4" type="text" class="form-control input-md">
+                            <input id="amount_4" name="amount_4" type="text" class="form-control input-md" placeholder="amount">
                         </div>
                         <div class="form-group col-sm-3">
-                            <label class="control-label" for="unit_4">Unit</label>
-                            <input id="unit_4" name="unit_4" type="text" class="form-control input-md">
+                            <input id="unit_4" name="unit_4" type="text" class="form-control input-md" placeholder="unit">
                         </div>
                     </div>
                 </fieldset>
