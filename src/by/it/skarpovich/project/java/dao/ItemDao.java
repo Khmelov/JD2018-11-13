@@ -69,6 +69,7 @@ public class ItemDao implements InterfaceDao<Item> {
                 Item item = new Item(id, title, floors, square, materials, price);
                 result.add(item);
             }
+            System.out.println(result);
             return result;
         }
     }

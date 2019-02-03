@@ -33,4 +33,8 @@ public class DAO {
         }
         return instance;
     }
+
+    public void reset () {
+        Reset.reset();
+    }
 }

@@ -5,23 +5,53 @@ import by.it.seroglazov.project.java.dao.Dao;
 import by.it.seroglazov.project.java.dao.MyDao;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class CmdIngList extends Cmd {
     @Override
     Action execute(HttpServletRequest req) throws Exception {
 
         Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
-        StringBuilder sb = new StringBuilder();
-        List<Ingredient> ings = ingDao.getAll();
-        for (Ingredient ing : ings) {
-            sb.append("<div class=\"border border-info rounded px-3 my-2\">\n")
-                    .append("<p>").append(ing.getName())
-                    .append("<br>id=").append(ing.getId()).append("</p>\n")
-                    .append("</div>");
+        Dao<Usering> uiDao = new MyDao<>(new Usering());
+
+        List<Ingredient> allIngs = ingDao.getAll();
+
+        if (!Util.checkUserInSession(req)) {
+            req.setAttribute("user_ingredients", new LinkedList<>());
+            req.setAttribute("other_ingredients", allIngs);
+        } else {
+            User user = Util.findUserInSession(req);
+            if (user == null)
+                return Action.INGLIST;
+
+            List<Usering> userIngsIds = uiDao.getAll("WHERE user_id=" + user.getId());
+            List<Ingredient> userIngs = new LinkedList<>();
+            for (Usering usering : userIngsIds) {
+                Ingredient ing = ingDao.read(usering.getIngredient_id());
+                userIngs.add(ing);
+            }
+            req.setAttribute("user_ingredients", userIngs);
+
+
+            List<Ingredient> notUserIngs = new LinkedList<>();
+            for (Ingredient ing : allIngs) {
+                boolean inList = false;
+                for (Ingredient userIng : userIngs) {
+                    if (ing.getId() == userIng.getId()) {
+                        inList = true;
+                        break;
+                    }
+                }
+                if (!inList) notUserIngs.add(ing);
+            }
+
+            req.setAttribute("other_ingredients", notUserIngs);
         }
 
-        req.getSession().setAttribute("ing_list", sb.toString());
         return Action.INGLIST;
     }
 }

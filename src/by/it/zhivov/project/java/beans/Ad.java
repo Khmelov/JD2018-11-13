@@ -144,7 +144,7 @@ public class Ad {
         this.millage = millage;
     }
 
-    public int isCrashed() {
+    public int getCrashed() {
         return crashed;
     }
 

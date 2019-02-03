@@ -32,7 +32,7 @@ public class AdDao implements InterfaceDao<Ad> {
                         " VALUES ('%s','%s','%s','%s','%s','%s','%d','%f','%d','%s','%s','%d','%d','%f','%d')",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(), ad.getColor(), ad.getBody(),
                 ad.getYear(), ad.getEngine(), ad.getAt(), ad.getDriveunit(), ad.getEquipment(),
-                ad.getMillage(), ad.isCrashed(), ad.getPrice(), ad.getId_User());
+                ad.getMillage(), ad.getCrashed(), ad.getPrice(), ad.getId_User());
         long id = Dao.executeCreateAndGetId(sqlCmd);
         ad.setId(id);
         return id > 0;
@@ -66,7 +66,7 @@ public class AdDao implements InterfaceDao<Ad> {
                         "WHERE `ads`.`id`=%d",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(),
                 ad.getColor(), ad.getBody(), ad.getYear(), ad.getEngine(), ad.getAt(), ad.getDriveunit(),
-                ad.getEquipment(), ad.getMillage(), ad.isCrashed(), ad.getPrice(), ad.getId_User(), ad.getId()
+                ad.getEquipment(), ad.getMillage(), ad.getCrashed(), ad.getPrice(), ad.getId_User(), ad.getId()
         );
         return Dao.executeUpdate(sqlCmd);
     }

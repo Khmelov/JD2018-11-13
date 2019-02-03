@@ -1,16 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html lang="en">
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.jsp" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
-    <p>Profile User:<br> ${user}</p>
+    <%@ include file="include/menu.jsp" %>
+    <p>Профиль пользователя:<br> ${user}</p>
 
     <form class="form-horizontal" action="do?command=Profile" method="POST">
         <fieldset>
-
-            <!-- Form Name -->
-            <legend>LogOUT</legend>
 
             <!-- Button -->
             <div class="form-group">
@@ -19,7 +16,6 @@
                     <button id="logout" name="logout" class="btn btn-primary">Logout</button>
                 </div>
             </div>
-
         </fieldset>
     </form>
 </div>
