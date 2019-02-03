@@ -34,7 +34,7 @@ class DatabaseConnector {
                 if (connection == null || connection.isClosed()) {
                     if (withDatabaseName) {
                         connection = DriverManager.getConnection(
-                                config.getDataBaseURL() + config.getDataBaseName(), config.getUserName(), config.getPassword());
+                                config.getDataBaseURL() + config.getDataBaseName() + config.getDataBaseSuffix(), config.getUserName(), config.getPassword());
                     } else {
                         connection = DriverManager.getConnection(
                                 config.getDataBaseURL(), config.getUserName(), config.getPassword());

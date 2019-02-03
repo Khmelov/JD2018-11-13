@@ -3,9 +3,6 @@ package by.it.mnovikov.project.java.filters;
 import javax.servlet.*;
 import java.io.IOException;
 
-/**
- * Created by user on 29.01.2019.
- */
 public class FilterEncoding implements Filter {
 
     private String encode = null;
@@ -17,9 +14,11 @@ public class FilterEncoding implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        if (encode!=null && !encode.equalsIgnoreCase(servletRequest.getCharacterEncoding()))
+        if (encode != null &&
+                !encode.equalsIgnoreCase(servletRequest.getCharacterEncoding()))
             servletRequest.setCharacterEncoding(encode);
-        if (encode!=null && !encode.equalsIgnoreCase(servletResponse.getCharacterEncoding()))
+        if (encode != null &&
+                !encode.equalsIgnoreCase(servletResponse.getCharacterEncoding()))
             servletResponse.setCharacterEncoding(encode);
         filterChain.doFilter(servletRequest, servletResponse);
     }

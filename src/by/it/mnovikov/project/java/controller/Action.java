@@ -9,6 +9,8 @@ enum Action {
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignUp()),
+    CREATEGOOD(new CmdCreateGood()),
+    EDITTABLES(new CmdEditTables()),
     ERROR(new CmdError());
 
     Cmd cmd;

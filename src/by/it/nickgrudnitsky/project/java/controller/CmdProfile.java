@@ -10,7 +10,7 @@ class CmdProfile extends Cmd {
    @Override
    Action execute(HttpServletRequest req, HttpServletResponse resp) throws SiteException {
 
-       if (!Util.checkViewer(req, resp)){
+       if (!Util.checkViewer(req)){
            return Action.LOGIN;
        }
 

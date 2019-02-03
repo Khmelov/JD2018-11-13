@@ -12,6 +12,8 @@ public class Config {
     private String userName;
     private String password;
 
+    private String dataBaseSuffix;
+
     public String getDataBaseName() {
         return dataBaseName;
     }
@@ -44,6 +46,14 @@ public class Config {
         this.password = password;
     }
 
+    public String getDataBaseSuffix() {
+        return dataBaseSuffix;
+    }
+
+    public void setDataBaseSuffix(String dataBaseSuffix) {
+        this.dataBaseSuffix = dataBaseSuffix;
+    }
+
     public void loadFromXml() throws IOException {
         /*Properties properties = new Properties();
         properties.loadFromXML(new FileInputStream(xmlFileName)); //auto close stream
@@ -53,6 +63,7 @@ public class Config {
         password = properties.getProperty("password");*/
 
         dataBaseName = "seroglazov";
+        dataBaseSuffix = "?useUnicode=true&characterEncoding=UTF-8";
         dataBaseURL = "jdbc:mysql://127.0.0.1:2016/";
         userName = "root";
         password = "";

@@ -5,10 +5,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-/**
- * Created by user on 19.01.2019.
- */
-
 class Connect {
     private static volatile Connection connection;
 
