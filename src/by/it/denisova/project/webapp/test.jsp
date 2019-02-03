@@ -8,11 +8,11 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Create Test</legend>
+            <legend>Создать Тест</legend>
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="test_name">Test name</label>
+                <label class="col-md-4 control-label" for="test_name">Наименование Теста</label>
                 <div class="col-md-4">
                     <input id="test_name" name="test_name" type="text" placeholder="" class="form-control input-md" required="">
 
@@ -23,7 +23,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="createTest"></label>
                 <div class="col-md-4">
-                    <button id="createTest" name="createTest" class="btn btn-primary">Create</button>
+                    <button id="createTest" name="createTest" class="btn btn-primary">Создать</button>
                 </div>
             </div>
         </fieldset>

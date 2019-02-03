@@ -1,6 +1,9 @@
 package by.it.denisova.project.java.controller;
 
 
+import by.it.denisova.project.java.beans.Role;
+import by.it.denisova.project.java.dao.Dao;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -8,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
+import java.util.List;
 
 public class FrontController extends HttpServlet {
 
@@ -16,7 +21,11 @@ public class FrontController extends HttpServlet {
     public void init() throws ServletException {
         try {
             Class.forName("com.mysql.jdbc.Driver");
+            List<Role> roles = Dao.getDao().role.getAll();
+            getServletContext().setAttribute("roles", roles);
         } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
             e.printStackTrace();
         }
     }

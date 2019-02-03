@@ -10,7 +10,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Sign Up</legend>
+<legend>Регистрация</legend>
 
 <!-- Text input-->
 <div class="form-group">

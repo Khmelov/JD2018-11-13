@@ -9,14 +9,16 @@
         <div class="navbar-nav">
         <c:choose>
             <c:when test="${user==null}">
-            <a class="nav-item nav-link" href="do?command=Reset">Reset</a>
-            <a class="nav-item nav-link" href="do?command=SignUp">SignUp</a>
-            <a class="nav-item nav-link" href="do?command=Login">Login</a>
+            <a class="nav-item nav-link" href="do?command=Reset">Жизнь с нуля</a>
+            <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
+            <a class="nav-item nav-link" href="do?command=Login">Авторизация</a>
             </c:when>
             <c:otherwise>
-            <a class="nav-item nav-link" href="do?command=Profile">Profile</a>
-            <a class="nav-item nav-link" href="do?command=Test">Create Test</a>
-            <a class="nav-item nav-link" href="do?command=Lesson">Create Lesson</a>
+            <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
+
+            <a class="nav-item nav-link" href="do?command=Test">Создать Тест</a>
+            <a class="nav-item nav-link" href="do?command=Lesson">Создать Урок</a>
+                <a class="nav-item nav-link" href="do?command=EditUsers">Админка</a>
             <!--<a class="nav-item nav-link" href="do?command=AnswerQuestion">Create Question</a>-->
             </c:otherwise>
         </c:choose>

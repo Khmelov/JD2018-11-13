@@ -14,7 +14,7 @@ public class Runner {
         user.setLogin("katiaDEn23.01");
         user.setPassword("qwerty23");
         user.setEmail("katua@mail.ru");
-        user.setIdRole(1);
+        user.setId_Role(1);
         if(dao.user.create(user)) {
             System.out.println("Created " + user);
         }

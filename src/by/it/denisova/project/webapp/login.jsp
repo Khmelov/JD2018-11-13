@@ -9,7 +9,7 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Sign Up</legend>
+<legend>Авторизация</legend>
 
 <!-- Text input-->
 <div class="form-group">

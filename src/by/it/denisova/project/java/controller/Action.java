@@ -11,6 +11,7 @@ enum Action {
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError()),
     LESSON(new CmdLesson()),
+    EDITUSERS(new CmdEditUsers()),
     TEST(new CmdCreateTest());
 
 

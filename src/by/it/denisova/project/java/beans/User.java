@@ -52,11 +52,11 @@ public class User {
         this.password = password;
     }
 
-    public long getIdRole() {
+    public long getId_Role() {
         return id_role;
     }
 
-    public void setIdRole(long id_role) {
+    public void setId_Role(long id_role) {
         this.id_role = id_role;
     }
 

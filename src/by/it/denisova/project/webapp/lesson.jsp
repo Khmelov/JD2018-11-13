@@ -9,7 +9,7 @@
         <fieldset>
 
             <!-- Form Name -->
-            <legend>Create Lesson</legend>
+            <legend>Создать Урок</legend>
 
             <!-- Select Basic -->
             <div class="form-group">

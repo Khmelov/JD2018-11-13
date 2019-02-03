@@ -8,13 +8,13 @@
     <form class="form-horizontal" action="do?command=Profile" method="POST">
         <fieldset>
     <!-- Form Name -->
-    <legend>Log out</legend>
+    <%--<legend>Log out</legend>--%>
 
     <!-- Button -->
     <div class="form-group">
         <label class="col-md-4 control-label" for="logout"></label>
         <div class="col-md-4">
-            <button id="logout" name="logout" class="btn btn-success">Logout</button>
+            <button id="logout" name="logout" class="btn btn-success">Выйти</button>
         </div>
     </div>
     </fieldset>
