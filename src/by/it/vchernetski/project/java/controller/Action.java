@@ -10,7 +10,9 @@ enum Action {
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError()),
     CREATE(new CmdCreate()),
+    EDITUSERS(new CmdEditUsers()),
     GETLIST(new CmdList()),
+    LOGOUT(new CmdLogout()),
     DONE(new CmdDone());
 
     Cmd cmd;
@@ -24,7 +26,7 @@ enum Action {
     }
     static Action define(HttpServletRequest request) {
         String command = request.getParameter("command");
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         if (command != null && !command.isEmpty()){
             try {
                 result = Action.valueOf(command.toUpperCase());

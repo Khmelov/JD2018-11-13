@@ -1,6 +1,7 @@
 package by.it.zhivov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 class Form {
 
@@ -28,5 +29,11 @@ class Form {
         String str = req.getParameter(name);
         return Integer.parseInt(str);
     }
+
+    static long getLong(HttpServletRequest req, String name) {
+        String str = req.getParameter(name);
+        return Long.parseLong(str);
+    }
+
 
 }

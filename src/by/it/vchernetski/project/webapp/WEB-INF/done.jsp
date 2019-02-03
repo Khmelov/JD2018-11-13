@@ -1,8 +1,8 @@
 <html>
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.jsp" %>
 <body>
 <div class="container">
-<%@ include file="include/menu.htm" %>
+<%@ include file="include/menu.jsp" %>
 <p>Car Created</p>
 </div>
 </body>

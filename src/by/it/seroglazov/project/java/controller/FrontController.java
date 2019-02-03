@@ -60,7 +60,6 @@ public class FrontController extends HttpServlet {
         resp.setHeader("Pragma", "no-cache"); // HTTP 1.0.
         resp.setDateHeader("Expires", 0); // Proxies.
         requestDispatcher.forward(req, resp);
-        return;
     }
 
 
