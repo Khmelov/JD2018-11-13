@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.html" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
+    <%@ include file="include/menu.html" %>
     <form class="form-horizontal" action="do?command=Lesson" method="POST">
         <fieldset>
 
