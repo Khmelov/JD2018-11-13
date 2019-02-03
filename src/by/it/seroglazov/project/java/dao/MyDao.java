@@ -165,4 +165,13 @@ public class MyDao<T> implements Dao<T> {
         }
         return list;
     }
+
+    @Override
+    public boolean delete(String sqlCondition) throws Exception {
+        String sql = String.format("DELETE FROM `%s` " + sqlCondition, tableName);
+        try (Connection connection = DatabaseConnector.getConnection();
+             Statement statement = connection.createStatement()) {
+            return (1 == statement.executeUpdate(sql));
+        }
+    }
 }

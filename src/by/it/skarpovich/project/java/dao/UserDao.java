@@ -1,8 +1,6 @@
 package by.it.skarpovich.project.java.dao;
 
-
 import by.it.skarpovich.project.java.beans.User;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -34,20 +32,20 @@ public class UserDao implements InterfaceDao<User> {
     public boolean update(User user) throws SQLException {
         String sql = String.format(
                 "UPDATE `users` SET " +
-                        "`username` = '%s', `password` = '%s', " +
-                        "`email` = '%s',  `fullname` = '%s', " +
-                        "`phone` = '%s',  `address` = '%s' " +
+                        "`username` = '%s', `password` = '%s', `email` = '%s', `fullname` = '%s', " +
+                        "`phone` = '%s', `address` = '%s', `roles_id` = '%d' " +
                         "WHERE `users`.`id` = %d",
                 user.getUsername(), user.getPassword(),
                 user.getEmail(), user.getFullname(),
-                user.getPhone(), user.getAddress(), user.getId()
+                user.getPhone(), user.getAddress(), user.getRoles_id(),
+                user.getId()
 
         );
         return Dao.executeUpdate(sql);
     }
 
     public User read(int id) throws SQLException {
-        String sqlSuffix = String.format("WHERE id=%d", id);
+        String sqlSuffix = String.format(" WHERE id=%d", id);
         List<User> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
     }
@@ -65,17 +63,16 @@ public class UserDao implements InterfaceDao<User> {
                 int id = resultSet.getInt("id");
                 String username=resultSet.getString("username");
                 String password=resultSet.getString("password");
-
                 String email=resultSet.getString("email");
                 String fullname=resultSet.getString("fullname");
                 String phone=resultSet.getString("phone");
                 String address=resultSet.getString("address");
-
                 int roles_id=resultSet.getInt("roles_id");
 
-                User user = new User(id,username,password,email,fullname,phone,address,roles_id);
+                User user = new User(id, username, password, email, fullname, phone, address, roles_id);
                 result.add(user);
             }
+            System.out.println(result);
             return result;
         }
     }

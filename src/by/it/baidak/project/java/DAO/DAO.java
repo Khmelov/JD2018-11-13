@@ -21,4 +21,8 @@ public class DAO {
         }
         return dao;
     }
+
+    public void reset(){
+        Connect.reset();
+    }
 }

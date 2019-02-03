@@ -15,22 +15,22 @@ class CmdSignup implements Cmd {
             String fio = request.getParameter("fio");
             int ng = Integer.parseInt(request.getParameter("numberofgarages"));
             User user = new User();
-            if(email.matches("[a-zA-Z0-9/.]{3,}@[a-zA-Z0-9/.]{3,}")){
+            if(Form.checkInputData(email,"[a-zA-Z0-9/.]{3,}@[a-zA-Z0-9/.]{3,}")){
                 user.setEmail(email);
 
             }
             else
                 throw new MyException("invalid email");
-            if(login.matches("[a-zA-Z0-9]{3,}")) {
+            if(Form.checkInputData(login,"[a-zA-Z0-9]{3,}")) {
                 user.setNickname(login);
             }
             else throw new MyException("invalid login");
-            if(password.matches("[a-zA-Z0-9_\\-]{4,}")){
+            if(Form.checkInputData(password,"[a-zA-Z0-9_\\-]{4,}")){
                 user.setPassword(password);
             }
             else
                 throw new MyException("invalid password");
-            if(fio.matches("[a-zA-Z ]{6,}")) {
+            if(Form.checkInputData(fio,"[a-zA-Zа-яА-Я -]{4,}")) {
                 user.setFio(fio);
             }
             else

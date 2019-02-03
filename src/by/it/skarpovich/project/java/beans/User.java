@@ -80,8 +80,7 @@ public class User {
         this.address = address;
     }
 
-    public int getRoles_id() {
-        return roles_id;
+    public int getRoles_id() { return roles_id;
     }
 
     public void setRoles_id(int roles_id) {

@@ -9,6 +9,7 @@ class CmdReset extends Cmd {
     Action execute(HttpServletRequest req) throws SiteException {
         DatabaseCreator creator = DatabaseCreator.getCreator();
         creator.resetDatabase();
+        req.getSession().invalidate();
         return Action.RESET;
     }
 }
