@@ -98,10 +98,8 @@ public class Connect {
                     "ENGINE = InnoDB;");
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
-            statement.executeUpdate("INSERT INTO `vchernetski`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');");
             statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Ivan Ivanovich Ivanov', 2, 'ivanich', 'ivanich@mail.ru', 'user', 2);");
-            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Petr Petrovich Petrov', 0, 'petya', 'petya@yandex.ru', 'admin', 1);");
-            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Vasilii Aleksandrovich Alexandrov', 0, 'vasya', 'vasya@gmail.com', 'guest', 3);");
+            statement.executeUpdate("INSERT INTO `vchernetski`.`users` (`id`, `fio`, `numbergarages`, `nickname`, `email`, `password`, `roles_id`) VALUES (DEFAULT, 'Petr Petrovich Petrov', 0, 'admin', 'petya@yandex.ru', 'admin', 1);");
             statement.executeUpdate("INSERT INTO `vchernetski`.`garages` (`id`, `adress`, `carplaces`, `users_id`) VALUES (DEFAULT, 'Minsk, Lenina 3', 2, 1);");
             statement.executeUpdate("INSERT INTO `vchernetski`.`garages` (`id`, `adress`, `carplaces`, `users_id`) VALUES (DEFAULT, 'Minsk, Moskovskaya 17', 1, 1);");
             statement.executeUpdate("INSERT INTO `vchernetski`.`cars` (`id`, `model`, `color`, `year`, `garages_id`) VALUES (DEFAULT, 'BMW X5', 'white', 2015, 1);");
