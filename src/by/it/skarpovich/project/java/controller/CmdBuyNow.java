@@ -31,7 +31,7 @@ public class CmdBuyNow implements Cmd {
             Dao dao = Dao.getDao();
             if (dao.order.create(order))
                 req.getSession().setAttribute("order", order);
-            return Action.PROFILE;    // Successful
+            return Action.ORDERS;    // Successful
         }
 // If not successful
         return Action.INDEX;
