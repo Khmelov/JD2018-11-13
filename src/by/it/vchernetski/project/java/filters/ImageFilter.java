@@ -14,13 +14,16 @@ public class ImageFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request =(HttpServletRequest) servletRequest;
+        HttpServletRequest request = (HttpServletRequest) servletRequest;
         HttpServletResponse response = (HttpServletResponse) servletResponse;
         String[] dirs = request.getRequestURI().split("/");
-        String name = dirs[dirs.length-1];
+        String name = dirs[dirs.length - 1];
         String realname = request.getServletContext().getRealPath("/image/" + name);
-        if(new File(realname).exists()) {
-            filterChain.doFilter(request, response);
+        if (name.equalsIgnoreCase("noimage") || new File(realname).exists()){
+            filterChain.doFilter(request,response);
+        }
+        else{
+            request.getRequestDispatcher("/image/noimage").forward(request,response);
         }
     }
 

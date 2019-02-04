@@ -9,6 +9,7 @@
     <h1>Машины пользователя</h1>
 </div>
 <div class="row">
+    <div class="col-md-2"> </div>
     <div class="col-md-2">Модель</div>
     <div class="col-md-1">Цвет</div>
     <div class="col-md-1">Год</div>
@@ -17,6 +18,9 @@
 <c:forEach items="${cars}" var="car">
     <br>
     <div class="row">
+        <div class="col-md-2">
+        <img src="image/im${car.id}" height="40"/>
+        </div>
         <div class="col-md-2">${car.model} </div>
         <div class="col-md-1">${car.color} </div>
         <div class="col-md-1">${car.year} </div>
