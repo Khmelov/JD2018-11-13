@@ -79,12 +79,12 @@ public class MyConnection {
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'pewdiepie@pewd.se', 'youloose', 'pewdiepie', 3);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'ninja@gmail.com', 'FEE22A76AEDE2572C76FA9FCF36038C9', 'Ninja', 1);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'silvername@gmail.com', 'hearthstone', 'SilverName', 2);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'HearthStone', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Fortnight', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'DOTA 2', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'PUBG', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'League of Legends', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Overwatch', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'HearthStone', 'img/Hearthstone.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Fortnite', 'img/Fortnite.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'DOTA 2', 'img/Dota2.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'PUBG', 'img/PLAYERUNKNOWNS BATTLEGROUNDS.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'League of Legends', 'img/League of Legends.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Overwatch', 'img/Overwatch.jpg');");
 
         }
     }

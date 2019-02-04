@@ -2,7 +2,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuIn.htm" %>
+<%@ include file="include/menu.htm" %>
 
 <!-- Основное содержимое -->
 
@@ -11,16 +11,13 @@
 
 </div>
 
-<div class="row">
-    <div class="col-md-1"></div>
-    <div class="col-md-3"></div>
-</div>
-
 <c:forEach items="${games}" var="game">
     <br>
     <div class="row">
         <div class="col-md-1">${game.game} </div>
-        <div class="col-md-3">${game.link} </div>
+        <div class="col-md-2">
+            <img src="${game.link}" height="380px" width="285px">
+        </div>
     </div>
 </c:forEach>
 

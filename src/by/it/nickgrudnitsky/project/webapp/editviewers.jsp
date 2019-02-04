@@ -2,14 +2,13 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuIn.htm" %>
+<%@ include file="include/menu.htm" %>
 
 
-<div class="container">
+    <div class="container">
         <div class="row">
             <div class=col-md-1>ID</div>
             <div class=col-md-2>Имя</div>
-            <div class=col-md-2>Пароль</div>
             <div class=col-md-2>Email</div>
             <div class=col-md-2>Роль</div>
         </div>
@@ -17,7 +16,7 @@
 
     <div class="container">
         <c:forEach items="${viewers}" var="viewer">
-            <form class="update-user-${viewer.id}" action="do?command=EditUsers" method=POST>
+            <form class="update-user-${viewer.id}" action="do?command=EditViewers" method=POST>
                 <div class="row">
                     <div class=col-md-1>
                         <input id="id" class="form-control input-md" name="id"
@@ -26,10 +25,6 @@
                     <div class=col-md-2>
                         <input id="nickname" class="form-control input-md" name="nickname"
                                value="${viewer.nickname}"/>
-                    </div>
-                    <div class=col-md-2>
-                        <input id="password" class="form-control input-md" name="password"
-                               value="${viewer.password}"/>
                     </div>
                     <div class=col-md-2>
                         <input id="email" class="form-control input-md" name="email"
@@ -58,7 +53,7 @@
     </div>
 
 
-</div>
+
 </body>
 </html>
 

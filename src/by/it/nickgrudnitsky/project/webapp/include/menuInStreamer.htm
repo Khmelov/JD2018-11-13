@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
-<nav style="background-color:#DA2CFD" class="navbar navbar-expand-lg navbar-light">
+<nav style="background-color:#000000" class="navbar navbar-expand-lg navbar-light">
     <a style="color:#FFFFFF" class="navbar-brand" href="do?command=Index">
         <img src="img/FlowHome.jpg" width="30" height="30" alt="">
            FlowHome S
@@ -9,11 +9,31 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
-            <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Browse">Browse</a>
-            <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=ProfileStreamer">Profile</a>
-            <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=LogoutStreamer">Log out</a>
-            <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Reset">Reset</a>
-
+            <c:choose>
+                <c:when test="${user==null}">
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=BrowseStreamer">Browse</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=ProfileStreamer">Profile</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=LogInStreamer">Log In</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=SignUpStreamer">Sign up</a>
+                    <li class="nav-item dropdown">
+                        <a style="color:#FFFFFF" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            I'm a
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="do?command=LogIn">Viewer!</a>
+                            <a class="dropdown-item" href="do?command=LogInStreamer">Streamer!</a>
+                        </div>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=BrowseStreamer">Browse</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=ProfileStreamer">Profile</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=LogoutStreamer">Log out</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=ResetStreamer">Reset</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=EditViewersStreamer">Moderate</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=EditGamesStreamer">Update games</a>
+                </c:otherwise>
+            </c:choose>
         </div>
     </div>
 </nav>

@@ -15,6 +15,7 @@ enum Action {
     LOGOUTSTREAMER(new CmdLogoutStreamer()),
     SIGNUP(new CmdSignup()),
     ERROR(new CmdError()),
+    EDITGAMES(new CmdEditGames()),
     EDITVIEWERS(new CmdEditViewers());
 
     Cmd cmd;
