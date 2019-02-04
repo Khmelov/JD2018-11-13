@@ -33,6 +33,7 @@ public class CmdCreateAd implements Cmd {
             Ad ad = new Ad(0, title, description, brnd, model, color, body, year, engine, at, driveunit, equipment, millage, crashed, price, user.getId());
             Dao dao = Dao.getDao();
             if (dao.ad.create(ad)) {
+                Util.saveFile(req, "ad" + ad.getId());
                 req.getSession().setAttribute("ad", ad);
             }
             Util.sendTg(brnd, model, year, price);

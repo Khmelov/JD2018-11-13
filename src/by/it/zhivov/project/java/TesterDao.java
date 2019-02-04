@@ -3,7 +3,6 @@ package by.it.zhivov.project.java;
 import by.it.zhivov.project.java.beans.Ad;
 import by.it.zhivov.project.java.beans.Role;
 import by.it.zhivov.project.java.beans.User;
-import by.it.zhivov.project.java.controller.Util;
 import by.it.zhivov.project.java.dao.Dao;
 import by.it.zhivov.project.java.dao.InnerJoin_id;
 
@@ -94,7 +93,7 @@ public class TesterDao {
             InnerJoin_id.getAllRows();
             InnerJoin_id.getRolesRows();
             //Dao.restoreDB();
-            Util.sendTg(ad.getBrnd(), ad.getModel(), ad.getYear(), ad.getPrice());
+            //Util.sendTg(ad.getBrnd(), ad.getModel(), ad.getYear(), ad.getPrice());
         }
         //Dao.restoreDB();
     }

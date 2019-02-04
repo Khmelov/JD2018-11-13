@@ -2,13 +2,11 @@ package by.it.zhivov.project.java.controller;
 
 import by.it.zhivov.project.java.beans.User;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
 import java.net.URL;
 
 
@@ -37,7 +35,7 @@ public class Util {
         return false;
     }
 
-    public static void sendTg(String brnd, String model, int year, double price) throws IOException {
+    static void sendTg(String brnd, String model, int year, double price) throws IOException {
         String url = String.format("https://api.telegram.org/bot727115180:AAHUY8LHssKtuiuN4e0Mice9f4u7S3sS_gM/sendMessage?chat_id=433820982&parse_mode=html&text=%s %s %dг. %dруб.",
                 brnd, model, year, (int) price);
 
@@ -56,18 +54,25 @@ public class Util {
         in.close();
 
         System.out.println(response.toString());
-//        Desktop d = Desktop.getDesktop();
-//
-//        d.browse(new URI(
-//                String.format(
-//    "https://api.telegram.org/bot682142809:AAHCbD525IioM1g6Mi6wCNhrCca-eitkbAA/sendMessage?chat_id=433820982&parse_mode=html&text=www")));
-
 
     }
 
-    public static void main(String[] args) throws IOException, URISyntaxException {
-
-        sendTg("bb", "mm", 25, 600);
-
+    static void saveFile(HttpServletRequest req, String filename) {
+        filename = req.getServletContext().getRealPath("/images/" + filename);
+        int size = 0;
+        try (InputStream streamIn = req.getPart("upload").getInputStream();
+             OutputStream streamOut = new FileOutputStream(filename)) {
+            byte[] buffer = new byte[100000];
+            while (streamIn.available() > 0) {
+                int i = streamIn.read(buffer);
+                streamOut.write(buffer, 0, i);
+                size += i;
+            }
+        } catch (ServletException | IOException e) {
+            e.printStackTrace();
+        }
+        if (size == 0) {
+            new File(filename).delete();
+        }
     }
 }
