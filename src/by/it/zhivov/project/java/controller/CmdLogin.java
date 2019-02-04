@@ -22,6 +22,8 @@ public class CmdLogin implements Cmd {
                 req.getSession().setAttribute("user", user);
                 return Action.PROFILE;
             }
+
+
         }
         return Action.LOGIN;
     }

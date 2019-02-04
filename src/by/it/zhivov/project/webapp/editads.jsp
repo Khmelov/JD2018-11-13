@@ -76,9 +76,20 @@
                     <label for="price">Цена</label>
                     <input readonly id="price" class="form-control input-md" name="price" value="${ad.price}"/>
                 </div>
-                <div class="col-md-3">
-                    <label for="id_User">id_User</label>
+
+                <div class=col-md-3>
+                    <label for="id_User">Пользователь</label>
+
                     <input readonly id="id_User" class="form-control input-md" name="id_User" value="${ad.id_User}"/>
+
+                        <%--<select disabled id="id_User" name="id_User" class="form-control">--%>
+                        <%--<c:forEach items="${users}" var="user">--%>
+                        <%--<option value="${ad.id_User}"--%>
+                        <%--user=${user.id} ${user.id==ad.id_User?"selected":""}>--%>
+                        <%--${user.login}--%>
+                        <%--</option>--%>
+                        <%--</c:forEach>--%>
+                        <%--</select>--%>
                 </div>
 
                 <div class="col-md-3">

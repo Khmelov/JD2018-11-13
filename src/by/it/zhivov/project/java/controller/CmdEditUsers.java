@@ -12,7 +12,6 @@ class CmdEditUsers implements Cmd {
     public Action execute(HttpServletRequest req) throws SQLException, SiteExeption {
         if (Util.checkUser(req)) {
             Dao dao = Dao.getDao();
-            User admin = Util.findUser(req);
             if (Util.isAdmin(req)) {
                 if (Form.isPost(req)) {
                     long id = Form.getLong(req, "id");
@@ -26,7 +25,7 @@ class CmdEditUsers implements Cmd {
                     User user = new User(id, name, login, password, dateOfBirth, email, tel, roles_Id);
                     if (req.getParameter("Update") != null)
                         dao.user.update(user);
-                    else if (req.getParameter("Delete") != null)
+                    if (req.getParameter("Delete") != null)
                         dao.user.delete(user);
                 }
                 List<User> users = dao.user.getALL();

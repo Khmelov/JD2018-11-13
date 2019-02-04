@@ -41,6 +41,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="do?command=EditUsers">Пользователи</a>
                                 <a class="dropdown-item" href="do?command=EditAds">Объявления</a>
+                                <a target="_blank" class="dropdown-item" href="http://localhost:2080/phpmyadmin/">phpMyAdmin</a>
                             </div>
 
                         </li>

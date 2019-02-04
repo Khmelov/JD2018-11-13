@@ -56,11 +56,11 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`body`='%s'," +
                         "`year`='%d'," +
                         "`engine`='%f'," +
-                        "`at`='%d'," +
+                        "`at`='%s'," +
                         "`driveunit`='%s'," +
                         "`equipment`='%s'," +
                         "`mileage`='%d'," +
-                        "`crashed`='%d'," +
+                        "`crashed`='%s'," +
                         "`price`='%f'," +
                         "`users_id`='%d' " +
                         "WHERE `ads`.`id`=%d",
