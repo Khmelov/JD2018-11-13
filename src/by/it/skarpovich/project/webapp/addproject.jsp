@@ -16,7 +16,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="title">Title</label>
   <div class="col-md-4">
-  <input id="title" name="title" type="text" placeholder="" value="Zx400" class="form-control input-md" required="">
+  <input id="title" name="title" type="text" placeholder="" value="" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -49,7 +49,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="materials">Materials</label>
   <div class="col-md-4">
-<textarea class="form-control" id="materials" name="materials">Bricks</textarea>
+<textarea class="form-control" id="materials" name="materials">Глина</textarea>
   </div>
 </div>
 
@@ -66,7 +66,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="create"></label>
   <div class="col-md-4">
-    <button id="create" name="create" class="btn btn-primary">Add Project</button>
+    <button id="create" name="create" class="btn btn-primary">Добавить проект</button>
   </div>
 </div>
 

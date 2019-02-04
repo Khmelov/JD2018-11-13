@@ -11,79 +11,41 @@
     <p class="lead">Редактирование данных пользователей</p>
 </div>
 
-<div class="container">
-    <div class="row">
-            <div class=col-md-1>ID</div>
-            <div class=col-md-1>User</div>
-            <div class=col-md-1>Пароль</div>
-            <div class=col-md-1>Email</div>
-            <div class=col-md-1>ФИО</div>
-            <div class=col-md-1>Тел</div>
-            <div class=col-md-1>Адрес</div>
-            <div class=col-md-1>Роль</div>
-    </div>
-</div>
-
-<div class="container">
-    <c:forEach items="${users}" var="user">
+<table class="table table-striped table-responsive-md btn-table">
+  <thead>
+    <tr>
+            <th scope="col">ID</th>
+            <th scope="col">User</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">Email</th>
+            <th scope="col">ФИО</th>
+            <th scope="col">Тел</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Роль</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+ </tr>
+ </thead>
+ <tbody>  <c:forEach items="${users}" var="user">
+  <tr>
             <form class="update-user-${user.id}" action="do?command=editusers" method="POST">
-                <div class="row">
-                    <div class=col-md-1>
-                        <input id="id" class="form-control input-md" name="id"
-                               value="${user.id}" readonly/>
-                    </div>
-                    <div class=col-md-1>
-                        <input id="username" class="form-control input-md" name="username"
-                               value="${user.username}"/>
-                    </div>
-                    <div class=col-md-1>
-                        <input id="password" class="form-control input-md" name="password"
-                               value="${user.password}"/>
-                    </div>
-                    <div class=col-md-1>
-                        <input id="email" class="form-control input-md" name="email"
-                               value="${user.email}"/>
-                    </div>
-                    <div class=col-md-1>
-                        <input id="fullname" class="form-control input-md" name="fullname"
-                               value="${user.fullname}"/>
-                    </div>
-                           <div class=col-md-1>
-                                            <input id="phone" class="form-control input-md" name="phone"
-                                                   value="${user.phone}"/>
-                                        </div>
+            <td><input size="1" id="id" class="form-control input-md" name="id" value="${user.id}" readonly/></td>
+            <td><input size="3" id="username" class="form-control input-md" name="username" value="${user.username}"/></td>
+            <td><input size="2" id="password" class="form-control input-md" name="password" value="${user.password}"/></td>
+            <td><input size="10" id="email" class="form-control input-md" name="email" value="${user.email}"/>
+            <td><input size="6" id="fullname" class="form-control input-md" name="fullname" value="${user.fullname}"/></td>
+            <td><input size="9" id="phone" class="form-control input-md" name="phone" value="${user.phone}"/></td>
+            <td><input size="12" id="address" class="form-control input-md" name="address" value="${user.address}"/></td>
 
-                           <div class=col-md-1>
-                                            <input id="address" class="form-control input-md" name="address"
-                                                   value="${user.address}"/>
-                                        </div>
-
-                    <div class=col-md-1>
-                        <select id="role" name="roles_id" class="form-control">
-                            <c:forEach items="${roles}" var="varka">
-                                <option value="${varka.id}" role=${varka.id} ${varka.id==user.roles_id?"selected":""}>
-                                        ${varka.role}
-                                </option>
-                            </c:forEach>
-                        </select>
-                    </div>
-
-                    <div class=col-md-1>
-                        <button id="Update" value="Update" name="Update" class="btn btn-success">
-                            Обновить
-                        </button>
-                    </div>
-
-                    <div class=col-md-1>
-                        <button id="Delete" value="Delete" name="Delete" class="btn btn-danger">
-                            Удалить
-                        </button>
-                    </div>
-                </div>
-            </form>
-    </c:forEach>
-</div>
-
+            <td><select id="role" name="roles_id" class="form-control">
+            <c:forEach items="${roles}" var="varka">
+            <option value="${varka.id}" role=${varka.id} ${varka.id==user.roles_id?"selected":""}> ${varka.role}</option>
+            </c:forEach></select></td>
+            <td><button id="Update" value="Update" name="Update" class="btn btn-success">Обновить</button></td>
+            <td><button id="Delete" value="Delete" name="Delete" class="btn btn-danger">Удалить</button></td>
+            </form> </tr></c:forEach>
+  </tbody>
+  </table>
 
 </div>
 </body>

@@ -14,43 +14,29 @@
 <table class="table table-striped table-responsive-md btn-table">
   <thead>
     <tr>
-
-    <th scope="col">  Название </th>
-     <th scope="col"> Этажность </th>
-     <th scope="col"> Площадь(м2) </th>
-     <th scope="col"> Материал стен </th>
-     <th scope="col"> Цена </th>
- <th scope="col">  Купить </th>
-
-
+        <th scope="col">  Название </th>
+        <th scope="col"> Этажность </th>
+        <th scope="col"> Площадь(м2) </th>
+        <th scope="col"> Материал стен </th>
+        <th scope="col"> Цена </th>
+        <th scope="col">  Заказ </th>
     </tr>
   </thead>
  <tbody>
+        <c:forEach items="${items}" var="varItems">
         <tr>
-<c:forEach items="${items}" var="varItems">
-<form class="update-varItems-${varItems.id}" action="do?command=buynow" method="POST">
-
-
-
-       <input id="id" type="hidden" class="form-control input-md" name="id" value="${varItems.id}"/>
+        <form class="update-varItems-${varItems.id}" action="do?command=buynow" method="POST">
+        <input id="id" type="hidden" class="form-control input-md" name="id" value="${varItems.id}"/>
         <td> ${varItems.title} </td>
         <td> ${varItems.floors} </td>
         <td> ${varItems.square} </td>
-       <td> ${varItems.materials} </td>
-       <td> ${varItems.price} </td>
-   <td>
-                         <button id="Update" value="Buy" name="Buy" class="btn btn-success">
-                             Купить</button>
-     </td>
-
-
-    </form></tr>
-</c:forEach>
-
-
-      </tbody>
-    </table>
-
+        <td> ${varItems.materials} </td>
+        <td> ${varItems.price} </td>
+        <td><button id="Update" value="Buy" name="Buy" class="btn btn-success">Купить</button></td>
+        </form>
+        </tr></c:forEach>
+   </tbody>
+ </table>
 
 </div>
 </body>
