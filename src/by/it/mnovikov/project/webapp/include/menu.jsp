@@ -8,13 +8,14 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div class="navbar-nav">
             <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
-            <a class="nav-item nav-link" href="do?command=Login">Авторизация</a>
+            <a class="nav-item nav-link" href="do?command=Login">Вход</a>
             <c:if test="${user!=null}">
                 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
                 <a class="nav-item nav-link" href="do?command=CreateGood">Добавить товар</a>
                 <a class="nav-item nav-link" href="do?command=EditTables">Админка</a>
             </c:if>
-            <a class="nav-item nav-link" href="do?command=Reset">Сброс БД</a>
+            <a class="nav-item nav-link" href="do?command=Reset">Пересоздать БД</a>
+            <a class="nav-item nav-link" href="do?command=Delete">Удалить БД</a>
         </div>
     </div>
 </nav>

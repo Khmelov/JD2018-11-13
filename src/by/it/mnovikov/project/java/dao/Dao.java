@@ -21,6 +21,10 @@ public class Dao {
         Connect.resetDB();
     }
 
+    public void delete() {
+        Connect.deleteDB();
+    }
+
     private Dao() {
         role = new RoleDao();
         user = new UniversalDAO<>(new User(), "users");
