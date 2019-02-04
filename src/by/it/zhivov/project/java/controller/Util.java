@@ -27,7 +27,6 @@ public class Util {
     }
 
     static boolean isAdmin(HttpServletRequest req) {
-        HttpSession session = req.getSession(false);
         User user = Util.findUser(req);
         if (user != null) {
             return user.getRoles_Id() == 1;
@@ -57,19 +56,24 @@ public class Util {
 
     }
 
-    static void saveFile(HttpServletRequest req, String filename) {
+    static void saveFile(HttpServletRequest req, String filename) throws IOException, ServletException {
         filename = req.getServletContext().getRealPath("/images/" + filename);
         int size = 0;
-        try (InputStream streamIn = req.getPart("upload").getInputStream();
-             OutputStream streamOut = new FileOutputStream(filename)) {
-            byte[] buffer = new byte[100000];
-            while (streamIn.available() > 0) {
-                int i = streamIn.read(buffer);
-                streamOut.write(buffer, 0, i);
-                size += i;
+        InputStream checkNullFile = req.getPart("upload").getInputStream();
+        int read = checkNullFile.read();
+        checkNullFile.close();
+        if (read > -1) {
+            try (InputStream streamIn = req.getPart("upload").getInputStream();
+                 OutputStream streamOut = new FileOutputStream(filename)) {
+
+                byte[] buffer = new byte[100000];
+                while (streamIn.available() > 0) {
+                    int i = streamIn.read(buffer);
+                    streamOut.write(buffer, 0, i);
+                    size += i;
+                }
+
             }
-        } catch (ServletException | IOException e) {
-            e.printStackTrace();
         }
 //        if (size == 0) {
 //            new File(filename).delete();

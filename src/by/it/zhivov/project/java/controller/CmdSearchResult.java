@@ -11,13 +11,13 @@ class CmdSearchResult implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteExeption {
         if (Form.isPost(req)) {
-            String searchWord = Form.getString(req, "search", "[a-zA-Zа-яА-Я0-9- ]{1,45}");
+            String searchWord = Form.getString(req, "search", "[a-zA-Zа-яА-Я0-9- ]{0,45}");
             List<Ad> ads = AdDao.searchAd(searchWord);
             req.setAttribute("ads", ads);
             if (req.getParameter("gosearch") != null) {
                 return Action.SEARCHRESULT;
             }
         }
-        return null;
+        return Action.LOGIN;
     }
 }

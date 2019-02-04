@@ -48,6 +48,8 @@ public class FrontController extends HttpServlet {
             StringBuilder message = new StringBuilder(e.toString());
             message.append("<p>");
             for (StackTraceElement element : e.getStackTrace()) {
+                if (element.getClass().getName().contains("HttpServlet"))
+                    break;
                 message.append(element.toString()).append("<br>");
             }
             req.setAttribute("message", message);

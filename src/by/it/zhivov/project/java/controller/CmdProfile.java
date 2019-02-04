@@ -4,13 +4,15 @@ import by.it.zhivov.project.java.beans.Ad;
 import by.it.zhivov.project.java.beans.User;
 import by.it.zhivov.project.java.dao.Dao;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
 class CmdProfile implements Cmd {
     @Override
-    public Action execute(HttpServletRequest req) throws SQLException, SiteExeption {
+    public Action execute(HttpServletRequest req) throws SQLException, SiteExeption, IOException, ServletException {
         if (!Util.checkUser(req))
             return Action.LOGIN;
         Dao dao = Dao.getDao();

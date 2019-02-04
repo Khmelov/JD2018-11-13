@@ -60,7 +60,7 @@
 
         <form class="form-inline my-2 my-lg-0" action="do?command=SearchResult" method="POST">
             <input class="form-control mr-sm-2" id="search" name="search" pattern="[a-zA-Zа-яА-Я0-9- ]*" minlength="1"
-                   maxlength="45" placeholder="По марке">
+                   maxlength="45" placeholder="По марке авто">
             <button class="btn btn-outline-success my-2 my-sm-0" id="gosearch" name="gosearch" value="gosearch">Search
             </button>
         </form>
