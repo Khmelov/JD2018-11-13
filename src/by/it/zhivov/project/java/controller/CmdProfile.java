@@ -45,13 +45,11 @@ class CmdProfile implements Cmd {
             if (req.getParameter("delete") != null)
                 if (dao.ad.delete(ad))
                     Util.deleteFile(req, "ad" + ad.getId());
+
             if (req.getParameter("update") != null) {
                 if (dao.ad.update(ad))
                     Util.saveFile(req, "ad" + ad.getId());
-
             }
-
-
         }
         User user = Util.findUser(req);
         String where = String.format(" WHERE `users_id`='%d'", user.getId());

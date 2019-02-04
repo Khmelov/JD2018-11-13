@@ -50,6 +50,7 @@ public class Dao {
         return -1;
     }
 
+
     public static void restoreDB() throws SQLException {
         System.out.println("Staring DB restore");
         try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/?" +
@@ -98,6 +99,7 @@ public class Dao {
                     "  `crashed` VARCHAR(20) NULL,\n" +
                     "  `price` DOUBLE NULL,\n" +
                     "  `users_id` INT NOT NULL,\n" +
+                    "  FULLTEXT (brand),\n" +
                     "  PRIMARY KEY (`id`),\n" +
                     "  CONSTRAINT `fk_ads_users1`\n" +
                     "    FOREIGN KEY (`users_id`)\n" +
@@ -112,9 +114,14 @@ public class Dao {
             statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Живов Антон Дмитриевич', 'zhivov', 'zhivov', '1994-12-23', 'drel@icloud.com', '+375333830040', 2)");
             statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Живова Анна Русальская', 'zhivova', 'zhivova', '1995-07-11', 'eva_skandi@mail.ru', '+375291873010', 2)");
             statement.executeUpdate("INSERT INTO `zhivov`.`users` (`id`, `name`, `login`, `password`, `dateofbirth`, `email`, `tel`, `roles_id`) VALUES (DEFAULT, 'Шишко Алексей Евгеньевич', 'shishko', 'shishko', '1992-04-16', 'shishka_bel@mail.ru', '+375336549877', 2)");
-            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Не бито, не крашено', 'Хорошая машина на каждый день', 'BMW', '325', 'Grey', 'Седан', '2008', '2.5', 'Automatic', 'RWD', 'Стандартная', '120000', 'No', '860000', '2')");
-            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Мощный джип', 'Никогда нигде не застревал', 'Dodge', 'Durango', 'Black', 'Джип', '2005', '5.8', 'Manual', '4WD', 'Базовая', '460000', 'Yes', '620000', '2')");
-            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Никогда не подводит', 'Самая простая машина, отдам в подарок комплект резины', 'Toyota', 'Corolla', 'Blue', 'Седан', '2012', '2.0', 'No', 'FWD', 'Стандартная', '320000', '0', '400000', '3')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Не бито, не крашено', 'Хорошая машина на каждый день',                             'BMW',      '325',      'Grey',     'Седан',    '2008', '2.5', 'Automatic', 'RWD', 'Minimal',      '120000', 'No',   '860000', '2')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Мощный джип', 'Никогда нигде не застревал',                                        'Dodge',    'Durango',  'Black',    'Джип',     '2005', '5.8', 'Manual',    '4WD', 'Base',         '460000', 'Yes',  '620000', '2')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Никогда не подводит', 'Самая простая машина, отдам в подарок комплект резины',     'Toyota',   'Corolla',  'Blue',     'Седан',    '2012', '2.0', 'Manual',     'FWD', 'Minimal',     '320000', 'No',   '400000', '3')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Восстановил немца', 'Полностью восстановлены: двигатель, подвеска, ходовка ',      'Audi',     'A4',       'Black',    'Седан',    '2006', '1.8', 'Manual',     '4WD', 'Middle',      '600000', 'No',   '800000', '3')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Продам срочно!', 'Продаю срочно, нужны деньги',                                    'BMW',      '760li',    'Black',     'Седан',    '2017', '6.0', 'Automatic',  'AWD', 'Premium',     '85000',  'No',   '2400000', '4')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Прекрасное авто со всех сторон', 'Машина семейная, в дтп не участвовала, использовалась бережно',     'Toyota',   'Camry',    'Night-grey','Седан',    '2018', '3.5', 'Automatic',   'FWD', 'Top',        '35000', 'No',   '1100000', '3')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Немецкое качестно', 'Машина не доставляла никаких хлопот',     'Audi',     'A6',       'Metallic-grey','Седан',    '2009', '2.5', 'Automatic', 'AWD', 'Middle',     '180000', 'No',   '790000', '4')");
+            statement.executeUpdate("INSERT INTO `ads` (`id`, `title`, `description`, `brand`, `model`, `color`, `body`, `year`, `engine`, `at`, `driveunit`, `equipment`, `mileage`, `crashed`, `price`, `users_id`) VALUES (NULL, 'Верный конь', 'Ремонта не требует, из последнего заменены тормоза и кулиса',     'Audi',     '80',       'Loud-red',     'Седан',    '1994', '2.0', 'Manual',     'FWD', 'Minimal',     '240000', 'Yes',   '60000', '2')");
             System.out.println("DB restored successful");
         }
     }

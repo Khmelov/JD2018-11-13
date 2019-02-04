@@ -16,6 +16,7 @@
         <div class="col-md-1">Марка</div>
         <div class="col-md-1">Модель</div>
         <div class="col-md-1">Цвет</div>
+        <div class="col-md-1">Год</div>
         <div class="col-md-1">Объем двигателя</div>
         <div class="col-md-2">Цена</div>
     </div>
@@ -37,9 +38,11 @@
             <div class="col-md-1">${ad.brnd}</div>
             <div class="col-md-1">${ad.model}</div>
             <div class="col-md-1">${ad.color}</div>
+            <div class="col-md-1">${ad.year}</div>
             <div class="col-md-1">${ad.engine} л.</div>
             <div class="col-md-2">${ad.price} руб.</div>
         </div>
+        <hr>
     </c:forEach>
 </div>
 </body>

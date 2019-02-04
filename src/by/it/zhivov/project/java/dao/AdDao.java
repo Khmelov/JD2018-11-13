@@ -77,6 +77,36 @@ public class AdDao implements InterfaceDao<Ad> {
         return Dao.executeUpdate(sqlCmd);
     }
 
+    public List<Ad> searchAd(String searchWord) throws SQLException {
+        List<Ad> searchResult = new ArrayList<>();
+        String sqlCmd = String.format("SELECT * FROM ads WHERE MATCH (brand) AGAINST ('%s')", searchWord);
+        try (Connection connection = Connect.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sqlCmd);
+            while (resultSet.next()) {
+                long id = resultSet.getLong("id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String brand = resultSet.getString("brand");
+                String model = resultSet.getString("model");
+                String color = resultSet.getString("color");
+                String body = resultSet.getString("body");
+                int year = resultSet.getInt("year");
+                double engine = resultSet.getDouble("engine");
+                String at = resultSet.getString("at");
+                String driveunit = resultSet.getString("driveunit");
+                String equipment = resultSet.getString("equipment");
+                int mileage = resultSet.getInt("mileage");
+                String crashed = resultSet.getString("crashed");
+                int price = resultSet.getInt("price");
+                long users_id = resultSet.getLong("users_id");
+                Ad ad = new Ad(id, title, description, brand, model, color, body, year, engine, at, driveunit, equipment, mileage, crashed, price, users_id);
+                searchResult.add(ad);
+            }
+            return searchResult;
+        }
+    }
+
     public List<Ad> getAll(String sqlSuffix) throws SQLException {
         List<Ad> result = new ArrayList<>();
         String sqlCmd = String.format(Locale.ENGLISH,

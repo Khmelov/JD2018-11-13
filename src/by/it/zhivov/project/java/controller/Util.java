@@ -71,9 +71,9 @@ public class Util {
         } catch (ServletException | IOException e) {
             e.printStackTrace();
         }
-        if (size == 0) {
-            new File(filename).delete();
-        }
+//        if (size == 0) {
+//            new File(filename).delete();
+//        }
     }
 
     static void deleteFile(HttpServletRequest req, String filename) {
@@ -81,4 +81,5 @@ public class Util {
         File file = new File(filename);
         file.delete();
     }
+
 }
