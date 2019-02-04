@@ -3,7 +3,7 @@
 Смотрите тут https://ant.apache.org/manual/
 -->
 
-<project name="Ant to AKHMELEV07" default="10deploy" basedir="..">
+<project name="Ant to AKHMELEV08" default="10deploy" basedir="..">
 
     <!-- подключаем файл с настройками -->
     <property file="ant/deploy.properties"/>
