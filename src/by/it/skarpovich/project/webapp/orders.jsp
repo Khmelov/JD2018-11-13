@@ -29,7 +29,8 @@
         <div class="col-md-2">${varOrders.date} </div>
         <div class="col-md-2">${varOrders.time} </div>
         <div class="col-md-2">${varOrders.users_id} </div>
-        <div class="col-md-2">${varOrders.items_id} </div>
+ <div class="col-md-2">${varOrders.items_id} </div>
+
   </div>
 
 </c:forEach>

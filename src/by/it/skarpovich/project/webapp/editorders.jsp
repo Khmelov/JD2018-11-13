@@ -32,7 +32,7 @@
                 <div class="row">
                     <div class=col-md-1>
                         <input id="id" class="form-control input-md" name="id"
-                               value="${vrd.id}"/>
+                               value="${vrd.id}"readonly/>
                     </div>
                     <div class=col-md-1>
                         <input id="date" class="form-control input-md" name="date"
@@ -42,10 +42,12 @@
                         <input id="time" class="form-control input-md" name="time"
                                value="${vrd.time}"/>
                     </div>
-                       <div class=col-md-1>
-                                            <input id="users_id" class="form-control input-md" name="users_id"
-                                                   value="${vrd.users_id}"/>
-                                        </div>
+<div class=col-md-1>
+     <input id="users_id" class="form-control input-md" name="items_id"
+                               value="${vrd.users_id}"/>
+                    </div>
+
+
 
                     <div class=col-md-1>
                         <input id="items_id" class="form-control input-md" name="items_id"

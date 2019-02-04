@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CmdOrders implements Cmd {
+public class CmdEditOrders implements Cmd{
+
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (!Util.checkUser(req))
@@ -21,15 +22,20 @@ public class CmdOrders implements Cmd {
         }
         User user = Util.findUser(req);
         String where = String.format(" WHERE `users_id`='%d'", user.getId());
+        if (user.getRoles_id() == 2) {
+            List<Order> orders = Dao.getDao().order.getAll(where);
+            req.setAttribute("orders", orders);
+        } else if (user.getRoles_id() == 1) {
+            List<Order> orders = Dao.getDao().order.getAll();
+            req.setAttribute("orders", orders);
+        } else {
+            return Action.LOGIN;
+        }
 
-        List<Order> orders = Dao.getDao().order.getAll(where);
-        req.setAttribute("orders", orders);
-        req.getSession().getAttribute("items");
-        return Action.ORDERS;
-
-
+        return Action.EDITORDERS;
     }
 }
+
 
 
 

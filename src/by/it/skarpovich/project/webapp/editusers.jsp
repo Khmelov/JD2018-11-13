@@ -30,7 +30,7 @@
                 <div class="row">
                     <div class=col-md-1>
                         <input id="id" class="form-control input-md" name="id"
-                               value="${user.id}"/>
+                               value="${user.id}" readonly/>
                     </div>
                     <div class=col-md-1>
                         <input id="username" class="form-control input-md" name="username"
@@ -60,9 +60,9 @@
 
                     <div class=col-md-1>
                         <select id="role" name="roles_id" class="form-control">
-                            <c:forEach items="${roles}" var="role">
-                                <option value="${role.id}" role=${role.id} ${role.id==user.roles_id?"selected":""}>
-                                        ${role.role}
+                            <c:forEach items="${roles}" var="varka">
+                                <option value="${varka.id}" role=${varka.id} ${varka.id==user.roles_id?"selected":""}>
+                                        ${varka.role}
                                 </option>
                             </c:forEach>
                         </select>

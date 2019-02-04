@@ -30,11 +30,11 @@
                 <div class="row">
                     <div class=col-md-1 >
                                         <input id="id" class="form-control input-md" name="id"
-                                               value="${user.id}"readonly/>
+                                               value="${user.id}" readonly/>
                                     </div>
                                         <div class=col-md-1>
                                                             <input id="username" class="form-control input-md" name="username"
-                                                                   value="${user.username}"readonly/>
+                                                                   value="${user.username}" readonly/>
                                                                    </div>
 
                     <div class=col-md-1>
