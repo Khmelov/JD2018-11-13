@@ -27,7 +27,6 @@
                 <div class="col-md-4">
                     <input id="password" value="testPASSWORD" name="password" type="password" placeholder=""
                            class="form-control input-md">
-
                 </div>
             </div>
 

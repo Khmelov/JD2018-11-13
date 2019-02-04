@@ -4,6 +4,7 @@ import by.it.kruglenja.Project.java.beans.Order;
 import by.it.kruglenja.Project.java.beans.Roles;
 import by.it.kruglenja.Project.java.beans.Spareparts;
 import by.it.kruglenja.Project.java.beans.User;
+import by.it.kruglenja.Project.java.controller.Form;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,19 +94,27 @@ public class Runner {
 
 /////////////////////////////////////
         order.setQuanity(555);
-        order.setDeliveryTime("After tommorow");
         order.setTotalPrice(222.599);
-        order.setSparePart_id(1);
+        order.setSpareParts_id(1);
         order.setUsers_id(2);
         if (dao.order.create(order)) {
 
             System.out.println("create -------->" + order);
-            order.setTotalPrice(228.322);
             System.out.println("change price ---222.599----->228.322" + order);
         }
+
+
+        System.out.println("////////////////TEST/////////////////");
+        order.setQuanity(228);
+        long id = order.getId();
         if (dao.order.update(order)) {
-            dao.order.read(order.getId());
+
+            System.out.println(order);
         }
+
+        System.out.println("////////////////TEST/////////////////");
+//
+//
         System.out.println("<_USER GETALL_>");
         List<Order> allo = dao.order.getAll("WHERE `users_id`='2'");
         for (Order s : allo) {

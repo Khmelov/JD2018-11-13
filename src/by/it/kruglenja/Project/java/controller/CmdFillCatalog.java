@@ -8,6 +8,9 @@ import javax.servlet.http.HttpServletRequest;
 public class CmdFillCatalog implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws Exception {
+//        if (!Util.checkAdmin(req)){
+//            return Action.LOGIN;
+//        }
         if (Form.isPost(req)){
              String model = Form.getString(req, "selectModel");
              String category = Form.getString(req, "selectCategory");

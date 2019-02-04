@@ -15,6 +15,7 @@ public enum Action {
     PARTTOBUCKET(new CmdPartToBucket()),
     DELETEORDERPART(new DeleteOrderPart()),
     EDITUSERS(new CmdEditUser()),
+    EDITORDER(new EditOrder()),
     FILLCATALOG(new CmdFillCatalog());
 
 

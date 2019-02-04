@@ -19,6 +19,7 @@ public class CmdLogin implements Cmd {
             List<User> userDb = Dao.getDao().user.getAll(sql);
             if (userDb.size() == 1) {
                 User user = userDb.get(0);
+                req.getSession().setAttribute("sesionUserId", user.getId());
                 req.getSession().setAttribute("user", user);
                 return Action.PROFILE;
             }

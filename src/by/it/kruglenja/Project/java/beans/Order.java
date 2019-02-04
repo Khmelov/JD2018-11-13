@@ -3,26 +3,25 @@ package by.it.kruglenja.Project.java.beans;
 public class Order {
     private long id;
     private int quanity;
-    private String deliveryTime;
     private double totalPrice;
     private long spareParts_id;
     private long users_id;
 
+
     public Order() {
     }
 
-    public Order(long id, int quanity, String deliveryTime, double totalPrice, long users_id, long spareParts_id) {
+    public Order(long id, int quanity, double totalPrice, long users_id, long spareParts_id) {
         this.id = id;
         this.quanity = quanity;
-        this.deliveryTime = deliveryTime;
         this.totalPrice = totalPrice;
         this.users_id = users_id;
         this.spareParts_id = spareParts_id;
     }
 
-    public long getSparePart_id() { return spareParts_id; }
+    public long getSpareParts_id() { return spareParts_id; }
 
-    public void setSparePart_id(long spareParts_id) { this.spareParts_id = spareParts_id; }
+    public void setSpareParts_id(long spareParts_id) { this.spareParts_id = spareParts_id; }
 
     public long getId() { return id; }
 
@@ -31,10 +30,6 @@ public class Order {
     public int getQuanity() { return quanity; }
 
     public void setQuanity(int quanity) { this.quanity = quanity; }
-
-    public String getDeliveryTime() { return deliveryTime; }
-
-    public void setDeliveryTime(String deliveryTime) { this.deliveryTime = deliveryTime; }
 
     public double getTotalPrice() { return totalPrice; }
 
@@ -49,7 +44,6 @@ public class Order {
         return "Order{" +
                 "id=" + id +
                 ", quanity=" + quanity +
-                ", deliveryTime=" + deliveryTime +
                 ", totalPrice=" + totalPrice +
                 ", spareParts_id=" + spareParts_id +
                 ", users_id=" + users_id +

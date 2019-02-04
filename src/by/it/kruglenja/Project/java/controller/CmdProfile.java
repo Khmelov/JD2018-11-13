@@ -10,12 +10,18 @@ import java.sql.SQLException;
 public class CmdProfile implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException {
-        if (!Util.checkUser(req)){
+        if (!Util.checkUser(req)) {
             return Action.LOGIN;
         }
         if (Form.isPost(req)) {
-           return Action.EDITUSERS;
-
+//            Dao dao = Dao.getDao();
+//            User user = (User) req.getSession().getAttribute("user");
+//            user.setEmail("123");
+//            user.setPhone_number("123");
+//            user.setPassword("123");
+//            if (dao.user.update(user))
+//                return Action.PROFILE;
         }
-        return Action.PROFILE; }
+        return Action.PROFILE;
+    }
 }

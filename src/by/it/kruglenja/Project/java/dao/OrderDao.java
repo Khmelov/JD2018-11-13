@@ -12,10 +12,10 @@ import java.util.Locale;
 
 public class OrderDao implements InterfaceDao<Order> {
     public boolean create(Order order) throws SQLException {
-        String sql = String.format(Locale.US, "INSERT INTO `order`(`quanity`, `deliveryTime`, `totalPrice`, `spareParts_id`, `users_id`)"
-                        + " VALUES ('%d', '%s', '%.2f', '%d', '%d')",
-                order.getQuanity(), order.getDeliveryTime(), order.getTotalPrice(),
-                order.getSparePart_id(), order.getUsers_id());
+        String sql = String.format(Locale.US, "INSERT INTO `order`(`quanity`, `totalPrice`, `users_id`, `spareParts_id`)"
+                        + " VALUES ('%d', '%.2f', '%d', '%d')",
+                order.getQuanity(), order.getTotalPrice(),
+                order.getSpareParts_id(), order.getUsers_id());
         System.out.println(sql);
         long id = Dao.executeCrate(sql);
         order.setId(id);
@@ -28,10 +28,10 @@ public class OrderDao implements InterfaceDao<Order> {
     }
 
     public boolean update(Order order) throws SQLException {
-        String sql = String.format(Locale.US, "UPDATE `order` SET `quanity`='%d',`deliveryTime`='%s'," +
-                        "`totalPrice`='%.2f',`spareParts_id`='%d',`users_id`='%d' WHERE 1",
-                order.getQuanity(), order.getDeliveryTime(), order.getTotalPrice(), order.getSparePart_id(),
-                order.getUsers_id());
+        String sql = String.format(Locale.US, "UPDATE `order` SET `quanity`='%d'," +
+                        "`totalPrice`='%.2f',`users_id`='%d',`spareParts_id`='%d' WHERE `order`.`id` = '%d'",
+                order.getQuanity(), order.getTotalPrice(), order.getSpareParts_id(),
+                order.getUsers_id(),order.getId());
         return Dao.executeUpdate(sql);
     }
 
@@ -57,15 +57,13 @@ public class OrderDao implements InterfaceDao<Order> {
                 Order order = new Order();
                 order.setId(resultSet.getLong("id"));
                 order.setQuanity(resultSet.getInt("quanity"));
-                order.setDeliveryTime(resultSet.getString("deliveryTime"));
                 order.setTotalPrice(resultSet.getDouble("totalPrice"));
-                order.setSparePart_id(resultSet.getLong("spareParts_id"));
                 order.setUsers_id(resultSet.getLong("users_id"));
+                order.setSpareParts_id(resultSet.getLong("spareParts_id"));
 
                 sp.add(order);
             }
         }
         return sp;
     }
-
 }

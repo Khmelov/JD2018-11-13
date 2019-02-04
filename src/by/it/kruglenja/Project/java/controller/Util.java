@@ -3,6 +3,7 @@ package by.it.kruglenja.Project.java.controller;
 import by.it.kruglenja.Project.java.beans.User;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class Util {
@@ -17,5 +18,8 @@ public class Util {
             return (User) sessionUser;
             }
             return null;
+    }
+    static boolean checkAdmin(HttpServletRequest req){
+        return checkUser(req)&&(findUser(req).getRoles_Id()==1);
     }
 }

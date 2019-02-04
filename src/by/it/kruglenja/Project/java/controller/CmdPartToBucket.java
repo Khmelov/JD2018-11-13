@@ -13,9 +13,7 @@ public class CmdPartToBucket implements Cmd{
             Long userId = Util.findUser(req).getId();
             int quanity = Form.getInteger(req, "quanity");
             Long sparepartsId = Form.getLong(req, "iD");
-
-
-            Order order = new Order(0, quanity,"", 0.00, sparepartsId, userId );
+            Order order = new Order(0, quanity, 0.00, sparepartsId, userId );
             Dao dao = Dao.getDao();
             if (dao.order.create(order))
                 return Action.INDEX;

@@ -7,6 +7,9 @@
     <%@ include file="include/menu.htm" %>
 
     <div class="page-header">
+        <p>sesionUserId: <br> ${sesionUserId}</p>
+
+
         <h1>Каталог запчастей</h1>
     </div>
     <table class="table table-bordered">
@@ -37,7 +40,8 @@
                     <form action="do?command=partToBucket" method="post">
                         <fieldset>
                             <input id="quanity" name="quanity" type="text" value="3"/>
-                            <button id="iD" name="iD" value="${sparepart.id}" class="btn btn-success">To chart</button>
+                            <button id="iD" name="iD" value="${sparepart.id}" class="btn btn-success">В корзину</button>
+                            <p>sparepart.id: <br> ${sparepart.id}</p>
                         </fieldset>
                     </form>
                 </td>
