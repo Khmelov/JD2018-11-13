@@ -43,7 +43,8 @@ class CmdProfile implements Cmd {
             long id_User = Form.getLong(req, "id_User");
             Ad ad = new Ad(id, title, description, brnd, model, color, body, year, engine, at, driveunit, equipment, millage, crashed, price, id_User);
             if (req.getParameter("delete") != null)
-                dao.ad.delete(ad);
+                if (dao.ad.delete(ad))
+                    Util.deleteFile(req, "ad" + ad.getId());
             if (req.getParameter("update") != null) {
                 if (dao.ad.update(ad))
                     Util.saveFile(req, "ad" + ad.getId());
