@@ -5,11 +5,12 @@ import by.it.zhivov.project.java.beans.User;
 import by.it.zhivov.project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class CmdCreateAd implements Cmd {
     @Override
-    public Action execute(HttpServletRequest req) throws SQLException, SiteExeption {
+    public Action execute(HttpServletRequest req) throws SQLException, SiteExeption, IOException {
         if (!Util.checkUser(req))
             return Action.LOGIN;
 
@@ -31,8 +32,10 @@ public class CmdCreateAd implements Cmd {
             User user = Util.findUser(req);
             Ad ad = new Ad(0, title, description, brnd, model, color, body, year, engine, at, driveunit, equipment, millage, crashed, price, user.getId());
             Dao dao = Dao.getDao();
-            if (dao.ad.create(ad))
+            if (dao.ad.create(ad)) {
                 req.getSession().setAttribute("ad", ad);
+            }
+            Util.sendTg(brnd, model, year, price);
             return Action.PROFILE;
         }
         return Action.CREATEAD;

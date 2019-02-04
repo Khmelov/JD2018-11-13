@@ -3,13 +3,15 @@ package by.it.zhivov.project.java;
 import by.it.zhivov.project.java.beans.Ad;
 import by.it.zhivov.project.java.beans.Role;
 import by.it.zhivov.project.java.beans.User;
+import by.it.zhivov.project.java.controller.Util;
 import by.it.zhivov.project.java.dao.Dao;
 import by.it.zhivov.project.java.dao.InnerJoin_id;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class TesterDao {
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException, IOException {
         for (int i = 0; i < 20; i++) {
             //Dao.restoreDB();
             Dao dao = Dao.getDao();
@@ -79,12 +81,12 @@ public class TesterDao {
             ad = dao.ad.read(ad.getId());
             System.out.println("\tRead ad successful\n" + ad + "\n");
             {
-//                //delete ad
-//                if (dao.ad.delete(ad))
-//                    System.out.println("\tDelete ad succefull\n" + ad + "\n");
-//                //delete user
-//                if (dao.user.delete(user))
-//                    System.out.println("\tDelete user successful\n" + user + "\n");
+                //delete ad
+                if (dao.ad.delete(ad))
+                    System.out.println("\tDelete ad succefull\n" + ad + "\n");
+                //delete user
+                if (dao.user.delete(user))
+                    System.out.println("\tDelete user successful\n" + user + "\n");
                 //delete role
                 if (dao.role.delete(role))
                     System.out.println("\tDelete role successful\n" + role + "\n");
@@ -92,6 +94,7 @@ public class TesterDao {
             InnerJoin_id.getAllRows();
             InnerJoin_id.getRolesRows();
             //Dao.restoreDB();
+            Util.sendTg(ad.getBrnd(), ad.getModel(), ad.getYear(), ad.getPrice());
         }
         //Dao.restoreDB();
     }

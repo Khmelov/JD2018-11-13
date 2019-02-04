@@ -90,7 +90,7 @@
                         <div>невалидный телефон</div>
                       </span>
                 </div>
-                </div>
+
             </div>
 
             <!-- Button -->
@@ -104,7 +104,6 @@
         </fieldset>
     </form>
 </div>
-<script src="formValidation/script.js"></script>
 </body>
 </html>
 
