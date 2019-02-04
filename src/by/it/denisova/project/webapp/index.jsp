@@ -7,6 +7,11 @@
 <%@ include file="include/menu.jsp" %>
 <%--<p>ALL ADS:<br> ${ads}</p>--%>
     <p> hello </p>
+<c:forEach items="${tests}" var="test">
+    <form>
+        <p> ${test.id}</p>
+    </form>
+</c:forEach>
 </div>
 </body>
 </html>

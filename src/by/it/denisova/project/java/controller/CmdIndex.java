@@ -1,5 +1,6 @@
 package by.it.denisova.project.java.controller;
 
+import by.it.denisova.project.java.beans.Lesson;
 import by.it.denisova.project.java.beans.Test;
 import by.it.denisova.project.java.dao.Dao;
 
@@ -11,7 +12,7 @@ class CmdIndex implements Cmd {
     @Override
     public Action execute(HttpServletRequest req)  throws SQLException {
         List<Test> tests = Dao.getDao().test.getAll();
-        req.setAttribute("tests",tests);
+       req.setAttribute("tests",tests);
         return null;
     }
 }

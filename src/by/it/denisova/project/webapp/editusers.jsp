@@ -38,15 +38,15 @@
                                value="${user.email}"/>
                     </div>
 
-                    <%--<div class=col-md-2>--%>
-                        <%--<select id="id_role" name="id_role" class="form-control">--%>
-                            <%--<c:forEach items="${roles}" var="role">--%>
-                                <%--<option value="${role.id}" role="${role.id}" ${role.id==user.id_role?"selected":""}>--%>
-                                        <%--${role.role}--%>
-                                <%--</option>--%>
-                            <%--</c:forEach>--%>
-                        <%--</select>--%>
-                    <%--</div>--%>
+                    <div class=col-md-2>
+                        <select id="id_role" name="id_role" class="form-control">
+                            <c:forEach items="${roles}" var="role">
+                                <option value="${role.id}" role="${role.id}" ${role.id==user.id_role?"selected":""}>
+                                        ${role.role}
+                                </option>
+                            </c:forEach>
+                        </select>
+                    </div>
 
                     <button id="Update" value="Update" name="Update" class="btn btn-success  md-1">
                         Обновить

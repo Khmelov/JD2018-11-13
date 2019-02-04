@@ -3,6 +3,7 @@ package by.it.denisova.project.java.dao;
 import by.it.denisova.project.java.beans.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
@@ -14,7 +15,7 @@ public class Runner {
         user.setLogin("katiaDEn23.01");
         user.setPassword("qwerty23");
         user.setEmail("katua@mail.ru");
-        user.setId_Role(1);
+        user.setId_role(1);
         if(dao.user.create(user)) {
             System.out.println("Created " + user);
         }
@@ -57,9 +58,9 @@ public class Runner {
         test = dao.test.read(test.getId());
         System.out.println("read" + test);
 
-        if(dao.test.delete(test)) {
-            System.out.println("test deleted" + test);
-        }
+//        if(dao.test.delete(test)) {
+//            System.out.println("test deleted" + test);
+//        }
 
         System.out.println("-------------------QUESTION----------------------");
         Question question = new Question();
@@ -112,18 +113,19 @@ public class Runner {
             System.out.println("CREATED " + lesson);
         }
 
-//       lesson = dao.lesson.read(answer.getId());
-//       System.out.println("READE " + lesson); //не работает Read кидается NullPointerException
+       lesson = dao.lesson.read(lesson.getId());
+       System.out.println("READE " + lesson); //не работает Read кидается NullPointerException
 
-//        answer.setAnswer("wrong");
-//        if(dao.answer.update( answer)) {
-//            System.out.println("Updated " +  answer);
-//        }
+        lesson.setTheory("wrong");
+        if(dao.lesson.update( lesson)) {
+            System.out.println("Updated " +  lesson);
+        }
 
 
-//        if(dao.answer.delete( answer)) {
-//            System.out.println("Deleted " +  answer);
-//        }
+        if(dao.lesson.delete(lesson)) {
+            System.out.println("Deleted " +  lesson);
+        }
+
         System.out.println("-------------------TYPE----------------------");
 
         TypeLesson typeLesson = new TypeLesson();
@@ -142,6 +144,11 @@ public class Runner {
 
         if (dao.type.delete(typeLesson)) {
             System.out.println("Deleted " + typeLesson);
+        }
+
+        List<Test> tests = dao.test.getAll();
+        for (Test test1 :tests) {
+            System.out.println(test1);
         }
   }
 }

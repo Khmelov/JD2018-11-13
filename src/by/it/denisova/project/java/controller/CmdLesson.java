@@ -12,12 +12,12 @@ import java.util.List;
 public class CmdLesson implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws Exception {
-        List<Test> tests = Dao.getDao().test.getAll();
+//        List<Test> tests = Dao.getDao().test.getAll();
         List<TypeLesson> types = Dao.getDao().type.getAll();
         List<Theme>  themes = Dao.getDao().theme.getAll();
         req.setAttribute("themes", themes);
         req.setAttribute("types",types);
-        req.setAttribute("tests", tests);
+//        req.setAttribute("tests", tests);
         if (!Util.checkUser(req))
             return Action.LOGIN;
 

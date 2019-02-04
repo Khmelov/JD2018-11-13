@@ -15,7 +15,6 @@
             </c:when>
             <c:otherwise>
             <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
-
             <a class="nav-item nav-link" href="do?command=Test">Создать Тест</a>
             <a class="nav-item nav-link" href="do?command=Lesson">Создать Урок</a>
                 <a class="nav-item nav-link" href="do?command=EditUsers">Админка</a>

@@ -42,7 +42,7 @@ public class LessonDao implements InterfaceDao<Lesson>{
     }
 
     public Lesson read(long id) throws SQLException {
-        String sqlSuffix = String.format("WHERE id_lesson = %d", id);
+        String sqlSuffix = String.format("WHERE `lessons`.`id_lesson` = %d", id);
         List<Lesson> all = getAll(sqlSuffix);
         return all.size() > 0 ? all.get(0) : null;
     }
