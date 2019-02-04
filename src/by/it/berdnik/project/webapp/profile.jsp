@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
 <%@ include file="include/head.jsp" %>
@@ -19,30 +18,30 @@
 
     </div>
 
-        <c:forEach items="${buyers}" var="buyer">
-            <br>
-            <div class="row">
-                <div class="col-md-4">${buyer.item} </div>
-                <div class="col-md-4">${buyer.specif} </div>
-                <div class="col-md-1">${buyer.price} </div>
-                <div class="col-md-3">${buyer.address} </div>
-            </div>
-        </c:forEach>
+    <c:forEach items="${buyers}" var="buyer">
+        <br>
+        <div class="row">
+            <div class="col-md-4">${buyer.item} </div>
+            <div class="col-md-4">${buyer.specif} </div>
+            <div class="col-md-1">${buyer.price} </div>
+            <div class="col-md-3">${buyer.address} </div>
+        </div>
+    </c:forEach>
 
-        <br><br>
+    <br><br>
 
-        <form class="form-horizontal" action="do?command=Profile" method="POST">
-            <fieldset>
+    <form class="form-horizontal" action="do?command=Profile" method="POST">
+        <fieldset>
 
-                <div class="form-group">
-                    <label class="col-md-4 control-label" for="logout"></label>
-                    <div class="col-md-4">
-                        <button id="logout" name="logout" value="logout" class="btn btn-success">Выйти</button>
-                    </div>
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="logout"></label>
+                <div class="col-md-4">
+                    <button id="logout" name="logout" value="logout" class="btn btn-success">Выйти</button>
                 </div>
-            </fieldset>
-        </form>
+            </div>
+        </fieldset>
+    </form>
 
-    </div>
+</div>
 </body>
 </html>
