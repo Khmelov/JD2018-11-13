@@ -31,8 +31,8 @@ public class C_Init {
                     "  `password` VARCHAR(45) NULL,\n" +
                     "  `Roles_idRoles` INT NOT NULL,\n" +
                     "  PRIMARY KEY (`idClient`),\n" +
-                    "  UNIQUE INDEX `ID passport_UNIQUE` (`ID passport` ASC),\n" +
-                    "  INDEX `fk_Client_Roles1_idx` (`Roles_idRoles` ASC),\n" +
+                    "  UNIQUE PROFILE `ID passport_UNIQUE` (`ID passport` ASC),\n" +
+                    "  PROFILE `fk_Client_Roles1_idx` (`Roles_idRoles` ASC),\n" +
                     "  CONSTRAINT `fk_Client_Roles1`\n" +
                     "    FOREIGN KEY (`Roles_idRoles`)\n" +
                     "    REFERENCES `karnilavaTest`.`Roles` (`idRoles`)\n" +
@@ -57,9 +57,9 @@ public class C_Init {
                     "  `Type of account_idType of account` INT NOT NULL,\n" +
                     "  `State options_idState options` INT NOT NULL,\n" +
                     "  PRIMARY KEY (`idAccounts`, `Type of account_idType of account`),\n" +
-                    "  INDEX `fk_Account features_Client1_idx` (`Client_idClient` ASC),\n" +
-                    "  INDEX `fk_Account features_Type of account1_idx` (`Type of account_idType of account` ASC),\n" +
-                    "  INDEX `fk_Account features_State options1_idx` (`State options_idState options` ASC),\n" +
+                    "  PROFILE `fk_Account features_Client1_idx` (`Client_idClient` ASC),\n" +
+                    "  PROFILE `fk_Account features_Type of account1_idx` (`Type of account_idType of account` ASC),\n" +
+                    "  PROFILE `fk_Account features_State options1_idx` (`State options_idState options` ASC),\n" +
                     "  CONSTRAINT `fk_Account features_Client1`\n" +
                     "    FOREIGN KEY (`Client_idClient`)\n" +
                     "    REFERENCES `karnilavaTest`.`Client` (`idClient`)\n" +

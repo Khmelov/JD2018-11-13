@@ -18,6 +18,8 @@ class CmdSignup extends Cmd{
             DAO dao =DAO.getDao();
           if (dao.client.create(client))
               req.getSession().setAttribute("client",client);
+            String fullName=client.getFirstName()+" "+client.getLastName();
+            req.getSession().setAttribute("fullName", fullName);
               return Action.PROFILE;
 
         }
