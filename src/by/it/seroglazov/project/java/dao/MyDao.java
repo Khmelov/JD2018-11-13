@@ -1,5 +1,6 @@
 package by.it.seroglazov.project.java.dao;
 
+import by.it.seroglazov.project.java.beans.Recipe;
 import by.it.seroglazov.project.java.controller.SiteException;
 
 import java.lang.reflect.Field;
@@ -7,8 +8,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 public class MyDao<T> implements Dao<T> {
 
@@ -175,6 +175,48 @@ public class MyDao<T> implements Dao<T> {
         try (Connection connection = DatabaseConnector.getConnection();
              Statement statement = connection.createStatement()) {
             return (1 == statement.executeUpdate(sql));
+        }
+    }
+
+    // This is needed for searching matches cocktails recipes.
+    public List<Recipe> getRecipesMatchesUser(long userId) throws Exception {
+        String sql1 = "SELECT recipe_id, COUNT(recipe_id) FROM `amounts` GROUP BY recipe_id";
+        String sql2 = "SELECT recipe_id, COUNT(recipe_id) FROM `amounts` INNER JOIN `userings` " +
+                "ON `userings`.`ingredient_id`=`amounts`.`ingredient_id` " +
+                "WHERE `userings`.`user_id`="+ userId +" GROUP BY recipe_id";
+        try (Connection connection = DatabaseConnector.getConnection();
+             Statement statement = connection.createStatement()) {
+
+            ResultSet results = statement.executeQuery(sql1);
+            HashMap<Long, Long> recipesAll = new HashMap<>();
+            while (results.next()) {
+                long recipeId = results.getLong("recipe_id");
+                long count = results.getLong("COUNT(recipe_id)");
+                recipesAll.put(recipeId, count);
+            }
+
+            ResultSet results2 = statement.executeQuery(sql2);
+            HashMap<Long, Long> recipesUser = new HashMap<>();
+            while (results2.next()) {
+                long recipeId = results2.getLong("recipe_id");
+                long count = results2.getLong("COUNT(recipe_id)");
+                recipesUser.put(recipeId, count);
+            }
+
+            MyDao<Recipe> recDao = new MyDao<>(new Recipe());
+            List<Recipe> out = new LinkedList<>();
+            for (Map.Entry<Long, Long> entry : recipesUser.entrySet()) {
+                long recipeId = entry.getKey();
+                long count = entry.getValue();
+                if (recipesAll.get(recipeId) == count) {
+                    Recipe rec = recDao.read(recipeId);
+                    if (rec != null) {
+                        out.add(rec);
+                    }
+                }
+            }
+
+            return out;
         }
     }
 }

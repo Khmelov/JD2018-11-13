@@ -6,6 +6,7 @@ import by.it.seroglazov.project.java.dao.MyDao;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Set;
 
 class CmdRecipesList extends Cmd {
     @Override
@@ -42,14 +43,14 @@ class CmdRecipesList extends Cmd {
         if (ingId > 0) {
             sqlSuff = "WHERE `recipes`.`id` IN " +
                     "(SELECT `amounts`.`recipe_id` FROM `amounts` WHERE `amounts`.`ingredient_id`='" + ingId + "')";
+            recipes = recDao.getAll(sqlSuff);
         } else if (userId > 0) {
-            sqlSuff = "WHERE `recipes`.`id` IN " +
-                    "(SELECT `amounts`.`recipe_id` FROM `amounts` WHERE `amounts`.`ingredient_id` IN " +
-                    "(SELECT `userings`.`ingredient_id` FROM `userings` WHERE `userings`.`user_id`='" + userId + "'))";
+            MyDao<Recipe> shitDao = new MyDao<Recipe>(new Recipe());
+            recipes = shitDao.getRecipesMatchesUser(userId);
         } else {
-            sqlSuff = "";
+            recipes = recDao.getAll();
         }
-        recipes = recDao.getAll(sqlSuff);
+
         if (recipes.size() == 0) {
             req.setAttribute("error_message", "No one cocktail matches conditions");
         }
