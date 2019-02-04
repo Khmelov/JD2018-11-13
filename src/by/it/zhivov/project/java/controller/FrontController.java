@@ -20,9 +20,7 @@ public class FrontController extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             List<Role> roles = Dao.getDao().role.getALL();
             getServletContext().setAttribute("roles", roles);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
