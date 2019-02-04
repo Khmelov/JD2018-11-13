@@ -2,7 +2,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuInStreamer.htm" %>
+<%@ include file="include/menuStreamer.htm" %>
 <p>Cmd Profile:<br> ${user}</p>
 <form class="form-horizontal" action="do?command=logoutstreamer" method="POST">
 
