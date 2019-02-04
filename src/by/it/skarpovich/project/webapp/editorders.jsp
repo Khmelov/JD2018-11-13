@@ -36,7 +36,7 @@
             <td><input id="time" class="form-control input-md" name="time" value="${vrd.time}"/></td>
             <td><input id="users_id" class="form-control input-md" name="users_id" value="${vrd.users_id}"/></td>
             <td><input id="items_id" class="form-control input-md" name="items_id" value="${vrd.items_id}"/></td>
-            <td><button id="Update" value="Update" name="Update" class="btn btn-success">Обновить</button></td>
+            <td><button id="Update" value="Update" name="Update" class="btn btn-info">Обновить</button></td>
             <td><button id="Delete" value="Delete" name="Delete" class="btn btn-danger">Удалить</button></td></form></tr>
  </c:forEach>
         </tbody>

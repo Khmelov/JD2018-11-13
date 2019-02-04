@@ -5,7 +5,7 @@
 <div class="container">
 <%@ include file="include/menu.jsp" %>
 
-<form class="form-horizontal" action="do?command=AddProject" method="POST">
+<form class="form-horizontal" action="do?command=AddProject" method="POST" enctype="multipart/form-data">
 <fieldset>
 
 <div class="page-header">
@@ -62,11 +62,19 @@
   </div>
 </div>
 
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="filebutton">File Button</label>
+                <div class="col-md-4">
+                    <input id="filebutton" name="filebutton" class="input-file" type="file">
+                </div>
+            </div>
+
+
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="create"></label>
   <div class="col-md-4">
-    <button id="create" name="create" class="btn btn-primary">Добавить проект</button>
+    <button id="create" name="create" class="btn btn-info">Добавить проект</button>
   </div>
 </div>
 

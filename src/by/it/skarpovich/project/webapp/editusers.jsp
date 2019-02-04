@@ -15,11 +15,11 @@
   <thead>
     <tr>
             <th scope="col">ID</th>
-            <th scope="col">User</th>
+            <th scope="col">Логин</th>
             <th scope="col">Пароль</th>
-            <th scope="col">Email</th>
+            <th scope="col">E-mail</th>
             <th scope="col">ФИО</th>
-            <th scope="col">Тел</th>
+            <th scope="col">Телефон</th>
             <th scope="col">Адрес</th>
             <th scope="col">Роль</th>
             <th scope="col"></th>
@@ -41,7 +41,7 @@
             <c:forEach items="${roles}" var="varka">
             <option value="${varka.id}" role=${varka.id} ${varka.id==user.roles_id?"selected":""}> ${varka.role}</option>
             </c:forEach></select></td>
-            <td><button id="Update" value="Update" name="Update" class="btn btn-success">Обновить</button></td>
+            <td><button id="Update" value="Update" name="Update" class="btn btn-info">Обновить</button></td>
             <td><button id="Delete" value="Delete" name="Delete" class="btn btn-danger">Удалить</button></td>
             </form> </tr></c:forEach>
   </tbody>

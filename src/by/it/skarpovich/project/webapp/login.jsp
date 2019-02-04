@@ -32,7 +32,7 @@
 <!-- Button -->
 <div class="form-group">
   <label class="col-md-4 control-label" for="username"></label>
-  <div class="col-md-4"><button id="login" name="login" class="btn btn-success">Войти</button></div>
+  <div class="col-md-4"><button id="login" name="login" class="btn btn-info">Войти</button></div>
 </div>
 </fieldset>
 </form>

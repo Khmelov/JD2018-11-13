@@ -67,6 +67,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void toJsp(HttpServletRequest req, HttpServletResponse resp, String jsp) throws ServletException, IOException {
+        //resp.setHeader("Cache-Control", "no-cache, no-store, must-revalidate"); // for HTTP 1.1.
         ServletContext servletContext = req.getServletContext();
         RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(jsp);
         requestDispatcher.forward(req, resp);

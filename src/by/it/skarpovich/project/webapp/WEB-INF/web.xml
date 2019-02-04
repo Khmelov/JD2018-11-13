@@ -17,6 +17,7 @@
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>by.it.skarpovich.project.java.controller.FrontController</servlet-class>
+        <multipart-config/>
     </servlet>
 
     <servlet-mapping>
@@ -39,16 +40,13 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <servlet>
-        <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>by.it.skarpovich.project.java.HelloWorld</servlet-class>
-    </servlet>
+    <filter>
+        <filter-name>FilterImages</filter-name>
+        <filter-class>by.it.skarpovich.project.java.filters.FilterImages</filter-class>
+    </filter>
 
-    <servlet-mapping>
-        <servlet-name>HelloWorld</servlet-name>
-        <url-pattern>/main</url-pattern>
-    </servlet-mapping>
-
-
-
+    <filter-mapping>
+        <filter-name>FilterImages</filter-name>
+        <url-pattern>/image/*</url-pattern>
+    </filter-mapping>
 </web-app>

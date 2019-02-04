@@ -10,12 +10,14 @@
 <form class="form-horizontal" action="do?command=signup" method="POST">
 <fieldset>
 
-<!-- Form Name -->
-<legend>Sign Up</legend>
+<div class="page-header">
+    <h1>Регистрация</h1>
+    <p class="lead">Введите данные для регистрации аккаунта</p>
+</div>
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="username">Username</label>
+  <label class="col-md-4 control-label" for="username">Логин</label>
   <div class="col-md-4">
   <input id="username" name="username" value="john3" type="text" placeholder="min 4 symbols" class="form-control input-md" required="">
 
@@ -24,7 +26,7 @@
 
 <!-- Password input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="password">Password</label>
+  <label class="col-md-4 control-label" for="password">Пароль</label>
   <div class="col-md-4">
     <input id="password" name="password" value="john1" type="password" placeholder="" class="form-control input-md" required="">
 
@@ -42,7 +44,7 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="fullname">Full Name</label>
+  <label class="col-md-4 control-label" for="fullname">Ф.И.О.</label>
   <div class="col-md-4">
   <input id="fullname" name="fullname" value="John McAfee" type="text" placeholder="" class="form-control input-md" required="">
 
@@ -51,7 +53,7 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="phone">Phone</label>
+  <label class="col-md-4 control-label" for="phone">Телефон</label>
   <div class="col-md-4">
   <input id="phone" name="phone" value="111-777-222" type="text" placeholder="" class="form-control input-md" required="">
   </div>
@@ -69,7 +71,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="signup"></label>
   <div class="col-md-4">
-    <button id="signup" name="signup" class="btn btn-success">Sign Up</button>
+    <button id="signup" name="signup" class="btn btn-info">Зарегистрироваться</button>
   </div>
 </div>
 </fieldset>

@@ -18,8 +18,11 @@ class CmdAddProject implements Cmd {
 
             Item item = new Item(0, title, floors, square, materials, price);
             Dao dao = Dao.getDao();
+
             if (dao.item.create(item))
+                Util.saveFile(req, "item" + item.getId());
                 req.getSession().setAttribute("item",item);
+
             return Action.INDEX;    // Successful
         }
 // If not successful
