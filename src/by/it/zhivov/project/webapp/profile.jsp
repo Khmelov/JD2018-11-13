@@ -85,6 +85,7 @@
             c.style.display = 'block';
     }
 </script>
+
 <div class="container">
     <%@ include file="include/menu.jsp" %>
     <div class="page-header">
@@ -148,6 +149,7 @@
     <br>
     <div id="list" style="display: block">
         <div class="row">
+            <div class="col-md-1"></div>
             <div class="col-md-2">Заголовок</div>
             <div class="col-md-2">Описание</div>
             <div class="col-md-1">Марка</div>
@@ -160,6 +162,15 @@
         <c:forEach items="${ads}" var="ad">
             <br>
             <div class="row">
+                <div class="zoom_img">
+                    <div class="col-md-1">
+                        <a target="_blank" href="images/ad${ad.id}">
+                            <img src="images/ad${ad.id}" height="40px" alt="${ad.price}"
+                                 onmouseover="this.height=150" ;
+                                 onmouseout="this.height=40"/>
+                        </a>
+                    </div>
+                </div>
                 <div class="col-md-2">${ad.title}</div>
                 <div class="col-md-2">${ad.description}</div>
                 <div class="col-md-1">${ad.brnd}</div>
@@ -173,7 +184,7 @@
     </div>
     <div id="edit" style="display: none">
         <c:forEach items="${ads}" var="ad">
-            <form class="update-ads-${ad.id}" action="do?command=Profile" method="POST">
+            <form class="update-ads-${ad.id}" action="do?command=Profile" method="POST" enctype="multipart/form-data">
                 <div class="row">
 
                     <div class="hiden">
@@ -285,6 +296,13 @@
                             <%--</select>--%>
                     </div>
 
+
+                    <div class="col-md-3">
+                        <label class="col-md-3 control-label" for="upload">Фото</label>
+                        <div class="col-md-3">
+                            <input id="upload" name="upload" class="input-file" type="file">
+                        </div>
+                    </div>
 
                     <div class="container">
                         <br>
