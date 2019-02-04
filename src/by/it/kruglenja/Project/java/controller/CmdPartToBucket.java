@@ -6,14 +6,17 @@ import by.it.kruglenja.Project.java.dao.Dao;
 
 import javax.servlet.http.HttpServletRequest;
 
-public class CmdPartToBucket implements Cmd{
+public class CmdPartToBucket implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws Exception {
-        if (Form.isPost(req)){
-            Long userId = Util.findUser(req).getId();
+        if (Form.isPost(req)) {
             int quanity = Form.getInteger(req, "quanity");
+            String name = Form.getString(req, "name");
+            String model = Form.getString(req, "model");
+            double price = Form.getDouble(req, "price");
+            long userId = (long) req.getSession().getAttribute("sesionUserId");
             Long sparepartsId = Form.getLong(req, "iD");
-            Order order = new Order(0, quanity, 0.00, sparepartsId, userId );
+            Order order = new Order(0, quanity, model, name, price, sparepartsId, userId);
             Dao dao = Dao.getDao();
             if (dao.order.create(order))
                 return Action.INDEX;
@@ -21,3 +24,4 @@ public class CmdPartToBucket implements Cmd{
         return Action.ERROR;
     }
 }
+

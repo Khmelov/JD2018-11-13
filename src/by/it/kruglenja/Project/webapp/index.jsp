@@ -27,21 +27,20 @@
         </thead>
         <c:forEach items="${catalog}" var="sparepart">
             <tbody>
+            <form action="do?command=partToBucket" method="post">
             <tr>
-                <td>${sparepart.model}</td>
-
-                <td>${sparepart.name}</td>
+                <td>${sparepart.model}<input type="hidden" id="model" name="model" value="${sparepart.model}"/></td>
+                <td>${sparepart.name}<input type="hidden" id="name" name="name" value="${sparepart.name}"/> </td>
                 <td>${sparepart.serial_number}</td>
                 <td>${sparepart.weight}</td>
-                <td>${sparepart.price}</td>
+                <td>${sparepart.price}<input type="hidden" id="price" name="price" value="${sparepart.price}"/></td>
                 <td>${sparepart.storageQuanity}</td>
 
                 <td colspan="2">
-                    <form action="do?command=partToBucket" method="post">
+
                         <fieldset>
                             <input id="quanity" name="quanity" type="text" value="3"/>
                             <button id="iD" name="iD" value="${sparepart.id}" class="btn btn-success">В корзину</button>
-                            <p>sparepart.id: <br> ${sparepart.id}</p>
                         </fieldset>
                     </form>
                 </td>

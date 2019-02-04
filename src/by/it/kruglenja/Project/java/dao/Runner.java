@@ -92,37 +92,37 @@ public class Runner {
 //        }
         System.out.println("\n" + "+-+-+-+-+-+-+-+Order dao+-+-+-+-+-+-+-+");
 
-/////////////////////////////////////
+        System.out.println("////////////////TEST///CREATE//////////////");
         order.setQuanity(555);
-        order.setTotalPrice(222.599);
+        order.setModel("Ziablyk");
+        order.setName("Anaconda");
+        order.setPrice(22.33);
         order.setSpareParts_id(1);
         order.setUsers_id(2);
         if (dao.order.create(order)) {
-
-            System.out.println("create -------->" + order);
-            System.out.println("change price ---222.599----->228.322" + order);
+            System.out.println("created -------->" + order);
         }
 
 
-        System.out.println("////////////////TEST/////////////////");
+        System.out.println("////////////////TEST///UPDATE//////////////");
         order.setQuanity(228);
         long id = order.getId();
+        System.out.println(id);
         if (dao.order.update(order)) {
-
             System.out.println(order);
         }
 
-        System.out.println("////////////////TEST/////////////////");
+        System.out.println("////////////////TEST/GETALL////////////////");
 //
 //
         System.out.println("<_USER GETALL_>");
-        List<Order> allo = dao.order.getAll("WHERE `users_id`='2'");
+        List<Order> allo = dao.order.getAll("WHERE `users_id`='1'");
         for (Order s : allo) {
             System.out.println(s);
         }
 
-//        if (dao.order.delete(order)) {
-//            System.out.println("order -------->" + order.getQuanity() + "--------> deleted");
-//        }
+        if (dao.order.delete(order)) {
+            System.out.println("order -------->" + order.getQuanity() + "--------> deleted");
+        }
     }
 }

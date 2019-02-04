@@ -11,6 +11,5 @@ public class CmdDelete  implements Cmd {
         Dao.getDao().delete();
         req.getSession().setAttribute("message", "База данных удалена!");
         return Action.ERROR;
-
     }
 }

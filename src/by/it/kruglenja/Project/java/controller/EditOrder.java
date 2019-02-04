@@ -17,10 +17,10 @@ public class EditOrder implements Cmd {
                     Order oldOrder = dao.order.read(orderId);
                      long id = oldOrder.getId();
                      int quanity = Form.getInteger(req, "quanity");
-                     double totalPrice = oldOrder.getTotalPrice();
-                     long spareParts_id=oldOrder.getSpareParts_id();
-                     long users_id=oldOrder.getUsers_id();
-                    oldOrder = new Order(id, quanity, totalPrice,spareParts_id, users_id);
+//                     double totalPrice = oldOrder.getTotalPrice();
+//                     long spareParts_id=oldOrder.getSpareParts_id();
+//                     long users_id=oldOrder.getUsers_id();
+//                    oldOrder = new Order(id, quanity, totalPrice,spareParts_id, users_id);
                     dao.order.update(oldOrder);
                     return Action.ORDER;
 

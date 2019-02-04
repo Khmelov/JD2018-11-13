@@ -19,6 +19,7 @@ public class Util {
             }
             return null;
     }
+
     static boolean checkAdmin(HttpServletRequest req){
         return checkUser(req)&&(findUser(req).getRoles_Id()==1);
     }

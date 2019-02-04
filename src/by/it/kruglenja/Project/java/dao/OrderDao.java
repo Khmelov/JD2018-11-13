@@ -12,10 +12,10 @@ import java.util.Locale;
 
 public class OrderDao implements InterfaceDao<Order> {
     public boolean create(Order order) throws SQLException {
-        String sql = String.format(Locale.US, "INSERT INTO `order`(`quanity`, `totalPrice`, `users_id`, `spareParts_id`)"
-                        + " VALUES ('%d', '%.2f', '%d', '%d')",
-                order.getQuanity(), order.getTotalPrice(),
-                order.getSpareParts_id(), order.getUsers_id());
+        String sql = String.format(Locale.US, "INSERT INTO `order`(`quanity`,`model`,`name`,`price`,`users_id`, `spareParts_id`)"
+                        + " VALUES ('%d', '%s', '%s','%.2f', '%d', '%d')",
+                order.getQuanity(), order.getModel(), order.getName(), order.getPrice(),
+                order.getUsers_id(), order.getSpareParts_id());
         System.out.println(sql);
         long id = Dao.executeCrate(sql);
         order.setId(id);
@@ -28,10 +28,13 @@ public class OrderDao implements InterfaceDao<Order> {
     }
 
     public boolean update(Order order) throws SQLException {
-        String sql = String.format(Locale.US, "UPDATE `order` SET `quanity`='%d'," +
-                        "`totalPrice`='%.2f',`users_id`='%d',`spareParts_id`='%d' WHERE `order`.`id` = '%d'",
-                order.getQuanity(), order.getTotalPrice(), order.getSpareParts_id(),
-                order.getUsers_id(),order.getId());
+        String sql = String.format(Locale.US, "UPDATE `order` SET `quanity`='%d',`model`='%s',`name`='%s',`price`='%.2f'," +
+                        "`users_id`='%d',`spareParts_id`='%d' WHERE `order`.`id` = '%d'",
+
+                order.getQuanity(), order.getModel(), order.getName(), order.getPrice(),
+                order.getUsers_id(), order.getSpareParts_id(), order.getId());
+        System.out.println(sql);
+
         return Dao.executeUpdate(sql);
     }
 
@@ -42,9 +45,12 @@ public class OrderDao implements InterfaceDao<Order> {
         } else {
             return null;
         }
-
+//        SELECT `spareparts`.`model`, `spareparts`.`name`, `spareparts`.`price` FROM `order` INNER JOIN spareparts ON spareparts.id = order.spareParts_id
+//        SELECT `spareparts`.`model`, `spareparts`.`name`, `spareparts`.`price` FROM `order` INNER JOIN spareparts ON spareparts.id = order.spareParts_id AND `order`.`users_id` =1
     }
-
+public void getSparepartsTableCols(long id){
+    String sql = String.format("SELECT * FROM  `order` %s");
+}
     @Override
     public List<Order> getAll(String sqlSuffix) throws SQLException {
         List<Order> sp = new ArrayList<>();
@@ -57,10 +63,11 @@ public class OrderDao implements InterfaceDao<Order> {
                 Order order = new Order();
                 order.setId(resultSet.getLong("id"));
                 order.setQuanity(resultSet.getInt("quanity"));
-                order.setTotalPrice(resultSet.getDouble("totalPrice"));
+                order.setModel(resultSet.getString("model"));
+                order.setName(resultSet.getString("name"));
+                order.setPrice(resultSet.getDouble("price"));
                 order.setUsers_id(resultSet.getLong("users_id"));
                 order.setSpareParts_id(resultSet.getLong("spareParts_id"));
-
                 sp.add(order);
             }
         }
