@@ -9,7 +9,12 @@
     <p> hello </p>
 <c:forEach items="${tests}" var="test">
     <form>
-        <p> ${test.id}</p>
+        <hr>
+        <p> <b>Тест на тему:</b> ${test.test_name}</p>
+    <c:forEach items="${test.questionList}" var="question">
+        <p> Вопрос № "${question.id}":"${question.question}" </p>
+    </c:forEach>
+
     </form>
 </c:forEach>
 </div>
