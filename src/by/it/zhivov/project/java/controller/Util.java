@@ -79,7 +79,10 @@ public class Util {
     static void deleteFile(HttpServletRequest req, String filename) {
         filename = req.getServletContext().getRealPath("/images/" + filename);
         File file = new File(filename);
-        file.delete();
+        if (file.delete()) {
+            System.out.println(file + " deleted");
+        }
+
     }
 
 }
