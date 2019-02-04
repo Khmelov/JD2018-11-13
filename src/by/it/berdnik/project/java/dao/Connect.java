@@ -48,7 +48,7 @@ class Connect {
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `berdnik`.`users` (\n" +
                     "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
-                    "  `nickname` VARCHAR(45) NULL,\n" +
+                    "  `login` VARCHAR(45) NULL,\n" +
                     "  `password` VARCHAR(45) NULL,\n" +
                     "  `email` VARCHAR(45) NULL,\n" +
                     "  `roles_id` INT NOT NULL,\n" +
@@ -77,8 +77,8 @@ class Connect {
                     "ENGINE = InnoDB;\n");
             statement.executeUpdate("INSERT INTO `berdnik`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `berdnik`.`roles` (`id`, `role`) VALUES (DEFAULT, 'user');");
-            statement.executeUpdate("INSERT INTO `berdnik`.`users` (`id`, `nickname`, `password`, `email`, `roles_id`) VALUES (DEFAULT, 'admin', 'admin', 'admin@mail.ru', 1);");
-            statement.executeUpdate("INSERT INTO `berdnik`.`users` (`id`, `nickname`, `password`, `email`, `roles_id`) VALUES (DEFAULT, 'user', 'user', 'user@mail.ru', 2);");
+            statement.executeUpdate("INSERT INTO `berdnik`.`users` (`id`, `login`, `password`, `email`, `roles_id`) VALUES (DEFAULT, 'admin', 'admin', 'admin@mail.ru', 1);");
+            statement.executeUpdate("INSERT INTO `berdnik`.`users` (`id`, `login`, `password`, `email`, `roles_id`) VALUES (DEFAULT, 'user', 'user', 'user@mail.ru', 2);");
             statement.executeUpdate("INSERT INTO `berdnik`.`buyers` (`id`, `item`, `specif`, `price`, `address`, `users_id`) VALUES (DEFAULT, 'MSI GE73 8RF-096XRU Raider RGB', '17.3\\\" 1920 x 1080 IPS, Intel i7 8750H, 16 ГБ, HDD 1000 ГБ, NVIDIA GTX 1070 8 ГБ', 3868, 'Minsk Street 1-1', 2);");
             statement.executeUpdate("INSERT INTO `berdnik`.`buyers` (`id`, `item`, `specif`, `price`, `address`, `users_id`) VALUES (DEFAULT, 'Dell G3 17 3779 G317-7664', '17.3\\\" 1920 x 1080 IPS, Intel i7 8750H, 16 ГБ, HDD+SSD 2000+256 ГБ, NVIDIA GTX 1060 6 ГБ', 3068, 'Minsk Street 2-2', 2);");
         } catch (SQLException e) {

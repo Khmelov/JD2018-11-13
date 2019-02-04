@@ -1,11 +1,16 @@
 package by.it.berdnik.project.java.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 enum Action {
 
+    RESET(new CmdReset()),
     INDEX(new CmdIndex()),
+    CREATEBUYER(new CmdCreateBuyer()),
     LOGIN(new CmdLogin()),
-    LOGOUT(new CmdLogout()),
+    PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
+    EDITUSERS(new CmdEditUsers()),
     ERROR(new CmdError());
 
     Cmd cmd;
@@ -15,6 +20,19 @@ enum Action {
     }
 
     String getJsp() {
-        return "/" + cmd.toString() + ".jsp";
+        return "/" + this.name().toLowerCase() + ".jsp";
+    }
+
+    static Action define(HttpServletRequest req) {
+        Action result = Action.INDEX;
+        String command = req.getParameter("command");
+        if (command != null && !command.isEmpty()) {
+            try {
+                result = Action.valueOf(command.toUpperCase());
+            }
+            catch (IllegalArgumentException e){
+            }
+        }
+        return result;
     }
 }
