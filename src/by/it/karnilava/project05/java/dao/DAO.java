@@ -1,4 +1,4 @@
-package by.it.karnilava.jd03_03.dao;
+package by.it.karnilava.project05.java.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -50,7 +50,7 @@ public class DAO {
     }
 
     static long executeCreateAndGetId(String sql) throws SQLException {
-        try (Connection connection = by.it.karnilava.jd03_02.CRUD.Connect.getConnection();
+        try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();

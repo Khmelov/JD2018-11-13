@@ -1,4 +1,4 @@
-package by.it.karnilava.jd03_03;
+package by.it.karnilava.jd03_03.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

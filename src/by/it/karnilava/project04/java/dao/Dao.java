@@ -1,56 +1,54 @@
-package by.it.karnilava.jd03_03.dao;
+package by.it.karnilava.project04.java.dao;
+
+import by.it.karnilava.project04.java.beans.Ad;
+import by.it.karnilava.project04.java.beans.Role;
+import by.it.karnilava.project04.java.beans.User;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class DAO {
+public class Dao {
 
+    private static volatile Dao dao;
 
-    private static volatile DAO dao; //синглтон для ДАО
-    public AccountDAO account;
-    public ClientDAO client;
-    public RoleDAO role;
-    public StateDAO state;
-    public TypeDAO type;
+    public InterfaceDao<Role> role;
+    public InterfaceDao<User> user;
+    public InterfaceDao<Ad> ad;
 
-    public DAO() {
+    public void reset(){
+        Connect.reset();
     }
 
-    public static DAO getDao() {
-        DAO localDao = dao;
-        if (localDao == null) {
-            synchronized (DAO.class) {
-                localDao = dao;
-                if (localDao == null) {
-                    dao = localDao = new DAO();
-                    dao.account = new AccountDAO();
-                    dao.client = new ClientDAO();
-                    dao.role = new RoleDAO();
-                    dao.state = new StateDAO();
-                    dao.type = new TypeDAO();
+    private Dao() {
+        role=new RoleDao();
+        user=new UserDao();
+        ad=new AdDao();
+        //или так
+        ad=new UniversalDAO<>(new Ad(),"ads");
+    }
+
+    public static Dao getDao(){
+        if (dao== null) {
+            synchronized (Dao.class) {
+                if (dao== null) {
+                    dao=new Dao();
                 }
             }
         }
-
-        return localDao;
-
+        return dao;
     }
 
-
     static boolean executeUpdate(String sql) throws SQLException {
-
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             return (1 == statement.executeUpdate(sql));
         }
-
-
     }
 
     static long executeCreateAndGetId(String sql) throws SQLException {
-        try (Connection connection = by.it.karnilava.jd03_02.CRUD.Connect.getConnection();
+        try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();
@@ -61,5 +59,5 @@ public class DAO {
         }
         return -1;
     }
-}
 
+}

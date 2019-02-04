@@ -1,11 +1,10 @@
-package by.it.karnilava.jd03_03.dao;
+package by.it.karnilava.project05.java.dao;
+
+import by.it.karnilava.project05.java.beans.State ;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import by.it.karnilava.jd03_03.beans.State;
-
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;

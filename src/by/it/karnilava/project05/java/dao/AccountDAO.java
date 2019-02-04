@@ -1,6 +1,6 @@
-package by.it.karnilava.jd03_03.dao;
+package by.it.karnilava.project05.java.dao;
 
-import by.it.karnilava.jd03_03.beans.Account;
+import by.it.karnilava.project05.java.beans.Account ;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

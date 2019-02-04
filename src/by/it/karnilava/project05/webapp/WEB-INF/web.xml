@@ -1,0 +1,24 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+                      http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+         version="3.0"
+         metadata-complete="true">
+    <display-name>Сервлет Controller</display-name>
+    <!--
+    Для любого сервлета нужно определить два тега servlet и servlet-mapping.
+    Важно чтобы внутри каждого из этих тегов были теги servlet-name
+    и имя сервлета в них было одинаковым!!! Здесь это имя HelloWorld
+    -->
+    <servlet>
+        <servlet-name>FrontController</servlet-name>
+        <servlet-class>by.it.karnilava.project05.java.controller.FrontController</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>FrontController</servlet-name>
+        <url-pattern>/do</url-pattern>
+    </servlet-mapping>
+
+
+</web-app>

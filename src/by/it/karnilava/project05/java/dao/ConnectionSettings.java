@@ -1,4 +1,4 @@
-package by.it.karnilava.jd03_03;
+package by.it.karnilava.project05.java.dao;
 
 public interface ConnectionSettings {
 
