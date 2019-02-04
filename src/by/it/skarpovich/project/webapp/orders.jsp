@@ -10,34 +10,29 @@
     <h1>Мои Заказы</h1>
     <p class="lead">Список заказанных проектов</p>
 </div>
+<table class="table table-striped table-responsive-md btn-table">
+  <thead>
+    <tr>
+    <th scope="col">ID</th>
+    <th scope="col">Дата</th>
+    <th scope="col">Время</th>
+    <th scope="col">Пользователь</th>
+    <th scope="col">Проект</th>
 
-<div class="row">
-    <div class="col-md-2">ID</div>
-    <div class="col-md-2">Дата</div>
-    <div class="col-md-2">Время</div>
-    <div class="col-md-2">Пользователь</div>
-    <div class="col-md-2">Проект</div>
- <div class="col-md-1"> </div>
-
-</div>
-
+ </tr>
+  </thead>
+ <tbody>
+    <tr>
 <c:forEach items="${orders}" var="varOrders">
-
-    <br>
-    <div class="row">
-     <div class="col-md-2">${varOrders.id} </div>
-        <div class="col-md-2">${varOrders.date} </div>
-        <div class="col-md-2">${varOrders.time} </div>
-        <div class="col-md-2">${varOrders.users_id} </div>
- <div class="col-md-2">${varOrders.items_id} </div>
-
-  </div>
-
+     <td>${varOrders.id}</td>
+         <td>${varOrders.date}</td>
+        <td>${varOrders.time}</td>
+        <td>${varOrders.users_id}</td>
+ <td>${varOrders.items_id} </td>
+ </tr>
 </c:forEach>
-
-
-
-
+      </tbody>
+    </table>
 </div>
 </body>
 </html>
