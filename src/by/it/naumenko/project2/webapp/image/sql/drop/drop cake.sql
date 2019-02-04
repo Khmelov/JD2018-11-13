@@ -1,0 +1,1 @@
+DROP TABLE `naumenko2`.`cake`

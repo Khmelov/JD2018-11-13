@@ -1,0 +1,2 @@
+INSERT INTO `naumenko2`.`zakaz` (`id_zakaz`, `tovar`, `priceHt`, `kolTovar`, `biscuit`, `nachinka`, `decoration`, `cream`, `price_zakaz`, `id_user`, `id_tovar`) VALUES (DEFAULT, 'svadba', 40, 8, 'red barhat', 'konaitur', 'yagodi', 'cheez', 350, 2, 1);
+INSERT INTO `naumenko2`.`zakaz` (`id_zakaz`, `tovar`, `priceHt`, `kolTovar`, `biscuit`, `nachinka`, `decoration`, `cream`, `price_zakaz`, `id_user`, `id_tovar`) VALUES (DEFAULT, 'kids cake', 35, 2, 'vanil', 'kurd', 'flower', 'plombir', 70, 3, 2);
