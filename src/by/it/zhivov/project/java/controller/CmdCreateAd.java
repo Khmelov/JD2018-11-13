@@ -17,7 +17,7 @@ public class CmdCreateAd implements Cmd {
         if (Form.isPost(req)) {
             String title = Form.getString(req, "title", "[a-zа-яA-Z-А-Я][a-zа-яA-ZА-Я0-9\\-!?,. ]{7,49}");
             String description = Form.getString(req, "description", "[a-zа-яA-Z-А-Я0-9.,?!\\- ]{7,2000}");
-            String brnd = Form.getString(req, "brnd", "[a-zA-Zа-яА-Я0-9 ]{1,45}");
+            String brnd = Form.getString(req, "brnd", "[a-zA-Zа-яА-Я0-9- ]{1,45}");
             String model = Form.getString(req, "model", "[a-zA-Zа-яА-Я0-9 ]{1,45}");
             String color = Form.getString(req, "color", "[a-zA-Zа-яА-Я- ]{1,45}");
             String body = Form.getString(req, "body", "[a-zA-Zа-яА-Я]{1,45}");

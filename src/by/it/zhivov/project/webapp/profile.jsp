@@ -106,7 +106,7 @@
         <div class="col-md-2">${user.email}</div>
         <div class="col-md-2">${user.tel}</div>
     </div>
-
+    <br>
     <div class="container">
         <div class="row">
             <div class="page-header">
@@ -162,6 +162,7 @@
         <c:forEach items="${ads}" var="ad">
             <br>
             <div class="row">
+
                 <div class="zoom_img">
                     <div class="col-md-1">
                         <a target="_blank" href="images/ad${ad.id}">
@@ -171,6 +172,7 @@
                         </a>
                     </div>
                 </div>
+
                 <div class="col-md-2">${ad.title}</div>
                 <div class="col-md-2">${ad.description}</div>
                 <div class="col-md-1">${ad.brnd}</div>

@@ -51,7 +51,9 @@
                 </c:otherwise>
             </c:choose>
         </ul>
-
+        <a target="_blank" href="http://t.me/zhivov_bot">
+            <img src="images/tlogo.png" height="30px">
+        </a>
         <c:if test="${user!=null}">
             <form class="form-inline my-2 my-lg-0" action="do?command=Profile" method="POST">
                 <button id="logout" name="logout" class="btn btn-dark">Выйти</button>
