@@ -18,9 +18,14 @@ class Form {
         return getString(req, name, ".*");
     }
 
-    static double getDouble(HttpServletRequest req, String name) {
+    static float getFloat(HttpServletRequest req, String name) {
         String str = req.getParameter(name);
-        return Double.parseDouble(str);
+        return Float.parseFloat(str);
+    }
+
+    static double getDouble(HttpServletRequest req, String name) {
+            String str = req.getParameter(name);
+            return Double.parseDouble(str);
     }
 
     static double getInteger(HttpServletRequest req, String name) {
