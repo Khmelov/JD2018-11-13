@@ -14,9 +14,9 @@
 
             <!-- Text input-->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="username">Login</label>
+                <label class="col-md-4 control-label" for="login">Login</label>
                 <div class="col-md-4">
-                    <input id="username" name="username" value="TestUser" type="text" placeholder="min 6 symbols" class="form-control input-md" required="">
+                    <input id="user" name="login" value="TestUser" type="text" placeholder="min 6 symbols" class="form-control input-md" required="">
 
                 </div>
             </div>
@@ -32,7 +32,7 @@
 
             <!-- Button -->
             <div class="form-group">
-                <label class="col-md-4 control-label" for="username"></label>
+                <label class="col-md-4 control-label" for="Login"></label>
                 <div class="col-md-4">
                     <button id="login" name="login" class="btn btn-success">Войти</button>
                 </div>

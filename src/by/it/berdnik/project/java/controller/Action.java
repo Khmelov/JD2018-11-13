@@ -6,11 +6,11 @@ enum Action {
 
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
-    CREATEAD(new CmdCreateBuyer()),
+    CREATEBUYER(new CmdCreateBuyer()),
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
-//    EDITBUYERS(new CmdEditBuyers()),
+    EDITUSERS(new CmdEditUsers()),
     ERROR(new CmdError());
 
     Cmd cmd;

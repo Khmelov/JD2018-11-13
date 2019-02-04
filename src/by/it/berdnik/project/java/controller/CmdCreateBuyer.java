@@ -19,10 +19,10 @@ class CmdCreateBuyer implements Cmd {
             double price = Form.getDouble(req, "price");
             String address = Form.getString(req, "address");
             User user = Util.findUser(req);
-            Buyer buyer = new Buyer(0, item, specif, price, address, user.getId());
+            Buyer buyer = new Buyer(0, item, specif, price, address, 2);
             Dao.getDao().buyer.create(buyer);
             return Action.PROFILE;
         }
-        return Action.CREATEAD;
+        return Action.CREATEBUYER;
     }
 }

@@ -12,7 +12,7 @@ class CmdLogin implements Cmd {
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (Form.isPost(req)) {
             String login = Form.getString(req, "login");
-            String password = Form.getString(req, "password", "[a-zA-Z0-9_-]{4,}");
+            String password = Form.getString(req, "password", "[a-zA-Zа-яёА-ЯЁ0-9_]{4,}");
             String where = String.format(" WHERE password='%s' and login='%s' LIMIT 0,1", password, login);
             List<User> users = Dao.getDao().user.getAll(where);
             if (users.size() == 1) {

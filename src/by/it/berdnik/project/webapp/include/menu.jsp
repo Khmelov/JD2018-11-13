@@ -14,9 +14,9 @@
                 <a class="nav-item nav-link" href="do?command=Reset">Сброс</a>
             </c:when>
                 <c:otherwise>
-            <a class="nav-item nav-link" href=do?command=Logout>logout</a>
-            <a class="nav-item nav-link" href=do?command=CreateAd>create-ad</a>
-            <a class="nav-item nav-link" href=do?command=ListAd>list-ad</a>
+            <a class="nav-item nav-link" href=do?command=Profile>Мой профиль</a>
+            <a class="nav-item nav-link" href=do?command=CreateBuyer>Создать объявление</a>
+            <a class="nav-item nav-link" href=do?command=EditUsers>Управление профилем</a>
                 </c:otherwise>
             </c:choose>
         </div>
