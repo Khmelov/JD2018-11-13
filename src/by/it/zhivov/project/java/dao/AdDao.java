@@ -77,7 +77,8 @@ public class AdDao implements InterfaceDao<Ad> {
         return Dao.executeUpdate(sqlCmd);
     }
 
-    public List<Ad> searchAd(String searchWord) throws SQLException {
+
+    public static List<Ad> searchAd(String searchWord) throws SQLException {
         List<Ad> searchResult = new ArrayList<>();
         String sqlCmd = String.format("SELECT * FROM ads WHERE MATCH (brand) AGAINST ('%s')", searchWord);
         try (Connection connection = Connect.getConnection();
