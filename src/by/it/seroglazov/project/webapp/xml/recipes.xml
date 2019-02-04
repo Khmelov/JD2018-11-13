@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<recipes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xml.jd03_03.seroglazov.it.by/recipes"
+         xsi:schemaLocation="http://xml.jd03_03.seroglazov.it.by/recipes recipes.xsd">
+    <recipe>
+        <name>ALEXANDER</name>
+        <type>After Dinner Cocktail</type>
+        <description>Shake and strain into a chilled cocktail glass. Sprinkle with fresh ground nutmeg.</description>
+        <ingredient>
+            <name>Cognac</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Créme de Cacao (brown)</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh cream</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>AMERICANO</name>
+        <type>Before Dinner Cocktail</type>
+        <description>Mix the ingredients directly in an old-fashioned glass filled with ice-cubes, add a splash of soda water and garnish with half orange slice.</description>
+        <ingredient>
+            <name>Campari</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Red Vermouth</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>soda water</name>
+            <amount>1</amount>
+            <unit>splash</unit>
+        </ingredient>
+    </recipe>
+</recipes>
