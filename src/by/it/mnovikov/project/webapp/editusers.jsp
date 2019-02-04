@@ -27,7 +27,7 @@
 
     <div class="container">
         <c:forEach items="${users}" var="user">
-            <form class="update-user-${user.id}" action="do?command=EditTables" method="POST">
+            <form class="update-user-${user.id}" action="do?command=EditUsers" method="POST">
                 <div class="row">
                     <div class=col-md-0>
                         <input id="id" class="form-control input-md" name="id" type="hidden"
@@ -87,23 +87,6 @@
             </form>
         </c:forEach>
     </div>
-
-    <div class="container">
-        <div class="row">
-            <div class=col-md-12>
-                <p class="text-center">Товары</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class=col-md-0><!--ID--></div>
-            <div class=col-md-2>Название</div>
-            <div class=col-md-4>Описание</div>
-            <div class=col-md-1>Тип</div>
-            <div class=col-md-2>Производительность</div>
-            <div class=col-md-3>Цена</div>
-        </div>
-    </div>
-
 
 </div>
 </body>

@@ -11,7 +11,8 @@ enum Action {
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignUp()),
     CREATEGOOD(new CmdCreateGood()),
-    EDITTABLES(new CmdEditTables()),
+    EDITUSERS(new CmdEditUsers()),
+    EDITGOODS(new CmdEditGoods()),
     ERROR(new CmdError());
 
     Cmd cmd;
