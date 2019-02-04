@@ -401,4 +401,393 @@
             <unit>dash</unit>
         </ingredient>
     </recipe>
+    <recipe>
+        <name>PARADISE</name>
+        <type>All Day Cocktail</type>
+        <description>Pour all ingredients into cocktail shaker filled with ice. Shake and strain into chilled cocktail glass.</description>
+        <ingredient>
+            <name>Gin</name>
+            <amount>3.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Apricot Brandy</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Orange juice</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>PORTO FLIP</name>
+        <type>After Dinner Cocktail</type>
+        <description>Pour all ingredients into cocktail shaker filled with ice. Shake well. Strain into cocktail glass. Sprinkle with fresh ground nutmeg.</description>
+        <ingredient>
+            <name>Brandy</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Red Port</name>
+            <amount>4.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Egg yolk</name>
+            <amount>1</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>RUSTY NAIL</name>
+        <type>After Dinner Cocktail</type>
+        <description>Pour all ingredients directly into old-fashioned glass filled with ice. Stir gently. Garnish with lemon twist.</description>
+        <ingredient>
+            <name>Scotch whisky</name>
+            <amount>4.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Drambuie</name>
+            <amount>2.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>SAZERAC</name>
+        <type>After Dinner Cocktail</type>
+        <description>Rinse a chilled old-fashioned glass with the absinthe, add crushed ice and set it aside. Stir the remaining ingredients over ice and set it aside. Discard the ice and any excess absinthe from the prepared glass, and strain the drink into the glass. Add the Lemon peel for garnish. Note: The original recipe changed after the American Civil War, rye whiskey substituted cognac as it became hard to obtain.</description>
+        <ingredient>
+            <name>Cognac</name>
+            <amount>5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Absinthe</name>
+            <amount>1</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>sugar</name>
+            <amount>1</amount>
+            <unit>cube</unit>
+        </ingredient>
+        <ingredient>
+            <name>Peychaud’s bitters</name>
+            <amount>2</amount>
+            <unit>dash</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>SCREWDRIVER</name>
+        <type>All Day Cocktail</type>
+        <description>Pour all ingredients into a highball glass filled with ice. Stir gently. Garnish with an orange slice.</description>
+        <ingredient>
+            <name>Vodka</name>
+            <amount>5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Orange juice</name>
+            <amount>10</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>SIDECAR</name>
+        <type>All Day Cocktail</type>
+        <description>Pour all ingredients into cocktail shaker filled with ice. Shake well and strain into cocktail glass.</description>
+        <ingredient>
+            <name>Cognac</name>
+            <amount>5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Triple Sec</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lemon juice</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>WHISKEY SOUR</name>
+        <type>Before Dinner Cocktail</type>
+        <description>Dash egg white (Optional: if used shake little harder to foam up the egg white). Pour all ingredients into cocktail shaker filled with ice. Shake well. Strain in cocktail glass. If served ‘On the rocks’, strain ingredients into old-fashioned glass filled with ice. Garnish with half orange slice and maraschino cherry.</description>
+        <ingredient>
+            <name>Bourbon Whiskey</name>
+            <amount>4.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Sugar syrup</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lemon juice</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>WHITE LADY</name>
+        <type>All Day Cocktail</type>
+        <description>Add all ingredients into cocktail shaker filled with ice. Shake well and strain into large cocktail glass.</description>
+        <ingredient>
+            <name>Gin</name>
+            <amount>4</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Triple Sec</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lemon juice</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>BELLINI</name>
+        <type>Sparkling Cocktail</type>
+        <description>Pour peach puree into chilled glass and add sparkling wine. Stir gently.</description>
+        <ingredient>
+            <name>Prosecco</name>
+            <amount>10</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh peach puree</name>
+            <amount>5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>BLACK RUSSIAN</name>
+        <type>After Dinner Cocktail</type>
+        <description>Pour the ingredients into the old fashioned-glass filled with ice cubes. Stir gently. Note: for White Russian, float fresh cream on the top and stir gently.</description>
+        <ingredient>
+            <name>Vodka</name>
+            <amount>5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Coffee liqueur</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>COSMOPOLITAN</name>
+        <type>All Day Cocktail</type>
+        <description>Shake all ingredients in cocktail shaker filled with ice.Strain into a large cocktail glass. Garnish with lime slice.</description>
+        <ingredient>
+            <name>Citron Vodka</name>
+            <amount>4</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Cointreau</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Cranberry juice</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lime juice</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>CUBA LIBRE</name>
+        <type>Longdrink</type>
+        <description>Build all ingredients in a highball glass filled with ice. Garnish with lime wedge.</description>
+        <ingredient>
+            <name>White Rum</name>
+            <amount>5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Cola</name>
+            <amount>12</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lime juice</name>
+            <amount>1</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>GOD FATHER</name>
+        <type>After Dinner Cocktail</type>
+        <description>Pour all ingredients directly into old fashioned glass filled with ice cubes. Stir gently.
+        </description>
+        <ingredient>
+            <name>Scotch</name>
+            <amount>3.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Amaretto</name>
+            <amount>3.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>GOD MOTHER</name>
+        <type>After Dinner Cocktail</type>
+        <description>Pour all ingredients directly into old fashioned glass filled with ice cubes. Stir gently.
+        </description>
+        <ingredient>
+            <name>Vodka</name>
+            <amount>3.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Amaretto</name>
+            <amount>3.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>HEMINGWAY SPECIAL</name>
+        <type>All Day Cocktail</type>
+        <description>Pour all ingredients into a shaker with ice. Shake. Strain into a double cocktail glass.
+        </description>
+        <ingredient>
+            <name>White Rum</name>
+            <amount>6</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Maraschino</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Grapefruit juice</name>
+            <amount>4</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lime juice</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>IRISH COFFEE</name>
+        <type>Hot Drink</type>
+        <description>Warm the Irish whiskey over a burner. Pour into the glass (for hot drink) hot coffee, and add a
+            teaspoon of sugar. Float Cream on top.
+        </description>
+        <ingredient>
+            <name>Irish whiskey</name>
+            <amount>4</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Hot coffee</name>
+            <amount>9</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh cream</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>brown sugar</name>
+            <amount>1</amount>
+            <unit>teaspoon</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>MARGARITA</name>
+        <type>All Day Cocktail</type>
+        <description>Pour all ingredients into shaker with ice. Shake well and strain into cocktail glass rimmed with
+            salt (note:Fruit Margarita – blend selected fruit with the above recipe).
+        </description>
+        <ingredient>
+            <name>Tequila</name>
+            <amount>3.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Cointreau</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lime juice</name>
+            <amount>1.5</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>MOJITO</name>
+        <type>Longdrink</type>
+        <description>Muddle mint springs with sugar and lime juice. Add splash of soda water and fill glass with cracked
+            ice. Pour rum and top with soda water. Garnish with spring of mint leaves and lemon slice. Serve with straw.
+        </description>
+        <ingredient>
+            <name>White Rum</name>
+            <amount>4</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Fresh lime juice</name>
+            <amount>3</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Mint</name>
+            <amount>6</amount>
+            <unit>sprigs</unit>
+        </ingredient>
+        <ingredient>
+            <name>white sugar</name>
+            <amount>2</amount>
+            <unit>teaspoon</unit>
+        </ingredient>
+        <ingredient>
+            <name>Soda water</name>
+            <amount>top</amount>
+            <unit>glass</unit>
+        </ingredient>
+    </recipe>
+    <recipe>
+        <name>B52</name>
+        <type>After Dinner</type>
+        <description>Layer ingredients one at a time starting with Kahlúa, followed by Baileys Irish Cream and top with Grand Marnier. Flame the Grand Marnier, serve while the flame is still on, accompanied with a straw on side plate.</description>
+        <ingredient>
+            <name>Grand Marnier</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Baileys Irish Cream</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+        <ingredient>
+            <name>Kahlúa</name>
+            <amount>2</amount>
+            <unit>cl</unit>
+        </ingredient>
+    </recipe>
 </recipes>
