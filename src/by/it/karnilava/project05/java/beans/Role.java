@@ -1,4 +1,4 @@
-package by.it.karnilava.project05.beans;
+package by.it.karnilava.project05.java.beans;
 
 public class Role {
 

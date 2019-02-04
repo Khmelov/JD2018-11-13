@@ -3,9 +3,7 @@
 <body>
 <%@ include file="include/menu.htm" %>
  <div class="container">
-<p>ERROR: ${message}</p>
+<p>Cmd AdminProfile: ${client}</p>
   </div>
 </body>
 </html>
-
-

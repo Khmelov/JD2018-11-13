@@ -2,11 +2,12 @@ package by.it.karnilava.project05.java.controller;
 
 enum Action {
 
-    INDEX(new CmdIndex()),
+    PROFILE(new CmdProfile()),
     LOGIN(new CmdLogin()),
     LOGOUT(new CmdLogout()),
     SIGNUP(new CmdSignup()),
-    ERROR(new CmdError());
+    ERROR(new CmdError()),
+    ADMINPROFILE(new CmdAdminProfile());
 
     Cmd cmd;
 

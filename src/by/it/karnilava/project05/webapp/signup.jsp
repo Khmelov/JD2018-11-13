@@ -2,10 +2,11 @@
 <%@ include file="include/head.htm" %>
 <body>
 
-<p>Cmd Sign-up: ${message}</p>
-<div class="container">
+
+
 <%@ include file="include/menu.htm" %>
-    <form class="form-horizontal">
+    <form class="form-horizontal" action="do?command=signUp" method="POST">
+    <div class="container">
     <fieldset>
 
     <!-- Form Name -->
@@ -51,13 +52,16 @@
     <div class="form-group">
       <label class="col-md-4 control-label" for="signUp"></label>
       <div class="col-md-4">
-        <button id="signUp" name="signUp" class="btn btn-success">Registration</button>
+        <button id="signUp" name="signUp" class="btn btn-info">Registration</button>
       </div>
     </div>
 
+
+
     </fieldset>
+    </div>
     </form>
-   </div>
+
 </body>
 </html>
 
