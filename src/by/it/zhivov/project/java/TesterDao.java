@@ -11,8 +11,8 @@ import java.sql.SQLException;
 
 public class TesterDao {
     public static void main(String[] args) throws SQLException, IOException {
-        for (int i = 0; i < 20; i++) {
-            //Dao.restoreDB();
+        // for (int i = 0; i < 20; i++) {
+        Dao.restoreDB();
             Dao dao = Dao.getDao();
             Role role = new Role();
             User user = new User();
@@ -96,5 +96,5 @@ public class TesterDao {
             //Util.sendTg(ad.getBrnd(), ad.getModel(), ad.getYear(), ad.getPrice());
         }
         //Dao.restoreDB();
-    }
+    //}
 }
