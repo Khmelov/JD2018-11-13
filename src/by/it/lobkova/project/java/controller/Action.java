@@ -6,10 +6,14 @@ enum Action {
 
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
+    CREATEGOAL(new CmdCreateGoal()),
+    CREATETASK(new CmdCreateTask()),
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
-    ERROR(new CmdError());
+    EDITUSERS(new CmdEditUsers()),
+    ERROR(new CmdError()),
+    LOGOUT(new CmdLogout());
 
     Cmd cmd;
 
@@ -22,14 +26,13 @@ enum Action {
     }
 
     static Action define(HttpServletRequest req) {
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         String command = req.getParameter("command");
         if (command != null && !command.isEmpty()) {
             try {
                 result = Action.valueOf(command.toUpperCase());
             }
             catch (IllegalArgumentException e){
-                //create our error
             }
         }
         return result;
