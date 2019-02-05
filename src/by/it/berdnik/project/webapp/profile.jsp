@@ -17,7 +17,6 @@
         <div class="col-md-3">Адрес</div>
 
     </div>
-
     <c:forEach items="${buyers}" var="buyer">
         <br>
         <div class="row">
