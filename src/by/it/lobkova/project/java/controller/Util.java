@@ -15,9 +15,10 @@ public class Util {
         if (session != null) {
             Object oUser = session.getAttribute("user");
             if (oUser != null) {
-                User user = (User) oUser;
+                return (User) oUser;
             }
         }
         return null;
     }
+
 }

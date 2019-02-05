@@ -1,25 +1,36 @@
 package by.it.lobkova.project.java.beans;
 
+import java.util.List;
+
 public class Goal {
 
     private long id;
-    private String name_goal;
-    private String description_goal;
+    private String name;
+    private String description;
     private long beginDate;
     private long endDate;
-    private long user_id;
+    private long userId;
+    private List<Task> tasks;
 
     public Goal() {
 
     }
 
-    public Goal(long id, String name_goal, String description_goal, long beginDate, long endDate, long user_id) {
+    public Goal(long id, String name, String description, long beginDate, long endDate, long user) {
         this.id = id;
-        this.name_goal = name_goal;
-        this.description_goal = description_goal;
+        this.name = name;
+        this.description = description;
         this.beginDate = beginDate;
         this.endDate = endDate;
-        this.user_id = user_id;
+        this.userId = user;
+    }
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public long getId() {
@@ -30,28 +41,28 @@ public class Goal {
         this.id = id;
     }
 
-    public long getUser_id() {
-        return user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(long user_id) {
-        this.user_id = user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 
-    public String getName_goal() {
-        return name_goal;
+    public String getName() {
+        return name;
     }
 
-    public void setName_goal(String name_goal) {
-        this.name_goal = name_goal;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getDescription_goal() {
-        return description_goal;
+    public String getDescription() {
+        return description;
     }
 
-    public void setDescription_goal(String description_goal) {
-        this.description_goal = description_goal;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public long getBeginDate() {
@@ -74,11 +85,11 @@ public class Goal {
     public String toString() {
         return "Goal{" +
                 "id=" + id +
-                ", name_goal='" + name_goal + '\'' +
-                ", description_goal='" + description_goal + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
                 ", beginDate=" + beginDate +
                 ", endDate=" + endDate +
-                ", user_id=" + user_id +
+                ", userId=" + userId +
                 '}';
     }
 }

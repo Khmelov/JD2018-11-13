@@ -1,9 +1,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <html>
-<%@ include file="include/head.htm" %>
+<%@ include file="include/head.jsp" %>
 <body>
 <div class="container">
-<%@ include file="include/menu.htm" %>
+<%@ include file="include/menu.jsp" %>
 <form class="form-horizontal" action=do?command=CreateGoal method="POST">
 <fieldset>
 
@@ -12,10 +12,9 @@
 
 <!-- Text input-->
 <div class="form-group">
-  <label class="col-md-4 control-label" for="name">Name goal</label>
+  <label class="col-md-4 control-label" for="name_goal">Name goal</label>
   <div class="col-md-4">
-  <input id="name" name="name" type="text" placeholder="" class="form-control input-md" required="">
-  <span class="help-block">Name goal</span>
+  <input id="name_goal" name="name_goal" value="TestGoal" type="text" placeholder="" class="form-control input-md" required="">
   </div>
 </div>
 
@@ -23,17 +22,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="description_goal">Description goal</label>
   <div class="col-md-4">
-  <input id="description_goal" name="description_goal" type="text" placeholder="" class="form-control input-md" required="">
-  <span class="help-block">Description goal</span>
-  </div>
-</div>
-
-<!-- Text input-->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="endDate">End date</label>
-  <div class="col-md-4">
-  <input id="endDate" name="endDate" type="text" placeholder="" class="form-control input-md" required="">
-  <span class="help-block">End date</span>
+  <input id="description_goal" name="description_goal" value="TestDescriptionGoal" type="text" placeholder="" class="form-control input-md" required="">
   </div>
 </div>
 
@@ -41,8 +30,15 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="beginDate">Begin date</label>
   <div class="col-md-4">
-  <input id="beginDate" name="beginDate" type="text" placeholder="" class="form-control input-md" required="">
-  <span class="help-block">Begin date</span>
+  <input id="beginDate" name="beginDate" value="2020" type="text" placeholder="" class="form-control input-md" required="">
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="endDate">End date</label>
+  <div class="col-md-4">
+  <input id="endDate" name="endDate" value="2019" type="text" placeholder="" class="form-control input-md" required="">
   </div>
 </div>
 

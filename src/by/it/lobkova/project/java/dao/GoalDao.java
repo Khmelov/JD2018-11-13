@@ -1,7 +1,6 @@
 package by.it.lobkova.project.java.dao;
 
 import by.it.lobkova.project.java.beans.Goal;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,8 +13,8 @@ public class GoalDao implements IDao<Goal> {
     @Override
     public boolean create(Goal goal) throws SQLException {
         String sql = String.format(
-                "INSERT INTO `goals` (`name_goal`, `description_goal`, `beginDate`, `endDate`, `users_ID`) VALUES ('%s', '%s', '%d', '%d', ''%d)",
-                goal.getName_goal(), goal.getDescription_goal(), goal.getBeginDate(), goal.getEndDate(), goal.getUser_id()
+                "INSERT INTO `goals` (`name_goal`, `description_goal`, `beginDate`, `endDate`, `users_ID`) VALUES ('%s', '%s', '%d', '%d', '%d')",
+                goal.getName(), goal.getDescription(), goal.getBeginDate(), goal.getEndDate(), goal.getUserId()
         );
         long id = Dao.executeCreateAndGetId(sql);
         goal.setId(id);
@@ -25,8 +24,8 @@ public class GoalDao implements IDao<Goal> {
     @Override
     public boolean update(Goal goal) throws SQLException {
         String sql = String.format(
-                "UPDATE `goals` SET `name_goal` = '%s', `description_goal` = '%s', `beginDate` = '%s', `endDate`, `users_ID` = '%d' WHERE `goals`.`id` = '%d'",
-                goal.getName_goal(), goal.getDescription_goal(), goal.getBeginDate(), goal.getEndDate(), goal.getUser_id()
+                "UPDATE `goals` SET `name_goal` = '%s', `description_goal` = '%s', `beginDate` = '%d', `endDate` = '%d', `users_ID` = '%d' WHERE `goals`.`id` = '%d'",
+                goal.getName(), goal.getDescription(), goal.getBeginDate(), goal.getEndDate(), goal.getUserId(), goal.getId()
         );
         return Dao.executeUpdate(sql);
     }
@@ -59,8 +58,8 @@ public class GoalDao implements IDao<Goal> {
             long id = resultSet.getLong("id");
             String name_goal = resultSet.getString("name_goal");
             String description_goal = resultSet.getString("description_goal");
-            long beginDate = resultSet.getLong("BeginDate");
-            long endDate = resultSet.getLong("BeginDate");
+            long beginDate = resultSet.getLong("beginDate");
+            long endDate = resultSet.getLong("endDate");
             long users_ID = resultSet.getLong("users_ID");
             Goal goal = new Goal(id, name_goal, description_goal, beginDate, endDate, users_ID);
             result.add(goal);

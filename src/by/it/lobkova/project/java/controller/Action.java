@@ -7,11 +7,13 @@ enum Action {
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     CREATEGOAL(new CmdCreateGoal()),
+    CREATETASK(new CmdCreateTask()),
     LOGIN(new CmdLogin()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
-    ERROR(new CmdError());
-
+    EDITUSERS(new CmdEditUsers()),
+    ERROR(new CmdError()),
+    LOGOUT(new CmdLogout());
 
     Cmd cmd;
 

@@ -2,9 +2,7 @@ package by.it.lobkova.project.java.controller;
 
 import by.it.lobkova.project.java.beans.User;
 import by.it.lobkova.project.java.dao.Dao;
-
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.sql.SQLException;
 import java.util.List;
 
@@ -13,7 +11,7 @@ class CmdLogin implements Cmd {
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (Form.isPost(req)) {
             String login = Form.getString(req, "login");
-            String password = Form.getStrint(req, "pasword", "[a-zA-Z0-9_-]{4,}");
+            String password = Form.getString(req, "password");
             String where = String.format(" WHERE password='%s' and login='%s' LIMIT 0,1", password, login);
             List<User> all = Dao.getDao().user.getAll(where);
             if (all.size() == 1) {

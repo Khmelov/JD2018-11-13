@@ -4,7 +4,6 @@ import by.it.lobkova.project.java.beans.Goal;
 import by.it.lobkova.project.java.beans.Role;
 import by.it.lobkova.project.java.beans.Task;
 import by.it.lobkova.project.java.beans.User;
-
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -12,13 +11,14 @@ import java.sql.Statement;
 
 public class Dao {
     private static volatile Dao dao;
+    private static int ID_INDEX = 1;
 
-    public static IDao<User> user;
-    public static IDao<Role> role;
-    public static IDao<Goal> goal;
-    public static IDao<Task> task;
+    public IDao<User> user;
+    public IDao<Role> role;
+    public IDao<Goal> goal;
+    public IDao<Task> task;
 
-    public void reset(){
+    public void reset() {
         Connect.reset();
     }
 
@@ -26,13 +26,14 @@ public class Dao {
         user = new UserDao();
         task = new TaskDao();
         goal = new GoalDao();
+        role = new RoleDao();
     }
 
-    public static Dao getDao(){
-        if (dao== null) {
+    public static Dao getDao() {
+        if (dao == null) {
             synchronized (Dao.class) {
-                if (dao== null) {
-                    dao=new Dao();
+                if (dao == null) {
+                    dao = new Dao();
                 }
             }
         }
@@ -41,19 +42,18 @@ public class Dao {
 
     static boolean executeUpdate(String sql) throws SQLException {
         try (Connection connection = Connect.getConnection();
-
              Statement statement = connection.createStatement()) {
-            return (1 == statement.executeUpdate(sql));
+             return (ID_INDEX == statement.executeUpdate(sql));
         }
     }
 
     static long executeCreateAndGetId(String sql) throws SQLException {
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
-            if (1 == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
+            if (ID_INDEX == statement.executeUpdate(sql, Statement.RETURN_GENERATED_KEYS)) {
                 ResultSet generatedKeys = statement.getGeneratedKeys();
                 if (generatedKeys.next()) {
-                    return generatedKeys.getLong(1);
+                    return generatedKeys.getLong(ID_INDEX);
                 }
             }
         }
