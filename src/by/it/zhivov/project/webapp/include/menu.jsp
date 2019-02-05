@@ -52,11 +52,11 @@
             </c:choose>
         </ul>
 
-        <div class="col-md-1" style="left: 35px">
-            <a target="_blank" href="http://t.me/zhivov_bot">
-                <img src="images/tlogo.png" height="30px">
-            </a>
-        </div>
+        <%--<div class="col-md-1" style="left: 35px">--%>
+            <%--<a target="_blank" href="http://t.me/zhivov_bot">--%>
+                <%--<img src="images/tlogo.png" height="30px">--%>
+            <%--</a>--%>
+        <%--</div>--%>
 
         <form class="form-inline my-2 my-lg-0" action="do?command=SearchResult" method="POST">
             <input class="form-control mr-sm-2" id="search" name="search" pattern="[a-zA-Zа-яА-Я0-9- ]*" minlength="1"

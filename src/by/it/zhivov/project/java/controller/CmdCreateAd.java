@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class CmdCreateAd implements Cmd {
     @Override
-    public Action execute(HttpServletRequest req) throws SQLException, SiteExeption, IOException, ServletException {
+    public Action execute(HttpServletRequest req) throws Exception {
         if (!Util.checkUser(req))
             return Action.LOGIN;
 
@@ -37,7 +37,7 @@ public class CmdCreateAd implements Cmd {
                 Util.saveFile(req, "ad" + ad.getId());
                 req.getSession().setAttribute("ad", ad);
             }
-            Util.sendTg(brnd, model, year, price);
+//            Util.sendGet(brnd, model, year, price);
             return Action.PROFILE;
         }
         return Action.CREATEAD;
