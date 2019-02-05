@@ -6,10 +6,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
 
-class CmdReset extends Cmd {
+class CmdResetStreamer extends Cmd {
     @Override
     Action execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         MyDao.getDao().reset();
-        return Action.PROFILE;
+        return Action.PROFILESTREAMER;
     }
 }

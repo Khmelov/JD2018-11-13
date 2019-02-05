@@ -49,7 +49,7 @@ class CmdSignup extends Cmd {
                     passwordCookie.setMaxAge(60);
                     resp.addCookie(passwordCookie);
                     resp.addCookie(nicknameCookie);
-                    return Action.PROFILE;
+                    return Action.PROFILESTREAMER;
                 }
             }
         }
