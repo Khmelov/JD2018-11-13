@@ -47,6 +47,7 @@
         		                  <!--<input id="mountBirth" name="mountBirth" value="${profil.mountBirth}" type="text" placeholder="месяц" class="form-control input-md">-->
 
         		                  <select id="mountBirth" name="mountBirth" class="form-control">
+        		                  <%String[] mounts={"Январь"}
         		                    <option value="Январь" ${value==profil.mountBirth?"selected":""}>Январь</option>
         		                    <option value="Февраль" ${value==profil.mountBirth?"selected":""}>Февраль</option>
         		                    <option value="Март" ${value==profil.mountBirth?"selected":""}>Март</option>

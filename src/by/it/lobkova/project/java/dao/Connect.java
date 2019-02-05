@@ -35,7 +35,7 @@ public class Connect {
             e.printStackTrace();
         }
 
-        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/lobkova?/", "root", "")) {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016/", "root", "")) {
             Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `lobkova`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `lobkova` DEFAULT CHARACTER SET utf8");
