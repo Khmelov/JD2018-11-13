@@ -33,8 +33,8 @@ public class QuestionDao implements InterfaceDao<Question> {
     public boolean update(Question question) throws SQLException {
         String sql = String.format(
                 "UPDATE `questions` SET " +
-                        "`question` = '%s', `id_test` = '%d' ",
-               question.getQuestion(), question.getId_test()
+                        "`question` = '%s', `id_test` = '%d' WHERE `questions`.`id_question` = '%d' ",
+               question.getQuestion(), question.getId_test(),question.getId()
         );
         return Dao.executeUpdate(sql);
     }

@@ -7,9 +7,18 @@ public class User {
     private String password;
     private String email;
     private long id_role;
-
+    private long aa_Role;
     public User() {
 
+    }
+
+
+    public long getId_role() {
+        return id_role;
+    }
+
+    public void setId_role(long id_role) {
+        this.id_role = id_role;
     }
 
     public User(long id, String login, String password, String email, long id_role) {
@@ -51,15 +60,6 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public long getIdRole() {
-        return id_role;
-    }
-
-    public void setIdRole(long id_role) {
-        this.id_role = id_role;
-    }
-
 
     @Override
     public String toString() {

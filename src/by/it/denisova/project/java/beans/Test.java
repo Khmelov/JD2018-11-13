@@ -1,8 +1,19 @@
 package by.it.denisova.project.java.beans;
 
+import java.util.List;
+
 public class Test {
     private long id;
     private String test_name;
+    private List<Question> questionList;
+
+    public List<Question> getQuestionList() {
+        return questionList;
+    }
+
+    public void setQuestionList(List<Question> questionList) {
+        this.questionList = questionList;
+    }
 
     public Test() {
     }

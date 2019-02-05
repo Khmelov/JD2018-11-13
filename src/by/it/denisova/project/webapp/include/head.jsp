@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
     <title>Test</title>
     <meta http-equiv="Cache-Control" content="no-cache">

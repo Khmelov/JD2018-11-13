@@ -15,7 +15,7 @@ public class UserDao implements InterfaceDao<User> {
         String sql = String.format(
                 "INSERT INTO `users` (`login`, `password`, `email`, `id_role`) " +
                         "VALUES ('%s', '%s', '%s', '%d')",
-                user.getLogin(), user.getPassword(), user.getEmail(), user.getIdRole()
+                user.getLogin(), user.getPassword(), user.getEmail(), user.getId_role()
         );
         long id = Dao.executeCreateAndGetId(sql);
         user.setId(id);
@@ -35,9 +35,9 @@ public class UserDao implements InterfaceDao<User> {
                 "UPDATE `users` SET " +
                         "`login` = '%s', `password` = '%s', " +
                         "`email` = '%s',  `id_role` = '%d' " +
-                        "WHERE `users`.`id_user` = %d",
+                        "WHERE `users`.`id_user` = %d" ,
                 user.getLogin(), user.getPassword(),
-                user.getEmail(), user.getIdRole(),
+                user.getEmail(), user.getId_role(),
                 user.getId()
         );
         return Dao.executeUpdate(sql);

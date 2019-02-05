@@ -7,6 +7,11 @@ public class Theme {
     public Theme() {
     }
 
+    public Theme(long id, String theme) {
+        this.id = id;
+        this.theme = theme;
+    }
+
     public long getId() {
         return id;
     }
