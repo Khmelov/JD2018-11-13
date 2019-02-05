@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `naumenko2`.`zakaz` (
   `id_zakaz` INT NOT NULL AUTO_INCREMENT,
-  `tovatr` VARCHAR(100) NULL,
+  `tovar` VARCHAR(100) NULL,
   `priceHt` DECIMAL NULL,
   `kolTovar` DECIMAL NULL,
   `biscuit` VARCHAR(100) NULL,
@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS `naumenko2`.`zakaz` (
   `price_zakaz` DECIMAL NULL,
   `id_user` INT NOT NULL,
   `id_tovar` INT NOT NULL,
+  `status` VARCHAR(45) NULL,
   PRIMARY KEY (`id_zakaz`),
   INDEX `fk_zakaz_users1_idx` (`id_user` ASC),
   INDEX `fk_zakaz_cake1_idx` (`id_tovar` ASC),

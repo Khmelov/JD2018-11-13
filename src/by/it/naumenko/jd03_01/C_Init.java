@@ -20,6 +20,7 @@ public class C_Init {
     private final static String CREATE_TABLE_USERS =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create users1.sql";
     private final static String CREATE_TABLE_ZAKAZ =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create zakaz.sql";
     private final static String CREATE_TABLE_PROFIL =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create profil.sql";
+    private final static String CREATE_TABLE_BASKET =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/create/create basket.sql";
     private final static String DROP_TABLE_CAKE =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop cake.sql";
     private final static String DROP_TABLE_ROLES =System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop roles.sql";
     private final static String DROP_TABLE_USERS=System.getProperty("user.dir")+"/src/by/it/naumenko/jd03_01/sql/drop/drop users.sql";
@@ -85,6 +86,7 @@ public void create() {
             statement.executeUpdate(getSQLFile(CREATE_TABLE_USERS));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ZAKAZ));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_PROFIL));
+            statement.executeUpdate(getSQLFile(CREATE_TABLE_BASKET));
 
             int count = getSQLFileInsertCount(INSERT_TABLE_CAKE);
             for (int i = 0; i <count ; i++) {

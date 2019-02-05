@@ -102,13 +102,13 @@ public class Util {
         return stringBuilder.toString();
     }
 
-    static boolean checkUser(HttpServletRequest req) {
+    static boolean checkUser(HttpServletRequest req) throws SQLException {
         return (findUser(req) != null);
     }
 
-    static Users findUser(HttpServletRequest req) {
+    static Users findUser(HttpServletRequest req) throws SQLException {
         HttpSession session = req.getSession(false);
-        if (session != null) {
+        if (session != null || checkCookie(req)) {
             Object oUser = session.getAttribute("user");
             if (oUser != null) {
                 return (Users) oUser;

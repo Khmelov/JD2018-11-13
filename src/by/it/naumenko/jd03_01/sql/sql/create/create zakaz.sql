@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS `naumenko2`.`zakaz` (
   `id_zakaz` INT NOT NULL AUTO_INCREMENT,
-  `tovar` VARCHAR(100) NULL,
+  `tovatr` VARCHAR(100) NULL,
   `priceHt` DECIMAL NULL,
   `kolTovar` DECIMAL NULL,
   `biscuit` VARCHAR(100) NULL,

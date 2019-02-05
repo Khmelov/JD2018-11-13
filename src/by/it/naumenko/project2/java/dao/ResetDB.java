@@ -22,6 +22,7 @@ public class ResetDB {
     private final static String CREATE_TABLE_USERS = System.getProperty("user.dir") + xammp + "/sql/create/create users1.sql";
     private final static String CREATE_TABLE_ZAKAZ = System.getProperty("user.dir") + xammp + "/sql/create/create zakaz.sql";
     private final static String CREATE_TABLE_PROFIL = System.getProperty("user.dir") + xammp + "/sql/create/create profil.sql";
+    private final static String CREATE_TABLE_BASKET = System.getProperty("user.dir") + xammp + "/sql/create/create basket.sql";
     private final static String INSERT_TABLE_CAKE = System.getProperty("user.dir") + xammp + "/sql/insert/insert cake.sql";
     private final static String INSERT_TABLE_ROLES = System.getProperty("user.dir") + xammp + "/sql/insert/insert roles.sql";
     private final static String INSERT_TABLE_USERS = System.getProperty("user.dir") + xammp + "/sql/insert/insert users.sql";
@@ -97,6 +98,7 @@ public class ResetDB {
             statement.executeUpdate(getSQLFile(CREATE_TABLE_USERS));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_ZAKAZ));
             statement.executeUpdate(getSQLFile(CREATE_TABLE_PROFIL));
+            statement.executeUpdate(getSQLFile(CREATE_TABLE_BASKET));
 
             int count = getSQLFileInsertCount(INSERT_TABLE_CAKE);
             for (int i = 0; i <count ; i++) {

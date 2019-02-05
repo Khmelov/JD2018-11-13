@@ -22,7 +22,7 @@ public class CommandEditProfil extends Command {
                 int dayBirth = (int) Form.getLong(req, "dayBirth");
                 String mountBirth = Form.getString(req, "mountBirth");
                 int yearBirth = (int) Form.getLong(req, "yearBirth");
-                //String pol = Form.getString(req, "pol");
+                String pol = Form.getString(req, "pol");
                 String city = Form.getString(req, "city");
                 String street = Form.getString(req, "street");
                 int home = (int) Form.getLong(req, "home");
@@ -31,9 +31,8 @@ public class CommandEditProfil extends Command {
                 String tel = Form.getString(req, "tel");
                 String about = Form.getString(req, "about");
                 Profil profil = new Profil(user.getId_user(), name_profile, lastName_profil, dayBirth, mountBirth,
-                        yearBirth, "men", city, street, home, korpus, kvartira,
+                        yearBirth, pol, city, street, home, korpus, kvartira,
                         tel, 3, about, user.getId_user());
-//                if(req.getParameter("save")!=null) {
                 MyDAO<Profil> dao = new MyDAO<>(new Profil(), "profil");
                 if (dao.update(profil))
                     return Actions.PROFILE;

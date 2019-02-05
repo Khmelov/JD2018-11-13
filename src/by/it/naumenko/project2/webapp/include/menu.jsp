@@ -16,8 +16,9 @@
                 <a class="nav-item nav-link" href="do?command=Create">Добавить в БД</a>
                 <a class="nav-item nav-link" href="do?command=ResetDB">Пересоздать БД</a>
                 <a class="nav-item nav-link" href="do?command=DropDB">Удалить БД</a>
-                <a class="nav-item nav-link" href="do?command=Brakets">Корзина</a>
-                <a class="nav-item nav-link" href="do?command=Error">Ошибка</a>
+                <a class="nav-item nav-link" href="do?command=basket">Корзина</a>
+                <a class="nav-item nav-link" href="do?command=Zakaz">Заказы</a>
+               <!-- <a class="nav-item nav-link" href="do?command=Error">Ошибка</a>-->
 
                 <form class="form-inline my-2 my-lg-0" action ="do?command=Logout" method="POST">
                     <button class="btn btn-outline-success my-2 my-sm-0" id="logout", name="logout" type="submit">Выход</button>

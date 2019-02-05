@@ -22,7 +22,6 @@ public class CommandProfil extends Command {
             MyDAO<Profil> myDAO = new MyDAO<>(new Profil(), "profil");
             String where = String.format(" WHERE id_user = '%d' LIMIT 0,1", user.getId_user());
             List<Profil> profilList = myDAO.getAll(where);
-            System.out.println(where);
             if (profilList.size() == 1) {
                 Profil profil = profilList.get(0);
                 System.out.println(profil);

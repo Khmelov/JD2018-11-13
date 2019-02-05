@@ -12,7 +12,8 @@ public enum Actions {
     EDITPROFIL(new CommandEditProfil()),
     CREATE(new CommandCreate()),
     CREATECAKE(new CommandCreateCake()),
-    BRAKETS (new CommandBrakets()),
+    BASKET (new CommandBasket()),
+    ZAKAZ(new CommandZakaz()),
     CREATEROLE(new CommandCreateRole());
 
 

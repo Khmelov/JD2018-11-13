@@ -1,9 +1,8 @@
 package by.it.naumenko.project2.java.beens;
 
-public class Zakaz {
+public class Basket {
 
-    private long id_zakaz;
-   // private long date_zakaz;
+    private long id_basket;
     private String tovar;
     private double priceHt;
     private double kolTovar;
@@ -11,22 +10,11 @@ public class Zakaz {
     private String nachinka;
     private String decoration;
     private String cream;
-    private double price_zakaz;
+    private double price_basket;
     long id_user;
-    long id_tovar;
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    private String status;
-
-    public long getId_zakaz() {
-        return id_zakaz;
+    public long getId_basket() {
+        return id_basket;
     }
 
     public String getTovar() {
@@ -57,20 +45,17 @@ public class Zakaz {
         return cream;
     }
 
-    public double getPrice_zakaz() {
-        return price_zakaz;
+    public double getPrice_basket() {
+        return price_basket;
     }
 
     public long getId_user() {
         return id_user;
     }
 
-    public long getId_tovar() {
-        return id_tovar;
-    }
 
-    public void setId_zakaz(long id_zakaz) {
-        this.id_zakaz = id_zakaz;
+    public void setId_basket(long id_basket) {
+        this.id_basket = id_basket;
     }
 
     public void setTovar(String tovar) {
@@ -101,22 +86,19 @@ public class Zakaz {
         this.cream = cream;
     }
 
-    public void setPrice_zakaz(double price_zakaz) {
-        this.price_zakaz = price_zakaz;
+    public void setPrice_basket(double price_basket) {
+        this.price_basket = price_basket;
     }
 
     public void setId_user(long id_user) {
         this.id_user = id_user;
     }
 
-    public void setId_tovar(long id_tovar) {
-        this.id_tovar = id_tovar;
-    }
 
     @Override
     public String toString() {
-        return "Zakaz{" +
-                "id_zakaz=" + id_zakaz +
+        return "BASKET{" +
+                "id_basket=" + id_basket +
                 ", tovar='" + tovar + '\'' +
                 ", priceHt=" + priceHt +
                 ", kolTovar=" + kolTovar +
@@ -124,26 +106,22 @@ public class Zakaz {
                 ", nachinka='" + nachinka + '\'' +
                 ", decoration='" + decoration + '\'' +
                 ", cream='" + cream + '\'' +
-                ", price_zakaz=" + price_zakaz +
+                ", price_basket=" + price_basket +
                 ", id_user=" + id_user +
-                ", id_tovar=" + id_tovar +
-                ", status=" + status +
                 '}';
     }
 
-    public Zakaz(long id_zakaz,
-                 String tovar,
-                 double priceHt,
-                 double kolTovar,
-                 String biscuit,
-                 String nachinka,
-                 String decoration,
-                 String cream,
-                 double price_zakaz,
-                 long id_user,
-                 long id_tovar,
-                 String status) {
-        this.id_zakaz = id_zakaz;
+    public Basket(long id_basket,
+                  String tovar,
+                  double priceHt,
+                  double kolTovar,
+                  String biscuit,
+                  String nachinka,
+                  String decoration,
+                  String cream,
+                  double price_basket,
+                  long id_user) {
+        this.id_basket = id_basket;
         this.tovar = tovar;
         this.priceHt = priceHt;
         this.kolTovar = kolTovar;
@@ -151,12 +129,10 @@ public class Zakaz {
         this.nachinka = nachinka;
         this.decoration = decoration;
         this.cream = cream;
-        this.price_zakaz = price_zakaz;
+        this.price_basket = price_basket;
         this.id_user = id_user;
-        this.id_tovar = id_tovar;
-        this.status = status;
     }
 
-    public Zakaz() {
+    public Basket() {
     }
 }

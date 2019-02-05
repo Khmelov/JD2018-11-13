@@ -1,6 +1,5 @@
 package by.it.naumenko.project2.java.controller;
 
-import by.it.naumenko.project2.java.beens.Cake;
 import by.it.naumenko.project2.java.beens.Zakaz;
 import by.it.naumenko.project2.java.dao.MyDAO;
 
@@ -21,13 +20,13 @@ public class FrontController extends HttpServlet {
     public void init() {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            MyDAO<Cake> myDAOCake = new MyDAO<>(new Cake(),"cake");
-            List<Cake> cakes = myDAOCake.getAll();
-            getServletContext().setAttribute("cakes",cakes);
+//            MyDAO<Cake> myDAOCake = new MyDAO<>(new Cake(),"cake");
+//            List<Cake> cakes = myDAOCake.getAll();
+//            getServletContext().setAttribute("cakes",cakes);
 
             MyDAO<Zakaz> myDAOzak = new MyDAO<>(new Zakaz(),"zakaz");
             List<Zakaz> zakaz = myDAOzak.getAll();
-            getServletContext().setAttribute("zakaz",cakes);
+            getServletContext().setAttribute("zakaz",zakaz);
         } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }

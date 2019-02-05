@@ -1,45 +1,39 @@
 package by.it.naumenko.project2.java.controller;
 
-import by.it.naumenko.project2.java.beens.Zakaz;
+import by.it.naumenko.project2.java.beens.Basket;
+import by.it.naumenko.project2.java.beens.Cake;
+import by.it.naumenko.project2.java.beens.Users;
 import by.it.naumenko.project2.java.dao.MyDAO;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.sql.SQLException;
+import java.util.List;
 
 class CommandIndex extends Command {
     @Override
     Actions exequit(HttpServletRequest request, HttpServletResponse response) throws SQLException, SiteException {
-//        long id_user;
-//        if (Util.checkCookie(request) || Util.checkUser(request)){
-//            Users user = Util.findUser(request);
-//            id_user = user.getId_user();
-//
-//        }
-//        else
-//            id_user=0;
-//
-//        MyDAO<Cake> myDAOCake = new MyDAO<>(new Cake(),"cake");
-//        List<Cake> cakes = myDAOCake.getAll();
-//        request.setAttribute("cakes", cakes);
-//        String where="WHERE `cake`.`kategoriya`='svatba'";
-//        List<Cake> text = myDAOCake.getAll(where);
-//        request.setAttribute("text",text);
-//        double p = myDAOCake.getPrice("svatba");
-//        request.setAttribute("p",p);
+
+        Users user = Util.findUser(request);
+
+
+        MyDAO<Cake> myDAOCake = new MyDAO<>(new Cake(),"cake");
+        List<Cake> cakes = myDAOCake.getAll();
+        request.setAttribute("cakes", cakes);
+
         if (Form.isPost(request)) {
-            //System.out.println(id_user);
+            System.out.println(user.getId_user());
             String kategoriya = Form.getString(request,"kategoriya");
-            //double price = Form.getDouble(request, "price");
+            double priceHt = Form.getDouble(request, "priceHt");
+            double kolTovar = Form.getDouble(request, "kolTovar");
             String biscuit = Form.getString(request, "biscuit");
             String nachinka = Form.getString(request, "nachinka");
             String decoration = Form.getString(request, "decoration");
             String cream = Form.getString(request, "cream");
-            MyDAO<Zakaz> zakazMyDAO = new MyDAO<>(new Zakaz(),"zakaz");
-            Zakaz zakaz = new Zakaz(0,kategoriya,40,3,biscuit,nachinka,decoration,cream, 40*3,2,1);
-            zakazMyDAO.create(zakaz);
-            if(zakazMyDAO.create(zakaz))
-                return Actions.BRAKETS;
+            MyDAO<Basket> basketMyDAO = new MyDAO<>(new Basket(),"basket");
+            Basket basket = new Basket(0,kategoriya,priceHt,kolTovar,biscuit,nachinka,decoration,cream, priceHt*kolTovar,user.getId_user());
+            if(basketMyDAO.create(basket))
+                return Actions.BASKET;
             else
                 return Actions.ERROR;
         }

@@ -4,8 +4,7 @@
 <body>
     <div class="container">
         <%@ include file="include/menu.jsp" %>
-        <p><img src="image/error.png" width="100" height="100" alt="ERROR">ОШИБА  ${message}</p>
-        <p>привет я ошибка</p>
+        <p><img src="image/error.png" width="100" height="100" alt="ERROR"> ${errorSign}</p>
 
     </div>
 </body>

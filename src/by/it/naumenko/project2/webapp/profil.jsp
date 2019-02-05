@@ -35,64 +35,42 @@
         		        <p style="color: yellow">День Рождения:</p>
         		        <div class="row">
         		        	<div class="col-md-1">
-        		        	    <input id="dayBirth" name="dayBirth" value="${profil.dayBirth}" type="text" placeholder="число" class="form-control input-md">
-        		                <!--  <select id="dayBirth" name="dayBirth" class="form-control">
-        		                    <option value="1">1</option>
-        		                    <option value="2">2</option>
-        		                    <option value="3">3</option>
-        		                    <option value="4">4</option>
-        		                    <option value="5">5</option>
-        		                    <option value="6">6</option>
-        		                    <option value="7">7</option>
-        		                    <option value="8">8</option>
-        		                    <option value="9">9</option>
-        		                    <option value="10">10</option>
-        		                    <option value="11">11</option>
-        		                    <option value="12">12</option>
-        		                    <option value="13">13</option>
-        		                    <option value="14">14</option>
-        		                    <option value="15">15</option>
-        		                    <option value="16">16</option>
-        		                    <option value="17">17</option>
-        		                    <option value="18">18</option>
-        		                    <option value="19">19</option>
-        		                    <option value="20">20</option>
-        		                    <option value="21">21</option>
-        		                    <option value="22">22</option>
-        		                    <option value="23">23</option>
-        		                    <option value="24">24</option>
-        		                    <option value="25">25</option>
-        		                    <option value="26">26</option>
-        		                    <option value="27">27</option>
-        		                    <option value="28">28</option>
-        		                    <option value="29">29</option>
-        		                    <option value="30">30</option>
-        		                    <option value="31">31</option>
-        		                  </select>-->
+        		        	    <!--<input id="dayBirth" name="dayBirth" value="${profil.dayBirth}" type="text" placeholder="число" class="form-control input-md">-->
+        		                <select id="dayBirth" name="dayBirth" class="form-control">
+        		                    <c:forEach var="day" begin="1" end="31" step="1">
+        		                        <option value="${day}" ${day==profil.dayBirth?"selected":""}>${day}</option>
+        		                    </c:forEach>
+        		                </select>
         		             </div>
 
         		            <div class="col-md-2">
-        		                  <input id="mountBirth" name="mountBirth" value="${profil.mountBirth}" type="text" placeholder="месяц" class="form-control input-md">
+        		                  <!--<input id="mountBirth" name="mountBirth" value="${profil.mountBirth}" type="text" placeholder="месяц" class="form-control input-md">-->
 
-        		                  <!--<select id="mountBirth" name="mountBirth" class="form-control">
-        		                    <option value="1">Январь</option>
-        		                    <option value="2">Февраль</option>
-        		                    <option value="3">Март</option>
-        		                    <option value="4">Апрель</option>
-        		                    <option value="5">Май</option>
-        		                    <option value="6">Июнь</option>
-        		                    <option value="7">Июль</option>
-        		                    <option value="8">Август</option>
-        		                    <option value="9">Сентябрь</option>
-        		                    <option value="10">Октябрь</option>
-        		                    <option value="11">Ноябрь</option>
-        		                    <option value="12">Декабрь</option>
-        		                  </select>-->
+        		                  <select id="mountBirth" name="mountBirth" class="form-control">
+        		                    <option value="Январь" ${value==profil.mountBirth?"selected":""}>Январь</option>
+        		                    <option value="Февраль" ${value==profil.mountBirth?"selected":""}>Февраль</option>
+        		                    <option value="Март" ${value==profil.mountBirth?"selected":""}>Март</option>
+        		                    <option value="Апрель" ${value==profil.mountBirth?"selected":""}>Апрель</option>
+        		                    <option value="Май" ${value==profil.mountBirth?"selected":""}>Май</option>
+        		                    <option value="Июнь" ${value==profil.mountBirth?"selected":""}>Июнь</option>
+        		                    <option value="Июль" ${value==profil.mountBirth?"selected":""}>Июль</option>
+        		                    <option value="Август" ${value==profil.mountBirth?"selected":""}>Август</option>
+        		                    <option value="Сентябрь" ${value==profil.mountBirth?"selected":""}>Сентябрь</option>
+        		                    <option value="Октябрь" ${value==profil.mountBirth?"selected":""}>Октябрь</option>
+        		                    <option value="Ноябрь" ${value==profil.mountBirth?"selected":""}>Ноябрь</option>
+        		                    <option value="Декабрь" ${value==profil.mountBirth?"selected":""}>Декабрь</option>
+        		                  </select>
         		             </div>
 
 
                             <div>
-                                <input id="yearBirth" name="yearBirth" value="${profil.yearBirth}"  type="text" placeholder="" class="form-control input-md">
+                                <select id="yearBirth" name="yearBirth" class="form-control">
+                                    <c:forEach var="year" begin="1940" end="2019" step="1" >
+                                        <option value = "${year}" ${year==profil.yearBirth?"selected":""}>${year}</option>
+                                    </c:forEach>
+                                </select>
+
+                                <!--<input id="yearBirth" name="yearBirth" value="${profil.yearBirth}"  type="text" placeholder="" class="form-control input-md">-->
                             </div>
 
 
@@ -101,17 +79,10 @@
         				<div class="form-group">
         		            <label class="col-md-4 control-label" for="pol">Пол</label>
         		            <div class="col-md-4">
-        		            	<div class="radio">
-        		              		<label for="pol-0">
-        		                		<input type="radio" name="pol" id="pol-0" value="men" >men
-        		              		</label>
-        		            	</div>
-
-        			            <div class="radio">
-        			              	<label for="pol-1">
-        			                	<input type="radio" name="pol" id="pol-1" value="women" >women
-        			              	</label>
-        			            </div>
+        		            	<select id="pol" name="pol" class="form-control">
+        		            	    <option value="мужской" ${value==profil.pol?"selected":""}>мужской</option>
+        		            	    <option value="женский" ${value==profil.pol?"selected":""}>женский</option>
+        		            	<select>
         		            </div>
         		        </div>
 
@@ -166,7 +137,7 @@
 
         		        <div class="form-group">
         		            <label class="col-md-4 control-label" for="about">О себе</label>
-        		            <div class="col-md-4">
+        		            <div class="col-md-8">
         			            <textarea class="form-control" id="about"  name="about">${profil.about}</textarea>
         		            </div>
         		        </div>
