@@ -111,6 +111,12 @@ class CmdChangeRecipe extends Cmd {
                 Rtype rtype = rtDao.read(recipe.getRtype_id());
                 req.setAttribute("rtype", rtype);
                 List<Amount> amounts = amDao.getAll("WHERE recipe_id=" + recipe.getId());
+
+                for (int i = 0; i < ingrCount; i++) {
+                    req.getSession().removeAttribute("ingredient" + i);
+                    req.getSession().removeAttribute("amount" + i);
+                    req.getSession().removeAttribute("unit" + i);
+                }
                 int i = 1;
                 for (Amount amount : amounts) {
                     Ingredient ing = ingDao.read(amount.getIngredient_id());
