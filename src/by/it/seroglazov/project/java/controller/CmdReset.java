@@ -8,7 +8,7 @@ class CmdReset extends Cmd {
     @Override
     Action execute(HttpServletRequest req) throws SiteException {
         DatabaseCreator creator = DatabaseCreator.getCreator();
-        creator.resetDatabase();
+        creator.resetDatabase(req.getServletContext().getRealPath("/xml"));
         req.getSession().invalidate();
         return Action.RESET;
     }

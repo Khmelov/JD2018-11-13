@@ -38,7 +38,8 @@ enum Action {
         this.cmd = cmd;
     }
 
-    String getJsp() {
+    String getJsp(HttpServletRequest req) {
+        req.setAttribute("var_" + cmd.toString(), "border border-primary rounded");
         return "/" + cmd.toString() + ".jsp";
     }
 

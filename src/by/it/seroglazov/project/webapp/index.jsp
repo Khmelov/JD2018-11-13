@@ -6,9 +6,9 @@
 	<%@ include file="include/head.jsp" %>
 </head>
 <body>
-<%@ include file="include/menu.jsp" %>
-<div class="container">
-	<h1 class="p-5">Welcome to my cocktail's guide site</h1>
-</div>
+    <div class="container">
+        <%@ include file="include/menu.jsp" %>
+	    <h1 class="text-center py-5">Welcome to my cocktail&apos;s guide site</h1>
+    </div>
 </body>
 </html>

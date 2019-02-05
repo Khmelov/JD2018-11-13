@@ -4,16 +4,13 @@
 <html>
 <head>
 	<title>Cocktails list</title>
-	<style>
-           #reset {
-            color: #fff;
-           }
-        </style>
 	<%@ include file="include/head.jsp" %>
 </head>
 <body>
-	<%@ include file="include/menu.jsp" %>
-	<div class="container"><h1>Database was dropped!</h1></div>
+	<div class="container">
+		<%@ include file="include/menu.jsp" %>
+		<h1>Database was dropped!</h1>
+	</div>
 </body>
 </html>
 
