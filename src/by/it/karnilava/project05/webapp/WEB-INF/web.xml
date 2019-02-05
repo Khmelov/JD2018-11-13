@@ -1,3 +1,4 @@
+
 <web-app xmlns="http://java.sun.com/xml/ns/javaee"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
@@ -19,6 +20,30 @@
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/do</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>FilterEncoding</filter-name>
+        <filter-class>by.it.karnilava.project05.java.filter.FileEncoding</filter-class>
+        <init-param>
+            <param-name>encode</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FilterEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+    <!--<filter>-->
+        <!--<filter-name>FilterImages</filter-name>-->
+        <!--<filter-class>by.it.karnilava.project05.java.filters.FilterImages</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>FilterImages</filter-name>-->
+        <!--<url-pattern>/image/*</url-pattern>-->
+    <!--</filter-mapping>-->
 
 
 </web-app>
