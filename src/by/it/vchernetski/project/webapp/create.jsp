@@ -4,7 +4,7 @@
 <body>
 <div class="container">
 <%@ include file="include/menu.jsp" %>
-<form class="form-horizontal" action="do?command=create" method="POST">
+<form class="form-horizontal" action="do?command=create" method="POST" enctype="multipart/form-data">
 <fieldset>
 
 <!-- Form Name -->
@@ -45,6 +45,13 @@
 
   </div>
 </div>
+
+ <div class="form-group">
+    <label class="col-md-4 control-label" for="filebutton">Добавить фото</label>
+    <div class="col-md-4">
+        <input id="filebutton" name="filebutton" class="input-file" type="file">
+    </div>
+ </div>
 
 <!-- Button -->
 <div class="form-group">

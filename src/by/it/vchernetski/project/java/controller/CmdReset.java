@@ -9,6 +9,6 @@ class CmdReset implements Cmd{
    @Override
    public Action execute(HttpServletRequest request)throws Exception {
        Connect.resetSCHEMA();
-       return Action.INDEX;
+       return Action.PROFILE;
    }
 }

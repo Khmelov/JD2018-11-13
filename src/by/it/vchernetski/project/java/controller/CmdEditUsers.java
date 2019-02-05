@@ -35,7 +35,7 @@ class CmdEditUsers implements Cmd {
             MyDAO<Role> daor = MyDAO.getDao();
             daor.setBean(new Role());
             List<User> roles = daor.getAll();
-            request.setAttribute("roles", roles);
+            request.getServletContext().setAttribute("roles", roles);
         }
         return Action.EDITUSERS;
     }
