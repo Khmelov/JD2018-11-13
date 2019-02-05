@@ -9,17 +9,14 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
-                        <c:if test="${user == null}">
-
             <li class="nav-item">
-
                 <a class="nav-link" href="do?command=Login">Войти</a>
             </li>
             <li class="nav-item">
+
                 <a class="nav-link" href="do?command=SignUp">Регистрация</a>
             </li>
             <li class="nav-item">
-                        </c:if>
                 <c:if test="${user != null}">
                 <a class="nav-link" href="do?command=Profile">Профиль</a>
             </li>
@@ -29,9 +26,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="do?command=FILLCATALOG">Каталог(админ.)</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="do?command=EditUsers">Польз(админ.)</a>
-            </li>
+
             <li class="nav-item">
                 <a class="nav-link" href="do?command=CompletedOrder">Заказы(админ.)</a>
             </li>
