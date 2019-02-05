@@ -24,8 +24,11 @@ class CmdCreateAd implements Cmd {
             double price = Form.getDouble(req, "price");
             User user = Util.findUser(req);
             Ad ad = new Ad(0, description, address, floor, floors, rooms, area, price, user.getId());
-            Dao.getDao().ad.create(ad);
-            Util.saveFile(req, "ad" + ad.getId());
+//            for (int i = 0; i < 30; i++) {
+//                ad.setDescription(description+i);
+                Dao.getDao().ad.create(ad);
+                Util.saveFile(req, "ad" + ad.getId());
+//            }
             return Action.PROFILE;
         }
         return Action.CREATEAD;

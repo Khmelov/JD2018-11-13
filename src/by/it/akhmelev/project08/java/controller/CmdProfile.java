@@ -22,11 +22,16 @@ class CmdProfile implements Cmd {
             }
         }
         User user = Util.findUser(req);
-        String where=String.format(" WHERE `users_id`='%d'",user.getId());
+        String where=String.format(" WHERE `users_id`='%d' ",user.getId());
 
-        List<Ad> ads = Dao.getDao().ad.getAll(where);
-        req.setAttribute("ads",ads);
 
+        List<Ad> ads = Dao.getDao().ad.getAll();
+        req.setAttribute("adsSize", ads.size());
+        int start = (req.getParameter("start") != null) ? Form.getInteger(req, "start") : 0;
+        int step = 5;
+        String limit = String.format(" LIMIT %d,%d ", start, step);
+        ads = Dao.getDao().ad.getAll(where+limit);
+        req.setAttribute("ads", ads);
         return Action.PROFILE;
     }
 }

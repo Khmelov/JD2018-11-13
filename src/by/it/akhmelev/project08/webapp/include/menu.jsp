@@ -1,24 +1,29 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href=".">Home</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-        <c:choose>
-            <c:when test="${user==null}">
-                <a class="nav-item nav-link" href="do?command=Reset">Жизнь с нуля</a>
-                <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
-                <a class="nav-item nav-link" href="do?command=Login">Авторизация</a>
-            </c:when>
-            <c:otherwise>
-                <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
-                <a class="nav-item nav-link" href="do?command=EditUsers">Админка</a>
-                <a class="nav-item nav-link" href="do?command=CreateAd">Создать</a>
-            </c:otherwise>
-        </c:choose>
-        </div>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+            <mytag:menu command="Reset" text="Сброс БД"/>
+
+            <c:if test="${user!=null}">
+                <mytag:menu command="CreateAd" text="Новое объявление"/>
+                <mytag:menu command="EditUsers" text="Админпанель"/>
+            </c:if>
+        </ul>
     </div>
+    <ul class="navbar-nav navbar-right">
+        <c:if test="${user!=null}">
+            <mytag:menu command="Profile" text="Профиль"/>
+        </c:if>
+        <c:if test="${user==null}">
+            <mytag:menu command="SignUp" text="Регистрация"/>
+            <mytag:menu command="Login" text="Авторизация"/>
+        </c:if>
+    </ul>
 </nav>
+
+
