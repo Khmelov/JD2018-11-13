@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xsl:stylesheet
+        xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+    <xsl:output method="html"/>
+
+    <xsl:template match="/ clients">
+        <table border="1">
+            <xsl:apply-templates/>
+        </table>
+    </xsl:template>
+
+    <xsl:template match="/clients/client">
+        <tr>
+            <xsl:apply-templates/>
+        </tr>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/e-mail">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/login">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/password">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/phone_number">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order">
+        <tr>
+            <xsl:apply-templates/>
+        </tr>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order/name">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order/item">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order/item_id">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order/colour">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order/price">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+
+    <xsl:template match="/clients/client/orders/order/address">
+        <td>
+            <xsl:value-of select="text()"/>
+        </td>
+    </xsl:template>
+</xsl:stylesheet>
