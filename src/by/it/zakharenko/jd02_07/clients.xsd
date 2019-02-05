@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        targetNamespace="D:\JD2018-11-13\src\by\it\zakharenko\jd02_07\clients.xml"
+        xmlns:tns="D:\JD2018-11-13\src\by\it\zakharenko\jd02_07\clients.xml"
+        elementFormDefault="qualified">
+
+    <element name="clients">
+        <complexType>
+            <sequence>
+                <element name="client"
+                         type="tns:client"
+                         maxOccurs="unbounded"/>
+            </sequence>
+        </complexType>
+    </element>
+
+
+    <complexType name="client">
+        <sequence>
+            <element name="e-mail" type="string"/>
+            <element name="login" type="string"/>
+            <element name="password" type="string"/>
+            <element name="phone_number" type="string"/>
+            <element name="orders" type="tns:Orders"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="Orders">
+        <sequence>
+            <element name="order"
+                     type="tns:Order"
+                     minOccurs="0"
+                     maxOccurs="unbounded"/>
+        </sequence>
+    </complexType>
+
+
+    <complexType name="Order">
+        <sequence>
+            <element name="name" type="string"/>
+            <element name="item" type="string"/>
+            <element name="item_id" type="string"/>
+            <element name="colour" type="string"/>
+            <element name="price" type="string"/>
+            <element name="address" type="string"/>
+        </sequence>
+    </complexType>
+</schema>
