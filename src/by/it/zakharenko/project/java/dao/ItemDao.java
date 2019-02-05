@@ -35,7 +35,7 @@ public class ItemDao implements InterfaceDao<Item> {
         //Устанавливаем английскую локаль, чтобы корректно работало поле DOUBLE в DB (price, etc)
         String sql = String.format(Locale.ENGLISH,
                 "UPDATE `items` SET " +
-                        "`title` = '%s', `floors` = '%d', " +
+                        "`title` = '%s', `price` = '%d', " +
                         "WHERE `items`.`id` = %d",
                 item.getTitle(),  item.getPrice(), item.getId()
         );

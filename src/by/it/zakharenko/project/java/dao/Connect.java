@@ -1,7 +1,5 @@
 package by.it.zakharenko.project.java.dao;
 
-import by.it.zakharenko.project.java.dao.CONFIG;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -70,7 +68,7 @@ class Connect {
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `zakharnk`.`items` (" +
                     "  `id` INT NOT NULL AUTO_INCREMENT," +
                     "  `title` VARCHAR(200) NULL," +
-                    "  `price` VARCHAR(45) NULL," +
+                    "  `price` INT NULL," +
                     "  PRIMARY KEY (`id`)," +
                     "  UNIQUE INDEX `title_UNIQUE` (`title` ASC))" +
                     "ENGINE = InnoDB;");
@@ -110,14 +108,14 @@ class Connect {
 
             //added item
             statement.executeUpdate("INSERT INTO `zakharnk`.`items` (`id`, `title`, `price`) +" +
-                    "VALUES (DEFAULT, 'Vacuum Cleaner Samsung SC5241', '129');;");
+                    "VALUES (DEFAULT, 'Vacuum Cleaner Samsung SC5241', 129);");
             statement.executeUpdate("INSERT INTO `zakharnk`.`items` (`id`, `title`, `price`) +" +
-                    "VALUES (DEFAULT, 'Washing machine LG F2J5HS3W', '799');;");
+                    "VALUES (DEFAULT, 'Washing machine LG F2J5HS3W', 799);");
 
 
             statement.executeUpdate("INSERT INTO `zakharnk`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) " +
                     "VALUES (DEFAULT, '2019-01-19', '10:59:59', 2, 1);");
-            statement.executeUpdate("IINSERT INTO `zakharnk`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) +" +
+            statement.executeUpdate("INSERT INTO `zakharnk`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) +" +
                     "VALUES (DEFAULT, '2019-01-19', '10:02:13', 2, 1);");
 
         } catch (SQLException e) {

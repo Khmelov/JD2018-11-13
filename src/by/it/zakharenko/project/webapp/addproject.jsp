@@ -9,13 +9,13 @@
 <fieldset>
 
 <!-- Form Name -->
-<legend>Add Project</legend>
+<legend>Add item</legend>
 
 <!-- Text input-->
 <div class="form-group">
   <label class="col-md-4 control-label" for="title">Title</label>
   <div class="col-md-4">
-  <input id="title" name="title" type="text" placeholder="" value="Zx400" class="form-control input-md" required="">
+  <input id="title" name="title" type="text" placeholder="" value="Vacuum Cleaner Samsung SC5241" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -27,7 +27,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="price">Price</label>
   <div class="col-md-4">
-  <input id="price" name="price" type="text" placeholder="" value="500" class="form-control input-md" required="">
+  <input id="price" name="price" type="text" placeholder="" value="129" class="form-control input-md" required="">
 
   </div>
 </div>
@@ -36,7 +36,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="create"></label>
   <div class="col-md-4">
-    <button id="create" name="create" class="btn btn-primary">Add Project</button>
+    <button id="create" name="create" class="btn btn-primary">Add item</button>
   </div>
 </div>
 

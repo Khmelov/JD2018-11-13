@@ -18,7 +18,7 @@
             <c:otherwise>
 <a class="nav-item nav-link" href="do?command=Profile">Профиль</a>
                 <a class="nav-item nav-link" href="do?command=EditUsers">Панель администратора</a>
-                <a class="nav-item nav-link" href="do?command=addProject">Добавить проект</a>
+                <a class="nav-item nav-link" href="do?command=addProject">Добавить товар</a>
             </c:otherwise>
         </c:choose>
         </div>
