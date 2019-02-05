@@ -1,0 +1,3 @@
+str.welcome=Прывітанне!
+str.question=Змяниць лакаль?
+user.name=Максiм

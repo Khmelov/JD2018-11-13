@@ -1,6 +1,6 @@
 package by.it.naumenko.project.java.controller;
 
-enum Actions {
+public enum Actions {
     SIGNUP(new CommandSignup()),
     LOGIN(new CommandLogin()),
     LOGOUT(new CommandLogOut()),

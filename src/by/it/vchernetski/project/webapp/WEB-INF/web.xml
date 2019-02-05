@@ -26,6 +26,7 @@
 <servlet>
     <servlet-name>FrontController</servlet-name>
     <servlet-class>by.it.vchernetski.project.java.controller.FrontController</servlet-class>
+    <multipart-config/>
 </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
@@ -53,5 +54,12 @@
         <filter-name>SessionFilter</filter-name>
         <url-pattern>/*</url-pattern>
     </filter-mapping>
-
+    <filter>
+        <filter-name>FileImage</filter-name>
+        <filter-class>by.it.vchernetski.project.java.filters.ImageFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>FileImage</filter-name>
+        <url-pattern>/image/*</url-pattern>
+    </filter-mapping>
 </web-app>

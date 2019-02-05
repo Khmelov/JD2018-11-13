@@ -1,10 +1,7 @@
 package by.it.naumenko.jd03_03;
 
 
-import by.it.naumenko.jd03_03.beens.Cake;
-import by.it.naumenko.jd03_03.beens.Roles;
-import by.it.naumenko.jd03_03.beens.Users;
-import by.it.naumenko.jd03_03.beens.Zakaz;
+import by.it.naumenko.jd03_03.beens.*;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -91,6 +88,19 @@ public class RunnerMyDao {
             System.out.println(lZ.get(i));
         System.out.println("========================================================================================================\n\n");
 
+
+        MyDAO<Profil> myDAOP = new MyDAO<>(new Profil(),"profil");
+
+        List<Profil> lP =  myDAOP.getAll();
+        System.out.println("\n\n===============================================вся таблица profil=========================================");
+        for (int i = 0; i < lP.size(); i++)
+            System.out.println(lP.get(i));
+        System.out.println("========================================================================================================\n\n");
+//        List <Users> IIU = myDAOU.getAll(where);
+//        System.out.println("USER SERCH:");
+//        for (int i = 0; i < IIU.size(); i++)
+//            System.out.println(IIU.get(i));
+//        System.out.println("========================================================================================================\n\n");
 
 
     }

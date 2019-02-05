@@ -1,6 +1,5 @@
 package by.it.karnilava.jd03_03.dao;
 
-import by.it.karnilava.jd03_03.Connect;
 import by.it.karnilava.jd03_03.beans.Role;
 
 import java.sql.Connection;

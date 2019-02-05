@@ -56,7 +56,6 @@
                 <div class="col-md-4">
                     <input id="price" name="price" value="245" type="text" placeholder="Введите цену ex: 7777"
                            class="form-control input-md" required="">
-
                 </div>
             </div>
 

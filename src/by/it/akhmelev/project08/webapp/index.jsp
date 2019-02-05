@@ -43,7 +43,10 @@
         </div>
     </c:forEach>
 
-    <br><br>
+    <hr>
+    <div class="row">
+        <mytag:paginator count="${adsSize}" step="10" urlprefix="?start="/>
+    </div>
 
 
 </div>

@@ -2,7 +2,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuOut.htm" %>
+<%@ include file="include/menu.htm" %>
 <form class="form-horizontal" action="do?command=Login" method="POST">
 <fieldset>
 

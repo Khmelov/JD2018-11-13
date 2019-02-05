@@ -1,19 +1,13 @@
 package by.it.vchernetski.project.java.controller;
 
-import by.it.vchernetski.project.java.beans.Role;
-import by.it.vchernetski.project.java.dao.MyDAO;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.Base64;
-import java.util.List;
+
 
 public class FrontController extends HttpServlet {
     protected static HttpServletResponse response;
@@ -44,7 +38,14 @@ public class FrontController extends HttpServlet {
             next = action.cmd.execute(req);
 
         } catch (Exception e) {
-            req.setAttribute("message", e.toString());
+            StringBuilder message = new StringBuilder(e.toString());
+            message.append("<p>");
+            for (StackTraceElement element : e.getStackTrace()) {
+                if (element.getClass().getName().contains("HttpServlet"))
+                    break;
+                message.append(element.toString()).append("<br>");
+            }
+            req.setAttribute("message", message);
             ServletContext servletContext = req.getServletContext();
             RequestDispatcher requestDispatcher = servletContext.getRequestDispatcher(Action.ERROR.getjsp());
             requestDispatcher.forward(req, resp);

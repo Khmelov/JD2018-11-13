@@ -2,7 +2,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuIn.htm" %>
+<%@ include file="include/menu.htm" %>
 <p>ERROR: ${message}</p>
 </body>
 </html>

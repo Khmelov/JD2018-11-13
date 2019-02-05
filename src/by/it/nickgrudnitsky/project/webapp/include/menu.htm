@@ -1,0 +1,42 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<nav style="background-color:#002664" class="navbar navbar-expand-lg navbar-light">
+    <a style="color:#FFFFFF" class="navbar-brand" href="do?command=Browse">
+        <img src="img/FlowHome.jpg" width="30" height="30" alt="">
+        FlowHome
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div class="navbar-nav">
+            <c:choose>
+                <c:when test="${user==null}">
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Browse">Browse</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Profile">Profile</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=LogIn">Log In</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=SignUp">Sign up</a>
+                    <li class="nav-item dropdown">
+                        <a style="color:#FFFFFF" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            I'm a
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="do?command=LogIn">Viewer!</a>
+                            <a class="dropdown-item" href="do?command=LogInStreamer">Streamer!</a>
+                        </div>
+                    </li>
+                </c:when>
+                <c:otherwise>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Browse">Browse</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Profile">Profile</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Logout">Log out</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=EditViewers">Moderate</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=Reset">Reset</a>
+                    <a style="color:#FFFFFF" class="nav-item nav-link" href="do?command=EditGames">Update games</a>
+                </c:otherwise>
+            </c:choose>
+        </div>
+    </div>
+</nav>
+

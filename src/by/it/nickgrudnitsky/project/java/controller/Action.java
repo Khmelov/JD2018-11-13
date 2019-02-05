@@ -7,14 +7,19 @@ enum Action {
     PROFILE(new CmdProfile()),
     PROFILESTREAMER(new CmdProfileStreamer()),
     BROWSE(new CmdBrowse()),
+    BROWSESTREAMER(new CmdBrowseStreamer()),
     RESET(new CmdReset()),
+    RESETSTREAMER(new CmdResetStreamer()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
     LOGINSTREAMER(new CmdLoginStreamer()),
     LOGOUT(new CmdLogout()),
     LOGOUTSTREAMER(new CmdLogoutStreamer()),
     SIGNUP(new CmdSignup()),
-    ERROR(new CmdError());
+    ERROR(new CmdError()),
+    EDITGAMES(new CmdEditGames()),
+    EDITVIEWERS(new CmdEditViewers()),
+    EDITSTREAMERS(new CmdEditStreamers());
 
     Cmd cmd;
 

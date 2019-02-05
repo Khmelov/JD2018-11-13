@@ -16,7 +16,9 @@ class CmdLogin implements Cmd {
             List<User> users = Dao.getDao().user.getAll(where);
             if (users.size() == 1) {
                 User user = users.get(0);
+                int userRole=user.getRoles_id();
                 req.getSession().setAttribute("user", user);
+                req.getSession().setAttribute("userRole", userRole);
 
                 //req.getSession().setMaxInactiveInterval(30);
                 return Action.PROFILE;

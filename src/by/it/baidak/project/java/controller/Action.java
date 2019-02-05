@@ -4,13 +4,15 @@ import javax.servlet.http.HttpServletRequest;
 
 enum Action {
 
-    NEWPOST(new CmdNewpost()),
     RESET(new CmdReset()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
     SIGNUP(new CmdSignup()),
     PROFILE(new CmdProfile()),
+    NEWPOST(new CmdNewpost()),
     REMOVEPOST(new CmdRemovePost()),
+    EDITUSERS(new CmdEditUsers()),
+    REMOVEUSER(new CmdRemoveUser()),
     ERROR(new CmdError());
 
     Cmd cmd;

@@ -2,7 +2,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuOutStreamer.htm" %>
+<%@ include file="include/menuStreamer.htm" %>
 <form class="form-horizontal" action="do?command=LoginStreamer" method="POST">
 <fieldset>
 

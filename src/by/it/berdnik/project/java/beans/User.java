@@ -3,7 +3,7 @@ package by.it.berdnik.project.java.beans;
 public class User {
 
     private long id;
-    private String nickname;
+    private String login;
     private String password;
     private String email;
     private long roles_Id;
@@ -11,9 +11,9 @@ public class User {
     public User() {
     }
 
-    public User(long id, String nickname, String password, String email, long roles_Id) {
+    public User(long id, String login, String password, String email, long roles_Id) {
         this.id = id;
-        this.nickname = nickname;
+        this.login = login;
         this.password = password;
         this.email = email;
         this.roles_Id = roles_Id;
@@ -27,12 +27,12 @@ public class User {
         this.id = id;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getLogin() {
+        return login;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
     public String getPassword() {
@@ -63,7 +63,7 @@ public class User {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", nickname='" + nickname + '\'' +
+                ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
                 ", roles_Id=" + roles_Id +

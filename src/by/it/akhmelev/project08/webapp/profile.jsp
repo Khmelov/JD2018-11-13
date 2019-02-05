@@ -34,8 +34,10 @@
     </div>
 </c:forEach>
 
-<br><br>
-
+    <hr>
+    <div class="row">
+        <mytag:paginator count="${adsSize}" step="5" urlprefix="do?command=Profile&start="/>
+    </div>
 
 
 <form class="form-horizontal" action="do?command=Profile" method="POST">

@@ -8,10 +8,10 @@ import java.sql.Statement;
 
 public class MyConnection {
 
-    private static final String URL = "jdbc:mysql://127.0.0.1:2016/ngrudnitsky?" +
+    private static final String URL = "jdbc:mysql://127.0.0.1:3306/ngrudnitsky?" +
             "useUnicode=true&characterEncoding=UTF-8";
     private static final String USER = "root";
-    private static final String PASSWORD = "";
+    private static final String PASSWORD = "12345Qwe";
     private static volatile Connection connection;
 
     static {
@@ -75,16 +75,16 @@ public class MyConnection {
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'admin');");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'streamer');");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`roles` (`id`, `role`) VALUES (DEFAULT, 'viewer');\n");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'grud97@gmail.com', '5F4DCC3B5AA765D61D8327DEB882CF99', 'NickGS', 3);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'grud97@gmail.com', '5F4DCC3B5AA765D61D8327DEB882CF99', 'NickGS', 1);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`viewers` (`id`, `email`, `password`, `nickname`, `roles_id`) VALUES (DEFAULT, 'pewdiepie@pewd.se', 'youloose', 'pewdiepie', 3);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'ninja@gmail.com', 'FEE22A76AEDE2572C76FA9FCF36038C9', 'Ninja', 2);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'ninja@gmail.com', 'FEE22A76AEDE2572C76FA9FCF36038C9', 'Ninja', 1);");
             statement.executeUpdate("INSERT INTO `ngrudnitsky`.`streamers` (`id`, `email`, `password`, `channelname`, `roles_id`) VALUES (DEFAULT, 'silvername@gmail.com', 'hearthstone', 'SilverName', 2);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'HearthStone', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Fortnight', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'DOTA 2', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'PUBG', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'League of Legends', NULL);");
-            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Overwatch', NULL);");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'HearthStone', 'img/Hearthstone.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Fortnite', 'img/Fortnite.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'DOTA 2', 'img/Dota2.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'PUBG', 'img/PLAYERUNKNOWNS BATTLEGROUNDS.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'League of Legends', 'img/League of Legends.jpg');");
+            statement.executeUpdate("INSERT INTO `ngrudnitsky`.`games` (`id`, `game`, `link`) VALUES (DEFAULT, 'Overwatch', 'img/Overwatch.jpg');");
 
         }
     }

@@ -13,9 +13,9 @@ public class UserDao implements InterfaceDao<User> {
 
     public boolean create(User user) throws SQLException {
         String sql = String.format(
-                "INSERT INTO `users` (`nickname`, `password`, `email`, `roles_id`)" +
+                "INSERT INTO `users` (`login`, `password`, `email`, `roles_id`)" +
                         "VALUES ('%s', '%s', '%s', '%d')",
-                user.getNickname(), user.getPassword(), user.getEmail(), user.getRoles_Id());
+                user.getLogin(), user.getPassword(), user.getEmail(), user.getRoles_Id());
         long id = Dao.executeCreateAndGetId(sql);
         user.setId(id);
         return  (id > 0);
@@ -30,10 +30,10 @@ public class UserDao implements InterfaceDao<User> {
     public boolean update(User user) throws SQLException {
         String sql = String.format(
                 "UPDATE `users` SET " +
-                        "`nickname` = '%s', `password` = '%s', " +
+                        "`login` = '%s', `password` = '%s', " +
                         "`email` = '%s',  `roles_id` = '%d' " +
                         "WHERE `users`.`id` = %d",
-                user.getNickname(), user.getPassword(),
+                user.getLogin(), user.getPassword(),
                 user.getEmail(), user.getRoles_Id(),
                 user.getId());
         return Dao.executeUpdate(sql);
@@ -49,18 +49,18 @@ public class UserDao implements InterfaceDao<User> {
     @Override
     public List<User> getAll(String sqlSuffix) throws SQLException {
         List<User> result = new ArrayList<>();
-        String sql = String.format("SELECT `id`, `nickname`, `password`, `email`, `roles_id` " +
+        String sql = String.format("SELECT `id`, `login`, `password`, `email`, `roles_id` " +
                 "FROM `users` %s", sqlSuffix);
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
             while (resultSet.next()) {
                 long id = resultSet.getLong("id");
-                String nickname = resultSet.getString("nickname");
+                String login = resultSet.getString("login");
                 String password = resultSet.getString("password");
                 String email = resultSet.getString("email");
                 long roles_Id = resultSet.getLong("roles_id");
-                User user = new User (id, nickname, password, email, roles_Id);
+                User user = new User (id, login, password, email, roles_Id);
                 result.add(user);
             }
                 return result;

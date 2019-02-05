@@ -13,6 +13,7 @@ enum Action {
     EDITUSERS(new CmdEditUsers()),
     GETLIST(new CmdList()),
     LOGOUT(new CmdLogout()),
+    DELETECAR(new CmdDeletecar()),
     DONE(new CmdDone());
 
     Cmd cmd;
@@ -26,7 +27,7 @@ enum Action {
     }
     static Action define(HttpServletRequest request) {
         String command = request.getParameter("command");
-        Action result = Action.INDEX;
+        Action result = Action.PROFILE;
         if (command != null && !command.isEmpty()){
             try {
                 result = Action.valueOf(command.toUpperCase());

@@ -10,6 +10,6 @@ class CmdReset extends Cmd {
     @Override
     Action execute(HttpServletRequest req, HttpServletResponse resp) throws SQLException {
         MyDao.getDao().reset();
-        return Action.INDEX;
+        return Action.PROFILE;
     }
 }

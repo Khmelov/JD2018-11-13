@@ -39,6 +39,7 @@ class CmdCreate implements Cmd{
            MyDAO<Car> dao = MyDAO.getDao();
            dao.setBean(car);
            if(dao.create()){
+               Util.savephoto(request,"im"+car.getId());
                return Action.DONE;
            }
        }
