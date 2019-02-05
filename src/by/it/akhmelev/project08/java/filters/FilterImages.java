@@ -22,7 +22,7 @@ public class FilterImages implements Filter {
         if (real.equals("noimage.png") || new File(real).exists()) {
             filterChain.doFilter(servletRequest, servletResponse);
         } else req
-                .getRequestDispatcher("./image/noimage.png")
+                .getRequestDispatcher("/image/noimage.png")
                 .forward(req, resp);
 
 
