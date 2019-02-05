@@ -4,8 +4,7 @@
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
-    <p>USER PROFILE: <br> ${user}</p>
+    <%@ include file="include/menu.jsp" %>
     <table class="table table-bordered">
         <thead>
         <tr>

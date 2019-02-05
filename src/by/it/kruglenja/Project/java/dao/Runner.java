@@ -1,9 +1,6 @@
 package by.it.kruglenja.Project.java.dao;
 
-import by.it.kruglenja.Project.java.beans.Order;
-import by.it.kruglenja.Project.java.beans.Roles;
-import by.it.kruglenja.Project.java.beans.Spareparts;
-import by.it.kruglenja.Project.java.beans.User;
+import by.it.kruglenja.Project.java.beans.*;
 import by.it.kruglenja.Project.java.controller.Form;
 
 import java.sql.SQLException;
@@ -18,6 +15,7 @@ public class Runner {
         Dao dao = Dao.getDao();
         User user = new User();
         Order order = new Order();
+        CompletedOrder co = new CompletedOrder();
 
         user.setLogin("RTX");
         user.setPassword("2012");
@@ -53,7 +51,7 @@ public class Runner {
 //        spareparts.setSerial_number("41dfsaf5");
 //        spareparts.setWeight(14.5);
 //        spareparts.setPrice(99.9);
-        Spareparts spareparts = new Spareparts(0,"fgh","gh", "ghj", "ghjgh", 456.56, 56.66, 6 );
+        Spareparts spareparts = new Spareparts(0, "fgh", "gh", "ghj", "ghjgh", 456.56, 56.66, 6);
 
         if (dao.spareparts.create(spareparts)) {
             System.out.println("create  fgh-------->" + spareparts);
@@ -124,5 +122,35 @@ public class Runner {
         if (dao.order.delete(order)) {
             System.out.println("order -------->" + order.getQuanity() + "--------> deleted");
         }
+        System.out.println("////////////////TEST///CREATE//CO////////////");
+        co.setAddress("Golodeda");
+        co.setInfo("12-28");
+        co.setTotalPrice(228.22);
+        co.setUsers_id(1);
+        if (dao.completedOrder.create(co)) {
+            System.out.println("created -------->" + co);
+        }
+
+
+        System.out.println("////////////////TEST///UPDATE//////////////");
+//        co.setTotalPrice(999.99);
+//        long id1 = co.getId();
+//        System.out.println(id);
+//        if (dao.completedOrder.update(co)) {
+//            System.out.println(co);
+//        }
+co = new CompletedOrder(0, "", "", 0, 0);
+        System.out.println("////////////////TEST/GETALL////////////////");
+//
+//
+        System.out.println("<CO GETALL_>");
+        List<CompletedOrder> alloc = dao.completedOrder.getAll("WHERE `order_id`='1'");
+        for (CompletedOrder s : alloc) {
+            System.out.println(s);
+        }
+
+//        if (dao.completedOrder.delete(co)) {
+//            System.out.println("order -------->" + co.getId() + "--------> deleted");
+//        }
     }
 }

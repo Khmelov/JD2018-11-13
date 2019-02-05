@@ -101,6 +101,20 @@ class Connect {
                     "    ON DELETE CASCADE" +
                     "    ON UPDATE CASCADE)" +
                     "ENGINE = InnoDB;");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS `kruglenja`.`readyOrder` (" +
+                    "  `id` BIGINT(20) NOT NULL AUTO_INCREMENT," +
+                    "  `address` VARCHAR(250) NULL," +
+                    "  `info` VARCHAR(500) NULL," +
+                    "  `totalPrice` DOUBLE NULL," +
+                   "`users_id` BIGINT NOT NULL," +
+                    "  PRIMARY KEY (`id`)," +
+                    "  INDEX `fk_readyOrder_users1_idx` (`users_id` ASC)," +
+                    "  CONSTRAINT `fk_readyOrder_users1`" +
+                    "    FOREIGN KEY (`users_id`)" +
+                    "    REFERENCES `kruglenja`.`users` (`id`)" +
+                    "    ON DELETE NO ACTION" +
+                    "    ON UPDATE NO ACTION)" +
+                    "ENGINE = InnoDB;");
 
             statement.executeUpdate("INSERT INTO `kruglenja`.`spareParts` (`id`, `model`, `category`, `name`, `serial_number`, `weight`, `price`, `storageQuanity`) VALUES (DEFAULT, 'Tesla', 'Coil', 'motor', 214045204524, '352', 412.33, 228);");
             statement.executeUpdate("INSERT INTO `kruglenja`.`spareParts` (`id`, `model`, `category`, `name`, `serial_number`, `weight`, `price`, `storageQuanity`) VALUES (DEFAULT, 'Mazda', 'engine', 'engine', 051871051184, '12', 10.24, 322);");

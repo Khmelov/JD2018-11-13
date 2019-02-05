@@ -20,21 +20,19 @@ public class CmdOrder implements Cmd {
         long userId = (long) req.getSession().getAttribute("sesionUserId");
         String ordersById = String.format(" WHERE users_id='%d'", userId);
         List<Order> order = dao.order.getAll(ordersById);
-        List<Spareparts> partsByOrder = new ArrayList<>();
 
 
-        double totalPrice = 0;
-        for (Order order1 : order) {
-            long spId = order1.getSpareParts_id();
-            partsByOrder.add(dao.spareparts.read(spId));
-        }
-        for (Spareparts spareparts : partsByOrder) {
-            totalPrice += spareparts.getPrice();
-        }
+//        double totalPrice = 0;
+//        for (Order order1 : order) {
+//            long spId = order1.getSpareParts_id();
+//        }
+//        for (Spareparts spareparts : partsByOrder) {
+//            totalPrice += spareparts.getPrice();
+//        }
 
         req.getSession().setAttribute("order", order);
-        req.getSession().setAttribute("partsByOrder", partsByOrder);
-        req.getSession().setAttribute("totalPrice", totalPrice);
+//        req.getSession().setAttribute("partsByOrder", partsByOrder);
+//        req.getSession().setAttribute("totalPrice", totalPrice);
         return Action.ORDER;
     }
 }

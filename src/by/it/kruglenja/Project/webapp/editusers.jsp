@@ -5,7 +5,7 @@
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>    <p>users:  <c:out value="${users}"/><p>
+    <%@ include file="include/menu.jsp" %>    <p>users:  <c:out value="${users}"/><p>
 
 
     <table class="table table-bordered">

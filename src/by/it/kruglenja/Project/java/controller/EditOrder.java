@@ -15,12 +15,7 @@ public class EditOrder implements Cmd {
                 if (req.getParameter("update") != null) {
                     Long orderId = Form.getLong(req, "update");
                     Order oldOrder = dao.order.read(orderId);
-                     long id = oldOrder.getId();
-                     int quanity = Form.getInteger(req, "quanity");
-//                     double totalPrice = oldOrder.getTotalPrice();
-//                     long spareParts_id=oldOrder.getSpareParts_id();
-//                     long users_id=oldOrder.getUsers_id();
-//                    oldOrder = new Order(id, quanity, totalPrice,spareParts_id, users_id);
+                    oldOrder.setQuanity(Form.getInteger(req, "quanity"));
                     dao.order.update(oldOrder);
                     return Action.ORDER;
 

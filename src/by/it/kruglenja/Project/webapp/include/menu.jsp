@@ -3,16 +3,22 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
     <a class="navbar-brand" href=".">Catalog</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
+
                 <a class="nav-link" href="do?command=Login">Войти</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="do?command=SignUp">Регистрация</a>
+            </li>
+            <li class="nav-item">
+                <c:if test="${user != null}">
+                <a class="nav-link" href="do?command=Profile">Профиль</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="do?command=Order">Корзина</a>
@@ -24,8 +30,9 @@
                 <a class="nav-link" href="do?command=EditUsers">Польз(админ.)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="do?command=Profile">Профиль</a>
+                <a class="nav-link" href="do?command=CompletedOrder">Заказы(админ.)</a>
             </li>
+            </c:if>
             <li class="nav-item">
                 <a class="nav-link" href="do?command=Reset">RESET DB</a>
             </li>

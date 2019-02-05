@@ -4,11 +4,10 @@
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
+    <%@ include file="include/menu.jsp" %>
 
     <div class="page-header">
         <p>sesionUserId: <br> ${sesionUserId}</p>
-
 
         <h1>Каталог запчастей</h1>
     </div>
@@ -21,7 +20,6 @@
             <th scope="col">Вес</th>
             <th scope="col">Цена</th>
             <th scope="col">На складе</th>
-
             <th scope="col" colspan="2">В корзину</th>
         </tr>
         </thead>
@@ -35,7 +33,7 @@
                 <td>${sparepart.weight}</td>
                 <td>${sparepart.price}<input type="hidden" id="price" name="price" value="${sparepart.price}"/></td>
                 <td>${sparepart.storageQuanity}</td>
-
+                    <c:if test="${user != null}">
                 <td colspan="2">
 
                         <fieldset>
@@ -44,6 +42,7 @@
                         </fieldset>
                     </form>
                 </td>
+            </c:if>
 
             </tr>
             </tbody>

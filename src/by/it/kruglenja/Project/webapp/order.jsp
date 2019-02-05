@@ -5,55 +5,81 @@
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
-
-    <p>order:  <c:out value="${order}"/><p>
-    <p>partsByOrder:
-        <c:out value="${partsByOrder}"/>
-    <p>
+    <%@ include file="include/menu.jsp" %>
 
     <table class="table table-bordered">
         <thead>
         <tr>
-            <th class="col-md-3" scope="col">Марка</th>
-            <th class="col-md-3" scope="col">Наименование</th>
-            <th class="col-md-1" scope="col">Цена</th>
-            <th class="col-md-1" scope="col">Колличество</th>
+            <th scope="col">Марка</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Цена за шт</th>
+            <th scope="col">Колличество</th>
+            <th scope="col">Общая стоимость</th>
+
 
         </tr>
         </thead>
 
         <tbody>
-        <c:forEach items="${partsByOrder}" var="sparepart">
-        <form class="update-user-${user.id}" action="do?command=EditOrder" method="post">
+        <c:forEach items="${order}" var="order">
+
+        <form class="update-user-${order.id}" action="do?command=EditOrder" method="post">
 
             <tr>
-                <td>${sparepart.model}</td>
-                <td>${sparepart.name}</td>
-                <td>${sparepart.price}</td>
+                <td>${order.model}</td>
+                <td>${order.name}</td>
+                <td>${order.price}</td>
+                <td>
+                    <input class="form-control input-sm" type="text" id="quanity" class="form-control input-sm" name="quanity"
+                           value="${order.quanity}"/>
+                </td>
+                <td>${order.price * order.quanity}</td>
 
-                <c:forEach items="${order}" var="order">
-                    <c:if test="${order.spareParts_id == sparepart.id}">
-                        <td>
-                        <input type="text" id="quanity" class="form-control input-sm" name="quanity"
-                               value="${order.quanity}"/>
-                        </td>
-                        <td>
-                            <button id="update" value="${order.id}" name="update" class="btn btn-success">ОБНОВИТЬ</button>
-                        </td>
-                        <td>
-                            <button id="delete" value="${order.id}" name="delete" class="btn btn-danger">УДАЛИТЬ</button>
-                        </td>
-                    </c:if>
-
-                </c:forEach>
+                <td>
+                    <button id="update" value="${order.id}" name="update" class="btn btn-success">ОБНОВИТЬ</button>
+                </td>
+                <td>
+                    <button id="delete" value="${order.id}" name="delete" class="btn btn-danger">УДАЛИТЬ</button>
+                </td>
             </tr>
-            </c:forEach>
-
         </form>
-        </tbody>
+        </c:forEach>
 
+        </tbody>
     </table>
+    <form class="form-horizontal" action="do?command=makeOrder" method="post">
+        <fieldset>
+
+            <!-- Form Name -->
+            <legend>Form Name</legend>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="address">Адрес доставки</label>
+                <div class="col-md-4">
+                    <input id="address" name="address" type="text" placeholder="" class="form-control input-md">
+
+                </div>
+            </div>
+            <!-- Textarea -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="info">Доп. информация</label>
+                <div class="col-md-4">
+                    <textarea class="form-control" id="info" name="info"></textarea>
+                </div>
+            </div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label" for="order_id"></label>
+                <div class="col-md-4">
+                    <button id="order_id" value="order_id" name="order_id" class="btn btn-primary">Подтвердить заказ</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+
 </div>
 </body>
 </html>

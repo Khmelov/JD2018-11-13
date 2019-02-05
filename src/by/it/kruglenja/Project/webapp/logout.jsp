@@ -4,7 +4,7 @@
 <%@ include file="include/head.htm" %>
 <body>
 <div class="container">
-    <%@ include file="include/menu.htm" %>
+    <%@ include file="include/menu.jsp" %>
     <p>Cmd Logout: ${Session_terminated}</p>
 
 </div>

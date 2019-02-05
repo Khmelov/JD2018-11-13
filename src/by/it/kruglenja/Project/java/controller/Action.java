@@ -16,6 +16,8 @@ public enum Action {
     DELETEORDERPART(new DeleteOrderPart()),
     EDITUSERS(new CmdEditUser()),
     EDITORDER(new EditOrder()),
+    MAKEORDER(new CmdMakeOrder()),
+    COMPLETEDORDER(new CmdCompletedOrder()),
     FILLCATALOG(new CmdFillCatalog());
 
 

@@ -15,6 +15,7 @@ public class Dao {
     public InterfaceDao<User> user;
     public InterfaceDao<Order> order;
     public InterfaceDao<Spareparts> spareparts;
+    public InterfaceDao<CompletedOrder> completedOrder;
 
     private Dao() {
         role = new UniversalDao<>(new Roles(), "roles");
@@ -22,6 +23,7 @@ public class Dao {
         user = new UserDao();
         order = new OrderDao();
         spareparts = new SparepartsDao();
+        completedOrder = new CompletedOrderDao();
     }
 
     public static Dao getDao() {
