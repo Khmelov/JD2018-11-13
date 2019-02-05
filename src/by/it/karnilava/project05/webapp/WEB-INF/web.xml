@@ -35,5 +35,15 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
+    <!--<filter>-->
+        <!--<filter-name>FilterImages</filter-name>-->
+        <!--<filter-class>by.it.karnilava.project05.java.filters.FilterImages</filter-class>-->
+    <!--</filter>-->
+
+    <!--<filter-mapping>-->
+        <!--<filter-name>FilterImages</filter-name>-->
+        <!--<url-pattern>/image/*</url-pattern>-->
+    <!--</filter-mapping>-->
+
 
 </web-app>

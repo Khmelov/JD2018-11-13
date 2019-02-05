@@ -47,6 +47,8 @@ class CmdLogin extends Cmd {
                     req.getSession().setAttribute("lastName", clients.get(0).getLastName());
                     req.getSession().setAttribute("passport", clients.get(0).getPassport());
 
+                    req.getSession().setAttribute("accounts", dao.account.getAllAcconts(client));
+
 
 
                     return Action.PROFILE;

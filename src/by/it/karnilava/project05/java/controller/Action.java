@@ -3,6 +3,7 @@ package by.it.karnilava.project05.java.controller;
 enum Action {
 
     PROFILE(new CmdProfile()),
+    CLIENTPROFILE(new CmdProfile()),
     LOGIN(new CmdLogin()),
     LOGOUT(new CmdLogout()),
     SIGNUP(new CmdSignup()),
