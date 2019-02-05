@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CmdOrders implements Cmd {
     @Override
-    public Action execute(HttpServletRequest req) throws SQLException, SiteException {
+    public Action execute(HttpServletRequest req) throws SQLException, SiteException, NullPointerException {
         if (!Util.checkUser(req))
             return Action.LOGIN;
 
@@ -21,12 +21,10 @@ public class CmdOrders implements Cmd {
         }
         User user = Util.findUser(req);
         String where = String.format(" WHERE `users_id`='%d'", user.getId());
-
         List<Order> orders = Dao.getDao().order.getAll(where);
         req.setAttribute("orders", orders);
         req.getSession().getAttribute("items");
         return Action.ORDERS;
-
 
     }
 }

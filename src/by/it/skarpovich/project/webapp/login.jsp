@@ -10,7 +10,7 @@
 <fieldset>
 
 <div class="page-header">
-    <h1>Авторизация</h1>
+    <h2>Авторизация</h2>
     <p class="lead">Введите логин и пароль</p>
 </div>
 
@@ -18,7 +18,7 @@
 <div class="form-group">
     <label class="col-md-4 control-label" for="username">Имя пользователя</label>
     <div class="col-md-4">
-    <input id="username" name="username" value="john" type="text" placeholder="min 6 symbols" class="form-control input-md" required="">
+    <input id="username" name="username" value="john" type="text" placeholder="min 4 symbols" class="form-control input-md" required="">
 </div>
 </div>
 
@@ -36,7 +36,10 @@
 </div>
 </fieldset>
 </form>
+<div class="page-header">
 
+    <p class="lead">Нет аккаунта? <a href="http://localhost:28080/skarpovich/do?command=signup">Зарегистрируйтесь!</a></p>
+</div>
 </div>
 </body>
 </html>

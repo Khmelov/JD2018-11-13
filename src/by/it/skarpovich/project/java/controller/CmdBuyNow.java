@@ -11,6 +11,9 @@ import java.util.Date;
 public class CmdBuyNow implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
+        if (!Util.checkUser(req))
+            return Action.LOGIN;
+
         if (Form.isPost(req)) {
             java.util.Date dt = new java.util.Date();
             java.text.SimpleDateFormat sdfDate =

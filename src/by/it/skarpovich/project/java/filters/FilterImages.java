@@ -21,9 +21,7 @@ public class FilterImages implements Filter {
         String real = req.getServletContext().getRealPath("/image/" + fn);
         if (real.equals("noimage.png") || new File(real).exists()) {
             filterChain.doFilter(servletRequest, servletResponse);
-        } else req
-                .getRequestDispatcher("/image/noimage.png")
-                .forward(req, resp);
+        } else req.getRequestDispatcher("/image/noimage.png").forward(req, resp);
 
 
     }

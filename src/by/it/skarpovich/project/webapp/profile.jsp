@@ -7,7 +7,7 @@
 <%@ include file="include/menu.jsp" %>
 
 <div class="page-header">
-    <h1>Профиль</h1>
+    <h2>Профиль</h2>
     <p class="lead">Здравствуйте, <font color=green><strong>${user.username}!</strong></font></p>
 </div>
 <table class="table table-striped table-responsive-md btn-table">

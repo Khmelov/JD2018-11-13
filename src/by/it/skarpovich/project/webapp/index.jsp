@@ -8,8 +8,8 @@
 
 
 <div class="page-header">
-    <h1>Каталог проектов</h1>
-    <p class="lead">Список архитектурных проектов домов</p>
+    <h2>Каталог проектов</h2>
+    <p class="lead">Список архитектурных проектов домов и коттеджей</p>
 </div>
 <table class="table table-striped table-responsive-md btn-table">
   <thead>
@@ -26,7 +26,7 @@
         <c:forEach items="${items}" var="item">
         <tr>
         <form class="update-item-${item.id}" action="do?command=buynow" method="POST">
-        <td><img src="image/item${item.id}" height="80px" border="1px"></td>
+        <td><img src="image/item${item.id}" height="88px"></td>
         <input id="id" type="hidden" class="form-control input-md" name="id" value="${item.id}"/>
         <td>${item.title}</td>
         <td>${item.floors}</td>

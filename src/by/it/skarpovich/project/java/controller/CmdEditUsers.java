@@ -28,7 +28,7 @@ class CmdEditUsers implements Cmd {
                     dao.user.delete(user);
             }
             List<User> users = dao.user.getAll();
-            System.out.println("-------------\n"+users);
+            //System.out.println("-------------\n"+users);
             req.setAttribute("users", users);
         }
         return Action.EDITUSERS;

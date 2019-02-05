@@ -11,6 +11,7 @@ enum Action {
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignup()),
     ADDPROJECT(new CmdAddProject()),
+    EDITPROJECTS(new CmdEditProjects()),
     ORDERS(new CmdOrders()),
     EDITUSERS(new CmdEditUsers()),
     EDITORDERS(new CmdEditOrders()),

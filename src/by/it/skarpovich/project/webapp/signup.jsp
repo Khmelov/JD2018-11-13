@@ -11,7 +11,7 @@
 <fieldset>
 
 <div class="page-header">
-    <h1>Регистрация</h1>
+    <h2>Регистрация</h2>
     <p class="lead">Введите данные для регистрации аккаунта</p>
 </div>
 
@@ -19,7 +19,7 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="username">Логин</label>
   <div class="col-md-4">
-  <input id="username" name="username" value="john3" type="text" placeholder="min 4 symbols" class="form-control input-md" required="">
+  <input id="username" name="username" value="" type="text" placeholder="min 4 symbols" class="form-control input-md" required="">
 
   </div>
 </div>

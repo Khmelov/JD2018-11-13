@@ -9,7 +9,7 @@
 <fieldset>
 
 <div class="page-header">
-    <h1>Добавление проектов</h1>
+    <h2>Добавление проектов</h2>
     <p class="lead">Добавление новых архитектурных проектов</p>
 </div>
 <!-- Text input-->
@@ -65,7 +65,7 @@
             <div class="form-group">
                 <label class="col-md-4 control-label" for="filebutton">File Button</label>
                 <div class="col-md-4">
-                    <input id="filebutton" name="filebutton" class="input-file" type="file">
+                    <input id="filebutton" name="filebutton" required class="input-file" type="file">
                 </div>
             </div>
 

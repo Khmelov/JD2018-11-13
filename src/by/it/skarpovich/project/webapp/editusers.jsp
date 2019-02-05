@@ -7,7 +7,7 @@
 <div class="container">
 <%@ include file="include/menu.jsp" %>
 <div class="page-header">
-    <h1>Редактирование пользователей</h1>
+    <h2>Редактирование пользователей</h2>
     <p class="lead">Редактирование данных пользователей</p>
 </div>
 

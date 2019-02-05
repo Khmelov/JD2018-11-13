@@ -5,6 +5,7 @@ import by.it.skarpovich.project.java.beans.User;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -28,18 +29,23 @@ public class Util {
     }
 
     static void saveFile(HttpServletRequest req, String fn) {
-        fn = req.getServletContext().getRealPath("/image/" + fn);
-        try (InputStream in = req.getPart("filebutton").getInputStream();
-             OutputStream out = new FileOutputStream(fn)) {
+        try {
+        Part part = req.getPart("filebutton");
+        String fnout = req.getServletContext().getRealPath("/image/" + fn);
+
+        try (InputStream input = part.getInputStream();
+             OutputStream out = new FileOutputStream(fnout)
+        ) {
             byte[] buffer = new byte[100000];
-            while (in.available() > 0) {
-                int n = in.read(buffer);
-                out.write(buffer, 0, n);
+            while (input.available() > 0) {
+                int count = input.read(buffer);
+                out.write(buffer, 0, count);
             }
+        }
         } catch (IOException | ServletException e) {
             e.printStackTrace();
         }
     }
 
-
 }
+
