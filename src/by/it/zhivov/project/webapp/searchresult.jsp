@@ -2,9 +2,9 @@
 <html>
 <%@ include file="include/head.jsp" %>
 <body>
-
 <div class="container">
     <%@ include file="include/menu.jsp" %>
+
 
     <div class="page-header">
         <h3>Объявления</h3>
@@ -45,5 +45,8 @@
         <hr>
     </c:forEach>
 </div>
+</div>
 </body>
 </html>
+
+

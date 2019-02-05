@@ -14,7 +14,6 @@ public class CmdIndex implements Cmd {
     public Action execute(HttpServletRequest req) throws SQLException {
         List<Ad> ads = Dao.getDao().ad.getALL();
         req.setAttribute("ads",ads);
-
         return null;
     }
 }

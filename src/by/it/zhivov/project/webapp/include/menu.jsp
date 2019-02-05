@@ -41,6 +41,7 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="do?command=EditUsers">Пользователи</a>
                                 <a class="dropdown-item" href="do?command=EditAds">Объявления</a>
+                                <a target="_blank" class="dropdown-item" href="http://localhost:2080/phpmyadmin/">phpMyAdmin</a>
                             </div>
 
                         </li>
@@ -50,6 +51,19 @@
                 </c:otherwise>
             </c:choose>
         </ul>
+
+        <%--<div class="col-md-1" style="left: 35px">--%>
+            <%--<a target="_blank" href="http://t.me/zhivov_bot">--%>
+                <%--<img src="images/tlogo.png" height="30px">--%>
+            <%--</a>--%>
+        <%--</div>--%>
+
+        <form class="form-inline my-2 my-lg-0" action="do?command=SearchResult" method="POST">
+            <input class="form-control mr-sm-2" id="search" name="search" pattern="[a-zA-Zа-яА-Я0-9- ]*" minlength="1"
+                   maxlength="45" placeholder="По марке авто">
+            <button class="btn btn-outline-success my-2 my-sm-0" id="gosearch" name="gosearch" value="gosearch">Search
+            </button>
+        </form>
 
         <c:if test="${user!=null}">
             <form class="form-inline my-2 my-lg-0" action="do?command=Profile" method="POST">
