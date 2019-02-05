@@ -105,21 +105,21 @@ class Connect {
             statement.executeUpdate("INSERT INTO `skarpovich`.`roles` (`id`, `role`) VALUES (DEFAULT, 'guest');");
 
             statement.executeUpdate("INSERT INTO `skarpovich`.`users` (`id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `roles_id`) " +
-                    "VALUES (DEFAULT, 'admin', 'admin', 'admin@admin.com', 'John Black', '911-911-9111', 'Kremlin, Russia', 1);");
+                    "VALUES (DEFAULT, 'admin', 'admin', 'admin@admin.com', 'Саша', '911-911-9111', 'Drozdy 1, Minsk', 1);");
             statement.executeUpdate("INSERT INTO `skarpovich`.`users` (`id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `roles_id`) " +
-                    "VALUES (DEFAULT, 'john', 'john1', 'johndoe@yahoo.com', 'John Doe', '212-564-5555', '444 W. 27th Street, 4th Floor, New York, NY 10001', 2);");
+                    "VALUES (DEFAULT, 'john', 'john1', 'john@mail.ru', 'Ваня Ургант', '212-564-5555', '444 W. 27th Street, 4th Floor, New York, NY 10001', 2);");
             //added user
             statement.executeUpdate("INSERT INTO `skarpovich`.`users` (`id`, `username`, `password`, `email`, `fullname`, `phone`, `address`, `roles_id`) " +
-                    "VALUES (DEFAULT, 'john2', 'john1', 'billgates@yahoo.com', 'Bill Gates', '111-555-7777', 'Best street 10, 4th Floor, Los Angeles, LA 23001', 2);");
+                    "VALUES (DEFAULT, 'john2', 'john1', 'billy@gmail.com', 'Bill Gates', '111-555-7777', 'Best street 10, 4th Floor, Los Angeles, LA 23001', 2);");
 
             //added item
             statement.executeUpdate("INSERT INTO `skarpovich`.`items` (`id`, `title`, `floors`, `square`, `materials`, `price`) " +
-                    "VALUES (DEFAULT, 'Zx87', 1, 133, 'aerated concrete, ceramic blocks', 510);");
+                    "VALUES (DEFAULT, 'Zx87', 1, 133, 'Керамические блоки', 510);");
             statement.executeUpdate("INSERT INTO `skarpovich`.`items` (`id`, `title`, `floors`, `square`, `materials`, `price`) " +
-                    "VALUES (DEFAULT, 'Zx152', 2, 299, 'ceramic blocks', 640);");
+                    "VALUES (DEFAULT, 'Zx152', 2, 299, 'Деревянный брус', 640);");
 
             statement.executeUpdate("INSERT INTO `skarpovich`.`items` (`id`, `title`, `floors`, `square`, `materials`, `price`) " +
-                    "VALUES (DEFAULT, 'Zx170', 2, 400, 'wood and stone', 790);");
+                    "VALUES (DEFAULT, 'Zx170', 2, 400, 'Кирпич', 790);");
 
 
             statement.executeUpdate("INSERT INTO `skarpovich`.`orders` (`id`, `date`, `time`, `users_id`, `items_id`) " +

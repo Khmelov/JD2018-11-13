@@ -33,8 +33,9 @@ public class TestDao implements InterfaceDao<Test> {
     public boolean update(Test test) throws SQLException {
         String sql = String.format(
                 "UPDATE `tests` SET " +
-                        "`test_name` = '%s'",
-                test.getTest_name()
+                        "`test_name` = '%s'"+
+                        "WHERE `tests`.`id_test` = %d",
+                test.getTest_name() , test.getId()
         );
         return Dao.executeUpdate(sql);
     }

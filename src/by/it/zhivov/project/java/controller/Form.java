@@ -1,7 +1,6 @@
 package by.it.zhivov.project.java.controller;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Date;
 
 class Form {
 
@@ -11,9 +10,13 @@ class Form {
 
     static String getString(HttpServletRequest req, String name, String pattern) throws SiteExeption {
         String result = req.getParameter(name);
-        if (result.matches(pattern))
-            return result;
-        throw new SiteExeption("name=" + result + " incorrect");
+        if (result != null) {
+            if (result.matches(pattern)) {
+                return result;
+            } else throw new SiteExeption("name=" + result + " incorrect");
+        } else return null;
+
+
     }
 
     static String getString(HttpServletRequest req, String name) throws SiteExeption {

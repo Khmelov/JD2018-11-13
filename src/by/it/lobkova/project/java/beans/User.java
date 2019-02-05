@@ -13,7 +13,7 @@ public class User {
 
     }
 
-    public User(long id, String email, String login, String password, String name, long roles_ID) {
+    public User(long id, String login, String password, String email, String name, long roles_ID) {
         this.id = id;
         this.email = email;
         this.login = login;
@@ -22,7 +22,7 @@ public class User {
         this.roles_ID = roles_ID;
     }
 
-    public long getRoles_id() {
+    public long getRoles_ID() {
         return roles_ID;
     }
 

@@ -15,6 +15,9 @@ public class Dao {
     public InterfaceDao<Test> test;
     public InterfaceDao<Question> question;
     public InterfaceDao<Answer> answer;
+    public InterfaceDao<Lesson> lesson;
+    public InterfaceDao<TypeLesson> type;
+    public InterfaceDao<Theme> theme;
 
     public Dao() {
         role = new RoleDao();
@@ -22,6 +25,9 @@ public class Dao {
         test = new TestDao();
         question = new QuestionDao();
         answer = new AnswerDao();
+        lesson = new LessonDao();
+        type = new TypeDao();
+        theme = new ThemeDao();
     }
 
     public static Dao getDao(){

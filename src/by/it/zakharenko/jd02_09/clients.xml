@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<clients>
+    <client>
+        <e-mail>Lizazakharenko@gmail.com</e-mail>
+        <login>lizazakharenko</login>
+        <password>12345678</password>
+        <phone_number>+375297658895</phone_number>
+        <orders>
+            <order>
+                <name>Vacuum cleaner</name>
+                <item>Samsung SC5241</item>
+                <item_id>1234</item_id>
+                <colour>grey</colour>
+                <price>129</price>
+                <address>Minsk, Rokossovskogo ave, 145-173</address>
+            </order>
+            <order>
+                <name>Washing machine</name>
+                <item>LG F2J5HS3W</item>
+                <item_id>1253</item_id>
+                <colour>white</colour>
+                <price>799</price>
+                <address>Minsk, Rokossovskogo ave, 145-173</address>
+            </order>
+        </orders>
+    </client>
+</clients>

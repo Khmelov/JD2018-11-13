@@ -60,16 +60,16 @@ public class Connect {
                     "    ON UPDATE RESTRICT)\n" +
                     "ENGINE = InnoDB;");
             statement.executeUpdate("CREATE TABLE IF NOT EXISTS `lobkova`.`goals` (\n" +
-                    "  `ID` INT NOT NULL AUTO_INCREMENT,\n" +
+                    "  `id` INT NOT NULL AUTO_INCREMENT,\n" +
                     "  `name_goal` VARCHAR(100) NULL,\n" +
                     "  `description_goal` VARCHAR(500) NULL,\n" +
-                    "  `beginDate` DATE NULL,\n" +
-                    "  `endDate` DATE NULL,\n" +
+                    "  `beginDate` INT(100) NULL,\n" +
+                    "  `endDate` INT(100) NULL,\n" +
                     "  `users_ID` INT NOT NULL,\n" +
-                    "  PRIMARY KEY (`ID`),\n" +
+                    "  PRIMARY KEY (`id`),\n" +
                     "  CONSTRAINT `fk_goals_users1`\n" +
                     "    FOREIGN KEY (`users_ID`)\n" +
-                    "    REFERENCES `lobkova`.`users` (`ID`)\n" +
+                    "    REFERENCES `lobkova`.`users` (`id`)\n" +
                     "    ON DELETE NO ACTION\n" +
                     "    ON UPDATE NO ACTION)\n" +
                     "ENGINE = InnoDB;\n");

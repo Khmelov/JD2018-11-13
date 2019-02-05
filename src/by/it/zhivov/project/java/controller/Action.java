@@ -9,6 +9,7 @@ public enum Action {
     EDITADS(new CmdEditAds()),
     INDEX(new CmdIndex()),
     LOGIN(new CmdLogin()),
+    SEARCHRESULT(new CmdSearchResult()),
     PROFILE(new CmdProfile()),
     SIGNUP(new CmdSignUp()),
     ERROR(new CmdError()),

@@ -13,6 +13,11 @@
                 <a class="nav-item nav-link" href="do?command=SignUp">Регистрация</a>
                 <a class="nav-item nav-link" href="do?command=Login">Войти</a>
             </c:when>
+            <c:when test="${roleID==1}">
+                <a class="nav-item nav-link" href="do?command=NewPost">Новый пост</a>
+                <a class="nav-item nav-link" href="do?command=Profile">Профайл</a>
+                <a class="nav-item nav-link" href="do?command=EditUsers">Все юзеры</a>
+            </c:when>
             <c:otherwise>
                 <a class="nav-item nav-link" href="do?command=NewPost">Новый пост</a>
                 <a class="nav-item nav-link" href="do?command=Profile">Профайл</a>

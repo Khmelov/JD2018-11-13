@@ -3,6 +3,7 @@ package by.it.denisova.project.java.dao;
 import by.it.denisova.project.java.beans.*;
 
 import java.sql.SQLException;
+import java.util.List;
 
 public class Runner {
     public static void main(String[] args) throws SQLException {
@@ -14,7 +15,7 @@ public class Runner {
         user.setLogin("katiaDEn23.01");
         user.setPassword("qwerty23");
         user.setEmail("katua@mail.ru");
-        user.setIdRole(1);
+        user.setId_role(1);
         if(dao.user.create(user)) {
             System.out.println("Created " + user);
         }
@@ -57,9 +58,9 @@ public class Runner {
         test = dao.test.read(test.getId());
         System.out.println("read" + test);
 
-        if(dao.test.delete(test)) {
-            System.out.println("test deleted" + test);
-        }
+//        if(dao.test.delete(test)) {
+//            System.out.println("test deleted" + test);
+//        }
 
         System.out.println("-------------------QUESTION----------------------");
         Question question = new Question();
@@ -76,9 +77,9 @@ public class Runner {
 
         question = dao.question.read(question.getId());
         System.out.println("read!!!" + question);
-        if(dao.question.delete(question)) {
-            System.out.println("Deleted " + question);
-        }
+//        if(dao.question.delete(question)) {
+//            System.out.println("Deleted " + question);
+//        }
 
         System.out.println("-------------------Answer----------------------");
         Answer answer = new Answer();
@@ -90,17 +91,64 @@ public class Runner {
         }
         System.out.println(answer.getId());
 
-        answer = dao.answer.read( answer.getId());
+        answer.setAnswer("1926");
+        if(dao.answer.update(answer)) {
+            System.out.println("UPDATED " + answer);
+        }
+        answer = dao.answer.read(answer.getId());
         System.out.println( answer);
 
-//        answer.setAnswer("wrong");
-//        if(dao.answer.update( answer)) {
-//            System.out.println("Updated " +  answer);
-//        }
+        if(dao.answer.delete(answer)) {
+            System.out.println("DELETED " +answer);
+        }
+
+        System.out.println("-------------------LESSON----------------------");
+        Lesson lesson = new Lesson();
+        lesson.setId_test(1);
+        lesson.setId_theme(1);
+        lesson.setId_type(1);
+        lesson.setTheory("some theory 1717");
+
+        if(dao.lesson.create(lesson)) {
+            System.out.println("CREATED " + lesson);
+        }
+
+       lesson = dao.lesson.read(lesson.getId());
+       System.out.println("READE " + lesson); //не работает Read кидается NullPointerException
+
+        lesson.setTheory("wrong");
+        if(dao.lesson.update( lesson)) {
+            System.out.println("Updated " +  lesson);
+        }
 
 
-//        if(dao.answer.delete( answer)) {
-//            System.out.println("Deleted " +  answer);
-//        }
+        if(dao.lesson.delete(lesson)) {
+            System.out.println("Deleted " +  lesson);
+        }
+
+        System.out.println("-------------------TYPE----------------------");
+
+        TypeLesson typeLesson = new TypeLesson();
+        typeLesson.setType("some Type23:45");
+        if(dao.type.create(typeLesson)) {
+            System.out.println("Created " + typeLesson);
+        }
+
+        typeLesson.setType("new type 23:48");
+        if (dao.type.update(typeLesson)) {
+            System.out.println("Updated " + typeLesson);
+        }
+
+        typeLesson = dao.type.read(typeLesson.getId());
+        System.out.println(typeLesson);
+
+        if (dao.type.delete(typeLesson)) {
+            System.out.println("Deleted " + typeLesson);
+        }
+
+        List<Test> tests = dao.test.getAll();
+        for (Test test1 :tests) {
+            System.out.println(test1);
+        }
   }
 }

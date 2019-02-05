@@ -1,10 +1,17 @@
 package by.it.berdnik.project.java.controller;
 
-import javax.servlet.http.HttpServletRequest;
+import by.it.berdnik.project.java.beans.Buyer;
+import by.it.berdnik.project.java.dao.Dao;
 
-class CmdIndex extends Cmd{
+import javax.servlet.http.HttpServletRequest;
+import java.sql.SQLException;
+import java.util.List;
+
+class CmdIndex implements Cmd {
     @Override
-    Action execute(HttpServletRequest req) {
+    public Action execute(HttpServletRequest req)  throws SQLException {
+        List<Buyer> buyers = Dao.getDao().buyer.getAll();
+        req.setAttribute("buyers",buyers);
         return null;
     }
 }

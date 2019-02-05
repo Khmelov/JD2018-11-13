@@ -10,6 +10,14 @@ public class Lesson {
     public Lesson() {
     }
 
+    public Lesson(long id, String theory, long id_theme, long id_test, long id_type) {
+        this.id = id;
+        this.theory = theory;
+        this.id_theme = id_theme;
+        this.id_test = id_test;
+        this.id_type = id_type;
+    }
+
     public long getId() {
         return id;
     }

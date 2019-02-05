@@ -15,6 +15,11 @@ public class Form {
         return getString(req, name, ".*");
     }
 
+    static long getLong (HttpServletRequest req, String name) throws SiteException {
+        String result = req.getParameter(name);
+        return Long.parseLong(result);
+    }
+
     static boolean isPost(HttpServletRequest req){
         return req.getMethod().equalsIgnoreCase("POST");
     }

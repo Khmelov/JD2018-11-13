@@ -1,90 +1,83 @@
 package by.it.zakharenko.jd01_11;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.Iterator;
-import java.util.List;
-import java.util.ListIterator;
-import java.util.Spliterator;
-import java.util.function.UnaryOperator;
+import java.util.*;
 
-class ListA<T> implements List<T> {
+public class ListA<T> implements List<T> {
 
     private T[] elements = (T[]) new Object[]{};
-
-    private int size = 0;
+    private int size;
 
     @Override
-    public boolean add(T element) {
-        if (size == elements.length) {
-            elements = Arrays.copyOf(elements, elements.length * 3 / 2 + 1);
-        }
-        elements[size++] = element;
+    public boolean add(T t) {
+        if (size == elements.length) elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
+        elements[size++] = t;
         return true;
     }
 
     @Override
+    public void add(int index, T element) {
+        if (size == elements.length) elements = Arrays.copyOf(elements, (size * 3) / 2 + 1);
+        System.arraycopy(elements, index, elements, index + 1, size - index);
+        elements[index] = element;
+        size++;
+    }
+
+    @Override
+    public boolean addAll(Collection<? extends T> c) {
+        return false;
+    }
+
+    @Override
     public T remove(int index) {
-        T result = elements[index];
+        T del = elements[index];
+        System.arraycopy(elements, index + 1, elements, index, size - 1 - index);
         size--;
-        System.arraycopy(elements, index + 1, elements, index, size - index);
-        return result;
+        return del;
     }
 
     @Override
     public boolean remove(Object o) {
         int index = indexOf(o);
-        if (index >= 0) remove(index);
-        return index >= 0;
+        if (index > -1) remove(index);
+        return index > -1;
     }
 
     @Override
     public int indexOf(Object o) {
-        for (int i = 0; i < elements.length; i++) {
-            if (elements[i].equals(o))
-                return i;
+        if (o != null) {
+            for (int i = 0; i < elements.length; i++) {
+                if (o.equals(elements[i])) {
+                    return i;
+                }
+            }
+        } else {
+            for (int i = 0; i < elements.length; i++) {
+                if (o.equals(elements[i])) {
+                    return i;
+                }
+            }
         }
         return -1;
     }
-
 
     @Override
     public T get(int index) {
         return elements[index];
     }
 
-
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder("[");
-        String delimiter = "";
+        String delimeter = "";
         for (int i = 0; i < size; i++) {
-            sb.append(delimiter).append(elements[i]);
-            delimiter = ", ";
+            sb.append(delimeter).append(elements[i]);
+            delimeter = ", ";
         }
         sb.append("]");
         return sb.toString();
     }
 
-
-    /// stubs
-
-
-    @Override
-    public void replaceAll(UnaryOperator<T> operator) {
-
-    }
-
-    @Override
-    public void sort(Comparator<? super T> c) {
-
-    }
-
-    @Override
-    public Spliterator<T> spliterator() {
-        return null;
-    }
+    // sub
 
     @Override
     public int size() {
@@ -116,14 +109,8 @@ class ListA<T> implements List<T> {
         return null;
     }
 
-
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
-    }
-
-    @Override
-    public boolean addAll(Collection<? extends T> c) {
         return false;
     }
 
@@ -147,17 +134,10 @@ class ListA<T> implements List<T> {
 
     }
 
-
     @Override
     public T set(int index, T element) {
         return null;
     }
-
-    @Override
-    public void add(int index, T element) {
-
-    }
-
 
     @Override
     public int lastIndexOf(Object o) {

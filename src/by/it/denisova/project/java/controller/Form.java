@@ -26,11 +26,15 @@ class Form {
         return Double.parseDouble(str);
     }
 
-    static double getInteger(HttpServletRequest req, String name){
+    static int getInteger(HttpServletRequest req, String name){
         String str = req.getParameter(name);
         return Integer.parseInt(str);
     }
 
+    static long getLong(HttpServletRequest req, String name){
+        String str = req.getParameter(name);
+        return Long.parseLong(str);
+    }
 
 
 }

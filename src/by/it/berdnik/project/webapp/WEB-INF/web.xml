@@ -10,14 +10,10 @@
     Важно чтобы внутри каждого из этих тегов были теги servlet-name
     и имя сервлета в них было одинаковым!!! Здесь это имя HelloWorld
     -->
-    <servlet>
-        <servlet-name>HelloWorld</servlet-name>
-        <servlet-class>by.it.berdnik.project.java.HelloWorld</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>HelloWorld</servlet-name>
-        <url-pattern>/hello</url-pattern>
-    </servlet-mapping>
+
+    <welcome-file-list>
+        <welcome-file>index</welcome-file>
+    </welcome-file-list>
 
     <servlet>
         <servlet-name>FrontController</servlet-name>
@@ -27,7 +23,21 @@
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/do</url-pattern>
+        <url-pattern>/index</url-pattern>
     </servlet-mapping>
 
+    <filter>
+        <filter-name>FilterEncoding</filter-name>
+        <filter-class>by.it.berdnik.project.java.filters.FilterEncoding</filter-class>
+        <init-param>
+            <param-name>encode</param-name>
+            <param-value>UTF-8</param-value>
+        </init-param>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>FilterEncoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
 
 </web-app>

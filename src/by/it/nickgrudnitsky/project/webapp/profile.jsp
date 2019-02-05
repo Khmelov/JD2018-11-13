@@ -2,7 +2,7 @@
 <html>
 <%@ include file="include/head.htm" %>
 <body>
-<%@ include file="include/menuIn.htm" %>
+<%@ include file="include/menu.htm" %>
 <p>Cmd Profile:<br> ${user}</p>
 <form class="form-horizontal" action="do?command=logout" method="POST">
 

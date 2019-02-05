@@ -20,9 +20,7 @@ public class FrontController extends HttpServlet {
             Class.forName("com.mysql.jdbc.Driver");
             List<Role> roles = Dao.getDao().role.getALL();
             getServletContext().setAttribute("roles", roles);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        } catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
         }
     }
@@ -30,6 +28,7 @@ public class FrontController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         process(req, resp);
+
     }
 
     @Override
@@ -42,15 +41,20 @@ public class FrontController extends HttpServlet {
         Action next = null;
         try {
             next = action.cmd.execute(req);
+
         } catch (Exception e) {
             StringBuilder message = new StringBuilder(e.toString());
             message.append("<p>");
             for (StackTraceElement element : e.getStackTrace()) {
+                if (element.getClass().getName().contains("HttpServlet"))
+                    break;
                 message.append(element.toString()).append("<br>");
             }
             req.setAttribute("message", message);
             toJsp(req, resp, Action.ERROR.getJsp());
         }
+
+
         if (next == null || next == action) {
             toJsp(req, resp, action.getJsp());
         } else resp.sendRedirect("do?command=" + next.toString().toLowerCase());

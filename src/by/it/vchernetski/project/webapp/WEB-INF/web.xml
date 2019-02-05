@@ -26,6 +26,7 @@
 <servlet>
     <servlet-name>FrontController</servlet-name>
     <servlet-class>by.it.vchernetski.project.java.controller.FrontController</servlet-class>
+    <multipart-config/>
 </servlet>
     <servlet-mapping>
         <servlet-name>FrontController</servlet-name>

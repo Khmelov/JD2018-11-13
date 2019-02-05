@@ -1,6 +1,7 @@
 package by.it.zakharenko.jd02_05;
 
-import by.it.zakharenko.jd02_05.res.Messages;
+import by.it.
+        zakharenko.jd02_05.res.Messages;
 
 import java.text.DateFormat;
 import java.util.Date;

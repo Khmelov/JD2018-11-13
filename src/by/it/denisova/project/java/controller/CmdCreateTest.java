@@ -10,13 +10,16 @@ import java.util.List;
 class CmdCreateTest implements Cmd {
     @Override
     public Action execute(HttpServletRequest req)  throws SQLException, SiteException {
+        if (!Util.checkUser(req))
+            return Action.LOGIN;
+
         if (Form.isPost(req)){
             String test_name = Form.getString(req,"test_name");
             Test test = new Test(0,test_name);
             Dao dao = Dao.getDao();
             if(dao.test.create(test)) {
-              //  req.getSession().setAttribute("test",test);
-                return Action.TEST;
+                req.getSession().setAttribute("test",test);
+                return Action.ANSWERQUESTION;
             }
         }
         return Action.TEST;

@@ -58,7 +58,7 @@ public class UserDao implements InterfaceDao<User> {
         try (Connection connection = Connect.getConnection();
              Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(sql);
-            if (resultSet.next()){
+            while (resultSet.next()){
 
                 int id = resultSet.getInt("id");
                 String username=resultSet.getString("username");
