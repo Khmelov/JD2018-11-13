@@ -45,6 +45,7 @@ public class Test {
         return "Test{" +
                 "id=" + id +
                 ", test_name='" + test_name + '\'' +
+                ", questionList=" + questionList +
                 '}';
     }
 }

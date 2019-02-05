@@ -3,6 +3,7 @@ package by.it.denisova.project.java.dao;
 import by.it.denisova.project.java.beans.*;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Runner {
@@ -150,5 +151,31 @@ public class Runner {
         for (Test test1 :tests) {
             System.out.println(test1);
         }
-  }
+
+
+//        List<Test> tests1 = Dao.getDao().test.getAll();
+//
+//        List<Question> testQuestions = new ArrayList<>();
+//        System.out.println("_____________________________________");
+//        for (Test test1: tests) {
+//            String where = String.format("WHERE `questions`.`id_question` = '%d'", test1.getId());
+//            List<Question> questions = Dao.getDao().question.getAll(where);
+//            test.setQuestionList(questions);
+//            List<Question> list = test.getQuestionList();
+//            System.out.println(test1);
+////            for (Question question1: list) {
+////                System.out.println(question1);
+////            }
+//        }
+
+        for (Test test2: tests) {
+            String where = String.format(" WHERE `questions`.`id_test` = '%d'", test2.getId());
+            List<Question> questions = Dao.getDao().question.getAll(where);
+            test2.setQuestionList(questions);
+            System.out.println(test2);
+        }
+
+
+
+    }
 }

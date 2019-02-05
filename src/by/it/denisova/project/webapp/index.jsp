@@ -11,12 +11,21 @@
     <form>
         <hr>
         <p> <b>Тест на тему:</b> ${test.test_name}</p>
-    <c:forEach items="${test.questionList}" var="question">
-        <p> Вопрос № "${question.id}":"${question.question}" </p>
-    </c:forEach>
+
+            <ol>
+                <c:forEach items="${test.questionList}" var="question">
+
+                   <li><p>Вопрос:"${question.question}" </p></li>
+
+                </c:forEach>
+            </ol>
+
+
+
 
     </form>
 </c:forEach>
+
 </div>
 </body>
 </html>

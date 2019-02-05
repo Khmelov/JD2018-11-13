@@ -18,7 +18,7 @@ class CmdIndex implements Cmd {
         List<Question> testQuestions = new ArrayList<>();
 
         for (Test test: tests) {
-            String where = String.format("WHERE `questions`.`id_question` = '%d'", test.getId());
+            String where = String.format("WHERE `questions`.`id_test` = '%d'", test.getId());
             List<Question> questions = Dao.getDao().question.getAll(where);
             test.setQuestionList(questions);
         }
@@ -26,4 +26,6 @@ class CmdIndex implements Cmd {
        req.setAttribute("tests",tests);
         return null;
     }
+
+
 }

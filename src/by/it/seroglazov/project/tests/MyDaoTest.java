@@ -99,13 +99,13 @@ public class MyDaoTest {
     }
 
     @Test
-    public void testRecipeAndAmount() throws SiteException {
+    public void testRecipeAndAmount() {
         Dao<Rtype> rtDao = new MyDao<>(new Rtype());
         Dao<Ingredient> ingDao = new MyDao<>(new Ingredient());
         Dao<Unit> unitDao = new MyDao<>(new Unit());
         Dao<Amount> amDao = new MyDao<>(new Amount());
         Dao<Recipe> recDao = new MyDao<>(new Recipe());
-        DatabaseCreator.getCreator().resetDatabase();
+        //DatabaseCreator.getCreator().resetDatabase();
         try {
             // Create
             Unit u = new Unit("test unit");

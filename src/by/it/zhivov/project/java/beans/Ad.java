@@ -10,18 +10,18 @@ public class Ad {
     private String body;
     private int year;
     private double engine;
-    private int at;
+    private String at;
     private String driveunit;
     private String equipment;
     private int millage;
-    private int crashed;
+    private String crashed;
     private double price;
     private long id_User;
 
     public Ad() {
     }
 
-    public Ad(long id, String title, String description, String brnd, String model, String color, String body, int year, double engine, int at, String driveunit, String equipment, int millage, int crashed, double price, long id_User) {
+    public Ad(long id, String title, String description, String brnd, String model, String color, String body, int year, double engine, String at, String driveunit, String equipment, int millage, String crashed, double price, long id_User) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -112,11 +112,11 @@ public class Ad {
         this.engine = engine;
     }
 
-    public int getAt() {
+    public String getAt() {
         return at;
     }
 
-    public void setAt(int at) {
+    public void setAt(String at) {
         this.at = at;
     }
 
@@ -144,11 +144,11 @@ public class Ad {
         this.millage = millage;
     }
 
-    public int getCrashed() {
+    public String getCrashed() {
         return crashed;
     }
 
-    public void setCrashed(int crashed) {
+    public void setCrashed(String crashed) {
         this.crashed = crashed;
     }
 

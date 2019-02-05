@@ -20,7 +20,9 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringReader;
+import java.nio.file.Files;
 import java.nio.file.OpenOption;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -51,19 +53,18 @@ public class DatabaseCreator {
         return InstanceHolder.instance;
     }
 
-    public boolean fillDatabaseFromXml() throws SiteException {
-        //if (!Validate()) return false;
+    private boolean fillDatabaseFromXml(String xmlPath) throws SiteException {
+        if (!Validate(xmlPath)) return false;
         DocumentBuilderFactory documentBuilderFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder documentBuilder;
         Document document;
         try {
             documentBuilder = documentBuilderFactory.newDocumentBuilder();
-            //InputStream xmlResource =
             OpenOption options;
             //Files.write(Paths.get("recipe.xml"), recipeXML.getBytes(), StandardOpenOption.CREATE);
-            InputSource is = new InputSource(new StringReader(recipeXML));
-            document = documentBuilder.parse(is);
-            //document = documentBuilder.parse(new File(MyConstants.xmlRecipesFileName));
+            //InputSource is = new InputSource(new StringReader(recipeXML));
+            //document = documentBuilder.parse(is);
+            document = documentBuilder.parse(new File(xmlPath + "/recipes.xml"));
         } catch (Exception e) {
             //System.err.println("Can't parse XML file: " + MyConstants.xmlRecipesFileName);
             throw new SiteException("Can't parse xml file recipes.xml");
@@ -106,16 +107,16 @@ public class DatabaseCreator {
         return true;
     }
 
-    private boolean Validate() throws SiteException {
+    private boolean Validate(String filePath) throws SiteException {
         SchemaFactory schemaFactory = SchemaFactory.newInstance(XMLConstants.W3C_XML_SCHEMA_NS_URI);
         try {
-            InputStream xmlResource = DatabaseCreator.class.getResourceAsStream("recipe.xml");
-            Source xmlFile = new StreamSource(xmlResource);
-
-            InputStream xsdResource = DatabaseCreator.class.getResourceAsStream("recipe.xsd");
-            Schema schema = schemaFactory.newSchema(new StreamSource(xsdResource));
+            //InputStream xmlResource = DatabaseCreator.class.getResourceAsStream("recipe.xml");
+            Source xmlSchema = new StreamSource(new File(filePath + "/recipes.xsd"));
+            //InputStream xsdResource = DatabaseCreator.class.getResourceAsStream("recipe.xsd");
+            Schema schema = schemaFactory.newSchema(xmlSchema);
             Validator validator = schema.newValidator();
-            validator.validate(xmlFile);
+            String fileName = filePath + "/recipes.xml";
+            validator.validate(new StreamSource(new File(fileName)));
         } catch (Exception e) {
             throw new SiteException("Can't validate file recipes.xml");
         }
@@ -294,7 +295,7 @@ public class DatabaseCreator {
         }
     }
 
-    public void resetDatabase() throws SiteException {
+    public void resetDatabase(String xmlFileName) throws SiteException {
 
         System.out.print("Delete database if exists... ");
         if (!deleteDatabase()) {
@@ -318,7 +319,7 @@ public class DatabaseCreator {
         System.out.println("done.");
 
         System.out.print("Fill tables from XML file... ");
-        if (!fillDatabaseFromXml()) {
+        if (!fillDatabaseFromXml(xmlFileName)) {
             //System.out.println("fail.");
             return;
         }

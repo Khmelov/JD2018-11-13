@@ -29,7 +29,7 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`crashed`," +
                         "`price`," +
                         "`users_id`) " +
-                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%f','%d','%s','%s','%d','%d','%f','%d')",
+                        " VALUES ('%s','%s','%s','%s','%s','%s','%d','%f','%s','%s','%s','%d','%s','%f','%d')",
                 ad.getTitle(), ad.getDescription(), ad.getBrnd(), ad.getModel(), ad.getColor(), ad.getBody(),
                 ad.getYear(), ad.getEngine(), ad.getAt(), ad.getDriveunit(), ad.getEquipment(),
                 ad.getMillage(), ad.getCrashed(), ad.getPrice(), ad.getId_User());
@@ -56,11 +56,11 @@ public class AdDao implements InterfaceDao<Ad> {
                         "`body`='%s'," +
                         "`year`='%d'," +
                         "`engine`='%f'," +
-                        "`at`='%d'," +
+                        "`at`='%s'," +
                         "`driveunit`='%s'," +
                         "`equipment`='%s'," +
                         "`mileage`='%d'," +
-                        "`crashed`='%d'," +
+                        "`crashed`='%s'," +
                         "`price`='%f'," +
                         "`users_id`='%d' " +
                         "WHERE `ads`.`id`=%d",
@@ -75,6 +75,37 @@ public class AdDao implements InterfaceDao<Ad> {
         String sqlCmd = String.format(Locale.ENGLISH,
                 "DELETE FROM `ads` WHERE `ads`.`id`=%d", ad.getId());
         return Dao.executeUpdate(sqlCmd);
+    }
+
+
+    public static List<Ad> searchAd(String searchWord) throws SQLException {
+        List<Ad> searchResult = new ArrayList<>();
+        String sqlCmd = String.format("SELECT * FROM ads WHERE MATCH (brand) AGAINST ('%s')", searchWord);
+        try (Connection connection = Connect.getConnection();
+             Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(sqlCmd);
+            while (resultSet.next()) {
+                long id = resultSet.getLong("id");
+                String title = resultSet.getString("title");
+                String description = resultSet.getString("description");
+                String brand = resultSet.getString("brand");
+                String model = resultSet.getString("model");
+                String color = resultSet.getString("color");
+                String body = resultSet.getString("body");
+                int year = resultSet.getInt("year");
+                double engine = resultSet.getDouble("engine");
+                String at = resultSet.getString("at");
+                String driveunit = resultSet.getString("driveunit");
+                String equipment = resultSet.getString("equipment");
+                int mileage = resultSet.getInt("mileage");
+                String crashed = resultSet.getString("crashed");
+                int price = resultSet.getInt("price");
+                long users_id = resultSet.getLong("users_id");
+                Ad ad = new Ad(id, title, description, brand, model, color, body, year, engine, at, driveunit, equipment, mileage, crashed, price, users_id);
+                searchResult.add(ad);
+            }
+            return searchResult;
+        }
     }
 
     public List<Ad> getAll(String sqlSuffix) throws SQLException {
@@ -95,11 +126,11 @@ public class AdDao implements InterfaceDao<Ad> {
                 String body = resultSet.getString("body");
                 int year = resultSet.getInt("year");
                 double engine = resultSet.getDouble("engine");
-                int at = resultSet.getInt("at");
+                String at = resultSet.getString("at");
                 String driveunit = resultSet.getString("driveunit");
                 String equipment = resultSet.getString("equipment");
                 int mileage = resultSet.getInt("mileage");
-                int crashed = resultSet.getInt("crashed");
+                String crashed = resultSet.getString("crashed");
                 int price = resultSet.getInt("price");
                 long users_id = resultSet.getLong("users_id");
                 Ad ad = new Ad(id, title, description, brand, model, color, body, year, engine, at, driveunit, equipment, mileage, crashed, price, users_id);

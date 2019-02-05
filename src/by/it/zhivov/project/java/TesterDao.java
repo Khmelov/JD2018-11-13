@@ -6,12 +6,13 @@ import by.it.zhivov.project.java.beans.User;
 import by.it.zhivov.project.java.dao.Dao;
 import by.it.zhivov.project.java.dao.InnerJoin_id;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class TesterDao {
-    public static void main(String[] args) throws SQLException {
-        for (int i = 0; i < 20; i++) {
-            //Dao.restoreDB();
+    public static void main(String[] args) throws SQLException, IOException {
+        // for (int i = 0; i < 20; i++) {
+        Dao.restoreDB();
             Dao dao = Dao.getDao();
             Role role = new Role();
             User user = new User();
@@ -61,11 +62,11 @@ public class TesterDao {
             ad.setBody("Hatchback");
             ad.setYear(2016);
             ad.setEngine(2.5);
-            ad.setAt(1);
+            ad.setAt("Automatic");
             ad.setDriveunit("Full");
             ad.setEquipment("Lux");
             ad.setMillage(42000);
-            ad.setCrashed(0);
+            ad.setCrashed("Yes");
             ad.setPrice(156000.3);
             ad.setId_User(user.getId());
             if (dao.ad.create(ad))
@@ -79,12 +80,12 @@ public class TesterDao {
             ad = dao.ad.read(ad.getId());
             System.out.println("\tRead ad successful\n" + ad + "\n");
             {
-//                //delete ad
-//                if (dao.ad.delete(ad))
-//                    System.out.println("\tDelete ad succefull\n" + ad + "\n");
-//                //delete user
-//                if (dao.user.delete(user))
-//                    System.out.println("\tDelete user successful\n" + user + "\n");
+                //delete ad
+                if (dao.ad.delete(ad))
+                    System.out.println("\tDelete ad succefull\n" + ad + "\n");
+                //delete user
+                if (dao.user.delete(user))
+                    System.out.println("\tDelete user successful\n" + user + "\n");
                 //delete role
                 if (dao.role.delete(role))
                     System.out.println("\tDelete role successful\n" + role + "\n");
@@ -92,7 +93,8 @@ public class TesterDao {
             InnerJoin_id.getAllRows();
             InnerJoin_id.getRolesRows();
             //Dao.restoreDB();
+            //Util.sendTg(ad.getBrnd(), ad.getModel(), ad.getYear(), ad.getPrice());
         }
         //Dao.restoreDB();
-    }
+    //}
 }
