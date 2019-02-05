@@ -27,14 +27,17 @@ class Connect {
         return connection;
     }
 
-    static void resetDB() {
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
+    static void deleteDB() {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016", "root", "")){
+            Statement statement = connection.createStatement();
+            statement.executeUpdate("DROP SCHEMA IF EXISTS `mnovikov`");
+        } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
 
-        try (Connection connection = DriverManager.getConnection(CN.URL_DB, CN.USER_DB, CN.PASSWORD_DB);) {
+    static void resetDB() {
+        try (Connection connection = DriverManager.getConnection("jdbc:mysql://127.0.0.1:2016", "root", "")){
             Statement statement = connection.createStatement();
             statement.executeUpdate("DROP SCHEMA IF EXISTS `mnovikov`");
             statement.executeUpdate("CREATE SCHEMA IF NOT EXISTS `mnovikov` DEFAULT CHARACTER SET utf8");

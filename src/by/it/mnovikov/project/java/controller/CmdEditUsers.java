@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
 
-class CmdEditTables implements Cmd {
+class CmdEditUsers implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (Util.checkUser(req)) {
@@ -36,6 +36,6 @@ class CmdEditTables implements Cmd {
             List<User> users = dao.user.getAll();
             req.setAttribute("users", users);
         }
-        return Action.EDITTABLES;
+        return Action.EDITUSERS;
     }
 }
