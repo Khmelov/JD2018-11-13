@@ -12,10 +12,10 @@ import java.util.Locale;
 
 public class SparepartsDao implements InterfaceDao<Spareparts> {
     public boolean create(Spareparts spareparts) throws SQLException {
-        String sql = String.format(Locale.US, "INSERT INTO `spareparts` ( `model`, `category`, `name`, `serial_number`, `weight`, `price`)" +
-                        " VALUES ('%s', '%s', '%s', '%s', '%f', '%f')",
+        String sql = String.format(Locale.US, "INSERT INTO `spareparts` ( `model`, `category`, `name`, `serial_number`, `weight`, `price`, `storageQuanity`)" +
+                        " VALUES ('%s', '%s', '%s', '%s', '%f', '%f', '%d')",
                 spareparts.getModel(), spareparts.getCategory(), spareparts.getName(),
-                spareparts.getSerial_number(), spareparts.getWeight(), spareparts.getPrice());
+                spareparts.getSerial_number(), spareparts.getWeight(), spareparts.getPrice(), spareparts.getStorageQuanity());
         long id = Dao.executeCrate(sql);
         spareparts.setId(id);
         return (id > 0);
@@ -28,9 +28,9 @@ public class SparepartsDao implements InterfaceDao<Spareparts> {
 
     public boolean update(Spareparts spareparts) throws SQLException {
         String sql = String.format(Locale.US, "UPDATE `spareparts` SET `model` = '%s', `category` = '%s', `name` = '%s', " +
-                        "`serial_number` = '%s', `weight` = '%f', `price` = '%f' WHERE `sparepart`.`id` = %d",
+                        "`serial_number` = '%s', `weight` = '%f', `price` = '%f', `storageQuanity` = '%d' WHERE `sparepart`.`id` = %d",
                 spareparts.getModel(), spareparts.getCategory(), spareparts.getName(), spareparts.getSerial_number(),
-                spareparts.getWeight(), spareparts.getPrice(), spareparts.getId());
+                spareparts.getWeight(), spareparts.getPrice(), spareparts.getId(), spareparts.getStorageQuanity());
         return Dao.executeUpdate(sql);
     }
 
@@ -60,6 +60,7 @@ public class SparepartsDao implements InterfaceDao<Spareparts> {
                 spareparts.setSerial_number(resultSet.getString("serial_number"));
                 spareparts.setWeight(resultSet.getDouble("weight"));
                 spareparts.setPrice(resultSet.getDouble("price"));
+                spareparts.setStorageQuanity(resultSet.getInt("storageQuanity"));
 
                 sp.add(spareparts);
             }

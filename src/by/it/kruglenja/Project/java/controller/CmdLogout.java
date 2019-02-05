@@ -6,12 +6,13 @@ import java.sql.SQLException;
 
 public class CmdLogout implements Cmd {
     @Override
-    public Action execute(HttpServletRequest req)throws SQLException {
-        HttpSession session = req.getSession(false);
-        if (session != null) {
-            session.invalidate();
-            return Action.LOGOUT;
+    public Action execute(HttpServletRequest req) throws SQLException, SiteExpression {
+        if (Form.isPost(req)) {
+            if (Form.getString(req, "logout") != null) {
+                req.getSession().invalidate();
+                return Action.LOGIN;
+            }
         }
-        return null;
+        return Action.PROFILE;
     }
 }

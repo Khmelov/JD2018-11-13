@@ -10,7 +10,6 @@ public interface InterfaceDao<Type> {
     boolean delete(Type bean) throws SQLException;
 
     Type read(long id)  throws SQLException;
-//    List<Type> getAll() throws SQLException;
     List<Type> getAll(String sqlSuffix) throws SQLException;
     default List<Type> getAll() throws SQLException {
         return getAll("");

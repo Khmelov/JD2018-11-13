@@ -11,7 +11,14 @@ public enum Action {
     LOGOUT( new CmdLogout()),
     ORDER(new CmdOrder()),
     ERROR(new CmdError()),
-    PROFILE(new CmdProfile());
+    PROFILE(new CmdProfile()),
+    PARTTOBUCKET(new CmdPartToBucket()),
+    DELETEORDERPART(new DeleteOrderPart()),
+    EDITUSERS(new CmdEditUser()),
+    EDITORDER(new EditOrder()),
+    MAKEORDER(new CmdMakeOrder()),
+    COMPLETEDORDER(new CmdCompletedOrder()),
+    FILLCATALOG(new CmdFillCatalog());
 
 
     Cmd cmd;
@@ -24,7 +31,7 @@ public enum Action {
 
     static Action definer(HttpServletRequest req) {
         String command = req.getParameter("command");
-        Action result = Action.ERROR;
+        Action result = Action.INDEX;
         if (command != null && !command.isEmpty()) {
             try {
                 result = Action.valueOf(command.toUpperCase());
