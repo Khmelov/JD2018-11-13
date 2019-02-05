@@ -7,9 +7,8 @@
 	<%@ include file="include/head.jsp" %>
 </head>
 <body>
-	<%@ include file="include/menu.jsp" %>
 	<div class="container">
-
+		<%@ include file="include/menu.jsp" %>
 		<p>Name: ${recipe_name}</p>
 		<c:remove var="recipe_name" scope="session" />
 
@@ -30,7 +29,6 @@
 
 		<p>Ingredient 4: ${ingredient4}</p>
 		<c:remove var="ingredient4" scope="session" /> 
-
 	</div>	
 </body>
 </html>

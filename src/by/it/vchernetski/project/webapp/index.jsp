@@ -22,7 +22,6 @@
         <div class="col-md-1">${car.year} </div>
     </div>
 </c:forEach>
-
 <br><br>
 </div>
 </body>

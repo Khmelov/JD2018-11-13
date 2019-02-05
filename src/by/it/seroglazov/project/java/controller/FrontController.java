@@ -45,10 +45,10 @@ public class FrontController extends HttpServlet {
             next = action.cmd.execute(req);
         } catch (Exception e) {
             req.getSession().setAttribute("message", e.getMessage());
-            toJsp(req, resp, Action.ERROR.getJsp());
+            toJsp(req, resp, Action.ERROR.getJsp(req));
         }
         if (next == null || next == action) {
-            toJsp(req, resp, action.getJsp());
+            toJsp(req, resp, action.getJsp(req));
         } else
             resp.sendRedirect("do?command=" + next.toString().toLowerCase());
     }
