@@ -41,7 +41,7 @@
                         <select id="role" name="roles_Id" class="form-control">
                             <c:forEach items="${roles}" var="role">
                                 <option value="${role.id}" role=${role.id} ${role.id==user.roles_Id?"selected":""}>
-                                        ${id_role.role}
+                                        ${role.role}
                                 </option>
                             </c:forEach>
                         </select>
