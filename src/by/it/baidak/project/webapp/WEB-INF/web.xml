@@ -33,16 +33,4 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-    <!-- ===================  ADMIN FILTER  ================================================ -->
-
-    <filter>
-        <filter-name>FilterAdmin</filter-name>
-        <filter-class>by.it.baidak.project.java.filters.FilterAdmin</filter-class>
-    </filter>
-
-    <filter-mapping>
-        <filter-name>FilterEncoding</filter-name>
-        <url-pattern>/do?command=removepost</url-pattern>
-    </filter-mapping>
-
 </web-app>
