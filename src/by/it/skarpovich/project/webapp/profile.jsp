@@ -6,53 +6,44 @@
 <div class="container">
 <%@ include file="include/menu.jsp" %>
 
-
-
-
-
-
-
 <div class="page-header">
-    <h1>Список заказов</h1>
-
+    <h2>Профиль</h2>
+    <p class="lead">Здравствуйте, <font color=green><strong>${user.username}!</strong></font></p>
 </div>
+<table class="table table-striped table-responsive-md btn-table">
+  <thead>
+    <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Логин</th>
+            <th scope="col">Пароль</th>
+            <th scope="col">E-mail</th>
+            <th scope="col">Ф.И.О</th>
+            <th scope="col">Телефон</th>
+            <th scope="col">Адрес</th>
+            <th scope="col">Роль</th>
+ </tr>
+ </thead>
+ <tbody>
+  <tr>
+            <form class="update-userid-${user.id}" action="do?command=Profile" method="POST">
+            <td><input size="1" id="id" class="form-control input-md" name="id" value="${user.id}" readonly/></td>
+            <td><input size="2" id="username" class="form-control input-md" name="username" value="${user.username}" readonly/></td>
 
-<div class="row">
-    <div class="col-md-2">Дата</div>
-    <div class="col-md-2">Время</div>
-    <div class="col-md-2">Проект</div>
-</div>
-
-<c:forEach items="${orders}" var="varOrders">
-    <br>
-    <div class="row">
-        <div class="col-md-2">${varOrders.date} </div>
-        <div class="col-md-2">${varOrders.time} </div>
-        <div class="col-md-2">${varOrders.items_id} </div>
-    </div>
-</c:forEach>
-<br><br>
-
-
-
-
-
-
-
-<form class="form-horizontal" action="do?command=Profile" method="POST">
-<fieldset>
-
-<!-- Form Name -->
-
-<!-- Button -->
-<div class="form-group">
-  <label class="col-md-4 control-label" for="logout"></label>
-  <div class="col-md-4">
-    <button id="logout" name="logout" class="btn btn-success">LogOut</button>
-  </div>
-</div>
-</fieldset>
-</form>
+            <td><input size="3" id="password" class="form-control input-md" name="password" value="${user.password}"/></td>
+            <td><input size="11" id="email" class="form-control input-md" name="email" value="${user.email}"/>
+            <td><input size="9" id="fullname" class="form-control input-md" name="fullname" value="${user.fullname}"/></td>
+            <td><input size="9" id="phone" class="form-control input-md" name="phone" value="${user.phone}"/></td>
+            <td><input size="11" id="address" class="form-control input-md" name="address" value="${user.address}"/></td>                                                                            </td>
+            <td>
+            <select id="role" name="roles_id" class="form-control">
+            <c:forEach items="${roles}" var="role">
+            <option value="${role.id}" role=${role.id} ${role.id==user.roles_id?"selected":""}>${role.role}</option>
+            </c:forEach></select>
+            </td>
+            <td><button id="Update" value="Update" name="Update" class="btn btn-info">Обновить</button> </td>
+            </form></tr>
+  </tbody>
+  </table>
 
 
 </div>
