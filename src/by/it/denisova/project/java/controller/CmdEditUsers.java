@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.sql.SQLException;
 import java.util.List;
 
-public class CmdEditUsers implements Cmd{
+public class CmdEditUsers implements Cmd {
     @Override
     public Action execute(HttpServletRequest req) throws SQLException, SiteException {
         if (Util.checkUser(req)) {
