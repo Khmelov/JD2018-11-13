@@ -1,4 +1,0 @@
-greetings = Сярдэчна запрашаем!
-end = Для выхаду з праграмы нацiснiце end
-name = Наталля Карнiлава
-languageChoice = Каб выбраць мову нацicнiце: ru; be; en

@@ -1,5 +1,0 @@
-str.welcome=welcome!
-str.question=How do you do?
-user.name=Sergey Naumenko
-locale=want to change the locale?
-exit=exit

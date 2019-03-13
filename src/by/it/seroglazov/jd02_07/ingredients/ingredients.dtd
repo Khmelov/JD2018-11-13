@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!ELEMENT ingredients (ingredient)+>
-<!ELEMENT ingredient (name, tags*)>
-<!ATTLIST ingredient id ID #REQUIRED>
-<!ELEMENT name (#PCDATA)>
-<!ELEMENT tags (tag)*>
-<!ELEMENT tag (#PCDATA)>

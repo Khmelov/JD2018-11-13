@@ -1,4 +1,0 @@
-native2ascii -encoding utf-8 MyResources.txt MyResources.properties
-native2ascii -encoding utf-8 MyResources_ru_RU.txt MyResources_ru_RU.properties
-native2ascii -encoding utf-8 MyResources_be_BY.txt MyResources_be_BY.properties
-native2ascii -encoding utf-8 MyResources_en_EN.txt MyResources_en_EN.properties

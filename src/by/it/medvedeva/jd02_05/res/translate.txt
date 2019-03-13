@@ -1,3 +1,0 @@
-str.welcome=Welcome!
-str.question=How do you do?
-user.name=Anna Medvedeva

@@ -1,9 +1,0 @@
-divisionByZero=Division by zero.
-impossibleToCreate=Impossible to create.
-error=ERROR:
-addoperation=Addition operation
-suboperation=Subtraction operation
-muloperation=Multiplication operation
-divoperation=Division operation
-impossible= impossible.
-thisisabstractvar=This is AbstractVar.

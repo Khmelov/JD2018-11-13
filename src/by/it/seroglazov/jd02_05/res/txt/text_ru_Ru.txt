@@ -1,5 +1,0 @@
-text.welcome=Добро пожаловать!
-text.howDoYouDo=Как дела?
-user.name=Ренат
-text.unknownCommand=Неизвестная команда
-text.languageChanged=Язык изменён на русский

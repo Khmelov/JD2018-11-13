@@ -1,7 +1,0 @@
-C:\>cd C:\Program Files\Java\jdk1.8.0_191\bin
-
-C:\Program Files\Java\jdk1.8.0_191\bin>native2ascii.exe -encoding utf-8 C:\Projects\JD2018-11-13\src\by\it\karnilava\jd02_05\Welcome_be_BY.txt C:\Projects\JD2018-11-13\src\by\it\karnilava\jd02_05\Welcome_be_BY.properties
-
-C:\Program Files\Java\jdk1.8.0_191\bin>native2ascii.exe -encoding utf-8 C:\Projects\JD2018-11-13\src\by\it\karnilava\jd02_05\Welcome_ru_RU.txt C:\Projects\JD2018-11-13\src\by\it\karnilava\jd02_05\Welcome_ru_RU.properties
-
-C:\Program Files\Java\jdk1.8.0_191\bin>native2ascii.exe -encoding utf-8 C:\Projects\JD2018-11-13\src\by\it\karnilava\jd02_05\Welcome_en_EN.txt C:\Projects\JD2018-11-13\src\by\it\karnilava\jd02_05\Welcome_en_EN.properties

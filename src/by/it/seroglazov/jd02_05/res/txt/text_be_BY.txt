@@ -1,5 +1,0 @@
-text.welcome=Сардэчна запрашаем!
-text.howDoYouDo=Як справы?
-user.name=Рэнат
-text.unknownCommand=Невядомая каманда
-text.languageChanged=Мова зменена на беларускую

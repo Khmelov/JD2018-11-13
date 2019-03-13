@@ -1,5 +1,0 @@
-str.welcome=Прывітанне!
-str.question=Як справы?
-user.name=Сяргей Навуменка
-locale=жадаеце змяніць лакаль?
-exit=выхад

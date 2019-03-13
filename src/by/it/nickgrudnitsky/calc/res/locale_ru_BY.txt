@@ -1,9 +1,0 @@
-divisionByZero=Деление на ноль.
-impossibleToCreate=Невозможно создать.
-error=Ошибка.
-addoperation=Операция сложения
-suboperation=Операция вычитания
-muloperation=Операция умножения
-divoperation=Операция деления
-impossible= невозможна.
-thisisabstractvar=Это клаcc AbstractVar.

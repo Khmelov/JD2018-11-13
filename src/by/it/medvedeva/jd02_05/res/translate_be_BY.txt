@@ -1,3 +1,0 @@
-str.welcome=Прывітанне!
-str.question=Як справы?
-user.name=Анна Мядзведзева

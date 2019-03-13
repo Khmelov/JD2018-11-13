@@ -1,3 +1,0 @@
-native2ascii -encoding UTF-8 text_ru_RU.txt text_ru_RU.properties
-native2ascii -encoding UTF-8 text_be_BE.txt text_be_BE.properties
-native2ascii -encoding UTF-8 text_en_EN.txt text_en_EN.properties

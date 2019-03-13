@@ -1,7 +1,0 @@
-str.error=Памылка:
-str.operation=Аперацыя
-str.zero=Дзяленне на нуль!
-str.impossible=немагчымая!
-str.diskerror=Памылка дыску!
-str.unknownvar=Невядомая пераменная
-str.testerror=Штучная памылка!

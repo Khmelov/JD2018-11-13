@@ -1,3 +1,0 @@
-str.welcome=Welcome!
-str.question=whazzzzzaaaa?????
-user.name=Leon
