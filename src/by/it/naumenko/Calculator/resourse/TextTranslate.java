@@ -37,6 +37,7 @@ public class TextTranslate {
     public static final String INCORRECT_SECOND_VECTOR="IncorrectSecondVector";
     public static final String END="end";
     public static final String EXIT="exit";
+    public static final String LOCALE="ru";
 
     public static final String INCORRECT_VECTOR_N="IncorrectVectorN";
     public static final String INCORRECT_FIRST_MATRIX="IncorrectFirstMatrix";

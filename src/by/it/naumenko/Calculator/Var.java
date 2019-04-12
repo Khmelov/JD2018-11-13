@@ -1,8 +1,10 @@
 package by.it.naumenko.Calculator;
 
 
-import by.it.naumenko.expirements.calculator.resourse.ResourceManager;
-import by.it.naumenko.expirements.calculator.resourse.TextTranslate;
+
+
+import by.it.naumenko.Calculator.resourse.ResourceManager;
+import by.it.naumenko.Calculator.resourse.TextTranslate;
 
 import java.io.*;
 import java.util.HashMap;
