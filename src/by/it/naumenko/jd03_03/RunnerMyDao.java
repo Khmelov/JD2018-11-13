@@ -2,6 +2,7 @@ package by.it.naumenko.jd03_03;
 
 
 import by.it.naumenko.jd03_03.beens.*;
+import by.it.naumenko.project.java.beens.Profil;
 
 import java.sql.SQLException;
 import java.util.List;

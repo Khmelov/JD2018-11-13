@@ -8,10 +8,10 @@ public enum ResourceManager {
 
    private ResourceManager(){setLocale(Locale.getDefault());}
 
-   private ResourceBundle resourceBundle;
+   public ResourceBundle resourceBundle;
 
    public void setLocale(Locale locale){
-       resourceBundle = ResourceBundle.getBundle("by.it.naumenko.expirements.calculator.resourse.text", locale);
+       resourceBundle = ResourceBundle.getBundle("by.it.naumenko.Calculator.resourse.text",locale);
    }
 
    public String get(String key){
